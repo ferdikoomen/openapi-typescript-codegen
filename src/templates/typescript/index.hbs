@@ -1,0 +1,24 @@
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+
+const server: string = '{{{server}}}';
+const version: string = '{{{version}}}';
+{{#if models}}
+
+{{#each models}}
+export { {{{base}}} } from './models/{{{base}}}';
+{{/each}}
+{{/if}}
+{{#if schemas}}
+
+{{#each schemas}}
+export { {{{base}}} } from './schemas/{{{base}}}';
+{{/each}}
+{{/if}}
+{{#if services}}
+
+{{#each services}}
+export { {{{base}}} } from './services/{{{base}}}';
+{{/each}}
+{{/if}}

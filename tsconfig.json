@@ -1,0 +1,33 @@
+{
+    "compileOnSave": false,
+
+    "compilerOptions": {
+        "outDir": "./dist",
+        "target": "esnext",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "lib": ["esnext", "dom"],
+        "types": ["node", "jest"],
+        "typeRoots": ["node_modules/@types"],
+        "declaration": false,
+        "declarationMap": false,
+        "sourceMap": false,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "noImplicitAny": true,
+        "skipLibCheck": true,
+        "strict": true,
+        "strictNullChecks": true,
+        "importHelpers": false,
+        "forceConsistentCasingInFileNames": true
+    },
+
+    "include": [
+        "./src/index.ts"
+    ],
+
+    "exclude": [
+        "node_modules"
+    ]
+}
+

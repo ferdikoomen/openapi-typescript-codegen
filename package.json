@@ -1,0 +1,86 @@
+{
+    "name": "openapi-typescript-codegen",
+    "version": "0.0.1",
+    "description": "NodeJS library that generates Typescript or Javascript clients based on the OpenAPI specification.",
+    "author": "Ferdi Koomen",
+    "homepage": "https://github.com/ferdikoomen/openapi-typescript-codegen",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ferdikoomen/openapi-typescript-codegen.git"
+    },
+    "bugs": {
+        "url": "https://github.com/ferdikoomen/openapi-typescript-codegen/issues"
+    },
+    "license": "MIT",
+    "keywords": [
+        "openapi",
+        "swagger",
+        "codegen",
+        "generator",
+        "client",
+        "typescript",
+        "javascript",
+        "yaml",
+        "json",
+        "fetch",
+        "xhr",
+        "node"
+    ],
+    "maintainers": [
+        {
+            "name": "Ferdi Koomen",
+            "email": "info@madebyferdi.com"
+        }
+    ],
+    "main": "dist/index.js",
+    "module": "dist/index.js",
+    "bin": {
+        "openapi": "bin/index.js"
+    },
+    "files": [
+        "bin/index.js",
+        "dist/index.js",
+        "dist/**/*.js",
+        "src/templates/javascript/*.hbs",
+        "src/templates/typescript/*.hbs"
+    ],
+    "scripts": {
+        "clean": "rimraf \"./dist\" \"./test/tmp\"",
+        "build": "tsc",
+        "start": "tsc && node ./test/index.js",
+        "test": "jest ./src",
+        "test:watch": "jest --watch",
+        "test:coverage": "jest --coverage",
+        "eslint": "eslint \"./src/**/*.ts\"",
+        "eslint:fix": "eslint \"./src/**/*.ts\" --fix",
+        "prettier": "prettier \"./src/**/*.ts\" --check",
+        "prettier:fix": "prettier \"./src/**/*.ts\" --write"
+    },
+    "devDependencies": {
+        "@types/jest": "24.0.20",
+        "@types/js-yaml": "3.12.1",
+        "@types/mkdirp": "0.5.2",
+        "@types/node": "12.11.7",
+        "@types/rimraf": "2.0.3",
+        "@types/yup": "0.26.24",
+        "@typescript-eslint/eslint-plugin": "2.5.0",
+        "@typescript-eslint/parser": "2.5.0",
+        "camelcase": "5.3.1",
+        "chalk": "2.4.2",
+        "commander": "3.0.2",
+        "eslint": "6.6.0",
+        "eslint-config-prettier": "6.5.0",
+        "eslint-plugin-prettier": "3.1.1",
+        "handlebars": "4.4.5",
+        "jest": "24.9.0",
+        "jest-cli": "24.9.0",
+        "js-yaml": "3.13.1",
+        "mkdirp": "0.5.1",
+        "path": "0.12.7",
+        "prettier": "1.18.2",
+        "rimraf": "3.0.0",
+        "ts-jest": "24.1.0",
+        "typescript": "3.6.4",
+        "yup": "0.27.0"
+    }
+}

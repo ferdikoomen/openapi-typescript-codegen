@@ -1,0 +1,14 @@
+node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+junit.xml
+.DS_Store
+.tmp
+.idea
+.vscode
+*.iml
+dist
+archive
+coverage
+test/tmp

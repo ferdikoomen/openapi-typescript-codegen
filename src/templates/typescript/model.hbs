@@ -1,0 +1,29 @@
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+{{#if imports}}
+
+{{#each imports}}
+import { {{{this}}} } from '../models/{{{this}}}';
+{{/each}}
+{{/if}}
+
+export interface {{{base}}}{{{template}}}{{#if extend}} extends {{{extend}}}{{/if}} {
+    {{#each properties}}
+    {{#if readOnly}}readonly {{/if}}{{{name}}}{{#unless required}}?{{/unless}}: {{{type}}};
+    {{/each}}
+}
+{{#if enums}}
+
+export namespace {{{base}}} {
+
+    {{#each enums}}
+    export enum {{{name}}} {
+        {{#each values}}
+        {{{name}}} = {{{value}}},
+        {{/each}}
+    };
+
+    {{/each}}
+}
+{{/if}}

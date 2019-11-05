@@ -1,0 +1,17 @@
+/* istanbul ignore file */
+/* eslint-disable */
+{{#if enums}}
+
+export let {{{base}}};
+(function ({{{base}}}) {
+
+    {{#each enums}}
+    {{{../base}}}.{{{name}}} = {
+        {{#each values}}
+        {{{name}}}: {{{value}}},
+        {{/each}}
+    };
+
+    {{/each}}
+})({{{base}}} || ({{{base}}} = {}));
+{{/if}}
