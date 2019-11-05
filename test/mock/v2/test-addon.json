@@ -1,0 +1,954 @@
+{
+    "x-generator": "NSwag v12.3.1.0 (NJsonSchema v9.14.1.0 (Newtonsoft.Json v12.0.0.0))",
+    "swagger": "2.0",
+    "info": {
+        "title": "Add-on Service API",
+        "version": "v1"
+    },
+    "host": "10.91.90.47:83",
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/addon/api/v1/addons": {
+            "get": {
+                "tags": [
+                    "Addons"
+                ],
+                "summary": "Gets the list of addons.",
+                "operationId": "GetAll",
+                "responses": {
+                    "200": {
+                        "x-nullable": true,
+                        "description": "",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Addon"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Addons"
+                ],
+                "summary": "Upload add-ons' zip files. Creates (or updates if exists) add-on.",
+                "operationId": "Upload",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "parameters": [
+                    {
+                        "type": "file",
+                        "name": "file",
+                        "in": "formData",
+                        "required": true,
+                        "description": "FileStream of the uploading file."
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "x-nullable": true,
+                        "description": "UploadResult",
+                        "schema": {
+                            "$ref": "#/definitions/UploadResult"
+                        }
+                    },
+                    "202": {
+                        "x-nullable": true,
+                        "description": "UploadResult",
+                        "schema": {
+                            "$ref": "#/definitions/UploadResult"
+                        }
+                    }
+                }
+            }
+        },
+        "/addon/api/v1/addons/{id}": {
+            "put": {
+                "tags": [
+                    "Addons"
+                ],
+                "summary": "Upload addons' zip files. Updates existing add-on.",
+                "operationId": "Update",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "The add-on id.",
+                        "format": "int32",
+                        "x-nullable": false
+                    },
+                    {
+                        "type": "file",
+                        "name": "file",
+                        "in": "formData",
+                        "required": true,
+                        "description": "FileStream of the uploading file."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "x-nullable": true,
+                        "description": "UploadResult.",
+                        "schema": {
+                            "$ref": "#/definitions/UploadResult"
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Addons"
+                ],
+                "summary": "Gets the addon metadata by the specified id.",
+                "operationId": "Get",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "The addon id.",
+                        "format": "int32",
+                        "x-nullable": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "x-nullable": true,
+                        "description": "The addon metadata.",
+                        "schema": {
+                            "$ref": "#/definitions/Addon"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Addons"
+                ],
+                "summary": "Deletes the addon with a specified id.",
+                "operationId": "Delete",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "The addon id.",
+                        "format": "int32",
+                        "x-nullable": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "x-nullable": true,
+                        "description": "",
+                        "schema": {
+                            "type": "file"
+                        }
+                    }
+                }
+            }
+        },
+        "/addon/api/v1/addons/{id}/status": {
+            "post": {
+                "tags": [
+                    "Addons"
+                ],
+                "summary": "Updates the addon status.",
+                "operationId": "UpdateAddonStatus",
+                "consumes": [
+                    "application/json-patch+json",
+                    "application/json",
+                    "text/json",
+                    "application/*+json"
+                ],
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "The addon id.",
+                        "format": "int32",
+                        "x-nullable": false
+                    },
+                    {
+                        "name": "statusReport",
+                        "in": "body",
+                        "required": true,
+                        "description": "The status report.",
+                        "schema": {
+                            "$ref": "#/definitions/StatusReport"
+                        },
+                        "x-nullable": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "x-nullable": true,
+                        "description": "",
+                        "schema": {
+                            "type": "file"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Addons"
+                ],
+                "summary": "Deletes the addon status.",
+                "operationId": "DeleteAddonStatus",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "The addon id.",
+                        "format": "int32",
+                        "x-nullable": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "x-nullable": true,
+                        "description": "",
+                        "schema": {
+                            "type": "file"
+                        }
+                    }
+                }
+            }
+        },
+        "/addon/api/v1/addons/{id}/download": {
+            "get": {
+                "tags": [
+                    "Addons"
+                ],
+                "summary": "Downloads addon by the specified id.",
+                "description": "When HEAD request is used the method only checks if the addon exists and returns the empty file.",
+                "operationId": "Download",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "The addon id.",
+                        "format": "int32",
+                        "x-nullable": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "x-nullable": true,
+                        "description": "Binary addon.",
+                        "schema": {
+                            "type": "file"
+                        }
+                    }
+                }
+            },
+            "head": {
+                "tags": [
+                    "Addons"
+                ],
+                "summary": "Downloads addon by the specified id.",
+                "description": "When HEAD request is used the method only checks if the addon exists and returns the empty file.",
+                "operationId": "Fetch",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "The addon id.",
+                        "format": "int32",
+                        "x-nullable": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "x-nullable": true,
+                        "description": "Binary addon.",
+                        "schema": {
+                            "type": "file"
+                        }
+                    }
+                }
+            }
+        },
+        "/addon/api/v1/addons/{id}/downloadicon": {
+            "get": {
+                "tags": [
+                    "Addons"
+                ],
+                "summary": "Downloads Addon Icon by the specified id.",
+                "operationId": "DownloadIcon",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "The addon id.",
+                        "format": "int32",
+                        "x-nullable": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "x-nullable": true,
+                        "description": "Addon icon stream.",
+                        "schema": {
+                            "type": "file"
+                        }
+                    }
+                }
+            }
+        },
+        "/addon/api/v1/addons/{id}/configurations": {
+            "put": {
+                "tags": [
+                    "Configurations"
+                ],
+                "summary": "Upload addon configuration files. Extracts required fields from the containing manifest file.",
+                "operationId": "UploadConfiguration",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "The addon id.",
+                        "format": "int32",
+                        "x-nullable": false
+                    },
+                    {
+                        "type": "file",
+                        "name": "file",
+                        "in": "formData",
+                        "required": true,
+                        "description": "FileStream of the uploading file."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "x-nullable": true,
+                        "description": "The updated addon.",
+                        "schema": {
+                            "$ref": "#/definitions/UploadResult"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Configurations"
+                ],
+                "summary": "Deletes the addon configuration with a specified id.",
+                "operationId": "ConfigurationDelete",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "The addon id.",
+                        "format": "int32",
+                        "x-nullable": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "x-nullable": true,
+                        "description": "",
+                        "schema": {
+                            "type": "file"
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Configurations"
+                ],
+                "summary": "Downloads addon configuration by the specified id.",
+                "description": "When HEAD request is used the method only checks if the addon exists and returns the empty file.",
+                "operationId": "DownloadAddonConfiguration",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "The addon id.",
+                        "format": "int32",
+                        "x-nullable": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "x-nullable": true,
+                        "description": "Binary addon configuration.",
+                        "schema": {
+                            "type": "file"
+                        }
+                    }
+                }
+            }
+        },
+        "/addon/api/v1/extensions/{id}/status": {
+            "post": {
+                "tags": [
+                    "Extensions"
+                ],
+                "summary": "Updates the extension status.",
+                "operationId": "UpdateExtensionStatus",
+                "consumes": [
+                    "application/json-patch+json",
+                    "application/json",
+                    "text/json",
+                    "application/*+json"
+                ],
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "The extension id.",
+                        "format": "int32",
+                        "x-nullable": false
+                    },
+                    {
+                        "name": "statusReport",
+                        "in": "body",
+                        "required": true,
+                        "description": "The status report.",
+                        "schema": {
+                            "$ref": "#/definitions/StatusReport"
+                        },
+                        "x-nullable": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "x-nullable": true,
+                        "description": "",
+                        "schema": {
+                            "type": "file"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Extensions"
+                ],
+                "summary": "Deletes the extension status.",
+                "operationId": "DeleteExtensionStatus",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "The extension id.",
+                        "format": "int32",
+                        "x-nullable": false
+                    },
+                    {
+                        "type": "string",
+                        "name": "clientId",
+                        "in": "query",
+                        "description": "The client id. If it is specified, extension status for that client will be deleted.\n            If not specified then extension status will be deleted for all clients.",
+                        "x-nullable": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "x-nullable": true,
+                        "description": "",
+                        "schema": {
+                            "type": "file"
+                        }
+                    }
+                }
+            }
+        },
+        "/addon/api/v1/health": {
+            "get": {
+                "tags": [
+                    "Health"
+                ],
+                "summary": "Checks whether the service is up and running",
+                "operationId": "Health",
+                "responses": {
+                    "200": {
+                        "x-nullable": true,
+                        "description": "Ok - in success case, otherwise return the error description.",
+                        "schema": {
+                            "type": "file"
+                        }
+                    }
+                }
+            }
+        },
+        "/addon/api/v1/report/heartbeat": {
+            "post": {
+                "tags": [
+                    "Report"
+                ],
+                "summary": "Receives heartbeat from all clients.",
+                "description": "This heartbeat is used to calculate the aggregated status of the Addons.\nIf the service does not receive heartbeat for a certain while,\nall reported status are ignored during status calculation.\nAfter a longer period those ignored status reports are cleaned out.\nBoth these values are configurable in the service.",
+                "operationId": "Report_Heartbeat",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "name": "environment",
+                        "in": "query",
+                        "x-nullable": true
+                    },
+                    {
+                        "type": "string",
+                        "name": "clientIdentity",
+                        "in": "query",
+                        "x-nullable": true
+                    },
+                    {
+                        "type": "string",
+                        "name": "process",
+                        "in": "query",
+                        "x-nullable": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": ""
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Addon": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "Id",
+                "RequireConfiguration",
+                "Enabled",
+                "Status"
+            ],
+            "properties": {
+                "Id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "ManifestVersion": {
+                    "type": "string",
+                    "description": "Gets the manifest version."
+                },
+                "PackageId": {
+                    "type": "string",
+                    "description": "Gets the unique identifier of the add-on."
+                },
+                "Name": {
+                    "type": "string",
+                    "description": "Gets the descriptive name of add-on."
+                },
+                "Description": {
+                    "type": "string",
+                    "description": "Gets the description of add-on."
+                },
+                "Author": {
+                    "type": "string",
+                    "description": "Gets the Author of add-on."
+                },
+                "MinVersion": {
+                    "type": "string",
+                    "description": "Gets the minimum SDL Tridion Sites version this extension supports."
+                },
+                "MaxVersion": {
+                    "type": "string",
+                    "description": "Gets the maximum SDL Tridion Sites version this extension supports."
+                },
+                "Version": {
+                    "type": "string",
+                    "description": "Gets the version of this add-on."
+                },
+                "Icon": {
+                    "type": "string",
+                    "description": "Gets the add-on icon."
+                },
+                "RequireConfiguration": {
+                    "description": "Describes whether the custom configuration can be uploaded for the addon.",
+                    "$ref": "#/definitions/RequireConfiguration"
+                },
+                "Dependencies": {
+                    "type": "array",
+                    "description": "Gets the collection of add-on dependencies.",
+                    "items": {
+                        "$ref": "#/definitions/Dependency"
+                    }
+                },
+                "Extensions": {
+                    "type": "array",
+                    "description": "Gets the list of extensions this add-on contains.",
+                    "items": {
+                        "$ref": "#/definitions/Extension"
+                    }
+                },
+                "Enabled": {
+                    "type": "boolean"
+                },
+                "Status": {
+                    "$ref": "#/definitions/DeploymentStatus"
+                },
+                "PackageHash": {
+                    "type": "string"
+                },
+                "UploadedAt": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "DownloadUri": {
+                    "type": "string",
+                    "format": "uri"
+                },
+                "StatusReports": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/StatusReport"
+                    }
+                },
+                "DownloadIconUri": {
+                    "type": "string",
+                    "format": "uri"
+                },
+                "DownloadConfigurationUri": {
+                    "type": "string",
+                    "format": "uri"
+                },
+                "Configuration": {
+                    "$ref": "#/definitions/Configuration"
+                }
+            }
+        },
+        "RequireConfiguration": {
+            "type": "string",
+            "description": "Represents whether the Addon requires configuration or not",
+            "x-enumNames": [
+                "Optional",
+                "Yes",
+                "No"
+            ],
+            "enum": [
+                "Optional",
+                "Yes",
+                "No"
+            ],
+            "x-ms-enum": {
+                "name": "RequireConfiguration",
+                "modelAsString": false
+            }
+        },
+        "Dependency": {
+            "type": "object",
+            "description": "Represents add-on dependencies from the add-on manifest file.",
+            "additionalProperties": false,
+            "properties": {
+                "Id": {
+                    "type": "string",
+                    "description": "Gets the name of dependency package"
+                },
+                "Version": {
+                    "type": "string",
+                    "description": "Gets the version of dependency package"
+                }
+            }
+        },
+        "Extension": {
+            "type": "object",
+            "description": "Represents extension information from the add-on manifest file.",
+            "additionalProperties": false,
+            "required": [
+                "Id",
+                "Status"
+            ],
+            "properties": {
+                "Id": {
+                    "type": "integer",
+                    "description": "Add-on service generated ID.",
+                    "format": "int32"
+                },
+                "Name": {
+                    "type": "string",
+                    "description": "Gets the extension name"
+                },
+                "SupportedVersions": {
+                    "type": "string",
+                    "description": "Gets the SDL Tridion Sites component versions this extension support"
+                },
+                "Type": {
+                    "type": "string",
+                    "description": "Gets the identifier of the extension point that this extension extends."
+                },
+                "properties": {
+                    "description": "Gets the custom properties associated with this extension as raw json."
+                },
+                "StatusReports": {
+                    "type": "array",
+                    "description": "List of status reports.",
+                    "items": {
+                        "$ref": "#/definitions/StatusReport"
+                    }
+                },
+                "DisabledClients": {
+                    "type": "array",
+                    "description": "List of the clients where the extension is disabled.",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "Status": {
+                    "description": "Calculated status for this extension.",
+                    "$ref": "#/definitions/DeploymentStatus"
+                }
+            }
+        },
+        "StatusReport": {
+            "type": "object",
+            "description": "Represents the extension status object to be received from the update addon status REST method.",
+            "additionalProperties": false,
+            "required": [
+                "Status"
+            ],
+            "properties": {
+                "Environment": {
+                    "type": "string",
+                    "description": "The free-form unique identifier of the environment of the client reporting the addon and extension status."
+                },
+                "ClientIdentity": {
+                    "type": "string",
+                    "description": "The free form unique identifier of the client who reporting the addon and extension status.\n\nIs used in order to calculate the addon and extension status based on all the client's reports.\nE.g. at least one reported fail - addon extension gets failed status."
+                },
+                "Process": {
+                    "type": "string",
+                    "description": "The free-form unique identifier of the process of the client reporting the addon and extension status."
+                },
+                "Status": {
+                    "description": "The addon status.",
+                    "$ref": "#/definitions/DeploymentStatus"
+                },
+                "Message": {
+                    "type": "string",
+                    "description": "The exception details for the case of failed status."
+                }
+            }
+        },
+        "DeploymentStatus": {
+            "type": "string",
+            "description": "Represents the status the Addon or Extension is currently in",
+            "x-enumNames": [
+                "Fail",
+                "Pending",
+                "Success",
+                "WaitingConfiguration",
+                "Disabled"
+            ],
+            "enum": [
+                "Fail",
+                "Pending",
+                "Success",
+                "WaitingConfiguration",
+                "Disabled"
+            ],
+            "x-ms-enum": {
+                "name": "DeploymentStatus",
+                "modelAsString": false
+            }
+        },
+        "Configuration": {
+            "type": "object",
+            "description": "Represents add-on configuration information",
+            "additionalProperties": false,
+            "properties": {
+                "FileName": {
+                    "type": "string",
+                    "description": "Gets the configuration file name."
+                },
+                "ContentHash": {
+                    "type": "string",
+                    "description": "Gets the hash of configuration file content."
+                },
+                "UploadedAt": {
+                    "type": "string",
+                    "description": "Gets configuration upload date.",
+                    "format": "date-time"
+                }
+            }
+        },
+        "UploadResult": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "Id",
+                "IsModified"
+            ],
+            "properties": {
+                "Id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "IsModified": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "IHeaderDictionary": {
+            "type": "object",
+            "x-abstract": true,
+            "additionalProperties": false,
+            "required": [
+                "Item"
+            ],
+            "properties": {
+                "Item": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "ContentLength": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        },
+        "Manifest": {
+            "type": "object",
+            "description": "Represents add-on information from the add-on manifest file.",
+            "additionalProperties": false,
+            "required": [
+                "RequireConfiguration"
+            ],
+            "properties": {
+                "ManifestVersion": {
+                    "type": "string",
+                    "description": "Gets the manifest version."
+                },
+                "Id": {
+                    "type": "string",
+                    "description": "Gets the unique identifier of the add-on."
+                },
+                "Name": {
+                    "type": "string",
+                    "description": "Gets the descriptive name of add-on."
+                },
+                "Description": {
+                    "type": "string",
+                    "description": "Gets the description of add-on."
+                },
+                "Author": {
+                    "type": "string",
+                    "description": "Gets the Author of add-on."
+                },
+                "MinVersion": {
+                    "type": "string",
+                    "description": "Gets the minimum SDL Tridion Sites version this extension supports."
+                },
+                "MaxVersion": {
+                    "type": "string",
+                    "description": "Gets the maximum SDL Tridion Sites version this extension supports."
+                },
+                "Version": {
+                    "type": "string",
+                    "description": "Gets the version of this add-on."
+                },
+                "Icon": {
+                    "type": "string",
+                    "description": "Gets the add-on icon."
+                },
+                "RequireConfiguration": {
+                    "description": "Describes whether the custom configuration can be uploaded for the addon.",
+                    "$ref": "#/definitions/RequireConfiguration"
+                },
+                "Dependencies": {
+                    "type": "array",
+                    "description": "Gets the collection of add-on dependencies.",
+                    "items": {
+                        "$ref": "#/definitions/DependencyManifest"
+                    }
+                },
+                "Extensions": {
+                    "type": "array",
+                    "description": "Gets the list of extensions this add-on contains.",
+                    "items": {
+                        "$ref": "#/definitions/ExtensionManifest"
+                    }
+                }
+            }
+        },
+        "DependencyManifest": {
+            "type": "object",
+            "description": "Represents add-on dependencies from the add-on manifest file.",
+            "additionalProperties": false,
+            "properties": {
+                "Id": {
+                    "type": "string",
+                    "description": "Gets the name of dependency package"
+                },
+                "Version": {
+                    "type": "string",
+                    "description": "Gets the version of dependency package"
+                }
+            }
+        },
+        "ExtensionManifest": {
+            "type": "object",
+            "description": "Represents extension information from the add-on manifest file.",
+            "additionalProperties": false,
+            "required": [
+                "Id"
+            ],
+            "properties": {
+                "Id": {
+                    "type": "integer",
+                    "description": "Add-on service generated ID.",
+                    "format": "int32"
+                },
+                "Name": {
+                    "type": "string",
+                    "description": "Gets the extension name"
+                },
+                "SupportedVersions": {
+                    "type": "string",
+                    "description": "Gets the SDL Tridion Sites component versions this extension support"
+                },
+                "Type": {
+                    "type": "string",
+                    "description": "Gets the identifier of the extension point that this extension extends."
+                },
+                "properties": {
+                    "description": "Gets the additional properties required to configure the extension."
+                }
+            }
+        }
+    }
+}

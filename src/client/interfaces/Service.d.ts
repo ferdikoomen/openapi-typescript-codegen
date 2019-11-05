@@ -1,5 +1,7 @@
+import { ServiceOperation } from './ServiceOperation';
+
 export interface Service {
     name: string;
-    base: string;
-    imports: [];
+    operations: ServiceOperation[];
+    imports: string[];
 }

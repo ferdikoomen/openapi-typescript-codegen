@@ -25,12 +25,14 @@ export function writeClient(client: Client, language: Language, templates: Templ
     const outputPathSchemas = path.resolve(outputPath, 'schemas');
     const outputPathServices = path.resolve(outputPath, 'services');
 
+    // Clean output directory
     try {
         rimraf.sync(outputPath);
     } catch (e) {
         throw new Error(`Could not clean output directory`);
     }
 
+    // Create new directories
     try {
         mkdirp.sync(outputPath);
         mkdirp.sync(outputPathCore);
@@ -41,6 +43,7 @@ export function writeClient(client: Client, language: Language, templates: Templ
         throw new Error(`Could not create output directories`);
     }
 
+    // Write the client files
     try {
         writeClientIndex(client, language, templates.index, outputPath);
         writeClientModels(getSortedModels(client.models), language, templates.model, outputPathModels);

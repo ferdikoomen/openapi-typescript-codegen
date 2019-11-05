@@ -8,8 +8,8 @@ import { OpenApiSchema } from './OpenApiSchema';
  * https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#mediaTypeObject
  */
 export interface OpenApiMediaType {
-    schema?: OpenApiSchema | OpenApiReference;
+    schema?: OpenApiSchema & OpenApiReference;
     example?: any;
-    examples?: Dictionary<OpenApiExample | OpenApiReference>;
+    examples?: Dictionary<OpenApiExample & OpenApiReference>;
     encoding?: Dictionary<OpenApiEncoding>;
 }

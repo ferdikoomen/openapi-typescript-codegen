@@ -17,10 +17,10 @@ export interface OpenApiOperation {
     description?: string;
     externalDocs?: OpenApiExternalDocs;
     operationId?: string;
-    parameters?: OpenApiParameter[] | OpenApiReference[];
-    requestBody?: OpenApiRequestBody | OpenApiReference;
+    parameters?: (OpenApiParameter & OpenApiReference)[];
+    requestBody?: OpenApiRequestBody & OpenApiReference;
     responses: OpenApiResponses;
-    callbacks?: Dictionary<OpenApiCallback | OpenApiReference>;
+    callbacks?: Dictionary<OpenApiCallback & OpenApiReference>;
     deprecated?: boolean;
     security?: OpenApiSecurityRequirement[];
     servers?: OpenApiServer[];

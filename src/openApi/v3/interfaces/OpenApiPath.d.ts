@@ -7,7 +7,6 @@ import { OpenApiServer } from './OpenApiServer';
  * https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#pathItemObject
  */
 export interface OpenApiPath {
-    $ref?: string;
     summary?: string;
     description?: string;
     get?: OpenApiOperation;
@@ -19,5 +18,5 @@ export interface OpenApiPath {
     patch?: OpenApiOperation;
     trace?: OpenApiOperation;
     servers?: OpenApiServer[];
-    parameters?: OpenApiParameter[] | OpenApiReference[];
+    parameters?: (OpenApiParameter & OpenApiReference)[];
 }

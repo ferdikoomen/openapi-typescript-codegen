@@ -9,7 +9,7 @@ import { OpenApiReference } from './OpenApiReference';
  */
 export interface OpenApiResponse {
     description: string;
-    headers?: Dictionary<OpenApiHeader | OpenApiReference>;
+    headers?: Dictionary<OpenApiHeader & OpenApiReference>;
     content?: Dictionary<OpenApiMediaType>;
-    links?: Dictionary<OpenApiLink | OpenApiReference>;
+    links?: Dictionary<OpenApiLink & OpenApiReference>;
 }

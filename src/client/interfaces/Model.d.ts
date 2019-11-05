@@ -5,9 +5,9 @@ export interface Model {
     name: string;
     base: string;
     type: string;
-    template: string;
-    description: string | null;
-    extends: string | null;
+    template?: string;
+    description?: string;
+    extends: string[];
     imports: string[];
     properties: ModelProperty[];
     enums: ModelEnum[];

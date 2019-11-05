@@ -20,7 +20,7 @@ export enum HttpClient {
 
 /**
  * Generate the OpenAPI client. This method will read the OpenAPI specification and based on the
- * given language it will generate the client, including the types models, validation schemas,
+ * given language it will generate the client, including the typed models, validation schemas,
  * service layer, etc.
  * @param input The relative location of the OpenAPI spec.
  * @param output The relative location of the output directory
@@ -39,6 +39,8 @@ export function generate(input: string, output: string, language: Language = Lan
     console.log(os.EOL);
 
     try {
+        // Load the specification, read the OpenAPI version and load the
+        // handlebar templates for the given language
         const openApi = getOpenApiSpec(inputPath);
         const openApiVersion = getOpenApiVersion(openApi);
         const templates = readHandlebarsTemplates(language);

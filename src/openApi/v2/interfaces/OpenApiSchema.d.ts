@@ -7,7 +7,6 @@ import { OpenApiXml } from './OpenApiXml';
  * https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#schemaObject
  */
 export interface OpenApiSchema {
-    $ref?: string;
     format?: 'int32' | 'int64' | 'float' | 'double' | 'string' | 'boolean' | 'byte' | 'binary' | 'date' | 'date-time' | 'password';
     title?: string;
     description?: string;
@@ -26,12 +25,12 @@ export interface OpenApiSchema {
     maxProperties?: number;
     minProperties?: number;
     required?: string[];
-    enum?: string[] | number[];
+    enum?: (string | number)[];
     type?: string;
-    items?: OpenApiReference | OpenApiSchema;
-    allOf?: OpenApiReference[] | OpenApiSchema[];
-    properties?: Dictionary<OpenApiSchema>;
-    additionalProperties?: boolean | OpenApiReference | OpenApiSchema;
+    items?: OpenApiSchema & OpenApiReference;
+    allOf?: (OpenApiSchema & OpenApiReference)[];
+    properties?: Dictionary<OpenApiSchema & OpenApiReference>;
+    additionalProperties?: boolean | (OpenApiSchema & OpenApiReference);
     discriminator?: string;
     readOnly?: boolean;
     xml?: OpenApiXml;

@@ -7,7 +7,7 @@
     "paths": {
         "/": {
             "get": {
-                "operationId": "listVersionsv2",
+                "operationId": "listVersions",
                 "summary": "List API versions",
                 "responses": {
                     "200": {
@@ -64,7 +64,7 @@
         },
         "/v2": {
             "get": {
-                "operationId": "getVersionDetailsv2",
+                "operationId": "getVersionDetails",
                 "summary": "Show API version details",
                 "responses": {
                     "200": {

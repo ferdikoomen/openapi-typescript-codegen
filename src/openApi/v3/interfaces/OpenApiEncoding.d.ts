@@ -7,7 +7,7 @@ import { OpenApiReference } from './OpenApiReference';
  */
 export interface OpenApiEncoding {
     contentType?: string;
-    headers?: Dictionary<OpenApiHeader | OpenApiReference>;
+    headers?: Dictionary<OpenApiHeader & OpenApiReference>;
     style?: string;
     explode?: boolean;
     allowReserved?: boolean;

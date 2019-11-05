@@ -1,23 +1,38 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-{{#if imports}}
 
+{{#if imports}}
 {{#each imports}}
 import { {{{this}}} } from '../models/{{{this}}}';
 {{/each}}
 {{/if}}
+import * as yup from 'yup';
 
+{{#if description}}
+/**
+ * {{{description}}}
+ */
+{{/if}}
 export interface {{{base}}}{{{template}}}{{#if extend}} extends {{{extend}}}{{/if}} {
     {{#each properties}}
-    {{#if readOnly}}readonly {{/if}}{{{name}}}{{#unless required}}?{{/unless}}: {{{type}}};
+    {{#if description}}
+    /**
+     * {{{description}}}
+     */
+    {{/if}}
+    {{#if readOnly}}readonly {{/if}}{{{name}}}{{#unless required}}?{{/unless}}: {{{type}}}{{#if nullable}} | null{{/if}};
     {{/each}}
 }
-{{#if enums}}
 
 export namespace {{{base}}} {
 
     {{#each enums}}
+    {{#if description}}
+    /**
+     * {{{description}}}
+     */
+    {{/if}}
     export enum {{{name}}} {
         {{#each values}}
         {{{name}}} = {{{value}}},
@@ -25,5 +40,16 @@ export namespace {{{base}}} {
     };
 
     {{/each}}
+
+    export const schema = yup.object<{{{base}}}{{{template}}}>().shape({
+        // Add properties
+    });
+
+    export function validate(value: {{{base}}}{{{template}}}): Promise<{{{base}}}{{{template}}}> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: {{{base}}}{{{template}}}): {{{base}}}{{{template}}} {
+        return schema.validateSync(value, { strict: true });
+    }
 }
-{{/if}}

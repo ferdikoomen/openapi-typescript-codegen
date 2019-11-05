@@ -26,6 +26,6 @@ export interface OpenApiParameter {
     maxItems?: number;
     minItems?: number;
     uniqueItems?: boolean;
-    enum?: string[] | number[];
+    enum?: (string | number)[];
     multipleOf?: number;
 }

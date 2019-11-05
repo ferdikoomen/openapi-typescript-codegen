@@ -17,6 +17,6 @@ export interface OpenApiItems {
     maxItems?: number;
     minItems?: number;
     uniqueItems?: number;
-    enum?: string[] | number[];
+    enum?: (string | number)[];
     multipleOf?: number;
 }

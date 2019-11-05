@@ -2,8 +2,8 @@
 /* tslint:disable */
 /* eslint-disable */
 
-const server: string = '{{{server}}}';
-const version: string = '{{{version}}}';
+const server = '{{{server}}}';
+const version = '{{{version}}}';
 {{#if models}}
 
 {{#each models}}
@@ -19,6 +19,6 @@ export { {{{base}}} } from './schemas/{{{base}}}';
 {{#if services}}
 
 {{#each services}}
-export { {{{base}}} } from './services/{{{base}}}';
+export { {{{name}}} } from './services/{{{name}}}';
 {{/each}}
 {{/if}}

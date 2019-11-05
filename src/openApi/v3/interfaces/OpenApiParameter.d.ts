@@ -16,7 +16,7 @@ export interface OpenApiParameter {
     style?: string;
     explode?: boolean;
     allowReserved?: boolean;
-    schema?: OpenApiSchema | OpenApiReference;
+    schema?: OpenApiSchema & OpenApiReference;
     example?: any;
-    examples?: Dictionary<OpenApiExample | OpenApiReference>;
+    examples?: Dictionary<OpenApiExample & OpenApiReference>;
 }

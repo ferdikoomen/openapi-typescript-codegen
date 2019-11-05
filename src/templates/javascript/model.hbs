@@ -1,11 +1,22 @@
 /* istanbul ignore file */
 /* eslint-disable */
-{{#if enums}}
+
+{{#if imports}}
+{{#each imports}}
+import { {{{this}}} } from '../models/{{{this}}}';
+{{/each}}
+{{/if}}
+import * as yup from 'yup';
 
 export let {{{base}}};
 (function ({{{base}}}) {
 
     {{#each enums}}
+    {{#if description}}
+    /**
+     * {{{description}}}
+     */
+    {{/if}}
     {{{../base}}}.{{{name}}} = {
         {{#each values}}
         {{{name}}}: {{{value}}},
@@ -13,5 +24,17 @@ export let {{{base}}};
     };
 
     {{/each}}
+
+    {{{../base}}}.schema = yup.object().shape({
+        // Add properties
+    };
+
+    {{{../base}}}.validate = function(value) {
+        return schema.validate(value, { strict: true });
+    };
+
+    {{{../base}}}.validateSync = function(value) {
+        return schema.validateSync(value, { strict: true });
+    };
+
 })({{{base}}} || ({{{base}}} = {}));
-{{/if}}

@@ -1,11 +1,17 @@
-openapi: "3.0.0"
+swagger: "2.0"
 info:
     version: 1.0.0
     title: Swagger Petstore
     license:
         name: MIT
-servers:
-    -   url: http://petstore.swagger.io/v1
+host: petstore.swagger.io
+basePath: /v1
+schemes:
+    - http
+consumes:
+    - application/json
+produces:
+    - application/json
 paths:
     /pets:
         get:
@@ -14,45 +20,37 @@ paths:
             tags:
                 - pets
             parameters:
-                -   name: limit
-                    in: query
-                    description: How many items to return at one time (max 100)
-                    required: false
-                    schema:
-                        type: integer
-                        format: int32
+                - name: limit
+                  in: query
+                  description: How many items to return at one time (max 100)
+                  required: false
+                  type: integer
+                  format: int32
             responses:
-                '200':
+                "200":
                     description: A paged array of pets
                     headers:
                         x-next:
+                            type: string
                             description: A link to the next page of responses
-                            schema:
-                                type: string
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/Pets"
+                    schema:
+                        $ref: '#/definitions/Pets'
                 default:
                     description: unexpected error
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/Error"
+                    schema:
+                        $ref: '#/definitions/Error'
         post:
             summary: Create a pet
             operationId: createPets
             tags:
                 - pets
             responses:
-                '201':
+                "201":
                     description: Null response
                 default:
                     description: unexpected error
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/Error"
+                    schema:
+                        $ref: '#/definitions/Error'
     /pets/{petId}:
         get:
             summary: Info for a specific pet
@@ -60,52 +58,46 @@ paths:
             tags:
                 - pets
             parameters:
-                -   name: petId
-                    in: path
-                    required: true
-                    description: The id of the pet to retrieve
-                    schema:
-                        type: string
+                - name: petId
+                  in: path
+                  required: true
+                  description: The id of the pet to retrieve
+                  type: string
             responses:
-                '200':
+                "200":
                     description: Expected response to a valid request
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/Pet"
+                    schema:
+                        $ref: '#/definitions/Pets'
                 default:
                     description: unexpected error
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/Error"
-components:
-    schemas:
-        Pet:
-            type: object
-            required:
-                - id
-                - name
-            properties:
-                id:
-                    type: integer
-                    format: int64
-                name:
-                    type: string
-                tag:
-                    type: string
-        Pets:
-            type: array
-            items:
-                $ref: "#/components/schemas/Pet"
-        Error:
-            type: object
-            required:
-                - code
-                - message
-            properties:
-                code:
-                    type: integer
-                    format: int32
-                message:
-                    type: string
+                    schema:
+                        $ref: '#/definitions/Error'
+definitions:
+    Pet:
+        type: "object"
+        required:
+            - id
+            - name
+        properties:
+            id:
+                type: integer
+                format: int64
+            name:
+                type: string
+            tag:
+                type: string
+    Pets:
+        type: array
+        items:
+            $ref: '#/definitions/Pet'
+    Error:
+        type: "object"
+        required:
+            - code
+            - message
+        properties:
+            code:
+                type: integer
+                format: int32
+            message:
+                type: string

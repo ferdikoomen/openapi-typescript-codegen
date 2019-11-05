@@ -4,6 +4,6 @@
  * OpenAPI version without the need to hardcode this in the URL.
  * @param path
  */
-export function getServicePath(path: string): string {
+export function getServiceOperationPath(path: string): string {
     return path.replace(/{api-version}/g, '{OpenAPI.VERSION}').replace(/\{(.*?)\}/g, '${$1}');
 }

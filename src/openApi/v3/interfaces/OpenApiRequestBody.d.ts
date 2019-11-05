@@ -7,6 +7,6 @@ import { OpenApiReference } from './OpenApiReference';
  */
 export interface OpenApiRequestBody {
     description?: string;
-    content: Dictionary<OpenApiMediaType | OpenApiReference>;
+    content: Dictionary<OpenApiMediaType & OpenApiReference>;
     required?: boolean;
 }
