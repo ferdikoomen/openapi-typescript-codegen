@@ -1,0 +1,1 @@
+# openapi-typescript-codegen
