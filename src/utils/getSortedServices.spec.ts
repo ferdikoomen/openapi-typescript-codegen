@@ -6,17 +6,17 @@ describe('getSortedServices', () => {
         const services = new Map<string, Service>();
         services.set('John', {
             name: 'John',
-            base: 'John',
+            operations: [],
             imports: [],
         });
         services.set('Jane', {
             name: 'Jane',
-            base: 'Jane',
+            operations: [],
             imports: [],
         });
         services.set('Doe', {
             name: 'Doe',
-            base: 'Doe',
+            operations: [],
             imports: [],
         });
 

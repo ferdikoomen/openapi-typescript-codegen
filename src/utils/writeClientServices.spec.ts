@@ -12,7 +12,7 @@ describe('writeClientServices', () => {
         const services: Service[] = [
             {
                 name: 'Item',
-                base: 'Item',
+                operations: [],
                 imports: [],
             },
         ];
