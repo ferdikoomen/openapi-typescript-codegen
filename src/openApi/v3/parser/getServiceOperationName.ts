@@ -1,4 +1,4 @@
-import * as camelcase from 'camelcase';
+import camelCase from 'camelcase';
 
 /**
  * Convert the input value to a correct operation (method) classname. This converts
@@ -7,5 +7,5 @@ import * as camelcase from 'camelcase';
  * @param value
  */
 export function getServiceOperationName(value: string): string {
-    return camelcase(value);
+    return camelCase(value);
 }
