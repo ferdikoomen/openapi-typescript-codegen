@@ -4,15 +4,11 @@
  */
 export function getSortedImports(imports: string[]): string[] {
     return imports
-        .filter(name => {
-            return name && name.trim();
-        })
-        .filter((name, index, arr) => {
-            return arr.indexOf(name) === index;
-        })
+        .filter(name => name)
+        .filter((name, index, arr) => arr.indexOf(name) === index)
         .sort((a, b) => {
-            const nameA = a.toLowerCase();
-            const nameB = b.toLowerCase();
+            const nameA: string = a.toLowerCase();
+            const nameB: string = b.toLowerCase();
             return nameA.localeCompare(nameB, 'en');
         });
 }

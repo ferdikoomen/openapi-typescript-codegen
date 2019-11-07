@@ -2,18 +2,14 @@
 /* tslint:disable */
 /* eslint-disable */
 
-const server = '{{{server}}}';
-const version = '{{{version}}}';
+export { ApiError } from './core/ApiError';
+export { isSuccess } from './core/isSuccess';
+export { Dictionary } from './core/Dictionary';
+export { OpenAPI } from './core/OpenAPI';
 {{#if models}}
 
 {{#each models}}
 export { {{{base}}} } from './models/{{{base}}}';
-{{/each}}
-{{/if}}
-{{#if schemas}}
-
-{{#each schemas}}
-export { {{{base}}} } from './schemas/{{{base}}}';
 {{/each}}
 {{/if}}
 {{#if services}}

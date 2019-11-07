@@ -6,7 +6,6 @@ import * as path from 'path';
 export interface Templates {
     index: handlebars.TemplateDelegate;
     model: handlebars.TemplateDelegate;
-    schema: handlebars.TemplateDelegate;
     service: handlebars.TemplateDelegate;
 }
 
@@ -16,16 +15,14 @@ export interface Templates {
  * @param language The language we need to generate (Typescript or Javascript).
  */
 export function readHandlebarsTemplates(language: Language): Templates {
-    const pathTemplateIndex = path.resolve(__dirname, `../../src/templates/${language}/index.hbs`);
-    const pathTemplateModel = path.resolve(__dirname, `../../src/templates/${language}/model.hbs`);
-    const pathTemplateSchema = path.resolve(__dirname, `../../src/templates/${language}/schema.hbs`);
-    const pathTemplateService = path.resolve(__dirname, `../../src/templates/${language}/service.hbs`);
+    const pathTemplateIndex: string = path.resolve(__dirname, `../../src/templates/${language}/index.hbs`);
+    const pathTemplateModel: string = path.resolve(__dirname, `../../src/templates/${language}/model.hbs`);
+    const pathTemplateService: string = path.resolve(__dirname, `../../src/templates/${language}/service.hbs`);
 
     try {
         return {
             index: readHandlebarsTemplate(pathTemplateIndex),
             model: readHandlebarsTemplate(pathTemplateModel),
-            schema: readHandlebarsTemplate(pathTemplateSchema),
             service: readHandlebarsTemplate(pathTemplateService),
         };
     } catch (e) {

@@ -1,7 +1,18 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import * as yup from 'yup';
+
+{{#if imports}}
+{{#each imports}}
+import { {{{this}}} } from '../models/{{{this}}}';
+{{/each}}
+{{/if}}
+import { ApiError, catchGenericError } from '../core/ApiError';
+import { request } from '../core/request';
+import { Dictionary } from '../core/Dictionary';
+import { isValidRequiredParam } from '../core/isValidRequiredParam';
+import { OpenAPI } from '../core/OpenAPI';
+import { Result } from '../core/Result';
 
 export class {{{name}}} {
 
@@ -26,12 +37,11 @@ export class {{{name}}} {
         {{#if parameters}}
 
         {{#each parameters}}
-        yup.schema.validate();
         isValidRequiredParam({{{name}}}, '{{{name}}}');
         {{/each}}
         {{/if}}
 
-        const result = await request<{{{result}}}>({
+        const result: Result<{{{result}}}> = await request<{{{result}}}>({
             method: '{{{method}}}',
             path: `{{{path}}}`,{{#if parametersHeader}}
             headers: {
@@ -51,8 +61,8 @@ export class {{{name}}} {
             },{{/if}}{{#if parametersBody}}
             body: {{{parametersBody.name}}},{{/if}}
         });
-
         {{#if errors}}
+
         if (!result.ok) {
             switch (result.status) {
             {{#each errors}}

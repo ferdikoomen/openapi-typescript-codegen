@@ -4,7 +4,6 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { getSortedModels } from './getSortedModels';
 import { getSortedServices } from './getSortedServices';
-import { getSortedSchemas } from './getSortedSchemas';
 import { Language } from '../index';
 import { getFileName } from './getFileName';
 
@@ -18,7 +17,7 @@ import { getFileName } from './getFileName';
  * @param outputPath:
  */
 export function writeClientIndex(client: Client, language: Language, template: handlebars.TemplateDelegate, outputPath: string): void {
-    const fileName = getFileName('index', language);
+    const fileName: string = getFileName('index', language);
     try {
         fs.writeFileSync(
             path.resolve(outputPath, fileName),
@@ -26,7 +25,6 @@ export function writeClientIndex(client: Client, language: Language, template: h
                 server: client.server,
                 version: client.version,
                 models: getSortedModels(client.models),
-                schemas: getSortedSchemas(client.schemas),
                 services: getSortedServices(client.services),
             })
         );

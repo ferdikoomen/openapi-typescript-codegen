@@ -23,7 +23,7 @@ export interface OpenApiSchema {
     maxProperties?: number;
     minProperties?: number;
     required?: string[];
-    enum?: (string | number)[];
+    enum?: string[];
     type?: string;
     allOf?: (OpenApiSchema & OpenApiReference)[];
     oneOf?: (OpenApiSchema & OpenApiReference)[];

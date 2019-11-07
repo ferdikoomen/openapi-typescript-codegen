@@ -1,5 +1,7 @@
 export interface Schema {
-    name: string;
+    type: string;
     base: string;
-    imports: [];
+    template: string | null;
+    default?: any;
+    imports: string[];
 }

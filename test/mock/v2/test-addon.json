@@ -2,7 +2,7 @@
     "x-generator": "NSwag v12.3.1.0 (NJsonSchema v9.14.1.0 (Newtonsoft.Json v12.0.0.0))",
     "swagger": "2.0",
     "info": {
-        "title": "Add-on Service API",
+        "title": "Tridion Add-on Service API",
         "version": "v1"
     },
     "host": "10.91.90.47:83",

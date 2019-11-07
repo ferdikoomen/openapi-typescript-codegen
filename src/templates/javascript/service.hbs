@@ -2,6 +2,11 @@
 /* eslint-disable */
 import * as yup from 'yup';
 
+import { ApiError, catchGenericError } from '../core/ApiError';
+import { request } from '../core/request';
+import { isValidRequiredParam } from '../core/isValidRequiredParam';
+import { OpenAPI } from '../core/OpenAPI';
+
 export class {{{name}}} {
 
     {{#each operations}}
@@ -50,8 +55,8 @@ export class {{{name}}} {
             },{{/if}}{{#if parametersBody}}
             body: {{{parametersBody.name}}},{{/if}}
         });
-
         {{#if errors}}
+
         if (!result.ok) {
             switch (result.status) {
             {{#each errors}}

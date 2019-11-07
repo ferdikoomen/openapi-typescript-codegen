@@ -5,7 +5,6 @@ import * as fs from 'fs';
 import { Client } from '../client/interfaces/Client';
 import { Model } from '../client/interfaces/Model';
 import { Templates } from './readHandlebarsTemplates';
-import { Schema } from '../client/interfaces/Schema';
 import { Service } from '../client/interfaces/Service';
 import { Language } from '../index';
 
@@ -23,14 +22,12 @@ describe('writeClient', () => {
             server: 'http://localhost:8080',
             version: 'v1',
             models: new Map<string, Model>(),
-            schemas: new Map<string, Schema>(),
             services: new Map<string, Service>(),
         };
 
         const templates: Templates = {
             index: () => 'dummy',
             model: () => 'dummy',
-            schema: () => 'dummy',
             service: () => 'dummy',
         };
 

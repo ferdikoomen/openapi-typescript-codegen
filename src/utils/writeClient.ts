@@ -8,9 +8,10 @@ import { Templates } from './readHandlebarsTemplates';
 import { writeClientIndex } from './writeClientIndex';
 import { getSortedModels } from './getSortedModels';
 import { getSortedServices } from './getSortedServices';
-import { writeClientSchemas } from './writeClientSchemas';
-import { getSortedSchemas } from './getSortedSchemas';
 import { Language } from '../index';
+import * as fs from 'fs';
+import { getFileName } from './getFileName';
+import * as glob from 'glob';
 
 /**
  * Write our OpenAPI client, using the given templates at the given output path
@@ -20,10 +21,9 @@ import { Language } from '../index';
  * @param outputPath
  */
 export function writeClient(client: Client, language: Language, templates: Templates, outputPath: string): void {
-    const outputPathCore = path.resolve(outputPath, 'core');
-    const outputPathModels = path.resolve(outputPath, 'models');
-    const outputPathSchemas = path.resolve(outputPath, 'schemas');
-    const outputPathServices = path.resolve(outputPath, 'services');
+    const outputPathCore: string = path.resolve(outputPath, 'core');
+    const outputPathModels: string = path.resolve(outputPath, 'models');
+    const outputPathServices: string = path.resolve(outputPath, 'services');
 
     // Clean output directory
     try {
@@ -37,17 +37,26 @@ export function writeClient(client: Client, language: Language, templates: Templ
         mkdirp.sync(outputPath);
         mkdirp.sync(outputPathCore);
         mkdirp.sync(outputPathModels);
-        mkdirp.sync(outputPathSchemas);
         mkdirp.sync(outputPathServices);
     } catch (e) {
         throw new Error(`Could not create output directories`);
     }
 
+    // Copy all core files
+    const coreFiles: string = path.resolve(__dirname, `../../src/templates/${language}/core/`);
+    const coreFilesExt: string = getFileName('*', language);
+    const coreFilesList: string[] = glob.sync(coreFilesExt, { cwd: coreFiles });
+    coreFilesList.forEach(file =>
+        fs.copyFileSync(
+            path.resolve(coreFiles, file), // From input path
+            path.resolve(outputPathCore, file) // To output path
+        )
+    );
+
     // Write the client files
     try {
         writeClientIndex(client, language, templates.index, outputPath);
         writeClientModels(getSortedModels(client.models), language, templates.model, outputPathModels);
-        writeClientSchemas(getSortedSchemas(client.schemas), language, templates.schema, outputPathSchemas);
         writeClientServices(getSortedServices(client.services), language, templates.service, outputPathServices);
     } catch (e) {
         throw e;

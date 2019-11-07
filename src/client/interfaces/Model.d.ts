@@ -5,7 +5,7 @@ export interface Model {
     name: string;
     base: string;
     type: string;
-    template?: string;
+    template: string | null;
     description?: string;
     extends: string[];
     imports: string[];

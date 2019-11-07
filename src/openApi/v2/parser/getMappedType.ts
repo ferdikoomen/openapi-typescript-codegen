@@ -30,7 +30,7 @@ const MAPPINGS = new Map<string, string>([
  * @param type
  */
 export function getMappedType(type: string): string {
-    const mapped = MAPPINGS.get(type.toLowerCase());
+    const mapped: string | undefined = MAPPINGS.get(type.toLowerCase());
     if (mapped) {
         return mapped;
     }

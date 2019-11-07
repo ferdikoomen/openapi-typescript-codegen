@@ -1,13 +1,16 @@
 import { OpenApi } from '../interfaces/OpenApi';
+import { OpenApiServer } from '../interfaces/OpenApiServer';
+import { Dictionary } from '../../../utils/types';
+import { OpenApiServerVariable } from '../interfaces/OpenApiServerVariable';
 
-type Props = Pick<OpenApi, 'servers'>;
-
-export function getServer(openApi: Props): string {
-    const server = openApi.servers && openApi.servers[0];
-    const variables = (server && server.variables) || {};
-    let url = (server && server.url) || '';
-    Object.entries(variables).forEach(variable => {
-        url = url.replace(`{${variable[0]}}`, variable[1].default);
-    });
+export function getServer(openApi: OpenApi): string {
+    const server: OpenApiServer | undefined = openApi.servers && openApi.servers[0];
+    const variables: Dictionary<OpenApiServerVariable> = (server && server.variables) || {};
+    let url: string = (server && server.url) || '';
+    for (const variable in variables) {
+        if (variables.hasOwnProperty(variable)) {
+            url = url.replace(`{${variable}}`, variables[variable].default);
+        }
+    }
     return url;
 }

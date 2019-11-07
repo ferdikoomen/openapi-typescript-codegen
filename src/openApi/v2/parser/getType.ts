@@ -3,7 +3,7 @@ import { Type } from '../../../client/interfaces/Type';
 import { getMappedType, hasMappedType } from './getMappedType';
 
 /**
- * Parse any value into a type object.
+ * Parse any string value into a type object.
  * @param value String value like "integer" or "Link[Model]".
  * @param template Optional template class from parent (needed to process generics)
  */
@@ -14,16 +14,15 @@ export function getType(value: string, template: string | null = null): Type {
     let propertyImports: string[] = [];
 
     // Remove definitions prefix and cleanup string.
-    const valueTrimmed = stripNamespace(value || '');
+    const valueTrimmed: string = stripNamespace(value || '');
 
     // Check of we have an Array type or generic type, for instance: "Link[Model]".
     if (/\[.*\]$/g.test(valueTrimmed)) {
-        // Find the first and second type
-        const match = valueTrimmed.match(/(.*?)\[(.*)\]$/);
-        if (match) {
+        const matches: RegExpMatchArray | null = valueTrimmed.match(/(.*?)\[(.*)\]$/);
+        if (matches) {
             // Both of the types can be complex types so parse each of them.
-            const match1 = getType(match[1]);
-            const match2 = getType(match[2]);
+            const match1: Type = getType(matches[1]);
+            const match2: Type = getType(matches[2]);
 
             // If the first match is a generic array then construct a correct array type,
             // for example the type "Array[Model]" becomes "Model[]".
@@ -48,7 +47,7 @@ export function getType(value: string, template: string | null = null): Type {
             propertyImports.push(...match2.imports);
         }
     } else if (hasMappedType(valueTrimmed)) {
-        const mapped = getMappedType(valueTrimmed);
+        const mapped: string = getMappedType(valueTrimmed);
         propertyType = mapped;
         propertyBase = mapped;
     } else {

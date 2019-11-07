@@ -1,5 +1,6 @@
 import { OpenApiItems } from './OpenApiItems';
 import { OpenApiSchema } from './OpenApiSchema';
+import { OpenApiReference } from './OpenApiReference';
 
 /**
  * https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#parameterObject
@@ -9,8 +10,8 @@ export interface OpenApiParameter {
     in: 'path' | 'query' | 'header' | 'formData' | 'body';
     description?: string;
     required?: boolean;
-    schema?: OpenApiSchema;
-    type?: 'string' | 'number' | 'integer' | 'boolean' | 'array' | 'file';
+    schema?: OpenApiSchema & OpenApiReference;
+    type?: string;
     format?: 'int32' | 'int64' | 'float' | 'double' | 'string' | 'boolean' | 'byte' | 'binary' | 'date' | 'date-time' | 'password';
     allowEmptyValue?: boolean;
     items?: OpenApiItems;
@@ -26,6 +27,6 @@ export interface OpenApiParameter {
     maxItems?: number;
     minItems?: number;
     uniqueItems?: boolean;
-    enum?: (string | number)[];
+    enum?: string[];
     multipleOf?: number;
 }

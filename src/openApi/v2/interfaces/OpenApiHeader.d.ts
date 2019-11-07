@@ -21,6 +21,6 @@ export interface OpenApiHeader {
     maxItems?: number;
     minItems?: number;
     uniqueItems?: boolean;
-    enum?: (string | number)[];
+    enum?: string[];
     multipleOf?: number;
 }

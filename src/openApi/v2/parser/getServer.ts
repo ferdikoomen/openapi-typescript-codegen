@@ -1,8 +1,10 @@
 import { OpenApi } from '../interfaces/OpenApi';
 
-type Props = Pick<OpenApi, 'schemes' | 'host' | 'basePath'>;
-
-export function getServer(openApi: Props): string {
+/**
+ * Get the base server url.
+ * @param openApi
+ */
+export function getServer(openApi: OpenApi): string {
     const scheme = (openApi.schemes && openApi.schemes[0]) || 'http';
     const host = openApi.host;
     const basePath = openApi.basePath || '';

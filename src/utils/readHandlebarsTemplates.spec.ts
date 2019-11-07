@@ -17,11 +17,9 @@ describe('readHandlebarsTemplates', () => {
         expect(template).toBeDefined();
         expect(template.index).toBeDefined();
         expect(template.model).toBeDefined();
-        expect(template.schema).toBeDefined();
         expect(template.service).toBeDefined();
         expect(template.index({ message: 'Hello World!' })).toEqual('Hello World!');
         expect(template.model({ message: 'Hello World!' })).toEqual('Hello World!');
-        expect(template.schema({ message: 'Hello World!' })).toEqual('Hello World!');
         expect(template.service({ message: 'Hello World!' })).toEqual('Hello World!');
     });
 });

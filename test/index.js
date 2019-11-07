@@ -12,9 +12,23 @@ OpenAPI.generate(
 );
 
 OpenAPI.generate(
-    './test/mock/v2/test-petstore.json',
-    './test/tmp/v2/js/test-petstore',
-    OpenAPI.Language.JAVASCRIPT,
+    './test/mock/v2/test-addon.json',
+    './test/tmp/v2/ts/test-addon',
+    OpenAPI.Language.TYPESCRIPT,
+    OpenAPI.HttpClient.FETCH,
+);
+
+OpenAPI.generate(
+    './test/mock/v2/test-docs.json',
+    './test/tmp/v2/ts/test-docs',
+    OpenAPI.Language.TYPESCRIPT,
+    OpenAPI.HttpClient.FETCH,
+);
+
+OpenAPI.generate(
+    './test/mock/v2/test-sites.json',
+    './test/tmp/v2/ts/test-sites',
+    OpenAPI.Language.TYPESCRIPT,
     OpenAPI.HttpClient.FETCH,
 );
 

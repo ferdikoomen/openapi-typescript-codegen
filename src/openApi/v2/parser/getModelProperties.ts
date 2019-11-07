@@ -1,6 +1,4 @@
-import { ModelProperties } from '../../../client/interfaces/ModelProperties';
-
-export function parseModelProperties(): ModelProperties {
+export function parseModelProperties(): any {
     return {
         imports: [],
         properties: [],

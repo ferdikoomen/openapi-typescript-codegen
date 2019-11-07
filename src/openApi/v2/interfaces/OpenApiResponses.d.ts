@@ -7,5 +7,5 @@ import { OpenApiResponse } from './OpenApiResponse';
 export interface OpenApiResponses {
     [httpcode: string]: OpenApiResponse & OpenApiReference;
 
-    default: OpenApiResponse & OpenApiReference;
+    default?: OpenApiResponse & OpenApiReference;
 }
