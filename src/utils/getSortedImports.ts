@@ -5,6 +5,7 @@
 export function getSortedImports(imports: string[]): string[] {
     return imports
         .filter(name => name)
+        .filter(name => name.trim())
         .filter((name, index, arr) => arr.indexOf(name) === index)
         .sort((a, b) => {
             const nameA: string = a.toLowerCase();

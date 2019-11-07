@@ -7,14 +7,17 @@ import { Model } from '../client/interfaces/Model';
 import { Templates } from './readHandlebarsTemplates';
 import { Service } from '../client/interfaces/Service';
 import { Language } from '../index';
+import * as glob from 'glob';
 
 jest.mock('rimraf');
 jest.mock('mkdirp');
 jest.mock('fs');
+jest.mock('glob');
 
 const rimrafSync = mkdirp.sync as jest.MockedFunction<typeof mkdirp.sync>;
 const mkdirpSync = rimraf.sync as jest.MockedFunction<typeof rimraf.sync>;
 const fsWriteFileSync = fs.writeFileSync as jest.MockedFunction<typeof fs.writeFileSync>;
+const globSync = glob.sync as jest.MockedFunction<typeof glob.sync>;
 
 describe('writeClient', () => {
     it('should write to filesystem', () => {
@@ -31,10 +34,13 @@ describe('writeClient', () => {
             service: () => 'dummy',
         };
 
+        globSync.mockReturnValue([]);
+
         writeClient(client, Language.TYPESCRIPT, templates, '/');
 
         expect(rimrafSync).toBeCalled();
         expect(mkdirpSync).toBeCalled();
         expect(fsWriteFileSync).toBeCalled();
+        expect(globSync).toBeCalled();
     });
 });
