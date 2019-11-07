@@ -8,7 +8,7 @@ export function getArrayType(items: OpenApiItems): ArrayType {
     let itemsType = 'any';
     let itemsBase = 'any';
     let itemsTemplate: string | null = null;
-    const itemsImports: string[] = [];
+    let itemsImports: string[] = [];
 
     // If the parameter has a type than it can be a basic or generic type.
     if (items.type) {
@@ -16,7 +16,7 @@ export function getArrayType(items: OpenApiItems): ArrayType {
         itemsType = itemsData.type;
         itemsBase = itemsData.base;
         itemsTemplate = itemsData.template;
-        itemsImports.push(...itemsData.imports);
+        itemsImports = [...itemsData.imports];
 
         // If the parameter is an Array type, we check for the child type,
         // so we can create a typed array, otherwise this will be a "any[]".

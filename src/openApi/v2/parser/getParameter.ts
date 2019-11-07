@@ -9,6 +9,9 @@ import { ArrayType } from '../../../client/interfaces/ArrayType';
 import { getEnumType } from './getEnumType';
 import { getEnumTypeFromDescription } from './getEnumTypeFromDescription';
 import { getComment } from './getComment';
+import { getSchema } from './getSchema';
+import { Schema } from '../../../client/interfaces/Schema';
+import { OpenApiSchema } from '../interfaces/OpenApiSchema';
 
 export function getParameter(openApi: OpenApi, parameter: OpenApiParameter): Parameter {
     let parameterType = 'any';
@@ -35,10 +38,24 @@ export function getParameter(openApi: OpenApi, parameter: OpenApiParameter): Par
         }
     }
 
-    // If this parameter has a schema, then we should treat it as an embedded parameter.
-    // We can just parse the schema name ($ref) and use that as the parameter type.
+    // If this parameter has a schema, then we need to check two things:
+    // if this is a reference then the parameter is just the 'name' of
+    // this reference type. Otherwise it might be a complex schema and
+    // then we need to parse the schema!
     if (parameter.schema) {
-        // TODO: console.log('parameter.schema', parameter.schema);
+        if (parameter.schema.$ref) {
+            const schemaReference: Type = getType(parameter.schema.$ref);
+            parameterType = schemaReference.type;
+            parameterBase = schemaReference.base;
+            parameterTemplate = schemaReference.template;
+            parameterImports.push(...schemaReference.imports);
+        } else {
+            const schema: Schema = getSchema(openApi, parameter.schema as OpenApiSchema);
+            parameterType = schema.type;
+            parameterBase = schema.base;
+            parameterTemplate = schema.template;
+            parameterImports.push(...schema.imports);
+        }
     }
 
     // If the param is a enum then return the values as an inline type.

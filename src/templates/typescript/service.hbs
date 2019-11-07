@@ -41,7 +41,7 @@ export class {{{name}}} {
         {{/each}}
         {{/if}}
 
-        const result: Result<{{{result}}}> = await request<{{{result}}}>({
+        const result: Result = await request({
             method: '{{{method}}}',
             path: `{{{path}}}`,{{#if parametersHeader}}
             headers: {

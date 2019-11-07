@@ -10,6 +10,9 @@ import { getComment } from './getComment';
 import { getOperationResponses } from './getOperationResponses';
 import { OperationParameters } from '../../../client/interfaces/OperationParameters';
 import { OperationResponse } from '../../../client/interfaces/OperationResponse';
+import { getOperationResponse } from './getOperationResponse';
+import { getOperationErrors } from './getOperationErrors';
+import { OperationError } from '../../../client/interfaces/OperationError';
 
 export function getOperation(openApi: OpenApi, url: string, method: string, op: OpenApiOperation): Operation {
     const serviceName = (op.tags && op.tags[0]) || 'Service';
@@ -53,11 +56,13 @@ export function getOperation(openApi: OpenApi, url: string, method: string, op: 
     // Parse the operation responses.
     if (op.responses) {
         const responses: OperationResponse[] = getOperationResponses(openApi, op.responses);
-        // const result: OperationResponse = getOperationResult(responses);
-        // const errors = getOperationErrors(responses);
-        // operation.imports.push(...result.imports);
-        // operation.errors = errors;
-        // operation.result = result.type;
+        const response: OperationResponse = getOperationResponse(responses);
+        const errors: OperationError[] = getOperationErrors(responses);
+        operation.imports.push(...response.imports);
+        operation.errors = errors;
+        operation.result = response.type;
+
+        console.log(operation.result);
     }
 
     return operation;
