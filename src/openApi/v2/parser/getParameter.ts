@@ -17,7 +17,7 @@ export function getParameter(openApi: OpenApi, parameter: OpenApiParameter): Par
     let parameterType = 'any';
     let parameterBase = 'any';
     let parameterTemplate: string | null = null;
-    const parameterImports: string[] = [];
+    let parameterImports: string[] = [];
 
     // If the parameter has a type than it can be a basic or generic type.
     if (parameter.type) {
@@ -62,6 +62,7 @@ export function getParameter(openApi: OpenApi, parameter: OpenApiParameter): Par
     if (parameter.enum) {
         parameterType = getEnumType(parameter.enum);
         parameterBase = 'string';
+        parameterImports = [];
     }
 
     // Check if this could be a special enum where values are documented in the description.
@@ -70,6 +71,7 @@ export function getParameter(openApi: OpenApi, parameter: OpenApiParameter): Par
         if (enumType) {
             parameterType = enumType;
             parameterBase = 'number';
+            parameterImports = [];
         }
     }
 
