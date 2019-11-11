@@ -81,7 +81,7 @@
         "js-yaml": "3.13.1",
         "mkdirp": "0.5.1",
         "path": "0.12.7",
-        "prettier": "1.18.2",
+        "prettier": "1.19.1",
         "rimraf": "3.0.0",
         "typescript": "3.7.2",
         "yup": "0.27.0"
