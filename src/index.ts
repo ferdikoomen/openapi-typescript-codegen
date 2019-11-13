@@ -4,6 +4,8 @@ import { parse as parseV3 } from './openApi/v3';
 import { readHandlebarsTemplates, Templates } from './utils/readHandlebarsTemplates';
 import { getOpenApiSpec } from './utils/getOpenApiSpec';
 import { writeClient } from './utils/writeClient';
+import * as os from 'os';
+import * as chalk from 'chalk';
 import { getOpenApiVersion, OpenApiVersion } from './utils/getOpenApiVersion';
 import { Client } from './client/interfaces/Client';
 
