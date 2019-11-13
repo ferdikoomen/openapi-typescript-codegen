@@ -1,5 +1,6 @@
 /* istanbul ignore file */
 /* eslint-disable */
+/* prettier-ignore */
 
 /**
  * Get query string from query parameters object. This method also
@@ -13,9 +14,9 @@ export function getQueryString(params) {
             const value = params[key];
             if (value !== undefined && value !== null) {
                 if (Array.isArray(value)) {
-                    for (let i = 0, n = value.length; i < n; i++) {
-                        qs.push(`${encodeURIComponent(key)}=${encodeURIComponent(String(value[i]))}`);
-                    }
+                    value.forEach(value => {
+                        qs.push(`${encodeURIComponent(key)}=${encodeURIComponent(String(value))}`);
+                    });
                 } else {
                     qs.push(`${encodeURIComponent(key)}=${encodeURIComponent(String(value))}`);
                 }

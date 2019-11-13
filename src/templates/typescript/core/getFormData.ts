@@ -1,6 +1,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+/* prettier-ignore */
 
 /**
  * Get FormData from object. This method is needed to upload

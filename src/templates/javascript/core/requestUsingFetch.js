@@ -1,5 +1,6 @@
 /* istanbul ignore file */
 /* eslint-disable */
+/* prettier-ignore */
 
 /**
  * Request content using the new Fetch API. This is the default API that is used and

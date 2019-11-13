@@ -5,6 +5,6 @@ import camelCase from 'camelcase';
  * For example: 'filter.someProperty' becomes 'filterSomeProperty'.
  */
 export function getParameterName(value: string): string {
-    const clean = value.replace(/[^\w\s\-]+/g, '_').trim();
+    const clean: string = value.replace(/[^\w\s\-]+/g, '_').trim();
     return camelCase(clean);
 }

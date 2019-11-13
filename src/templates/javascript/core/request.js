@@ -1,10 +1,11 @@
 /* istanbul ignore file */
 /* eslint-disable */
+/* prettier-ignore */
 
-import {getFormData} from './getFormData';
-import {getQueryString} from './getQueryString';
-import {OpenAPI} from './OpenAPI';
-import {requestUsingFetch} from './requestUsingFetch';
+import { getFormData } from './getFormData';
+import { getQueryString } from './getQueryString';
+import { OpenAPI } from './OpenAPI';
+import { requestUsingFetch } from './requestUsingFetch';
 
 /**
  * Create the request.

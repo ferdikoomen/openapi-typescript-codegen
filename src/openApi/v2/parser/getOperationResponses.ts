@@ -12,7 +12,7 @@ import { getSchema } from './getSchema';
 import { OpenApiSchema } from '../interfaces/OpenApiSchema';
 
 export function getOperationResponses(openApi: OpenApi, responses: OpenApiResponses): OperationResponse[] {
-    const result: OperationResponse[] = [];
+    const results: OperationResponse[] = [];
 
     // Iterate over each response code and get the
     // status code and response message (if any).
@@ -21,43 +21,39 @@ export function getOperationResponses(openApi: OpenApi, responses: OpenApiRespon
             const responseOrReference: OpenApiResponse & OpenApiReference = responses[code];
             const response: OpenApiResponse = getRef<OpenApiResponse>(openApi, responseOrReference);
             const responseCode: number | null = getOperationResponseCode(code);
-            const responseText: string = response.description || '';
-            let responseType = 'any';
-            let responseBase = 'any';
-            let responseTemplate: string | null = null;
-            let responseImports: string[] = [];
-
-            if (response.schema) {
-                if (response.schema.$ref) {
-                    const schemaReference: Type = getType(response.schema.$ref);
-                    responseType = schemaReference.type;
-                    responseBase = schemaReference.base;
-                    responseTemplate = schemaReference.template;
-                    responseImports = [...schemaReference.imports];
-                } else {
-                    const schema: Schema = getSchema(openApi, response.schema as OpenApiSchema);
-                    responseType = schema.type;
-                    responseBase = schema.base;
-                    responseTemplate = schema.template;
-                    responseImports = [...schema.imports];
-                }
-            }
-
             if (responseCode) {
-                result.push({
+                const result: OperationResponse = {
                     code: responseCode,
-                    text: responseText,
-                    type: responseType,
-                    base: responseBase,
-                    template: responseTemplate,
-                    imports: responseImports,
-                });
+                    text: response.description || '',
+                    type: 'any',
+                    base: 'any',
+                    template: null,
+                    imports: [],
+                };
+
+                if (response.schema) {
+                    if (response.schema.$ref) {
+                        const schemaReference: Type = getType(response.schema.$ref);
+                        result.type = schemaReference.type;
+                        result.base = schemaReference.base;
+                        result.template = schemaReference.template;
+                        result.imports.push(...schemaReference.imports);
+                    } else {
+                        const schema: Schema = getSchema(openApi, response.schema as OpenApiSchema);
+                        result.type = schema.type;
+                        result.base = schema.base;
+                        result.template = schema.template;
+                        result.imports.push(...schema.imports);
+                    }
+                }
+
+                results.push(result);
             }
         }
     }
 
     // Sort the responses to 2XX success codes come before 4XX and 5XX error codes.
-    return result.sort((a, b): number => {
+    return results.sort((a, b): number => {
         return a.code < b.code ? -1 : a.code > b.code ? 1 : 0;
     });
 }

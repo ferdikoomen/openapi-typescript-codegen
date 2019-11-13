@@ -216,12 +216,12 @@
                 }
             }
         },
-        "/api/v{api-version}/Applications/getByDisplayName/{name}": {
+        "/api/v{api-version}/Applications/getByName/{name}": {
             "get": {
                 "tags": [
                     "Applications"
                 ],
-                "operationId": "GetByDisplayName",
+                "operationId": "GetByName",
                 "parameters": [
                     {
                         "name": "name",
@@ -343,7 +343,7 @@
                             "schema": {
                                 "title": "Application",
                                 "required": [
-                                    "displayName",
+                                    "name",
                                     "redirectUrls"
                                 ],
                                 "type": "object",
@@ -358,7 +358,7 @@
                                         "format": "int32",
                                         "readOnly": true
                                     },
-                                    "displayName": {
+                                    "name": {
                                         "maxLength": 256,
                                         "type": "string",
                                         "nullable": true
@@ -377,7 +377,7 @@
                             "schema": {
                                 "title": "Application",
                                 "required": [
-                                    "displayName",
+                                    "name",
                                     "redirectUrls"
                                 ],
                                 "type": "object",
@@ -392,7 +392,7 @@
                                         "format": "int32",
                                         "readOnly": true
                                     },
-                                    "displayName": {
+                                    "name": {
                                         "maxLength": 256,
                                         "type": "string",
                                         "nullable": true
@@ -411,7 +411,7 @@
                             "schema": {
                                 "title": "Application",
                                 "required": [
-                                    "displayName",
+                                    "name",
                                     "redirectUrls"
                                 ],
                                 "type": "object",
@@ -426,7 +426,7 @@
                                         "format": "int32",
                                         "readOnly": true
                                     },
-                                    "displayName": {
+                                    "name": {
                                         "maxLength": 256,
                                         "type": "string",
                                         "nullable": true
@@ -445,7 +445,7 @@
                             "schema": {
                                 "title": "Application",
                                 "required": [
-                                    "displayName",
+                                    "name",
                                     "redirectUrls"
                                 ],
                                 "type": "object",
@@ -460,7 +460,7 @@
                                         "format": "int32",
                                         "readOnly": true
                                     },
-                                    "displayName": {
+                                    "name": {
                                         "maxLength": 256,
                                         "type": "string",
                                         "nullable": true
@@ -3246,7 +3246,7 @@
         "schemas": {
             "ApiResourceRole": {
                 "required": [
-                    "displayName",
+                    "key",
                     "name"
                 ],
                 "type": "object",
@@ -3255,12 +3255,12 @@
                         "type": "integer",
                         "format": "int32"
                     },
-                    "name": {
+                    "key": {
                         "maxLength": 256,
                         "type": "string",
                         "nullable": true
                     },
-                    "displayName": {
+                    "name": {
                         "maxLength": 256,
                         "type": "string",
                         "nullable": true
@@ -3273,7 +3273,7 @@
             },
             "ApiResource": {
                 "required": [
-                    "displayName",
+                    "key",
                     "name"
                 ],
                 "type": "object",
@@ -3282,13 +3282,13 @@
                         "type": "integer",
                         "format": "int32"
                     },
-                    "name": {
+                    "key": {
                         "maxLength": 256,
                         "pattern": "^[a-zA-Z0-9-_.]*$",
                         "type": "string",
                         "nullable": true
                     },
-                    "displayName": {
+                    "name": {
                         "maxLength": 256,
                         "type": "string",
                         "nullable": true
@@ -3366,7 +3366,7 @@
             },
             "Application": {
                 "required": [
-                    "displayName",
+                    "name",
                     "redirectUrls"
                 ],
                 "type": "object",
@@ -3380,7 +3380,7 @@
                         "type": "integer",
                         "format": "int32"
                     },
-                    "displayName": {
+                    "name": {
                         "maxLength": 256,
                         "type": "string",
                         "nullable": true
@@ -3411,22 +3411,20 @@
             },
             "IdentityProvider": {
                 "required": [
-                    "displayName",
-                    "fullNameClaim",
+                    "key",
                     "name",
                     "parameters",
-                    "type",
-                    "usernameClaim"
+                    "type"
                 ],
                 "type": "object",
                 "properties": {
-                    "name": {
+                    "key": {
                         "maxLength": 64,
                         "pattern": "^[a-zA-Z0-9_]*$",
                         "type": "string",
                         "nullable": true
                     },
-                    "displayName": {
+                    "name": {
                         "maxLength": 256,
                         "type": "string",
                         "nullable": true
@@ -3441,21 +3439,6 @@
                     },
                     "type": {
                         "$ref": "#/components/schemas/IdentityProviderType"
-                    },
-                    "separator": {
-                        "maxLength": 1,
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "usernameClaim": {
-                        "maxLength": 256,
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "fullNameClaim": {
-                        "maxLength": 256,
-                        "type": "string",
-                        "nullable": true
                     },
                     "iconUrl": {
                         "type": "string",
@@ -3523,23 +3506,21 @@
                     "identityProvider": {
                         "title": "IdentityProvider",
                         "required": [
-                            "displayName",
-                            "fullNameClaim",
+                            "key",
                             "name",
                             "parameters",
-                            "type",
-                            "usernameClaim"
+                            "type"
                         ],
                         "type": "object",
                         "properties": {
-                            "name": {
+                            "key": {
                                 "maxLength": 64,
                                 "pattern": "^[a-zA-Z0-9_]*$",
                                 "type": "string",
                                 "nullable": true,
                                 "readOnly": true
                             },
-                            "displayName": {
+                            "name": {
                                 "maxLength": 256,
                                 "type": "string",
                                 "nullable": true,
@@ -3565,24 +3546,6 @@
                                     "Windows"
                                 ],
                                 "type": "string",
-                                "readOnly": true
-                            },
-                            "separator": {
-                                "maxLength": 1,
-                                "type": "string",
-                                "nullable": true,
-                                "readOnly": true
-                            },
-                            "usernameClaim": {
-                                "maxLength": 256,
-                                "type": "string",
-                                "nullable": true,
-                                "readOnly": true
-                            },
-                            "fullNameClaim": {
-                                "maxLength": 256,
-                                "type": "string",
-                                "nullable": true,
                                 "readOnly": true
                             },
                             "iconUrl": {
@@ -3696,7 +3659,7 @@
                         "type": "integer",
                         "format": "int32"
                     },
-                    "displayName": {
+                    "name": {
                         "type": "string",
                         "nullable": true,
                         "readOnly": true
@@ -3711,7 +3674,7 @@
                         "type": "integer",
                         "format": "int32"
                     },
-                    "displayName": {
+                    "name": {
                         "type": "string",
                         "nullable": true,
                         "readOnly": true
@@ -3726,7 +3689,7 @@
                         "type": "integer",
                         "format": "int32"
                     },
-                    "displayName": {
+                    "name": {
                         "type": "string",
                         "nullable": true,
                         "readOnly": true
@@ -3747,23 +3710,21 @@
                     "identityProvider": {
                         "title": "IdentityProvider",
                         "required": [
-                            "displayName",
-                            "fullNameClaim",
+                            "key",
                             "name",
                             "parameters",
-                            "type",
-                            "usernameClaim"
+                            "type"
                         ],
                         "type": "object",
                         "properties": {
-                            "name": {
+                            "key": {
                                 "maxLength": 64,
                                 "pattern": "^[a-zA-Z0-9_]*$",
                                 "type": "string",
                                 "nullable": true,
                                 "readOnly": true
                             },
-                            "displayName": {
+                            "name": {
                                 "maxLength": 256,
                                 "type": "string",
                                 "nullable": true,
@@ -3789,24 +3750,6 @@
                                     "Windows"
                                 ],
                                 "type": "string",
-                                "readOnly": true
-                            },
-                            "separator": {
-                                "maxLength": 1,
-                                "type": "string",
-                                "nullable": true,
-                                "readOnly": true
-                            },
-                            "usernameClaim": {
-                                "maxLength": 256,
-                                "type": "string",
-                                "nullable": true,
-                                "readOnly": true
-                            },
-                            "fullNameClaim": {
-                                "maxLength": 256,
-                                "type": "string",
-                                "nullable": true,
                                 "readOnly": true
                             },
                             "iconUrl": {
@@ -3927,11 +3870,11 @@
             },
             "LoginOption": {
                 "required": [
-                    "displayName"
+                    "name"
                 ],
                 "type": "object",
                 "properties": {
-                    "displayName": {
+                    "name": {
                         "maxLength": 256,
                         "type": "string",
                         "nullable": true

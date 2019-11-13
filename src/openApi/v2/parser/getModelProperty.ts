@@ -66,15 +66,15 @@ export function getModelProperty(name: string, schema: OpenApiSchema & OpenApiRe
         // type is enum!
     }
 
-    console.log('propertyName:', schema);
-    console.log('format:', schema.format);
-    console.log('type:', schema.type);
+    // console.log('propertyName:', schema);
+    // console.log('format:', schema.format);
+    // console.log('type:', schema.type);
 
     const properties = schema.properties;
     for (const propertyName in properties) {
         if (properties.hasOwnProperty(propertyName)) {
             const property = properties[propertyName];
-            console.log('propertyName', propertyName);
+            /// console.log('propertyName', propertyName);
             // getModelProperty(propertyName, property);
         }
     }
@@ -87,7 +87,7 @@ export function getModelProperty(name: string, schema: OpenApiSchema & OpenApiRe
                 prop.imports.push(extend.base);
             }
             if (parent.properties) {
-                console.log(parent.properties);
+                // console.log(parent.properties);
                 // const properties: ParsedModelProperties = parseModelProperties(modelClass, definition.allOf[1].properties as SwaggerDefinitions, required);
                 // model.imports.push(...properties.imports);
                 // model.properties.push(...properties.properties);

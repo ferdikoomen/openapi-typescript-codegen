@@ -15,14 +15,14 @@ import { getOperationErrors } from './getOperationErrors';
 import { OperationError } from '../../../client/interfaces/OperationError';
 
 export function getOperation(openApi: OpenApi, url: string, method: string, op: OpenApiOperation): Operation {
-    const serviceName = (op.tags && op.tags[0]) || 'Service';
-    const serviceClassName = getServiceClassName(serviceName);
-    const operationNameFallback = `${method}${serviceClassName}`;
-    const operationName = getOperationName(op.operationId || operationNameFallback);
-    const operationPath = getOperationPath(url);
+    const serviceName: string = (op.tags && op.tags[0]) || 'Service';
+    const serviceClassName: string = getServiceClassName(serviceName);
+    const operationNameFallback: string = `${method}${serviceClassName}`;
+    const operationName: string = getOperationName(op.operationId || operationNameFallback);
+    const operationPath: string = getOperationPath(url);
 
     // Create a new operation object for this method.
-    const operation: Operation = {
+    const result: Operation = {
         service: serviceClassName,
         name: operationName,
         summary: getComment(op.summary),
@@ -44,13 +44,13 @@ export function getOperation(openApi: OpenApi, url: string, method: string, op: 
     // Parse the operation parameters (path, query, body, etc).
     if (op.parameters) {
         const parameters: OperationParameters = getOperationParameters(openApi, op.parameters);
-        operation.imports.push(...parameters.imports);
-        operation.parameters.push(...parameters.parameters);
-        operation.parametersPath.push(...parameters.parametersPath);
-        operation.parametersQuery.push(...parameters.parametersQuery);
-        operation.parametersForm.push(...parameters.parametersForm);
-        operation.parametersHeader.push(...parameters.parametersHeader);
-        operation.parametersBody = parameters.parametersBody;
+        result.imports.push(...parameters.imports);
+        result.parameters.push(...parameters.parameters);
+        result.parametersPath.push(...parameters.parametersPath);
+        result.parametersQuery.push(...parameters.parametersQuery);
+        result.parametersForm.push(...parameters.parametersForm);
+        result.parametersHeader.push(...parameters.parametersHeader);
+        result.parametersBody = parameters.parametersBody;
     }
 
     // Parse the operation responses.
@@ -58,12 +58,10 @@ export function getOperation(openApi: OpenApi, url: string, method: string, op: 
         const responses: OperationResponse[] = getOperationResponses(openApi, op.responses);
         const response: OperationResponse = getOperationResponse(responses);
         const errors: OperationError[] = getOperationErrors(responses);
-        operation.imports.push(...response.imports);
-        operation.errors = errors;
-        operation.result = response.type;
-
-        console.log(operation.result);
+        result.imports.push(...response.imports);
+        result.errors = errors;
+        result.result = response.type;
     }
 
-    return operation;
+    return result;
 }

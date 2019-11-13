@@ -1,8 +1,8 @@
 /* istanbul ignore file */
 /* eslint-disable */
+/* prettier-ignore */
 
-import { Result } from './Result';
-import {isSuccess} from "./isSuccess";
+import { isSuccess } from "./isSuccess";
 
 /**
  * Request content using the new legacy XMLHttpRequest API. This method is usefull

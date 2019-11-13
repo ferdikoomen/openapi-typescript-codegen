@@ -11,17 +11,18 @@ function sortByRequired(a: Parameter, b: Parameter): number {
 }
 
 export function getOperationParameters(openApi: OpenApi, parametersOrReferences: (OpenApiParameter & OpenApiReference)[]): OperationParameters {
-    const imports: string[] = [];
-    const parameters: Parameter[] = [];
-    const parametersPath: Parameter[] = [];
-    const parametersQuery: Parameter[] = [];
-    const parametersForm: Parameter[] = [];
-    const parametersHeader: Parameter[] = [];
-    let parametersBody: Parameter | null = null;
+    const result: OperationParameters = {
+        imports: [],
+        parameters: [],
+        parametersPath: [],
+        parametersQuery: [],
+        parametersForm: [],
+        parametersHeader: [],
+        parametersBody: null,
+    };
 
     // Iterate over the parameters
-    for (let i = 0, n = parametersOrReferences.length; i < n; i++) {
-        const parameterOrReference: OpenApiParameter & OpenApiReference = parametersOrReferences[i];
+    parametersOrReferences.forEach(parameterOrReference => {
         const parameter: OpenApiParameter = getRef<OpenApiParameter>(openApi, parameterOrReference);
         const param: Parameter = getParameter(openApi, parameter);
 
@@ -30,45 +31,42 @@ export function getOperationParameters(openApi: OpenApi, parametersOrReferences:
         if (param.prop !== 'api-version') {
             switch (parameter.in) {
                 case 'path':
-                    parametersPath.push(param);
-                    parameters.push(param);
-                    imports.push(...param.imports);
+                    result.parametersPath.push(param);
+                    result.parameters.push(param);
+                    result.imports.push(...param.imports);
                     break;
 
                 case 'query':
-                    parametersQuery.push(param);
-                    parameters.push(param);
-                    imports.push(...param.imports);
+                    result.parametersQuery.push(param);
+                    result.parameters.push(param);
+                    result.imports.push(...param.imports);
                     break;
 
                 case 'header':
-                    parametersHeader.push(param);
-                    parameters.push(param);
-                    imports.push(...param.imports);
+                    result.parametersHeader.push(param);
+                    result.parameters.push(param);
+                    result.imports.push(...param.imports);
                     break;
 
                 case 'formData':
-                    parametersForm.push(param);
-                    parameters.push(param);
-                    imports.push(...param.imports);
+                    result.parametersForm.push(param);
+                    result.parameters.push(param);
+                    result.imports.push(...param.imports);
                     break;
 
                 case 'body':
-                    parametersBody = param;
-                    parameters.push(param);
-                    imports.push(...param.imports);
+                    result.parametersBody = param;
+                    result.parameters.push(param);
+                    result.imports.push(...param.imports);
                     break;
             }
         }
-    }
+    });
 
-    return {
-        imports,
-        parameters: parameters.sort(sortByRequired),
-        parametersPath: parametersPath.sort(sortByRequired),
-        parametersQuery: parametersQuery.sort(sortByRequired),
-        parametersForm: parametersForm.sort(sortByRequired),
-        parametersHeader: parametersHeader.sort(sortByRequired),
-        parametersBody: parametersBody,
-    };
+    result.parameters = result.parameters.sort(sortByRequired);
+    result.parametersPath = result.parametersPath.sort(sortByRequired);
+    result.parametersQuery = result.parametersQuery.sort(sortByRequired);
+    result.parametersForm = result.parametersForm.sort(sortByRequired);
+    result.parametersHeader = result.parametersHeader.sort(sortByRequired);
+    return result;
 }

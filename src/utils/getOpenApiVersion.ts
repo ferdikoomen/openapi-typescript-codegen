@@ -9,7 +9,7 @@ export enum OpenApiVersion {
  * an incompatible type. Or if the type is missing...
  * @param openApi The loaded spec (can be any object)
  */
-export function getOpenApiVersion(openApi: any): OpenApiVersion | undefined {
+export function getOpenApiVersion(openApi: any): OpenApiVersion {
     const info: any = openApi.swagger || openApi.openapi;
     if (info && typeof info === 'string') {
         const c: string = info.charAt(0);

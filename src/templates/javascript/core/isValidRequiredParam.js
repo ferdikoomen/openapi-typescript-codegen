@@ -1,5 +1,6 @@
 /* istanbul ignore file */
 /* eslint-disable */
+/* prettier-ignore */
 
 /**
  * Check if a parameter is valid.

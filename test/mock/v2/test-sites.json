@@ -1,10 +1,11 @@
 {
     "swagger": "2.0",
     "info": {
-        "version": "V1.0",
-        "title": "CMS"
+        "version": "V9.5",
+        "title": "Sdl.Tridion.ContentManager.OpenApi",
+        "x-swagger-net-version": "8.3.23.103"
     },
-    "host": "global.cms.corp:8080",
+    "host": "dxui-dev.global.sdl.corp:7086",
     "basePath": "/OpenApi",
     "schemes": [
         "http"
@@ -2390,7 +2391,7 @@
                     "Blueprinting"
                 ],
                 "summary": "Localizes an Item in the Blueprint.",
-                "description": "This operation returns an implementation of the abstract type 'RepositoryLocalObject'. Depending on the requested item, one of the following instances may be returned:\n\n<ul class=\"model-list\"><li><span>BundleType</span></li><li><span>BusinessProcessType</span></li><li><span>Category</span></li><li><span>Component</span></li><li><span>ComponentTemplate</span></li><li><span>Folder</span></li><li><span>Keyword</span></li><li><span>Page</span></li><li><span>PageTemplate</span></li><li><span>ResolvedBundle</span></li><li><span>Schema</span></li><li><span>StructureGroup</span></li><li><span>TargetGroup</span></li><li><span>TemplateBuildingBlock</span></li><li><span>CmsProcessDefinition</span></li><li><span>VirtualFolder</span></li></ul>",
+                "description": "This operation returns an implementation of the abstract type 'RepositoryLocalObject'. Depending on the requested item, one of the following instances may be returned:\n\n<ul class=\"model-list\"><li><span>BundleType</span></li><li><span>BusinessProcessType</span></li><li><span>Category</span></li><li><span>Component</span></li><li><span>ComponentTemplate</span></li><li><span>Folder</span></li><li><span>Keyword</span></li><li><span>Page</span></li><li><span>PageTemplate</span></li><li><span>ResolvedBundle</span></li><li><span>Schema</span></li><li><span>StructureGroup</span></li><li><span>TargetGroup</span></li><li><span>TemplateBuildingBlock</span></li><li><span>TridionProcessDefinition</span></li><li><span>VirtualFolder</span></li></ul>",
                 "operationId": "LocalizeRepositoryLocalObject",
                 "consumes": [
                     "*/*",
@@ -2455,7 +2456,7 @@
                     "Blueprinting"
                 ],
                 "summary": "UnLocalizes an Item in the Blueprint.",
-                "description": "This operation returns an implementation of the abstract type 'RepositoryLocalObject'. Depending on the requested item, one of the following instances may be returned:\n\n<ul class=\"model-list\"><li><span>BundleType</span></li><li><span>BusinessProcessType</span></li><li><span>Category</span></li><li><span>Component</span></li><li><span>ComponentTemplate</span></li><li><span>Folder</span></li><li><span>Keyword</span></li><li><span>Page</span></li><li><span>PageTemplate</span></li><li><span>ResolvedBundle</span></li><li><span>Schema</span></li><li><span>StructureGroup</span></li><li><span>TargetGroup</span></li><li><span>TemplateBuildingBlock</span></li><li><span>CmsProcessDefinition</span></li><li><span>VirtualFolder</span></li></ul>",
+                "description": "This operation returns an implementation of the abstract type 'RepositoryLocalObject'. Depending on the requested item, one of the following instances may be returned:\n\n<ul class=\"model-list\"><li><span>BundleType</span></li><li><span>BusinessProcessType</span></li><li><span>Category</span></li><li><span>Component</span></li><li><span>ComponentTemplate</span></li><li><span>Folder</span></li><li><span>Keyword</span></li><li><span>Page</span></li><li><span>PageTemplate</span></li><li><span>ResolvedBundle</span></li><li><span>Schema</span></li><li><span>StructureGroup</span></li><li><span>TargetGroup</span></li><li><span>TemplateBuildingBlock</span></li><li><span>TridionProcessDefinition</span></li><li><span>VirtualFolder</span></li></ul>",
                 "operationId": "UnLocalizeRepositoryLocalObject",
                 "consumes": [
                     "*/*",
@@ -2676,7 +2677,7 @@
                     "Item"
                 ],
                 "summary": "Fetches an item.",
-                "description": "This operation returns an implementation of the abstract type 'IdentifiableObject'. Depending on the requested item, one of the following instances may be returned:\n\n<ul class=\"model-list\"><li><span>AccessToken</span></li><li><span>ActivityHistory</span></li><li><span>ActivityInstance</span></li><li><span>ApprovalStatus</span></li><li><span>Batch</span></li><li><span>BlueprintNode</span></li><li><span>BundleType</span></li><li><span>BusinessProcessType</span></li><li><span>Category</span></li><li><span>Component</span></li><li><span>ComponentTemplate</span></li><li><span>Folder</span></li><li><span>Group</span></li><li><span>Keyword</span></li><li><span>MultimediaType</span></li><li><span>Page</span></li><li><span>PageTemplate</span></li><li><span>ProcessDefinitionAssociation</span></li><li><span>ProcessHistory</span></li><li><span>ProcessInstance</span></li><li><span>Publication</span></li><li><span>PublishTransaction</span></li><li><span>Repository</span></li><li><span>ResolvedBundle</span></li><li><span>Schema</span></li><li><span>StructureGroup</span></li><li><span>TargetGroup</span></li><li><span>TargetType</span></li><li><span>TemplateBuildingBlock</span></li><li><span>CmsActivityDefinition</span></li><li><span>CmsProcessDefinition</span></li><li><span>User</span></li><li><span>VirtualFolder</span></li><li><span>WorkflowType</span></li><li><span>WorkItem</span></li></ul>",
+                "description": "This operation returns an implementation of the abstract type 'IdentifiableObject'. Depending on the requested item, one of the following instances may be returned:\n\n<ul class=\"model-list\"><li><span>AccessToken</span></li><li><span>ActivityHistory</span></li><li><span>ActivityInstance</span></li><li><span>ApprovalStatus</span></li><li><span>Batch</span></li><li><span>BlueprintNode</span></li><li><span>BundleType</span></li><li><span>BusinessProcessType</span></li><li><span>Category</span></li><li><span>Component</span></li><li><span>ComponentTemplate</span></li><li><span>Folder</span></li><li><span>Group</span></li><li><span>Keyword</span></li><li><span>MultimediaType</span></li><li><span>Page</span></li><li><span>PageTemplate</span></li><li><span>ProcessDefinitionAssociation</span></li><li><span>ProcessHistory</span></li><li><span>ProcessInstance</span></li><li><span>Publication</span></li><li><span>PublishTransaction</span></li><li><span>Repository</span></li><li><span>ResolvedBundle</span></li><li><span>Schema</span></li><li><span>StructureGroup</span></li><li><span>TargetGroup</span></li><li><span>TargetType</span></li><li><span>TemplateBuildingBlock</span></li><li><span>TridionActivityDefinition</span></li><li><span>TridionProcessDefinition</span></li><li><span>User</span></li><li><span>VirtualFolder</span></li><li><span>WorkflowType</span></li><li><span>WorkItem</span></li></ul>",
                 "operationId": "FetchIdentifableObject",
                 "consumes": [
                     "*/*",
@@ -2755,7 +2756,7 @@
                     "Item"
                 ],
                 "summary": "Updates an existing item.",
-                "description": "This operation returns an implementation of the abstract type 'IdentifiableObject'. Depending on the requested item, one of the following instances may be returned:\n\n<ul class=\"model-list\"><li><span>AccessToken</span></li><li><span>ActivityHistory</span></li><li><span>ActivityInstance</span></li><li><span>ApprovalStatus</span></li><li><span>Batch</span></li><li><span>BlueprintNode</span></li><li><span>BundleType</span></li><li><span>BusinessProcessType</span></li><li><span>Category</span></li><li><span>Component</span></li><li><span>ComponentTemplate</span></li><li><span>Folder</span></li><li><span>Group</span></li><li><span>Keyword</span></li><li><span>MultimediaType</span></li><li><span>Page</span></li><li><span>PageTemplate</span></li><li><span>ProcessDefinitionAssociation</span></li><li><span>ProcessHistory</span></li><li><span>ProcessInstance</span></li><li><span>Publication</span></li><li><span>PublishTransaction</span></li><li><span>Repository</span></li><li><span>ResolvedBundle</span></li><li><span>Schema</span></li><li><span>StructureGroup</span></li><li><span>TargetGroup</span></li><li><span>TargetType</span></li><li><span>TemplateBuildingBlock</span></li><li><span>CmsActivityDefinition</span></li><li><span>CmsProcessDefinition</span></li><li><span>User</span></li><li><span>VirtualFolder</span></li><li><span>WorkflowType</span></li><li><span>WorkItem</span></li></ul>",
+                "description": "This operation returns an implementation of the abstract type 'IdentifiableObject'. Depending on the requested item, one of the following instances may be returned:\n\n<ul class=\"model-list\"><li><span>AccessToken</span></li><li><span>ActivityHistory</span></li><li><span>ActivityInstance</span></li><li><span>ApprovalStatus</span></li><li><span>Batch</span></li><li><span>BlueprintNode</span></li><li><span>BundleType</span></li><li><span>BusinessProcessType</span></li><li><span>Category</span></li><li><span>Component</span></li><li><span>ComponentTemplate</span></li><li><span>Folder</span></li><li><span>Group</span></li><li><span>Keyword</span></li><li><span>MultimediaType</span></li><li><span>Page</span></li><li><span>PageTemplate</span></li><li><span>ProcessDefinitionAssociation</span></li><li><span>ProcessHistory</span></li><li><span>ProcessInstance</span></li><li><span>Publication</span></li><li><span>PublishTransaction</span></li><li><span>Repository</span></li><li><span>ResolvedBundle</span></li><li><span>Schema</span></li><li><span>StructureGroup</span></li><li><span>TargetGroup</span></li><li><span>TargetType</span></li><li><span>TemplateBuildingBlock</span></li><li><span>TridionActivityDefinition</span></li><li><span>TridionProcessDefinition</span></li><li><span>User</span></li><li><span>VirtualFolder</span></li><li><span>WorkflowType</span></li><li><span>WorkItem</span></li></ul>",
                 "operationId": "UpdateIdentifableObject",
                 "consumes": [
                     "*/*",
@@ -3127,7 +3128,7 @@
                     "Item"
                 ],
                 "summary": "Returns a default data type for the given Item Type and Container Id.",
-                "description": "This operation returns an implementation of the abstract type 'IdentifiableObject'. Depending on the requested item, one of the following instances may be returned:\n\n<ul class=\"model-list\"><li><span>AccessToken</span></li><li><span>ActivityHistory</span></li><li><span>ActivityInstance</span></li><li><span>ApprovalStatus</span></li><li><span>Batch</span></li><li><span>BlueprintNode</span></li><li><span>BundleType</span></li><li><span>BusinessProcessType</span></li><li><span>Category</span></li><li><span>Component</span></li><li><span>ComponentTemplate</span></li><li><span>Folder</span></li><li><span>Group</span></li><li><span>Keyword</span></li><li><span>MultimediaType</span></li><li><span>Page</span></li><li><span>PageTemplate</span></li><li><span>ProcessDefinitionAssociation</span></li><li><span>ProcessHistory</span></li><li><span>ProcessInstance</span></li><li><span>Publication</span></li><li><span>PublishTransaction</span></li><li><span>Repository</span></li><li><span>ResolvedBundle</span></li><li><span>Schema</span></li><li><span>StructureGroup</span></li><li><span>TargetGroup</span></li><li><span>TargetType</span></li><li><span>TemplateBuildingBlock</span></li><li><span>CmsActivityDefinition</span></li><li><span>CmsProcessDefinition</span></li><li><span>User</span></li><li><span>VirtualFolder</span></li><li><span>WorkflowType</span></li><li><span>WorkItem</span></li></ul>",
+                "description": "This operation returns an implementation of the abstract type 'IdentifiableObject'. Depending on the requested item, one of the following instances may be returned:\n\n<ul class=\"model-list\"><li><span>AccessToken</span></li><li><span>ActivityHistory</span></li><li><span>ActivityInstance</span></li><li><span>ApprovalStatus</span></li><li><span>Batch</span></li><li><span>BlueprintNode</span></li><li><span>BundleType</span></li><li><span>BusinessProcessType</span></li><li><span>Category</span></li><li><span>Component</span></li><li><span>ComponentTemplate</span></li><li><span>Folder</span></li><li><span>Group</span></li><li><span>Keyword</span></li><li><span>MultimediaType</span></li><li><span>Page</span></li><li><span>PageTemplate</span></li><li><span>ProcessDefinitionAssociation</span></li><li><span>ProcessHistory</span></li><li><span>ProcessInstance</span></li><li><span>Publication</span></li><li><span>PublishTransaction</span></li><li><span>Repository</span></li><li><span>ResolvedBundle</span></li><li><span>Schema</span></li><li><span>StructureGroup</span></li><li><span>TargetGroup</span></li><li><span>TargetType</span></li><li><span>TemplateBuildingBlock</span></li><li><span>TridionActivityDefinition</span></li><li><span>TridionProcessDefinition</span></li><li><span>User</span></li><li><span>VirtualFolder</span></li><li><span>WorkflowType</span></li><li><span>WorkItem</span></li></ul>",
                 "operationId": "GetDefaultData",
                 "consumes": [
                     "*/*",
@@ -3181,7 +3182,7 @@
                     "Item"
                 ],
                 "summary": "Copies a RepositoryLocalObject.",
-                "description": "This operation returns an implementation of the abstract type 'RepositoryLocalObject'. Depending on the requested item, one of the following instances may be returned:\n\n<ul class=\"model-list\"><li><span>BundleType</span></li><li><span>BusinessProcessType</span></li><li><span>Category</span></li><li><span>Component</span></li><li><span>ComponentTemplate</span></li><li><span>Folder</span></li><li><span>Keyword</span></li><li><span>Page</span></li><li><span>PageTemplate</span></li><li><span>ResolvedBundle</span></li><li><span>Schema</span></li><li><span>StructureGroup</span></li><li><span>TargetGroup</span></li><li><span>TemplateBuildingBlock</span></li><li><span>CmsProcessDefinition</span></li><li><span>VirtualFolder</span></li></ul>",
+                "description": "This operation returns an implementation of the abstract type 'RepositoryLocalObject'. Depending on the requested item, one of the following instances may be returned:\n\n<ul class=\"model-list\"><li><span>BundleType</span></li><li><span>BusinessProcessType</span></li><li><span>Category</span></li><li><span>Component</span></li><li><span>ComponentTemplate</span></li><li><span>Folder</span></li><li><span>Keyword</span></li><li><span>Page</span></li><li><span>PageTemplate</span></li><li><span>ResolvedBundle</span></li><li><span>Schema</span></li><li><span>StructureGroup</span></li><li><span>TargetGroup</span></li><li><span>TemplateBuildingBlock</span></li><li><span>TridionProcessDefinition</span></li><li><span>VirtualFolder</span></li></ul>",
                 "operationId": "CopyRepositoryLocalObject",
                 "consumes": [
                     "*/*",
@@ -3251,7 +3252,7 @@
                     "Item"
                 ],
                 "summary": "Moves a RepositoryLocalObject.",
-                "description": "This operation returns an implementation of the abstract type 'RepositoryLocalObject'. Depending on the requested item, one of the following instances may be returned:\n\n<ul class=\"model-list\"><li><span>BundleType</span></li><li><span>BusinessProcessType</span></li><li><span>Category</span></li><li><span>Component</span></li><li><span>ComponentTemplate</span></li><li><span>Folder</span></li><li><span>Keyword</span></li><li><span>Page</span></li><li><span>PageTemplate</span></li><li><span>ResolvedBundle</span></li><li><span>Schema</span></li><li><span>StructureGroup</span></li><li><span>TargetGroup</span></li><li><span>TemplateBuildingBlock</span></li><li><span>CmsProcessDefinition</span></li><li><span>VirtualFolder</span></li></ul>",
+                "description": "This operation returns an implementation of the abstract type 'RepositoryLocalObject'. Depending on the requested item, one of the following instances may be returned:\n\n<ul class=\"model-list\"><li><span>BundleType</span></li><li><span>BusinessProcessType</span></li><li><span>Category</span></li><li><span>Component</span></li><li><span>ComponentTemplate</span></li><li><span>Folder</span></li><li><span>Keyword</span></li><li><span>Page</span></li><li><span>PageTemplate</span></li><li><span>ResolvedBundle</span></li><li><span>Schema</span></li><li><span>StructureGroup</span></li><li><span>TargetGroup</span></li><li><span>TemplateBuildingBlock</span></li><li><span>TridionProcessDefinition</span></li><li><span>VirtualFolder</span></li></ul>",
                 "operationId": "MoveRepositoryLocalObject",
                 "consumes": [
                     "*/*",
@@ -3581,7 +3582,7 @@
                     "Lists"
                 ],
                 "summary": "Gets a list of related items.",
-                "description": "This operation returns an implementation of the abstract type 'IdentifiableObject'. Depending on the requested item, one of the following instances may be returned:\n\n<ul class=\"model-list\"><li><span>AccessToken</span></li><li><span>ActivityHistory</span></li><li><span>ActivityInstance</span></li><li><span>ApprovalStatus</span></li><li><span>Batch</span></li><li><span>BlueprintNode</span></li><li><span>BundleType</span></li><li><span>BusinessProcessType</span></li><li><span>Category</span></li><li><span>Component</span></li><li><span>ComponentTemplate</span></li><li><span>Folder</span></li><li><span>Group</span></li><li><span>Keyword</span></li><li><span>MultimediaType</span></li><li><span>Page</span></li><li><span>PageTemplate</span></li><li><span>ProcessDefinitionAssociation</span></li><li><span>ProcessHistory</span></li><li><span>ProcessInstance</span></li><li><span>Publication</span></li><li><span>PublishTransaction</span></li><li><span>Repository</span></li><li><span>ResolvedBundle</span></li><li><span>Schema</span></li><li><span>StructureGroup</span></li><li><span>TargetGroup</span></li><li><span>TargetType</span></li><li><span>TemplateBuildingBlock</span></li><li><span>CmsActivityDefinition</span></li><li><span>CmsProcessDefinition</span></li><li><span>User</span></li><li><span>VirtualFolder</span></li><li><span>WorkflowType</span></li><li><span>WorkItem</span></li></ul>",
+                "description": "This operation returns an implementation of the abstract type 'IdentifiableObject'. Depending on the requested item, one of the following instances may be returned:\n\n<ul class=\"model-list\"><li><span>AccessToken</span></li><li><span>ActivityHistory</span></li><li><span>ActivityInstance</span></li><li><span>ApprovalStatus</span></li><li><span>Batch</span></li><li><span>BlueprintNode</span></li><li><span>BundleType</span></li><li><span>BusinessProcessType</span></li><li><span>Category</span></li><li><span>Component</span></li><li><span>ComponentTemplate</span></li><li><span>Folder</span></li><li><span>Group</span></li><li><span>Keyword</span></li><li><span>MultimediaType</span></li><li><span>Page</span></li><li><span>PageTemplate</span></li><li><span>ProcessDefinitionAssociation</span></li><li><span>ProcessHistory</span></li><li><span>ProcessInstance</span></li><li><span>Publication</span></li><li><span>PublishTransaction</span></li><li><span>Repository</span></li><li><span>ResolvedBundle</span></li><li><span>Schema</span></li><li><span>StructureGroup</span></li><li><span>TargetGroup</span></li><li><span>TargetType</span></li><li><span>TemplateBuildingBlock</span></li><li><span>TridionActivityDefinition</span></li><li><span>TridionProcessDefinition</span></li><li><span>User</span></li><li><span>VirtualFolder</span></li><li><span>WorkflowType</span></li><li><span>WorkItem</span></li></ul>",
                 "operationId": "GetList",
                 "consumes": [
                     "*/*",
@@ -3661,7 +3662,7 @@
                     "OrganizationalItems"
                 ],
                 "summary": "Gets a list of classified items.",
-                "description": "This operation returns an implementation of the abstract type 'IdentifiableObject'. Depending on the requested item, one of the following instances may be returned:\n\n<ul class=\"model-list\"><li><span>AccessToken</span></li><li><span>ActivityHistory</span></li><li><span>ActivityInstance</span></li><li><span>ApprovalStatus</span></li><li><span>Batch</span></li><li><span>BlueprintNode</span></li><li><span>BundleType</span></li><li><span>BusinessProcessType</span></li><li><span>Category</span></li><li><span>Component</span></li><li><span>ComponentTemplate</span></li><li><span>Folder</span></li><li><span>Group</span></li><li><span>Keyword</span></li><li><span>MultimediaType</span></li><li><span>Page</span></li><li><span>PageTemplate</span></li><li><span>ProcessDefinitionAssociation</span></li><li><span>ProcessHistory</span></li><li><span>ProcessInstance</span></li><li><span>Publication</span></li><li><span>PublishTransaction</span></li><li><span>Repository</span></li><li><span>ResolvedBundle</span></li><li><span>Schema</span></li><li><span>StructureGroup</span></li><li><span>TargetGroup</span></li><li><span>TargetType</span></li><li><span>TemplateBuildingBlock</span></li><li><span>CmsActivityDefinition</span></li><li><span>CmsProcessDefinition</span></li><li><span>User</span></li><li><span>VirtualFolder</span></li><li><span>WorkflowType</span></li><li><span>WorkItem</span></li></ul>",
+                "description": "This operation returns an implementation of the abstract type 'IdentifiableObject'. Depending on the requested item, one of the following instances may be returned:\n\n<ul class=\"model-list\"><li><span>AccessToken</span></li><li><span>ActivityHistory</span></li><li><span>ActivityInstance</span></li><li><span>ApprovalStatus</span></li><li><span>Batch</span></li><li><span>BlueprintNode</span></li><li><span>BundleType</span></li><li><span>BusinessProcessType</span></li><li><span>Category</span></li><li><span>Component</span></li><li><span>ComponentTemplate</span></li><li><span>Folder</span></li><li><span>Group</span></li><li><span>Keyword</span></li><li><span>MultimediaType</span></li><li><span>Page</span></li><li><span>PageTemplate</span></li><li><span>ProcessDefinitionAssociation</span></li><li><span>ProcessHistory</span></li><li><span>ProcessInstance</span></li><li><span>Publication</span></li><li><span>PublishTransaction</span></li><li><span>Repository</span></li><li><span>ResolvedBundle</span></li><li><span>Schema</span></li><li><span>StructureGroup</span></li><li><span>TargetGroup</span></li><li><span>TargetType</span></li><li><span>TemplateBuildingBlock</span></li><li><span>TridionActivityDefinition</span></li><li><span>TridionProcessDefinition</span></li><li><span>User</span></li><li><span>VirtualFolder</span></li><li><span>WorkflowType</span></li><li><span>WorkItem</span></li></ul>",
                 "operationId": "ClassifiedItems",
                 "consumes": [
                     "*/*",
@@ -3795,7 +3796,7 @@
                     "OrganizationalItems"
                 ],
                 "summary": "Gets a list of child items.",
-                "description": "This operation returns an implementation of the abstract type 'IdentifiableObject'. Depending on the requested item, one of the following instances may be returned:\n\n<ul class=\"model-list\"><li><span>AccessToken</span></li><li><span>ActivityHistory</span></li><li><span>ActivityInstance</span></li><li><span>ApprovalStatus</span></li><li><span>Batch</span></li><li><span>BlueprintNode</span></li><li><span>BundleType</span></li><li><span>BusinessProcessType</span></li><li><span>Category</span></li><li><span>Component</span></li><li><span>ComponentTemplate</span></li><li><span>Folder</span></li><li><span>Group</span></li><li><span>Keyword</span></li><li><span>MultimediaType</span></li><li><span>Page</span></li><li><span>PageTemplate</span></li><li><span>ProcessDefinitionAssociation</span></li><li><span>ProcessHistory</span></li><li><span>ProcessInstance</span></li><li><span>Publication</span></li><li><span>PublishTransaction</span></li><li><span>Repository</span></li><li><span>ResolvedBundle</span></li><li><span>Schema</span></li><li><span>StructureGroup</span></li><li><span>TargetGroup</span></li><li><span>TargetType</span></li><li><span>TemplateBuildingBlock</span></li><li><span>CmsActivityDefinition</span></li><li><span>CmsProcessDefinition</span></li><li><span>User</span></li><li><span>VirtualFolder</span></li><li><span>WorkflowType</span></li><li><span>WorkItem</span></li></ul>",
+                "description": "This operation returns an implementation of the abstract type 'IdentifiableObject'. Depending on the requested item, one of the following instances may be returned:\n\n<ul class=\"model-list\"><li><span>AccessToken</span></li><li><span>ActivityHistory</span></li><li><span>ActivityInstance</span></li><li><span>ApprovalStatus</span></li><li><span>Batch</span></li><li><span>BlueprintNode</span></li><li><span>BundleType</span></li><li><span>BusinessProcessType</span></li><li><span>Category</span></li><li><span>Component</span></li><li><span>ComponentTemplate</span></li><li><span>Folder</span></li><li><span>Group</span></li><li><span>Keyword</span></li><li><span>MultimediaType</span></li><li><span>Page</span></li><li><span>PageTemplate</span></li><li><span>ProcessDefinitionAssociation</span></li><li><span>ProcessHistory</span></li><li><span>ProcessInstance</span></li><li><span>Publication</span></li><li><span>PublishTransaction</span></li><li><span>Repository</span></li><li><span>ResolvedBundle</span></li><li><span>Schema</span></li><li><span>StructureGroup</span></li><li><span>TargetGroup</span></li><li><span>TargetType</span></li><li><span>TemplateBuildingBlock</span></li><li><span>TridionActivityDefinition</span></li><li><span>TridionProcessDefinition</span></li><li><span>User</span></li><li><span>VirtualFolder</span></li><li><span>WorkflowType</span></li><li><span>WorkItem</span></li></ul>",
                 "operationId": "Items",
                 "consumes": [
                     "*/*",
@@ -3922,7 +3923,7 @@
                     "Blueprinting"
                 ],
                 "summary": "Gets a list of items that are used by a specific item.",
-                "description": "This operation returns an implementation of the abstract type 'IdentifiableObject'. Depending on the requested item, one of the following instances may be returned:\n\n<ul class=\"model-list\"><li><span>AccessToken</span></li><li><span>ActivityHistory</span></li><li><span>ActivityInstance</span></li><li><span>ApprovalStatus</span></li><li><span>Batch</span></li><li><span>BlueprintNode</span></li><li><span>BundleType</span></li><li><span>BusinessProcessType</span></li><li><span>Category</span></li><li><span>Component</span></li><li><span>ComponentTemplate</span></li><li><span>Folder</span></li><li><span>Group</span></li><li><span>Keyword</span></li><li><span>MultimediaType</span></li><li><span>Page</span></li><li><span>PageTemplate</span></li><li><span>ProcessDefinitionAssociation</span></li><li><span>ProcessHistory</span></li><li><span>ProcessInstance</span></li><li><span>Publication</span></li><li><span>PublishTransaction</span></li><li><span>Repository</span></li><li><span>ResolvedBundle</span></li><li><span>Schema</span></li><li><span>StructureGroup</span></li><li><span>TargetGroup</span></li><li><span>TargetType</span></li><li><span>TemplateBuildingBlock</span></li><li><span>CmsActivityDefinition</span></li><li><span>CmsProcessDefinition</span></li><li><span>User</span></li><li><span>VirtualFolder</span></li><li><span>WorkflowType</span></li><li><span>WorkItem</span></li></ul>",
+                "description": "This operation returns an implementation of the abstract type 'IdentifiableObject'. Depending on the requested item, one of the following instances may be returned:\n\n<ul class=\"model-list\"><li><span>AccessToken</span></li><li><span>ActivityHistory</span></li><li><span>ActivityInstance</span></li><li><span>ApprovalStatus</span></li><li><span>Batch</span></li><li><span>BlueprintNode</span></li><li><span>BundleType</span></li><li><span>BusinessProcessType</span></li><li><span>Category</span></li><li><span>Component</span></li><li><span>ComponentTemplate</span></li><li><span>Folder</span></li><li><span>Group</span></li><li><span>Keyword</span></li><li><span>MultimediaType</span></li><li><span>Page</span></li><li><span>PageTemplate</span></li><li><span>ProcessDefinitionAssociation</span></li><li><span>ProcessHistory</span></li><li><span>ProcessInstance</span></li><li><span>Publication</span></li><li><span>PublishTransaction</span></li><li><span>Repository</span></li><li><span>ResolvedBundle</span></li><li><span>Schema</span></li><li><span>StructureGroup</span></li><li><span>TargetGroup</span></li><li><span>TargetType</span></li><li><span>TemplateBuildingBlock</span></li><li><span>TridionActivityDefinition</span></li><li><span>TridionProcessDefinition</span></li><li><span>User</span></li><li><span>VirtualFolder</span></li><li><span>WorkflowType</span></li><li><span>WorkItem</span></li></ul>",
                 "operationId": "Uses",
                 "consumes": [
                     "*/*",
@@ -4119,7 +4120,7 @@
                     "Blueprinting"
                 ],
                 "summary": "Gets a list of items that use a specific item.",
-                "description": "This operation returns an implementation of the abstract type 'IdentifiableObject'. Depending on the requested item, one of the following instances may be returned:\n\n<ul class=\"model-list\"><li><span>AccessToken</span></li><li><span>ActivityHistory</span></li><li><span>ActivityInstance</span></li><li><span>ApprovalStatus</span></li><li><span>Batch</span></li><li><span>BlueprintNode</span></li><li><span>BundleType</span></li><li><span>BusinessProcessType</span></li><li><span>Category</span></li><li><span>Component</span></li><li><span>ComponentTemplate</span></li><li><span>Folder</span></li><li><span>Group</span></li><li><span>Keyword</span></li><li><span>MultimediaType</span></li><li><span>Page</span></li><li><span>PageTemplate</span></li><li><span>ProcessDefinitionAssociation</span></li><li><span>ProcessHistory</span></li><li><span>ProcessInstance</span></li><li><span>Publication</span></li><li><span>PublishTransaction</span></li><li><span>Repository</span></li><li><span>ResolvedBundle</span></li><li><span>Schema</span></li><li><span>StructureGroup</span></li><li><span>TargetGroup</span></li><li><span>TargetType</span></li><li><span>TemplateBuildingBlock</span></li><li><span>CmsActivityDefinition</span></li><li><span>CmsProcessDefinition</span></li><li><span>User</span></li><li><span>VirtualFolder</span></li><li><span>WorkflowType</span></li><li><span>WorkItem</span></li></ul>",
+                "description": "This operation returns an implementation of the abstract type 'IdentifiableObject'. Depending on the requested item, one of the following instances may be returned:\n\n<ul class=\"model-list\"><li><span>AccessToken</span></li><li><span>ActivityHistory</span></li><li><span>ActivityInstance</span></li><li><span>ApprovalStatus</span></li><li><span>Batch</span></li><li><span>BlueprintNode</span></li><li><span>BundleType</span></li><li><span>BusinessProcessType</span></li><li><span>Category</span></li><li><span>Component</span></li><li><span>ComponentTemplate</span></li><li><span>Folder</span></li><li><span>Group</span></li><li><span>Keyword</span></li><li><span>MultimediaType</span></li><li><span>Page</span></li><li><span>PageTemplate</span></li><li><span>ProcessDefinitionAssociation</span></li><li><span>ProcessHistory</span></li><li><span>ProcessInstance</span></li><li><span>Publication</span></li><li><span>PublishTransaction</span></li><li><span>Repository</span></li><li><span>ResolvedBundle</span></li><li><span>Schema</span></li><li><span>StructureGroup</span></li><li><span>TargetGroup</span></li><li><span>TargetType</span></li><li><span>TemplateBuildingBlock</span></li><li><span>TridionActivityDefinition</span></li><li><span>TridionProcessDefinition</span></li><li><span>User</span></li><li><span>VirtualFolder</span></li><li><span>WorkflowType</span></li><li><span>WorkItem</span></li></ul>",
                 "operationId": "UsedBy",
                 "consumes": [
                     "*/*",
@@ -4333,7 +4334,7 @@
                     "OrganizationalItems"
                 ],
                 "summary": "Gets a list of bundles a specific item is in.",
-                "description": "This operation returns an implementation of the abstract type 'IdentifiableObject'. Depending on the requested item, one of the following instances may be returned:\n\n<ul class=\"model-list\"><li><span>AccessToken</span></li><li><span>ActivityHistory</span></li><li><span>ActivityInstance</span></li><li><span>ApprovalStatus</span></li><li><span>Batch</span></li><li><span>BlueprintNode</span></li><li><span>BundleType</span></li><li><span>BusinessProcessType</span></li><li><span>Category</span></li><li><span>Component</span></li><li><span>ComponentTemplate</span></li><li><span>Folder</span></li><li><span>Group</span></li><li><span>Keyword</span></li><li><span>MultimediaType</span></li><li><span>Page</span></li><li><span>PageTemplate</span></li><li><span>ProcessDefinitionAssociation</span></li><li><span>ProcessHistory</span></li><li><span>ProcessInstance</span></li><li><span>Publication</span></li><li><span>PublishTransaction</span></li><li><span>Repository</span></li><li><span>ResolvedBundle</span></li><li><span>Schema</span></li><li><span>StructureGroup</span></li><li><span>TargetGroup</span></li><li><span>TargetType</span></li><li><span>TemplateBuildingBlock</span></li><li><span>CmsActivityDefinition</span></li><li><span>CmsProcessDefinition</span></li><li><span>User</span></li><li><span>VirtualFolder</span></li><li><span>WorkflowType</span></li><li><span>WorkItem</span></li></ul>",
+                "description": "This operation returns an implementation of the abstract type 'IdentifiableObject'. Depending on the requested item, one of the following instances may be returned:\n\n<ul class=\"model-list\"><li><span>AccessToken</span></li><li><span>ActivityHistory</span></li><li><span>ActivityInstance</span></li><li><span>ApprovalStatus</span></li><li><span>Batch</span></li><li><span>BlueprintNode</span></li><li><span>BundleType</span></li><li><span>BusinessProcessType</span></li><li><span>Category</span></li><li><span>Component</span></li><li><span>ComponentTemplate</span></li><li><span>Folder</span></li><li><span>Group</span></li><li><span>Keyword</span></li><li><span>MultimediaType</span></li><li><span>Page</span></li><li><span>PageTemplate</span></li><li><span>ProcessDefinitionAssociation</span></li><li><span>ProcessHistory</span></li><li><span>ProcessInstance</span></li><li><span>Publication</span></li><li><span>PublishTransaction</span></li><li><span>Repository</span></li><li><span>ResolvedBundle</span></li><li><span>Schema</span></li><li><span>StructureGroup</span></li><li><span>TargetGroup</span></li><li><span>TargetType</span></li><li><span>TemplateBuildingBlock</span></li><li><span>TridionActivityDefinition</span></li><li><span>TridionProcessDefinition</span></li><li><span>User</span></li><li><span>VirtualFolder</span></li><li><span>WorkflowType</span></li><li><span>WorkItem</span></li></ul>",
                 "operationId": "InBundles",
                 "consumes": [
                     "*/*",
@@ -4461,7 +4462,7 @@
                     "Workflow"
                 ],
                 "summary": "Gets a list of Process Definitions for a specific item.",
-                "description": "This operation returns an implementation of the abstract type 'IdentifiableObject'. Depending on the requested item, one of the following instances may be returned:\n\n<ul class=\"model-list\"><li><span>AccessToken</span></li><li><span>ActivityHistory</span></li><li><span>ActivityInstance</span></li><li><span>ApprovalStatus</span></li><li><span>Batch</span></li><li><span>BlueprintNode</span></li><li><span>BundleType</span></li><li><span>BusinessProcessType</span></li><li><span>Category</span></li><li><span>Component</span></li><li><span>ComponentTemplate</span></li><li><span>Folder</span></li><li><span>Group</span></li><li><span>Keyword</span></li><li><span>MultimediaType</span></li><li><span>Page</span></li><li><span>PageTemplate</span></li><li><span>ProcessDefinitionAssociation</span></li><li><span>ProcessHistory</span></li><li><span>ProcessInstance</span></li><li><span>Publication</span></li><li><span>PublishTransaction</span></li><li><span>Repository</span></li><li><span>ResolvedBundle</span></li><li><span>Schema</span></li><li><span>StructureGroup</span></li><li><span>TargetGroup</span></li><li><span>TargetType</span></li><li><span>TemplateBuildingBlock</span></li><li><span>CmsActivityDefinition</span></li><li><span>CmsProcessDefinition</span></li><li><span>User</span></li><li><span>VirtualFolder</span></li><li><span>WorkflowType</span></li><li><span>WorkItem</span></li></ul>",
+                "description": "This operation returns an implementation of the abstract type 'IdentifiableObject'. Depending on the requested item, one of the following instances may be returned:\n\n<ul class=\"model-list\"><li><span>AccessToken</span></li><li><span>ActivityHistory</span></li><li><span>ActivityInstance</span></li><li><span>ApprovalStatus</span></li><li><span>Batch</span></li><li><span>BlueprintNode</span></li><li><span>BundleType</span></li><li><span>BusinessProcessType</span></li><li><span>Category</span></li><li><span>Component</span></li><li><span>ComponentTemplate</span></li><li><span>Folder</span></li><li><span>Group</span></li><li><span>Keyword</span></li><li><span>MultimediaType</span></li><li><span>Page</span></li><li><span>PageTemplate</span></li><li><span>ProcessDefinitionAssociation</span></li><li><span>ProcessHistory</span></li><li><span>ProcessInstance</span></li><li><span>Publication</span></li><li><span>PublishTransaction</span></li><li><span>Repository</span></li><li><span>ResolvedBundle</span></li><li><span>Schema</span></li><li><span>StructureGroup</span></li><li><span>TargetGroup</span></li><li><span>TargetType</span></li><li><span>TemplateBuildingBlock</span></li><li><span>TridionActivityDefinition</span></li><li><span>TridionProcessDefinition</span></li><li><span>User</span></li><li><span>VirtualFolder</span></li><li><span>WorkflowType</span></li><li><span>WorkItem</span></li></ul>",
                 "operationId": "ProcessDefinitions",
                 "consumes": [
                     "*/*",
@@ -4529,7 +4530,7 @@
                     "Lists"
                 ],
                 "summary": "Gets a list of Publications.",
-                "description": "This operation returns an implementation of the abstract type 'IdentifiableObject'. Depending on the requested item, one of the following instances may be returned:\n\n<ul class=\"model-list\"><li><span>AccessToken</span></li><li><span>ActivityHistory</span></li><li><span>ActivityInstance</span></li><li><span>ApprovalStatus</span></li><li><span>Batch</span></li><li><span>BlueprintNode</span></li><li><span>BundleType</span></li><li><span>BusinessProcessType</span></li><li><span>Category</span></li><li><span>Component</span></li><li><span>ComponentTemplate</span></li><li><span>Folder</span></li><li><span>Group</span></li><li><span>Keyword</span></li><li><span>MultimediaType</span></li><li><span>Page</span></li><li><span>PageTemplate</span></li><li><span>ProcessDefinitionAssociation</span></li><li><span>ProcessHistory</span></li><li><span>ProcessInstance</span></li><li><span>Publication</span></li><li><span>PublishTransaction</span></li><li><span>Repository</span></li><li><span>ResolvedBundle</span></li><li><span>Schema</span></li><li><span>StructureGroup</span></li><li><span>TargetGroup</span></li><li><span>TargetType</span></li><li><span>TemplateBuildingBlock</span></li><li><span>CmsActivityDefinition</span></li><li><span>CmsProcessDefinition</span></li><li><span>User</span></li><li><span>VirtualFolder</span></li><li><span>WorkflowType</span></li><li><span>WorkItem</span></li></ul>",
+                "description": "This operation returns an implementation of the abstract type 'IdentifiableObject'. Depending on the requested item, one of the following instances may be returned:\n\n<ul class=\"model-list\"><li><span>AccessToken</span></li><li><span>ActivityHistory</span></li><li><span>ActivityInstance</span></li><li><span>ApprovalStatus</span></li><li><span>Batch</span></li><li><span>BlueprintNode</span></li><li><span>BundleType</span></li><li><span>BusinessProcessType</span></li><li><span>Category</span></li><li><span>Component</span></li><li><span>ComponentTemplate</span></li><li><span>Folder</span></li><li><span>Group</span></li><li><span>Keyword</span></li><li><span>MultimediaType</span></li><li><span>Page</span></li><li><span>PageTemplate</span></li><li><span>ProcessDefinitionAssociation</span></li><li><span>ProcessHistory</span></li><li><span>ProcessInstance</span></li><li><span>Publication</span></li><li><span>PublishTransaction</span></li><li><span>Repository</span></li><li><span>ResolvedBundle</span></li><li><span>Schema</span></li><li><span>StructureGroup</span></li><li><span>TargetGroup</span></li><li><span>TargetType</span></li><li><span>TemplateBuildingBlock</span></li><li><span>TridionActivityDefinition</span></li><li><span>TridionProcessDefinition</span></li><li><span>User</span></li><li><span>VirtualFolder</span></li><li><span>WorkflowType</span></li><li><span>WorkItem</span></li></ul>",
                 "operationId": "Publications",
                 "consumes": [
                     "*/*",
@@ -4659,7 +4660,7 @@
                     "Lists"
                 ],
                 "summary": "Gets the items that are checked out by a given user.",
-                "description": "This operation returns an implementation of the abstract type 'IdentifiableObject'. Depending on the requested item, one of the following instances may be returned:\n\n<ul class=\"model-list\"><li><span>AccessToken</span></li><li><span>ActivityHistory</span></li><li><span>ActivityInstance</span></li><li><span>ApprovalStatus</span></li><li><span>Batch</span></li><li><span>BlueprintNode</span></li><li><span>BundleType</span></li><li><span>BusinessProcessType</span></li><li><span>Category</span></li><li><span>Component</span></li><li><span>ComponentTemplate</span></li><li><span>Folder</span></li><li><span>Group</span></li><li><span>Keyword</span></li><li><span>MultimediaType</span></li><li><span>Page</span></li><li><span>PageTemplate</span></li><li><span>ProcessDefinitionAssociation</span></li><li><span>ProcessHistory</span></li><li><span>ProcessInstance</span></li><li><span>Publication</span></li><li><span>PublishTransaction</span></li><li><span>Repository</span></li><li><span>ResolvedBundle</span></li><li><span>Schema</span></li><li><span>StructureGroup</span></li><li><span>TargetGroup</span></li><li><span>TargetType</span></li><li><span>TemplateBuildingBlock</span></li><li><span>CmsActivityDefinition</span></li><li><span>CmsProcessDefinition</span></li><li><span>User</span></li><li><span>VirtualFolder</span></li><li><span>WorkflowType</span></li><li><span>WorkItem</span></li></ul>",
+                "description": "This operation returns an implementation of the abstract type 'IdentifiableObject'. Depending on the requested item, one of the following instances may be returned:\n\n<ul class=\"model-list\"><li><span>AccessToken</span></li><li><span>ActivityHistory</span></li><li><span>ActivityInstance</span></li><li><span>ApprovalStatus</span></li><li><span>Batch</span></li><li><span>BlueprintNode</span></li><li><span>BundleType</span></li><li><span>BusinessProcessType</span></li><li><span>Category</span></li><li><span>Component</span></li><li><span>ComponentTemplate</span></li><li><span>Folder</span></li><li><span>Group</span></li><li><span>Keyword</span></li><li><span>MultimediaType</span></li><li><span>Page</span></li><li><span>PageTemplate</span></li><li><span>ProcessDefinitionAssociation</span></li><li><span>ProcessHistory</span></li><li><span>ProcessInstance</span></li><li><span>Publication</span></li><li><span>PublishTransaction</span></li><li><span>Repository</span></li><li><span>ResolvedBundle</span></li><li><span>Schema</span></li><li><span>StructureGroup</span></li><li><span>TargetGroup</span></li><li><span>TargetType</span></li><li><span>TemplateBuildingBlock</span></li><li><span>TridionActivityDefinition</span></li><li><span>TridionProcessDefinition</span></li><li><span>User</span></li><li><span>VirtualFolder</span></li><li><span>WorkflowType</span></li><li><span>WorkItem</span></li></ul>",
                 "operationId": "GetCheckedOutItemsForUser",
                 "consumes": [
                     "*/*",
@@ -6244,7 +6245,7 @@
                     "Search"
                 ],
                 "summary": "",
-                "description": "This operation returns an implementation of the abstract type 'IdentifiableObject'. Depending on the requested item, one of the following instances may be returned:\n\n<ul class=\"model-list\"><li><span>AccessToken</span></li><li><span>ActivityHistory</span></li><li><span>ActivityInstance</span></li><li><span>ApprovalStatus</span></li><li><span>Batch</span></li><li><span>BlueprintNode</span></li><li><span>BundleType</span></li><li><span>BusinessProcessType</span></li><li><span>Category</span></li><li><span>Component</span></li><li><span>ComponentTemplate</span></li><li><span>Folder</span></li><li><span>Group</span></li><li><span>Keyword</span></li><li><span>MultimediaType</span></li><li><span>Page</span></li><li><span>PageTemplate</span></li><li><span>ProcessDefinitionAssociation</span></li><li><span>ProcessHistory</span></li><li><span>ProcessInstance</span></li><li><span>Publication</span></li><li><span>PublishTransaction</span></li><li><span>Repository</span></li><li><span>ResolvedBundle</span></li><li><span>Schema</span></li><li><span>StructureGroup</span></li><li><span>TargetGroup</span></li><li><span>TargetType</span></li><li><span>TemplateBuildingBlock</span></li><li><span>CmsActivityDefinition</span></li><li><span>CmsProcessDefinition</span></li><li><span>User</span></li><li><span>VirtualFolder</span></li><li><span>WorkflowType</span></li><li><span>WorkItem</span></li></ul>",
+                "description": "This operation returns an implementation of the abstract type 'IdentifiableObject'. Depending on the requested item, one of the following instances may be returned:\n\n<ul class=\"model-list\"><li><span>AccessToken</span></li><li><span>ActivityHistory</span></li><li><span>ActivityInstance</span></li><li><span>ApprovalStatus</span></li><li><span>Batch</span></li><li><span>BlueprintNode</span></li><li><span>BundleType</span></li><li><span>BusinessProcessType</span></li><li><span>Category</span></li><li><span>Component</span></li><li><span>ComponentTemplate</span></li><li><span>Folder</span></li><li><span>Group</span></li><li><span>Keyword</span></li><li><span>MultimediaType</span></li><li><span>Page</span></li><li><span>PageTemplate</span></li><li><span>ProcessDefinitionAssociation</span></li><li><span>ProcessHistory</span></li><li><span>ProcessInstance</span></li><li><span>Publication</span></li><li><span>PublishTransaction</span></li><li><span>Repository</span></li><li><span>ResolvedBundle</span></li><li><span>Schema</span></li><li><span>StructureGroup</span></li><li><span>TargetGroup</span></li><li><span>TargetType</span></li><li><span>TemplateBuildingBlock</span></li><li><span>TridionActivityDefinition</span></li><li><span>TridionProcessDefinition</span></li><li><span>User</span></li><li><span>VirtualFolder</span></li><li><span>WorkflowType</span></li><li><span>WorkItem</span></li></ul>",
                 "operationId": "BasicFullTextSearch",
                 "consumes": [
                     "*/*",
@@ -6319,7 +6320,7 @@
                     "Search"
                 ],
                 "summary": "Full search.",
-                "description": "This operation returns an implementation of the abstract type 'IdentifiableObject'. Depending on the requested item, one of the following instances may be returned:\n\n<ul class=\"model-list\"><li><span>AccessToken</span></li><li><span>ActivityHistory</span></li><li><span>ActivityInstance</span></li><li><span>ApprovalStatus</span></li><li><span>Batch</span></li><li><span>BlueprintNode</span></li><li><span>BundleType</span></li><li><span>BusinessProcessType</span></li><li><span>Category</span></li><li><span>Component</span></li><li><span>ComponentTemplate</span></li><li><span>Folder</span></li><li><span>Group</span></li><li><span>Keyword</span></li><li><span>MultimediaType</span></li><li><span>Page</span></li><li><span>PageTemplate</span></li><li><span>ProcessDefinitionAssociation</span></li><li><span>ProcessHistory</span></li><li><span>ProcessInstance</span></li><li><span>Publication</span></li><li><span>PublishTransaction</span></li><li><span>Repository</span></li><li><span>ResolvedBundle</span></li><li><span>Schema</span></li><li><span>StructureGroup</span></li><li><span>TargetGroup</span></li><li><span>TargetType</span></li><li><span>TemplateBuildingBlock</span></li><li><span>CmsActivityDefinition</span></li><li><span>CmsProcessDefinition</span></li><li><span>User</span></li><li><span>VirtualFolder</span></li><li><span>WorkflowType</span></li><li><span>WorkItem</span></li></ul>",
+                "description": "This operation returns an implementation of the abstract type 'IdentifiableObject'. Depending on the requested item, one of the following instances may be returned:\n\n<ul class=\"model-list\"><li><span>AccessToken</span></li><li><span>ActivityHistory</span></li><li><span>ActivityInstance</span></li><li><span>ApprovalStatus</span></li><li><span>Batch</span></li><li><span>BlueprintNode</span></li><li><span>BundleType</span></li><li><span>BusinessProcessType</span></li><li><span>Category</span></li><li><span>Component</span></li><li><span>ComponentTemplate</span></li><li><span>Folder</span></li><li><span>Group</span></li><li><span>Keyword</span></li><li><span>MultimediaType</span></li><li><span>Page</span></li><li><span>PageTemplate</span></li><li><span>ProcessDefinitionAssociation</span></li><li><span>ProcessHistory</span></li><li><span>ProcessInstance</span></li><li><span>Publication</span></li><li><span>PublishTransaction</span></li><li><span>Repository</span></li><li><span>ResolvedBundle</span></li><li><span>Schema</span></li><li><span>StructureGroup</span></li><li><span>TargetGroup</span></li><li><span>TargetType</span></li><li><span>TemplateBuildingBlock</span></li><li><span>TridionActivityDefinition</span></li><li><span>TridionProcessDefinition</span></li><li><span>User</span></li><li><span>VirtualFolder</span></li><li><span>WorkflowType</span></li><li><span>WorkItem</span></li></ul>",
                 "operationId": "Search",
                 "consumes": [
                     "*/*",
@@ -6388,7 +6389,7 @@
                 "tags": [
                     "Search"
                 ],
-                "summary": "Reindexes a Cms repository.",
+                "summary": "Reindexes a Tridion repository.",
                 "description": "When no repositoryId is provided, all repositories will be reindexed.",
                 "operationId": "Reindex",
                 "consumes": [
@@ -6485,7 +6486,7 @@
                     "System"
                 ],
                 "summary": "Gets a system wide list.",
-                "description": "This operation returns an implementation of the abstract type 'IdentifiableObject'. Depending on the requested item, one of the following instances may be returned:\n\n<ul class=\"model-list\"><li><span>AccessToken</span></li><li><span>ActivityHistory</span></li><li><span>ActivityInstance</span></li><li><span>ApprovalStatus</span></li><li><span>Batch</span></li><li><span>BlueprintNode</span></li><li><span>BundleType</span></li><li><span>BusinessProcessType</span></li><li><span>Category</span></li><li><span>Component</span></li><li><span>ComponentTemplate</span></li><li><span>Folder</span></li><li><span>Group</span></li><li><span>Keyword</span></li><li><span>MultimediaType</span></li><li><span>Page</span></li><li><span>PageTemplate</span></li><li><span>ProcessDefinitionAssociation</span></li><li><span>ProcessHistory</span></li><li><span>ProcessInstance</span></li><li><span>Publication</span></li><li><span>PublishTransaction</span></li><li><span>Repository</span></li><li><span>ResolvedBundle</span></li><li><span>Schema</span></li><li><span>StructureGroup</span></li><li><span>TargetGroup</span></li><li><span>TargetType</span></li><li><span>TemplateBuildingBlock</span></li><li><span>CmsActivityDefinition</span></li><li><span>CmsProcessDefinition</span></li><li><span>User</span></li><li><span>VirtualFolder</span></li><li><span>WorkflowType</span></li><li><span>WorkItem</span></li></ul>",
+                "description": "This operation returns an implementation of the abstract type 'IdentifiableObject'. Depending on the requested item, one of the following instances may be returned:\n\n<ul class=\"model-list\"><li><span>AccessToken</span></li><li><span>ActivityHistory</span></li><li><span>ActivityInstance</span></li><li><span>ApprovalStatus</span></li><li><span>Batch</span></li><li><span>BlueprintNode</span></li><li><span>BundleType</span></li><li><span>BusinessProcessType</span></li><li><span>Category</span></li><li><span>Component</span></li><li><span>ComponentTemplate</span></li><li><span>Folder</span></li><li><span>Group</span></li><li><span>Keyword</span></li><li><span>MultimediaType</span></li><li><span>Page</span></li><li><span>PageTemplate</span></li><li><span>ProcessDefinitionAssociation</span></li><li><span>ProcessHistory</span></li><li><span>ProcessInstance</span></li><li><span>Publication</span></li><li><span>PublishTransaction</span></li><li><span>Repository</span></li><li><span>ResolvedBundle</span></li><li><span>Schema</span></li><li><span>StructureGroup</span></li><li><span>TargetGroup</span></li><li><span>TargetType</span></li><li><span>TemplateBuildingBlock</span></li><li><span>TridionActivityDefinition</span></li><li><span>TridionProcessDefinition</span></li><li><span>User</span></li><li><span>VirtualFolder</span></li><li><span>WorkflowType</span></li><li><span>WorkItem</span></li></ul>",
                 "operationId": "GetSystemWideList",
                 "consumes": [
                     "*/*",
@@ -6629,14 +6630,14 @@
                 }
             }
         },
-        "/api/v{api-version}/cm/system/Cmslanguages": {
+        "/api/v{api-version}/cm/system/tridionlanguages": {
             "get": {
                 "tags": [
                     "System"
                 ],
                 "summary": "Gets available languages.",
                 "description": "",
-                "operationId": "GetCmsLanguages",
+                "operationId": "GetTridionLanguages",
                 "consumes": [
                     "*/*",
                     "application/json"
@@ -6659,10 +6660,10 @@
                         "description": "The request was succesful.",
                         "schema": {
                             "items": {
-                                "$ref": "#/definitions/CmsLanguageInfo"
+                                "$ref": "#/definitions/TridionLanguageInfo"
                             },
                             "xml": {
-                                "name": "CmsLanguageInfo",
+                                "name": "TridionLanguageInfo",
                                 "wrapped": true
                             },
                             "type": "array"
@@ -6759,7 +6760,7 @@
                         "description": "The filter to apply to the output.",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/CmsDirectoryUsersFilter"
+                            "$ref": "#/definitions/TridionDirectoryUsersFilter"
                         }
                     },
                     {
@@ -7558,7 +7559,7 @@
                     "Versioning"
                 ],
                 "summary": "Gets the history of a VersionedItem.",
-                "description": "This operation returns an implementation of the abstract type 'IdentifiableObject'. Depending on the requested item, one of the following instances may be returned:\n\n<ul class=\"model-list\"><li><span>AccessToken</span></li><li><span>ActivityHistory</span></li><li><span>ActivityInstance</span></li><li><span>ApprovalStatus</span></li><li><span>Batch</span></li><li><span>BlueprintNode</span></li><li><span>BundleType</span></li><li><span>BusinessProcessType</span></li><li><span>Category</span></li><li><span>Component</span></li><li><span>ComponentTemplate</span></li><li><span>Folder</span></li><li><span>Group</span></li><li><span>Keyword</span></li><li><span>MultimediaType</span></li><li><span>Page</span></li><li><span>PageTemplate</span></li><li><span>ProcessDefinitionAssociation</span></li><li><span>ProcessHistory</span></li><li><span>ProcessInstance</span></li><li><span>Publication</span></li><li><span>PublishTransaction</span></li><li><span>Repository</span></li><li><span>ResolvedBundle</span></li><li><span>Schema</span></li><li><span>StructureGroup</span></li><li><span>TargetGroup</span></li><li><span>TargetType</span></li><li><span>TemplateBuildingBlock</span></li><li><span>CmsActivityDefinition</span></li><li><span>CmsProcessDefinition</span></li><li><span>User</span></li><li><span>VirtualFolder</span></li><li><span>WorkflowType</span></li><li><span>WorkItem</span></li></ul>",
+                "description": "This operation returns an implementation of the abstract type 'IdentifiableObject'. Depending on the requested item, one of the following instances may be returned:\n\n<ul class=\"model-list\"><li><span>AccessToken</span></li><li><span>ActivityHistory</span></li><li><span>ActivityInstance</span></li><li><span>ApprovalStatus</span></li><li><span>Batch</span></li><li><span>BlueprintNode</span></li><li><span>BundleType</span></li><li><span>BusinessProcessType</span></li><li><span>Category</span></li><li><span>Component</span></li><li><span>ComponentTemplate</span></li><li><span>Folder</span></li><li><span>Group</span></li><li><span>Keyword</span></li><li><span>MultimediaType</span></li><li><span>Page</span></li><li><span>PageTemplate</span></li><li><span>ProcessDefinitionAssociation</span></li><li><span>ProcessHistory</span></li><li><span>ProcessInstance</span></li><li><span>Publication</span></li><li><span>PublishTransaction</span></li><li><span>Repository</span></li><li><span>ResolvedBundle</span></li><li><span>Schema</span></li><li><span>StructureGroup</span></li><li><span>TargetGroup</span></li><li><span>TargetType</span></li><li><span>TemplateBuildingBlock</span></li><li><span>TridionActivityDefinition</span></li><li><span>TridionProcessDefinition</span></li><li><span>User</span></li><li><span>VirtualFolder</span></li><li><span>WorkflowType</span></li><li><span>WorkItem</span></li></ul>",
                 "operationId": "History",
                 "consumes": [
                     "*/*",
@@ -9173,7 +9174,7 @@
                     "type": "array"
                 },
                 "SynchronizeOptions": {
-                    "$ref": "#/definitions/CmsSynchronizeOptions"
+                    "$ref": "#/definitions/TridionSynchronizeOptions"
                 }
             },
             "xml": {
@@ -9181,7 +9182,7 @@
             },
             "type": "object"
         },
-        "CmsSynchronizeOptions": {
+        "TridionSynchronizeOptions": {
             "properties": {
                 "LoadFlags": {
                     "type": "string",
@@ -9222,7 +9223,7 @@
                 }
             },
             "xml": {
-                "name": "CmsSynchronizeOptions"
+                "name": "TridionSynchronizeOptions"
             },
             "type": "object"
         },
@@ -11668,7 +11669,7 @@
                             },
                             "type": "object"
                         },
-                        "IsCmsWebSchema": {
+                        "IsTridionWebSchema": {
                             "type": "boolean"
                         },
                         "MetadataFields": {
@@ -12008,10 +12009,10 @@
             },
             "type": "object"
         },
-        "CmsLanguageInfo": {
+        "TridionLanguageInfo": {
             "properties": {
                 "$type": {
-                    "example": "CmsLanguageInfo",
+                    "example": "TridionLanguageInfo",
                     "type": "string"
                 },
                 "LanguageId": {
@@ -12026,7 +12027,7 @@
                 }
             },
             "xml": {
-                "name": "CmsLanguageInfo"
+                "name": "TridionLanguageInfo"
             },
             "type": "object"
         },
@@ -12060,7 +12061,7 @@
             },
             "type": "object"
         },
-        "CmsDirectoryUsersFilter": {
+        "TridionDirectoryUsersFilter": {
             "properties": {
                 "SubtreeDN": {
                     "type": "string"
@@ -12077,7 +12078,7 @@
                 }
             },
             "xml": {
-                "name": "CmsDirectoryUsersFilter"
+                "name": "TridionDirectoryUsersFilter"
             },
             "type": "object"
         },
@@ -15864,7 +15865,7 @@
             },
             "type": "object"
         },
-        "CmsActivityDefinition": {
+        "TridionActivityDefinition": {
             "allOf": [
                 {
                     "$ref": "#/definitions/ActivityDefinition"
@@ -15919,11 +15920,11 @@
                 }
             ],
             "xml": {
-                "name": "CmsActivityDefinition"
+                "name": "TridionActivityDefinition"
             },
             "type": "object"
         },
-        "CmsProcessDefinition": {
+        "TridionProcessDefinition": {
             "allOf": [
                 {
                     "$ref": "#/definitions/ProcessDefinition"
@@ -15942,7 +15943,7 @@
                 }
             ],
             "xml": {
-                "name": "CmsProcessDefinition"
+                "name": "TridionProcessDefinition"
             },
             "type": "object"
         },
@@ -16400,7 +16401,7 @@
                         "IsBasedOnMandatorySchema": {
                             "type": "boolean"
                         },
-                        "IsBasedOnCmsWebSchema": {
+                        "IsBasedOnTridionWebSchema": {
                             "type": "boolean"
                         },
                         "Schema": {

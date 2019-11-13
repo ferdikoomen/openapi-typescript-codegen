@@ -5,8 +5,8 @@ import { OpenApi } from '../interfaces/OpenApi';
  * @param openApi
  */
 export function getServer(openApi: OpenApi): string {
-    const scheme = (openApi.schemes && openApi.schemes[0]) || 'http';
-    const host = openApi.host;
-    const basePath = openApi.basePath || '';
+    const scheme: string = (openApi.schemes && openApi.schemes[0]) || 'http';
+    const host: string | undefined = openApi.host;
+    const basePath: string = openApi.basePath || '';
     return host ? `${scheme}://${host}${basePath}` : basePath;
 }

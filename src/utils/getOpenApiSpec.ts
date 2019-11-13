@@ -25,7 +25,6 @@ function read(filePath: string): string {
  */
 export function getOpenApiSpec(filePath: string): any {
     const content: string = read(filePath);
-
     const extname: string = path.extname(filePath).toLowerCase();
     switch (extname) {
         case '.yml':

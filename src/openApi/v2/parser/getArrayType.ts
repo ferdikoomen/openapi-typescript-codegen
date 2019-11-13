@@ -5,18 +5,21 @@ import { getEnumType } from './getEnumType';
 import { ArrayType } from '../../../client/interfaces/ArrayType';
 
 export function getArrayType(items: OpenApiItems): ArrayType {
-    let itemsType = 'any';
-    let itemsBase = 'any';
-    let itemsTemplate: string | null = null;
-    let itemsImports: string[] = [];
+    const result: ArrayType = {
+        type: 'any',
+        base: 'any',
+        template: null,
+        default: items.default,
+        imports: [],
+    };
 
     // If the parameter has a type than it can be a basic or generic type.
     if (items.type) {
         const itemsData: Type = getType(items.type);
-        itemsType = itemsData.type;
-        itemsBase = itemsData.base;
-        itemsTemplate = itemsData.template;
-        itemsImports = [...itemsData.imports];
+        result.type = itemsData.type;
+        result.base = itemsData.base;
+        result.template = itemsData.template;
+        result.imports.push(...itemsData.imports);
 
         // If the parameter is an Array type, we check for the child type,
         // so we can create a typed array, otherwise this will be a "any[]".
@@ -32,14 +35,10 @@ export function getArrayType(items: OpenApiItems): ArrayType {
     }
 
     if (items.enum) {
-        itemsType = getEnumType(items.enum, true);
+        result.type = getEnumType(items.enum, true);
+        result.base = 'string';
+        result.imports = [];
     }
 
-    return {
-        type: itemsType,
-        base: itemsBase,
-        template: itemsTemplate,
-        default: items.default,
-        imports: itemsImports,
-    };
+    return result;
 }
