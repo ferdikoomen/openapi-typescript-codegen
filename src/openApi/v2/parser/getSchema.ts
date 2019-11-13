@@ -107,11 +107,18 @@ export function getSchema(openApi: OpenApi, schema: OpenApiSchema, required: boo
 
             // Merge properties of other models
             if (parent.properties) {
-                console.log(parent.properties);
-                // const properties: ParsedModelProperties = parseModelProperties(modelClass, definition.allOf[1].properties as SwaggerDefinitions, required);
-                // model.imports.push(...properties.imports);
-                // model.properties.push(...properties.properties);
-                // model.enums.push(...properties.enums);
+                const properties: Dictionary<OpenApiSchema & OpenApiReference> | undefined = schema.properties;
+                for (const propertyName in properties) {
+                    if (properties.hasOwnProperty(propertyName)) {
+                        const propertyOrReference: OpenApiSchema & OpenApiReference = properties[propertyName];
+                        const property: OpenApiSchema = getRef<OpenApiSchema>(openApi, propertyOrReference);
+                        const propertySchema: Schema = getSchema(openApi, property);
+                        console.log('propertyName 2', propertyName, propertySchema);
+                        // model.imports.push(...properties.imports);
+                        // model.properties.push(...properties.properties);
+                        // model.enums.push(...properties.enums);
+                    }
+                }
             }
         });
     }
@@ -119,7 +126,10 @@ export function getSchema(openApi: OpenApi, schema: OpenApiSchema, required: boo
     const properties: Dictionary<OpenApiSchema & OpenApiReference> | undefined = schema.properties;
     for (const propertyName in properties) {
         if (properties.hasOwnProperty(propertyName)) {
-            const property = properties[propertyName];
+            const propertyOrReference: OpenApiSchema & OpenApiReference = properties[propertyName];
+            const property: OpenApiSchema = getRef<OpenApiSchema>(openApi, propertyOrReference);
+            const propertySchema: Schema = getSchema(openApi, property);
+            console.log('propertyName 1', propertyName, propertySchema);
             // console.log('property??', property);
             // console.log('propertyName', propertyName);
             // getModelProperty(propertyName, property);
