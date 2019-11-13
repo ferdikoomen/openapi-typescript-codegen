@@ -12,6 +12,7 @@ import { Language } from '../index';
 import * as fs from 'fs';
 import { getFileName } from './getFileName';
 import * as glob from 'glob';
+import { cleanupServices } from './cleanupServices';
 
 /**
  * Write our OpenAPI client, using the given templates at the given output path
@@ -55,9 +56,10 @@ export function writeClient(client: Client, language: Language, templates: Templ
 
     // Write the client files
     try {
+        // TODO: Cleanup models
         writeClientIndex(client, language, templates.index, outputPath);
         writeClientModels(getSortedModels(client.models), language, templates.model, outputPathModels);
-        writeClientServices(getSortedServices(client.services), language, templates.service, outputPathServices);
+        writeClientServices(getSortedServices(cleanupServices(client.services)), language, templates.service, outputPathServices);
     } catch (e) {
         throw e;
     }

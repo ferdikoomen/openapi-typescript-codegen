@@ -38,7 +38,9 @@ export class {{{name}}} {
         {{#if parameters}}
 
         {{#each parameters}}
+        {{#if required}}
         isValidRequiredParam({{{name}}}, '{{{name}}}');
+        {{/if}}
         {{/each}}
         {{/if}}
 

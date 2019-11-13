@@ -1,5 +1,11 @@
 import { Model } from '../../../client/interfaces/Model';
 import { OpenApi } from '../interfaces/OpenApi';
+import { OpenApiSchema } from '../interfaces/OpenApiSchema';
+import { getSchema } from './getSchema';
+import { Schema } from '../../../client/interfaces/Schema';
+import { Type } from '../../../client/interfaces/Type';
+import { getType } from '../../v3/parser/getType';
+import { getModelTemplate } from './getModelTemplate';
 
 /**
  * Get the OpenAPI models.
@@ -8,38 +14,22 @@ export function getModels(openApi: OpenApi): Map<string, Model> {
     const models: Map<string, Model> = new Map<string, Model>();
 
     // Iterate over the definitions
-    const { definitions } = openApi;
-    for (const definitionName in definitions) {
-        if (definitions.hasOwnProperty(definitionName)) {
-            // const definition: OpenApiSchema = openApi.definitions[definitionName];
-            // const required: string[] = definition.required || [];
-            // const modelClass: Type = getType(definitionName);
-            // Check if we haven't already parsed the model
-            // if (!models.has(modelClass.base)) {
-            // // Create a new model object
-            // const model: Model = {
-            //     name: modelClass.base,
-            //     base: modelClass.base,
-            //     type: modelClass.type,
-            //     template: getModelTemplate(modelClass),
-            //     description: null,
-            //     extends: [],
-            //     imports: [],
-            //     properties: [],
-            //     enums: [],
-            // };
-            //
-            // const properties = definition.properties;
-            // for (const propertyName in properties) {
-            //     if (properties.hasOwnProperty(propertyName)) {
-            //         const property = properties[propertyName];
-            //         const propertyRequired = required.includes(propertyName);
-            //         getModelProperty(propertyName, property);
-            //     }
-            // }
-            //
-            // models.set(modelClass.base, model);
-            // }
+    for (const definitionName in openApi.definitions) {
+        if (openApi.definitions.hasOwnProperty(definitionName)) {
+            const definition: OpenApiSchema = openApi.definitions[definitionName];
+            const definitionSchema: Schema = getSchema(openApi, definition);
+            const modelClass: Type = getType(definitionName);
+            const modelTemplate: string = getModelTemplate(modelClass);
+
+            if (models.has(modelClass.base)) {
+                continue;
+            }
+
+            definitionSchema.base = modelClass.base;
+            definitionSchema.type = modelClass.type;
+            definitionSchema.template = modelTemplate;
+
+            models.set(modelClass.base, definitionSchema);
         }
     }
 

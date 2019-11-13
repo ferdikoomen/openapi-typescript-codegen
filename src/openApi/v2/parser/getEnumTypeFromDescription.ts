@@ -6,7 +6,7 @@ export function getEnumTypeFromDescription(description: string, addParentheses: 
         if (matches) {
             // Grab the values from the description
             const values: number[] = [];
-            matches.forEach(match => {
+            matches.forEach((match: string): void => {
                 const value = parseInt(match.split('=')[1].replace(/[^0-9]/g, ''));
                 if (Number.isInteger(value)) {
                     values.push(value);
@@ -16,7 +16,9 @@ export function getEnumTypeFromDescription(description: string, addParentheses: 
             // Filter and sort the values
             const entries: string[] = values
                 .sort()
-                .filter((name, index, arr) => arr.indexOf(name) === index)
+                .filter((name: number, index: number, arr: number[]) => {
+                    return arr.indexOf(name) === index;
+                })
                 .map(value => String(value));
 
             // Add grouping parentheses if needed. This can be handy if enum values

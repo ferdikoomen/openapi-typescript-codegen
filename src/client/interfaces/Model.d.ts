@@ -1,14 +1,5 @@
-import { ModelProperty } from './ModelProperty';
-import { ModelEnum } from './ModelEnum';
+import { Schema } from './Schema';
 
-export interface Model {
-    name: string;
-    base: string;
-    type: string;
-    template: string | null;
-    description?: string;
-    extends: string[];
-    imports: string[];
-    properties: ModelProperty[];
-    enums: ModelEnum[];
+export interface Model extends Schema {
+    noop?: any;
 }

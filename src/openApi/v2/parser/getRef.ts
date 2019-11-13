@@ -13,7 +13,7 @@ export function getRef<T>(openApi: OpenApi, item: T & OpenApiReference): T {
         // Try to find the reference by walking down the path,
         // if we cannot find it, then we throw an error.
         let result: any = openApi;
-        paths.forEach(path => {
+        paths.forEach((path: string): void => {
             if (result.hasOwnProperty(path)) {
                 result = result[path];
             } else {

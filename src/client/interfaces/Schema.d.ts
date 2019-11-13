@@ -1,4 +1,4 @@
-import { Dictionary } from '../../utils/types';
+import { SchemaProperty } from './SchemaProperty';
 
 export interface Schema {
     type: string;
@@ -11,5 +11,5 @@ export interface Schema {
     readOnly: boolean;
     extends: string[];
     imports: string[];
-    properties: Dictionary<Schema>;
+    properties: Map<string, SchemaProperty>;
 }

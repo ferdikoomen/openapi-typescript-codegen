@@ -9,9 +9,8 @@ import { ArrayType } from '../../../client/interfaces/ArrayType';
 import { getEnumType } from './getEnumType';
 import { getEnumTypeFromDescription } from './getEnumTypeFromDescription';
 import { getComment } from './getComment';
-import { getSchema } from './getSchema';
-import { Schema } from '../../../client/interfaces/Schema';
-import { OpenApiSchema } from '../interfaces/OpenApiSchema';
+import { SchemaReference } from '../../../client/interfaces/SchemaReference';
+import { getSchemaReference } from './getSchemaReference';
 
 export function getParameter(openApi: OpenApi, parameter: OpenApiParameter): Parameter {
     const result: Parameter = {
@@ -30,11 +29,11 @@ export function getParameter(openApi: OpenApi, parameter: OpenApiParameter): Par
 
     // If the parameter has a type than it can be a basic or generic type.
     if (parameter.type) {
-        const parameterData: Type = getType(parameter.type);
-        result.type = parameterData.type;
-        result.base = parameterData.base;
-        result.template = parameterData.template;
-        result.imports.push(...parameterData.imports);
+        const parameterType: Type = getType(parameter.type);
+        result.type = parameterType.type;
+        result.base = parameterType.base;
+        result.template = parameterType.template;
+        result.imports.push(...parameterType.imports);
 
         // If the parameter is an Array type, we check for the child type,
         // so we can create a typed array, otherwise this will be a "any[]".
@@ -52,19 +51,11 @@ export function getParameter(openApi: OpenApi, parameter: OpenApiParameter): Par
     // this reference type. Otherwise it might be a complex schema and
     // then we need to parse the schema!
     if (parameter.schema) {
-        if (parameter.schema.$ref) {
-            const schemaReference: Type = getType(parameter.schema.$ref);
-            result.type = schemaReference.type;
-            result.base = schemaReference.base;
-            result.template = schemaReference.template;
-            result.imports.push(...schemaReference.imports);
-        } else {
-            const schema: Schema = getSchema(openApi, parameter.schema as OpenApiSchema);
-            result.type = schema.type;
-            result.base = schema.base;
-            result.template = schema.template;
-            result.imports.push(...schema.imports);
-        }
+        const parameterSchema: SchemaReference = getSchemaReference(openApi, parameter.schema);
+        result.type = parameterSchema.type;
+        result.base = parameterSchema.base;
+        result.template = parameterSchema.template;
+        result.imports.push(...parameterSchema.imports);
     }
 
     // If the param is a enum then return the values as an inline type.

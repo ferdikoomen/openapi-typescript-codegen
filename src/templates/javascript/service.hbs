@@ -30,8 +30,9 @@ export class {{{name}}} {
         {{#if parameters}}
 
         {{#each parameters}}
-        yup.schema.validate();
+        {{#if required}}
         isValidRequiredParam({{{name}}}, '{{{name}}}');
+        {{/if}}
         {{/each}}
         {{/if}}
 

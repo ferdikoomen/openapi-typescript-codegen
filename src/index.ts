@@ -32,12 +32,12 @@ export function generate(input: string, output: string, language: Language = Lan
     const inputPath: string = path.resolve(process.cwd(), input);
     const outputPath: string = path.resolve(process.cwd(), output);
 
-    // console.log(chalk.bold.green('Generate:'));
-    // console.log(chalk.grey('  Input:'), input);
-    // console.log(chalk.grey('  Output:'), output);
-    // console.log(chalk.grey('  Language:'), language);
-    // console.log(chalk.grey('  HTTP client:'), httpClient);
-    // console.log(os.EOL);
+    console.log(chalk.bold.green('Generate:'));
+    console.log(chalk.grey('  Input:'), input);
+    console.log(chalk.grey('  Output:'), output);
+    console.log(chalk.grey('  Language:'), language);
+    console.log(chalk.grey('  HTTP client:'), httpClient);
+    console.log(os.EOL);
 
     try {
         // Load the specification, read the OpenAPI version and load the

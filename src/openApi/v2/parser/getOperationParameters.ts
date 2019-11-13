@@ -10,7 +10,7 @@ function sortByRequired(a: Parameter, b: Parameter): number {
     return a.required && !b.required ? -1 : !a.required && b.required ? 1 : 0;
 }
 
-export function getOperationParameters(openApi: OpenApi, parametersOrReferences: (OpenApiParameter & OpenApiReference)[]): OperationParameters {
+export function getOperationParameters(openApi: OpenApi, parameters: (OpenApiParameter & OpenApiReference)[]): OperationParameters {
     const result: OperationParameters = {
         imports: [],
         parameters: [],
@@ -22,9 +22,9 @@ export function getOperationParameters(openApi: OpenApi, parametersOrReferences:
     };
 
     // Iterate over the parameters
-    parametersOrReferences.forEach(parameterOrReference => {
-        const parameter: OpenApiParameter = getRef<OpenApiParameter>(openApi, parameterOrReference);
-        const param: Parameter = getParameter(openApi, parameter);
+    parameters.forEach(parameter => {
+        const paramRef: OpenApiParameter = getRef<OpenApiParameter>(openApi, parameter);
+        const param: Parameter = getParameter(openApi, paramRef);
 
         // We ignore the "api-version" param, since we do not want to add this
         // as the first / default parameter for each of the service calls.

@@ -15,22 +15,20 @@ export function getArrayType(items: OpenApiItems): ArrayType {
 
     // If the parameter has a type than it can be a basic or generic type.
     if (items.type) {
-        const itemsData: Type = getType(items.type);
-        result.type = itemsData.type;
-        result.base = itemsData.base;
-        result.template = itemsData.template;
-        result.imports.push(...itemsData.imports);
+        const itemsType: Type = getType(items.type);
+        result.type = itemsType.type;
+        result.base = itemsType.base;
+        result.template = itemsType.template;
+        result.imports.push(...itemsType.imports);
 
         // If the parameter is an Array type, we check for the child type,
         // so we can create a typed array, otherwise this will be a "any[]".
         if (items.type === 'array' && items.items) {
-            console.log('templated array', items.items);
-            // Parse the child types and create a correct Array type, for example "string[]" or "ActivityData[]"
-            // const child: ParsedProperty = parseProperty(parameter.items, template);
-            // parameterType = `${child.type}[]`;
-            // parameterBase = child.base;
-            // parameterTemplate = child.template;
-            // parameterImports.push(...child.imports);
+            const arrayType: ArrayType = getArrayType(items.items);
+            result.type = `${arrayType.type}[]`;
+            result.base = arrayType.base;
+            result.template = arrayType.template;
+            result.imports.push(...arrayType.imports);
         }
     }
 

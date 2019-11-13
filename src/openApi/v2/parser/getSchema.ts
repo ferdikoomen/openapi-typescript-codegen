@@ -6,76 +6,46 @@ import { getComment } from './getComment';
 import { Type } from '../../../client/interfaces/Type';
 import { getEnumType } from './getEnumType';
 import { getEnumTypeFromDescription } from './getEnumTypeFromDescription';
-import { Dictionary } from '../../../utils/types';
 import { OpenApiReference } from '../interfaces/OpenApiReference';
-import { getRef } from './getRef';
+import { SchemaReference } from '../../../client/interfaces/SchemaReference';
+import { getSchemaReference } from './getSchemaReference';
+import { SchemaProperty } from '../../../client/interfaces/SchemaProperty';
+import { getSchemaProperty } from './getSchemaProperty';
 
-export function getSchema(openApi: OpenApi, schema: OpenApiSchema, required: boolean = false): Schema {
-    /**
-     format?: 'int32' | 'int64' | 'float' | 'double' | 'string' | 'boolean' | 'byte' | 'binary' | 'date' | 'date-time' | 'password';
-     title?: string;
-     description?: string;
-     default?: any;
-     multipleOf?: number;
-     maximum?: number;
-     exclusiveMaximum?: boolean;
-     minimum?: number;
-     exclusiveMinimum?: boolean;
-     maxLength?: number;
-     minLength?: number;
-     pattern?: string;
-     maxItems?: number;
-     minItems?: number;
-     uniqueItems?: number;
-     maxProperties?: number;
-     minProperties?: number;
-     required?: string[];
-     enum?: string[];
-     type?: string;
-     items?: OpenApiSchema & OpenApiReference;
-     allOf?: (OpenApiSchema & OpenApiReference)[];
-     properties?: Dictionary<OpenApiSchema & OpenApiReference>;
-     additionalProperties?: boolean | (OpenApiSchema & OpenApiReference);
-     discriminator?: string;
-     readOnly?: boolean;
-     xml?: OpenApiXml;
-     externalDocs?: OpenApiExternalDocs;
-     example?: any;
-     */
-
-    // TODO: Does this need a name?
+// TODO: I think we can convert this into getModel and getModelProperties
+// but we need to think about what will happen when a simple type is used as a model
+// needs a test case
+export function getSchema(openApi: OpenApi, schema: OpenApiSchema): Schema {
     const result: Schema = {
         type: 'any',
         base: 'any',
         template: null,
         description: getComment(schema.description),
-        default: schema.default,
-        required: required,
-        nullable: false,
-        readOnly: schema.readOnly || false,
+        default: schema.default, // TODO: Unused?
+        required: false, // TODO: Unused?
+        nullable: false, // TODO: Unused?
+        readOnly: schema.readOnly || false, // TODO: Unused?
         extends: [],
         imports: [],
-        properties: {},
+        properties: new Map<string, SchemaProperty>(),
     };
 
     // If the schema has a type than it can be a basic or generic type.
     if (schema.type) {
-        const schemaData: Type = getType(schema.type);
-        result.type = schemaData.type;
-        result.base = schemaData.base;
-        result.template = schemaData.template;
-        result.imports.push(...schemaData.imports);
+        const schemaType: Type = getType(schema.type);
+        result.type = schemaType.type;
+        result.base = schemaType.base;
+        result.template = schemaType.template;
+        result.imports.push(...schemaType.imports);
 
         // If the schema is an Array type, we check for the child type,
         // so we can create a typed array, otherwise this will be a "any[]".
         if (schema.type === 'array' && schema.items) {
-            const itemsOrReference: OpenApiSchema & OpenApiReference = schema.items;
-            const items: OpenApiSchema = getRef<OpenApiSchema>(openApi, itemsOrReference);
-            const itemsSchema: Schema = getSchema(openApi, items);
-            result.type = `${itemsSchema.type}[]`;
-            result.base = itemsSchema.base;
-            result.template = itemsSchema.template;
-            result.imports.push(...itemsSchema.imports);
+            const arrayType: SchemaReference = getSchemaReference(openApi, schema.items);
+            result.type = `${arrayType.type}[]`;
+            result.base = arrayType.base;
+            result.template = arrayType.template;
+            result.imports.push(...arrayType.imports);
         }
     }
 
@@ -98,41 +68,33 @@ export function getSchema(openApi: OpenApi, schema: OpenApiSchema, required: boo
 
     // Check if this model extends other models
     if (schema.allOf) {
-        schema.allOf.forEach(parent => {
-            if (parent.$ref) {
-                const extend: Type = getType(parent.$ref);
-                result.extends.push(extend.type);
-                result.imports.push(extend.base);
-            }
+        schema.allOf.forEach((parent: OpenApiSchema & OpenApiReference): void => {
+            const parentSchema: SchemaReference = getSchemaReference(openApi, parent);
+            result.extends.push(parentSchema.type);
+            result.imports.push(parentSchema.base);
 
             // Merge properties of other models
             if (parent.properties) {
-                const properties: Dictionary<OpenApiSchema & OpenApiReference> | undefined = schema.properties;
-                for (const propertyName in properties) {
-                    if (properties.hasOwnProperty(propertyName)) {
-                        const propertyOrReference: OpenApiSchema & OpenApiReference = properties[propertyName];
-                        const property: OpenApiSchema = getRef<OpenApiSchema>(openApi, propertyOrReference);
-                        const propertySchema: Schema = getSchema(openApi, property);
-                        console.log('propertyName 2', propertyName, propertySchema);
-                        // model.imports.push(...properties.imports);
-                        // model.properties.push(...properties.properties);
-                        // model.enums.push(...properties.enums);
+                for (const propertyName in schema.properties) {
+                    if (schema.properties.hasOwnProperty(propertyName)) {
+                        const propertyRef: OpenApiSchema & OpenApiReference = schema.properties[propertyName];
+                        const propertyRequired: boolean = (schema.required && schema.required.includes(propertyName)) || false;
+                        const property: SchemaProperty = getSchemaProperty(openApi, propertyRef, propertyName, propertyRequired);
+                        result.imports.push(...property.imports);
+                        result.properties.set(propertyName, property);
                     }
                 }
             }
         });
     }
 
-    const properties: Dictionary<OpenApiSchema & OpenApiReference> | undefined = schema.properties;
-    for (const propertyName in properties) {
-        if (properties.hasOwnProperty(propertyName)) {
-            const propertyOrReference: OpenApiSchema & OpenApiReference = properties[propertyName];
-            const property: OpenApiSchema = getRef<OpenApiSchema>(openApi, propertyOrReference);
-            const propertySchema: Schema = getSchema(openApi, property);
-            console.log('propertyName 1', propertyName, propertySchema);
-            // console.log('property??', property);
-            // console.log('propertyName', propertyName);
-            // getModelProperty(propertyName, property);
+    for (const propertyName in schema.properties) {
+        if (schema.properties.hasOwnProperty(propertyName)) {
+            const propertyRef: OpenApiSchema & OpenApiReference = schema.properties[propertyName];
+            const propertyRequired: boolean = (schema.required && schema.required.includes(propertyName)) || false;
+            const property: SchemaProperty = getSchemaProperty(openApi, propertyRef, propertyName, propertyRequired);
+            result.imports.push(...property.imports);
+            result.properties.set(propertyName, property);
         }
     }
 

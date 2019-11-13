@@ -5,11 +5,8 @@ import { OpenApiResponse } from '../interfaces/OpenApiResponse';
 import { OpenApiReference } from '../interfaces/OpenApiReference';
 import { getRef } from './getRef';
 import { OpenApi } from '../interfaces/OpenApi';
-import { getType } from './getType';
-import { Type } from '../../../client/interfaces/Type';
-import { Schema } from '../../../client/interfaces/Schema';
-import { getSchema } from './getSchema';
-import { OpenApiSchema } from '../interfaces/OpenApiSchema';
+import { getSchemaReference } from './getSchemaReference';
+import { SchemaReference } from '../../../client/interfaces/SchemaReference';
 
 export function getOperationResponses(openApi: OpenApi, responses: OpenApiResponses): OperationResponse[] {
     const results: OperationResponse[] = [];
@@ -21,6 +18,10 @@ export function getOperationResponses(openApi: OpenApi, responses: OpenApiRespon
             const responseOrReference: OpenApiResponse & OpenApiReference = responses[code];
             const response: OpenApiResponse = getRef<OpenApiResponse>(openApi, responseOrReference);
             const responseCode: number | null = getOperationResponseCode(code);
+
+            // If there is a response code then we check what data we get back,
+            // if there is no typed data, we just return <any> so the user is still
+            // free to do their own casting if needed.
             if (responseCode) {
                 const result: OperationResponse = {
                     code: responseCode,
@@ -31,20 +32,16 @@ export function getOperationResponses(openApi: OpenApi, responses: OpenApiRespon
                     imports: [],
                 };
 
+                // If this response has a schema, then we need to check two things:
+                // if this is a reference then the parameter is just the 'name' of
+                // this reference type. Otherwise it might be a complex schema and
+                // then we need to parse the schema!
                 if (response.schema) {
-                    if (response.schema.$ref) {
-                        const schemaReference: Type = getType(response.schema.$ref);
-                        result.type = schemaReference.type;
-                        result.base = schemaReference.base;
-                        result.template = schemaReference.template;
-                        result.imports.push(...schemaReference.imports);
-                    } else {
-                        const schema: Schema = getSchema(openApi, response.schema as OpenApiSchema);
-                        result.type = schema.type;
-                        result.base = schema.base;
-                        result.template = schema.template;
-                        result.imports.push(...schema.imports);
-                    }
+                    const responseSchema: SchemaReference = getSchemaReference(openApi, response.schema);
+                    result.type = responseSchema.type;
+                    result.base = responseSchema.base;
+                    result.template = responseSchema.template;
+                    result.imports.push(...responseSchema.imports);
                 }
 
                 results.push(result);

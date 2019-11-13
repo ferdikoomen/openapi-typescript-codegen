@@ -16,6 +16,7 @@ import * as yup from 'yup';
  * {{{description}}}
  */
 {{/if}}
+{{#if properties}}
 export interface {{{base}}}{{{template}}}{{#if extend}} extends {{{extend}}}{{/if}} {
     {{#each properties}}
     {{#if description}}
@@ -27,6 +28,7 @@ export interface {{{base}}}{{{template}}}{{#if extend}} extends {{{extend}}}{{/i
     {{/each}}
 }
 
+{{/if}}
 export namespace {{{base}}} {
 
     {{#each enums}}

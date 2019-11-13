@@ -21,7 +21,7 @@ export function getType(value: string | undefined, template: string | null = nul
     // Check of we have an Array type or generic type, for instance: "Link[Model]".
     if (/\[.*\]$/g.test(valueClean)) {
         const matches: RegExpMatchArray | null = valueClean.match(/(.*?)\[(.*)\]$/);
-        if (matches) {
+        if (matches && matches.length) {
             // Both of the types can be complex types so parse each of them.
             const match1: Type = getType(matches[1]);
             const match2: Type = getType(matches[2]);

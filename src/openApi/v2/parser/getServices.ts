@@ -11,10 +11,9 @@ import { Operation } from '../../../client/interfaces/Operation';
 export function getServices(openApi: OpenApi): Map<string, Service> {
     const services: Map<string, Service> = new Map<string, Service>();
 
-    const { paths } = openApi;
-    for (const url in paths) {
-        if (paths.hasOwnProperty(url)) {
-            const path: OpenApiPath = paths[url];
+    for (const url in openApi.paths) {
+        if (openApi.paths.hasOwnProperty(url)) {
+            const path: OpenApiPath = openApi.paths[url];
             for (const method in path) {
                 if (path.hasOwnProperty(method)) {
                     // Check supported methods

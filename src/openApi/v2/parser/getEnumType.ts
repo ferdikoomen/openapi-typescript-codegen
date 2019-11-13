@@ -4,7 +4,9 @@ export function getEnumType(values?: string[], addParentheses = false): string {
         // Plus make sure we put quotes around strings!
         const entries: string[] = values
             .filter(name => name)
-            .filter((name, index, arr) => arr.indexOf(name) === index)
+            .filter((name: string, index: number, arr: string[]) => {
+                return arr.indexOf(name) === index;
+            })
             .map(value => `'${String(value)}'`);
 
         // Add grouping parentheses if needed. This can be handy if enum values
