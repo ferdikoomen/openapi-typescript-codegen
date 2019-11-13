@@ -5,7 +5,7 @@ import { readHandlebarsTemplates } from './utils/readHandlebarsTemplates';
 import { getOpenApiSpec } from './utils/getOpenApiSpec';
 import { writeClient } from './utils/writeClient';
 import * as os from 'os';
-import chalk from 'chalk';
+import * as chalk from 'chalk';
 import { getOpenApiVersion, OpenApiVersion } from './utils/getOpenApiVersion';
 
 export enum Language {
