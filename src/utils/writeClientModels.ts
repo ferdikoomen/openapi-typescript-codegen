@@ -14,13 +14,13 @@ import { getFileName } from './getFileName';
  */
 export function writeClientModels(models: Model[], language: Language, template: handlebars.TemplateDelegate, outputPath: string): void {
     models.forEach(model => {
-        const fileName: string = getFileName(model.base, language);
+        const fileName: string = getFileName(model.name, language);
         try {
             fs.writeFileSync(
                 path.resolve(outputPath, fileName),
                 template({
                     ...model,
-                    properties: Array.from(model.properties.values()), // TODO in cleanup?
+                    // properties: Array.from(model.properties.values()), // TODO in cleanup?
                 })
             );
         } catch (e) {

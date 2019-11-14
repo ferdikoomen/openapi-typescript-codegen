@@ -7,8 +7,8 @@ import { Model } from '../client/interfaces/Model';
 export function getSortedModels(models: Map<string, Model>): Model[] {
     return (
         Array.from(models.values()).sort((a, b) => {
-            const nameA: string = a.base.toLowerCase();
-            const nameB: string = b.base.toLowerCase();
+            const nameA: string = a.name.toLowerCase();
+            const nameB: string = b.name.toLowerCase();
             return nameA.localeCompare(nameB, 'en');
         }) || []
     );

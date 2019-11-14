@@ -7,11 +7,12 @@ import { Schema } from '../../../client/interfaces/Schema';
 import { getSchema } from './getSchema';
 import { SchemaReference } from '../../../client/interfaces/SchemaReference';
 import { OpenApi } from '../interfaces/OpenApi';
+import { PrimaryType } from './constants';
 
 export function getSchemaReference(openApi: OpenApi, schema: OpenApiSchema & OpenApiReference): SchemaReference {
     const result: SchemaReference = {
-        type: 'any',
-        base: 'any',
+        type: PrimaryType.OBJECT,
+        base: PrimaryType.OBJECT,
         template: null,
         imports: [],
     };
@@ -24,7 +25,7 @@ export function getSchemaReference(openApi: OpenApi, schema: OpenApiSchema & Ope
         result.imports.push(...itemSchemaType.imports);
     } else {
         const item: OpenApiSchema = getRef<OpenApiSchema>(openApi, schema);
-        const itemSchema: Schema = getSchema(openApi, item);
+        const itemSchema: Schema = getSchema(openApi, item, 'unknown');
         result.type = itemSchema.type;
         result.base = itemSchema.base;
         result.template = itemSchema.template;

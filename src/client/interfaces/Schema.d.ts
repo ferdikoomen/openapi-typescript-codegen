@@ -1,15 +1,17 @@
+import { Shape } from './Symbol';
 import { SchemaProperty } from './SchemaProperty';
 
 export interface Schema {
+    isInterface: boolean; // Schema is interface
+    isType: boolean; // Schema is type
+    isEnum: boolean; // Schema is enum
+    name: string;
     type: string;
     base: string;
     template: string | null;
     description?: string;
-    default?: any;
-    required: boolean;
-    nullable: boolean;
-    readOnly: boolean;
     extends: string[];
     imports: string[];
-    properties: Map<string, SchemaProperty>;
+    symbols: Shape[]; // TODO: Betere naam!
+    properties: SchemaProperty[];
 }

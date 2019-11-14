@@ -2,58 +2,37 @@
 /* tslint:disable */
 /* eslint-disable */
 /* prettier-ignore */
-
 {{#if imports}}
+
 {{#each imports}}
 import { {{{this}}} } from '../models/{{{this}}}';
 {{/each}}
 {{/if}}
-import { Dictionary } from '../core/Dictionary';
-import * as yup from 'yup';
-
 {{#if description}}
+
 /**
  * {{{description}}}
  */
 {{/if}}
-{{#if properties}}
-export interface {{{base}}}{{{template}}}{{#if extend}} extends {{{extend}}}{{/if}} {
+{{#if isInterface}}
+export interface {{{name}}}{{{template}}}{{#if extend}} extends {{{extend}}}{{/if}} {
     {{#each properties}}
     {{#if description}}
     /**
-     * {{{description}}}
-     */
+    * {{{description}}}
+    */
     {{/if}}
     {{#if readOnly}}readonly {{/if}}{{{name}}}{{#unless required}}?{{/unless}}: {{{type}}}{{#if nullable}} | null{{/if}};
     {{/each}}
 }
-
 {{/if}}
-export namespace {{{base}}} {
-
-    {{#each enums}}
-    {{#if description}}
-    /**
-     * {{{description}}}
-     */
-    {{/if}}
-    export enum {{{name}}} {
-        {{#each values}}
-        {{{name}}} = {{{value}}},
-        {{/each}}
-    };
-
+{{#if isType}}
+export type {{{name}}} = {{{type}}}{{#if nullable}} | null{{/if}};
+{{/if}}
+{{#if isEnum}}
+export enum {{{name}}} {
+    {{#each symbols}}
+    {{{name}}} = {{{value}}},
     {{/each}}
-
-    export const schema = yup.object<{{{base}}}{{{template}}}>().shape({
-        // Add properties
-    });
-
-    export function validate(value: {{{base}}}{{{template}}}): Promise<{{{base}}}{{{template}}}> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: {{{base}}}{{{template}}}): {{{base}}}{{{template}}} {
-        return schema.validateSync(value, { strict: true });
-    }
 }
+{{/if}}

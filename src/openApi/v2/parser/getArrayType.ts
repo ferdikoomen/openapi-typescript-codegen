@@ -1,13 +1,13 @@
 import { getType } from './getType';
+import { PrimaryType } from './constants';
 import { Type } from '../../../client/interfaces/Type';
 import { OpenApiItems } from '../interfaces/OpenApiItems';
-import { getEnumType } from './getEnumType';
 import { ArrayType } from '../../../client/interfaces/ArrayType';
 
 export function getArrayType(items: OpenApiItems): ArrayType {
     const result: ArrayType = {
-        type: 'any',
-        base: 'any',
+        type: PrimaryType.OBJECT,
+        base: PrimaryType.OBJECT,
         template: null,
         default: items.default,
         imports: [],
@@ -32,11 +32,11 @@ export function getArrayType(items: OpenApiItems): ArrayType {
         }
     }
 
-    if (items.enum) {
-        result.type = getEnumType(items.enum, true);
-        result.base = 'string';
-        result.imports = [];
-    }
+    // if (items.enum) {
+    //     result.type = getEnumType(items.enum, true);
+    //     result.base = 'string';
+    //     result.imports = [];
+    // }
 
     return result;
 }

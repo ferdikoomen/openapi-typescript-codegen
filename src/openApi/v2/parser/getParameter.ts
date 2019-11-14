@@ -4,10 +4,6 @@ import { Parameter } from '../../../client/interfaces/Parameter';
 import { Type } from '../../../client/interfaces/Type';
 import { OpenApi } from '../interfaces/OpenApi';
 import { getParameterName } from './getParameterName';
-import { getArrayType } from './getArrayType';
-import { ArrayType } from '../../../client/interfaces/ArrayType';
-import { getEnumType } from './getEnumType';
-import { getEnumTypeFromDescription } from './getEnumTypeFromDescription';
 import { getComment } from './getComment';
 import { SchemaReference } from '../../../client/interfaces/SchemaReference';
 import { getSchemaReference } from './getSchemaReference';
@@ -38,11 +34,12 @@ export function getParameter(openApi: OpenApi, parameter: OpenApiParameter): Par
         // If the parameter is an Array type, we check for the child type,
         // so we can create a typed array, otherwise this will be a "any[]".
         if (parameter.type === 'array' && parameter.items) {
-            const arrayType: ArrayType = getArrayType(parameter.items);
-            result.type = `${arrayType.type}[]`;
-            result.base = arrayType.base;
-            result.template = arrayType.template;
-            result.imports.push(...arrayType.imports);
+            // TODO: Check getSchema
+            // const arrayType: ArrayType = getArrayType(parameter.items);
+            // result.type = `${arrayType.type}[]`;
+            // result.base = arrayType.base;
+            // result.template = arrayType.template;
+            // result.imports.push(...arrayType.imports);
         }
     }
 
@@ -58,21 +55,22 @@ export function getParameter(openApi: OpenApi, parameter: OpenApiParameter): Par
         result.imports.push(...parameterSchema.imports);
     }
 
-    // If the param is a enum then return the values as an inline type.
-    if (parameter.enum) {
-        result.type = getEnumType(parameter.enum);
-        result.base = 'string';
-        result.imports = [];
+    // Check if this could be a special enum where values are documented in the description.
+    if (parameter.enum && parameter.description && parameter.type === 'int') {
+        // TODO: Check getSchema
+        // const enumType: string | null = getEnumTypeFromDescription(parameter.description);
+        // if (enumType) {
+        //     result.type = enumType;
+        //     result.base = 'number';
+        //     result.imports = [];
+        // }
     }
 
-    // Check if this could be a special enum where values are documented in the description.
-    if (parameter.description && parameter.type === 'int') {
-        const enumType: string | null = getEnumTypeFromDescription(parameter.description);
-        if (enumType) {
-            result.type = enumType;
-            result.base = 'number';
-            result.imports = [];
-        }
+    // If the param is a enum then return the values as an inline type.
+    if (parameter.enum) {
+        // result.type = getEnumType(parameter.enum);
+        // result.base = 'string';
+        // result.imports = [];
     }
 
     return result;

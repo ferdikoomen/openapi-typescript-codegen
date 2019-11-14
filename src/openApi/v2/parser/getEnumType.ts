@@ -1,22 +1,22 @@
-export function getEnumType(values?: string[], addParentheses = false): string {
-    if (Array.isArray(values)) {
-        // Filter out empty and double enum values.
-        // Plus make sure we put quotes around strings!
-        const entries: string[] = values
-            .filter(name => name)
-            .filter((name: string, index: number, arr: string[]) => {
-                return arr.indexOf(name) === index;
-            })
-            .map(value => `'${String(value)}'`);
+import { Shape } from '../../../client/interfaces/Shape';
 
-        // Add grouping parentheses if needed. This can be handy if enum values
-        // are used in Arrays, so that you will get the following definition:
-        // const myArray: ('EnumValue1' | 'EnumValue2' | 'EnumValue3')[];
-        if (entries.length > 1 && addParentheses) {
-            return `(${entries.join(' | ')})`;
-        }
+export function getEnumType(symbols: Shape[], addParentheses = false): string {
+    // Fetch values from the symbols, just to be sure we filter out
+    // any double values and finally we sort them to make them easier
+    // to read when we use them in our generated code.
+    const entries: string[] = symbols
+        .map(symbol => symbol.value)
+        .filter((value: string, index: number, arr: string[]): boolean => {
+            return arr.indexOf(value) === index;
+        })
+        .sort();
 
-        return entries.join(' | ');
+    // Add grouping parentheses if needed. This can be handy if enum values
+    // are used in Arrays, so that you will get the following definition:
+    // const myArray: ('EnumValue1' | 'EnumValue2' | 'EnumValue3')[];
+    if (entries.length > 1 && addParentheses) {
+        return `(${entries.join(' | ')})`;
     }
-    return 'string';
+
+    return entries.join(' | ');
 }

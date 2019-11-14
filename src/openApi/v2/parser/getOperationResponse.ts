@@ -1,11 +1,12 @@
 import { OperationResponse } from '../../../client/interfaces/OperationResponse';
+import { PrimaryType } from './constants';
 
 export function getOperationResponse(responses: OperationResponse[]): OperationResponse {
     const response: OperationResponse = {
         code: 200,
         text: '',
-        type: 'any',
-        base: 'any',
+        type: PrimaryType.OBJECT,
+        base: PrimaryType.OBJECT,
         template: null,
         imports: [],
     };

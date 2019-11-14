@@ -1,6 +1,7 @@
 import { stripNamespace } from './stripNamespace';
 import { Type } from '../../../client/interfaces/Type';
 import { getMappedType, hasMappedType } from './getMappedType';
+import { PrimaryType } from './constants';
 
 /**
  * Parse any string value into a type object.
@@ -9,8 +10,8 @@ import { getMappedType, hasMappedType } from './getMappedType';
  */
 export function getType(value: string | undefined, template: string | null = null): Type {
     const result: Type = {
-        type: 'any',
-        base: 'any',
+        type: PrimaryType.OBJECT,
+        base: PrimaryType.OBJECT,
         template: null,
         imports: [],
     };
@@ -52,7 +53,7 @@ export function getType(value: string | undefined, template: string | null = nul
         const mapped: string = getMappedType(valueClean);
         result.type = mapped;
         result.base = mapped;
-    } else {
+    } else if (valueClean) {
         result.type = valueClean;
         result.base = valueClean;
         result.imports.push(valueClean);

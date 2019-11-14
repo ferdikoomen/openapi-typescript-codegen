@@ -1,0 +1,181 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "v9.0",
+        "title": "swagger"
+    },
+    "host": "localhost:8080",
+    "basePath": "/api",
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+    },
+    "definitions": {
+        "SimpleInteger": {
+            "description": "This is a simple number",
+            "type": "integer"
+        },
+        "SimpleBoolean": {
+            "description": "This is a simple boolean",
+            "type": "boolean"
+        },
+        "SimpleString": {
+            "description": "This is a simple string",
+            "type": "string"
+        },
+        "SimpleEnumWithStrings": {
+            "description": "This is a simple enum with strings",
+            "enum": [
+                "Success",
+                "Warning",
+                "Error"
+            ]
+        },
+        "SimpleEnumWithNumbers": {
+            "description": "This is a simple enum with numbers",
+            "enum": [
+                1,
+                2,
+                3
+            ]
+        },
+        "SimpleEnumFromDescription": {
+            "description": "Success=1,Warning=2,Error=3",
+            "type": "int"
+        },
+        "SimpleArrayWithNumbers": {
+            "description": "This is a simple array with numbers",
+            "type": "array",
+            "items": {
+                "type": "integer"
+            }
+        },
+        "SimpleArrayWithBooleans": {
+            "description": "This is a simple array with booleans",
+            "type": "array",
+            "items": {
+                "type": "boolean"
+            }
+        },
+        "SimpleArrayWithStrings": {
+            "description": "This is a simple array with strings",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "SimpleArrayWithReference": {
+            "description": "This is a simple array with a reference",
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/ModelWithString"
+            }
+        },
+        "SimpleArrayWithProperties": {
+            "description": "This is a simple array with a properties",
+            "type": "array",
+            "items": {
+                "properties": {
+                    "foo": {
+                        "type": "string"
+                    },
+                    "bar": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "ModelWithInteger": {
+            "description": "This is a model with one number property",
+            "type": "object",
+            "properties": {
+                "prop": {
+                    "description": "This is a simple number property",
+                    "type": "integer"
+                }
+            }
+        },
+        "ModelWithBoolean": {
+            "description": "This is a model with one boolean property",
+            "type": "object",
+            "properties": {
+                "prop": {
+                    "description": "This is a simple boolean property",
+                    "type": "boolean"
+                }
+            }
+        },
+        "ModelWithString": {
+            "type": "object",
+            "description": "This is a model with one string property",
+            "properties": {
+                "prop": {
+                    "description": "This is a simple string property",
+                    "type": "string"
+                }
+            }
+        },
+        "ModelWithEnum": {
+            "type": "object",
+            "description": "This is a model with one enum",
+            "properties": {
+                "prop": {
+                    "description": "This is a simple enum with strings",
+                    "enum": [
+                        "Success",
+                        "Warning",
+                        "Error"
+                    ]
+                }
+            }
+        },
+        "ModelWithEnumFromDescription": {
+            "type": "object",
+            "description": "This is a model with one enum",
+            "properties": {
+                "prop": {
+                    "type": "integer",
+                    "description": "Success=1,Warning=2,Error=3"
+                }
+            }
+        },
+        "ModelWithReference": {
+            "type": "object",
+            "description": "This is a model with one property containing a reference",
+            "properties": {
+                "prop": {
+                    "$ref": "#/definitions/ModelWithString"
+                }
+            }
+        },
+        "ModelWithCircularReference": {
+            "type": "object",
+            "description": "This is a model with one property containing a circular reference",
+            "properties": {
+                "prop": {
+                    "$ref": "#/definitions/ModelWithCircularReference"
+                }
+            }
+        },
+        "ModelWithNestedProperties": {
+            "type": "object",
+            "description": "This is a model with one nested property",
+            "properties": {
+                "first": {
+                    "type": "object",
+                    "properties": {
+                        "second": {
+                            "type": "object",
+                            "properties": {
+                                "third": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
