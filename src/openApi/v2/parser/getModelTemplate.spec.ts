@@ -2,7 +2,7 @@ import { getModelTemplate } from './getModelTemplate';
 
 describe('getModelTemplate', () => {
     it('should return generic for template type', () => {
-        const template: string = getModelTemplate({
+        const template = getModelTemplate({
             type: 'Link<Model>',
             base: 'Link',
             template: 'Model',
@@ -12,7 +12,7 @@ describe('getModelTemplate', () => {
     });
 
     it('should return empty for primary type', () => {
-        const template: string = getModelTemplate({
+        const template = getModelTemplate({
             type: 'string',
             base: 'string',
             template: null,

@@ -1,17 +1,12 @@
-import { Model } from '../../../client/interfaces/Model';
+import { EOL } from 'os';
+import { ModelProperty } from '../../../client/interfaces/ModelProperty';
 
-// string
-// array[test]
-// array[{
-//   foo: string
-//   bar: string
-// }]
-export function getModelType(model: Model): string {
-    // if (schema.properties) {
-    //     return schema.type
-    // }
-    if (model.type) {
-        return model.type;
-    }
-    return 'any';
+export function getModelType(properties: ModelProperty[]): string {
+    return [
+        `{`,
+        ...properties.map(property => {
+            return `    ${property.readOnly ? 'readonly ' : ''}${property.name}${property.required ? '' : '?'}: ${property.type},`;
+        }),
+        `}`,
+    ].join(EOL);
 }

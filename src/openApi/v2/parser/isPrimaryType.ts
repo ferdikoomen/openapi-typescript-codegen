@@ -7,6 +7,7 @@ import { PrimaryType } from './constants';
 export function isPrimaryType(type: string): type is PrimaryType {
     switch (type.toLowerCase()) {
         case PrimaryType.FILE:
+        case PrimaryType.ARRAY:
         case PrimaryType.OBJECT:
         case PrimaryType.BOOLEAN:
         case PrimaryType.NUMBER:

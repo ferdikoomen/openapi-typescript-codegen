@@ -12,8 +12,8 @@ export enum OpenApiVersion {
 export function getOpenApiVersion(openApi: any): OpenApiVersion {
     const info: any = openApi.swagger || openApi.openapi;
     if (info && typeof info === 'string') {
-        const c: string = info.charAt(0);
-        const v: number = Number.parseInt(c);
+        const c = info.charAt(0);
+        const v = Number.parseInt(c);
         if (v === OpenApiVersion.V2 || v === OpenApiVersion.V3) {
             return v as OpenApiVersion;
         }

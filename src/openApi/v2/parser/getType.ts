@@ -17,15 +17,15 @@ export function getType(value: string | undefined, template: string | null = nul
     };
 
     // Remove definitions prefix and cleanup string.
-    const valueClean: string = stripNamespace(value || '');
+    const valueClean = stripNamespace(value || '');
 
     // Check of we have an Array type or generic type, for instance: "Link[Model]".
     if (/\[.*\]$/g.test(valueClean)) {
-        const matches: RegExpMatchArray | null = valueClean.match(/(.*?)\[(.*)\]$/);
+        const matches = valueClean.match(/(.*?)\[(.*)\]$/);
         if (matches && matches.length) {
             // Both of the types can be complex types so parse each of them.
-            const match1: Type = getType(matches[1]);
-            const match2: Type = getType(matches[2]);
+            const match1 = getType(matches[1]);
+            const match2 = getType(matches[2]);
 
             // If the first match is a generic array then construct a correct array type,
             // for example the type "Array[Model]" becomes "Model[]".
@@ -50,7 +50,7 @@ export function getType(value: string | undefined, template: string | null = nul
             result.imports.push(...match2.imports);
         }
     } else if (hasMappedType(valueClean)) {
-        const mapped: string = getMappedType(valueClean);
+        const mapped = getMappedType(valueClean);
         result.type = mapped;
         result.base = mapped;
     } else if (valueClean) {

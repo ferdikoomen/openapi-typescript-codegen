@@ -1,16 +1,15 @@
 import { Service } from '../../../client/interfaces/Service';
 import { OpenApi } from '../interfaces/OpenApi';
-import { OpenApiPath } from '../interfaces/OpenApiPath';
 import { Method } from './constants';
 
 /**
  * Get the OpenAPI services
  */
 export function getServices(openApi: OpenApi): Service[] {
-    const services: Map<string, Service> = new Map<string, Service>();
+    const services = new Map<string, Service>();
     for (const url in openApi.paths) {
         if (openApi.paths.hasOwnProperty(url)) {
-            const path: OpenApiPath = openApi.paths[url];
+            const path = openApi.paths[url];
             for (const method in path) {
                 if (path.hasOwnProperty(method)) {
                     switch (method) {

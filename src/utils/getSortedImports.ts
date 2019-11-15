@@ -6,12 +6,12 @@ export function getSortedImports(imports: string[]): string[] {
     return imports
         .filter(name => name)
         .filter(name => name.trim())
-        .filter((name: string, index: number, arr: string[]) => {
+        .filter((name, index, arr) => {
             return arr.indexOf(name) === index;
         })
         .sort((a, b) => {
-            const nameA: string = a.toLowerCase();
-            const nameB: string = b.toLowerCase();
+            const nameA = a.toLowerCase();
+            const nameB = b.toLowerCase();
             return nameA.localeCompare(nameB, 'en');
         });
 }

@@ -1,7 +1,8 @@
-import { EnumValue } from './EnumValue';
+import { EnumSymbol } from './EnumSymbol';
 
 export interface Enum {
     name: string;
     type: string;
-    values: EnumValue[];
+    symbols: EnumSymbol[];
+    validation: string | null;
 }

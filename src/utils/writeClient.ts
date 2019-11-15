@@ -23,9 +23,9 @@ import { cleanupModels } from './cleanupModels';
  * @param outputPath
  */
 export function writeClient(client: Client, language: Language, templates: Templates, outputPath: string): void {
-    const outputPathCore: string = path.resolve(outputPath, 'core');
-    const outputPathModels: string = path.resolve(outputPath, 'models');
-    const outputPathServices: string = path.resolve(outputPath, 'services');
+    const outputPathCore = path.resolve(outputPath, 'core');
+    const outputPathModels = path.resolve(outputPath, 'models');
+    const outputPathServices = path.resolve(outputPath, 'services');
 
     // Clean output directory
     try {
@@ -45,9 +45,9 @@ export function writeClient(client: Client, language: Language, templates: Templ
     }
 
     // Copy all core files
-    const coreFiles: string = path.resolve(__dirname, `../../src/templates/${language}/core/`);
-    const coreFilesExt: string = getFileName('*', language);
-    const coreFilesList: string[] = glob.sync(coreFilesExt, { cwd: coreFiles });
+    const coreFiles = path.resolve(__dirname, `../../src/templates/${language}/core/`);
+    const coreFilesExt = getFileName('*', language);
+    const coreFilesList = glob.sync(coreFilesExt, { cwd: coreFiles });
     coreFilesList.forEach(file =>
         fs.copyFileSync(
             path.resolve(coreFiles, file), // From input path
@@ -57,7 +57,6 @@ export function writeClient(client: Client, language: Language, templates: Templ
 
     // Write the client files
     try {
-        // TODO: Cleanup models
         writeClientIndex(client, language, templates.index, outputPath);
         writeClientModels(getSortedModels(cleanupModels(client.models)), language, templates.model, outputPathModels);
         writeClientServices(getSortedServices(cleanupServices(client.services)), language, templates.service, outputPathServices);

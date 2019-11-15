@@ -14,7 +14,7 @@ import { getFileName } from './getFileName';
  */
 export function writeClientServices(services: Service[], language: Language, template: handlebars.TemplateDelegate, outputPath: string): void {
     services.forEach(service => {
-        const fileName: string = getFileName(service.name, language);
+        const fileName = getFileName(service.name, language);
         try {
             fs.writeFileSync(path.resolve(outputPath, fileName), template(service));
         } catch (e) {

@@ -44,7 +44,7 @@ export class {{{name}}} {
         {{/each}}
         {{/if}}
 
-        const result: Result = await request({
+        const result = await request({
             method: '{{{method}}}',
             path: `{{{path}}}`,{{#if parametersHeader}}
             headers: {

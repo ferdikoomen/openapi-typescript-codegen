@@ -29,8 +29,8 @@ export enum HttpClient {
  * @param httpClient: The selected httpClient (fetch or XHR)
  */
 export function generate(input: string, output: string, language: Language = Language.TYPESCRIPT, httpClient: HttpClient = HttpClient.FETCH): void {
-    const inputPath: string = path.resolve(process.cwd(), input);
-    const outputPath: string = path.resolve(process.cwd(), output);
+    const inputPath = path.resolve(process.cwd(), input);
+    const outputPath = path.resolve(process.cwd(), output);
 
     console.log(chalk.bold.green('Generate:'));
     console.log(chalk.grey('  Input:'), input);
@@ -42,22 +42,22 @@ export function generate(input: string, output: string, language: Language = Lan
     try {
         // Load the specification, read the OpenAPI version and load the
         // handlebar templates for the given language
-        const openApi: any = getOpenApiSpec(inputPath);
-        const openApiVersion: OpenApiVersion = getOpenApiVersion(openApi);
-        const templates: Templates = readHandlebarsTemplates(language);
+        const openApi = getOpenApiSpec(inputPath);
+        const openApiVersion = getOpenApiVersion(openApi);
+        const templates = readHandlebarsTemplates(language);
 
         switch (language) {
             case Language.JAVASCRIPT:
             case Language.TYPESCRIPT:
                 // Generate and write version 2 client
                 if (openApiVersion === OpenApiVersion.V2) {
-                    const clientV2: Client = parseV2(openApi);
+                    const clientV2 = parseV2(openApi);
                     writeClient(clientV2, language, templates, outputPath);
                 }
 
                 // Generate and write version 3 client
                 if (openApiVersion === OpenApiVersion.V3) {
-                    const clientV3: Client = parseV3(openApi);
+                    const clientV3 = parseV3(openApi);
                     writeClient(clientV3, language, templates, outputPath);
                 }
         }

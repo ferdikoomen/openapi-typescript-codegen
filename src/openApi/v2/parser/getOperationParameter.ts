@@ -1,15 +1,15 @@
 import { OpenApiParameter } from '../interfaces/OpenApiParameter';
 import { getType } from './getType';
-import { Type } from '../../../client/interfaces/Type';
 import { OpenApi } from '../interfaces/OpenApi';
-import { getParameterName } from './getParameterName';
 import { getComment } from './getComment';
+import { getOperationParameterName } from './getOperationParameterName';
+import { OperationParameter } from '../../../client/interfaces/OperationParameter';
 
-export function getParameter(openApi: OpenApi, parameter: OpenApiParameter): Parameter {
-    const result: Parameter = {
+export function getOperationParameter(openApi: OpenApi, parameter: OpenApiParameter): OperationParameter {
+    const result: OperationParameter = {
         in: parameter.in,
         prop: parameter.name,
-        name: getParameterName(parameter.name),
+        name: getOperationParameterName(parameter.name),
         type: 'any',
         base: 'any',
         template: null,
@@ -22,7 +22,7 @@ export function getParameter(openApi: OpenApi, parameter: OpenApiParameter): Par
 
     // If the parameter has a type than it can be a basic or generic type.
     if (parameter.type) {
-        const parameterType: Type = getType(parameter.type);
+        const parameterType = getType(parameter.type);
         result.type = parameterType.type;
         result.base = parameterType.base;
         result.template = parameterType.template;

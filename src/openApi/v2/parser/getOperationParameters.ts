@@ -1,10 +1,12 @@
 import { OpenApiParameter } from '../interfaces/OpenApiParameter';
 import { OpenApiReference } from '../interfaces/OpenApiReference';
-import { getParameter } from './getParameter';
 import { OpenApi } from '../interfaces/OpenApi';
 import { getRef } from './getRef';
+import { OperationParameters } from '../../../client/interfaces/OperationParameters';
+import { OperationParameter } from '../../../client/interfaces/OperationParameter';
+import { getOperationParameter } from './getOperationParameter';
 
-function sortByRequired(a: Parameter, b: Parameter): number {
+function sortByRequired(a: OperationParameter, b: OperationParameter): number {
     return a.required && !b.required ? -1 : !a.required && b.required ? 1 : 0;
 }
 
@@ -21,8 +23,8 @@ export function getOperationParameters(openApi: OpenApi, parameters: (OpenApiPar
 
     // Iterate over the parameters
     parameters.forEach(parameter => {
-        const paramRef: OpenApiParameter = getRef<OpenApiParameter>(openApi, parameter);
-        const param: Parameter = getParameter(openApi, paramRef);
+        const paramRef = getRef<OpenApiParameter>(openApi, parameter);
+        const param = getOperationParameter(openApi, paramRef);
 
         // We ignore the "api-version" param, since we do not want to add this
         // as the first / default parameter for each of the service calls.

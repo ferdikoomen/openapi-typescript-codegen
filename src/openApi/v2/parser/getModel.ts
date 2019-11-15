@@ -2,158 +2,204 @@ import { OpenApi } from '../interfaces/OpenApi';
 import { OpenApiSchema } from '../interfaces/OpenApiSchema';
 import { getComment } from './getComment';
 import { getType } from './getType';
-import { Type } from '../../../client/interfaces/Type';
-import { getEnumType } from './getEnumType';
-import { PrimaryType } from './constants';
-import { OpenApiReference } from '../interfaces/OpenApiReference';
-import { getRef } from './getRef';
-import { getEnumValues } from './getEnumValues';
 import { Model } from '../../../client/interfaces/Model';
+import { getValidationForRef } from './getValidationForRef';
+import { getValidationForType } from './getValidationForType';
+import { getValidationForArrayRef } from './getValidationForArrayRef';
+import { getModelType } from './getModelType';
+import { getModelValidation } from './getModelValidation';
+import { getValidation } from './getValidation';
+import { PrimaryType } from './constants';
+import { getEnumType } from './getEnumType';
+import { getEnumSymbols } from './getEnumSymbols';
+import { getEnumValues } from './getEnumValues';
+import { getEnumSymbolsFromDescription } from './getEnumSymbolsFromDescription';
 
-export function getModel(openApi: OpenApi, schema: OpenApiSchema, name: string): Model {
+export function getModel(openApi: OpenApi, definition: OpenApiSchema, definitionName: string = 'unknown'): Model {
     const result: Model = {
-        name,
         isInterface: false,
         isType: false,
         isEnum: false,
+        name: definitionName,
         type: 'any',
         base: 'any',
         template: null,
         validation: null,
-        description: getComment(schema.description),
-        extends: null,
+        description: getComment(definition.description),
+        extends: [],
         imports: [],
         enums: [],
+        symbols: [],
         properties: [],
     };
 
+    if (definition.$ref) {
+        const definitionRef = getType(definition.$ref);
+        result.isType = true;
+        result.type = definitionRef.type;
+        result.base = definitionRef.base;
+        result.template = definitionRef.template;
+        result.validation = getValidationForRef(definitionRef);
+        result.imports.push(...definitionRef.imports);
+        return result;
+    }
+
     // If the param is a enum then return the values as an inline type.
-    if (schema.enum) {
-        const enumSymbols: ModelSymbol[] = getEnumSymbols(schema.enum);
+    if (definition.enum) {
+        const enumSymbols = getEnumSymbols(definition.enum);
         if (enumSymbols.length) {
             result.isEnum = true;
             result.symbols = enumSymbols;
             result.type = getEnumType(enumSymbols);
             result.base = PrimaryType.STRING;
-            result.validation = `yup.mixed<${name}>().oneOf([${getEnumValues(enumSymbols).join(', ')}])`;
+            result.validation = `yup.mixed<${definitionName}>().oneOf([${getEnumValues(enumSymbols).join(', ')}])`;
             return result;
         }
+        return result;
     }
 
     // If the param is a enum then return the values as an inline type.
-    if (schema.type === 'int' && schema.description) {
-        const enumSymbols: ModelSymbol[] = getEnumSymbolsFromDescription(schema.description);
+    if (definition.type === 'int' && definition.description) {
+        const enumSymbols = getEnumSymbolsFromDescription(definition.description);
         if (enumSymbols.length) {
             result.isEnum = true;
             result.symbols = enumSymbols;
             result.type = getEnumType(enumSymbols);
             result.base = PrimaryType.NUMBER;
-            result.validation = `yup.mixed<${name}>().oneOf([${getEnumValues(enumSymbols).join(', ')}])`;
+            result.validation = `yup.mixed<${definitionName}>().oneOf([${getEnumValues(enumSymbols).join(', ')}])`;
             return result;
         }
+        return result;
     }
 
     // If the schema is an Array type, we check for the child type,
     // so we can create a typed array, otherwise this will be a "any[]".
-    if (schema.type === 'array' && schema.items) {
-        if (schema.items.$ref) {
-            const arrayType: Type = getType(schema.items.$ref);
-            result.imports.push(...arrayType.imports);
+    if (definition.type === 'array' && definition.items) {
+        if (definition.items.$ref) {
+            const arrayItemsRef = getType(definition.items.$ref);
+            result.imports.push(...arrayItemsRef.imports);
             result.isType = true;
-            result.type = `${arrayType.type}[]`;
-            result.base = arrayType.base;
-            result.template = arrayType.template;
-            result.validation = `yup.array<${result.name}>().of(${result.base}.schema)`; // TODO: Simple strings!
-            result.imports.push(...arrayType.imports);
+            result.type = `${arrayItemsRef.type}[]`;
+            result.base = arrayItemsRef.base;
+            result.template = arrayItemsRef.template;
+            result.validation = getValidationForArrayRef(arrayItemsRef);
+            result.imports.push(...arrayItemsRef.imports);
         } else {
-            const array: Schema = getSchema(openApi, schema.items, 'unkown');
-            const arrayType: string = getSchemaType(array);
+            const arrayItemsModel = getModel(openApi, definition.items);
             result.isType = true;
-            result.type = `${arrayType}[]`;
-            result.base = arrayType;
-            result.template = null;
-            result.validation = `yup.array<${result.name}>().of(${result.base}.schema)`; // TODO: Simple strings!
-            result.imports.push(...array.imports);
+            result.type = `${arrayItemsModel.type}[]`;
+            result.base = arrayItemsModel.base;
+            result.template = arrayItemsModel.template;
+            // result.validation = getValidationForArray(array.validation || 'any');
+            result.imports.push(...arrayItemsModel.imports);
         }
         return result;
     }
 
-    /*
     // Check if this model extends other models
-    if (schema.allOf) {
-        schema.allOf.forEach((parent: OpenApiSchema & OpenApiReference): void => {
-            const parentSchema: SchemaReference = getSchemaReference(openApi, parent);
-            result.extends.push(parentSchema.type);
-            result.imports.push(parentSchema.base);
-
-            // Merge properties of other models
-            if (parent.properties) {
-                for (const propertyName in schema.properties) {
-                    if (schema.properties.hasOwnProperty(propertyName)) {
-                        const propertyRef: OpenApiSchema & OpenApiReference = schema.properties[propertyName];
-                        const propertyRequired: boolean = (schema.required && schema.required.includes(propertyName)) || false;
-                        const property: SchemaProperty = getSchemaProperty(openApi, propertyRef, propertyName, propertyRequired);
-                        result.imports.push(...property.imports);
-                        result.properties.set(propertyName, property);
+    if (definition.allOf) {
+        definition.allOf.forEach(parent => {
+            if (parent.$ref) {
+                const parentRef = getType(parent.$ref);
+                result.extends.push(parentRef.type);
+                result.imports.push(parentRef.base);
+            }
+            if (parent.type === 'object' && parent.properties) {
+                for (const propertyName in parent.properties) {
+                    if (parent.properties.hasOwnProperty(propertyName)) {
+                        const property = parent.properties[propertyName];
+                        const propertyRequired = !!(parent.required && parent.required.includes(propertyName));
+                        const propertyReadOnly = !!property.readOnly;
+                        if (property.$ref) {
+                            const propertyRef = getType(property.$ref);
+                            result.imports.push(...propertyRef.imports);
+                            result.properties.push({
+                                name: propertyName,
+                                type: propertyRef.type,
+                                required: propertyRequired,
+                                nullable: false,
+                                readOnly: propertyReadOnly,
+                                description: property.description || null,
+                                validation: getValidationForRef(propertyRef, propertyRequired),
+                            });
+                        } else {
+                            const propertyModel = getModel(openApi, property);
+                            result.imports.push(...propertyModel.imports);
+                            result.properties.push({
+                                name: propertyName,
+                                type: propertyModel.type,
+                                required: propertyRequired,
+                                nullable: false,
+                                readOnly: propertyReadOnly,
+                                description: property.description || null,
+                                validation: propertyModel.validation ? getValidation(propertyModel.validation, propertyRequired) : null,
+                            });
+                        }
                     }
                 }
             }
         });
-    }
-    */
 
-    if (schema.type === 'object' && schema.properties) {
+        // Validation needs to also check extended schema!
+        // Check ModelThatExtends.ts
         result.isInterface = true;
-        result.type = 'interface';
-        result.base = 'interface';
+        result.type = getModelType(result.properties);
+        result.validation = getModelValidation(definitionName, result.properties);
+        result.base = PrimaryType.OBJECT;
         result.template = null;
+    }
 
-        for (const propertyName in schema.properties) {
-            if (schema.properties.hasOwnProperty(propertyName)) {
-                const propertyRequired: boolean = (schema.required && schema.required.includes(propertyName)) || false;
-                const propertyRef: OpenApiSchema & OpenApiReference = schema.properties[propertyName];
-
-                if (propertyRef.$ref) {
-                    const propertyType: Type = getType(propertyRef.$ref);
-                    result.imports.push(...propertyType.imports);
+    if (definition.type === 'object' && definition.properties) {
+        for (const propertyName in definition.properties) {
+            if (definition.properties.hasOwnProperty(propertyName)) {
+                const property = definition.properties[propertyName];
+                const propertyRequired = !!(definition.required && definition.required.includes(propertyName));
+                const propertyReadOnly = !!property.readOnly;
+                if (property.$ref) {
+                    const propertyRef = getType(property.$ref);
+                    result.imports.push(...propertyRef.imports);
                     result.properties.push({
                         name: propertyName,
-                        type: propertyType.type,
+                        type: propertyRef.type,
                         required: propertyRequired,
                         nullable: false,
-                        readOnly: false,
+                        readOnly: propertyReadOnly,
+                        description: property.description || null,
+                        validation: getValidationForRef(propertyRef, propertyRequired),
                     });
                 } else {
-                    const property: OpenApiSchema = getRef<OpenApiSchema>(openApi, propertyRef);
-                    const propertySchema: Schema = getSchema(openApi, property, propertyName);
-                    const propertyType: string = getSchemaType(propertySchema);
-                    result.imports.push(...propertySchema.imports);
+                    const propertyModel = getModel(openApi, property);
+                    result.imports.push(...propertyModel.imports);
                     result.properties.push({
                         name: propertyName,
-                        type: propertyType,
+                        type: propertyModel.type,
                         required: propertyRequired,
                         nullable: false,
-                        readOnly: property.readOnly || false,
-                        description: property.description,
+                        readOnly: propertyReadOnly,
+                        description: property.description || null,
+                        validation: propertyModel.validation ? getValidation(propertyModel.validation, propertyRequired) : null,
                     });
-
-                    // TODO: This also needs a validation logic, maybe we can store that
-                    // per schema and have them 'concatenate' on demand??
                 }
             }
         }
 
+        result.isInterface = true;
+        result.type = getModelType(result.properties);
+        result.validation = getModelValidation(definitionName, result.properties);
+        result.base = PrimaryType.OBJECT;
+        result.template = null;
         return result;
     }
 
     // If the schema has a type than it can be a basic or generic type.
-    if (schema.type) {
-        const schemaType: Type = getType(schema.type);
+    if (definition.type !== 'object' && definition.type) {
+        const definitionType = getType(definition.type);
         result.isType = true;
-        result.type = schemaType.type;
-        result.base = schemaType.base;
-        result.template = schemaType.template;
-        result.imports.push(...schemaType.imports);
+        result.type = definitionType.type;
+        result.base = definitionType.base;
+        result.template = definitionType.template;
+        result.validation = getValidationForType(definitionType);
+        result.imports.push(...definitionType.imports);
         return result;
     }
 

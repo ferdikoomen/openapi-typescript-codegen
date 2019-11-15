@@ -14,7 +14,7 @@ import { Result } from './Result';
  */
 export async function requestUsingFetch<T = any>(url: string, request: Readonly<RequestInit>): Promise<Result<T>> {
     // Fetch response using fetch API.
-    const response: Response = await fetch(url, request);
+    const response = await fetch(url, request);
 
     // Create result object.
     const result: Result = {
@@ -28,7 +28,7 @@ export async function requestUsingFetch<T = any>(url: string, request: Readonly<
     // Try to parse the content for any response status code.
     // We check the "Content-Type" header to see if we need to parse the
     // content as json or as plain text.
-    const contentType: string | null = response.headers.get('Content-Type');
+    const contentType = response.headers.get('Content-Type');
     if (contentType) {
         switch (contentType.toLowerCase()) {
             case 'application/json':

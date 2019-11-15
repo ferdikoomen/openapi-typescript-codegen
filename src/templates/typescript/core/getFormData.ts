@@ -9,7 +9,7 @@
  * @param params Key value based object.
  */
 export function getFormData(params: { [key: string]: any }): FormData {
-    const formData: FormData = new FormData();
+    const formData = new FormData();
     for (const key in params) {
         if (typeof params[key] !== 'undefined') {
             const value: any = params[key];

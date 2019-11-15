@@ -7,9 +7,11 @@ import * as handlebars from 'handlebars';
  */
 export function readHandlebarsTemplate(filePath: string): handlebars.TemplateDelegate {
     if (fs.existsSync(filePath)) {
-        const template: string = fs.readFileSync(filePath, 'utf8').toString();
+        const template = fs.readFileSync(filePath, 'utf8').toString();
         try {
-            return handlebars.compile(template);
+            return handlebars.compile(template, {
+                strict: true,
+            });
         } catch (e) {
             throw new Error(`Could not compile Handlebar template: "${filePath}"`);
         }

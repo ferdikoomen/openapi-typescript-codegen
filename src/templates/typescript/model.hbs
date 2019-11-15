@@ -11,19 +11,19 @@ import { {{{this}}} } from '../models/{{{this}}}';
 {{#if validation}}
 import * as yup from 'yup';
 {{/if}}
-{{#if description}}
 
+{{#if description}}
 /**
  * {{{description}}}
  */
 {{/if}}
 {{#if isInterface}}
-export interface {{{name}}}{{{template}}}{{#if extend}} extends {{{extend}}}{{/if}} {
+export interface {{{name}}}{{{template}}}{{#if extends}} extends{{#each extends}} {{{this}}}{{/each}}{{/if}} {
     {{#each properties}}
     {{#if description}}
     /**
-    * {{{description}}}
-    */
+     * {{{description}}}
+     */
     {{/if}}
     {{#if readOnly}}readonly {{/if}}{{{name}}}{{#unless required}}?{{/unless}}: {{{type}}}{{#if nullable}} | null{{/if}};
     {{/each}}
@@ -62,6 +62,7 @@ export type {{{name}}} = {{{type}}}{{#if nullable}} | null{{/if}};
 {{#if validation}}
 
 export namespace {{{name}}} {
+
     export const schema = {{{validation}}};
 
     export function validate(value: any): Promise<{{{name}}}{{#if nullable}} | null{{/if}}> {
@@ -83,6 +84,7 @@ export enum {{{name}}} {
 {{#if validation}}
 
 export namespace {{{name}}} {
+
     export const schema = {{{validation}}};
 
     export function validate(value: any): Promise<{{{name}}}> {

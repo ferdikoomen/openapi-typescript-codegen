@@ -4,6 +4,6 @@ export interface ModelProperty {
     required: boolean;
     nullable: boolean;
     readOnly: boolean;
-    validation: string | null;
     description: string | null;
+    validation: string | null;
 }

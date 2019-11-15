@@ -6,6 +6,6 @@ import camelCase from 'camelcase';
  * the most popular Javascript and Typescript writing style.
  */
 export function getOperationName(value: string): string {
-    const clean: string = value.replace(/[^\w\s\-]+/g, '_').trim();
+    const clean = value.replace(/[^\w\s\-]+/g, '_').trim();
     return camelCase(clean);
 }

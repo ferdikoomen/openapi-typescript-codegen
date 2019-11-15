@@ -17,10 +17,10 @@ import { Result } from './Result';
  */
 export async function request<T = any>(options: Readonly<RequestOptions>): Promise<Result<T>> {
     // Create the request URL
-    let url: string = `${OpenAPI.BASE}${options.path}`;
+    let url = `${OpenAPI.BASE}${options.path}`;
 
     // Create request headers
-    const headers: Headers = new Headers({
+    const headers = new Headers({
         ...options.headers,
         Accept: 'application/json',
     });

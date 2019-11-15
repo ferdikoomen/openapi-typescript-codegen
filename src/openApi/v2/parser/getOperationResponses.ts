@@ -1,9 +1,9 @@
 import { OpenApiResponses } from '../interfaces/OpenApiResponses';
 import { getOperationResponseCode } from './getOperationResponseCode';
 import { OpenApiResponse } from '../interfaces/OpenApiResponse';
-import { OpenApiReference } from '../interfaces/OpenApiReference';
 import { getRef } from './getRef';
 import { OpenApi } from '../interfaces/OpenApi';
+import { OperationResponse } from '../../../client/interfaces/OperationResponse';
 
 export function getOperationResponses(openApi: OpenApi, responses: OpenApiResponses): OperationResponse[] {
     const results: OperationResponse[] = [];
@@ -12,9 +12,9 @@ export function getOperationResponses(openApi: OpenApi, responses: OpenApiRespon
     // status code and response message (if any).
     for (const code in responses) {
         if (responses.hasOwnProperty(code)) {
-            const responseOrReference: OpenApiResponse & OpenApiReference = responses[code];
-            const response: OpenApiResponse = getRef<OpenApiResponse>(openApi, responseOrReference);
-            const responseCode: number | null = getOperationResponseCode(code);
+            const responseOrReference = responses[code];
+            const response = getRef<OpenApiResponse>(openApi, responseOrReference);
+            const responseCode = getOperationResponseCode(code);
 
             // If there is a response code then we check what data we get back,
             // if there is no typed data, we just return <any> so the user is still

@@ -7,6 +7,7 @@ import { OpenApiXml } from './OpenApiXml';
  * https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#schemaObject
  */
 export interface OpenApiSchema {
+    $ref?: string;
     format?: 'int32' | 'int64' | 'float' | 'double' | 'string' | 'boolean' | 'byte' | 'binary' | 'date' | 'date-time' | 'password';
     title?: string;
     description?: string;

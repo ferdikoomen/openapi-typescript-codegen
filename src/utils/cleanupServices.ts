@@ -1,28 +1,27 @@
 import { Service } from '../client/interfaces/Service';
 import { getSortedImports } from './getSortedImports';
-import { Operation } from '../client/interfaces/Operation';
 
 export function cleanupServices(services: Service[]): Service[] {
-    services.forEach((service: Service): void => {
-        const names: Map<string, number> = new Map<string, number>();
+    services.forEach(service => {
+        const names = new Map<string, number>();
 
-        service.imports = getSortedImports(service.imports);
+        service.imports = getSortedImports(service.imports).filter(name => {
+            return service.name !== name;
+        });
 
         service.operations = service.operations
-            .map(
-                (operation: Operation): Operation => {
-                    const name: string = operation.name;
-                    const index: number = names.get(name) || 0;
-                    if (index > 0) {
-                        operation.name = `${name}${index}`;
-                    }
-                    names.set(name, index + 1);
-                    return operation;
+            .map(operation => {
+                const name = operation.name;
+                const index = names.get(name) || 0;
+                if (index > 0) {
+                    operation.name = `${name}${index}`;
                 }
-            )
-            .sort((a: Operation, b: Operation): number => {
-                const nameA: string = a.name.toLowerCase();
-                const nameB: string = b.name.toLowerCase();
+                names.set(name, index + 1);
+                return operation;
+            })
+            .sort((a, b) => {
+                const nameA = a.name.toLowerCase();
+                const nameB = b.name.toLowerCase();
                 return nameA.localeCompare(nameB);
             });
     });

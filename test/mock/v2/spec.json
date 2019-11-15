@@ -24,6 +24,10 @@
             "description": "This is a simple string",
             "type": "string"
         },
+        "SimpleFile": {
+            "description": "This is a simple file",
+            "type": "File"
+        },
         "SimpleEnumWithStrings": {
             "description": "This is a simple enum with strings",
             "enum": [
@@ -76,6 +80,7 @@
             "description": "This is a simple array with a properties",
             "type": "array",
             "items": {
+                "type": "object",
                 "properties": {
                     "foo": {
                         "type": "string"
@@ -85,6 +90,10 @@
                     }
                 }
             }
+        },
+        "SimpleReference": {
+            "description": "This is a simple model reference",
+            "$ref": "#/definitions/ModelWithString"
         },
         "ModelWithInteger": {
             "description": "This is a model with one number property",
@@ -107,8 +116,8 @@
             }
         },
         "ModelWithString": {
-            "type": "object",
             "description": "This is a model with one string property",
+            "type": "object",
             "properties": {
                 "prop": {
                     "description": "This is a simple string property",
@@ -117,8 +126,8 @@
             }
         },
         "ModelWithEnum": {
-            "type": "object",
             "description": "This is a model with one enum",
+            "type": "object",
             "properties": {
                 "prop": {
                     "description": "This is a simple enum with strings",
@@ -131,8 +140,8 @@
             }
         },
         "ModelWithEnumFromDescription": {
-            "type": "object",
             "description": "This is a model with one enum",
+            "type": "object",
             "properties": {
                 "prop": {
                     "type": "integer",
@@ -141,8 +150,8 @@
             }
         },
         "ModelWithReference": {
-            "type": "object",
             "description": "This is a model with one property containing a reference",
+            "type": "object",
             "properties": {
                 "prop": {
                     "$ref": "#/definitions/ModelWithString"
@@ -150,8 +159,8 @@
             }
         },
         "ModelWithCircularReference": {
-            "type": "object",
             "description": "This is a model with one property containing a circular reference",
+            "type": "object",
             "properties": {
                 "prop": {
                     "$ref": "#/definitions/ModelWithCircularReference"
@@ -159,8 +168,8 @@
             }
         },
         "ModelWithNestedProperties": {
-            "type": "object",
             "description": "This is a model with one nested property",
+            "type": "object",
             "properties": {
                 "first": {
                     "type": "object",
@@ -176,6 +185,74 @@
                     }
                 }
             }
+        },
+        "ModelWithDuplicateProperties": {
+            "description": "This is a model with duplicated properties",
+            "type": "object",
+            "properties": {
+                "prop": {
+                    "$ref": "#/definitions/ModelWithString"
+                },
+                "prop": {
+                    "$ref": "#/definitions/ModelWithString"
+                },
+                "prop": {
+                    "$ref": "#/definitions/ModelWithString"
+                }
+            }
+        },
+        "ModelWithDuplicateImports": {
+            "description": "This is a model with duplicated imports",
+            "type": "object",
+            "properties": {
+                "propA": {
+                    "$ref": "#/definitions/ModelWithString"
+                },
+                "propB": {
+                    "$ref": "#/definitions/ModelWithString"
+                },
+                "propC": {
+                    "$ref": "#/definitions/ModelWithString"
+                }
+            }
+        },
+        "ModelThatExtends": {
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/ModelWithString"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "propExtendsA": {
+                            "type": "string"
+                        },
+                        "propExtendsB": {
+                            "$ref": "#/definitions/ModelWithString"
+                        }
+                    }
+                }
+            ]
+        },
+        "ModelThatExtendsExtends": {
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/ModelThatExtends"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "propExtendsC": {
+                            "type": "string"
+                        },
+                        "propExtendsD": {
+                            "$ref": "#/definitions/ModelWithString"
+                        }
+                    }
+                }
+            ]
         }
     }
 }

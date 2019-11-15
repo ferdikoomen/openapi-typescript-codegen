@@ -1,6 +1,5 @@
 import { getType } from './getType';
 import { PrimaryType } from './constants';
-import { Type } from '../../../client/interfaces/Type';
 import { OpenApiItems } from '../interfaces/OpenApiItems';
 
 export interface ArrayType {
@@ -22,7 +21,7 @@ export function getArrayType(items: OpenApiItems): ArrayType {
 
     // If the parameter has a type than it can be a basic or generic type.
     if (items.type) {
-        const itemsType: Type = getType(items.type);
+        const itemsType = getType(items.type);
         result.type = itemsType.type;
         result.base = itemsType.base;
         result.template = itemsType.template;
@@ -31,7 +30,7 @@ export function getArrayType(items: OpenApiItems): ArrayType {
         // If the parameter is an Array type, we check for the child type,
         // so we can create a typed array, otherwise this will be a "any[]".
         if (items.type === 'array' && items.items) {
-            const arrayType: ArrayType = getArrayType(items.items);
+            const arrayType = getArrayType(items.items);
             result.type = `${arrayType.type}[]`;
             result.base = arrayType.base;
             result.template = arrayType.template;

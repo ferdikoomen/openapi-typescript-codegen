@@ -15,9 +15,9 @@ export interface Templates {
  * @param language The language we need to generate (Typescript or Javascript).
  */
 export function readHandlebarsTemplates(language: Language): Templates {
-    const pathTemplateIndex: string = path.resolve(__dirname, `../../src/templates/${language}/index.hbs`);
-    const pathTemplateModel: string = path.resolve(__dirname, `../../src/templates/${language}/model.hbs`);
-    const pathTemplateService: string = path.resolve(__dirname, `../../src/templates/${language}/service.hbs`);
+    const pathTemplateIndex = path.resolve(__dirname, `../../src/templates/${language}/index.hbs`);
+    const pathTemplateModel = path.resolve(__dirname, `../../src/templates/${language}/model.hbs`);
+    const pathTemplateService = path.resolve(__dirname, `../../src/templates/${language}/service.hbs`);
 
     try {
         return {

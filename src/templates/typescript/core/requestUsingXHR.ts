@@ -16,14 +16,14 @@ import { isSuccess } from './isSuccess';
  */
 export async function requestUsingXHR<T = any>(url: string, request: Readonly<RequestInit>): Promise<Result<T>> {
     return new Promise(resolve => {
-        const xhr: XMLHttpRequest = new XMLHttpRequest();
+        const xhr = new XMLHttpRequest();
 
         // Open the request, remember to do this before adding any headers,
         // because the request needs to be initialized!
         xhr.open(request.method!, url, true);
 
         // Add the headers (required when dealing with JSON)
-        const headers: Headers = request.headers as Headers;
+        const headers = request.headers as Headers;
         headers.forEach((value: string, key: string): void => {
             xhr.setRequestHeader(key, value);
         });
@@ -43,7 +43,7 @@ export async function requestUsingXHR<T = any>(url: string, request: Readonly<Re
                 // Try to parse the content for any response status code.
                 // We check the "Content-Type" header to see if we need to parse the
                 // content as json or as plain text.
-                const contentType: string | null = xhr.getResponseHeader('Content-Type');
+                const contentType = xhr.getResponseHeader('Content-Type');
                 if (contentType) {
                     switch (contentType.toLowerCase()) {
                         case 'application/json':

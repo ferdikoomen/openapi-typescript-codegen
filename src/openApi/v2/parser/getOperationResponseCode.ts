@@ -6,7 +6,7 @@ export function getOperationResponseCode(value: string | 'default'): number | nu
 
     // Check if we can parse the code and return of successful.
     if (/[0-9]+/g.test(value)) {
-        const code: number = parseInt(value);
+        const code = parseInt(value);
         if (Number.isInteger(code)) {
             return code;
         }

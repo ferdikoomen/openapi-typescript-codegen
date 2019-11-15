@@ -17,7 +17,7 @@ import { getFileName } from './getFileName';
  * @param outputPath:
  */
 export function writeClientIndex(client: Client, language: Language, template: handlebars.TemplateDelegate, outputPath: string): void {
-    const fileName: string = getFileName('index', language);
+    const fileName = getFileName('index', language);
     try {
         fs.writeFileSync(
             path.resolve(outputPath, fileName),

@@ -4,7 +4,7 @@ import { PrimaryType, TYPE_MAPPINGS } from './constants';
  * Get mapped type for given type to any basic Typescript/Javascript type.
  */
 export function getMappedType(type: string): PrimaryType | string {
-    const mapped: string | undefined = TYPE_MAPPINGS.get(type.toLowerCase());
+    const mapped = TYPE_MAPPINGS.get(type.toLowerCase());
     if (mapped) {
         return mapped;
     }
