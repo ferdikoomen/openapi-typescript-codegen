@@ -8,6 +8,7 @@
 import { {{{this}}} } from '../models/{{{this}}}';
 {{/each}}
 {{/if}}
+import * as yup from 'yup';
 {{#if description}}
 
 /**
@@ -25,14 +26,66 @@ export interface {{{name}}}{{{template}}}{{#if extend}} extends {{{extend}}}{{/i
     {{#if readOnly}}readonly {{/if}}{{{name}}}{{#unless required}}?{{/unless}}: {{{type}}}{{#if nullable}} | null{{/if}};
     {{/each}}
 }
+
+export namespace {{{name}}} {
+
+    {{#each enums}}
+    {{#if description}}
+    /**
+     * {{{description}}}
+     */
+    {{/if}}
+    export enum {{{name}}} {
+        {{#each values}}
+        {{{name}}} = {{{value}}},
+        {{/each}}
+    }
+
+    {{/each}}
+    export const schema = yup.object<{{{name}}}{{{template}}}>().shape({
+        // Add properties
+    });
+
+    export function validate(value: {{{name}}}{{{template}}}): Promise<{{{name}}}{{{template}}}> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: {{{name}}}{{{template}}}): {{{name}}}{{{template}}} {
+        return schema.validateSync(value, { strict: true });
+    }
+}
 {{/if}}
 {{#if isType}}
 export type {{{name}}} = {{{type}}}{{#if nullable}} | null{{/if}};
+
+export namespace {{{name}}} {
+    export const schema = yup.string();
+
+    export function validate(value: any): Promise<{{{name}}}{{#if nullable}} | null{{/if}}> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): {{{name}}}{{#if nullable}} | null{{/if}} {
+        return schema.validateSync(value, { strict: true });
+    }
+}
 {{/if}}
 {{#if isEnum}}
 export enum {{{name}}} {
     {{#each symbols}}
     {{{name}}} = {{{value}}},
     {{/each}}
+}
+
+export namespace {{{name}}} {
+    export const schema = yup.string();
+
+    export function validate(value: any): Promise<{{{name}}}> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): {{{name}}} {
+        return schema.validateSync(value, { strict: true });
+    }
 }
 {{/if}}

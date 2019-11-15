@@ -12,7 +12,10 @@ export function getEnumSymbolsFromDescription(description: string): Shape[] {
                 const name: string = match.split('=')[0];
                 const value: number = parseInt(match.split('=')[1].replace(/[^0-9]/g, ''));
                 if (name && Number.isInteger(value)) {
-                    symbols.push({ name, value: String(value) });
+                    symbols.push({
+                        name: name.replace(/([a-z])([A-Z]+)/g, '$1_$2').toUpperCase(),
+                        value: String(value),
+                    });
                 }
             });
 

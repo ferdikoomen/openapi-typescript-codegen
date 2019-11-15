@@ -103,8 +103,6 @@ export function getSchema(openApi: OpenApi, schema: OpenApiSchema, name: string)
     }
     */
 
-    // TODO: Properties kunnen weer simple REFS zijn, of zelfs geneste properties, testcase nodig!
-
     if (schema.type === 'object' && schema.properties) {
         result.isInterface = true;
         result.type = 'interface';
@@ -139,6 +137,9 @@ export function getSchema(openApi: OpenApi, schema: OpenApiSchema, name: string)
                         readOnly: property.readOnly || false,
                         description: property.description,
                     });
+
+                    // TODO: This also needs a validation logic, maybe we can store that
+                    // per schema and have them 'concatenate' on demand??
                 }
             }
         }

@@ -8,15 +8,16 @@ export function getEnumSymbols(values?: (string | number)[]): Shape[] {
             })
             .map(
                 (value: string | number): Shape => {
-                    return typeof value === 'number'
-                        ? {
-                              name: `NUM_${value}`,
-                              value: String(value),
-                          }
-                        : {
-                              name: value.replace(/([a-z])([A-Z]+)/g, '$1_$2').toUpperCase(),
-                              value: `'${value}'`,
-                          };
+                    if (typeof value === 'number') {
+                        return {
+                            name: `NUM_${value}`,
+                            value: String(value),
+                        };
+                    }
+                    return {
+                        name: value.replace(/([a-z])([A-Z]+)/g, '$1_$2').toUpperCase(),
+                        value: `'${value}'`,
+                    };
                 }
             );
     }
