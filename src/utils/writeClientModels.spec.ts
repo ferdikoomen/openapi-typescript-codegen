@@ -11,11 +11,16 @@ describe('writeClientModels', () => {
     it('should write to filesystem', () => {
         const models: Model[] = [
             {
+                isInterface: false,
+                isType: false,
+                isEnum: false,
                 name: 'Item',
+                type: 'Item',
                 base: 'Item',
-                type: '',
-                template: '',
-                extends: [],
+                template: null,
+                validation: null,
+                description: null,
+                extends: null,
                 imports: [],
                 properties: [],
                 enums: [],

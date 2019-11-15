@@ -1,15 +1,12 @@
 import { Service } from '../../../client/interfaces/Service';
 import { OpenApi } from '../interfaces/OpenApi';
 import { OpenApiPath } from '../interfaces/OpenApiPath';
-import { OpenApiOperation } from '../interfaces/OpenApiOperation';
-import { getOperation } from './getOperation';
-import { Operation } from '../../../client/interfaces/Operation';
 import { Method } from './constants';
 
 /**
  * Get the OpenAPI services
  */
-export function getServices(openApi: OpenApi): Map<string, Service> {
+export function getServices(openApi: OpenApi): Service[] {
     const services: Map<string, Service> = new Map<string, Service>();
     for (const url in openApi.paths) {
         if (openApi.paths.hasOwnProperty(url)) {
@@ -48,5 +45,5 @@ export function getServices(openApi: OpenApi): Map<string, Service> {
             }
         }
     }
-    return services;
+    return Array.from(services.values());
 }

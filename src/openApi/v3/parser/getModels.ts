@@ -5,7 +5,7 @@ import { OpenApi } from '../interfaces/OpenApi';
  * Parse and return the OpenAPI models.
  * @param openApi
  */
-export function getModels(openApi: OpenApi): Map<string, Model> {
-    const models: Map<string, Model> = new Map<string, Model>();
+export function getModels(openApi: OpenApi): Model[] {
+    const models: Model[] = [];
     return models;
 }

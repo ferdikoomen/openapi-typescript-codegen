@@ -16,13 +16,7 @@ export function writeClientModels(models: Model[], language: Language, template:
     models.forEach(model => {
         const fileName: string = getFileName(model.name, language);
         try {
-            fs.writeFileSync(
-                path.resolve(outputPath, fileName),
-                template({
-                    ...model,
-                    // properties: Array.from(model.properties.values()), // TODO in cleanup?
-                })
-            );
+            fs.writeFileSync(path.resolve(outputPath, fileName), template(model));
         } catch (e) {
             throw new Error(`Could not write model: "${fileName}"`);
         }

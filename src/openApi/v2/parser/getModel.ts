@@ -1,54 +1,54 @@
 import { OpenApi } from '../interfaces/OpenApi';
-import { Schema } from '../../../client/interfaces/Schema';
 import { OpenApiSchema } from '../interfaces/OpenApiSchema';
 import { getComment } from './getComment';
 import { getType } from './getType';
 import { Type } from '../../../client/interfaces/Type';
-import { getEnumSymbolsFromDescription } from './getEnumSymbolsFromDescription';
 import { getEnumType } from './getEnumType';
-import { getEnumSymbols } from './getEnumSymbols';
 import { PrimaryType } from './constants';
-import { Shape } from '../../../client/interfaces/Shape';
 import { OpenApiReference } from '../interfaces/OpenApiReference';
 import { getRef } from './getRef';
-import { getSchemaType } from './getSchemaType';
+import { getEnumValues } from './getEnumValues';
+import { Model } from '../../../client/interfaces/Model';
 
-export function getSchema(openApi: OpenApi, schema: OpenApiSchema, name: string): Schema {
-    const result: Schema = {
-        name, // TODO: kan weg zie maar waar deze gebruikt is, of kan model naam worden
+export function getModel(openApi: OpenApi, schema: OpenApiSchema, name: string): Model {
+    const result: Model = {
+        name,
         isInterface: false,
         isType: false,
         isEnum: false,
         type: 'any',
         base: 'any',
         template: null,
+        validation: null,
         description: getComment(schema.description),
-        extends: [],
+        extends: null,
         imports: [],
-        symbols: [],
+        enums: [],
         properties: [],
     };
 
     // If the param is a enum then return the values as an inline type.
     if (schema.enum) {
-        const enumSymbols: Shape[] = getEnumSymbols(schema.enum);
+        const enumSymbols: ModelSymbol[] = getEnumSymbols(schema.enum);
         if (enumSymbols.length) {
             result.isEnum = true;
             result.symbols = enumSymbols;
-            result.type = getEnumType(result.symbols);
+            result.type = getEnumType(enumSymbols);
             result.base = PrimaryType.STRING;
+            result.validation = `yup.mixed<${name}>().oneOf([${getEnumValues(enumSymbols).join(', ')}])`;
             return result;
         }
     }
 
     // If the param is a enum then return the values as an inline type.
     if (schema.type === 'int' && schema.description) {
-        const enumSymbols: Shape[] = getEnumSymbolsFromDescription(schema.description);
+        const enumSymbols: ModelSymbol[] = getEnumSymbolsFromDescription(schema.description);
         if (enumSymbols.length) {
             result.isEnum = true;
             result.symbols = enumSymbols;
             result.type = getEnumType(enumSymbols);
             result.base = PrimaryType.NUMBER;
+            result.validation = `yup.mixed<${name}>().oneOf([${getEnumValues(enumSymbols).join(', ')}])`;
             return result;
         }
     }
@@ -56,9 +56,6 @@ export function getSchema(openApi: OpenApi, schema: OpenApiSchema, name: string)
     // If the schema is an Array type, we check for the child type,
     // so we can create a typed array, otherwise this will be a "any[]".
     if (schema.type === 'array' && schema.items) {
-        // TODO: Ik gok dat we straks een lineare parser overhouden die in 1x een bestand kan wegschrijven
-        // TODO: in plaats van losse tussen stappen, dat maakt het testen ook makkelijker omdat je direct een
-        // TODO: typescript bestand / output kan valideren?
         if (schema.items.$ref) {
             const arrayType: Type = getType(schema.items.$ref);
             result.imports.push(...arrayType.imports);
@@ -66,6 +63,7 @@ export function getSchema(openApi: OpenApi, schema: OpenApiSchema, name: string)
             result.type = `${arrayType.type}[]`;
             result.base = arrayType.base;
             result.template = arrayType.template;
+            result.validation = `yup.array<${result.name}>().of(${result.base}.schema)`; // TODO: Simple strings!
             result.imports.push(...arrayType.imports);
         } else {
             const array: Schema = getSchema(openApi, schema.items, 'unkown');
@@ -74,6 +72,7 @@ export function getSchema(openApi: OpenApi, schema: OpenApiSchema, name: string)
             result.type = `${arrayType}[]`;
             result.base = arrayType;
             result.template = null;
+            result.validation = `yup.array<${result.name}>().of(${result.base}.schema)`; // TODO: Simple strings!
             result.imports.push(...array.imports);
         }
         return result;

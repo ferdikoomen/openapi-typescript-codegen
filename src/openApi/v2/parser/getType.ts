@@ -29,7 +29,7 @@ export function getType(value: string | undefined, template: string | null = nul
 
             // If the first match is a generic array then construct a correct array type,
             // for example the type "Array[Model]" becomes "Model[]".
-            if (match1.type === 'any[]') {
+            if (match1.type === PrimaryType.ARRAY) {
                 result.type = `${match2.type}[]`;
                 result.base = `${match2.type}`;
                 match1.imports = [];

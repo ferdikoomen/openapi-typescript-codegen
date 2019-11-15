@@ -1,12 +1,9 @@
 import { OpenApiParameter } from '../interfaces/OpenApiParameter';
 import { getType } from './getType';
-import { Parameter } from '../../../client/interfaces/Parameter';
 import { Type } from '../../../client/interfaces/Type';
 import { OpenApi } from '../interfaces/OpenApi';
 import { getParameterName } from './getParameterName';
 import { getComment } from './getComment';
-import { SchemaReference } from '../../../client/interfaces/SchemaReference';
-import { getSchemaReference } from './getSchemaReference';
 
 export function getParameter(openApi: OpenApi, parameter: OpenApiParameter): Parameter {
     const result: Parameter = {
@@ -48,11 +45,12 @@ export function getParameter(openApi: OpenApi, parameter: OpenApiParameter): Par
     // this reference type. Otherwise it might be a complex schema and
     // then we need to parse the schema!
     if (parameter.schema) {
-        const parameterSchema: SchemaReference = getSchemaReference(openApi, parameter.schema);
-        result.type = parameterSchema.type;
-        result.base = parameterSchema.base;
-        result.template = parameterSchema.template;
-        result.imports.push(...parameterSchema.imports);
+        // TODO: Check getSchema
+        // const parameterSchema: SchemaReference = getSchemaReference(openApi, parameter.schema);
+        // result.type = parameterSchema.type;
+        // result.base = parameterSchema.base;
+        // result.template = parameterSchema.template;
+        // result.imports.push(...parameterSchema.imports);
     }
 
     // Check if this could be a special enum where values are documented in the description.
@@ -68,6 +66,7 @@ export function getParameter(openApi: OpenApi, parameter: OpenApiParameter): Par
 
     // If the param is a enum then return the values as an inline type.
     if (parameter.enum) {
+        // TODO: Check getSchema
         // result.type = getEnumType(parameter.enum);
         // result.base = 'string';
         // result.imports = [];

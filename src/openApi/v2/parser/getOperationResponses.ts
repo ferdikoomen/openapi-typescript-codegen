@@ -1,12 +1,9 @@
 import { OpenApiResponses } from '../interfaces/OpenApiResponses';
 import { getOperationResponseCode } from './getOperationResponseCode';
-import { OperationResponse } from '../../../client/interfaces/OperationResponse';
 import { OpenApiResponse } from '../interfaces/OpenApiResponse';
 import { OpenApiReference } from '../interfaces/OpenApiReference';
 import { getRef } from './getRef';
 import { OpenApi } from '../interfaces/OpenApi';
-import { getSchemaReference } from './getSchemaReference';
-import { SchemaReference } from '../../../client/interfaces/SchemaReference';
 
 export function getOperationResponses(openApi: OpenApi, responses: OpenApiResponses): OperationResponse[] {
     const results: OperationResponse[] = [];
@@ -37,11 +34,11 @@ export function getOperationResponses(openApi: OpenApi, responses: OpenApiRespon
                 // this reference type. Otherwise it might be a complex schema and
                 // then we need to parse the schema!
                 if (response.schema) {
-                    const responseSchema: SchemaReference = getSchemaReference(openApi, response.schema);
-                    result.type = responseSchema.type;
-                    result.base = responseSchema.base;
-                    result.template = responseSchema.template;
-                    result.imports.push(...responseSchema.imports);
+                    // const responseSchema: SchemaReference = getSchemaReference(openApi, response.schema);
+                    // result.type = responseSchema.type;
+                    // result.base = responseSchema.base;
+                    // result.template = responseSchema.template;
+                    // result.imports.push(...responseSchema.imports);
                 }
 
                 results.push(result);

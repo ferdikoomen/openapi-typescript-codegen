@@ -1,7 +1,5 @@
 import { OpenApiParameter } from '../interfaces/OpenApiParameter';
-import { OperationParameters } from '../../../client/interfaces/OperationParameters';
 import { OpenApiReference } from '../interfaces/OpenApiReference';
-import { Parameter } from '../../../client/interfaces/Parameter';
 import { getParameter } from './getParameter';
 import { OpenApi } from '../interfaces/OpenApi';
 import { getRef } from './getRef';

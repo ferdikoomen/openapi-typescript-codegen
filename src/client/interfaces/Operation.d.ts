@@ -1,7 +1,7 @@
 import { OperationError } from './OperationError';
-import { Parameter } from './Parameter';
+import { OperationParameters } from './OperationParameters';
 
-export interface Operation {
+export interface Operation extends OperationParameters {
     service: string;
     name: string;
     summary?: string;
@@ -9,13 +9,6 @@ export interface Operation {
     deprecated?: boolean;
     method: string;
     path: string;
-    parameters: Parameter[];
-    parametersPath: Parameter[];
-    parametersQuery: Parameter[];
-    parametersForm: Parameter[];
-    parametersHeader: Parameter[];
-    parametersBody: Parameter | null;
     errors: OperationError[];
     result: string;
-    imports: string[];
 }

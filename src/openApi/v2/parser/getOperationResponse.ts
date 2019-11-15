@@ -1,4 +1,3 @@
-import { OperationResponse } from '../../../client/interfaces/OperationResponse';
 import { PrimaryType } from './constants';
 
 export function getOperationResponse(responses: OperationResponse[]): OperationResponse {

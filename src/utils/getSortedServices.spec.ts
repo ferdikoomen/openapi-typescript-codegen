@@ -3,24 +3,25 @@ import { Service } from '../client/interfaces/Service';
 
 describe('getSortedServices', () => {
     it('should return sorted list', () => {
-        const services = new Map<string, Service>();
-        services.set('John', {
-            name: 'John',
-            operations: [],
-            imports: [],
-        });
-        services.set('Jane', {
-            name: 'Jane',
-            operations: [],
-            imports: [],
-        });
-        services.set('Doe', {
-            name: 'Doe',
-            operations: [],
-            imports: [],
-        });
+        const services: Service[] = [
+            {
+                name: 'John',
+                operations: [],
+                imports: [],
+            },
+            {
+                name: 'Jane',
+                operations: [],
+                imports: [],
+            },
+            {
+                name: 'Doe',
+                operations: [],
+                imports: [],
+            },
+        ];
 
-        expect(getSortedServices(new Map<string, Service>())).toEqual([]);
-        expect(getSortedServices(services)).toEqual([services.get('Doe'), services.get('Jane'), services.get('John')]);
+        expect(getSortedServices([])).toEqual([]);
+        expect(getSortedServices(services)).toEqual(services.reverse());
     });
 });

@@ -13,6 +13,7 @@ import * as fs from 'fs';
 import { getFileName } from './getFileName';
 import * as glob from 'glob';
 import { cleanupServices } from './cleanupServices';
+import { cleanupModels } from './cleanupModels';
 
 /**
  * Write our OpenAPI client, using the given templates at the given output path
@@ -58,7 +59,7 @@ export function writeClient(client: Client, language: Language, templates: Templ
     try {
         // TODO: Cleanup models
         writeClientIndex(client, language, templates.index, outputPath);
-        writeClientModels(getSortedModels(client.models), language, templates.model, outputPathModels);
+        writeClientModels(getSortedModels(cleanupModels(client.models)), language, templates.model, outputPathModels);
         writeClientServices(getSortedServices(cleanupServices(client.services)), language, templates.service, outputPathServices);
     } catch (e) {
         throw e;

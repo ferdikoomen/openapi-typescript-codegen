@@ -1,15 +1,9 @@
 import { Service } from '../client/interfaces/Service';
 
-/**
- * Convert a given Map to an Array and sort the result the service base name.
- * @param services Map of Service objects.
- */
-export function getSortedServices(services: Map<string, Service>): Service[] {
-    return (
-        Array.from(services.values()).sort((a, b) => {
-            const nameA: string = a.name.toLowerCase();
-            const nameB: string = b.name.toLowerCase();
-            return nameA.localeCompare(nameB, 'en');
-        }) || []
-    );
+export function getSortedServices(services: Service[]): Service[] {
+    return services.sort((a, b) => {
+        const nameA: string = a.name.toLowerCase();
+        const nameB: string = b.name.toLowerCase();
+        return nameA.localeCompare(nameB, 'en');
+    });
 }

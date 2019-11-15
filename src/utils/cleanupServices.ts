@@ -2,13 +2,12 @@ import { Service } from '../client/interfaces/Service';
 import { getSortedImports } from './getSortedImports';
 import { Operation } from '../client/interfaces/Operation';
 
-export function cleanupServices(services: Map<string, Service>): Map<string, Service> {
+export function cleanupServices(services: Service[]): Service[] {
     services.forEach((service: Service): void => {
         const names: Map<string, number> = new Map<string, number>();
 
         service.imports = getSortedImports(service.imports);
 
-        // Append postfix number to duplicate operation names and sort them.
         service.operations = service.operations
             .map(
                 (operation: Operation): Operation => {

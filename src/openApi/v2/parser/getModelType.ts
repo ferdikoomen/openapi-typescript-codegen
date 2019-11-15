@@ -1,4 +1,4 @@
-import { Schema } from '../../../client/interfaces/Schema';
+import { Model } from '../../../client/interfaces/Model';
 
 // string
 // array[test]
@@ -6,13 +6,12 @@ import { Schema } from '../../../client/interfaces/Schema';
 //   foo: string
 //   bar: string
 // }]
-
-export function getSchemaType(schema: Schema): string {
+export function getModelType(model: Model): string {
     // if (schema.properties) {
     //     return schema.type
     // }
-    if (schema.type) {
-        return schema.type;
+    if (model.type) {
+        return model.type;
     }
     return 'any';
 }

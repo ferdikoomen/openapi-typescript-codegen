@@ -24,8 +24,8 @@ describe('writeClient', () => {
         const client: Client = {
             server: 'http://localhost:8080',
             version: 'v1',
-            models: new Map<string, Model>(),
-            services: new Map<string, Service>(),
+            models: [],
+            services: [],
         };
 
         const templates: Templates = {

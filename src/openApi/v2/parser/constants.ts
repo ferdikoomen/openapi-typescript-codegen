@@ -1,6 +1,7 @@
 export enum PrimaryType {
     FILE = 'File',
     OBJECT = 'any',
+    ARRAY = 'any[]',
     BOOLEAN = 'boolean',
     NUMBER = 'number',
     STRING = 'string',
@@ -13,6 +14,8 @@ export const TYPE_MAPPINGS = new Map<string, PrimaryType>([
     ['binary', PrimaryType.FILE],
     ['any', PrimaryType.OBJECT],
     ['object', PrimaryType.OBJECT],
+    ['list', PrimaryType.ARRAY],
+    ['array', PrimaryType.ARRAY],
     ['boolean', PrimaryType.BOOLEAN],
     ['byte', PrimaryType.NUMBER],
     ['int', PrimaryType.NUMBER],

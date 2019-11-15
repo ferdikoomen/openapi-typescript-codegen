@@ -2,7 +2,14 @@ import { getType } from './getType';
 import { PrimaryType } from './constants';
 import { Type } from '../../../client/interfaces/Type';
 import { OpenApiItems } from '../interfaces/OpenApiItems';
-import { ArrayType } from '../../../client/interfaces/ArrayType';
+
+export interface ArrayType {
+    type: string;
+    base: string;
+    template: string | null;
+    default: any | undefined;
+    imports: string[];
+}
 
 export function getArrayType(items: OpenApiItems): ArrayType {
     const result: ArrayType = {

@@ -1,13 +1,13 @@
-import { Shape } from '../../../client/interfaces/Shape';
+import { ModelEnumValue } from '../../../client/interfaces/ModelEnumValue';
 
-export function getEnumSymbols(values?: (string | number)[]): Shape[] {
+export function getModelEnum(values?: (string | number)[]): ModelEnumValue[] {
     if (Array.isArray(values)) {
         return values
             .filter((value: string | number, index: number, arr: (string | number)[]) => {
                 return arr.indexOf(value) === index;
             })
             .map(
-                (value: string | number): Shape => {
+                (value: string | number): ModelEnumValue => {
                     if (typeof value === 'number') {
                         return {
                             name: `NUM_${value}`,

@@ -1,6 +1,5 @@
 import { Service } from '../../../client/interfaces/Service';
 import { getServiceClassName } from './getServiceClassName';
-import { Operation } from '../../../client/interfaces/Operation';
 import { OpenApiOperation } from '../interfaces/OpenApiOperation';
 import { getOperationName } from './getOperationName';
 import { getOperationPath } from './getOperationPath';
@@ -8,11 +7,8 @@ import { getOperationParameters } from './getOperationParameters';
 import { OpenApi } from '../interfaces/OpenApi';
 import { getComment } from './getComment';
 import { getOperationResponses } from './getOperationResponses';
-import { OperationParameters } from '../../../client/interfaces/OperationParameters';
-import { OperationResponse } from '../../../client/interfaces/OperationResponse';
 import { getOperationResponse } from './getOperationResponse';
 import { getOperationErrors } from './getOperationErrors';
-import { OperationError } from '../../../client/interfaces/OperationError';
 
 export function getOperation(openApi: OpenApi, url: string, method: string, op: OpenApiOperation): Operation {
     const serviceName: string = (op.tags && op.tags[0]) || 'Service';
