@@ -28,7 +28,11 @@
             "description": "This is a simple file",
             "type": "File"
         },
-        "SimpleEnumWithStrings": {
+        "SimpleReference": {
+            "description": "This is a simple reference",
+            "$ref": "#/definitions/ModelWithString"
+        },
+        "EnumWithStrings": {
             "description": "This is a simple enum with strings",
             "enum": [
                 "Success",
@@ -36,7 +40,7 @@
                 "Error"
             ]
         },
-        "SimpleEnumWithNumbers": {
+        "EnumWithNumbers": {
             "description": "This is a simple enum with numbers",
             "enum": [
                 1,
@@ -44,40 +48,40 @@
                 3
             ]
         },
-        "SimpleEnumFromDescription": {
+        "EnumFromDescription": {
             "description": "Success=1,Warning=2,Error=3",
             "type": "int"
         },
-        "SimpleArrayWithNumbers": {
+        "ArrayWithNumbers": {
             "description": "This is a simple array with numbers",
             "type": "array",
             "items": {
                 "type": "integer"
             }
         },
-        "SimpleArrayWithBooleans": {
+        "ArrayWithBooleans": {
             "description": "This is a simple array with booleans",
             "type": "array",
             "items": {
                 "type": "boolean"
             }
         },
-        "SimpleArrayWithStrings": {
+        "ArrayWithStrings": {
             "description": "This is a simple array with strings",
             "type": "array",
             "items": {
                 "type": "string"
             }
         },
-        "SimpleArrayWithReference": {
-            "description": "This is a simple array with a reference",
+        "ArrayWithReferences": {
+            "description": "This is a simple array with references",
             "type": "array",
             "items": {
                 "$ref": "#/definitions/ModelWithString"
             }
         },
-        "SimpleArrayWithProperties": {
-            "description": "This is a simple array with a properties",
+        "ArrayWithProperties": {
+            "description": "This is a simple array with properties",
             "type": "array",
             "items": {
                 "type": "object",
@@ -91,9 +95,22 @@
                 }
             }
         },
-        "SimpleReference": {
-            "description": "This is a simple model reference",
-            "$ref": "#/definitions/ModelWithString"
+        "DictionaryWithString": {
+            "description": "This is a string dictionary",
+            "type": "object",
+            "additionalProperties": {
+                "type": "string"
+            }
+        },
+        "DictionaryWithArray": {
+            "description": "This is a complex dictionary",
+            "type": "object",
+            "additionalProperties": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/definitions/ModelWithString"
+                }
+            }
         },
         "ModelWithInteger": {
             "description": "This is a model with one number property",
@@ -158,6 +175,36 @@
                 }
             }
         },
+        "ModelWithModelArray": {
+            "description": "This is a model with one property containing an array",
+            "type": "object",
+            "properties": {
+                "prop": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ModelWithString"
+                    }
+                }
+            }
+        },
+        "ModelLink": {
+            "description": "This is a model that can have a template??",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                }
+            }
+        },
+        "ModelWithLink": {
+            "description": "This is a model that can have a template??",
+            "type": "object",
+            "properties": {
+                "prop": {
+                    "$ref": "#/definitions/ModelLink[ModelWithString]"
+                }
+            }
+        },
         "ModelWithCircularReference": {
             "description": "This is a model with one property containing a circular reference",
             "type": "object",
@@ -217,6 +264,7 @@
             }
         },
         "ModelThatExtends": {
+            "description": "This is a model that extends another model",
             "type": "object",
             "allOf": [
                 {
@@ -236,6 +284,7 @@
             ]
         },
         "ModelThatExtendsExtends": {
+            "description": "This is a model that extends another model",
             "type": "object",
             "allOf": [
                 {
