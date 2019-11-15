@@ -1,5 +1,6 @@
 import { ModelProperty } from './ModelProperty';
 import { Enum } from './Enum';
+import { EnumValue } from './EnumValue';
 
 export interface Model {
     isInterface: boolean;
@@ -14,5 +15,6 @@ export interface Model {
     extends: string | null;
     imports: string[];
     enums: Enum[];
+    values: EnumValue[];
     properties: ModelProperty[];
 }

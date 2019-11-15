@@ -3,9 +3,7 @@ import * as mkdirp from 'mkdirp';
 import * as rimraf from 'rimraf';
 import * as fs from 'fs';
 import { Client } from '../client/interfaces/Client';
-import { Model } from '../client/interfaces/Model';
 import { Templates } from './readHandlebarsTemplates';
-import { Service } from '../client/interfaces/Service';
 import { Language } from '../index';
 import * as glob from 'glob';
 

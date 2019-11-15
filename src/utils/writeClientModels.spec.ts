@@ -22,6 +22,7 @@ describe('writeClientModels', () => {
                 description: null,
                 extends: null,
                 imports: [],
+                values: [],
                 properties: [],
                 enums: [],
             },
