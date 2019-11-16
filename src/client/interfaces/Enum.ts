@@ -1,4 +1,4 @@
-export interface EnumSymbol {
+export interface Enum {
     name: string;
     value: string;
 }

@@ -1,13 +1,13 @@
-import { EnumSymbol } from '../../../client/interfaces/EnumSymbol';
+import { Enum } from '../../../client/interfaces/Enum';
 
-export function getEnumValues(symbols: EnumSymbol[]): string[] {
+export function getEnumValues(enumerators: Enum[]): string[] {
     // Fetch values from the symbols, just to be sure we filter out
     // any double values and finally we sort them to make them easier
     // to read when we use them in our generated code.
-    return symbols
-        .map(symbol => symbol.value)
-        .filter((symbol, index, arr) => {
-            return arr.indexOf(symbol) === index;
+    return enumerators
+        .map(enumerator => enumerator.value)
+        .filter((enumerator, index, arr) => {
+            return arr.indexOf(enumerator) === index;
         })
         .sort();
 }

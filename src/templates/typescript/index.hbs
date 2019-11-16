@@ -10,12 +10,12 @@ export { OpenAPI } from './core/OpenAPI';
 {{#if models}}
 
 {{#each models}}
-export { {{{name}}} } from './models/{{{name}}}';
+export { {{{this}}} } from './models/{{{this}}}';
 {{/each}}
 {{/if}}
 {{#if services}}
 
 {{#each services}}
-export { {{{name}}} } from './services/{{{name}}}';
+export { {{{this}}} } from './services/{{{this}}}';
 {{/each}}
 {{/if}}

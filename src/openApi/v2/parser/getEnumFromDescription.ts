@@ -1,13 +1,13 @@
-import { EnumSymbol } from '../../../client/interfaces/EnumSymbol';
+import { Enum } from '../../../client/interfaces/Enum';
 
-export function getEnumSymbolsFromDescription(description: string): EnumSymbol[] {
+export function getEnumFromDescription(description: string): Enum[] {
     // Check if we can find this special format string:
     // None=0,Something=1,AnotherThing=2
     if (/^(\w+=[0-9]+,?)+$/g.test(description)) {
         const matches = description.match(/(\w+=[0-9]+,?)/g);
         if (matches) {
             // Grab the values from the description
-            const symbols: EnumSymbol[] = [];
+            const symbols: Enum[] = [];
             matches.forEach(match => {
                 const name = match.split('=')[0];
                 const value = parseInt(match.split('=')[1].replace(/[^0-9]/g, ''));

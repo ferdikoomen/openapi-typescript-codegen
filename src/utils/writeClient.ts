@@ -6,14 +6,10 @@ import * as mkdirp from 'mkdirp';
 import * as rimraf from 'rimraf';
 import { Templates } from './readHandlebarsTemplates';
 import { writeClientIndex } from './writeClientIndex';
-import { getSortedModels } from './getSortedModels';
-import { getSortedServices } from './getSortedServices';
 import { Language } from '../index';
 import * as fs from 'fs';
 import { getFileName } from './getFileName';
 import * as glob from 'glob';
-import { cleanupServices } from './cleanupServices';
-import { cleanupModels } from './cleanupModels';
 
 /**
  * Write our OpenAPI client, using the given templates at the given output path
@@ -58,8 +54,8 @@ export function writeClient(client: Client, language: Language, templates: Templ
     // Write the client files
     try {
         writeClientIndex(client, language, templates.index, outputPath);
-        writeClientModels(getSortedModels(cleanupModels(client.models)), language, templates.model, outputPathModels);
-        writeClientServices(getSortedServices(cleanupServices(client.services)), language, templates.service, outputPathServices);
+        writeClientModels(client.models, language, templates.model, outputPathModels);
+        writeClientServices(client.services, language, templates.service, outputPathServices);
     } catch (e) {
         throw e;
     }

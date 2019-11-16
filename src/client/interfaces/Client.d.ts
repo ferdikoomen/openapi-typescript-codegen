@@ -4,6 +4,6 @@ import { Service } from './Service';
 export interface Client {
     version: string;
     server: string;
-    models: Model[];
-    services: Service[];
+    models: Map<string, Model>;
+    services: Map<string, Service>;
 }

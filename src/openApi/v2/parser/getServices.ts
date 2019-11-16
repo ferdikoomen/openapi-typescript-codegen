@@ -5,7 +5,7 @@ import { Method } from './constants';
 /**
  * Get the OpenAPI services
  */
-export function getServices(openApi: OpenApi): Service[] {
+export function getServices(openApi: OpenApi): Map<string, Service> {
     const services = new Map<string, Service>();
     for (const url in openApi.paths) {
         if (openApi.paths.hasOwnProperty(url)) {
@@ -44,5 +44,5 @@ export function getServices(openApi: OpenApi): Service[] {
             }
         }
     }
-    return Array.from(services.values());
+    return services;
 }

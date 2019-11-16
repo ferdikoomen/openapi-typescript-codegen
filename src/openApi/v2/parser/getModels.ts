@@ -1,14 +1,18 @@
 import { Model } from '../../../client/interfaces/Model';
 import { OpenApi } from '../interfaces/OpenApi';
 import { getModel } from './getModel';
+import { getType } from './getType';
 
-export function getModels(openApi: OpenApi): Model[] {
-    const models: Model[] = [];
+export function getModels(openApi: OpenApi): Map<string, Model> {
+    const models = new Map<string, Model>();
     for (const definitionName in openApi.definitions) {
         if (openApi.definitions.hasOwnProperty(definitionName)) {
             const definition = openApi.definitions[definitionName];
-            const definitionModel = getModel(openApi, definition, definitionName);
-            models.push(definitionModel);
+            const definitionType = getType(definitionName);
+            if (!models.has(definitionType.base)) {
+                const model = getModel(openApi, definition, definitionType.base);
+                models.set(definitionType.base, model);
+            }
         }
     }
     return models;
