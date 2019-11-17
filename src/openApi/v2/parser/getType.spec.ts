@@ -5,7 +5,7 @@ describe('getType', () => {
         const type = getType('int');
         expect(type.type).toEqual('number');
         expect(type.base).toEqual('number');
-        expect(type.template).toEqual(undefined);
+        expect(type.template).toEqual(null);
         expect(type.imports).toEqual([]);
     });
 
@@ -13,15 +13,15 @@ describe('getType', () => {
         const type = getType('String');
         expect(type.type).toEqual('string');
         expect(type.base).toEqual('string');
-        expect(type.template).toEqual(undefined);
+        expect(type.template).toEqual(null);
         expect(type.imports).toEqual([]);
     });
 
     it('should convert string array', () => {
         const type = getType('Array[String]');
-        expect(type.type).toEqual('string[]');
+        expect(type.type).toEqual('Array<string>');
         expect(type.base).toEqual('string');
-        expect(type.template).toEqual(undefined);
+        expect(type.template).toEqual(null);
         expect(type.imports).toEqual([]);
     });
 
@@ -53,7 +53,7 @@ describe('getType', () => {
         const type = getType('#/definitions/Link', 'Link');
         expect(type.type).toEqual('T');
         expect(type.base).toEqual('T');
-        expect(type.template).toEqual(undefined);
+        expect(type.template).toEqual(null);
         expect(type.imports).toEqual([]);
     });
 });

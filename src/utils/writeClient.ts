@@ -53,9 +53,9 @@ export function writeClient(client: Client, language: Language, templates: Templ
 
     // Write the client files
     try {
-        writeClientIndex(client, language, templates.index, outputPath);
-        writeClientModels(client.models, language, templates.model, outputPathModels);
-        writeClientServices(client.services, language, templates.service, outputPathServices);
+        writeClientIndex(client, language, templates, outputPath);
+        writeClientModels(client.models, language, templates, outputPathModels);
+        writeClientServices(client.services, language, templates, outputPathServices);
     } catch (e) {
         throw e;
     }

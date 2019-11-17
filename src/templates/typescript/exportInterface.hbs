@@ -1,0 +1,38 @@
+export interface {{{name}}}{{{template}}}{{#if extends}} extends{{#each extends}} {{{this}}}{{/each}}{{/if}} {
+    {{#each properties}}
+    {{#if description}}
+    /**
+     * {{{description}}}
+     */
+    {{/if}}
+    {{#if readOnly}}readonly {{/if}}{{{name}}}{{#unless required}}?{{/unless}}: {{>type}}{{#if nullable}} | null{{/if}};
+    {{/each}}
+}
+
+export namespace {{{name}}} {
+
+    {{#each enums}}
+    {{#if description}}
+    /**
+     * {{{description}}}
+     */
+    {{/if}}
+    export enum {{{name}}} {
+        {{#each values}}
+        {{{name}}} = {{{value}}},
+        {{/each}}
+    }
+
+    {{/each}}
+    {{#if validation}}
+    export const schema = {{>validation}};
+
+    export function validate(value: any): Promise<{{{name}}}{{{template}}}> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): {{{name}}}{{{template}}} {
+        return schema.validateSync(value, { strict: true });
+    }
+    {{/if}}
+}

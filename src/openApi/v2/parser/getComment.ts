@@ -1,6 +1,6 @@
 import { EOL } from 'os';
 
-export function getComment(comment?: string): string | undefined {
+export function getComment(comment?: string): string | null {
     if (comment) {
         return comment
             .split(/(\r\n|\n|\r)+/g)
@@ -9,5 +9,5 @@ export function getComment(comment?: string): string | undefined {
             .join(EOL)
             .replace(/(\r\n|\n|\r)+/g, '$1     * ');
     }
-    return undefined;
+    return null;
 }

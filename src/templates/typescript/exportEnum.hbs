@@ -1,0 +1,20 @@
+export enum {{{name}}} {
+    {{#each symbols}}
+    {{{name}}} = {{{value}}},
+    {{/each}}
+}
+{{#if validation}}
+
+export namespace {{{name}}} {
+
+    export const schema = {{>validation}};
+
+    export function validate(value: any): Promise<{{{name}}}> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): {{{name}}} {
+        return schema.validateSync(value, { strict: true });
+    }
+}
+{{/if}}

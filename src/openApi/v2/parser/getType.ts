@@ -12,6 +12,7 @@ export function getType(value?: string, template?: string): Type {
     const result: Type = {
         type: PrimaryType.OBJECT,
         base: PrimaryType.OBJECT,
+        template: null,
         imports: [],
     };
 
@@ -27,13 +28,12 @@ export function getType(value?: string, template?: string): Type {
             const match2 = getType(matches[2]);
 
             // If the first match is a generic array then construct a correct array type,
-            // for example the type "Array[Model]" becomes "Model[]".
-            if (match1.type === PrimaryType.ARRAY) {
-                result.type = `${match2.type}[]`;
-                result.base = `${match2.type}`;
+            // for example the type "Array[Model]" becomes "Array<Model>".
+            if (match1.type === 'Array') {
+                result.type = `Array<${match2.type}>`;
+                result.base = match2.type;
                 match1.imports = [];
             } else if (match2.type === '') {
-                // Primary types like number[] or string[]
                 result.type = match1.type;
                 result.base = match1.type;
                 result.template = match1.type;

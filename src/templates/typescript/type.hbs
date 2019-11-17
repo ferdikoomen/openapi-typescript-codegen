@@ -1,0 +1,5 @@
+{{#if properties}}{
+{{#each properties}}
+{{#if readOnly}}readonly {{/if}}{{{name}}}{{#unless required}}?{{/unless}}: {{>type}}{{#if nullable}} | null{{/if}},
+{{/each}}
+}{{else if link}}{{{base}}}<{{>type link}}>{{else}}{{{type}}}{{/if}}

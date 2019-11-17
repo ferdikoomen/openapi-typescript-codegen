@@ -33,6 +33,7 @@ export function getOperation(openApi: OpenApi, url: string, method: string, op: 
         parametersQuery: [],
         parametersForm: [],
         parametersHeader: [],
+        parametersBody: null,
         imports: [],
         errors: [],
         result: PrimaryType.VOID,

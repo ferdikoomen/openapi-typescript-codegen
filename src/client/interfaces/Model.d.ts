@@ -5,15 +5,16 @@ export interface Model {
     name: string;
     type: string;
     base: string;
-    template?: string;
-    description?: string;
-    readOnly?: boolean;
-    required?: boolean;
-    nullable?: boolean;
+    link: Model | null;
+    template: string | null;
+    description: string | null;
+    readOnly: boolean;
+    required: boolean;
+    nullable: boolean;
     imports: string[];
     extends: string[];
     enum: Enum[];
     enums: Model[];
     properties: Model[];
-    validation?: Validation;
+    validation: Validation | null;
 }

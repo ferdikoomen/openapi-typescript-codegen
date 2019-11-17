@@ -7,7 +7,6 @@ import { PrimaryType } from './constants';
 import { getEnumType } from './getEnumType';
 import { getEnum } from './getEnum';
 import { getEnumFromDescription } from './getEnumFromDescription';
-import { getTypeFromProperties } from './getTypeFromProperties';
 import { getModelProperties } from './getModelProperties';
 
 export function getModel(openApi: OpenApi, definition: OpenApiSchema, name: string = ''): Model {
@@ -15,13 +14,18 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, name: stri
         name,
         type: PrimaryType.OBJECT,
         base: PrimaryType.OBJECT,
+        template: null,
+        link: null,
         description: getComment(definition.description),
-        readOnly: definition.readOnly,
+        readOnly: definition.readOnly || false,
+        required: false,
+        nullable: false,
         imports: [],
         extends: [],
         enum: [],
         enums: [],
         properties: [],
+        validation: null,
     };
 
     if (definition.$ref) {
@@ -32,6 +36,9 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, name: stri
         result.imports.push(...definitionRef.imports);
         result.validation = {
             type: 'ref',
+            childType: null,
+            childBase: null,
+            childValidation: null,
         };
         return result;
     }
@@ -45,10 +52,12 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, name: stri
             result.enum.push(...enumerators);
             result.validation = {
                 type: 'enum',
+                childType: null,
+                childBase: null,
+                childValidation: null,
             };
             return result;
         }
-        return result;
     }
 
     // If the param is a enum then return the values as an inline type.
@@ -60,10 +69,12 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, name: stri
             result.enum.push(...enumerators);
             result.validation = {
                 type: 'enum',
+                childType: null,
+                childBase: null,
+                childValidation: null,
             };
             return result;
         }
-        return result;
     }
 
     // If the schema is an Array type, we check for the child type,
@@ -71,20 +82,22 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, name: stri
     if (definition.type === 'array' && definition.items) {
         if (definition.items.$ref) {
             const arrayItems = getType(definition.items.$ref);
-            result.type = `${arrayItems.type}[]`;
-            result.base = arrayItems.base;
+            result.type = `Array<${arrayItems.type}>`;
+            result.base = 'Array';
             result.template = arrayItems.template;
             result.imports.push(...arrayItems.imports);
             result.validation = {
                 type: 'array',
                 childType: arrayItems.type,
                 childBase: arrayItems.base,
+                childValidation: null,
             };
         } else {
             const arrayItems = getModel(openApi, definition.items);
-            result.type = `${arrayItems.type}[]`;
-            result.base = arrayItems.base;
+            result.type = `Array<${arrayItems.type}>`;
+            result.base = 'Array';
             result.template = arrayItems.template;
+            result.link = arrayItems;
             result.imports.push(...arrayItems.imports);
             result.validation = {
                 type: 'array',
@@ -110,12 +123,14 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, name: stri
                 type: 'dictionary',
                 childType: additionalProperties.type,
                 childBase: additionalProperties.base,
+                childValidation: null,
             };
         } else {
             const additionalProperties = getModel(openApi, definition.additionalProperties);
             result.type = `Dictionary<${additionalProperties.type}>`;
             result.base = 'Dictionary';
             result.template = additionalProperties.type;
+            result.link = additionalProperties;
             result.imports.push(...additionalProperties.imports);
             result.validation = {
                 type: 'dictionary',
@@ -143,10 +158,13 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, name: stri
                 });
             }
         });
-        result.type = getTypeFromProperties(result.properties);
+        result.type = PrimaryType.OBJECT;
         result.base = PrimaryType.OBJECT;
         result.validation = {
             type: 'model',
+            childType: null,
+            childBase: null,
+            childValidation: null,
         };
     }
 
@@ -156,10 +174,13 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, name: stri
             result.properties.push(property);
             result.imports.push(...property.imports);
         });
-        result.type = getTypeFromProperties(result.properties);
+        result.type = PrimaryType.OBJECT;
         result.base = PrimaryType.OBJECT;
         result.validation = {
             type: 'model',
+            childType: null,
+            childBase: null,
+            childValidation: null,
         };
         return result;
     }
@@ -173,6 +194,9 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, name: stri
         result.imports.push(...definitionType.imports);
         result.validation = {
             type: 'type',
+            childType: null,
+            childBase: null,
+            childValidation: null,
         };
         return result;
     }

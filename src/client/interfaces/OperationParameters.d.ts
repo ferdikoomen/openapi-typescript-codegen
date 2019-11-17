@@ -7,5 +7,5 @@ export interface OperationParameters {
     parametersQuery: OperationParameter[];
     parametersForm: OperationParameter[];
     parametersHeader: OperationParameter[];
-    parametersBody?: OperationParameter;
+    parametersBody: OperationParameter | null;
 }

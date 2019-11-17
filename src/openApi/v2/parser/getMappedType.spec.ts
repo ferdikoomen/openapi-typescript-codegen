@@ -3,8 +3,6 @@ import { getMappedType } from './getMappedType';
 describe('getMappedType', () => {
     it('should map types to the basics', () => {
         expect(getMappedType('File')).toEqual('File');
-        expect(getMappedType('Array')).toEqual('any[]');
-        expect(getMappedType('List')).toEqual('any[]');
         expect(getMappedType('String')).toEqual('string');
         expect(getMappedType('date')).toEqual('string');
         expect(getMappedType('date-time')).toEqual('string');

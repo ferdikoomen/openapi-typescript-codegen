@@ -1,6 +1,6 @@
 import { Service } from '../client/interfaces/Service';
 
-export function exportService(service: Service): any {
+export function exportService(service: Service): Service {
     const names = new Map<string, number>();
     return {
         ...service,

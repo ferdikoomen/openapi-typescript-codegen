@@ -17,83 +17,10 @@ import * as yup from 'yup';
  * {{{description}}}
  */
 {{/if}}
-{{#if isInterface}}
-export interface {{{name}}}{{{template}}}{{#if extends}} extends{{#each extends}} {{{this}}}{{/each}}{{/if}} {
-    {{#each properties}}
-    {{#if description}}
-    /**
-     * {{{description}}}
-     */
-    {{/if}}
-    {{#if readOnly}}readonly {{/if}}{{{name}}}{{#unless required}}?{{/unless}}: {{{type}}}{{#if nullable}} | null{{/if}};
-    {{/each}}
-}
-
-export namespace {{{name}}} {
-
-    {{#each enums}}
-    {{#if description}}
-    /**
-     * {{{description}}}
-     */
-    {{/if}}
-    export enum {{{name}}} {
-        {{#each values}}
-        {{{name}}} = {{{value}}},
-        {{/each}}
-    }
-
-    {{/each}}
-    {{#if validation}}
-    export const schema = {{{validation}}};
-
-    export function validate(value: any): Promise<{{{name}}}{{{template}}}> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): {{{name}}}{{{template}}} {
-        return schema.validateSync(value, { strict: true });
-    }
-    {{/if}}
-}
-{{/if}}
-{{#if isType}}
-export type {{{name}}} = {{{type}}}{{#if nullable}} | null{{/if}};
-{{#if validation}}
-
-export namespace {{{name}}} {
-
-    export const schema = {{{validation}}};
-
-    export function validate(value: any): Promise<{{{name}}}{{#if nullable}} | null{{/if}}> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): {{{name}}}{{#if nullable}} | null{{/if}} {
-        return schema.validateSync(value, { strict: true });
-    }
-}
-{{/if}}
-{{/if}}
-{{#if isEnum}}
-export enum {{{name}}} {
-    {{#each symbols}}
-    {{{name}}} = {{{value}}},
-    {{/each}}
-}
-{{#if validation}}
-
-export namespace {{{name}}} {
-
-    export const schema = {{{validation}}};
-
-    export function validate(value: any): Promise<{{{name}}}> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): {{{name}}} {
-        return schema.validateSync(value, { strict: true });
-    }
-}
-{{/if}}
+{{#if properties}}
+{{> exportInterface}}
+{{else if enum}}
+{{> exportEnum}}
+{{else}}
+{{> exportType}}
 {{/if}}

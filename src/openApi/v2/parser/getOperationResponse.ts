@@ -13,6 +13,7 @@ export function getOperationResponse(responses: OperationResponse[]): OperationR
         text: '',
         type: PrimaryType.OBJECT,
         base: PrimaryType.OBJECT,
+        template: null,
         imports: [],
     };
 }

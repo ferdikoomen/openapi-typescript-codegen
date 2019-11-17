@@ -1,11 +1,11 @@
 import { Client } from '../client/interfaces/Client';
-import * as handlebars from 'handlebars';
 import * as fs from 'fs';
 import * as path from 'path';
 import { getModelNames } from './getModelNames';
 import { getServiceNames } from './getServiceNames';
 import { Language } from '../index';
 import { getFileName } from './getFileName';
+import { Templates } from './readHandlebarsTemplates';
 
 /**
  * Generate the OpenAPI client index file using the Handlebar template and write it to disk.
@@ -13,15 +13,15 @@ import { getFileName } from './getFileName';
  * library. But yuo can also import individual models and services directly.
  * @param client: Client object, containing, models, schemas and services.
  * @param language: The output language (Typescript or javascript).
- * @param template: The template that is used to write the file.
+ * @param templates: The loaded handlebar templates.
  * @param outputPath:
  */
-export function writeClientIndex(client: Client, language: Language, template: handlebars.TemplateDelegate, outputPath: string): void {
+export function writeClientIndex(client: Client, language: Language, templates: Templates, outputPath: string): void {
     const fileName = getFileName('index', language);
     try {
         fs.writeFileSync(
             path.resolve(outputPath, fileName),
-            template({
+            templates.index({
                 server: client.server,
                 version: client.version,
                 models: getModelNames(client.models),

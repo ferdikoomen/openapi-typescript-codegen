@@ -4,6 +4,7 @@ import { Client } from '../client/interfaces/Client';
 import { Language } from '../index';
 import { Model } from '../client/interfaces/Model';
 import { Service } from '../client/interfaces/Service';
+import { Templates } from './readHandlebarsTemplates';
 
 jest.mock('fs');
 
@@ -17,8 +18,17 @@ describe('writeClientIndex', () => {
             models: new Map<string, Model>(),
             services: new Map<string, Service>(),
         };
-        const template = () => 'dummy';
-        writeClientIndex(client, Language.TYPESCRIPT, template, '/');
+        const templates: Templates = {
+            index: () => 'dummy',
+            model: () => 'dummy',
+            exportInterface: () => 'dummy',
+            exportEnum: () => 'dummy',
+            exportType: () => 'dummy',
+            service: () => 'dummy',
+            validation: () => 'dummy',
+            type: () => 'dummy',
+        };
+        writeClientIndex(client, Language.TYPESCRIPT, templates, '/');
         expect(fsWriteFileSync).toBeCalledWith('/index.ts', 'dummy');
     });
 });

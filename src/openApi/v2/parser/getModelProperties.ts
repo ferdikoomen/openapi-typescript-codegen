@@ -10,8 +10,8 @@ export function getModelProperties(openApi: OpenApi, definition: OpenApiSchema):
     for (const propertyName in definition.properties) {
         if (definition.properties.hasOwnProperty(propertyName)) {
             const property = definition.properties[propertyName];
-            const propertyRequired = definition.required && definition.required.includes(propertyName);
-            const propertyReadOnly = property.readOnly;
+            const propertyRequired = !!(definition.required && definition.required.includes(propertyName));
+            const propertyReadOnly = !!property.readOnly;
             if (property.$ref) {
                 const prop = getType(property.$ref);
                 result.push({
@@ -19,9 +19,11 @@ export function getModelProperties(openApi: OpenApi, definition: OpenApiSchema):
                     type: prop.type,
                     base: prop.base,
                     template: prop.template,
+                    link: null,
                     description: getComment(property.description),
                     readOnly: propertyReadOnly,
                     required: propertyRequired,
+                    nullable: false,
                     imports: prop.imports,
                     extends: [],
                     enum: [],
@@ -31,6 +33,7 @@ export function getModelProperties(openApi: OpenApi, definition: OpenApiSchema):
                         type: 'property',
                         childType: prop.type,
                         childBase: prop.base,
+                        childValidation: null,
                     },
                 });
             } else {
@@ -40,9 +43,11 @@ export function getModelProperties(openApi: OpenApi, definition: OpenApiSchema):
                     type: prop.type,
                     base: prop.base,
                     template: prop.template,
+                    link: prop.link,
                     description: getComment(property.description),
                     readOnly: propertyReadOnly,
                     required: propertyRequired,
+                    nullable: false,
                     imports: prop.imports,
                     extends: prop.extends,
                     enum: prop.enum,

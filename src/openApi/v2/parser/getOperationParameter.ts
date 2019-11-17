@@ -12,6 +12,7 @@ export function getOperationParameter(openApi: OpenApi, parameter: OpenApiParame
         name: getOperationParameterName(parameter.name),
         type: 'any',
         base: 'any',
+        template: null,
         description: getComment(parameter.description),
         default: parameter.default,
         required: parameter.required || false,

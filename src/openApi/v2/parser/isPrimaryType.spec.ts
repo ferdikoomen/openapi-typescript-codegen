@@ -6,7 +6,6 @@ describe('isPrimaryType', () => {
         expect(isPrimaryType('boolean')).toBeTruthy();
         expect(isPrimaryType('string')).toBeTruthy();
         expect(isPrimaryType('any')).toBeTruthy();
-        expect(isPrimaryType('any[]')).toBeTruthy();
         expect(isPrimaryType('void')).toBeTruthy();
         expect(isPrimaryType('null')).toBeTruthy();
         expect(isPrimaryType('Array')).toBeFalsy();
