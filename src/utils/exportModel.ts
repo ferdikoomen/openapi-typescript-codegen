@@ -7,7 +7,7 @@ export function exportModel(model: Model): any {
         imports: getSortedImports(model.imports).filter(name => {
             return model.name !== name;
         }),
-        properties: Array.from(model.properties.values())
+        properties: model.properties
             .filter((property, index, arr) => {
                 return arr.findIndex(item => item.name === property.name) === index;
             })

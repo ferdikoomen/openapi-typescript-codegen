@@ -7,8 +7,9 @@ export interface Model {
     base: string;
     template: string | null;
     description: string | null;
+    validation: string | null;
     extends: string[];
     imports: string[];
     enum: Enum[];
-    properties: Map<string, ModelProperty>;
+    properties: ModelProperty[];
 }

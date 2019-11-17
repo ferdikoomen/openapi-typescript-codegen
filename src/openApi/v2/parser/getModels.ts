@@ -9,10 +9,8 @@ export function getModels(openApi: OpenApi): Map<string, Model> {
         if (openApi.definitions.hasOwnProperty(definitionName)) {
             const definition = openApi.definitions[definitionName];
             const definitionType = getType(definitionName);
-            if (!models.has(definitionType.base)) {
-                const model = getModel(openApi, definition, definitionType.base);
-                models.set(definitionType.base, model);
-            }
+            const model = getModel(openApi, definition, definitionType.base);
+            models.set(definitionType.base, model);
         }
     }
     return models;

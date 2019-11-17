@@ -7,4 +7,5 @@ export interface ModelProperty {
     required: boolean;
     nullable: boolean;
     description: string | null;
+    validation: string | null;
 }

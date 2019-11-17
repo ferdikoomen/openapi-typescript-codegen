@@ -1,6 +1,5 @@
 import { getSortedModels } from './getSortedModels';
 import { Model } from '../client/interfaces/Model';
-import { ModelProperty } from '../client/interfaces/ModelProperty';
 
 describe('getSortedModels', () => {
     it('should return sorted list', () => {
@@ -11,10 +10,11 @@ describe('getSortedModels', () => {
             base: 'John',
             template: null,
             description: null,
+            validation: null,
             extends: [],
             imports: [],
             enum: [],
-            properties: new Map<string, ModelProperty>(),
+            properties: [],
         });
         models.set('Jane', {
             name: 'Jane',
@@ -22,10 +22,11 @@ describe('getSortedModels', () => {
             base: 'Jane',
             template: null,
             description: null,
+            validation: null,
             extends: [],
             imports: [],
             enum: [],
-            properties: new Map<string, ModelProperty>(),
+            properties: [],
         });
         models.set('Doe', {
             name: 'Doe',
@@ -33,10 +34,11 @@ describe('getSortedModels', () => {
             base: 'Doe',
             template: null,
             description: null,
+            validation: null,
             extends: [],
             imports: [],
             enum: [],
-            properties: new Map<string, ModelProperty>(),
+            properties: [],
         });
 
         expect(getSortedModels(new Map<string, Model>())).toEqual([]);

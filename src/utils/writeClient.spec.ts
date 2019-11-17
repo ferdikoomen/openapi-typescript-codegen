@@ -6,6 +6,8 @@ import { Client } from '../client/interfaces/Client';
 import { Templates } from './readHandlebarsTemplates';
 import { Language } from '../index';
 import * as glob from 'glob';
+import { Model } from '../client/interfaces/Model';
+import { Service } from '../client/interfaces/Service';
 
 jest.mock('rimraf');
 jest.mock('mkdirp');
@@ -22,8 +24,8 @@ describe('writeClient', () => {
         const client: Client = {
             server: 'http://localhost:8080',
             version: 'v1',
-            models: [],
-            services: [],
+            models: new Map<string, Model>(),
+            services: new Map<string, Service>(),
         };
 
         const templates: Templates = {

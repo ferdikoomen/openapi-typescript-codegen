@@ -10,6 +10,7 @@ import { getOperationResponses } from './getOperationResponses';
 import { getOperationResponse } from './getOperationResponse';
 import { getOperationErrors } from './getOperationErrors';
 import { Operation } from '../../../client/interfaces/Operation';
+import { PrimaryType } from './constants';
 
 export function getOperation(openApi: OpenApi, url: string, method: string, op: OpenApiOperation): Operation {
     const serviceName = (op.tags && op.tags[0]) || 'Service';
@@ -35,7 +36,7 @@ export function getOperation(openApi: OpenApi, url: string, method: string, op: 
         parametersBody: null,
         imports: [],
         errors: [],
-        result: 'void',
+        result: PrimaryType.VOID,
     };
 
     // Parse the operation parameters (path, query, body, etc).

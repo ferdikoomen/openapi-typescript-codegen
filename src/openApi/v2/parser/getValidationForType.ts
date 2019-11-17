@@ -1,9 +1,8 @@
 import { PrimaryType } from './constants';
 import { Type } from '../../../client/interfaces/Type';
 
-export function getValidationForType(type: Type, required: boolean = false, nullable: boolean = false): string {
+export function getValidationForType(type: Type): string {
     let validation = `yup.mixed<${type.type}>()`;
-
     switch (type.type) {
         case PrimaryType.BOOLEAN:
             validation = `yup.boolean()`;
@@ -15,14 +14,5 @@ export function getValidationForType(type: Type, required: boolean = false, null
             validation = `yup.string()`;
             break;
     }
-
-    if (required) {
-        validation = `${validation}.required()`;
-    }
-
-    if (nullable) {
-        validation = `${validation}.nullable()`;
-    }
-
     return validation;
 }

@@ -9,13 +9,12 @@ const fsWriteFileSync = fs.writeFileSync as jest.MockedFunction<typeof fs.writeF
 
 describe('writeClientServices', () => {
     it('should write to filesystem', () => {
-        const services: Service[] = [
-            {
-                name: 'Item',
-                operations: [],
-                imports: [],
-            },
-        ];
+        const services = new Map<string, Service>();
+        services.set('Item', {
+            name: 'Item',
+            operations: [],
+            imports: [],
+        });
         const template = () => 'dummy';
         writeClientServices(services, Language.TYPESCRIPT, template, '/');
         expect(fsWriteFileSync).toBeCalledWith('/Item.ts', 'dummy');
