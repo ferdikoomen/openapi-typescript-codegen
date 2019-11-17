@@ -1,18 +1,18 @@
-import { getSortedModels } from './getSortedModels';
+import { getModelNames } from './getModelNames';
 import { Model } from '../client/interfaces/Model';
 
-describe('getSortedModels', () => {
+describe('getModelNames', () => {
     it('should return sorted list', () => {
         const models = new Map<string, Model>();
         models.set('John', {
             name: 'John',
             type: 'John',
             base: 'John',
-            template: null,
-            description: null,
-            validation: null,
-            extends: [],
+            readOnly: false,
+            required: false,
+            nullable: false,
             imports: [],
+            extends: [],
             enum: [],
             properties: [],
         });
@@ -20,11 +20,11 @@ describe('getSortedModels', () => {
             name: 'Jane',
             type: 'Jane',
             base: 'Jane',
-            template: null,
-            description: null,
-            validation: null,
-            extends: [],
+            readOnly: false,
+            required: false,
+            nullable: false,
             imports: [],
+            extends: [],
             enum: [],
             properties: [],
         });
@@ -32,16 +32,16 @@ describe('getSortedModels', () => {
             name: 'Doe',
             type: 'Doe',
             base: 'Doe',
-            template: null,
-            description: null,
-            validation: null,
-            extends: [],
+            readOnly: false,
+            required: false,
+            nullable: false,
             imports: [],
+            extends: [],
             enum: [],
             properties: [],
         });
 
-        expect(getSortedModels(new Map<string, Model>())).toEqual([]);
-        expect(getSortedModels(models)).toEqual(['Doe', 'Jane', 'John']);
+        expect(getModelNames(new Map<string, Model>())).toEqual([]);
+        expect(getModelNames(models)).toEqual(['Doe', 'Jane', 'John']);
     });
 });

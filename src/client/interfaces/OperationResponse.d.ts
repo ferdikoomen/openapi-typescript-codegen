@@ -3,6 +3,6 @@ export interface OperationResponse {
     text: string;
     type: string;
     base: string;
-    template: string | null;
+    template?: string;
     imports: string[];
 }

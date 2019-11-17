@@ -18,7 +18,6 @@ export function getOperationParameters(openApi: OpenApi, parameters: (OpenApiPar
         parametersQuery: [],
         parametersForm: [],
         parametersHeader: [],
-        parametersBody: null,
     };
 
     // Iterate over the parameters

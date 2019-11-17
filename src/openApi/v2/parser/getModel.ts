@@ -1,36 +1,24 @@
-import {OpenApi} from '../interfaces/OpenApi';
-import {OpenApiSchema} from '../interfaces/OpenApiSchema';
-import {getComment} from './getComment';
-import {getType} from './getType';
-import {Model} from '../../../client/interfaces/Model';
-import {PrimaryType} from './constants';
-import {getEnumType} from './getEnumType';
-import {getEnum} from './getEnum';
-import {getEnumFromDescription} from './getEnumFromDescription';
-import {getTypeFromProperties} from './getTypeFromProperties';
-import {getValidationForRef} from './getValidationForRef';
-import {getValidationForEnum} from './getValidationForEnum';
-import {getValidationForArrayRef} from './getValidationForArrayRef';
-import {getValidationForType} from './getValidationForType';
-import {getValidationForArray} from './getValidationForArray';
-import {getValidationForProperties} from './getValidationForProperties';
+import { OpenApi } from '../interfaces/OpenApi';
+import { OpenApiSchema } from '../interfaces/OpenApiSchema';
+import { getComment } from './getComment';
+import { getType } from './getType';
+import { Model } from '../../../client/interfaces/Model';
+import { PrimaryType } from './constants';
+import { getEnumType } from './getEnumType';
+import { getEnum } from './getEnum';
+import { getEnumFromDescription } from './getEnumFromDescription';
+import { getTypeFromProperties } from './getTypeFromProperties';
+import { getModelProperties } from './getModelProperties';
 
 export function getModel(openApi: OpenApi, definition: OpenApiSchema, name: string = ''): Model {
-    // TODO: Properties now contain ALL properties, so we need to filter out enums
-    // before we render the file, plus we need to calculate the final TYPE of a model
-    // by checking all the properties!
-    // After this we also need to calculate the validation
-    // this should all be done in a cleanup / prepare phase, not in this parsing phase
-
     const result: Model = {
         name,
         type: PrimaryType.OBJECT,
         base: PrimaryType.OBJECT,
-        template: null,
         description: getComment(definition.description),
-        validation: null,
-        extends: [],
+        readOnly: definition.readOnly,
         imports: [],
+        extends: [],
         enum: [],
         properties: [],
     };
@@ -41,7 +29,9 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, name: stri
         result.base = definitionRef.base;
         result.template = definitionRef.template;
         result.imports.push(...definitionRef.imports);
-        result.validation = getValidationForRef(definitionRef);
+        result.validation = {
+            type: 'ref',
+        };
         return result;
     }
 
@@ -52,7 +42,9 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, name: stri
             result.type = getEnumType(enumerators);
             result.base = PrimaryType.STRING;
             result.enum.push(...enumerators);
-            result.validation = getValidationForEnum(name, enumerators);
+            result.validation = {
+                type: 'enum',
+            };
             return result;
         }
         return result;
@@ -65,7 +57,9 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, name: stri
             result.type = getEnumType(enumerators);
             result.base = PrimaryType.NUMBER;
             result.enum.push(...enumerators);
-            result.validation = getValidationForEnum(name, enumerators);
+            result.validation = {
+                type: 'enum',
+            };
             return result;
         }
         return result;
@@ -80,114 +74,24 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, name: stri
             result.base = arrayItems.base;
             result.template = arrayItems.template;
             result.imports.push(...arrayItems.imports);
-            result.validation = getValidationForArrayRef(arrayItems);
+            result.validation = {
+                type: 'array',
+                childType: arrayItems.type,
+                childBase: arrayItems.base,
+            };
         } else {
             const arrayItems = getModel(openApi, definition.items);
             result.type = `${arrayItems.type}[]`;
             result.base = arrayItems.base;
             result.template = arrayItems.template;
             result.imports.push(...arrayItems.imports);
-            result.validation = getValidationForArray(name, arrayItems);
+            result.validation = {
+                type: 'array',
+                childType: arrayItems.type,
+                childBase: arrayItems.base,
+                childValidation: arrayItems.validation,
+            };
         }
-        return result;
-    }
-
-    // Check if this model extends other models
-    if (definition.allOf) {
-        definition.allOf.forEach(parent => {
-            if (parent.$ref) {
-                const parentRef = getType(parent.$ref);
-                result.extends.push(parentRef.type);
-                result.imports.push(parentRef.base);
-            }
-            if (parent.type === 'object' && parent.properties) {
-                for (const propertyName in parent.properties) {
-                    if (parent.properties.hasOwnProperty(propertyName)) {
-                        const property = parent.properties[propertyName];
-                        const propertyRequired = !!(parent.required && parent.required.includes(propertyName));
-                        const propertyReadOnly = !!property.readOnly;
-                        if (property.$ref) {
-                            const prop = getType(property.$ref);
-                            result.base = PrimaryType.OBJECT;
-                            result.imports.push(...prop.imports);
-                            result.properties.push({
-                                name: propertyName,
-                                type: prop.type,
-                                base: prop.base,
-                                template: prop.template,
-                                readOnly: propertyReadOnly,
-                                required: propertyRequired,
-                                nullable: false,
-                                description: property.description || null,
-                                validation: getValidationForRef(prop),
-                            });
-                        } else {
-                            const prop = getModel(openApi, property);
-                            result.base = PrimaryType.OBJECT;
-                            result.imports.push(...prop.imports);
-                            result.properties.push({
-                                name: propertyName,
-                                type: prop.type,
-                                base: prop.base,
-                                template: prop.template,
-                                readOnly: propertyReadOnly,
-                                required: propertyRequired,
-                                nullable: false,
-                                description: property.description || null,
-                                validation: prop.validation,
-                            });
-                        }
-                    }
-                }
-            }
-        });
-        result.type = getTypeFromProperties(result.properties);
-        result.base = PrimaryType.OBJECT;
-        result.validation = getValidationForProperties(name, result.properties, result.extends);
-    }
-
-    if (definition.type === 'object' && definition.properties) {
-        for (const propertyName in definition.properties) {
-            if (definition.properties.hasOwnProperty(propertyName)) {
-                const property = definition.properties[propertyName];
-                const propertyRequired = !!(definition.required && definition.required.includes(propertyName));
-                const propertyReadOnly = !!property.readOnly;
-                if (property.$ref) {
-                    const prop = getType(property.$ref);
-                    result.base = PrimaryType.OBJECT;
-                    result.imports.push(...prop.imports);
-                    result.properties.push({
-                        name: propertyName,
-                        type: prop.type,
-                        base: prop.base,
-                        template: prop.template,
-                        readOnly: propertyReadOnly,
-                        required: propertyRequired,
-                        nullable: false,
-                        description: property.description || null,
-                        validation: getValidationForRef(prop),
-                    });
-                } else {
-                    const prop = getModel(openApi, property);
-                    result.base = PrimaryType.OBJECT;
-                    result.imports.push(...prop.imports);
-                    result.properties.push({
-                        name: propertyName,
-                        type: prop.type,
-                        base: prop.base,
-                        template: prop.template,
-                        readOnly: propertyReadOnly,
-                        required: propertyRequired,
-                        nullable: false,
-                        description: property.description || null,
-                        validation: prop.validation,
-                    });
-                }
-            }
-        }
-        result.type = getTypeFromProperties(result.properties);
-        result.base = PrimaryType.OBJECT;
-        result.validation = getValidationForProperties(name, result.properties, result.extends);
         return result;
     }
 
@@ -201,28 +105,74 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, name: stri
             result.base = 'Dictionary';
             result.template = additionalProperties.type;
             result.imports.push(...additionalProperties.imports);
-            result.imports.push('Dictionary');
-            console.log(name, 'Dictionary', result.type);
+            result.validation = {
+                type: 'dictionary',
+                childType: additionalProperties.type,
+                childBase: additionalProperties.base,
+            };
         } else {
             const additionalProperties = getModel(openApi, definition.additionalProperties);
             result.type = `Dictionary<${additionalProperties.type}>`;
             result.base = 'Dictionary';
             result.template = additionalProperties.type;
             result.imports.push(...additionalProperties.imports);
-            result.imports.push('Dictionary');
-            console.log(name, 'Dictionary', result.type);
+            result.validation = {
+                type: 'dictionary',
+                childType: additionalProperties.type,
+                childBase: additionalProperties.base,
+                childValidation: additionalProperties.validation,
+            };
         }
         return result;
     }
 
+    // Check if this model extends other models
+    if (definition.allOf) {
+        definition.allOf.forEach(parent => {
+            if (parent.$ref) {
+                const parentRef = getType(parent.$ref);
+                result.extends.push(parentRef.type);
+                result.imports.push(parentRef.base);
+            }
+            if (parent.type === 'object' && parent.properties) {
+                const properties = getModelProperties(openApi, parent);
+                properties.forEach(property => {
+                    result.properties.push(property);
+                    result.imports.push(...property.imports);
+                });
+            }
+        });
+        result.type = getTypeFromProperties(result.properties);
+        result.base = PrimaryType.OBJECT;
+        result.validation = {
+            type: 'model',
+        };
+    }
+
+    if (definition.type === 'object' && definition.properties) {
+        const properties = getModelProperties(openApi, definition);
+        properties.forEach(property => {
+            result.properties.push(property);
+            result.imports.push(...property.imports);
+        });
+        result.type = getTypeFromProperties(result.properties);
+        result.base = PrimaryType.OBJECT;
+        result.validation = {
+            type: 'model',
+        };
+        return result;
+    }
+
     // If the schema has a type than it can be a basic or generic type.
-    if (definition.type !== 'object' && definition.type) {
+    if (definition.type) {
         const definitionType = getType(definition.type);
         result.type = definitionType.type;
         result.base = definitionType.base;
         result.template = definitionType.template;
         result.imports.push(...definitionType.imports);
-        result.validation = getValidationForType(definitionType);
+        result.validation = {
+            type: 'type',
+        };
         return result;
     }
 

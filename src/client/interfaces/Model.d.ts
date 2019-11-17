@@ -1,15 +1,18 @@
-import { ModelProperty } from './ModelProperty';
 import { Enum } from './Enum';
+import { Validation } from './Validation';
 
 export interface Model {
     name: string;
     type: string;
     base: string;
-    template: string | null;
-    description: string | null;
-    validation: string | null;
-    extends: string[];
+    template?: string;
+    description?: string;
+    readOnly?: boolean;
+    required?: boolean;
+    nullable?: boolean;
     imports: string[];
+    extends: string[];
     enum: Enum[];
-    properties: ModelProperty[];
+    properties: Model[];
+    validation?: Validation;
 }

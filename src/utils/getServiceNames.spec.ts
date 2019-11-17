@@ -1,7 +1,7 @@
-import { getSortedServices } from './getSortedServices';
+import { getServiceNames } from './getServiceNames';
 import { Service } from '../client/interfaces/Service';
 
-describe('getSortedServices', () => {
+describe('getServiceNames', () => {
     it('should return sorted list', () => {
         const services = new Map<string, Service>();
         services.set('John', {
@@ -20,7 +20,7 @@ describe('getSortedServices', () => {
             imports: [],
         });
 
-        expect(getSortedServices(new Map<string, Service>())).toEqual([]);
-        expect(getSortedServices(services)).toEqual(['Doe', 'Jane', 'John']);
+        expect(getServiceNames(new Map<string, Service>())).toEqual([]);
+        expect(getServiceNames(services)).toEqual(['Doe', 'Jane', 'John']);
     });
 });

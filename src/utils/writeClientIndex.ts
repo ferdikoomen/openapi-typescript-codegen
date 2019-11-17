@@ -2,8 +2,8 @@ import { Client } from '../client/interfaces/Client';
 import * as handlebars from 'handlebars';
 import * as fs from 'fs';
 import * as path from 'path';
-import { getSortedModels } from './getSortedModels';
-import { getSortedServices } from './getSortedServices';
+import { getModelNames } from './getModelNames';
+import { getServiceNames } from './getServiceNames';
 import { Language } from '../index';
 import { getFileName } from './getFileName';
 
@@ -24,8 +24,8 @@ export function writeClientIndex(client: Client, language: Language, template: h
             template({
                 server: client.server,
                 version: client.version,
-                models: getSortedModels(client.models),
-                services: getSortedServices(client.services),
+                models: getModelNames(client.models),
+                services: getServiceNames(client.services),
             })
         );
     } catch (e) {

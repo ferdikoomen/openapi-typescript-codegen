@@ -1,6 +1,6 @@
 import { Model } from '../client/interfaces/Model';
 
-export function getSortedModels(models: Map<string, Model>): string[] {
+export function getModelNames(models: Map<string, Model>): string[] {
     return Array.from(models.values())
         .sort((a, b) => {
             const nameA = a.name.toLowerCase();

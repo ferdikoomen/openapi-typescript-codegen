@@ -102,6 +102,13 @@
                 "type": "string"
             }
         },
+        "DictionaryWithReference": {
+            "description": "This is a string reference",
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/definitions/ModelWithString"
+            }
+        },
         "DictionaryWithArray": {
             "description": "This is a complex dictionary",
             "type": "object",

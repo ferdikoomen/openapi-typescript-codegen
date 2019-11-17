@@ -15,7 +15,6 @@ describe('getModelTemplate', () => {
         const template = getModelTemplate({
             type: 'string',
             base: 'string',
-            template: null,
             imports: [],
         });
         expect(template).toEqual('');

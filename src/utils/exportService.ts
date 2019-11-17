@@ -1,13 +1,21 @@
 import { Service } from '../client/interfaces/Service';
-import { getSortedImports } from './getSortedImports';
 
 export function exportService(service: Service): any {
     const names = new Map<string, number>();
     return {
         ...service,
-        imports: getSortedImports(service.imports).filter(name => {
-            return service.name !== name;
-        }),
+        imports: service.imports
+            .filter(name => {
+                return service.name !== name;
+            })
+            .filter((name, index, arr) => {
+                return arr.indexOf(name) === index;
+            })
+            .sort((a, b) => {
+                const nameA = a.toLowerCase();
+                const nameB = b.toLowerCase();
+                return nameA.localeCompare(nameB);
+            }),
         operations: service.operations
             .map(operation => {
                 const name = operation.name;

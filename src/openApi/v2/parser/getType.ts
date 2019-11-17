@@ -8,11 +8,10 @@ import { PrimaryType } from './constants';
  * @param value String value like "integer" or "Link[Model]".
  * @param template Optional template class from parent (needed to process generics)
  */
-export function getType(value: string | undefined, template: string | null = null): Type {
+export function getType(value: string | undefined, template?: string): Type {
     const result: Type = {
         type: PrimaryType.OBJECT,
         base: PrimaryType.OBJECT,
-        template: null,
         imports: [],
     };
 

@@ -1,7 +1,7 @@
 import { EOL } from 'os';
-import { ModelProperty } from '../../../client/interfaces/ModelProperty';
+import { Model } from '../../../client/interfaces/Model';
 
-export function getTypeFromProperties(properties: ModelProperty[]): string {
+export function getTypeFromProperties(properties: Model[]): string {
     return [
         `{`,
         ...properties.map(property => {

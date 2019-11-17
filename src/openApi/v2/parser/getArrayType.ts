@@ -5,8 +5,8 @@ import { OpenApiItems } from '../interfaces/OpenApiItems';
 export interface ArrayType {
     type: string;
     base: string;
-    template: string | null;
-    default: any | undefined;
+    template?: string;
+    default?: any;
     imports: string[];
 }
 
@@ -14,7 +14,6 @@ export function getArrayType(items: OpenApiItems): ArrayType {
     const result: ArrayType = {
         type: PrimaryType.OBJECT,
         base: PrimaryType.OBJECT,
-        template: null,
         default: items.default,
         imports: [],
     };

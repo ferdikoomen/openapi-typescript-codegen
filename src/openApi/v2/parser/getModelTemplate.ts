@@ -7,5 +7,5 @@ import { Type } from '../../../client/interfaces/Type';
  * @returns The model template type (<T> or empty).
  */
 export function getModelTemplate(modelClass: Type): string {
-    return modelClass.template !== null ? '<T>' : '';
+    return modelClass.template ? '<T>' : '';
 }

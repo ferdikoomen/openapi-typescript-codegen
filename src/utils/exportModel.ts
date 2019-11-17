@@ -1,12 +1,20 @@
-import { getSortedImports } from './getSortedImports';
 import { Model } from '../client/interfaces/Model';
 
 export function exportModel(model: Model): any {
     return {
         ...model,
-        imports: getSortedImports(model.imports).filter(name => {
-            return model.name !== name;
-        }),
+        imports: model.imports
+            .filter(name => {
+                return model.name !== name;
+            })
+            .filter((name, index, arr) => {
+                return arr.indexOf(name) === index;
+            })
+            .sort((a, b) => {
+                const nameA = a.toLowerCase();
+                const nameB = b.toLowerCase();
+                return nameA.localeCompare(nameB);
+            }),
         properties: model.properties
             .filter((property, index, arr) => {
                 return arr.findIndex(item => item.name === property.name) === index;

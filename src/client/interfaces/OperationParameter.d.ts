@@ -4,9 +4,9 @@ export interface OperationParameter {
     name: string;
     type: string;
     base: string;
-    template: string | null;
-    description: string | null;
-    default: any | undefined;
+    template?: string;
+    description?: string;
+    default?: any;
     required: boolean;
     nullable: boolean;
     imports: string[];

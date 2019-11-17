@@ -1,6 +1,6 @@
 export interface Type {
     type: string;
     base: string;
-    template: string | null;
+    template?: string;
     imports: string[];
 }

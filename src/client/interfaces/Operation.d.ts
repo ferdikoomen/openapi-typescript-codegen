@@ -4,8 +4,8 @@ import { OperationParameters } from './OperationParameters';
 export interface Operation extends OperationParameters {
     service: string;
     name: string;
-    summary: string | null;
-    description: string | null;
+    summary?: string;
+    description?: string;
     deprecated: boolean;
     method: string;
     path: string;

@@ -25,7 +25,6 @@ export function getOperationResponses(openApi: OpenApi, responses: OpenApiRespon
                     text: response.description || '',
                     type: 'any',
                     base: 'any',
-                    template: null,
                     imports: [],
                 };
 
