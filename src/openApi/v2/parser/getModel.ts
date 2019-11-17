@@ -20,6 +20,7 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, name: stri
         imports: [],
         extends: [],
         enum: [],
+        enums: [],
         properties: [],
     };
 

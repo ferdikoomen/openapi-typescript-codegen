@@ -1,13 +1,12 @@
 import { Dictionary } from '../../../utils/types';
 import { OpenApiExternalDocs } from './OpenApiExternalDocs';
-import { OpenApiReference } from './OpenApiReference';
 import { OpenApiXml } from './OpenApiXml';
+import { OpenApiReference } from './OpenApiReference';
 
 /**
  * https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#schemaObject
  */
-export interface OpenApiSchema {
-    $ref?: string;
+export interface OpenApiSchema extends OpenApiReference {
     format?: 'int32' | 'int64' | 'float' | 'double' | 'string' | 'boolean' | 'byte' | 'binary' | 'date' | 'date-time' | 'password';
     title?: string;
     description?: string;
@@ -28,10 +27,10 @@ export interface OpenApiSchema {
     required?: string[];
     enum?: (string | number)[];
     type?: string;
-    items?: OpenApiSchema & OpenApiReference;
-    allOf?: (OpenApiSchema & OpenApiReference)[];
-    properties?: Dictionary<OpenApiSchema & OpenApiReference>;
-    additionalProperties?: boolean | (OpenApiSchema & OpenApiReference);
+    items?: OpenApiSchema;
+    allOf?: OpenApiSchema[];
+    properties?: Dictionary<OpenApiSchema>;
+    additionalProperties?: boolean | OpenApiSchema;
     discriminator?: string;
     readOnly?: boolean;
     xml?: OpenApiXml;

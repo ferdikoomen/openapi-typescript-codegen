@@ -7,7 +7,7 @@ import { OpenApiReference } from './OpenApiReference';
 /**
  * https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#responseObject
  */
-export interface OpenApiResponse {
+export interface OpenApiResponse extends OpenApiReference {
     description: string;
     schema?: OpenApiSchema & OpenApiReference;
     headers?: Dictionary<OpenApiHeader>;

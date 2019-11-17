@@ -1,6 +1,6 @@
 import { EOL } from 'os';
 
-export function getComment(comment: string | undefined): string | undefined {
+export function getComment(comment?: string): string | undefined {
     if (comment) {
         return comment
             .split(/(\r\n|\n|\r)+/g)

@@ -1,5 +1,4 @@
 import { OpenApiParameter } from '../interfaces/OpenApiParameter';
-import { OpenApiReference } from '../interfaces/OpenApiReference';
 import { OpenApi } from '../interfaces/OpenApi';
 import { getRef } from './getRef';
 import { OperationParameters } from '../../../client/interfaces/OperationParameters';
@@ -10,7 +9,7 @@ function sortByRequired(a: OperationParameter, b: OperationParameter): number {
     return a.required && !b.required ? -1 : !a.required && b.required ? 1 : 0;
 }
 
-export function getOperationParameters(openApi: OpenApi, parameters: (OpenApiParameter & OpenApiReference)[]): OperationParameters {
+export function getOperationParameters(openApi: OpenApi, parameters: OpenApiParameter[]): OperationParameters {
     const result: OperationParameters = {
         imports: [],
         parameters: [],

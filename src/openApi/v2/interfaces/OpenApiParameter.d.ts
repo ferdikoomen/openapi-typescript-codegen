@@ -1,16 +1,15 @@
 import { OpenApiItems } from './OpenApiItems';
 import { OpenApiSchema } from './OpenApiSchema';
-import { OpenApiReference } from './OpenApiReference';
 
 /**
  * https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#parameterObject
  */
-export interface OpenApiParameter {
+export interface OpenApiParameter extends OpenApiReference {
     name: string;
     in: 'path' | 'query' | 'header' | 'formData' | 'body';
     description?: string;
     required?: boolean;
-    schema?: OpenApiSchema & OpenApiReference;
+    schema?: OpenApiSchema;
     type?: string;
     format?: 'int32' | 'int64' | 'float' | 'double' | 'string' | 'boolean' | 'byte' | 'binary' | 'date' | 'date-time' | 'password';
     allowEmptyValue?: boolean;

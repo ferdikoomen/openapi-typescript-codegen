@@ -6,7 +6,7 @@ import { OpenApiSchema } from './OpenApiSchema';
 /**
  * https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#headerObject
  */
-export interface OpenApiHeader {
+export interface OpenApiHeader extends OpenApiReference {
     description?: string;
     required?: boolean;
     deprecated?: boolean;
@@ -14,7 +14,7 @@ export interface OpenApiHeader {
     style?: string;
     explode?: boolean;
     allowReserved?: boolean;
-    schema?: OpenApiSchema & OpenApiReference;
+    schema?: OpenApiSchema;
     example?: any;
-    examples?: Dictionary<OpenApiExample & OpenApiReference>;
+    examples?: Dictionary<OpenApiExample>;
 }

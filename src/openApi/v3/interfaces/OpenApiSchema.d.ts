@@ -7,7 +7,7 @@ import { OpenApiXml } from './OpenApiXml';
 /**
  * https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#schemaObject
  */
-export interface OpenApiSchema {
+export interface OpenApiSchema extends OpenApiReference {
     title?: string;
     multipleOf?: number;
     maximum?: number;
@@ -25,13 +25,13 @@ export interface OpenApiSchema {
     required?: string[];
     enum?: string[];
     type?: string;
-    allOf?: (OpenApiSchema & OpenApiReference)[];
-    oneOf?: (OpenApiSchema & OpenApiReference)[];
-    anyOf?: (OpenApiSchema & OpenApiReference)[];
-    not?: (OpenApiSchema & OpenApiReference)[];
-    items?: OpenApiSchema & OpenApiReference;
-    properties?: Dictionary<OpenApiSchema & OpenApiReference>;
-    additionalProperties?: boolean | (OpenApiSchema & OpenApiReference);
+    allOf?: OpenApiSchema[];
+    oneOf?: OpenApiSchema[];
+    anyOf?: OpenApiSchema[];
+    not?: OpenApiSchema[];
+    items?: OpenApiSchema;
+    properties?: Dictionary<OpenApiSchema>;
+    additionalProperties?: boolean | OpenApiSchema;
     description?: string;
     format?: 'int32' | 'int64' | 'float' | 'double' | 'string' | 'boolean' | 'byte' | 'binary' | 'date' | 'date-time' | 'password';
     default?: any;

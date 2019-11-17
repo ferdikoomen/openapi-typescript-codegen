@@ -1,5 +1,4 @@
 import { OpenApiSchema } from '../interfaces/OpenApiSchema';
-import { OpenApiReference } from '../interfaces/OpenApiReference';
 import { OpenApi } from '../interfaces/OpenApi';
 import { PrimaryType } from './constants';
 
@@ -10,7 +9,7 @@ export interface SchemaReference {
     imports: string[];
 }
 
-export function getSchemaReference(openApi: OpenApi, schema: OpenApiSchema & OpenApiReference): SchemaReference {
+export function getSchemaReference(openApi: OpenApi, schema: OpenApiSchema): SchemaReference {
     const result: SchemaReference = {
         type: PrimaryType.OBJECT,
         base: PrimaryType.OBJECT,

@@ -3,10 +3,9 @@ import { OpenApiSchema } from '../interfaces/OpenApiSchema';
 import { getComment } from './getComment';
 import { getType } from './getType';
 import { Model } from '../../../client/interfaces/Model';
-import { OpenApiReference } from '../interfaces/OpenApiReference';
 import { getModel } from './getModel';
 
-export function getModelProperties(openApi: OpenApi, definition: OpenApiSchema & OpenApiReference): Model[] {
+export function getModelProperties(openApi: OpenApi, definition: OpenApiSchema): Model[] {
     const result: Model[] = [];
     for (const propertyName in definition.properties) {
         if (definition.properties.hasOwnProperty(propertyName)) {
@@ -20,12 +19,13 @@ export function getModelProperties(openApi: OpenApi, definition: OpenApiSchema &
                     type: prop.type,
                     base: prop.base,
                     template: prop.template,
-                    description: getComment(definition.description),
+                    description: getComment(property.description),
                     readOnly: propertyReadOnly,
                     required: propertyRequired,
                     imports: prop.imports,
                     extends: [],
                     enum: [],
+                    enums: [],
                     properties: [],
                     validation: {
                         type: 'property',
@@ -40,12 +40,13 @@ export function getModelProperties(openApi: OpenApi, definition: OpenApiSchema &
                     type: prop.type,
                     base: prop.base,
                     template: prop.template,
-                    description: property.description,
+                    description: getComment(property.description),
                     readOnly: propertyReadOnly,
                     required: propertyRequired,
                     imports: prop.imports,
                     extends: prop.extends,
                     enum: prop.enum,
+                    enums: prop.enums,
                     properties: prop.properties,
                     validation: {
                         type: 'property',

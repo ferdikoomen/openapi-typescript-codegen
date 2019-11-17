@@ -6,7 +6,7 @@ import { OpenApiSchema } from './OpenApiSchema';
 /**
  * https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#parameterObject
  */
-export interface OpenApiParameter {
+export interface OpenApiParameter extends OpenApiReference {
     name: string;
     in: 'path' | 'query' | 'header' | 'cookie';
     description?: string;
@@ -16,7 +16,7 @@ export interface OpenApiParameter {
     style?: string;
     explode?: boolean;
     allowReserved?: boolean;
-    schema?: OpenApiSchema & OpenApiReference;
+    schema?: OpenApiSchema;
     example?: any;
-    examples?: Dictionary<OpenApiExample & OpenApiReference>;
+    examples?: Dictionary<OpenApiExample>;
 }

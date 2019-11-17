@@ -1,6 +1,5 @@
 import { OpenApiExternalDocs } from './OpenApiExternalDocs';
 import { OpenApiParameter } from './OpenApiParameter';
-import { OpenApiReference } from './OpenApiReference';
 import { OpenApiResponses } from './OpenApiResponses';
 import { OpenApiSecurityRequirement } from './OpenApiSecurityRequirement';
 
@@ -15,7 +14,7 @@ export interface OpenApiOperation {
     operationId?: string;
     consumes?: string[];
     produces?: string[];
-    parameters?: (OpenApiParameter & OpenApiReference)[];
+    parameters?: OpenApiParameter[];
     responses: OpenApiResponses;
     schemes: ('http' | 'https' | 'ws' | 'wss')[];
     deprecated?: boolean;

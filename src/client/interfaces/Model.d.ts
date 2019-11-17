@@ -13,6 +13,7 @@ export interface Model {
     imports: string[];
     extends: string[];
     enum: Enum[];
+    enums: Model[];
     properties: Model[];
     validation?: Validation;
 }

@@ -1,6 +1,5 @@
 import { OpenApiOperation } from './OpenApiOperation';
 import { OpenApiParameter } from './OpenApiParameter';
-import { OpenApiReference } from './OpenApiReference';
 import { OpenApiServer } from './OpenApiServer';
 
 /**
@@ -18,5 +17,5 @@ export interface OpenApiPath {
     patch?: OpenApiOperation;
     trace?: OpenApiOperation;
     servers?: OpenApiServer[];
-    parameters?: (OpenApiParameter & OpenApiReference)[];
+    parameters?: OpenApiParameter[];
 }
