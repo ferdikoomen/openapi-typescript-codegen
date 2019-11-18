@@ -1,12 +1,12 @@
 import { Enum } from './Enum';
-import { Validation } from './Validation';
 
 export interface Model {
     name: string;
+    export: 'reference' | 'generic' | 'enum' | 'array' | 'dictionary' | 'interface';
     type: string;
     base: string;
-    link: Model | null;
     template: string | null;
+    link: Model | null;
     description: string | null;
     readOnly: boolean;
     required: boolean;
@@ -16,5 +16,4 @@ export interface Model {
     enum: Enum[];
     enums: Model[];
     properties: Model[];
-    validation: Validation | null;
 }

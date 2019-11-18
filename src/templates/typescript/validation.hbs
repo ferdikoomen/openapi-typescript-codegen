@@ -1,1 +1,13 @@
-yup.mixed()
+{{~#eq export 'reference'~}}
+{{>validationForReference}}
+{{~else eq export 'generic'~}}
+{{>validationForGeneric}}
+{{~else eq export 'enum'~}}
+{{>validationForEnum}}
+{{~else eq export 'array'~}}
+{{>validationForArray}}
+{{~else eq export 'dictionary'~}}
+{{>validationForDictionary}}
+{{~else eq export 'interface'~}}
+{{>validationForInterface}}
+{{~/eq~}}

@@ -1,5 +1,4 @@
 export type {{{name}}} = {{>type}}{{#if nullable}} | null{{/if}};
-{{#if validation}}
 
 export namespace {{{name}}} {
 
@@ -13,4 +12,3 @@ export namespace {{{name}}} {
         return schema.validateSync(value, { strict: true });
     }
 }
-{{/if}}

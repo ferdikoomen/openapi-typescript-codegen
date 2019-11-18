@@ -1,0 +1,14 @@
+export type {{{name}}} = Array<{{>type}}>{{#if nullable}} | null{{/if}};
+
+export namespace {{{name}}} {
+
+    export const schema = {{>validation}};
+
+    export function validate(value: any): Promise<{{{name}}}{{#if nullable}} | null{{/if}}> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): {{{name}}}{{#if nullable}} | null{{/if}} {
+        return schema.validateSync(value, { strict: true });
+    }
+}

@@ -16,35 +16,24 @@ export function getType(value?: string, template?: string): Type {
         imports: [],
     };
 
-    // Remove definitions prefix and cleanup string.
     const valueClean = stripNamespace(value || '');
 
-    // Check of we have an Array type or generic type, for instance: "Link[Model]".
     if (/\[.*\]$/g.test(valueClean)) {
         const matches = valueClean.match(/(.*?)\[(.*)\]$/);
         if (matches && matches.length) {
-            // Both of the types can be complex types so parse each of them.
             const match1 = getType(matches[1]);
             const match2 = getType(matches[2]);
 
-            // If the first match is a generic array then construct a correct array type,
-            // for example the type "Array[Model]" becomes "Array<Model>".
-            if (match1.type === 'Array') {
-                result.type = `Array<${match2.type}>`;
-                result.base = match2.type;
-                match1.imports = [];
-            } else if (match2.type === '') {
-                result.type = match1.type;
-                result.base = match1.type;
-                result.template = match1.type;
-                match2.imports = [];
-            } else {
+            if (match2.type) {
                 result.type = `${match1.type}<${match2.type}>`;
                 result.base = match1.type;
                 result.template = match2.type;
+            } else {
+                result.type = match1.type;
+                result.base = match1.type;
+                result.template = match1.type;
             }
 
-            // Either way we need to add the found imports
             result.imports.push(...match1.imports);
             result.imports.push(...match2.imports);
         }

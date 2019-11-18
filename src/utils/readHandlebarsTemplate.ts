@@ -7,10 +7,17 @@ import * as handlebars from 'handlebars';
  */
 export function readHandlebarsTemplate(filePath: string): handlebars.TemplateDelegate {
     if (fs.existsSync(filePath)) {
-        const template = fs.readFileSync(filePath, 'utf8').toString();
         try {
+            const template = fs
+                .readFileSync(filePath, 'utf8')
+                .toString()
+                .trim();
             return handlebars.compile(template, {
                 strict: true,
+                knownHelpersOnly: true,
+                knownHelpers: {
+                    eq: true,
+                },
             });
         } catch (e) {
             throw new Error(`Could not compile Handlebar template: "${filePath}"`);

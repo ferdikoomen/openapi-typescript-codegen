@@ -1,9 +1,8 @@
 export enum {{{name}}} {
-    {{#each symbols}}
+    {{#each enum}}
     {{{name}}} = {{{value}}},
     {{/each}}
 }
-{{#if validation}}
 
 export namespace {{{name}}} {
 
@@ -17,4 +16,3 @@ export namespace {{{name}}} {
         return schema.validateSync(value, { strict: true });
     }
 }
-{{/if}}

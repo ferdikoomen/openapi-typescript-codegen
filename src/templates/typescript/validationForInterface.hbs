@@ -1,0 +1,15 @@
+{{~#if extends~}}
+{{#each extends}}
+{{{this}}}.schema.concat(
+{{/each}}
+{{~/if~}}
+yup.object{{#if name}}<{{{name}}}>{{/if}}().shape({
+    {{#each properties}}
+    {{{name}}}: yup.lazy(() => {{>validation this}}.default(undefined)){{#if required}}.required(){{/if}}{{#if nullable}}.nullable(){{/if}},
+    {{/each}}
+}).noUnknown()
+{{~#if extends~}}
+{{#each extends}}
+)
+{{/each}}
+{{~/if~}}

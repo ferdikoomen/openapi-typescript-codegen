@@ -1,0 +1,9 @@
+{{~#eq type 'boolean'~}}
+yup.boolean()
+{{~else eq type 'number'~}}
+yup.number()
+{{~else eq type 'string'~}}
+yup.string()
+{{~else~}}
+yup.mixed<{{{type}}}>()
+{{~/eq~}}

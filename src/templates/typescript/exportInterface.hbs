@@ -24,7 +24,6 @@ export namespace {{{name}}} {
     }
 
     {{/each}}
-    {{#if validation}}
     export const schema = {{>validation}};
 
     export function validate(value: any): Promise<{{{name}}}{{{template}}}> {
@@ -34,5 +33,4 @@ export namespace {{{name}}} {
     export function validateSync(value: any): {{{name}}}{{{template}}} {
         return schema.validateSync(value, { strict: true });
     }
-    {{/if}}
 }

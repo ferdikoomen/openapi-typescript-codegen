@@ -16,6 +16,7 @@ export function getModelProperties(openApi: OpenApi, definition: OpenApiSchema):
                 const prop = getType(property.$ref);
                 result.push({
                     name: propertyName,
+                    export: 'reference',
                     type: prop.type,
                     base: prop.base,
                     template: prop.template,
@@ -29,17 +30,12 @@ export function getModelProperties(openApi: OpenApi, definition: OpenApiSchema):
                     enum: [],
                     enums: [],
                     properties: [],
-                    validation: {
-                        type: 'property',
-                        childType: prop.type,
-                        childBase: prop.base,
-                        childValidation: null,
-                    },
                 });
             } else {
                 const prop = getModel(openApi, property);
                 result.push({
                     name: propertyName,
+                    export: prop.export,
                     type: prop.type,
                     base: prop.base,
                     template: prop.template,
@@ -53,12 +49,6 @@ export function getModelProperties(openApi: OpenApi, definition: OpenApiSchema):
                     enum: prop.enum,
                     enums: prop.enums,
                     properties: prop.properties,
-                    validation: {
-                        type: 'property',
-                        childType: prop.type,
-                        childBase: prop.base,
-                        childValidation: prop.validation,
-                    },
                 });
             }
         }
