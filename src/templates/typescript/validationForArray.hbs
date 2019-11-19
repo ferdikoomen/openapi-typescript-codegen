@@ -1,1 +1,5 @@
-yup.mixed()
+{{~#if link~}}
+yup.array<{{>type link}}>().of({{>validation link}})
+{{~else~}}
+yup.array<{{{type}}}>().of({{{base}}}.schema)
+{{~/if~}}

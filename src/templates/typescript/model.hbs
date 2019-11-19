@@ -8,25 +8,19 @@
 import { {{{this}}} } from '../models/{{{this}}}';
 {{/each}}
 {{/if}}
-import Dictionary from '../core/Dictionary';
+import { Dictionary } from '../core/Dictionary';
 import * as yup from 'yup';
 
-{{#if description}}
-/**
- * {{{description}}}
- */
-{{/if}}
-
-{{~#eq export 'reference'~}}
+{{#eq export 'reference'}}
 {{>exportReference}}
-{{~else eq export 'generic'~}}
+{{else eq export 'generic'}}
 {{>exportGeneric}}
-{{~else eq export 'enum'~}}
+{{else eq export 'enum'}}
 {{>exportEnum}}
-{{~else eq export 'array'~}}
+{{else eq export 'array'}}
 {{>exportArray}}
-{{~else eq export 'dictionary'~}}
+{{else eq export 'dictionary'}}
 {{>exportDictionary}}
-{{~else eq export 'interface'~}}
+{{else eq export 'interface'}}
 {{>exportInterface}}
-{{~/eq~}}
+{{/eq}}

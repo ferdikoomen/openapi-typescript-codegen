@@ -1,3 +1,8 @@
+{{#if description}}
+/**
+ * {{{description}}}
+ */
+{{/if}}
 export type {{{name}}} = {{>type}}{{#if nullable}} | null{{/if}};
 
 export namespace {{{name}}} {

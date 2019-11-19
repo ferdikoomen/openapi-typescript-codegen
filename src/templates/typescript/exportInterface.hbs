@@ -1,3 +1,8 @@
+{{#if description}}
+/**
+ * {{{description}}}
+ */
+{{/if}}
 export interface {{{name}}}{{{template}}}{{#if extends}} extends{{#each extends}} {{{this}}}{{/each}}{{/if}} {
     {{#each properties}}
     {{#if description}}

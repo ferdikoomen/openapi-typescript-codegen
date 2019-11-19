@@ -5,7 +5,7 @@
 {{~/if~}}
 yup.object{{#if name}}<{{{name}}}>{{/if}}().shape({
     {{#each properties}}
-    {{{name}}}: yup.lazy(() => {{>validation this}}.default(undefined)){{#if required}}.required(){{/if}}{{#if nullable}}.nullable(){{/if}},
+    {{{name}}}: yup.lazy(() => {{>validation}}.default(undefined)){{#if required}}.required(){{/if}}{{#if nullable}}.nullable(){{/if}},
     {{/each}}
 }).noUnknown()
 {{~#if extends~}}

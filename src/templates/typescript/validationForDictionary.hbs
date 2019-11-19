@@ -1,1 +1,19 @@
-yup.mixed()
+{{~#if link~}}
+yup.lazy<Dictionary<{{>type link}}>>(value =>
+    yup.object<Dictionary<{{>type link}}>>().shape(
+        Object.entries(value).reduce((obj, item) => ({
+            ...obj,
+            [item[0]]: {{>validation link}},
+        }), {})
+    )
+)
+{{~else~}}
+yup.lazy<Dictionary<{{{type}}}>>(value =>
+    yup.object<Dictionary<{{{type}}}>>().shape(
+        Object.entries(value).reduce((obj, item) => ({
+            ...obj,
+            [item[0]]: {{{base}}}.schema,
+        }), {})
+    )
+)
+{{~/if~}}
