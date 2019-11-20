@@ -1,21 +1,24 @@
 import * as fs from 'fs';
-import * as handlebars from 'handlebars';
+import * as Handlebars from 'handlebars';
 
 /**
  * Read and compile the Handlebars template.
  * @param filePath
  */
-export function readHandlebarsTemplate(filePath: string): handlebars.TemplateDelegate {
+export function readHandlebarsTemplate(filePath: string): Handlebars.TemplateDelegate {
     if (fs.existsSync(filePath)) {
         try {
             const template = fs
                 .readFileSync(filePath, 'utf8')
                 .toString()
                 .trim();
-            return handlebars.compile(template, {
+            return Handlebars.compile(template, {
                 strict: true,
+                noEscape: true,
+                preventIndent: true,
                 knownHelpersOnly: true,
                 knownHelpers: {
+                    indent: true,
                     eq: true,
                 },
             });

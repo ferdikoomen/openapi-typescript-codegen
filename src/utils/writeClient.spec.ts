@@ -31,7 +31,6 @@ describe('writeClient', () => {
         const templates: Templates = {
             index: () => 'dummy',
             model: () => 'dummy',
-            interface: () => 'dummy',
             service: () => 'dummy',
         };
 

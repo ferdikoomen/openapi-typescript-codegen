@@ -12,6 +12,7 @@ describe('writeClientModels', () => {
     it('should write to filesystem', () => {
         const models = new Map<string, Model>();
         models.set('Item', {
+            export: 'interface',
             name: 'Item',
             type: 'Item',
             base: 'Item',
@@ -26,17 +27,11 @@ describe('writeClientModels', () => {
             enum: [],
             enums: [],
             properties: [],
-            validation: null,
         });
         const templates: Templates = {
             index: () => 'dummy',
             model: () => 'dummy',
-            exportInterface: () => 'dummy',
-            exportEnum: () => 'dummy',
-            exportType: () => 'dummy',
             service: () => 'dummy',
-            validation: () => 'dummy',
-            type: () => 'dummy',
         };
         writeClientModels(models, Language.TYPESCRIPT, templates, '/');
         expect(fsWriteFileSync).toBeCalledWith('/Item.ts', 'dummy');

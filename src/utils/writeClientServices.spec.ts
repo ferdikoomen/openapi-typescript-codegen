@@ -19,12 +19,7 @@ describe('writeClientServices', () => {
         const templates: Templates = {
             index: () => 'dummy',
             model: () => 'dummy',
-            exportInterface: () => 'dummy',
-            exportEnum: () => 'dummy',
-            exportType: () => 'dummy',
             service: () => 'dummy',
-            validation: () => 'dummy',
-            type: () => 'dummy',
         };
         writeClientServices(services, Language.TYPESCRIPT, templates, '/');
         expect(fsWriteFileSync).toBeCalledWith('/Item.ts', 'dummy');

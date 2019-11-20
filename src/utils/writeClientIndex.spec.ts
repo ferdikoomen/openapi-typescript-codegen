@@ -21,12 +21,7 @@ describe('writeClientIndex', () => {
         const templates: Templates = {
             index: () => 'dummy',
             model: () => 'dummy',
-            exportInterface: () => 'dummy',
-            exportEnum: () => 'dummy',
-            exportType: () => 'dummy',
             service: () => 'dummy',
-            validation: () => 'dummy',
-            type: () => 'dummy',
         };
         writeClientIndex(client, Language.TYPESCRIPT, templates, '/');
         expect(fsWriteFileSync).toBeCalledWith('/index.ts', 'dummy');

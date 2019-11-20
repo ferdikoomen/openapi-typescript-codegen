@@ -1,32 +1,13 @@
-import * as handlebars from 'handlebars';
+import * as Handlebars from 'handlebars';
 import { readHandlebarsTemplate } from './readHandlebarsTemplate';
 import { Language } from '../index';
 import * as path from 'path';
+import { registerHandlebarHelpers } from './registerHandlebarHelpers';
 
 export interface Templates {
-    index: handlebars.TemplateDelegate;
-    model: handlebars.TemplateDelegate;
-    service: handlebars.TemplateDelegate;
-    exportGeneric: handlebars.TemplateDelegate;
-    exportReference: handlebars.TemplateDelegate;
-    exportInterface: handlebars.TemplateDelegate;
-    exportEnum: handlebars.TemplateDelegate;
-    exportDictionary: handlebars.TemplateDelegate;
-    exportArray: handlebars.TemplateDelegate;
-    validation: handlebars.TemplateDelegate;
-    validationForGeneric: handlebars.TemplateDelegate;
-    validationForReference: handlebars.TemplateDelegate;
-    validationForEnum: handlebars.TemplateDelegate;
-    validationForInterface: handlebars.TemplateDelegate;
-    validationForDictionary: handlebars.TemplateDelegate;
-    validationForArray: handlebars.TemplateDelegate;
-    type: handlebars.TemplateDelegate;
-    typeForArray: handlebars.TemplateDelegate;
-    typeForDictionary: handlebars.TemplateDelegate;
-    typeForEnum: handlebars.TemplateDelegate;
-    typeForInterface: handlebars.TemplateDelegate;
-    typeForReference: handlebars.TemplateDelegate;
-    typeForGeneric: handlebars.TemplateDelegate;
+    index: Handlebars.TemplateDelegate;
+    model: Handlebars.TemplateDelegate;
+    service: Handlebars.TemplateDelegate;
 }
 
 /**
@@ -35,18 +16,14 @@ export interface Templates {
  * @param language The language we need to generate (Typescript or Javascript).
  */
 export function readHandlebarsTemplates(language: Language): Templates {
-    handlebars.registerHelper('eq', function(a: string, b: string, options: handlebars.HelperOptions): string {
-        // eslint-disable
-        // prettier-ignore
-        // @ts-ignore
-        return a === b ? options.fn(this) : options.inverse(this);
-    });
-
     try {
-        return {
+        registerHandlebarHelpers();
+        const templates: Templates = {
             index: readHandlebarsTemplate(path.resolve(__dirname, `../../src/templates/${language}/index.hbs`)),
             model: readHandlebarsTemplate(path.resolve(__dirname, `../../src/templates/${language}/model.hbs`)),
             service: readHandlebarsTemplate(path.resolve(__dirname, `../../src/templates/${language}/service.hbs`)),
+        };
+        Handlebars.registerPartial({
             exportGeneric: readHandlebarsTemplate(path.resolve(__dirname, `../../src/templates/${language}/exportGeneric.hbs`)),
             exportReference: readHandlebarsTemplate(path.resolve(__dirname, `../../src/templates/${language}/exportReference.hbs`)),
             exportInterface: readHandlebarsTemplate(path.resolve(__dirname, `../../src/templates/${language}/exportInterface.hbs`)),
@@ -67,7 +44,8 @@ export function readHandlebarsTemplates(language: Language): Templates {
             typeForInterface: readHandlebarsTemplate(path.resolve(__dirname, `../../src/templates/${language}/typeForInterface.hbs`)),
             typeForReference: readHandlebarsTemplate(path.resolve(__dirname, `../../src/templates/${language}/typeForReference.hbs`)),
             typeForGeneric: readHandlebarsTemplate(path.resolve(__dirname, `../../src/templates/${language}/typeForGeneric.hbs`)),
-        };
+        });
+        return templates;
     } catch (e) {
         throw e;
     }

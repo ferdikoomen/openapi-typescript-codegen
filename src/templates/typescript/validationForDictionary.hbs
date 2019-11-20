@@ -1,19 +1,31 @@
 {{~#if link~}}
 yup.lazy<Dictionary<{{>type link}}>>(value =>
-    yup.object<Dictionary<{{>type link}}>>().shape(
-        Object.entries(value).reduce((obj, item) => ({
-            ...obj,
-            [item[0]]: {{>validation link}},
-        }), {})
-    )
-)
+{{#indent}}
+yup.object<Dictionary<{{>type link}}>>().shape(
+{{#indent}}
+Object.entries(value).reduce((obj, item) => ({
+{{#indent}}
+...obj,
+[item[0]]: {{>validation link}},
+{{/indent}}
+/**/}), {})
+{{/indent}}
+/**/)
+{{/indent}}
+/**/)
 {{~else~}}
 yup.lazy<Dictionary<{{{type}}}>>(value =>
-    yup.object<Dictionary<{{{type}}}>>().shape(
-        Object.entries(value).reduce((obj, item) => ({
-            ...obj,
-            [item[0]]: {{{base}}}.schema,
-        }), {})
-    )
-)
+{{#indent}}
+yup.object<Dictionary<{{{type}}}>>().shape(
+{{#indent}}
+Object.entries(value).reduce((obj, item) => ({
+{{#indent}}
+...obj,
+[item[0]]: {{{base}}}.schema,
+{{/indent}}
+/**/}), {})
+{{/indent}}
+/**/)
+{{/indent}}
+/**/)
 {{~/if~}}

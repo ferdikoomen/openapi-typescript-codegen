@@ -100,35 +100,36 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, name: stri
         return result;
     }
 
-    if (definition.allOf) {
-        definition.allOf.forEach(parent => {
-            if (parent.$ref) {
-                const parentRef = getType(parent.$ref);
-                result.extends.push(parentRef.type);
-                result.imports.push(parentRef.base);
-            }
-            if (parent.type === 'object' && parent.properties) {
-                const properties = getModelProperties(openApi, parent);
-                properties.forEach(property => {
-                    result.properties.push(property);
-                    result.imports.push(...property.imports);
-                });
-            }
-        });
+    if (definition.type === 'object') {
         result.export = 'interface';
         result.type = PrimaryType.OBJECT;
         result.base = PrimaryType.OBJECT;
-    }
 
-    if (definition.type === 'object' && definition.properties) {
-        const properties = getModelProperties(openApi, definition);
-        properties.forEach(property => {
-            result.properties.push(property);
-            result.imports.push(...property.imports);
-        });
-        result.export = 'interface';
-        result.type = PrimaryType.OBJECT;
-        result.base = PrimaryType.OBJECT;
+        if (definition.allOf) {
+            definition.allOf.forEach(parent => {
+                if (parent.$ref) {
+                    const parentRef = getType(parent.$ref);
+                    result.extends.push(parentRef.type);
+                    result.imports.push(parentRef.base);
+                }
+                if (parent.type === 'object' && parent.properties) {
+                    const properties = getModelProperties(openApi, parent);
+                    properties.forEach(property => {
+                        result.properties.push(property);
+                        result.imports.push(...property.imports);
+                    });
+                }
+            });
+        }
+
+        if (definition.properties) {
+            const properties = getModelProperties(openApi, definition);
+            properties.forEach(property => {
+                result.properties.push(property);
+                result.imports.push(...property.imports);
+            });
+        }
+
         return result;
     }
 

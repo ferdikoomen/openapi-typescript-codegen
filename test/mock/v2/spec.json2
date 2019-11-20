@@ -342,9 +342,6 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "#/definitions/ModelWithString"
-                },
-                {
                     "$ref": "#/definitions/ModelThatExtends"
                 },
                 {

@@ -11,13 +11,16 @@ export enum {{{name}}} {
 
 export namespace {{{name}}} {
 
-    export const schema = {{>validation}};
+{{#indent}}
+export const schema = {{>validation}};
 
-    export function validate(value: any): Promise<{{{name}}}> {
-        return schema.validate(value, { strict: true });
-    }
+export function validate(value: any): Promise<{{{name}}}> {
+    return schema.validate(value, { strict: true });
+}
 
-    export function validateSync(value: any): {{{name}}} {
-        return schema.validateSync(value, { strict: true });
-    }
+export function validateSync(value: any): {{{name}}} {
+    return schema.validateSync(value, { strict: true });
+}
+{{/indent}}
+
 }

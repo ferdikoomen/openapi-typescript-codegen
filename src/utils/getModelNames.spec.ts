@@ -5,6 +5,7 @@ describe('getModelNames', () => {
     it('should return sorted list', () => {
         const models = new Map<string, Model>();
         models.set('John', {
+            export: 'interface',
             name: 'John',
             type: 'John',
             base: 'John',
@@ -19,9 +20,9 @@ describe('getModelNames', () => {
             enum: [],
             enums: [],
             properties: [],
-            validation: null,
         });
         models.set('Jane', {
+            export: 'interface',
             name: 'Jane',
             type: 'Jane',
             base: 'Jane',
@@ -36,9 +37,9 @@ describe('getModelNames', () => {
             enum: [],
             enums: [],
             properties: [],
-            validation: null,
         });
         models.set('Doe', {
+            export: 'interface',
             name: 'Doe',
             type: 'Doe',
             base: 'Doe',
@@ -53,7 +54,6 @@ describe('getModelNames', () => {
             enum: [],
             enums: [],
             properties: [],
-            validation: null,
         });
 
         expect(getModelNames(new Map<string, Model>())).toEqual([]);
