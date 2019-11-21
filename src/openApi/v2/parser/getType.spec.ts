@@ -20,9 +20,9 @@ describe('getType', () => {
     it('should convert string array', () => {
         const type = getType('Array[String]');
         expect(type.type).toEqual('Array<string>');
-        expect(type.base).toEqual('string');
-        expect(type.template).toEqual(null);
-        expect(type.imports).toEqual([]);
+        expect(type.base).toEqual('Array');
+        expect(type.template).toEqual('string');
+        expect(type.imports).toEqual(['Array']);
     });
 
     it('should convert template with primary', () => {
