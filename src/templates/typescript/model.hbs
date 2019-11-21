@@ -2,25 +2,22 @@
 /* tslint:disable */
 /* eslint-disable */
 /* prettier-ignore */
-
 {{#if imports}}
-{{#each imports}}
+{{~#each imports}}
 import { {{{this}}} } from '../models/{{{this}}}';
-{{/each}}
-{{/if}}
-import { Dictionary } from '../core/Dictionary';
+{{~/each}}
+{{~/if}}
 import * as yup from 'yup';
-
 {{#eq export 'reference'}}
-{{>exportReference}}
-{{else eq export 'generic'}}
-{{>exportGeneric}}
-{{else eq export 'enum'}}
-{{>exportEnum}}
-{{else eq export 'array'}}
-{{>exportArray}}
-{{else eq export 'dictionary'}}
-{{>exportDictionary}}
-{{else eq export 'interface'}}
-{{>exportInterface}}
-{{/eq}}
+{{~>exportReference}}
+{{~else eq export 'generic'}}
+{{~>exportGeneric}}
+{{~else eq export 'enum'}}
+{{~>exportEnum}}
+{{~else eq export 'array'}}
+{{~>exportArray}}
+{{~else eq export 'dictionary'}}
+{{~>exportDictionary}}
+{{~else eq export 'interface'}}
+{{~>exportInterface}}
+{{~/eq}}

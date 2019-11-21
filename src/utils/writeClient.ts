@@ -1,14 +1,13 @@
-import { writeClientModels } from './writeClientModels';
-import { writeClientServices } from './writeClientServices';
-import { Client } from '../client/interfaces/Client';
+import {writeClientModels} from './writeClientModels';
+import {writeClientServices} from './writeClientServices';
+import {Client} from '../client/interfaces/Client';
 import * as path from 'path';
 import * as mkdirp from 'mkdirp';
 import * as rimraf from 'rimraf';
-import { Templates } from './readHandlebarsTemplates';
-import { writeClientIndex } from './writeClientIndex';
-import { Language } from '../index';
+import {Templates} from './readHandlebarsTemplates';
+import {writeClientIndex} from './writeClientIndex';
+import {Language} from '../index';
 import * as fs from 'fs';
-import { getFileName } from './getFileName';
 import * as glob from 'glob';
 
 /**
@@ -40,14 +39,13 @@ export function writeClient(client: Client, language: Language, templates: Templ
         throw new Error(`Could not create output directories`);
     }
 
-    // Copy all core files
-    const coreFiles = path.resolve(__dirname, `../../src/templates/${language}/core/`);
-    const coreFilesExt = getFileName('*', language);
-    const coreFilesList = glob.sync(coreFilesExt, { cwd: coreFiles });
-    coreFilesList.forEach(file =>
+    // Copy all support files
+    const supportFiles = path.resolve(__dirname, `../../src/templates/${language}/`);
+    const supportFilesList = glob.sync('**/*.{ts,js}', {cwd: supportFiles});
+    supportFilesList.forEach(file =>
         fs.copyFileSync(
-            path.resolve(coreFiles, file), // From input path
-            path.resolve(outputPathCore, file) // To output path
+            path.resolve(supportFiles, file), // From input path
+            path.resolve(outputPath, file) // To output path
         )
     );
 

@@ -1,22 +1,20 @@
-{{#if description}}
+{{~#if description}}
 /**
  * {{{description}}}
  */
-{{/if}}
+{{~/if}}
 export type {{{name}}} = {{>type}}{{#if nullable}} | null{{/if}};
 
 export namespace {{{name}}} {
-
 {{#indent}}
-export const schema = {{>validation}};
+    export const schema = {{>validation}};
 
-export function validate(value: any): Promise<{{{name}}}{{#if nullable}} | null{{/if}}> {
-    return schema.validate(value, { strict: true });
-}
+    export async function validate(value: any): Promise<{{{name}}}{{#if nullable}} | null{{/if}}> {
+        return schema.validate(value, { strict: true });
+    }
 
-export function validateSync(value: any): {{{name}}}{{#if nullable}} | null{{/if}} {
-    return schema.validateSync(value, { strict: true });
-}
+    export function validateSync(value: any): {{{name}}}{{#if nullable}} | null{{/if}} {
+        return schema.validateSync(value, { strict: true });
+    }
 {{/indent}}
-
 }

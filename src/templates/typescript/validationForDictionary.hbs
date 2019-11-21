@@ -1,31 +1,31 @@
-{{~#if link~}}
+{{~#if link}}
 yup.lazy<Dictionary<{{>type link}}>>(value =>
 {{#indent}}
-yup.object<Dictionary<{{>type link}}>>().shape(
-{{#indent}}
-Object.entries(value).reduce((obj, item) => ({
-{{#indent}}
-...obj,
-[item[0]]: {{>validation link}},
+    yup.object<Dictionary<{{>type link}}>>().shape(
+    {{#indent}}
+        Object.entries(value).reduce((obj, item) => ({
+        {{#indent}}
+            ...obj,
+            [item[0]]: {{>validation link}},
+        {{/indent}}
+        }), {})
+    {{/indent}}
+    )
 {{/indent}}
-/**/}), {})
-{{/indent}}
-/**/)
-{{/indent}}
-/**/)
-{{~else~}}
+)
+{{~else}}
 yup.lazy<Dictionary<{{{type}}}>>(value =>
 {{#indent}}
-yup.object<Dictionary<{{{type}}}>>().shape(
-{{#indent}}
-Object.entries(value).reduce((obj, item) => ({
-{{#indent}}
-...obj,
-[item[0]]: {{{base}}}.schema,
+    yup.object<Dictionary<{{{type}}}>>().shape(
+    {{#indent}}
+        Object.entries(value).reduce((obj, item) => ({
+        {{#indent}}
+            ...obj,
+            [item[0]]: {{{base}}}.schema,
+        {{/indent}}
+        }), {})
+    {{/indent}}
+    )
 {{/indent}}
-/**/}), {})
-{{/indent}}
-/**/)
-{{/indent}}
-/**/)
-{{~/if~}}
+)
+{{~/if}}

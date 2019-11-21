@@ -1,52 +1,47 @@
-{{#if description}}
+{{~#if description}}
 /**
  * {{{description}}}
  */
-{{/if}}
+{{~/if}}
 export interface {{{name}}}{{{template}}}{{#if extends}} extends {{#each extends}}{{{this}}}{{#unless @last}}, {{/unless}}{{/each}}{{/if}} {
-
-{{#indent}}
-{{#each properties}}
-{{#if description}}
-/**
- * {{{description}}}
- */
-{{/if}}
-{{#if readOnly}}readonly {{/if}}{{{name}}}{{#unless required}}?{{/unless}}: {{>type}}{{#if nullable}} | null{{/if}};
-{{/each}}
-{{/indent}}
-
+{{~#indent}}
+    {{~#each properties}}
+    {{~#if description}}
+    /**
+     * {{{description}}}
+     */
+    {{~/if}}
+    {{#if readOnly}}readonly {{/if}}{{{name}}}{{#unless required}}?{{/unless}}: {{>type}}{{#if nullable}} | null{{/if}};
+    {{~/each}}
+{{~/indent}}
 }
 
 export namespace {{{name}}} {
-
 {{#indent}}
-{{#each enums}}
-{{#if description}}
-/**
- * {{{description}}}
- */
-{{/if}}
-export enum {{{name}}} {
-    {{#each values}}
-    {{{name}}} = {{{value}}},
+    {{~#each enums}}
+    {{~#if description}}
+    /**
+     * {{{description}}}
+     */
+    {{~/if}}
+    export enum {{{name}}} {
+        {{~#each values}}
+        {{{name}}} = {{{value}}},
+        {{~/each}}
+    }
     {{/each}}
-}
+    export const schema: yup.ObjectSchema<{{{name}}}{{{template}}}> = (
+    {{~#indent}}
+        {{>validation}}
+    {{~/indent}}
+    );
 
-{{/each}}
-export const schema: yup.ObjectSchema<{{{name}}}{{{template}}}> = (
-{{#indent}}
-{{>validation}}
+    export async function validate(value: any): Promise<{{{name}}}{{{template}}}> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): {{{name}}}{{{template}}} {
+        return schema.validateSync(value, { strict: true });
+    }
 {{/indent}}
-/**/);
-
-export function validate(value: any): Promise<{{{name}}}{{{template}}}> {
-    return schema.validate(value, { strict: true });
-}
-
-export function validateSync(value: any): {{{name}}}{{{template}}} {
-    return schema.validateSync(value, { strict: true });
-}
-{{/indent}}
-
 }

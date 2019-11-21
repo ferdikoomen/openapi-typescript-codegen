@@ -1,26 +1,24 @@
-{{#if description}}
+{{~#if description}}
 /**
  * {{{description}}}
  */
-{{/if}}
+{{~/if}}
 export enum {{{name}}} {
-    {{#each enum}}
+    {{~#each enum}}
     {{{name}}} = {{{value}}},
-    {{/each}}
+    {{~/each}}
 }
 
 export namespace {{{name}}} {
-
 {{#indent}}
-export const schema = {{>validation}};
+    export const schema = {{>validation}};
 
-export function validate(value: any): Promise<{{{name}}}> {
-    return schema.validate(value, { strict: true });
-}
+    export async function validate(value: any): Promise<{{{name}}}> {
+        return schema.validate(value, { strict: true });
+    }
 
-export function validateSync(value: any): {{{name}}} {
-    return schema.validateSync(value, { strict: true });
-}
+    export function validateSync(value: any): {{{name}}} {
+        return schema.validateSync(value, { strict: true });
+    }
 {{/indent}}
-
 }

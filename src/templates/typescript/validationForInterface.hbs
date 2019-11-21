@@ -1,17 +1,17 @@
-{{#if extends}}
-{{#each extends}}
+{{~#if extends}}
+{{~#each extends}}
 {{{this}}}.schema.concat(
-{{/each}}
-{{/if}}
+{{~/each}}
+{{~/if}}
 yup.object{{#if name}}<{{{name}}}>{{/if}}().shape({
 {{#indent}}
-{{#each properties}}
-{{{name}}}: yup.lazy(() => {{>validation}}.default(undefined)){{#if required}}.required(){{/if}}{{#if nullable}}.nullable(){{/if}},
-{{/each}}
+    {{~#each properties}}
+    {{{name}}}: yup.lazy(() => {{>validation}}.default(undefined)){{#if required}}.required(){{/if}}{{#if nullable}}.nullable(){{/if}},
+    {{~/each}}
 {{/indent}}
-/**/}).noUnknown()
-{{#if extends}}
-{{#each extends}}
+}).noUnknown()
+{{~#if extends}}
+{{~#each extends}}
 )
-{{/each}}
-{{/if}}
+{{~/each}}
+{{~/if}}

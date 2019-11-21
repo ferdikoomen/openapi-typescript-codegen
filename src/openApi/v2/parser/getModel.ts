@@ -88,6 +88,7 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, name: stri
             result.base = additionalProperties.base;
             result.template = additionalProperties.template;
             result.imports.push(...additionalProperties.imports);
+            result.imports.push('Dictionary');
         } else {
             const additionalProperties = getModel(openApi, definition.additionalProperties);
             result.export = 'dictionary';
@@ -96,6 +97,7 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, name: stri
             result.template = additionalProperties.template;
             result.link = additionalProperties;
             result.imports.push(...additionalProperties.imports);
+            result.imports.push('Dictionary');
         }
         return result;
     }
