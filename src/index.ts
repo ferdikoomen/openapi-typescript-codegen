@@ -6,6 +6,7 @@ import { getOpenApiSpec } from './utils/getOpenApiSpec';
 import { writeClient } from './utils/writeClient';
 import * as os from 'os';
 import * as chalk from 'chalk';
+import * as ts from 'typescript';
 import { getOpenApiVersion, OpenApiVersion } from './utils/getOpenApiVersion';
 
 export enum Language {
@@ -64,4 +65,20 @@ export function generate(input: string, output: string, language: Language = Lan
         console.error(e);
         process.exit(1);
     }
+}
+
+export function compile(dir: string): void {
+    const config = {
+        compilerOptions: {
+            target: 'esnext',
+            module: 'commonjs',
+            moduleResolution: 'node',
+        },
+        include: ['./index.ts'],
+    };
+    const configFile = ts.parseConfigFileTextToJson('tsconfig.json', JSON.stringify(config));
+    const configFileResult = ts.parseJsonConfigFileContent(configFile.config, ts.sys, path.resolve(process.cwd(), dir), undefined, 'tsconfig.json');
+    const compilerHost = ts.createCompilerHost(configFileResult.options);
+    const compiler = ts.createProgram(configFileResult.fileNames, configFileResult.options, compilerHost);
+    compiler.emit();
 }

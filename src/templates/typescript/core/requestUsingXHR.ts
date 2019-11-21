@@ -7,9 +7,9 @@ import { Result } from './Result';
 import { isSuccess } from './isSuccess';
 
 /**
- * Request content using the new legacy XMLHttpRequest API. This method is usefull
+ * Request content using the new legacy XMLHttpRequest API. This method is useful
  * when we want to request UTF-16 content, since it natively supports loading UTF-16.
- * We could do the same with the Fetch API, but then we will need to conver the
+ * We could do the same with the Fetch API, but then we will need to convert the
  * content using JavaScript... And that is very very slow.
  * @param url The url to request.
  * @param request The request object, containing method, headers, body, etc.
