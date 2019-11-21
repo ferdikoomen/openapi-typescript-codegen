@@ -3,10 +3,11 @@
 /* eslint-disable */
 /* prettier-ignore */
 {{#if imports}}
-{{~#each imports}}
+
+{{#each imports}}
 import { {{{this}}} } from '../models/{{{this}}}';
-{{~/each}}
-{{~/if}}
+{{/each}}
+{{/if}}
 import { ApiError, catchGenericError } from '../core/ApiError';
 import { request } from '../core/request';
 import { isValidRequiredParam } from '../core/isValidRequiredParam';
@@ -14,60 +15,60 @@ import { OpenAPI } from '../core/OpenAPI';
 import { Result } from '../core/Result';
 
 export class {{{name}}} {
-    {{~#each operations}}
+    {{#each operations}}
     /**
-    {{~#if deprecated}}
+    {{#if deprecated}}
      * @deprecated
-    {{~/if}}
-    {{~#if summary}}
+    {{/if}}
+    {{#if summary}}
      * {{{summary}}}
-    {{~/if}}
-    {{~#if description}}
+    {{/if}}
+    {{#if description}}
      * {{{description}}}
-    {{~/if}}
-    {{~#if parameters}}
-    {{~#each parameters}}
+    {{/if}}
+    {{#if parameters}}
+    {{#each parameters}}
      * @param {{{name}}} {{{description}}}
-    {{~/each}}
-    {{~/if}}
+    {{/each}}
+    {{/if}}
      */
     public static async {{{name}}}({{#each parameters}}{{{name}}}{{#unless required}}?{{/unless}}: {{{type}}}{{#if nullable}} | null{{/if}}{{#unless @last}}, {{/unless}}{{/each}}): Promise<{{{result}}}> {
         {{#if parameters}}
-        {{~#each parameters}}
-        {{~#if required}}
+        {{#each parameters}}
+        {{#if required}}
         isValidRequiredParam({{{name}}}, '{{{name}}}');
-        {{~/if}}
-        {{~/each}}
+        {{/if}}
+        {{/each}}
         {{/if}}
         const result = await request({
             method: '{{{method}}}',
             path: `{{{path}}}`,
-            {{~#if parametersHeader~}}
+            {{#if parametersHeader}}
             headers: {
-                {{~#each parametersHeader}}
+                {{#each parametersHeader}}
                 '{{{prop}}}': {{{name}}},
-                {{~/each}}
+                {{/each}}
             },
-            {{~/if}}
-            {{~#if parametersQuery}}
+            {{/if}}
+            {{#if parametersQuery}}
             query: {
-                {{~#each parametersQuery}}
+                {{#each parametersQuery}}
                 '{{{prop}}}': {{{name}}},
-                {{~/each}}
+                {{/each}}
             },
-            {{~/if}}
-            {{~#if parametersForm}}
+            {{/if}}
+            {{#if parametersForm}}
             formData: {
-                {{~#each parametersForm}}
+                {{#each parametersForm}}
                 '{{{prop}}}': {{{name}}},
-                {{~/each}}
+                {{/each}}
             },
-            {{~/if}}
-            {{~#if parametersBody}}
+            {{/if}}
+            {{#if parametersBody}}
             body: {{{parametersBody.name}}},
-            {{~/if}}
+            {{/if}}
         });
-        {{~#if errors}}
+        {{#if errors}}
         if (!result.ok) {
             switch (result.status) {
             {{#each errors}}
@@ -75,10 +76,10 @@ export class {{{name}}} {
             {{/each}}
             }
         }
-        {{~/if}}
+        {{/if}}
         catchGenericError(result);
 
         return result.body;
     }
-    {{~/each}}
+    {{/each}}
 }

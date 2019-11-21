@@ -7,12 +7,14 @@ export { ApiError } from './core/ApiError';
 export { isSuccess } from './core/isSuccess';
 export { OpenAPI } from './core/OpenAPI';
 {{#if models}}
-{{~#each models}}
+
+{{#each models}}
 export { {{{this}}} } from './models/{{{this}}}';
-{{~/each}}
-{{~/if}}
+{{/each}}
+{{/if}}
 {{#if services}}
-{{~#each services}}
+
+{{#each services}}
 export { {{{this}}} } from './services/{{{this}}}';
-{{~/each}}
-{{~/if}}
+{{/each}}
+{{/if}}

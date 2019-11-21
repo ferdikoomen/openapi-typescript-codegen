@@ -1,13 +1,13 @@
-{{~#eq export 'reference'}}
-{{~>typeForReference}}
-{{~else eq export 'generic'}}
-{{~>typeForGeneric}}
-{{~else eq export 'enum'}}
-{{~>typeForEnum}}
-{{~else eq export 'array'}}
-{{~>typeForArray}}
-{{~else eq export 'dictionary'}}
-{{~>typeForDictionary}}
-{{~else eq export 'interface'}}
-{{~>typeForInterface}}
-{{~/eq}}
+{{#eq export 'reference'}}
+{{>typeForReference}}
+{{else eq export 'generic'}}
+{{>typeForGeneric}}
+{{else eq export 'enum'}}
+{{>typeForEnum}}
+{{else eq export 'array'}}
+{{>typeForArray}}
+{{else eq export 'dictionary'}}
+{{>typeForDictionary}}
+{{else eq export 'interface'}}
+{{>typeForInterface}}
+{{/eq}}

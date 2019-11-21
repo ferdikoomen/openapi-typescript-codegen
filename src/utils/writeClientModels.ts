@@ -5,7 +5,7 @@ import { Language } from '../index';
 import { getFileName } from './getFileName';
 import { exportModel } from './exportModel';
 import { Templates } from './readHandlebarsTemplates';
-import { fixIndentation } from './fixIndentation';
+import { format } from './format';
 
 /**
  * Generate Models using the Handlebar template and write to disk.
@@ -20,7 +20,7 @@ export function writeClientModels(models: Map<string, Model>, language: Language
         try {
             const templateData = exportModel(model);
             const templateResult = templates.model(templateData);
-            fs.writeFileSync(path.resolve(outputPath, fileName), fixIndentation(templateResult));
+            fs.writeFileSync(path.resolve(outputPath, fileName), format(templateResult));
         } catch (e) {
             throw new Error(`Could not write model: "${fileName}"`);
         }

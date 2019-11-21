@@ -1,13 +1,7 @@
-export interface OperationParameter {
+import { Model } from './Model';
+
+export interface OperationParameter extends Model {
     prop: string;
     in: 'path' | 'query' | 'header' | 'formData' | 'body';
-    name: string;
-    type: string;
-    base: string;
-    template: string | null;
-    description: string | null;
     default: any;
-    required: boolean;
-    nullable: boolean;
-    imports: string[];
 }

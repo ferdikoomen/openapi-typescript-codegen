@@ -1,6 +1,7 @@
 import { Service } from '../../../client/interfaces/Service';
 import { OpenApi } from '../interfaces/OpenApi';
 import { Method } from './constants';
+import { getOperation } from './getOperation';
 
 /**
  * Get the OpenAPI services
@@ -21,23 +22,23 @@ export function getServices(openApi: OpenApi): Map<string, Service> {
                         case Method.HEAD:
                         case Method.PATCH:
                             // Each method contains an OpenAPI operation, we parse the operation
-                            // const op: OpenApiOperation = path[method]!;
-                            // const operation: Operation = getOperation(openApi, url, method, op);
+                            const op = path[method]!;
+                            const operation = getOperation(openApi, url, method, op);
 
                             // If we have already declared a service, then we should fetch that and
                             // append the new method to it. Otherwise we should create a new service object.
-                            // const service =
-                            //     services.get(operation.service) ||
-                            //     ({
-                            //         name: operation.service,
-                            //         operations: [],
-                            //         imports: [],
-                            //     } as Service);
+                            const service =
+                                services.get(operation.service) ||
+                                ({
+                                    name: operation.service,
+                                    operations: [],
+                                    imports: [],
+                                } as Service);
 
                             // Push the operation in the service
-                            // service.operations.push(operation);
-                            // service.imports.push(...operation.imports);
-                            // services.set(operation.service, service);
+                            service.operations.push(operation);
+                            service.imports.push(...operation.imports);
+                            services.set(operation.service, service);
                             break;
                     }
                 }

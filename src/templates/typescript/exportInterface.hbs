@@ -1,47 +1,41 @@
-{{~#if description}}
+{{#if description}}
 /**
  * {{{description}}}
  */
-{{~/if}}
-export interface {{{name}}}{{{template}}}{{#if extends}} extends {{#each extends}}{{{this}}}{{#unless @last}}, {{/unless}}{{/each}}{{/if}} {
-{{~#indent}}
-    {{~#each properties}}
-    {{~#if description}}
+{{/if}}
+export interface {{{name}}}{{#if extends}} extends {{#each extends}}{{{this}}}{{#unless @last}}, {{/unless}}{{/each}}{{/if}} {
+    {{#each properties}}
+    {{#if description}}
     /**
      * {{{description}}}
      */
-    {{~/if}}
-    {{#if readOnly}}readonly {{/if}}{{{name}}}{{#unless required}}?{{/unless}}: {{>type}}{{#if nullable}} | null{{/if}};
-    {{~/each}}
-{{~/indent}}
+    {{/if}}
+    {{#if readOnly}}readonly {{/if}}{{{name}}}{{#unless required}}?{{/unless}}: {{>type parent=../name}}{{#if nullable}} | null{{/if}};
+    {{/each}}
 }
 
 export namespace {{{name}}} {
-{{#indent}}
-    {{~#each enums}}
-    {{~#if description}}
+
+    {{#each enums}}
+    {{#if description}}
     /**
      * {{{description}}}
      */
-    {{~/if}}
+    {{/if}}
     export enum {{{name}}} {
-        {{~#each values}}
+        {{#each enum}}
         {{{name}}} = {{{value}}},
-        {{~/each}}
+        {{/each}}
     }
-    {{/each}}
-    export const schema: yup.ObjectSchema<{{{name}}}{{{template}}}> = (
-    {{~#indent}}
-        {{>validation}}
-    {{~/indent}}
-    );
 
-    export async function validate(value: any): Promise<{{{name}}}{{{template}}}> {
+    {{/each}}
+    export const schema: yup.ObjectSchema<{{{name}}}> = {{>validation}};
+
+    export async function validate(value: any): Promise<{{{name}}}> {
         return schema.validate(value, { strict: true });
     }
 
-    export function validateSync(value: any): {{{name}}}{{{template}}} {
+    export function validateSync(value: any): {{{name}}} {
         return schema.validateSync(value, { strict: true });
     }
-{{/indent}}
 }

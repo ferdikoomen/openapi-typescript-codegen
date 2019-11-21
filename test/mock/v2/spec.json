@@ -188,7 +188,7 @@
             "description": "This is a model with one enum",
             "type": "object",
             "properties": {
-                "prop": {
+                "Test": {
                     "description": "This is a simple enum with strings",
                     "enum": [
                         "Success",
@@ -202,7 +202,7 @@
             "description": "This is a model with one enum",
             "type": "object",
             "properties": {
-                "prop": {
+                "Test": {
                     "type": "integer",
                     "description": "Success=1,Warning=2,Error=3"
                 }

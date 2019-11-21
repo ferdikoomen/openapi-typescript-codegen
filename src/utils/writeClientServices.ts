@@ -5,7 +5,7 @@ import { Language } from '../index';
 import { getFileName } from './getFileName';
 import { exportService } from './exportService';
 import { Templates } from './readHandlebarsTemplates';
-import { fixIndentation } from './fixIndentation';
+import { format } from './format';
 
 /**
  * Generate Services using the Handlebar template and write to disk.
@@ -20,7 +20,7 @@ export function writeClientServices(services: Map<string, Service>, language: La
         try {
             const templateData = exportService(service);
             const templateResult = templates.model(templateData);
-            fs.writeFileSync(path.resolve(outputPath, fileName), fixIndentation(templateResult));
+            fs.writeFileSync(path.resolve(outputPath, fileName), format(templateResult));
         } catch (e) {
             throw new Error(`Could not write service: "${fileName}"`);
         }

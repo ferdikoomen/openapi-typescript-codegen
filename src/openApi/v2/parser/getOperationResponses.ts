@@ -20,13 +20,13 @@ export function getOperationResponses(openApi: OpenApi, responses: OpenApiRespon
             // if there is no typed data, we just return <any> so the user is still
             // free to do their own casting if needed.
             if (responseCode) {
-                const result: OperationResponse = {
-                    code: responseCode,
-                    text: response.description || '',
-                    type: 'any',
-                    base: 'any',
-                    imports: [],
-                };
+                // const result: OperationResponse = {
+                //     code: responseCode,
+                //     text: response.description || '',
+                //     type: 'any',
+                //     base: 'any',
+                //     imports: [],
+                // };
 
                 // If this response has a schema, then we need to check two things:
                 // if this is a reference then the parameter is just the 'name' of
@@ -40,7 +40,7 @@ export function getOperationResponses(openApi: OpenApi, responses: OpenApiRespon
                     // result.imports.push(...responseSchema.imports);
                 }
 
-                results.push(result);
+                // results.push(result);
             }
         }
     }

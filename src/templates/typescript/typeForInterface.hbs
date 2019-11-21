@@ -1,12 +1,14 @@
+{{~#if properties~}}
 {
-{{#indent}}
-    {{~#each properties}}
-    {{~#if description}}
-    /**
-     * {{{description}}}
-     */
-    {{~/if}}
-    {{#if readOnly}}readonly {{/if}}{{{name}}}{{#unless required}}?{{/unless}}: {{>type}}{{#if nullable}} | null{{/if}},
-    {{~/each}}
-{{/indent}}
+{{#each properties}}
+{{#if description}}
+/**
+ * {{{description}}}
+ */
+{{/if}}
+{{#if readOnly}}readonly {{/if}}{{{name}}}{{#unless required}}?{{/unless}}: {{>type child=true}}{{#if nullable}} | null{{/if}},
+{{/each}}
 }
+{{else~}}
+any
+{{~/if~}}

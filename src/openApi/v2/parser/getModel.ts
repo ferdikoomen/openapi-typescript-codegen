@@ -49,7 +49,7 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, name: stri
         }
     }
 
-    if (definition.type === 'int' && definition.description) {
+    if ((definition.type === 'int' || definition.type === 'integer') && definition.description) {
         const enumerators = getEnumFromDescription(definition.description);
         if (enumerators.length) {
             result.export = 'enum';
@@ -119,6 +119,9 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, name: stri
                     properties.forEach(property => {
                         result.properties.push(property);
                         result.imports.push(...property.imports);
+                        if (property.export === 'enum') {
+                            result.enums.push(property);
+                        }
                     });
                 }
             });
@@ -129,6 +132,9 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, name: stri
             properties.forEach(property => {
                 result.properties.push(property);
                 result.imports.push(...property.imports);
+                if (property.export === 'enum') {
+                    result.enums.push(property);
+                }
             });
         }
 

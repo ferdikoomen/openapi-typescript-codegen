@@ -6,7 +6,7 @@ const OpenAPI = require('../dist');
 
 OpenAPI.generate(
     './test/mock/v2/spec.json',
-    './test/tmp/v2/spec',
+    './test/tmp/v2/ts/spec',
     OpenAPI.Language.TYPESCRIPT,
     OpenAPI.HttpClient.FETCH,
 );
@@ -25,16 +25,16 @@ OpenAPI.generate(
 //     OpenAPI.HttpClient.FETCH,
 // );
 //
-// OpenAPI.generate(
-//     './test/mock/v2/test-sites.json',
-//     './test/tmp/v2/ts/test-sites',
-//     OpenAPI.Language.TYPESCRIPT,
-//     OpenAPI.HttpClient.FETCH,
-// );
-
+OpenAPI.generate(
+    './test/mock/v2/test-sites.json',
+    './test/tmp/v2/ts/test-sites',
+    OpenAPI.Language.TYPESCRIPT,
+    OpenAPI.HttpClient.FETCH,
+);
+//
 // OpenAPI.generate(
 //     './test/mock/v2/test-petstore.yaml',
-//     './test/tmp/v2/test-petstore-yaml',
+//     './test/tmp/v2/ts/test-petstore-yaml',
 //     OpenAPI.Language.TYPESCRIPT,
 //     OpenAPI.HttpClient.FETCH,
 // );

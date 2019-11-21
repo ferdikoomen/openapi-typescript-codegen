@@ -1,12 +1,12 @@
-import {writeClientModels} from './writeClientModels';
-import {writeClientServices} from './writeClientServices';
-import {Client} from '../client/interfaces/Client';
+import { writeClientModels } from './writeClientModels';
+import { writeClientServices } from './writeClientServices';
+import { Client } from '../client/interfaces/Client';
 import * as path from 'path';
 import * as mkdirp from 'mkdirp';
 import * as rimraf from 'rimraf';
-import {Templates} from './readHandlebarsTemplates';
-import {writeClientIndex} from './writeClientIndex';
-import {Language} from '../index';
+import { Templates } from './readHandlebarsTemplates';
+import { writeClientIndex } from './writeClientIndex';
+import { Language } from '../index';
 import * as fs from 'fs';
 import * as glob from 'glob';
 
@@ -41,7 +41,7 @@ export function writeClient(client: Client, language: Language, templates: Templ
 
     // Copy all support files
     const supportFiles = path.resolve(__dirname, `../../src/templates/${language}/`);
-    const supportFilesList = glob.sync('**/*.{ts,js}', {cwd: supportFiles});
+    const supportFilesList = glob.sync('**/*.{ts,js}', { cwd: supportFiles });
     supportFilesList.forEach(file =>
         fs.copyFileSync(
             path.resolve(supportFiles, file), // From input path

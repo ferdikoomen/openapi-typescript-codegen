@@ -16,7 +16,6 @@ export function readHandlebarsTemplate(filePath: string): Handlebars.TemplateDel
                 strict: true,
                 noEscape: true,
                 preventIndent: true,
-                ignoreStandalone: true,
                 knownHelpersOnly: true,
                 knownHelpers: {
                     indent: true,

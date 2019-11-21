@@ -1,9 +1,9 @@
-yup.mixed{{#if name}}<{{{name}}}>{{/if}}().oneOf([
-    {{~#each enum}}
-    {{~#if ../name}}
+yup.mixed<{{{name}}}>().oneOf([
+    {{#each enum}}
+    {{#unless child}}
     {{{../name}}}.{{{name}}},
-    {{~else}}
+    {{else}}
     {{{value}}},
-    {{~/if}}
-    {{~/each}}
+    {{/unless}}
+    {{/each}}
 ])
