@@ -19,7 +19,7 @@ export function writeClientServices(services: Map<string, Service>, language: La
         const fileName = getFileName(service.name, language);
         try {
             const templateData = exportService(service);
-            const templateResult = templates.model(templateData);
+            const templateResult = templates.service(templateData);
             fs.writeFileSync(path.resolve(outputPath, fileName), format(templateResult));
         } catch (e) {
             throw new Error(`Could not write service: "${fileName}"`);

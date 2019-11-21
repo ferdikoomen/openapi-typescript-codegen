@@ -2,10 +2,10 @@ import { Service } from '../client/interfaces/Service';
 
 export function getServiceNames(services: Map<string, Service>): string[] {
     return Array.from(services.values())
+        .map(service => service.name)
         .sort((a, b) => {
-            const nameA = a.name.toLowerCase();
-            const nameB = b.name.toLowerCase();
+            const nameA = a.toLowerCase();
+            const nameB = b.toLowerCase();
             return nameA.localeCompare(nameB, 'en');
-        })
-        .map(service => service.name);
+        });
 }

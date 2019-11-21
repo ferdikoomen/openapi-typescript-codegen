@@ -34,12 +34,14 @@ export class {{{name}}} {
      */
     public static async {{{name}}}({{#each parameters}}{{{name}}}{{#unless required}}?{{/unless}}: {{{type}}}{{#if nullable}} | null{{/if}}{{#unless @last}}, {{/unless}}{{/each}}): Promise<{{{result}}}> {
         {{#if parameters}}
+
         {{#each parameters}}
         {{#if required}}
         isValidRequiredParam({{{name}}}, '{{{name}}}');
         {{/if}}
         {{/each}}
         {{/if}}
+
         const result = await request({
             method: '{{{method}}}',
             path: `{{{path}}}`,
@@ -69,6 +71,7 @@ export class {{{name}}} {
             {{/if}}
         });
         {{#if errors}}
+
         if (!result.ok) {
             switch (result.status) {
             {{#each errors}}
@@ -77,9 +80,11 @@ export class {{{name}}} {
             }
         }
         {{/if}}
+
         catchGenericError(result);
 
         return result.body;
     }
+
     {{/each}}
 }
