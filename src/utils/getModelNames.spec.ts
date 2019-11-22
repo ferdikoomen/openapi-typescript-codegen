@@ -59,7 +59,7 @@ describe('getModelNames', () => {
             properties: [],
         });
 
-        expect(getModelNames(new Map<string, Model>())).toEqual([]);
-        expect(getModelNames(models)).toEqual(['Doe', 'Jane', 'John']);
+        expect(getModelNames(new Map<string, Model>())).toEqual(['Dictionary']);
+        expect(getModelNames(models)).toEqual(['Dictionary', 'Doe', 'Jane', 'John']);
     });
 });
