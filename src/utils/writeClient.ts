@@ -6,18 +6,19 @@ import * as mkdirp from 'mkdirp';
 import * as rimraf from 'rimraf';
 import { Templates } from './readHandlebarsTemplates';
 import { writeClientIndex } from './writeClientIndex';
-import { Language } from '../index';
+import { HttpClient, Language } from '../index';
 import * as fs from 'fs';
 import * as glob from 'glob';
 
 /**
- * Write our OpenAPI client, using the given templates at the given output path
- * @param client: Client object with all the models, services, etc.
- * @param language: The output language (Typescript or javascript).
- * @param templates: Templates wrapper with all loaded Handlebars templates.
+ * Write our OpenAPI client, using the given templates at the given output path.
+ * @param client Client object with all the models, services, etc.
+ * @param language The language that should be generated (Typescript or Javascript).
+ * @param httpClient The selected httpClient (fetch or XHR).
+ * @param templates Templates wrapper with all loaded Handlebars templates.
  * @param outputPath
  */
-export function writeClient(client: Client, language: Language, templates: Templates, outputPath: string): void {
+export function writeClient(client: Client, language: Language, httpClient: HttpClient, templates: Templates, outputPath: string): void {
     const outputPathCore = path.resolve(outputPath, 'core');
     const outputPathModels = path.resolve(outputPath, 'models');
     const outputPathServices = path.resolve(outputPath, 'services');
@@ -52,8 +53,8 @@ export function writeClient(client: Client, language: Language, templates: Templ
     // Write the client files
     try {
         writeClientIndex(client, language, templates, outputPath);
-        writeClientModels(client.models, language, templates, outputPathModels);
-        writeClientServices(client.services, language, templates, outputPathServices);
+        writeClientModels(client.models, language, httpClient, templates, outputPathModels);
+        writeClientServices(client.services, language, httpClient, templates, outputPathServices);
     } catch (e) {
         throw e;
     }

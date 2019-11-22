@@ -8,6 +8,7 @@ import { getQueryString } from './getQueryString';
 import { OpenAPI } from './OpenAPI';
 import { RequestOptions } from './RequestOptions';
 import { requestUsingFetch } from './requestUsingFetch';
+import { requestUsingXHR } from './requestUsingXHR';
 import { Result } from './Result';
 
 /**
@@ -16,6 +17,7 @@ import { Result } from './Result';
  * @returns Result object (see above)
  */
 export async function request<T = any>(options: Readonly<RequestOptions>): Promise<Result<T>> {
+
     // Create the request URL
     let url = `${OpenAPI.BASE}${options.path}`;
 
@@ -46,6 +48,7 @@ export async function request<T = any>(options: Readonly<RequestOptions>): Promi
     if (options.formData) {
         request.body = getFormData(options.formData);
     } else if (options.body) {
+
         // If this is blob data, then pass it directly to the body and set content type.
         // Otherwise we just convert request data to JSON string (needed for fetch api)
         if (options.body instanceof Blob) {
@@ -60,7 +63,12 @@ export async function request<T = any>(options: Readonly<RequestOptions>): Promi
     }
 
     try {
-        return await requestUsingFetch<T>(url, request);
+        switch (options.type) {
+            case 'fetch':
+                return await requestUsingFetch<T>(url, request);
+            case 'xhr':
+                return await requestUsingXHR<T>(url, request);
+        }
     } catch (error) {
         return {
             url,

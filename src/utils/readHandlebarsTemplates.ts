@@ -18,11 +18,13 @@ export interface Templates {
 export function readHandlebarsTemplates(language: Language): Templates {
     try {
         registerHandlebarHelpers();
+
         const templates: Templates = {
             index: readHandlebarsTemplate(path.resolve(__dirname, `../../src/templates/${language}/index.hbs`)),
             model: readHandlebarsTemplate(path.resolve(__dirname, `../../src/templates/${language}/model.hbs`)),
             service: readHandlebarsTemplate(path.resolve(__dirname, `../../src/templates/${language}/service.hbs`)),
         };
+
         Handlebars.registerPartial({
             exportGeneric: readHandlebarsTemplate(path.resolve(__dirname, `../../src/templates/${language}/exportGeneric.hbs`)),
             exportReference: readHandlebarsTemplate(path.resolve(__dirname, `../../src/templates/${language}/exportReference.hbs`)),
@@ -45,6 +47,7 @@ export function readHandlebarsTemplates(language: Language): Templates {
             typeForReference: readHandlebarsTemplate(path.resolve(__dirname, `../../src/templates/${language}/typeForReference.hbs`)),
             typeForGeneric: readHandlebarsTemplate(path.resolve(__dirname, `../../src/templates/${language}/typeForGeneric.hbs`)),
         });
+
         return templates;
     } catch (e) {
         throw e;

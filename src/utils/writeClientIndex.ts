@@ -11,10 +11,10 @@ import { Templates } from './readHandlebarsTemplates';
  * Generate the OpenAPI client index file using the Handlebar template and write it to disk.
  * The index file just contains all the exports you need to use the client as a standalone
  * library. But yuo can also import individual models and services directly.
- * @param client: Client object, containing, models, schemas and services.
- * @param language: The output language (Typescript or javascript).
- * @param templates: The loaded handlebar templates.
- * @param outputPath:
+ * @param client Client object, containing, models, schemas and services.
+ * @param language The output language (Typescript or javascript).
+ * @param templates The loaded handlebar templates.
+ * @param outputPath
  */
 export function writeClientIndex(client: Client, language: Language, templates: Templates, outputPath: string): void {
     const fileName = getFileName('index', language);

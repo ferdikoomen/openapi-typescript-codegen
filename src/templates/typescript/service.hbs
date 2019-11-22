@@ -14,6 +14,7 @@ import { OpenAPI } from '../core/OpenAPI';
 import { Result } from '../core/Result';
 
 export class {{{name}}} {
+
     {{#each operations}}
     /**
     {{#if deprecated}}
@@ -30,10 +31,12 @@ export class {{{name}}} {
      * @param {{{name}}} {{{description}}}
     {{/each}}
     {{/if}}
+     * @return {{{result}}}
      */
     public static async {{{name}}}({{#each parameters}}{{{name}}}{{#unless required}}?{{/unless}}: {{{type}}}{{#if nullable}} | null{{/if}}{{#unless @last}}, {{/unless}}{{/each}}): Promise<{{{result}}}> {
 
         const result: Result<{{{result}}}> = await request({
+            type: '{{{../httpClient}}}',
             method: '{{{method}}}',
             path: `{{{path}}}`,
             {{#if parametersHeader}}

@@ -24,9 +24,9 @@ export enum HttpClient {
  * given language it will generate the client, including the typed models, validation schemas,
  * service layer, etc.
  * @param input The relative location of the OpenAPI spec.
- * @param output The relative location of the output directory
- * @param language: The language that should be generated (Typescript or Javascript)
- * @param httpClient: The selected httpClient (fetch or XHR)
+ * @param output The relative location of the output directory.
+ * @param language: The language that should be generated (Typescript or Javascript).
+ * @param httpClient: The selected httpClient (fetch or XHR).
  */
 export function generate(input: string, output: string, language: Language = Language.TYPESCRIPT, httpClient: HttpClient = HttpClient.FETCH): void {
     const inputPath = path.resolve(process.cwd(), input);
@@ -52,13 +52,13 @@ export function generate(input: string, output: string, language: Language = Lan
                 // Generate and write version 2 client
                 if (openApiVersion === OpenApiVersion.V2) {
                     const clientV2 = parseV2(openApi);
-                    writeClient(clientV2, language, templates, outputPath);
+                    writeClient(clientV2, language, httpClient, templates, outputPath);
                 }
 
                 // Generate and write version 3 client
                 if (openApiVersion === OpenApiVersion.V3) {
                     const clientV3 = parseV3(openApi);
-                    writeClient(clientV3, language, templates, outputPath);
+                    writeClient(clientV3, language, httpClient, templates, outputPath);
                 }
         }
     } catch (e) {

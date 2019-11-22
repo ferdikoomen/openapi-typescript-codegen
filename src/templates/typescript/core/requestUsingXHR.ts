@@ -31,6 +31,7 @@ export async function requestUsingXHR<T = any>(url: string, request: Readonly<Re
         // Register the readystate handler, this will fire when the request is done.
         xhr.onreadystatechange = () => {
             if (xhr.readyState === XMLHttpRequest.DONE) {
+
                 // Create result object.
                 const result: Result = {
                     url,

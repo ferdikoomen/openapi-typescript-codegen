@@ -7,6 +7,7 @@ import { isSuccess } from './isSuccess';
 import { Result } from './Result';
 
 export class ApiError extends Error {
+
     public readonly url: string;
     public readonly status: number;
     public readonly statusText: string;
@@ -41,20 +42,13 @@ export namespace ApiError {
  */
 export function catchGenericError(result: Result): void {
     switch (result.status) {
-        case 400:
-            throw new ApiError(result, ApiError.Message.BAD_REQUEST);
-        case 401:
-            throw new ApiError(result, ApiError.Message.UNAUTHORIZED);
-        case 403:
-            throw new ApiError(result, ApiError.Message.FORBIDDEN);
-        case 404:
-            throw new ApiError(result, ApiError.Message.NOT_FOUND);
-        case 500:
-            throw new ApiError(result, ApiError.Message.INTERNAL_SERVER_ERROR);
-        case 502:
-            throw new ApiError(result, ApiError.Message.BAD_GATEWAY);
-        case 503:
-            throw new ApiError(result, ApiError.Message.SERVICE_UNAVAILABLE);
+        case 400: throw new ApiError(result, ApiError.Message.BAD_REQUEST);
+        case 401: throw new ApiError(result, ApiError.Message.UNAUTHORIZED);
+        case 403: throw new ApiError(result, ApiError.Message.FORBIDDEN);
+        case 404: throw new ApiError(result, ApiError.Message.NOT_FOUND);
+        case 500: throw new ApiError(result, ApiError.Message.INTERNAL_SERVER_ERROR);
+        case 502: throw new ApiError(result, ApiError.Message.BAD_GATEWAY);
+        case 503: throw new ApiError(result, ApiError.Message.SERVICE_UNAVAILABLE);
     }
 
     if (!isSuccess(result.status)) {

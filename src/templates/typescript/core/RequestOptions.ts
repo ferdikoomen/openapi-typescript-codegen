@@ -4,6 +4,7 @@
 /* prettier-ignore */
 
 export interface RequestOptions {
+    type: 'fetch' | 'xhr';
     method: string;
     path: string;
     headers?: { [key: string]: any };

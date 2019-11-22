@@ -13,6 +13,7 @@ import { Result } from './Result';
  * @param request The request object, containing method, headers, body, etc.
  */
 export async function requestUsingFetch<T = any>(url: string, request: Readonly<RequestInit>): Promise<Result<T>> {
+
     // Fetch response using fetch API.
     const response = await fetch(url, request);
 

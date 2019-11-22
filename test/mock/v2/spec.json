@@ -10,6 +10,14 @@
         "http"
     ],
     "paths": {
+        "/api/v{api-version}/dummy": {
+            "get": {
+                "tags": [
+                    "Service"
+                ],
+                "operationId": "GetCallWithoutParametersAndResponse"
+            }
+        }
     },
     "definitions": {
         "SimpleInteger": {

@@ -25,12 +25,12 @@ OpenAPI.generate(
 //     OpenAPI.HttpClient.FETCH,
 // );
 //
-OpenAPI.generate(
-    './test/mock/v2/test-sites.json',
-    './test/tmp/v2/ts/test-sites',
-    OpenAPI.Language.TYPESCRIPT,
-    OpenAPI.HttpClient.FETCH,
-);
+// OpenAPI.generate(
+//     './test/mock/v2/test-sites.json',
+//     './test/tmp/v2/ts/test-sites',
+//     OpenAPI.Language.TYPESCRIPT,
+//     OpenAPI.HttpClient.FETCH,
+// );
 //
 // OpenAPI.generate(
 //     './test/mock/v2/test-petstore.yaml',

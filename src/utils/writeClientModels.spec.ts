@@ -1,7 +1,7 @@
 import { writeClientModels } from './writeClientModels';
 import * as fs from 'fs';
 import { Model } from '../client/interfaces/Model';
-import { Language } from '../index';
+import { HttpClient, Language } from '../index';
 import { Templates } from './readHandlebarsTemplates';
 
 jest.mock('fs');
@@ -33,7 +33,7 @@ describe('writeClientModels', () => {
             model: () => 'dummy',
             service: () => 'dummy',
         };
-        writeClientModels(models, Language.TYPESCRIPT, templates, '/');
+        writeClientModels(models, Language.TYPESCRIPT, HttpClient.FETCH, templates, '/');
         expect(fsWriteFileSync).toBeCalledWith('/Item.ts', 'dummy');
     });
 });
