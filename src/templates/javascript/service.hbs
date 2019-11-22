@@ -24,43 +24,43 @@ export class {{{name}}} {
      * @param {{{name}}} {{{description}}}
     {{/each}}
     {{/if}}
+    {{#each results}}
+     * @result {{{type}}} {{{description}}}
+    {{/each}}
+     * @throws ApiError
      */
-    static async {{{name}}}({{#each parameters}}{{{name}}}{{#unless required}}?{{/unless}}{{#unless @last}}, {{/unless}}{{/each}}) {
-        {{#if parameters}}
-
+    static async {{{name}}}({{#if parameters}}
         {{#each parameters}}
-        {{#if required}}
-        isValidRequiredParam({{{name}}}, '{{{name}}}');
-        {{/if}}
+        {{{name}}}{{#if default}} = {{{default}}}{{/if}}{{#unless @last}},{{/unless}}
         {{/each}}
-        {{/if}}
+    {{/if}}) {
 
         const result = await request({
             method: '{{{method}}}',
-            path: `{{{path}}}`,{{#if parametersHeader}}
+            path: `{{{path}}}`{{#if parametersHeader}},
             headers: {
                 {{#each parametersHeader}}
-                '{{{prop}}}': {{{name}}},
+                '{{{prop}}}': {{{name}}}{{#unless @last}},{{/unless}}
                 {{/each}}
-            },{{/if}}{{#if parametersQuery}}
+            }{{/if}}{{#if parametersQuery}},
             query: {
                 {{#each parametersQuery}}
-                '{{{prop}}}': {{{name}}},
+                '{{{prop}}}': {{{name}}}{{#unless @last}},{{/unless}}
                 {{/each}}
-            },{{/if}}{{#if parametersForm}}
+            }{{/if}}{{#if parametersForm}},
             formData: {
                 {{#each parametersForm}}
-                '{{{prop}}}': {{{name}}},
+                '{{{prop}}}': {{{name}}}{{#unless @last}},{{/unless}}
                 {{/each}}
-            },{{/if}}{{#if parametersBody}}
-            body: {{{parametersBody.name}}},{{/if}}
+            }{{/if}}{{#if parametersBody}},
+            body: {{{parametersBody.name}}}{{/if}}
         });
         {{#if errors}}
 
         if (!result.ok) {
             switch (result.status) {
             {{#each errors}}
-                case {{{code}}}: throw new ApiError(result, `{{{text}}}`);
+                case {{{code}}}: throw new ApiError(result, `{{{description}}}`);
             {{/each}}
             }
         }

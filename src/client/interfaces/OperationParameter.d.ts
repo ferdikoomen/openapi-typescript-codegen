@@ -1,12 +1,7 @@
-import { Enum } from './Enum';
-import { Schema } from './Schema';
+import { Model } from './Model';
 
-export interface OperationParameter extends Schema {
-    prop: string;
+export interface OperationParameter extends Model {
     in: 'path' | 'query' | 'header' | 'formData' | 'body';
-    name: string;
-    default: any;
-    isRequired: boolean;
-    isNullable: boolean;
-    enum: Enum[];
+    prop: string;
+    default?: any;
 }

@@ -65,35 +65,35 @@
                         "description": "This is the parameter that goes into the request header",
                         "name": "parameterHeader",
                         "in": "header",
-                        "required": true,
-                        "type": "string"
+                        "type": "string",
+                        "required": true
                     },
                     {
                         "description": "This is the parameter that goes into the request query params",
                         "name": "parameterQuery",
                         "in": "query",
-                        "required": true,
-                        "type": "string"
+                        "type": "string",
+                        "required": true
                     },
                     {
                         "description": "This is the parameter that goes into the request form data",
                         "name": "parameterForm",
                         "in": "formData",
-                        "required": true,
-                        "type": "string"
+                        "type": "string",
+                        "required": true
                     },
                     {
                         "description": "This is the parameter that is send as request body",
                         "name": "parameterBody",
                         "in": "body",
-                        "required": true,
-                        "type": "string"
+                        "type": "string",
+                        "required": true
                     },
                     {
                         "name": "api-version",
                         "in": "path",
-                        "required": true,
-                        "type": "string"
+                        "type": "string",
+                        "required": true
                     }
                 ]
             }
@@ -202,11 +202,162 @@
                 }
             }
         },
+        "/api/v{api-version}/types": {
+            "get": {
+                "tags": [
+                    "Types"
+                ],
+                "operationId": "Types",
+                "parameters": [
+                    {
+                        "description": "This is a number parameter",
+                        "name": "parameterNumber",
+                        "in": "query",
+                        "required": true,
+                        "default": 123,
+                        "type": "int"
+                    },
+                    {
+                        "description": "This is a string parameter",
+                        "name": "parameterString",
+                        "in": "query",
+                        "required": true,
+                        "default": "default",
+                        "type": "string"
+                    },
+                    {
+                        "description": "This is a boolean parameter",
+                        "name": "parameterBoolean",
+                        "in": "query",
+                        "required": true,
+                        "default": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "description": "This is an object parameter",
+                        "name": "parameterObject",
+                        "in": "query",
+                        "required": true,
+                        "default": null,
+                        "type": "object"
+                    },
+                    {
+                        "description": "This is an array parameter",
+                        "name": "parameterArray",
+                        "in": "query",
+                        "required": true,
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "This is a dictionary parameter",
+                        "name": "parameterDictionary",
+                        "in": "query",
+                        "required": true,
+                        "type": "object",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "This is a number parameter",
+                        "name": "id",
+                        "in": "path",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Response is a simple number",
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    "201": {
+                        "description": "Response is a simple string",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "202": {
+                        "description": "Response is a simple boolean",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    "203": {
+                        "description": "Response is a simple object",
+                        "default": null,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
         "/api/v{api-version}/complex": {
             "get": {
                 "tags": [
                     "Complex"
-                ]
+                ],
+                "operationId": "ComplexTypes",
+                "parameters": [
+                    {
+                        "description": "Parameter containing object",
+                        "name": "parameterObject",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "first": {
+                                    "type": "object",
+                                    "properties": {
+                                        "second": {
+                                            "type": "object",
+                                            "properties": {
+                                                "third": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "description": "Parameter containing reference",
+                        "name": "parameterReference",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ModelWithString"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/ModelWithString"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "400 server error"
+                    },
+                    "500": {
+                        "description": "500 server error"
+                    }
+                }
             }
         }
     },

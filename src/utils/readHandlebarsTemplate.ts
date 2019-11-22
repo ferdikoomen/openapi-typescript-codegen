@@ -18,8 +18,8 @@ export function readHandlebarsTemplate(filePath: string): Handlebars.TemplateDel
                 preventIndent: true,
                 knownHelpersOnly: true,
                 knownHelpers: {
-                    indent: true,
-                    eq: true,
+                    equals: true,
+                    notEquals: true,
                 },
             });
         } catch (e) {

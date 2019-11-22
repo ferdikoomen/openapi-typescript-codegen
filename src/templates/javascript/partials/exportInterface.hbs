@@ -1,0 +1,32 @@
+{{#if description}}
+/**
+ * {{{description}}}
+ */
+{{/if}}
+export let {{{name}}};
+(function ({{{name}}}) {
+
+    {{#each enums}}
+    {{#if description}}
+    /**
+     * {{{description}}}
+     */
+    {{/if}}
+    {{{../name}}}.{{{name}}} = {
+        {{#each enum}}
+        {{{name}}}: {{{value}}}{{#unless @last}},{{/unless}}
+        {{/each}}
+    };
+
+    {{/each}}
+    {{{name}}}.schema = {{>validation}};
+
+    {{{name}}}.validate = async function(value) {
+        return {{{name}}}.schema.validate(value, { strict: true });
+    };
+
+    {{{name}}}.validateSync = function(value) {
+        return {{{name}}}.schema.validateSync(value, { strict: true });
+    };
+
+})({{{name}}} || ({{{name}}} = {}));

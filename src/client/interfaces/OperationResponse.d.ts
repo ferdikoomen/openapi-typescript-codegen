@@ -1,5 +1,5 @@
-import { Schema } from './Schema';
+import { Model } from './Model';
 
-export interface OperationResponse extends Schema {
+export interface OperationResponse extends Model {
     code: number;
 }

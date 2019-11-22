@@ -1,0 +1,19 @@
+{{~#if link~}}
+yup.lazy(value => {
+    return yup.object().shape(
+        Object.entries(value).reduce((obj, item) => ({
+            ...obj,
+            [item[0]]: {{>validation link}}
+        }), {})
+    );
+})
+{{~else~}}
+yup.lazy(value => {
+    return yup.object().shape(
+        Object.entries(value).reduce((obj, item) => ({
+            ...obj,
+            [item[0]]: {{{base}}}.schema
+        }), {})
+    );
+})
+{{~/if~}}

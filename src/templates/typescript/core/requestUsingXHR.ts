@@ -14,7 +14,7 @@ import { isSuccess } from './isSuccess';
  * @param url The url to request.
  * @param request The request object, containing method, headers, body, etc.
  */
-export async function requestUsingXHR<T = any>(url: string, request: Readonly<RequestInit>): Promise<Result<T>> {
+export async function requestUsingXHR(url: string, request: Readonly<RequestInit>): Promise<Result> {
     return new Promise(resolve => {
         const xhr = new XMLHttpRequest();
 

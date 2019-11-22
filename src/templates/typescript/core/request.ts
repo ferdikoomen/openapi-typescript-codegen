@@ -16,7 +16,7 @@ import {Result} from './Result';
  * @param options Request method options.
  * @returns Result object (see above)
  */
-export async function request<T = any>(options: Readonly<RequestOptions>): Promise<Result<T>> {
+export async function request(options: Readonly<RequestOptions>): Promise<Result> {
 
     // Create the request URL
     let url = `${OpenAPI.BASE}${options.path}`;
@@ -65,9 +65,9 @@ export async function request<T = any>(options: Readonly<RequestOptions>): Promi
     try {
         switch (OpenAPI.CLIENT) {
             case 'xhr':
-                return await requestUsingXHR<T>(url, request);
+                return await requestUsingXHR(url, request);
             default:
-                return await requestUsingFetch<T>(url, request);
+                return await requestUsingFetch(url, request);
         }
     } catch (error) {
         return {

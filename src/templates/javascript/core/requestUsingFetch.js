@@ -9,7 +9,7 @@
  * @param url The url to request.
  * @param request The request object, containing method, headers, body, etc.
  */
-export async function requestUsingFetch<T>(url, request) {
+export async function requestUsingFetch(url, request) {
 
     // Fetch response using fetch API.
     const response = await fetch(url, request);
@@ -20,7 +20,7 @@ export async function requestUsingFetch<T>(url, request) {
         ok: response.ok,
         status: response.status,
         statusText: response.statusText,
-        body: null,
+        body: null
     };
 
     // Try to parse the content for any response status code.
@@ -29,7 +29,6 @@ export async function requestUsingFetch<T>(url, request) {
     const contentType = response.headers.get('Content-Type');
     if (contentType) {
         switch (contentType.toLowerCase()) {
-
             case 'application/json':
             case 'application/json; charset=utf-8':
                 result.body = await response.json();

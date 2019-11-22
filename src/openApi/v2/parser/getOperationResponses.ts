@@ -25,6 +25,7 @@ export function getOperationResponses(openApi: OpenApi, responses: OpenApiRespon
             // free to do their own casting if needed.
             if (responseCode) {
                 const operationResponse: OperationResponse = {
+                    name: '',
                     code: responseCode,
                     description: getComment(response.description)!,
                     export: 'generic',
@@ -32,7 +33,15 @@ export function getOperationResponses(openApi: OpenApi, responses: OpenApiRespon
                     base: PrimaryType.OBJECT,
                     template: null,
                     link: null,
+                    isProperty: false,
+                    isReadOnly: false,
+                    isRequired: false,
+                    isNullable: false,
                     imports: [],
+                    extends: [],
+                    enum: [],
+                    enums: [],
+                    properties: [],
                 };
 
                 // If this response has a schema, then we need to check two things:
@@ -53,8 +62,12 @@ export function getOperationResponses(openApi: OpenApi, responses: OpenApiRespon
                         operationResponse.type = model.type;
                         operationResponse.base = model.base;
                         operationResponse.template = model.template;
+                        operationResponse.link = model.link;
                         operationResponse.imports.push(...model.imports);
-                        operationResponse.link = model;
+                        operationResponse.extends.push(...model.extends);
+                        operationResponse.enum.push(...model.enum);
+                        operationResponse.enums.push(...model.enums);
+                        operationResponse.properties.push(...model.properties);
                     }
                 }
 

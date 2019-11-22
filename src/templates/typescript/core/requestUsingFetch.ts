@@ -12,7 +12,7 @@ import { Result } from './Result';
  * @param url The url to request.
  * @param request The request object, containing method, headers, body, etc.
  */
-export async function requestUsingFetch<T = any>(url: string, request: Readonly<RequestInit>): Promise<Result<T>> {
+export async function requestUsingFetch(url: string, request: Readonly<RequestInit>): Promise<Result> {
 
     // Fetch response using fetch API.
     const response = await fetch(url, request);

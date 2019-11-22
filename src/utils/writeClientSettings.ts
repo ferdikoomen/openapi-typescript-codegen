@@ -18,7 +18,6 @@ export function writeClientSettings(client: Client, language: Language, httpClie
             })
         );
     } catch (e) {
-        console.log(e);
         throw new Error(`Could not write settings: "${fileName}"`);
     }
 }

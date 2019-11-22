@@ -1,9 +1,13 @@
 import { PrimaryType } from './constants';
 import { OperationResponse } from '../../../client/interfaces/OperationResponse';
-import { Schema } from '../../../client/interfaces/Schema';
+import { Model } from '../../../client/interfaces/Model';
 
-function areEqual(a: Schema, b: Schema): boolean {
-    return a.type === b.type && a.base === b.base && a.template === b.template;
+function areEqual(a: Model, b: Model): boolean {
+    const equal = a.type === b.type && a.base === b.base && a.template === b.template;
+    if (equal && a.link && b.link) {
+        return areEqual(a.link, b.link);
+    }
+    return equal;
 }
 
 export function getOperationResults(operationResponses: OperationResponse[]): OperationResponse[] {
@@ -17,14 +21,23 @@ export function getOperationResults(operationResponses: OperationResponse[]): Op
 
     if (!operationResults.length) {
         operationResults.push({
+            name: '',
             code: 200,
             description: '',
             export: 'interface',
             type: PrimaryType.OBJECT,
             base: PrimaryType.OBJECT,
             template: null,
-            imports: [],
             link: null,
+            isProperty: false,
+            isReadOnly: false,
+            isRequired: false,
+            isNullable: false,
+            imports: [],
+            extends: [],
+            enum: [],
+            enums: [],
+            properties: [],
         });
     }
 

@@ -17,13 +17,12 @@ import { format } from './format';
 export function writeClientModels(models: Map<string, Model>, language: Language, templates: Templates, outputPath: string): void {
     models.forEach(model => {
         const fileName = getFileName(model.name, language);
-        try {
-            const templateData = exportModel(model);
-            const templateResult = templates.model(templateData);
-            fs.writeFileSync(path.resolve(outputPath, fileName), format(templateResult));
-        } catch (e) {
-            console.log(e);
-            throw new Error(`Could not write model: "${fileName}"`);
-        }
+        // try {
+        const templateData = exportModel(model);
+        const templateResult = templates.model(templateData);
+        fs.writeFileSync(path.resolve(outputPath, fileName), format(templateResult));
+        // } catch (e) {
+        //     throw new Error(`Could not write model: "${fileName}"`);
+        // }
     });
 }

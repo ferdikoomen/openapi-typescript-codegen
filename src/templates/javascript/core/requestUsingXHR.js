@@ -2,19 +2,18 @@
 /* eslint-disable */
 /* prettier-ignore */
 
-import { isSuccess } from "./isSuccess";
+import { isSuccess } from './isSuccess';
 
 /**
- * Request content using the new legacy XMLHttpRequest API. This method is usefull
+ * Request content using the new legacy XMLHttpRequest API. This method is useful
  * when we want to request UTF-16 content, since it natively supports loading UTF-16.
- * We could do the same with the Fetch API, but then we will need to conver the
+ * We could do the same with the Fetch API, but then we will need to convert the
  * content using JavaScript... And that is very very slow.
  * @param url The url to request.
  * @param request The request object, containing method, headers, body, etc.
  */
-export async function requestUsingXHR<T>(url, request) {
-    return new Promise(resole => {
-
+export async function requestUsingXHR(url, request) {
+    return new Promise(resolve => {
         const xhr = new XMLHttpRequest();
 
         // Open the request, remember to do this before adding any headers,
@@ -37,7 +36,7 @@ export async function requestUsingXHR<T>(url, request) {
                     ok: isSuccess(xhr.status),
                     status: xhr.status,
                     statusText: xhr.statusText,
-                    body: null,
+                    body: null
                 };
 
                 // Try to parse the content for any response status code.
@@ -46,7 +45,6 @@ export async function requestUsingXHR<T>(url, request) {
                 const contentType = xhr.getResponseHeader('Content-Type');
                 if (contentType) {
                     switch (contentType.toLowerCase()) {
-
                         case 'application/json':
                         case 'application/json; charset=utf-8':
                             result.body = JSON.parse(xhr.responseText);

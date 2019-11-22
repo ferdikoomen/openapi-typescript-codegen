@@ -9,6 +9,7 @@ import { getEnum } from './getEnum';
 import { getEnumType } from './getEnumType';
 import { getEnumFromDescription } from './getEnumFromDescription';
 import { getModel } from './getModel';
+import { getOperationParameterDefault } from './getOperationParameterDefault';
 
 export function getOperationParameter(openApi: OpenApi, parameter: OpenApiParameter): OperationParameter {
     const operationParameter: OperationParameter = {
@@ -21,11 +22,16 @@ export function getOperationParameter(openApi: OpenApi, parameter: OpenApiParame
         template: null,
         link: null,
         description: getComment(parameter.description),
-        default: parameter.default,
+        default: getOperationParameterDefault(parameter.default),
+        isProperty: false,
+        isReadOnly: false,
         isRequired: parameter.required || false,
         isNullable: false,
         imports: [],
+        extends: [],
         enum: [],
+        enums: [],
+        properties: [],
     };
 
     if (parameter.$ref) {
@@ -77,6 +83,7 @@ export function getOperationParameter(openApi: OpenApi, parameter: OpenApiParame
         operationParameter.base = items.base;
         operationParameter.template = items.template;
         operationParameter.imports.push(...items.imports);
+        operationParameter.imports.push('Dictionary');
         return operationParameter;
     }
 
@@ -91,12 +98,16 @@ export function getOperationParameter(openApi: OpenApi, parameter: OpenApiParame
             return operationParameter;
         } else {
             const model = getModel(openApi, parameter.schema);
-            operationParameter.export = 'interface';
+            operationParameter.export = model.export;
             operationParameter.type = model.type;
             operationParameter.base = model.base;
             operationParameter.template = model.template;
+            operationParameter.link = model.link;
             operationParameter.imports.push(...model.imports);
-            operationParameter.link = model;
+            operationParameter.extends.push(...model.extends);
+            operationParameter.enum.push(...model.enum);
+            operationParameter.enums.push(...model.enums);
+            operationParameter.properties.push(...model.properties);
             return operationParameter;
         }
     }

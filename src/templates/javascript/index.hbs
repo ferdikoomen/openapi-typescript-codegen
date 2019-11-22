@@ -3,16 +3,17 @@
 /* prettier-ignore */
 
 export { ApiError } from './core/ApiError';
+export { isSuccess } from './core/isSuccess';
 export { OpenAPI } from './core/OpenAPI';
 {{#if models}}
 
 {{#each models}}
-export { {{{basename}}} } from './models/{{{basename}}}';
+{{#notEquals this 'Dictionary'}}export { {{{this}}} } from './models/{{{this}}}';{{/notEquals}}
 {{/each}}
 {{/if}}
 {{#if services}}
 
 {{#each services}}
-export { {{{name}}} } from './services/{{{name}}}';
+export { {{{this}}} } from './services/{{{this}}}';
 {{/each}}
 {{/if}}

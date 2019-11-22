@@ -7,5 +7,5 @@
  * @param status Status code
  */
 export function isSuccess(status) {
-    return (status >= 200 && status < 300);
+    return status >= 200 && status < 300;
 }

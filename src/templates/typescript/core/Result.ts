@@ -3,10 +3,10 @@
 /* eslint-disable */
 /* prettier-ignore */
 
-export interface Result<T = any> {
+export interface Result {
     url: string;
     ok: boolean;
     status: number;
     statusText: string;
-    body: T;
+    body: any;
 }

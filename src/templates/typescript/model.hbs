@@ -10,16 +10,16 @@ import { {{{this}}} } from '../models/{{{this}}}';
 {{/if}}
 import * as yup from 'yup';
 
-{{#eq export 'reference'}}
+{{#equals export 'reference'}}
 {{>exportReference}}
-{{else eq export 'generic'}}
+{{else equals export 'generic'}}
 {{>exportGeneric}}
-{{else eq export 'enum'}}
+{{else equals export 'enum'}}
 {{>exportEnum}}
-{{else eq export 'array'}}
+{{else equals export 'array'}}
 {{>exportArray}}
-{{else eq export 'dictionary'}}
+{{else equals export 'dictionary'}}
 {{>exportDictionary}}
-{{else eq export 'interface'}}
+{{else equals export 'interface'}}
 {{>exportInterface}}
-{{/eq}}
+{{/equals}}

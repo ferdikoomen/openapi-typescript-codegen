@@ -1,13 +1,13 @@
-{{#eq export 'reference'}}
+{{#equals export 'reference'}}
 {{>typeReference}}
-{{else eq export 'generic'}}
+{{else equals export 'generic'}}
 {{>typeGeneric}}
-{{else eq export 'enum'}}
+{{else equals export 'enum'}}
 {{>typeEnum}}
-{{else eq export 'array'}}
+{{else equals export 'array'}}
 {{>typeArray}}
-{{else eq export 'dictionary'}}
+{{else equals export 'dictionary'}}
 {{>typeDictionary}}
-{{else eq export 'interface'}}
+{{else equals export 'interface'}}
 {{>typeInterface}}
-{{/eq}}
+{{/equals}}
