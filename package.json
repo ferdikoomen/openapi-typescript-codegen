@@ -45,7 +45,7 @@
         "src/templates/typescript/*.hbs"
     ],
     "scripts": {
-        "clean": "rimraf \"./dist\" \"./test/tmp\"",
+        "clean": "rimraf \"./dist\" \"./coverage\" \"./test/tmp\"",
         "build": "tsc",
         "start": "tsc && node ./test/index.js",
         "test": "jest ./src",
