@@ -3,6 +3,7 @@ import { Client } from '../../client/interfaces/Client';
 import { getServer } from './parser/getServer';
 import { getServices } from './parser/getServices';
 import { getModels } from './parser/getModels';
+import { getServiceVersion } from './parser/getServiceVersion';
 
 /**
  * Parse the OpenAPI specification to a Client model that contains
@@ -11,7 +12,7 @@ import { getModels } from './parser/getModels';
  */
 export function parse(openApi: OpenApi): Client {
     return {
-        version: openApi.info.version,
+        version: getServiceVersion(openApi.info.version),
         server: getServer(openApi),
         models: getModels(openApi),
         services: getServices(openApi),

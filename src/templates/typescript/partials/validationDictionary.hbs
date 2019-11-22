@@ -1,9 +1,9 @@
 {{~#if link~}}
-yup.lazy<Dictionary<{{>type link child=true}}>>(value => {
-    return yup.object<Dictionary<{{>type link child=true}}>>().shape(
+yup.lazy<Dictionary<{{>type link}}>>(value => {
+    return yup.object<Dictionary<{{>type link}}>>().shape(
         Object.entries(value).reduce((obj, item) => ({
             ...obj,
-            [item[0]]: {{>validation link child=true}},
+            [item[0]]: {{>validation link}}
         }), {})
     );
 })
@@ -12,7 +12,7 @@ yup.lazy<Dictionary<{{{type}}}>>(value => {
     return yup.object<Dictionary<{{{type}}}>>().shape(
         Object.entries(value).reduce((obj, item) => ({
             ...obj,
-            [item[0]]: {{{base}}}.schema,
+            [item[0]]: {{{base}}}.schema
         }), {})
     );
 })

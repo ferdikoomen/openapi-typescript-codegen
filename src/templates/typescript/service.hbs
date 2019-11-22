@@ -2,8 +2,8 @@
 /* tslint:disable */
 /* eslint-disable */
 /* prettier-ignore */
-{{#if imports}}
 
+{{#if imports}}
 {{#each imports}}
 import { {{{this}}} } from '../models/{{{this}}}';
 {{/each}}
@@ -11,7 +11,6 @@ import { {{{this}}} } from '../models/{{{this}}}';
 import { ApiError, catchGenericError } from '../core/ApiError';
 import { request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
-import { Result } from '../core/Result';
 
 export class {{{name}}} {
 
@@ -31,37 +30,43 @@ export class {{{name}}} {
      * @param {{{name}}} {{{description}}}
     {{/each}}
     {{/if}}
-     * @return {{{result}}}
+    {{#each results}}
+     * @result {{{type}}} {{{description}}}
+    {{/each}}
+     * @throws ApiError
      */
-    public static async {{{name}}}({{#each parameters}}{{{name}}}{{#unless required}}?{{/unless}}: {{{type}}}{{#if nullable}} | null{{/if}}{{#unless @last}}, {{/unless}}{{/each}}): Promise<{{{result}}}> {
+    public static async {{{name}}}({{#if parameters}}
+        {{#each parameters}}
+        {{{name}}}{{#unless isRequired}}?{{/unless}}: {{>type}}{{#if isNullable}} | null{{/if}}{{#if default}} = {{{default}}}{{/if}}{{#unless @last}},{{/unless}}
+        {{/each}}
+    {{/if}}): Promise<{{>result}}> {
 
-        const result: Result<{{{result}}}> = await request({
-            type: '{{{../httpClient}}}',
+        const result = await request({
             method: '{{{method}}}',
-            path: `{{{path}}}`,
-            {{#if parametersHeader}}
+            path: `{{{path}}}`
+            {{~#if parametersHeader~}},
             headers: {
                 {{#each parametersHeader}}
-                '{{{prop}}}': {{{name}}},
+                '{{{prop}}}': {{{name}}}{{#unless @last}},{{/unless}}
                 {{/each}}
-            },
-            {{/if}}
-            {{#if parametersQuery}}
+            }
+            {{~/if~}}
+            {{~#if parametersQuery~}},
             query: {
                 {{#each parametersQuery}}
-                '{{{prop}}}': {{{name}}},
+                '{{{prop}}}': {{{name}}}{{#unless @last}},{{/unless}}
                 {{/each}}
-            },
-            {{/if}}
-            {{#if parametersForm}}
+            }
+            {{~/if~}}
+            {{~#if parametersForm~}},
             formData: {
                 {{#each parametersForm}}
-                '{{{prop}}}': {{{name}}},
+                '{{{prop}}}': {{{name}}}{{#unless @last}},{{/unless}}
                 {{/each}}
-            },
-            {{/if}}
-            {{#if parametersBody}}
-            body: {{{parametersBody.name}}},
+            }
+            {{~/if~}}
+            {{~#if parametersBody~}},
+            body: {{{parametersBody.name}}}
             {{/if}}
         });
         {{#if errors}}
@@ -69,7 +74,7 @@ export class {{{name}}} {
         if (!result.ok) {
             switch (result.status) {
             {{#each errors}}
-                case {{{code}}}: throw new ApiError(result, `{{{text}}}`);
+                case {{{code}}}: throw new ApiError(result, `{{{description}}}`);
             {{/each}}
             }
         }

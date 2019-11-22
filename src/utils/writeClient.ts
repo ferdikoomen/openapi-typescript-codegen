@@ -9,6 +9,7 @@ import { writeClientIndex } from './writeClientIndex';
 import { HttpClient, Language } from '../index';
 import * as fs from 'fs';
 import * as glob from 'glob';
+import { writeClientSettings } from './writeClientSettings';
 
 /**
  * Write our OpenAPI client, using the given templates at the given output path.
@@ -43,18 +44,19 @@ export function writeClient(client: Client, language: Language, httpClient: Http
     // Copy all support files
     const supportFiles = path.resolve(__dirname, `../../src/templates/${language}/`);
     const supportFilesList = glob.sync('**/*.{ts,js}', { cwd: supportFiles });
-    supportFilesList.forEach(file =>
+    supportFilesList.forEach(file => {
         fs.copyFileSync(
             path.resolve(supportFiles, file), // From input path
             path.resolve(outputPath, file) // To output path
-        )
-    );
+        );
+    });
 
     // Write the client files
     try {
         writeClientIndex(client, language, templates, outputPath);
-        writeClientModels(client.models, language, httpClient, templates, outputPathModels);
-        writeClientServices(client.services, language, httpClient, templates, outputPathServices);
+        writeClientModels(client.models, language, templates, outputPathModels);
+        writeClientServices(client.services, language, templates, outputPathServices);
+        writeClientSettings(client, language, httpClient, templates, outputPathCore);
     } catch (e) {
         throw e;
     }

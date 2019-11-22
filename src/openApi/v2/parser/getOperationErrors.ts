@@ -1,13 +1,13 @@
 import { OperationResponse } from '../../../client/interfaces/OperationResponse';
 import { OperationError } from '../../../client/interfaces/OperationError';
 
-export function getOperationErrors(responses: OperationResponse[]): OperationError[] {
-    return responses
-        .filter(response => {
-            return response.code >= 300 && response.text !== undefined && response.text !== '';
+export function getOperationErrors(operationResponses: OperationResponse[]): OperationError[] {
+    return operationResponses
+        .filter(operationResponse => {
+            return operationResponse.code >= 300 && operationResponse.description;
         })
         .map(response => ({
             code: response.code,
-            text: response.text,
+            description: response.description!,
         }));
 }

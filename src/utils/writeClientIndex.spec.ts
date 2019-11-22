@@ -14,7 +14,7 @@ describe('writeClientIndex', () => {
     it('should write to filesystem', () => {
         const client: Client = {
             server: 'http://localhost:8080',
-            version: 'v1',
+            version: '1.0',
             models: new Map<string, Model>(),
             services: new Map<string, Service>(),
         };
@@ -22,6 +22,7 @@ describe('writeClientIndex', () => {
             index: () => 'dummy',
             model: () => 'dummy',
             service: () => 'dummy',
+            settings: () => 'dummy',
         };
         writeClientIndex(client, Language.TYPESCRIPT, templates, '/');
         expect(fsWriteFileSync).toBeCalledWith('/index.ts', 'dummy');

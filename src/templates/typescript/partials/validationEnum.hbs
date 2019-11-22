@@ -1,0 +1,9 @@
+yup.mixed<{{{name}}}>().oneOf([
+    {{#each enum}}
+    {{#eq ../name name}}
+    {{{value}}}{{#unless @last}},{{/unless}}
+    {{else}}
+    {{{../name}}}.{{{name}}}{{#unless @last}},{{/unless}}
+    {{/eq}}
+    {{/each}}
+])

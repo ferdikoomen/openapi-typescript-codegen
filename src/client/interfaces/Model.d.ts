@@ -1,17 +1,12 @@
 import { Enum } from './Enum';
+import { Schema } from './Schema';
 
-export interface Model {
+export interface Model extends Schema {
     name: string;
-    export: 'reference' | 'generic' | 'enum' | 'array' | 'dictionary' | 'interface';
-    type: string;
-    base: string;
-    template: string | null;
-    link: Model | null;
-    description: string | null;
-    readOnly: boolean;
-    required: boolean;
-    nullable: boolean;
-    imports: string[];
+    isProperty: boolean;
+    isReadOnly: boolean;
+    isRequired: boolean;
+    isNullable: boolean;
     extends: string[];
     enum: Enum[];
     enums: Model[];

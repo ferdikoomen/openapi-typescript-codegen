@@ -9,18 +9,19 @@ import { getEnum } from './getEnum';
 import { getEnumFromDescription } from './getEnumFromDescription';
 import { getModelProperties } from './getModelProperties';
 
-export function getModel(openApi: OpenApi, definition: OpenApiSchema, name: string = ''): Model {
-    const result: Model = {
-        name,
+export function getModel(openApi: OpenApi, definition: OpenApiSchema, isProperty: boolean = false, name: string = ''): Model {
+    const model: Model = {
+        name: name,
         export: 'interface',
         type: PrimaryType.OBJECT,
         base: PrimaryType.OBJECT,
         template: null,
         link: null,
         description: getComment(definition.description),
-        readOnly: definition.readOnly || false,
-        required: false,
-        nullable: false,
+        isProperty: isProperty,
+        isReadOnly: definition.readOnly || false,
+        isRequired: false,
+        isNullable: false,
         imports: [],
         extends: [],
         enum: [],
@@ -30,97 +31,99 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, name: stri
 
     if (definition.$ref) {
         const definitionRef = getType(definition.$ref);
-        result.export = 'reference';
-        result.type = definitionRef.type;
-        result.base = definitionRef.base;
-        result.template = definitionRef.template;
-        result.imports.push(...definitionRef.imports);
-        return result;
+        model.export = 'reference';
+        model.type = definitionRef.type;
+        model.base = definitionRef.base;
+        model.template = definitionRef.template;
+        model.imports.push(...definitionRef.imports);
+        return model;
     }
 
     if (definition.enum) {
         const enumerators = getEnum(definition.enum);
         if (enumerators.length) {
-            result.export = 'enum';
-            result.type = getEnumType(enumerators);
-            result.base = PrimaryType.STRING;
-            result.enum.push(...enumerators);
-            return result;
+            model.export = 'enum';
+            model.type = getEnumType(enumerators);
+            model.base = PrimaryType.STRING;
+            model.enum.push(...enumerators);
+            return model;
         }
     }
 
     if ((definition.type === 'int' || definition.type === 'integer') && definition.description) {
         const enumerators = getEnumFromDescription(definition.description);
         if (enumerators.length) {
-            result.export = 'enum';
-            result.type = getEnumType(enumerators);
-            result.base = PrimaryType.NUMBER;
-            result.enum.push(...enumerators);
-            return result;
+            model.export = 'enum';
+            model.type = getEnumType(enumerators);
+            model.base = PrimaryType.NUMBER;
+            model.enum.push(...enumerators);
+            return model;
         }
     }
 
     if (definition.type === 'array' && definition.items) {
         if (definition.items.$ref) {
             const arrayItems = getType(definition.items.$ref);
-            result.export = 'array';
-            result.type = arrayItems.type;
-            result.base = arrayItems.base;
-            result.template = arrayItems.template;
-            result.imports.push(...arrayItems.imports);
+            model.export = 'array';
+            model.type = arrayItems.type;
+            model.base = arrayItems.base;
+            model.template = arrayItems.template;
+            model.imports.push(...arrayItems.imports);
+            return model;
         } else {
-            const arrayItems = getModel(openApi, definition.items);
-            result.export = 'array';
-            result.type = arrayItems.type;
-            result.base = arrayItems.base;
-            result.template = arrayItems.template;
-            result.link = arrayItems;
-            result.imports.push(...arrayItems.imports);
+            const arrayItems = getModel(openApi, definition.items, true);
+            model.export = 'array';
+            model.type = arrayItems.type;
+            model.base = arrayItems.base;
+            model.template = arrayItems.template;
+            model.link = arrayItems;
+            model.imports.push(...arrayItems.imports);
+            return model;
         }
-        return result;
     }
 
     if (definition.type === 'object' && definition.additionalProperties && typeof definition.additionalProperties === 'object') {
         if (definition.additionalProperties.$ref) {
             const additionalProperties = getType(definition.additionalProperties.$ref);
-            result.export = 'dictionary';
-            result.type = additionalProperties.type;
-            result.base = additionalProperties.base;
-            result.template = additionalProperties.template;
-            result.imports.push(...additionalProperties.imports);
-            result.imports.push('Dictionary');
+            model.export = 'dictionary';
+            model.type = additionalProperties.type;
+            model.base = additionalProperties.base;
+            model.template = additionalProperties.template;
+            model.imports.push(...additionalProperties.imports);
+            model.imports.push('Dictionary');
+            return model;
         } else {
             const additionalProperties = getModel(openApi, definition.additionalProperties);
-            result.export = 'dictionary';
-            result.type = additionalProperties.type;
-            result.base = additionalProperties.base;
-            result.template = additionalProperties.template;
-            result.link = additionalProperties;
-            result.imports.push(...additionalProperties.imports);
-            result.imports.push('Dictionary');
+            model.export = 'dictionary';
+            model.type = additionalProperties.type;
+            model.base = additionalProperties.base;
+            model.template = additionalProperties.template;
+            model.link = additionalProperties;
+            model.imports.push(...additionalProperties.imports);
+            model.imports.push('Dictionary');
+            return model;
         }
-        return result;
     }
 
     if (definition.type === 'object') {
-        result.export = 'interface';
-        result.type = PrimaryType.OBJECT;
-        result.base = PrimaryType.OBJECT;
+        model.export = 'interface';
+        model.type = PrimaryType.OBJECT;
+        model.base = PrimaryType.OBJECT;
 
         if (definition.allOf) {
             definition.allOf.forEach(parent => {
                 if (parent.$ref) {
                     const parentRef = getType(parent.$ref);
-                    result.extends.push(parentRef.type);
-                    result.imports.push(parentRef.base);
+                    model.extends.push(parentRef.type);
+                    model.imports.push(parentRef.base);
                 }
                 if (parent.type === 'object' && parent.properties) {
                     const properties = getModelProperties(openApi, parent);
                     properties.forEach(property => {
-                        result.properties.push(property);
-                        result.imports.push(...property.imports);
+                        model.properties.push(property);
+                        model.imports.push(...property.imports);
                         if (property.export === 'enum') {
-                            result.enums.push(property);
+                            model.enums.push(property);
                         }
                     });
                 }
@@ -130,27 +133,27 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, name: stri
         if (definition.properties) {
             const properties = getModelProperties(openApi, definition);
             properties.forEach(property => {
-                result.properties.push(property);
-                result.imports.push(...property.imports);
+                model.properties.push(property);
+                model.imports.push(...property.imports);
                 if (property.export === 'enum') {
-                    result.enums.push(property);
+                    model.enums.push(property);
                 }
             });
         }
 
-        return result;
+        return model;
     }
 
     // If the schema has a type than it can be a basic or generic type.
     if (definition.type) {
         const definitionType = getType(definition.type);
-        result.export = 'generic';
-        result.type = definitionType.type;
-        result.base = definitionType.base;
-        result.template = definitionType.template;
-        result.imports.push(...definitionType.imports);
-        return result;
+        model.export = 'generic';
+        model.type = definitionType.type;
+        model.base = definitionType.base;
+        model.template = definitionType.template;
+        model.imports.push(...definitionType.imports);
+        return model;
     }
 
-    return result;
+    return model;
 }

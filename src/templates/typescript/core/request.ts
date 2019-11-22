@@ -3,13 +3,13 @@
 /* eslint-disable */
 /* prettier-ignore */
 
-import { getFormData } from './getFormData';
-import { getQueryString } from './getQueryString';
-import { OpenAPI } from './OpenAPI';
-import { RequestOptions } from './RequestOptions';
-import { requestUsingFetch } from './requestUsingFetch';
-import { requestUsingXHR } from './requestUsingXHR';
-import { Result } from './Result';
+import {getFormData} from './getFormData';
+import {getQueryString} from './getQueryString';
+import {OpenAPI} from './OpenAPI';
+import {RequestOptions} from './RequestOptions';
+import {requestUsingFetch} from './requestUsingFetch';
+import {requestUsingXHR} from './requestUsingXHR';
+import {Result} from './Result';
 
 /**
  * Create the request.
@@ -24,14 +24,14 @@ export async function request<T = any>(options: Readonly<RequestOptions>): Promi
     // Create request headers
     const headers = new Headers({
         ...options.headers,
-        Accept: 'application/json',
+        Accept: 'application/json'
     });
 
     // Create request settings
     const request: RequestInit = {
         headers,
         method: options.method,
-        credentials: 'same-origin',
+        credentials: 'same-origin'
     };
 
     // If we have a bearer token then we set the authentication header.
@@ -63,11 +63,11 @@ export async function request<T = any>(options: Readonly<RequestOptions>): Promi
     }
 
     try {
-        switch (options.type) {
-            case 'fetch':
-                return await requestUsingFetch<T>(url, request);
+        switch (OpenAPI.CLIENT) {
             case 'xhr':
                 return await requestUsingXHR<T>(url, request);
+            default:
+                return await requestUsingFetch<T>(url, request);
         }
     } catch (error) {
         return {
@@ -75,7 +75,7 @@ export async function request<T = any>(options: Readonly<RequestOptions>): Promi
             ok: false,
             status: 0,
             statusText: '',
-            body: error,
+            body: error
         };
     }
 }

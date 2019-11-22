@@ -3,17 +3,21 @@
  * {{{description}}}
  */
 {{/if}}
-export type {{{name}}} = {{>type}}{{#if nullable}} | null{{/if}};
+export enum {{{name}}} {
+    {{#each enum}}
+    {{{name}}} = {{{value}}}{{#unless @last}},{{/unless}}
+    {{/each}}
+}
 
 export namespace {{{name}}} {
 
     export const schema = {{>validation}};
 
-    export async function validate(value: any): Promise<{{{name}}}{{#if nullable}} | null{{/if}}> {
+    export async function validate(value: any): Promise<{{{name}}}> {
         return schema.validate(value, { strict: true });
     }
 
-    export function validateSync(value: any): {{{name}}}{{#if nullable}} | null{{/if}} {
+    export function validateSync(value: any): {{{name}}} {
         return schema.validateSync(value, { strict: true });
     }
 }

@@ -9,7 +9,7 @@ export function format(s: string): string {
         if (line.endsWith('(') || line.endsWith('{') || line.endsWith('[')) {
             indent++;
         }
-        if (line.startsWith(')') || line.startsWith('}') || line.startsWith(']')) {
+        if ((line.startsWith(')') || line.startsWith('}') || line.startsWith(']')) && i) {
             indent--;
             i--;
         }

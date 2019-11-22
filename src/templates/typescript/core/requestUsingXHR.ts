@@ -38,7 +38,7 @@ export async function requestUsingXHR<T = any>(url: string, request: Readonly<Re
                     ok: isSuccess(xhr.status),
                     status: xhr.status,
                     statusText: xhr.statusText,
-                    body: null,
+                    body: null
                 };
 
                 // Try to parse the content for any response status code.

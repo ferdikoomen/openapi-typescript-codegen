@@ -6,10 +6,9 @@ import { getOperationPath } from './getOperationPath';
 import { OpenApi } from '../interfaces/OpenApi';
 import { getComment } from './getComment';
 import { Operation } from '../../../client/interfaces/Operation';
-import { PrimaryType } from './constants';
 import { getOperationParameters } from './getOperationParameters';
 import { getOperationResponses } from './getOperationResponses';
-import { getOperationResponse } from './getOperationResponse';
+import { getOperationResults } from './getOperationResults';
 import { getOperationErrors } from './getOperationErrors';
 
 export function getOperation(openApi: OpenApi, url: string, method: string, op: OpenApiOperation): Operation {
@@ -20,7 +19,7 @@ export function getOperation(openApi: OpenApi, url: string, method: string, op: 
     const operationPath = getOperationPath(url);
 
     // Create a new operation object for this method.
-    const result: Operation = {
+    const operation: Operation = {
         service: serviceClassName,
         name: operationName,
         summary: getComment(op.summary),
@@ -36,30 +35,31 @@ export function getOperation(openApi: OpenApi, url: string, method: string, op: 
         parametersBody: null,
         imports: [],
         errors: [],
-        result: PrimaryType.VOID,
+        results: [],
     };
 
     // Parse the operation parameters (path, query, body, etc).
     if (op.parameters) {
         const parameters = getOperationParameters(openApi, op.parameters);
-        result.imports.push(...parameters.imports);
-        result.parameters.push(...parameters.parameters);
-        result.parametersPath.push(...parameters.parametersPath);
-        result.parametersQuery.push(...parameters.parametersQuery);
-        result.parametersForm.push(...parameters.parametersForm);
-        result.parametersHeader.push(...parameters.parametersHeader);
-        result.parametersBody = parameters.parametersBody;
+        operation.imports.push(...parameters.imports);
+        operation.parameters.push(...parameters.parameters);
+        operation.parametersPath.push(...parameters.parametersPath);
+        operation.parametersQuery.push(...parameters.parametersQuery);
+        operation.parametersForm.push(...parameters.parametersForm);
+        operation.parametersHeader.push(...parameters.parametersHeader);
+        operation.parametersBody = parameters.parametersBody;
     }
 
     // Parse the operation responses.
     if (op.responses) {
-        const responses = getOperationResponses(openApi, op.responses);
-        const response = getOperationResponse(responses);
-        const errors = getOperationErrors(responses);
-        result.imports.push(...response.imports);
-        result.errors = errors;
-        result.result = response.type;
+        const operationResponses = getOperationResponses(openApi, op.responses);
+        const operationResults = getOperationResults(operationResponses);
+        operation.errors = getOperationErrors(operationResponses);
+        operationResults.forEach(operationResult => {
+            operation.results.push(operationResult);
+            operation.imports.push(...operationResult.imports);
+        });
     }
 
-    return result;
+    return operation;
 }

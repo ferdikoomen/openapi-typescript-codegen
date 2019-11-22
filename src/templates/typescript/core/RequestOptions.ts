@@ -4,8 +4,7 @@
 /* prettier-ignore */
 
 export interface RequestOptions {
-    type: 'fetch' | 'xhr';
-    method: string;
+    method: 'get' | 'put' | 'post' | 'delete' | 'options' | 'head' | 'patch';
     path: string;
     headers?: { [key: string]: any };
     query?: { [key: string]: any };

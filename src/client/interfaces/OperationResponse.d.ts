@@ -1,8 +1,5 @@
-export interface OperationResponse {
+import { Schema } from './Schema';
+
+export interface OperationResponse extends Schema {
     code: number;
-    text: string;
-    type: string;
-    base: string;
-    template: string | null;
-    imports: string[];
 }

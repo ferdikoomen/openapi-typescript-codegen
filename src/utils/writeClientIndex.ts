@@ -29,6 +29,7 @@ export function writeClientIndex(client: Client, language: Language, templates: 
             })
         );
     } catch (e) {
+        console.log(e);
         throw new Error(`Could not write index: "${fileName}"`);
     }
 }

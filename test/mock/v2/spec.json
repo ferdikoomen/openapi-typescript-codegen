@@ -10,12 +10,203 @@
         "http"
     ],
     "paths": {
-        "/api/v{api-version}/dummy": {
+        "/api/v{api-version}/simple": {
             "get": {
                 "tags": [
-                    "Service"
+                    "Simple"
                 ],
                 "operationId": "GetCallWithoutParametersAndResponse"
+            },
+            "put": {
+                "tags": [
+                    "Simple"
+                ],
+                "operationId": "PutCallWithoutParametersAndResponse"
+            },
+            "post": {
+                "tags": [
+                    "Simple"
+                ],
+                "operationId": "PostCallWithoutParametersAndResponse"
+            },
+            "delete": {
+                "tags": [
+                    "Simple"
+                ],
+                "operationId": "DeleteCallWithoutParametersAndResponse"
+            },
+            "options": {
+                "tags": [
+                    "Simple"
+                ],
+                "operationId": "OptionsCallWithoutParametersAndResponse"
+            },
+            "head": {
+                "tags": [
+                    "Simple"
+                ],
+                "operationId": "HeadCallWithoutParametersAndResponse"
+            },
+            "patch": {
+                "tags": [
+                    "Simple"
+                ],
+                "operationId": "PatchCallWithoutParametersAndResponse"
+            }
+        },
+        "/api/v{api-version}/parameters": {
+            "get": {
+                "tags": [
+                    "Parameters"
+                ],
+                "operationId": "CallWithParameters",
+                "parameters": [
+                    {
+                        "description": "This is the parameter that goes into the request header",
+                        "name": "parameterHeader",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "description": "This is the parameter that goes into the request query params",
+                        "name": "parameterQuery",
+                        "in": "query",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "description": "This is the parameter that goes into the request form data",
+                        "name": "parameterForm",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "description": "This is the parameter that is send as request body",
+                        "name": "parameterBody",
+                        "in": "body",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "api-version",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ]
+            }
+        },
+        "/api/v{api-version}/response": {
+            "get": {
+                "tags": [
+                    "Response"
+                ],
+                "operationId": "CallWithResponse",
+                "responses": {
+                    "default": {
+                        "description": "Message for default response",
+                        "schema": {
+                            "$ref": "#/definitions/ModelWithString"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Response"
+                ],
+                "operationId": "CallWithDuplicateResponses",
+                "responses": {
+                    "default": {
+                        "description": "Message for default response",
+                        "schema": {
+                            "$ref": "#/definitions/ModelWithString"
+                        }
+                    },
+                    "201": {
+                        "description": "Message for 201 response",
+                        "schema": {
+                            "$ref": "#/definitions/ModelWithString"
+                        }
+                    },
+                    "202": {
+                        "description": "Message for 202 response",
+                        "schema": {
+                            "$ref": "#/definitions/ModelWithString"
+                        }
+                    },
+                    "500": {
+                        "description": "Message for 500 error",
+                        "schema": {
+                            "$ref": "#/definitions/ModelWithString"
+                        }
+                    },
+                    "501": {
+                        "description": "Message for 501 error",
+                        "schema": {
+                            "$ref": "#/definitions/ModelWithString"
+                        }
+                    },
+                    "502": {
+                        "description": "Message for 502 error",
+                        "schema": {
+                            "$ref": "#/definitions/ModelWithString"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Response"
+                ],
+                "operationId": "CallWithResponses",
+                "responses": {
+                    "default": {
+                        "description": "Message for default response",
+                        "schema": {
+                            "$ref": "#/definitions/ModelWithString"
+                        }
+                    },
+                    "201": {
+                        "description": "Message for 201 response",
+                        "schema": {
+                            "$ref": "#/definitions/ModelThatExtends"
+                        }
+                    },
+                    "202": {
+                        "description": "Message for 202 response",
+                        "schema": {
+                            "$ref": "#/definitions/ModelThatExtendsExtends"
+                        }
+                    },
+                    "500": {
+                        "description": "Message for 500 error",
+                        "schema": {
+                            "$ref": "#/definitions/ModelWithString"
+                        }
+                    },
+                    "501": {
+                        "description": "Message for 501 error",
+                        "schema": {
+                            "$ref": "#/definitions/ModelWithString"
+                        }
+                    },
+                    "502": {
+                        "description": "Message for 502 error",
+                        "schema": {
+                            "$ref": "#/definitions/ModelWithString"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v{api-version}/complex": {
+            "get": {
+                "tags": [
+                    "Complex"
+                ]
             }
         }
     },

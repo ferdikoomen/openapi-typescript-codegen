@@ -6,11 +6,11 @@ import { OperationParameter } from '../../../client/interfaces/OperationParamete
 import { getOperationParameter } from './getOperationParameter';
 
 function sortByRequired(a: OperationParameter, b: OperationParameter): number {
-    return a.required && !b.required ? -1 : !a.required && b.required ? 1 : 0;
+    return a.isRequired && !b.isRequired ? -1 : !a.isRequired && b.isRequired ? 1 : 0;
 }
 
 export function getOperationParameters(openApi: OpenApi, parameters: OpenApiParameter[]): OperationParameters {
-    const result: OperationParameters = {
+    const operationParameters: OperationParameters = {
         imports: [],
         parameters: [],
         parametersPath: [],
@@ -30,42 +30,42 @@ export function getOperationParameters(openApi: OpenApi, parameters: OpenApiPara
         if (param.prop !== 'api-version') {
             switch (parameter.in) {
                 case 'path':
-                    result.parametersPath.push(param);
-                    result.parameters.push(param);
-                    result.imports.push(...param.imports);
+                    operationParameters.parametersPath.push(param);
+                    operationParameters.parameters.push(param);
+                    operationParameters.imports.push(...param.imports);
                     break;
 
                 case 'query':
-                    result.parametersQuery.push(param);
-                    result.parameters.push(param);
-                    result.imports.push(...param.imports);
+                    operationParameters.parametersQuery.push(param);
+                    operationParameters.parameters.push(param);
+                    operationParameters.imports.push(...param.imports);
                     break;
 
                 case 'header':
-                    result.parametersHeader.push(param);
-                    result.parameters.push(param);
-                    result.imports.push(...param.imports);
+                    operationParameters.parametersHeader.push(param);
+                    operationParameters.parameters.push(param);
+                    operationParameters.imports.push(...param.imports);
                     break;
 
                 case 'formData':
-                    result.parametersForm.push(param);
-                    result.parameters.push(param);
-                    result.imports.push(...param.imports);
+                    operationParameters.parametersForm.push(param);
+                    operationParameters.parameters.push(param);
+                    operationParameters.imports.push(...param.imports);
                     break;
 
                 case 'body':
-                    result.parametersBody = param;
-                    result.parameters.push(param);
-                    result.imports.push(...param.imports);
+                    operationParameters.parametersBody = param;
+                    operationParameters.parameters.push(param);
+                    operationParameters.imports.push(...param.imports);
                     break;
             }
         }
     });
 
-    result.parameters = result.parameters.sort(sortByRequired);
-    result.parametersPath = result.parametersPath.sort(sortByRequired);
-    result.parametersQuery = result.parametersQuery.sort(sortByRequired);
-    result.parametersForm = result.parametersForm.sort(sortByRequired);
-    result.parametersHeader = result.parametersHeader.sort(sortByRequired);
-    return result;
+    operationParameters.parameters = operationParameters.parameters.sort(sortByRequired);
+    operationParameters.parametersPath = operationParameters.parametersPath.sort(sortByRequired);
+    operationParameters.parametersQuery = operationParameters.parametersQuery.sort(sortByRequired);
+    operationParameters.parametersForm = operationParameters.parametersForm.sort(sortByRequired);
+    operationParameters.parametersHeader = operationParameters.parametersHeader.sort(sortByRequired);
+    return operationParameters;
 }

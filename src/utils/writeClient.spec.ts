@@ -4,7 +4,7 @@ import * as rimraf from 'rimraf';
 import * as fs from 'fs';
 import { Client } from '../client/interfaces/Client';
 import { Templates } from './readHandlebarsTemplates';
-import { Language } from '../index';
+import { HttpClient, Language } from '../index';
 import * as glob from 'glob';
 import { Model } from '../client/interfaces/Model';
 import { Service } from '../client/interfaces/Service';
@@ -32,11 +32,12 @@ describe('writeClient', () => {
             index: () => 'dummy',
             model: () => 'dummy',
             service: () => 'dummy',
+            settings: () => 'dummy',
         };
 
         globSync.mockReturnValue([]);
 
-        writeClient(client, Language.TYPESCRIPT, templates, '/');
+        writeClient(client, Language.TYPESCRIPT, HttpClient.FETCH, templates, '/');
 
         expect(rimrafSync).toBeCalled();
         expect(mkdirpSync).toBeCalled();

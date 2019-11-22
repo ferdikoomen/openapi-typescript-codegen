@@ -1,5 +1,6 @@
 import { OperationError } from './OperationError';
 import { OperationParameters } from './OperationParameters';
+import { OperationResponse } from './OperationResponse';
 
 export interface Operation extends OperationParameters {
     service: string;
@@ -10,5 +11,5 @@ export interface Operation extends OperationParameters {
     method: string;
     path: string;
     errors: OperationError[];
-    result: string;
+    results: OperationResponse[];
 }

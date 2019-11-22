@@ -1,13 +1,13 @@
 {{#eq export 'reference'}}
-{{>typeForReference}}
+{{>validationReference}}
 {{else eq export 'generic'}}
-{{>typeForGeneric}}
+{{>validationGeneric}}
 {{else eq export 'enum'}}
-{{>typeForEnum}}
+{{>validationEnum}}
 {{else eq export 'array'}}
-{{>typeForArray}}
+{{>validationArray}}
 {{else eq export 'dictionary'}}
-{{>typeForDictionary}}
+{{>validationDictionary}}
 {{else eq export 'interface'}}
-{{>typeForInterface}}
+{{>validationInterface}}
 {{/eq}}

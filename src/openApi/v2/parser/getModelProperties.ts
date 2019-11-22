@@ -6,53 +6,55 @@ import { Model } from '../../../client/interfaces/Model';
 import { getModel } from './getModel';
 
 export function getModelProperties(openApi: OpenApi, definition: OpenApiSchema): Model[] {
-    const result: Model[] = [];
+    const models: Model[] = [];
     for (const propertyName in definition.properties) {
         if (definition.properties.hasOwnProperty(propertyName)) {
             const property = definition.properties[propertyName];
             const propertyRequired = !!(definition.required && definition.required.includes(propertyName));
             const propertyReadOnly = !!property.readOnly;
             if (property.$ref) {
-                const prop = getType(property.$ref);
-                result.push({
+                const model = getType(property.$ref);
+                models.push({
                     name: propertyName,
                     export: 'reference',
-                    type: prop.type,
-                    base: prop.base,
-                    template: prop.template,
+                    type: model.type,
+                    base: model.base,
+                    template: model.template,
                     link: null,
                     description: getComment(property.description),
-                    readOnly: propertyReadOnly,
-                    required: propertyRequired,
-                    nullable: false,
-                    imports: prop.imports,
+                    isProperty: true,
+                    isReadOnly: propertyReadOnly,
+                    isRequired: propertyRequired,
+                    isNullable: false,
+                    imports: model.imports,
                     extends: [],
                     enum: [],
                     enums: [],
                     properties: [],
                 });
             } else {
-                const prop = getModel(openApi, property);
-                result.push({
+                const model = getModel(openApi, property);
+                models.push({
                     name: propertyName,
-                    export: prop.export,
-                    type: prop.type,
-                    base: prop.base,
-                    template: prop.template,
-                    link: prop.link,
+                    export: model.export,
+                    type: model.type,
+                    base: model.base,
+                    template: model.template,
+                    link: model.link,
                     description: getComment(property.description),
-                    readOnly: propertyReadOnly,
-                    required: propertyRequired,
-                    nullable: false,
-                    imports: prop.imports,
-                    extends: prop.extends,
-                    enum: prop.enum,
-                    enums: prop.enums,
-                    properties: prop.properties,
+                    isProperty: true,
+                    isReadOnly: propertyReadOnly,
+                    isRequired: propertyRequired,
+                    isNullable: false,
+                    imports: model.imports,
+                    extends: model.extends,
+                    enum: model.enum,
+                    enums: model.enums,
+                    properties: model.properties,
                 });
             }
         }
     }
 
-    return result;
+    return models;
 }

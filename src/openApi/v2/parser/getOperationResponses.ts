@@ -6,9 +6,11 @@ import { OpenApi } from '../interfaces/OpenApi';
 import { OperationResponse } from '../../../client/interfaces/OperationResponse';
 import { getType } from './getType';
 import { getModel } from './getModel';
+import { getComment } from './getComment';
+import { PrimaryType } from './constants';
 
 export function getOperationResponses(openApi: OpenApi, responses: OpenApiResponses): OperationResponse[] {
-    const results: OperationResponse[] = [];
+    const operationResponses: OperationResponse[] = [];
 
     // Iterate over each response code and get the
     // status code and response message (if any).
@@ -22,12 +24,14 @@ export function getOperationResponses(openApi: OpenApi, responses: OpenApiRespon
             // if there is no typed data, we just return <any> so the user is still
             // free to do their own casting if needed.
             if (responseCode) {
-                const result: OperationResponse = {
+                const operationResponse: OperationResponse = {
                     code: responseCode,
-                    text: response.description || '',
-                    type: 'any',
-                    base: 'any',
+                    description: getComment(response.description)!,
+                    export: 'generic',
+                    type: PrimaryType.OBJECT,
+                    base: PrimaryType.OBJECT,
                     template: null,
+                    link: null,
                     imports: [],
                 };
 
@@ -38,26 +42,29 @@ export function getOperationResponses(openApi: OpenApi, responses: OpenApiRespon
                 if (response.schema) {
                     if (response.schema.$ref) {
                         const model = getType(response.schema.$ref);
-                        result.type = model.type;
-                        result.base = model.base;
-                        result.template = model.template;
-                        result.imports.push(...model.imports);
+                        operationResponse.export = 'reference';
+                        operationResponse.type = model.type;
+                        operationResponse.base = model.base;
+                        operationResponse.template = model.template;
+                        operationResponse.imports.push(...model.imports);
                     } else {
                         const model = getModel(openApi, response.schema);
-                        result.type = model.type;
-                        result.base = model.base;
-                        result.template = model.template;
-                        result.imports.push(...model.imports);
+                        operationResponse.export = model.export;
+                        operationResponse.type = model.type;
+                        operationResponse.base = model.base;
+                        operationResponse.template = model.template;
+                        operationResponse.imports.push(...model.imports);
+                        operationResponse.link = model;
                     }
                 }
 
-                results.push(result);
+                operationResponses.push(operationResponse);
             }
         }
     }
 
     // Sort the responses to 2XX success codes come before 4XX and 5XX error codes.
-    return results.sort((a, b): number => {
+    return operationResponses.sort((a, b): number => {
         return a.code < b.code ? -1 : a.code > b.code ? 1 : 0;
     });
 }
