@@ -9,6 +9,6 @@
 {{#if readOnly}}readonly {{/if}}{{{name}}}{{#unless required}}?{{/unless}}: {{>type child=true}}{{#if nullable}} | null{{/if}},
 {{/each}}
 }
-{{else~}}
+{{~else~}}
 any
 {{~/if~}}

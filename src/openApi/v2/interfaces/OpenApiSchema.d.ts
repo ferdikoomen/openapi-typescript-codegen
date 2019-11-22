@@ -7,7 +7,6 @@ import { OpenApiReference } from './OpenApiReference';
  * https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#schemaObject
  */
 export interface OpenApiSchema extends OpenApiReference {
-    format?: 'int32' | 'int64' | 'float' | 'double' | 'string' | 'boolean' | 'byte' | 'binary' | 'date' | 'date-time' | 'password';
     title?: string;
     description?: string;
     default?: any;
@@ -21,12 +20,13 @@ export interface OpenApiSchema extends OpenApiReference {
     pattern?: string;
     maxItems?: number;
     minItems?: number;
-    uniqueItems?: number;
+    uniqueItems?: boolean;
     maxProperties?: number;
     minProperties?: number;
     required?: string[];
     enum?: (string | number)[];
     type?: string;
+    format?: 'int32' | 'int64' | 'float' | 'double' | 'string' | 'boolean' | 'byte' | 'binary' | 'date' | 'date-time' | 'password';
     items?: OpenApiSchema;
     allOf?: OpenApiSchema[];
     properties?: Dictionary<OpenApiSchema>;

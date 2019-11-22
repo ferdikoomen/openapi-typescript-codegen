@@ -4,6 +4,8 @@ import { OpenApiResponse } from '../interfaces/OpenApiResponse';
 import { getRef } from './getRef';
 import { OpenApi } from '../interfaces/OpenApi';
 import { OperationResponse } from '../../../client/interfaces/OperationResponse';
+import { getType } from './getType';
+import { getModel } from './getModel';
 
 export function getOperationResponses(openApi: OpenApi, responses: OpenApiResponses): OperationResponse[] {
     const results: OperationResponse[] = [];
@@ -20,27 +22,36 @@ export function getOperationResponses(openApi: OpenApi, responses: OpenApiRespon
             // if there is no typed data, we just return <any> so the user is still
             // free to do their own casting if needed.
             if (responseCode) {
-                // const result: OperationResponse = {
-                //     code: responseCode,
-                //     text: response.description || '',
-                //     type: 'any',
-                //     base: 'any',
-                //     imports: [],
-                // };
+                const result: OperationResponse = {
+                    code: responseCode,
+                    text: response.description || '',
+                    type: 'any',
+                    base: 'any',
+                    template: null,
+                    imports: [],
+                };
 
                 // If this response has a schema, then we need to check two things:
                 // if this is a reference then the parameter is just the 'name' of
                 // this reference type. Otherwise it might be a complex schema and
                 // then we need to parse the schema!
                 if (response.schema) {
-                    // const responseSchema: SchemaReference = getSchemaReference(openApi, response.schema);
-                    // result.type = responseSchema.type;
-                    // result.base = responseSchema.base;
-                    // result.template = responseSchema.template;
-                    // result.imports.push(...responseSchema.imports);
+                    if (response.schema.$ref) {
+                        const model = getType(response.schema.$ref);
+                        result.type = model.type;
+                        result.base = model.base;
+                        result.template = model.template;
+                        result.imports.push(...model.imports);
+                    } else {
+                        const model = getModel(openApi, response.schema);
+                        result.type = model.type;
+                        result.base = model.base;
+                        result.template = model.template;
+                        result.imports.push(...model.imports);
+                    }
                 }
 
-                // results.push(result);
+                results.push(result);
             }
         }
     }

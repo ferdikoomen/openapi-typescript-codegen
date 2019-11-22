@@ -2,7 +2,7 @@
  * https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#itemsObject
  */
 export interface OpenApiItems {
-    type?: 'string' | 'number' | 'integer' | 'boolean' | 'array';
+    type?: string;
     format?: 'int32' | 'int64' | 'float' | 'double' | 'string' | 'boolean' | 'byte' | 'binary' | 'date' | 'date-time' | 'password';
     items?: OpenApiItems;
     collectionFormat?: 'csv' | 'ssv' | 'tsv' | 'pipes';
@@ -16,7 +16,7 @@ export interface OpenApiItems {
     pattern?: string;
     maxItems?: number;
     minItems?: number;
-    uniqueItems?: number;
+    uniqueItems?: boolean;
     enum?: string[];
     multipleOf?: number;
 }

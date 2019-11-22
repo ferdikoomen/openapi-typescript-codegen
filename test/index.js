@@ -11,43 +11,43 @@ OpenAPI.generate(
     OpenAPI.HttpClient.FETCH,
 );
 
-OpenAPI.generate(
-    './test/mock/v2/test-addon.json',
-    './test/tmp/v2/ts/test-addon',
-    OpenAPI.Language.TYPESCRIPT,
-    OpenAPI.HttpClient.FETCH,
-);
-
-OpenAPI.generate(
-    './test/mock/v2/test-docs.json',
-    './test/tmp/v2/ts/test-docs',
-    OpenAPI.Language.TYPESCRIPT,
-    OpenAPI.HttpClient.FETCH,
-);
-
+// OpenAPI.generate(
+//     './test/mock/v2/test-addon.json',
+//     './test/tmp/v2/ts/test-addon',
+//     OpenAPI.Language.TYPESCRIPT,
+//     OpenAPI.HttpClient.FETCH,
+// );
+//
+// OpenAPI.generate(
+//     './test/mock/v2/test-docs.json',
+//     './test/tmp/v2/ts/test-docs',
+//     OpenAPI.Language.TYPESCRIPT,
+//     OpenAPI.HttpClient.FETCH,
+// );
+//
 OpenAPI.generate(
     './test/mock/v2/test-sites.json',
     './test/tmp/v2/ts/test-sites',
     OpenAPI.Language.TYPESCRIPT,
     OpenAPI.HttpClient.FETCH,
 );
-
-OpenAPI.generate(
-    './test/mock/v2/test-petstore.yaml',
-    './test/tmp/v2/ts/test-petstore-yaml',
-    OpenAPI.Language.TYPESCRIPT,
-    OpenAPI.HttpClient.FETCH,
-);
-
-OpenAPI.compile('./test/tmp/v2/ts/spec');
-
-OpenAPI.compile('./test/tmp/v2/ts/test-addon');
-
-OpenAPI.compile('./test/tmp/v2/ts/test-docs');
-
-OpenAPI.compile('./test/tmp/v2/ts/test-sites');
-
-OpenAPI.compile('./test/tmp/v2/ts/test-petstore-yaml');
+//
+// OpenAPI.generate(
+//     './test/mock/v2/test-petstore.yaml',
+//     './test/tmp/v2/ts/test-petstore-yaml',
+//     OpenAPI.Language.TYPESCRIPT,
+//     OpenAPI.HttpClient.FETCH,
+// );
+//
+// OpenAPI.compile('./test/tmp/v2/ts/spec');
+//
+// OpenAPI.compile('./test/tmp/v2/ts/test-addon');
+//
+// OpenAPI.compile('./test/tmp/v2/ts/test-docs');
+//
+// OpenAPI.compile('./test/tmp/v2/ts/test-sites');
+//
+// OpenAPI.compile('./test/tmp/v2/ts/test-petstore-yaml');
 
 // OpenAPI.generate(
 //     './test/mock/v3/test-petstore.json',

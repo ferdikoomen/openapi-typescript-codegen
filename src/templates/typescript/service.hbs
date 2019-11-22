@@ -10,7 +10,6 @@ import { {{{this}}} } from '../models/{{{this}}}';
 {{/if}}
 import { ApiError, catchGenericError } from '../core/ApiError';
 import { request } from '../core/request';
-import { isValidRequiredParam } from '../core/isValidRequiredParam';
 import { OpenAPI } from '../core/OpenAPI';
 import { Result } from '../core/Result';
 
@@ -33,16 +32,8 @@ export class {{{name}}} {
     {{/if}}
      */
     public static async {{{name}}}({{#each parameters}}{{{name}}}{{#unless required}}?{{/unless}}: {{{type}}}{{#if nullable}} | null{{/if}}{{#unless @last}}, {{/unless}}{{/each}}): Promise<{{{result}}}> {
-        {{#if parameters}}
 
-        {{#each parameters}}
-        {{#if required}}
-        isValidRequiredParam({{{name}}}, '{{{name}}}');
-        {{/if}}
-        {{/each}}
-        {{/if}}
-
-        const result = await request({
+        const result: Result<{{{result}}}> = await request({
             method: '{{{method}}}',
             path: `{{{path}}}`,
             {{#if parametersHeader}}
