@@ -1,6 +1,5 @@
 const OpenAPI = require('../dist');
 const glob = require('glob');
-const path = require('path');
 const fs = require('fs');
 
 describe('generation', () => {

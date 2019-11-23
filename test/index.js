@@ -13,3 +13,5 @@ OpenAPI.generate(
     OpenAPI.Language.JAVASCRIPT,
     OpenAPI.HttpClient.XHR,
 );
+
+OpenAPI.compile('./test/result/v2/typescript/');
