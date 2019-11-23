@@ -1,5 +1,5 @@
-import { getServiceNames } from './getServiceNames';
 import { Service } from '../client/interfaces/Service';
+import { getServiceNames } from './getServiceNames';
 
 describe('getServiceNames', () => {
     it('should return sorted list', () => {

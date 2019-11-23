@@ -1,8 +1,8 @@
-import { writeClientServices } from './writeClientServices';
 import * as fs from 'fs';
-import { Service } from '../client/interfaces/Service';
 import { Language } from '../index';
+import { Service } from '../client/interfaces/Service';
 import { Templates } from './readHandlebarsTemplates';
+import { writeClientServices } from './writeClientServices';
 
 jest.mock('fs');
 

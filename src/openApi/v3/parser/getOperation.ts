@@ -1,15 +1,14 @@
-import { Service } from '../../../client/interfaces/Service';
-import { getServiceClassName } from './getServiceClassName';
-import { OpenApiOperation } from '../interfaces/OpenApiOperation';
-import { getOperationName } from './getOperationName';
-import { getOperationPath } from './getOperationPath';
 import { OpenApi } from '../interfaces/OpenApi';
-import { getComment } from './getComment';
+import { OpenApiOperation } from '../interfaces/OpenApiOperation';
 import { Operation } from '../../../client/interfaces/Operation';
+import { getComment } from './getComment';
+import { getOperationErrors } from './getOperationErrors';
+import { getOperationName } from './getOperationName';
 import { getOperationParameters } from './getOperationParameters';
+import { getOperationPath } from './getOperationPath';
 import { getOperationResponses } from './getOperationResponses';
 import { getOperationResults } from './getOperationResults';
-import { getOperationErrors } from './getOperationErrors';
+import { getServiceClassName } from './getServiceClassName';
 
 export function getOperation(openApi: OpenApi, url: string, method: string, op: OpenApiOperation): Operation {
     const serviceName = (op.tags && op.tags[0]) || 'Service';

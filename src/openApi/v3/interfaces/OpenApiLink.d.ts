@@ -1,6 +1,6 @@
 import { Dictionary } from '../../../utils/types';
-import { OpenApiServer } from './OpenApiServer';
 import { OpenApiReference } from './OpenApiReference';
+import { OpenApiServer } from './OpenApiServer';
 
 /**
  * https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#linkObject

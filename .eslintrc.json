@@ -10,14 +10,20 @@
         "node": true,
         "jest": true
     },
+    "plugins": [
+        "sort-imports-es6-autofix"
+    ],
     "rules": {
         "@typescript-eslint/no-explicit-any": 0,
         "@typescript-eslint/no-inferrable-types": 0,
         "@typescript-eslint/no-non-null-assertion": 0,
         "@typescript-eslint/ban-ts-ignore": 0,
         "@typescript-eslint/explicit-function-return-type": 0,
-        "prettier/prettier": [
-            "error"
-        ]
+        "sort-imports-es6-autofix/sort-imports-es6": [2, {
+            "ignoreCase": false,
+            "ignoreMemberSort": false,
+            "memberSyntaxSortOrder": ["none", "all", "multiple", "single"]
+        }],
+        "prettier/prettier": ["error"]
     }
 }

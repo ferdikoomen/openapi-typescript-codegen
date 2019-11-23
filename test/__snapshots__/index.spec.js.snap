@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`generation javascript file(./test/result/v2/javascript/core/ApiError.js): ./test/result/v2/javascript/core/ApiError.js 1`] = `
+exports[`generation v2 javascript file(./test/result/v2/javascript/core/ApiError.js): ./test/result/v2/javascript/core/ApiError.js 1`] = `
 "/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
@@ -56,7 +56,7 @@ export function catchGenericError(result) {
 "
 `;
 
-exports[`generation javascript file(./test/result/v2/javascript/core/OpenAPI.js): ./test/result/v2/javascript/core/OpenAPI.js 1`] = `
+exports[`generation v2 javascript file(./test/result/v2/javascript/core/OpenAPI.js): ./test/result/v2/javascript/core/OpenAPI.js 1`] = `
 "/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
@@ -70,7 +70,7 @@ export let OpenAPI;
 })(OpenAPI || (OpenAPI = {}));"
 `;
 
-exports[`generation javascript file(./test/result/v2/javascript/core/getFormData.js): ./test/result/v2/javascript/core/getFormData.js 1`] = `
+exports[`generation v2 javascript file(./test/result/v2/javascript/core/getFormData.js): ./test/result/v2/javascript/core/getFormData.js 1`] = `
 "/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
@@ -95,7 +95,7 @@ export function getFormData(params) {
 "
 `;
 
-exports[`generation javascript file(./test/result/v2/javascript/core/getQueryString.js): ./test/result/v2/javascript/core/getQueryString.js 1`] = `
+exports[`generation v2 javascript file(./test/result/v2/javascript/core/getQueryString.js): ./test/result/v2/javascript/core/getQueryString.js 1`] = `
 "/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
@@ -129,7 +129,7 @@ export function getQueryString(params) {
 "
 `;
 
-exports[`generation javascript file(./test/result/v2/javascript/core/isSuccess.js): ./test/result/v2/javascript/core/isSuccess.js 1`] = `
+exports[`generation v2 javascript file(./test/result/v2/javascript/core/isSuccess.js): ./test/result/v2/javascript/core/isSuccess.js 1`] = `
 "/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
@@ -144,7 +144,7 @@ export function isSuccess(status) {
 "
 `;
 
-exports[`generation javascript file(./test/result/v2/javascript/core/request.js): ./test/result/v2/javascript/core/request.js 1`] = `
+exports[`generation v2 javascript file(./test/result/v2/javascript/core/request.js): ./test/result/v2/javascript/core/request.js 1`] = `
 "/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
@@ -226,7 +226,7 @@ export async function request(options) {
 "
 `;
 
-exports[`generation javascript file(./test/result/v2/javascript/core/requestUsingFetch.js): ./test/result/v2/javascript/core/requestUsingFetch.js 1`] = `
+exports[`generation v2 javascript file(./test/result/v2/javascript/core/requestUsingFetch.js): ./test/result/v2/javascript/core/requestUsingFetch.js 1`] = `
 "/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
@@ -277,7 +277,7 @@ export async function requestUsingFetch(url, request) {
 "
 `;
 
-exports[`generation javascript file(./test/result/v2/javascript/core/requestUsingXHR.js): ./test/result/v2/javascript/core/requestUsingXHR.js 1`] = `
+exports[`generation v2 javascript file(./test/result/v2/javascript/core/requestUsingXHR.js): ./test/result/v2/javascript/core/requestUsingXHR.js 1`] = `
 "/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
@@ -351,7 +351,7 @@ export async function requestUsingXHR(url, request) {
 "
 `;
 
-exports[`generation javascript file(./test/result/v2/javascript/index.js): ./test/result/v2/javascript/index.js 1`] = `
+exports[`generation v2 javascript file(./test/result/v2/javascript/index.js): ./test/result/v2/javascript/index.js 1`] = `
 "/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
@@ -405,7 +405,7 @@ export { TypesService } from './services/TypesService';
 "
 `;
 
-exports[`generation javascript file(./test/result/v2/javascript/models/ArrayWithArray.js): ./test/result/v2/javascript/models/ArrayWithArray.js 1`] = `
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/ArrayWithArray.js): ./test/result/v2/javascript/models/ArrayWithArray.js 1`] = `
 "/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
@@ -432,7 +432,7 @@ export let ArrayWithArray;
 })(ArrayWithArray || (ArrayWithArray = {}));"
 `;
 
-exports[`generation javascript file(./test/result/v2/javascript/models/ArrayWithBooleans.js): ./test/result/v2/javascript/models/ArrayWithBooleans.js 1`] = `
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/ArrayWithBooleans.js): ./test/result/v2/javascript/models/ArrayWithBooleans.js 1`] = `
 "/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
@@ -458,7 +458,7 @@ export let ArrayWithBooleans;
 })(ArrayWithBooleans || (ArrayWithBooleans = {}));"
 `;
 
-exports[`generation javascript file(./test/result/v2/javascript/models/ArrayWithNumbers.js): ./test/result/v2/javascript/models/ArrayWithNumbers.js 1`] = `
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/ArrayWithNumbers.js): ./test/result/v2/javascript/models/ArrayWithNumbers.js 1`] = `
 "/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
@@ -484,7 +484,7 @@ export let ArrayWithNumbers;
 })(ArrayWithNumbers || (ArrayWithNumbers = {}));"
 `;
 
-exports[`generation javascript file(./test/result/v2/javascript/models/ArrayWithProperties.js): ./test/result/v2/javascript/models/ArrayWithProperties.js 1`] = `
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/ArrayWithProperties.js): ./test/result/v2/javascript/models/ArrayWithProperties.js 1`] = `
 "/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
@@ -515,7 +515,7 @@ export let ArrayWithProperties;
 })(ArrayWithProperties || (ArrayWithProperties = {}));"
 `;
 
-exports[`generation javascript file(./test/result/v2/javascript/models/ArrayWithReferences.js): ./test/result/v2/javascript/models/ArrayWithReferences.js 1`] = `
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/ArrayWithReferences.js): ./test/result/v2/javascript/models/ArrayWithReferences.js 1`] = `
 "/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
@@ -542,7 +542,7 @@ export let ArrayWithReferences;
 })(ArrayWithReferences || (ArrayWithReferences = {}));"
 `;
 
-exports[`generation javascript file(./test/result/v2/javascript/models/ArrayWithStrings.js): ./test/result/v2/javascript/models/ArrayWithStrings.js 1`] = `
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/ArrayWithStrings.js): ./test/result/v2/javascript/models/ArrayWithStrings.js 1`] = `
 "/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
@@ -568,7 +568,7 @@ export let ArrayWithStrings;
 })(ArrayWithStrings || (ArrayWithStrings = {}));"
 `;
 
-exports[`generation javascript file(./test/result/v2/javascript/models/DictionaryWithArray.js): ./test/result/v2/javascript/models/DictionaryWithArray.js 1`] = `
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/DictionaryWithArray.js): ./test/result/v2/javascript/models/DictionaryWithArray.js 1`] = `
 "/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
@@ -603,7 +603,7 @@ export let DictionaryWithArray;
 })(DictionaryWithArray || (DictionaryWithArray = {}));"
 `;
 
-exports[`generation javascript file(./test/result/v2/javascript/models/DictionaryWithDictionary.js): ./test/result/v2/javascript/models/DictionaryWithDictionary.js 1`] = `
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/DictionaryWithDictionary.js): ./test/result/v2/javascript/models/DictionaryWithDictionary.js 1`] = `
 "/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
@@ -644,7 +644,7 @@ export let DictionaryWithDictionary;
 })(DictionaryWithDictionary || (DictionaryWithDictionary = {}));"
 `;
 
-exports[`generation javascript file(./test/result/v2/javascript/models/DictionaryWithProperties.js): ./test/result/v2/javascript/models/DictionaryWithProperties.js 1`] = `
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/DictionaryWithProperties.js): ./test/result/v2/javascript/models/DictionaryWithProperties.js 1`] = `
 "/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
@@ -683,7 +683,7 @@ export let DictionaryWithProperties;
 })(DictionaryWithProperties || (DictionaryWithProperties = {}));"
 `;
 
-exports[`generation javascript file(./test/result/v2/javascript/models/DictionaryWithReference.js): ./test/result/v2/javascript/models/DictionaryWithReference.js 1`] = `
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/DictionaryWithReference.js): ./test/result/v2/javascript/models/DictionaryWithReference.js 1`] = `
 "/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
@@ -718,7 +718,7 @@ export let DictionaryWithReference;
 })(DictionaryWithReference || (DictionaryWithReference = {}));"
 `;
 
-exports[`generation javascript file(./test/result/v2/javascript/models/DictionaryWithString.js): ./test/result/v2/javascript/models/DictionaryWithString.js 1`] = `
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/DictionaryWithString.js): ./test/result/v2/javascript/models/DictionaryWithString.js 1`] = `
 "/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
@@ -752,7 +752,7 @@ export let DictionaryWithString;
 })(DictionaryWithString || (DictionaryWithString = {}));"
 `;
 
-exports[`generation javascript file(./test/result/v2/javascript/models/EnumFromDescription.js): ./test/result/v2/javascript/models/EnumFromDescription.js 1`] = `
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/EnumFromDescription.js): ./test/result/v2/javascript/models/EnumFromDescription.js 1`] = `
 "/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
@@ -786,7 +786,7 @@ export let EnumFromDescription;
 })(EnumFromDescription || (EnumFromDescription = {}));"
 `;
 
-exports[`generation javascript file(./test/result/v2/javascript/models/EnumWithNumbers.js): ./test/result/v2/javascript/models/EnumWithNumbers.js 1`] = `
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/EnumWithNumbers.js): ./test/result/v2/javascript/models/EnumWithNumbers.js 1`] = `
 "/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
@@ -820,7 +820,7 @@ export let EnumWithNumbers;
 })(EnumWithNumbers || (EnumWithNumbers = {}));"
 `;
 
-exports[`generation javascript file(./test/result/v2/javascript/models/EnumWithStrings.js): ./test/result/v2/javascript/models/EnumWithStrings.js 1`] = `
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/EnumWithStrings.js): ./test/result/v2/javascript/models/EnumWithStrings.js 1`] = `
 "/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
@@ -854,7 +854,7 @@ export let EnumWithStrings;
 })(EnumWithStrings || (EnumWithStrings = {}));"
 `;
 
-exports[`generation javascript file(./test/result/v2/javascript/models/ModelLink.js): ./test/result/v2/javascript/models/ModelLink.js 1`] = `
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelLink.js): ./test/result/v2/javascript/models/ModelLink.js 1`] = `
 "/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
@@ -884,7 +884,7 @@ export let ModelLink;
 })(ModelLink || (ModelLink = {}));"
 `;
 
-exports[`generation javascript file(./test/result/v2/javascript/models/ModelThatExtends.js): ./test/result/v2/javascript/models/ModelThatExtends.js 1`] = `
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelThatExtends.js): ./test/result/v2/javascript/models/ModelThatExtends.js 1`] = `
 "/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
@@ -918,7 +918,7 @@ export let ModelThatExtends;
 })(ModelThatExtends || (ModelThatExtends = {}));"
 `;
 
-exports[`generation javascript file(./test/result/v2/javascript/models/ModelThatExtendsExtends.js): ./test/result/v2/javascript/models/ModelThatExtendsExtends.js 1`] = `
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelThatExtendsExtends.js): ./test/result/v2/javascript/models/ModelThatExtendsExtends.js 1`] = `
 "/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
@@ -955,7 +955,7 @@ export let ModelThatExtendsExtends;
 })(ModelThatExtendsExtends || (ModelThatExtendsExtends = {}));"
 `;
 
-exports[`generation javascript file(./test/result/v2/javascript/models/ModelWithArray.js): ./test/result/v2/javascript/models/ModelWithArray.js 1`] = `
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelWithArray.js): ./test/result/v2/javascript/models/ModelWithArray.js 1`] = `
 "/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
@@ -986,7 +986,7 @@ export let ModelWithArray;
 })(ModelWithArray || (ModelWithArray = {}));"
 `;
 
-exports[`generation javascript file(./test/result/v2/javascript/models/ModelWithBoolean.js): ./test/result/v2/javascript/models/ModelWithBoolean.js 1`] = `
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelWithBoolean.js): ./test/result/v2/javascript/models/ModelWithBoolean.js 1`] = `
 "/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
@@ -1016,7 +1016,7 @@ export let ModelWithBoolean;
 })(ModelWithBoolean || (ModelWithBoolean = {}));"
 `;
 
-exports[`generation javascript file(./test/result/v2/javascript/models/ModelWithCircularReference.js): ./test/result/v2/javascript/models/ModelWithCircularReference.js 1`] = `
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelWithCircularReference.js): ./test/result/v2/javascript/models/ModelWithCircularReference.js 1`] = `
 "/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
@@ -1046,7 +1046,7 @@ export let ModelWithCircularReference;
 })(ModelWithCircularReference || (ModelWithCircularReference = {}));"
 `;
 
-exports[`generation javascript file(./test/result/v2/javascript/models/ModelWithDictionary.js): ./test/result/v2/javascript/models/ModelWithDictionary.js 1`] = `
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelWithDictionary.js): ./test/result/v2/javascript/models/ModelWithDictionary.js 1`] = `
 "/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
@@ -1084,7 +1084,7 @@ export let ModelWithDictionary;
 })(ModelWithDictionary || (ModelWithDictionary = {}));"
 `;
 
-exports[`generation javascript file(./test/result/v2/javascript/models/ModelWithDuplicateImports.js): ./test/result/v2/javascript/models/ModelWithDuplicateImports.js 1`] = `
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelWithDuplicateImports.js): ./test/result/v2/javascript/models/ModelWithDuplicateImports.js 1`] = `
 "/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
@@ -1117,7 +1117,7 @@ export let ModelWithDuplicateImports;
 })(ModelWithDuplicateImports || (ModelWithDuplicateImports = {}));"
 `;
 
-exports[`generation javascript file(./test/result/v2/javascript/models/ModelWithDuplicateProperties.js): ./test/result/v2/javascript/models/ModelWithDuplicateProperties.js 1`] = `
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelWithDuplicateProperties.js): ./test/result/v2/javascript/models/ModelWithDuplicateProperties.js 1`] = `
 "/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
@@ -1148,7 +1148,7 @@ export let ModelWithDuplicateProperties;
 })(ModelWithDuplicateProperties || (ModelWithDuplicateProperties = {}));"
 `;
 
-exports[`generation javascript file(./test/result/v2/javascript/models/ModelWithEnum.js): ./test/result/v2/javascript/models/ModelWithEnum.js 1`] = `
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelWithEnum.js): ./test/result/v2/javascript/models/ModelWithEnum.js 1`] = `
 "/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
@@ -1191,7 +1191,7 @@ export let ModelWithEnum;
 })(ModelWithEnum || (ModelWithEnum = {}));"
 `;
 
-exports[`generation javascript file(./test/result/v2/javascript/models/ModelWithEnumFromDescription.js): ./test/result/v2/javascript/models/ModelWithEnumFromDescription.js 1`] = `
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelWithEnumFromDescription.js): ./test/result/v2/javascript/models/ModelWithEnumFromDescription.js 1`] = `
 "/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
@@ -1234,7 +1234,7 @@ export let ModelWithEnumFromDescription;
 })(ModelWithEnumFromDescription || (ModelWithEnumFromDescription = {}));"
 `;
 
-exports[`generation javascript file(./test/result/v2/javascript/models/ModelWithInteger.js): ./test/result/v2/javascript/models/ModelWithInteger.js 1`] = `
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelWithInteger.js): ./test/result/v2/javascript/models/ModelWithInteger.js 1`] = `
 "/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
@@ -1264,7 +1264,7 @@ export let ModelWithInteger;
 })(ModelWithInteger || (ModelWithInteger = {}));"
 `;
 
-exports[`generation javascript file(./test/result/v2/javascript/models/ModelWithLink.js): ./test/result/v2/javascript/models/ModelWithLink.js 1`] = `
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelWithLink.js): ./test/result/v2/javascript/models/ModelWithLink.js 1`] = `
 "/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
@@ -1296,7 +1296,7 @@ export let ModelWithLink;
 })(ModelWithLink || (ModelWithLink = {}));"
 `;
 
-exports[`generation javascript file(./test/result/v2/javascript/models/ModelWithNestedProperties.js): ./test/result/v2/javascript/models/ModelWithNestedProperties.js 1`] = `
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelWithNestedProperties.js): ./test/result/v2/javascript/models/ModelWithNestedProperties.js 1`] = `
 "/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
@@ -1334,7 +1334,7 @@ export let ModelWithNestedProperties;
 })(ModelWithNestedProperties || (ModelWithNestedProperties = {}));"
 `;
 
-exports[`generation javascript file(./test/result/v2/javascript/models/ModelWithReference.js): ./test/result/v2/javascript/models/ModelWithReference.js 1`] = `
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelWithReference.js): ./test/result/v2/javascript/models/ModelWithReference.js 1`] = `
 "/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
@@ -1365,7 +1365,7 @@ export let ModelWithReference;
 })(ModelWithReference || (ModelWithReference = {}));"
 `;
 
-exports[`generation javascript file(./test/result/v2/javascript/models/ModelWithString.js): ./test/result/v2/javascript/models/ModelWithString.js 1`] = `
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelWithString.js): ./test/result/v2/javascript/models/ModelWithString.js 1`] = `
 "/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
@@ -1395,7 +1395,7 @@ export let ModelWithString;
 })(ModelWithString || (ModelWithString = {}));"
 `;
 
-exports[`generation javascript file(./test/result/v2/javascript/models/SimpleBoolean.js): ./test/result/v2/javascript/models/SimpleBoolean.js 1`] = `
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/SimpleBoolean.js): ./test/result/v2/javascript/models/SimpleBoolean.js 1`] = `
 "/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
@@ -1421,7 +1421,7 @@ export let SimpleBoolean;
 })(SimpleBoolean || (SimpleBoolean = {}));"
 `;
 
-exports[`generation javascript file(./test/result/v2/javascript/models/SimpleFile.js): ./test/result/v2/javascript/models/SimpleFile.js 1`] = `
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/SimpleFile.js): ./test/result/v2/javascript/models/SimpleFile.js 1`] = `
 "/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
@@ -1447,7 +1447,7 @@ export let SimpleFile;
 })(SimpleFile || (SimpleFile = {}));"
 `;
 
-exports[`generation javascript file(./test/result/v2/javascript/models/SimpleInteger.js): ./test/result/v2/javascript/models/SimpleInteger.js 1`] = `
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/SimpleInteger.js): ./test/result/v2/javascript/models/SimpleInteger.js 1`] = `
 "/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
@@ -1473,7 +1473,7 @@ export let SimpleInteger;
 })(SimpleInteger || (SimpleInteger = {}));"
 `;
 
-exports[`generation javascript file(./test/result/v2/javascript/models/SimpleReference.js): ./test/result/v2/javascript/models/SimpleReference.js 1`] = `
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/SimpleReference.js): ./test/result/v2/javascript/models/SimpleReference.js 1`] = `
 "/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
@@ -1500,7 +1500,7 @@ export let SimpleReference;
 })(SimpleReference || (SimpleReference = {}));"
 `;
 
-exports[`generation javascript file(./test/result/v2/javascript/models/SimpleString.js): ./test/result/v2/javascript/models/SimpleString.js 1`] = `
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/SimpleString.js): ./test/result/v2/javascript/models/SimpleString.js 1`] = `
 "/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
@@ -1526,7 +1526,7 @@ export let SimpleString;
 })(SimpleString || (SimpleString = {}));"
 `;
 
-exports[`generation javascript file(./test/result/v2/javascript/services/ComplexService.js): ./test/result/v2/javascript/services/ComplexService.js 1`] = `
+exports[`generation v2 javascript file(./test/result/v2/javascript/services/ComplexService.js): ./test/result/v2/javascript/services/ComplexService.js 1`] = `
 "/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
@@ -1572,7 +1572,7 @@ export class ComplexService {
 }"
 `;
 
-exports[`generation javascript file(./test/result/v2/javascript/services/ParametersService.js): ./test/result/v2/javascript/services/ParametersService.js 1`] = `
+exports[`generation v2 javascript file(./test/result/v2/javascript/services/ParametersService.js): ./test/result/v2/javascript/services/ParametersService.js 1`] = `
 "/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
@@ -1620,7 +1620,7 @@ export class ParametersService {
 }"
 `;
 
-exports[`generation javascript file(./test/result/v2/javascript/services/ResponseService.js): ./test/result/v2/javascript/services/ResponseService.js 1`] = `
+exports[`generation v2 javascript file(./test/result/v2/javascript/services/ResponseService.js): ./test/result/v2/javascript/services/ResponseService.js 1`] = `
 "/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
@@ -1700,7 +1700,7 @@ export class ResponseService {
 }"
 `;
 
-exports[`generation javascript file(./test/result/v2/javascript/services/SimpleService.js): ./test/result/v2/javascript/services/SimpleService.js 1`] = `
+exports[`generation v2 javascript file(./test/result/v2/javascript/services/SimpleService.js): ./test/result/v2/javascript/services/SimpleService.js 1`] = `
 "/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
@@ -1819,7 +1819,7 @@ export class SimpleService {
 }"
 `;
 
-exports[`generation javascript file(./test/result/v2/javascript/services/TypesService.js): ./test/result/v2/javascript/services/TypesService.js 1`] = `
+exports[`generation v2 javascript file(./test/result/v2/javascript/services/TypesService.js): ./test/result/v2/javascript/services/TypesService.js 1`] = `
 "/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
@@ -1875,7 +1875,7 @@ export class TypesService {
 }"
 `;
 
-exports[`generation typescript file(./test/result/v2/typescript/core/ApiError.ts): ./test/result/v2/typescript/core/ApiError.ts 1`] = `
+exports[`generation v2 typescript file(./test/result/v2/typescript/core/ApiError.ts): ./test/result/v2/typescript/core/ApiError.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1936,7 +1936,7 @@ export function catchGenericError(result: Result): void {
 "
 `;
 
-exports[`generation typescript file(./test/result/v2/typescript/core/OpenAPI.ts): ./test/result/v2/typescript/core/OpenAPI.ts 1`] = `
+exports[`generation v2 typescript file(./test/result/v2/typescript/core/OpenAPI.ts): ./test/result/v2/typescript/core/OpenAPI.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1950,7 +1950,7 @@ export namespace OpenAPI {
 }"
 `;
 
-exports[`generation typescript file(./test/result/v2/typescript/core/RequestOptions.ts): ./test/result/v2/typescript/core/RequestOptions.ts 1`] = `
+exports[`generation v2 typescript file(./test/result/v2/typescript/core/RequestOptions.ts): ./test/result/v2/typescript/core/RequestOptions.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1967,7 +1967,7 @@ export interface RequestOptions {
 "
 `;
 
-exports[`generation typescript file(./test/result/v2/typescript/core/Result.ts): ./test/result/v2/typescript/core/Result.ts 1`] = `
+exports[`generation v2 typescript file(./test/result/v2/typescript/core/Result.ts): ./test/result/v2/typescript/core/Result.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1983,7 +1983,7 @@ export interface Result {
 "
 `;
 
-exports[`generation typescript file(./test/result/v2/typescript/core/getFormData.ts): ./test/result/v2/typescript/core/getFormData.ts 1`] = `
+exports[`generation v2 typescript file(./test/result/v2/typescript/core/getFormData.ts): ./test/result/v2/typescript/core/getFormData.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -2009,7 +2009,7 @@ export function getFormData(params: { [key: string]: any }): FormData {
 "
 `;
 
-exports[`generation typescript file(./test/result/v2/typescript/core/getQueryString.ts): ./test/result/v2/typescript/core/getQueryString.ts 1`] = `
+exports[`generation v2 typescript file(./test/result/v2/typescript/core/getQueryString.ts): ./test/result/v2/typescript/core/getQueryString.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -2044,7 +2044,7 @@ export function getQueryString(params: { [key: string]: any }): string {
 "
 `;
 
-exports[`generation typescript file(./test/result/v2/typescript/core/isSuccess.ts): ./test/result/v2/typescript/core/isSuccess.ts 1`] = `
+exports[`generation v2 typescript file(./test/result/v2/typescript/core/isSuccess.ts): ./test/result/v2/typescript/core/isSuccess.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -2060,7 +2060,7 @@ export function isSuccess(status: number): boolean {
 "
 `;
 
-exports[`generation typescript file(./test/result/v2/typescript/core/request.ts): ./test/result/v2/typescript/core/request.ts 1`] = `
+exports[`generation v2 typescript file(./test/result/v2/typescript/core/request.ts): ./test/result/v2/typescript/core/request.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -2145,7 +2145,7 @@ export async function request(options: Readonly<RequestOptions>): Promise<Result
 "
 `;
 
-exports[`generation typescript file(./test/result/v2/typescript/core/requestUsingFetch.ts): ./test/result/v2/typescript/core/requestUsingFetch.ts 1`] = `
+exports[`generation v2 typescript file(./test/result/v2/typescript/core/requestUsingFetch.ts): ./test/result/v2/typescript/core/requestUsingFetch.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -2199,7 +2199,7 @@ export async function requestUsingFetch(url: string, request: Readonly<RequestIn
 "
 `;
 
-exports[`generation typescript file(./test/result/v2/typescript/core/requestUsingXHR.ts): ./test/result/v2/typescript/core/requestUsingXHR.ts 1`] = `
+exports[`generation v2 typescript file(./test/result/v2/typescript/core/requestUsingXHR.ts): ./test/result/v2/typescript/core/requestUsingXHR.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -2275,7 +2275,7 @@ export async function requestUsingXHR(url: string, request: Readonly<RequestInit
 "
 `;
 
-exports[`generation typescript file(./test/result/v2/typescript/index.ts): ./test/result/v2/typescript/index.ts 1`] = `
+exports[`generation v2 typescript file(./test/result/v2/typescript/index.ts): ./test/result/v2/typescript/index.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -2330,7 +2330,7 @@ export { TypesService } from './services/TypesService';
 "
 `;
 
-exports[`generation typescript file(./test/result/v2/typescript/models/ArrayWithArray.ts): ./test/result/v2/typescript/models/ArrayWithArray.ts 1`] = `
+exports[`generation v2 typescript file(./test/result/v2/typescript/models/ArrayWithArray.ts): ./test/result/v2/typescript/models/ArrayWithArray.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -2358,7 +2358,7 @@ export namespace ArrayWithArray {
 }"
 `;
 
-exports[`generation typescript file(./test/result/v2/typescript/models/ArrayWithBooleans.ts): ./test/result/v2/typescript/models/ArrayWithBooleans.ts 1`] = `
+exports[`generation v2 typescript file(./test/result/v2/typescript/models/ArrayWithBooleans.ts): ./test/result/v2/typescript/models/ArrayWithBooleans.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -2385,7 +2385,7 @@ export namespace ArrayWithBooleans {
 }"
 `;
 
-exports[`generation typescript file(./test/result/v2/typescript/models/ArrayWithNumbers.ts): ./test/result/v2/typescript/models/ArrayWithNumbers.ts 1`] = `
+exports[`generation v2 typescript file(./test/result/v2/typescript/models/ArrayWithNumbers.ts): ./test/result/v2/typescript/models/ArrayWithNumbers.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -2412,7 +2412,7 @@ export namespace ArrayWithNumbers {
 }"
 `;
 
-exports[`generation typescript file(./test/result/v2/typescript/models/ArrayWithProperties.ts): ./test/result/v2/typescript/models/ArrayWithProperties.ts 1`] = `
+exports[`generation v2 typescript file(./test/result/v2/typescript/models/ArrayWithProperties.ts): ./test/result/v2/typescript/models/ArrayWithProperties.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -2450,7 +2450,7 @@ export namespace ArrayWithProperties {
 }"
 `;
 
-exports[`generation typescript file(./test/result/v2/typescript/models/ArrayWithReferences.ts): ./test/result/v2/typescript/models/ArrayWithReferences.ts 1`] = `
+exports[`generation v2 typescript file(./test/result/v2/typescript/models/ArrayWithReferences.ts): ./test/result/v2/typescript/models/ArrayWithReferences.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -2478,7 +2478,7 @@ export namespace ArrayWithReferences {
 }"
 `;
 
-exports[`generation typescript file(./test/result/v2/typescript/models/ArrayWithStrings.ts): ./test/result/v2/typescript/models/ArrayWithStrings.ts 1`] = `
+exports[`generation v2 typescript file(./test/result/v2/typescript/models/ArrayWithStrings.ts): ./test/result/v2/typescript/models/ArrayWithStrings.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -2505,7 +2505,7 @@ export namespace ArrayWithStrings {
 }"
 `;
 
-exports[`generation typescript file(./test/result/v2/typescript/models/Dictionary.ts): ./test/result/v2/typescript/models/Dictionary.ts 1`] = `
+exports[`generation v2 typescript file(./test/result/v2/typescript/models/Dictionary.ts): ./test/result/v2/typescript/models/Dictionary.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -2517,7 +2517,7 @@ export interface Dictionary<T> {
 "
 `;
 
-exports[`generation typescript file(./test/result/v2/typescript/models/DictionaryWithArray.ts): ./test/result/v2/typescript/models/DictionaryWithArray.ts 1`] = `
+exports[`generation v2 typescript file(./test/result/v2/typescript/models/DictionaryWithArray.ts): ./test/result/v2/typescript/models/DictionaryWithArray.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -2553,7 +2553,7 @@ export namespace DictionaryWithArray {
 }"
 `;
 
-exports[`generation typescript file(./test/result/v2/typescript/models/DictionaryWithDictionary.ts): ./test/result/v2/typescript/models/DictionaryWithDictionary.ts 1`] = `
+exports[`generation v2 typescript file(./test/result/v2/typescript/models/DictionaryWithDictionary.ts): ./test/result/v2/typescript/models/DictionaryWithDictionary.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -2595,7 +2595,7 @@ export namespace DictionaryWithDictionary {
 }"
 `;
 
-exports[`generation typescript file(./test/result/v2/typescript/models/DictionaryWithProperties.ts): ./test/result/v2/typescript/models/DictionaryWithProperties.ts 1`] = `
+exports[`generation v2 typescript file(./test/result/v2/typescript/models/DictionaryWithProperties.ts): ./test/result/v2/typescript/models/DictionaryWithProperties.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -2644,7 +2644,7 @@ export namespace DictionaryWithProperties {
 }"
 `;
 
-exports[`generation typescript file(./test/result/v2/typescript/models/DictionaryWithReference.ts): ./test/result/v2/typescript/models/DictionaryWithReference.ts 1`] = `
+exports[`generation v2 typescript file(./test/result/v2/typescript/models/DictionaryWithReference.ts): ./test/result/v2/typescript/models/DictionaryWithReference.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -2680,7 +2680,7 @@ export namespace DictionaryWithReference {
 }"
 `;
 
-exports[`generation typescript file(./test/result/v2/typescript/models/DictionaryWithString.ts): ./test/result/v2/typescript/models/DictionaryWithString.ts 1`] = `
+exports[`generation v2 typescript file(./test/result/v2/typescript/models/DictionaryWithString.ts): ./test/result/v2/typescript/models/DictionaryWithString.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -2715,7 +2715,7 @@ export namespace DictionaryWithString {
 }"
 `;
 
-exports[`generation typescript file(./test/result/v2/typescript/models/EnumFromDescription.ts): ./test/result/v2/typescript/models/EnumFromDescription.ts 1`] = `
+exports[`generation v2 typescript file(./test/result/v2/typescript/models/EnumFromDescription.ts): ./test/result/v2/typescript/models/EnumFromDescription.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -2750,7 +2750,7 @@ export namespace EnumFromDescription {
 }"
 `;
 
-exports[`generation typescript file(./test/result/v2/typescript/models/EnumWithNumbers.ts): ./test/result/v2/typescript/models/EnumWithNumbers.ts 1`] = `
+exports[`generation v2 typescript file(./test/result/v2/typescript/models/EnumWithNumbers.ts): ./test/result/v2/typescript/models/EnumWithNumbers.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -2785,7 +2785,7 @@ export namespace EnumWithNumbers {
 }"
 `;
 
-exports[`generation typescript file(./test/result/v2/typescript/models/EnumWithStrings.ts): ./test/result/v2/typescript/models/EnumWithStrings.ts 1`] = `
+exports[`generation v2 typescript file(./test/result/v2/typescript/models/EnumWithStrings.ts): ./test/result/v2/typescript/models/EnumWithStrings.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -2820,7 +2820,7 @@ export namespace EnumWithStrings {
 }"
 `;
 
-exports[`generation typescript file(./test/result/v2/typescript/models/ModelLink.ts): ./test/result/v2/typescript/models/ModelLink.ts 1`] = `
+exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelLink.ts): ./test/result/v2/typescript/models/ModelLink.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -2853,7 +2853,7 @@ export namespace ModelLink {
 }"
 `;
 
-exports[`generation typescript file(./test/result/v2/typescript/models/ModelThatExtends.ts): ./test/result/v2/typescript/models/ModelThatExtends.ts 1`] = `
+exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelThatExtends.ts): ./test/result/v2/typescript/models/ModelThatExtends.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -2891,7 +2891,7 @@ export namespace ModelThatExtends {
 }"
 `;
 
-exports[`generation typescript file(./test/result/v2/typescript/models/ModelThatExtendsExtends.ts): ./test/result/v2/typescript/models/ModelThatExtendsExtends.ts 1`] = `
+exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelThatExtendsExtends.ts): ./test/result/v2/typescript/models/ModelThatExtendsExtends.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -2932,7 +2932,7 @@ export namespace ModelThatExtendsExtends {
 }"
 `;
 
-exports[`generation typescript file(./test/result/v2/typescript/models/ModelWithArray.ts): ./test/result/v2/typescript/models/ModelWithArray.ts 1`] = `
+exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelWithArray.ts): ./test/result/v2/typescript/models/ModelWithArray.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -2966,7 +2966,7 @@ export namespace ModelWithArray {
 }"
 `;
 
-exports[`generation typescript file(./test/result/v2/typescript/models/ModelWithBoolean.ts): ./test/result/v2/typescript/models/ModelWithBoolean.ts 1`] = `
+exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelWithBoolean.ts): ./test/result/v2/typescript/models/ModelWithBoolean.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3002,7 +3002,7 @@ export namespace ModelWithBoolean {
 }"
 `;
 
-exports[`generation typescript file(./test/result/v2/typescript/models/ModelWithCircularReference.ts): ./test/result/v2/typescript/models/ModelWithCircularReference.ts 1`] = `
+exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelWithCircularReference.ts): ./test/result/v2/typescript/models/ModelWithCircularReference.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3035,7 +3035,7 @@ export namespace ModelWithCircularReference {
 }"
 `;
 
-exports[`generation typescript file(./test/result/v2/typescript/models/ModelWithDictionary.ts): ./test/result/v2/typescript/models/ModelWithDictionary.ts 1`] = `
+exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelWithDictionary.ts): ./test/result/v2/typescript/models/ModelWithDictionary.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3076,7 +3076,7 @@ export namespace ModelWithDictionary {
 }"
 `;
 
-exports[`generation typescript file(./test/result/v2/typescript/models/ModelWithDuplicateImports.ts): ./test/result/v2/typescript/models/ModelWithDuplicateImports.ts 1`] = `
+exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelWithDuplicateImports.ts): ./test/result/v2/typescript/models/ModelWithDuplicateImports.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3114,7 +3114,7 @@ export namespace ModelWithDuplicateImports {
 }"
 `;
 
-exports[`generation typescript file(./test/result/v2/typescript/models/ModelWithDuplicateProperties.ts): ./test/result/v2/typescript/models/ModelWithDuplicateProperties.ts 1`] = `
+exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelWithDuplicateProperties.ts): ./test/result/v2/typescript/models/ModelWithDuplicateProperties.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3148,7 +3148,7 @@ export namespace ModelWithDuplicateProperties {
 }"
 `;
 
-exports[`generation typescript file(./test/result/v2/typescript/models/ModelWithEnum.ts): ./test/result/v2/typescript/models/ModelWithEnum.ts 1`] = `
+exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelWithEnum.ts): ./test/result/v2/typescript/models/ModelWithEnum.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3197,7 +3197,7 @@ export namespace ModelWithEnum {
 }"
 `;
 
-exports[`generation typescript file(./test/result/v2/typescript/models/ModelWithEnumFromDescription.ts): ./test/result/v2/typescript/models/ModelWithEnumFromDescription.ts 1`] = `
+exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelWithEnumFromDescription.ts): ./test/result/v2/typescript/models/ModelWithEnumFromDescription.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3246,7 +3246,7 @@ export namespace ModelWithEnumFromDescription {
 }"
 `;
 
-exports[`generation typescript file(./test/result/v2/typescript/models/ModelWithInteger.ts): ./test/result/v2/typescript/models/ModelWithInteger.ts 1`] = `
+exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelWithInteger.ts): ./test/result/v2/typescript/models/ModelWithInteger.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3282,7 +3282,7 @@ export namespace ModelWithInteger {
 }"
 `;
 
-exports[`generation typescript file(./test/result/v2/typescript/models/ModelWithLink.ts): ./test/result/v2/typescript/models/ModelWithLink.ts 1`] = `
+exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelWithLink.ts): ./test/result/v2/typescript/models/ModelWithLink.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3317,7 +3317,7 @@ export namespace ModelWithLink {
 }"
 `;
 
-exports[`generation typescript file(./test/result/v2/typescript/models/ModelWithNestedProperties.ts): ./test/result/v2/typescript/models/ModelWithNestedProperties.ts 1`] = `
+exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelWithNestedProperties.ts): ./test/result/v2/typescript/models/ModelWithNestedProperties.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3362,7 +3362,7 @@ export namespace ModelWithNestedProperties {
 }"
 `;
 
-exports[`generation typescript file(./test/result/v2/typescript/models/ModelWithReference.ts): ./test/result/v2/typescript/models/ModelWithReference.ts 1`] = `
+exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelWithReference.ts): ./test/result/v2/typescript/models/ModelWithReference.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3396,7 +3396,7 @@ export namespace ModelWithReference {
 }"
 `;
 
-exports[`generation typescript file(./test/result/v2/typescript/models/ModelWithString.ts): ./test/result/v2/typescript/models/ModelWithString.ts 1`] = `
+exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelWithString.ts): ./test/result/v2/typescript/models/ModelWithString.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3432,7 +3432,7 @@ export namespace ModelWithString {
 }"
 `;
 
-exports[`generation typescript file(./test/result/v2/typescript/models/SimpleBoolean.ts): ./test/result/v2/typescript/models/SimpleBoolean.ts 1`] = `
+exports[`generation v2 typescript file(./test/result/v2/typescript/models/SimpleBoolean.ts): ./test/result/v2/typescript/models/SimpleBoolean.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3459,7 +3459,7 @@ export namespace SimpleBoolean {
 }"
 `;
 
-exports[`generation typescript file(./test/result/v2/typescript/models/SimpleFile.ts): ./test/result/v2/typescript/models/SimpleFile.ts 1`] = `
+exports[`generation v2 typescript file(./test/result/v2/typescript/models/SimpleFile.ts): ./test/result/v2/typescript/models/SimpleFile.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3486,7 +3486,7 @@ export namespace SimpleFile {
 }"
 `;
 
-exports[`generation typescript file(./test/result/v2/typescript/models/SimpleInteger.ts): ./test/result/v2/typescript/models/SimpleInteger.ts 1`] = `
+exports[`generation v2 typescript file(./test/result/v2/typescript/models/SimpleInteger.ts): ./test/result/v2/typescript/models/SimpleInteger.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3513,7 +3513,7 @@ export namespace SimpleInteger {
 }"
 `;
 
-exports[`generation typescript file(./test/result/v2/typescript/models/SimpleReference.ts): ./test/result/v2/typescript/models/SimpleReference.ts 1`] = `
+exports[`generation v2 typescript file(./test/result/v2/typescript/models/SimpleReference.ts): ./test/result/v2/typescript/models/SimpleReference.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3541,7 +3541,7 @@ export namespace SimpleReference {
 }"
 `;
 
-exports[`generation typescript file(./test/result/v2/typescript/models/SimpleString.ts): ./test/result/v2/typescript/models/SimpleString.ts 1`] = `
+exports[`generation v2 typescript file(./test/result/v2/typescript/models/SimpleString.ts): ./test/result/v2/typescript/models/SimpleString.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3568,7 +3568,7 @@ export namespace SimpleString {
 }"
 `;
 
-exports[`generation typescript file(./test/result/v2/typescript/services/ComplexService.ts): ./test/result/v2/typescript/services/ComplexService.ts 1`] = `
+exports[`generation v2 typescript file(./test/result/v2/typescript/services/ComplexService.ts): ./test/result/v2/typescript/services/ComplexService.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3622,7 +3622,7 @@ export class ComplexService {
 }"
 `;
 
-exports[`generation typescript file(./test/result/v2/typescript/services/ParametersService.ts): ./test/result/v2/typescript/services/ParametersService.ts 1`] = `
+exports[`generation v2 typescript file(./test/result/v2/typescript/services/ParametersService.ts): ./test/result/v2/typescript/services/ParametersService.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3671,7 +3671,7 @@ export class ParametersService {
 }"
 `;
 
-exports[`generation typescript file(./test/result/v2/typescript/services/ResponseService.ts): ./test/result/v2/typescript/services/ResponseService.ts 1`] = `
+exports[`generation v2 typescript file(./test/result/v2/typescript/services/ResponseService.ts): ./test/result/v2/typescript/services/ResponseService.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3755,7 +3755,7 @@ export class ResponseService {
 }"
 `;
 
-exports[`generation typescript file(./test/result/v2/typescript/services/SimpleService.ts): ./test/result/v2/typescript/services/SimpleService.ts 1`] = `
+exports[`generation v2 typescript file(./test/result/v2/typescript/services/SimpleService.ts): ./test/result/v2/typescript/services/SimpleService.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3875,7 +3875,7 @@ export class SimpleService {
 }"
 `;
 
-exports[`generation typescript file(./test/result/v2/typescript/services/TypesService.ts): ./test/result/v2/typescript/services/TypesService.ts 1`] = `
+exports[`generation v2 typescript file(./test/result/v2/typescript/services/TypesService.ts): ./test/result/v2/typescript/services/TypesService.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3924,6 +3924,4412 @@ export class TypesService {
                 'parameterDictionary': parameterDictionary
             }
         });
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+}"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/core/ApiError.js): ./test/result/v3/javascript/core/ApiError.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { isSuccess } from \\"./isSuccess\\";
+
+export class ApiError extends Error {
+
+    constructor(result, message) {
+        super(message);
+
+        this.url = result.url;
+        this.status = result.status;
+        this.statusText = result.statusText;
+        this.body = result.body;
+    }
+}
+
+(function (ApiError) {
+    let Message;
+    (function (Message) {
+        Message.BAD_REQUEST = 'Bad Request';
+        Message.UNAUTHORIZED = 'Unauthorized';
+        Message.FORBIDDEN = 'Forbidden';
+        Message.NOT_FOUND = 'Not Found';
+        Message.INTERNAL_SERVER_ERROR = 'Internal Server Error';
+        Message.BAD_GATEWAY = 'Bad Gateway';
+        Message.SERVICE_UNAVAILABLE = 'Service Unavailable';
+        Message.GENERIC_ERROR = 'Generic Error';
+    })(Message = ApiError.Message || (ApiError.Message = {}));
+})(ApiError || (ApiError = {}));
+
+/**
+ * Catch common errors (based on status code).
+ * @param result
+ */
+export function catchGenericError(result) {
+
+    switch (result.status) {
+        case 400: throw new ApiError(result, ApiError.Message.BAD_REQUEST);
+        case 401: throw new ApiError(result, ApiError.Message.UNAUTHORIZED);
+        case 403: throw new ApiError(result, ApiError.Message.FORBIDDEN);
+        case 404: throw new ApiError(result, ApiError.Message.NOT_FOUND);
+        case 500: throw new ApiError(result, ApiError.Message.INTERNAL_SERVER_ERROR);
+        case 502: throw new ApiError(result, ApiError.Message.BAD_GATEWAY);
+        case 503: throw new ApiError(result, ApiError.Message.SERVICE_UNAVAILABLE);
+    }
+
+    if (!isSuccess(result.status)) {
+        throw new ApiError(result, ApiError.Message.GENERIC_ERROR);
+    }
+}
+"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/core/OpenAPI.js): ./test/result/v3/javascript/core/OpenAPI.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+export let OpenAPI;
+(function (OpenAPI) {
+    OpenAPI.BASE = '/access-manager';
+    OpenAPI.VERSION = '1';
+    OpenAPI.CLIENT = 'xhr';
+    OpenAPI.TOKEN = '';
+})(OpenAPI || (OpenAPI = {}));"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/core/getFormData.js): ./test/result/v3/javascript/core/getFormData.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+/**
+ * Get FormData from object. This method is needed to upload
+ * multipart form data to the REST API.
+ * @param params Key value based object.
+ */
+export function getFormData(params) {
+    const formData = new FormData();
+    for (const key in params) {
+        if (typeof params[key] !== 'undefined') {
+            const value = params[key];
+            if (value !== undefined && value !== null) {
+                formData.append(key, value);
+            }
+        }
+    }
+    return formData;
+}
+"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/core/getQueryString.js): ./test/result/v3/javascript/core/getQueryString.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+/**
+ * Get query string from query parameters object. This method also
+ * supports multi-value items by creating a key for each item.
+ * @param params Key value based object.
+ */
+export function getQueryString(params) {
+    const qs = [];
+    for (const key in params) {
+        if (typeof params[key] !== 'undefined') {
+            const value = params[key];
+            if (value !== undefined && value !== null) {
+                if (Array.isArray(value)) {
+                    value.forEach(value => {
+                        qs.push(\`\${encodeURIComponent(key)}=\${encodeURIComponent(String(value))}\`);
+                    });
+                } else {
+                    qs.push(\`\${encodeURIComponent(key)}=\${encodeURIComponent(String(value))}\`);
+                }
+            }
+        }
+    }
+    if (qs.length > 0) {
+        return \`?\${qs.join('&')}\`;
+    }
+    return '';
+}
+"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/core/isSuccess.js): ./test/result/v3/javascript/core/isSuccess.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+/**
+ * Check success response code.
+ * @param status Status code
+ */
+export function isSuccess(status) {
+    return status >= 200 && status < 300;
+}
+"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/core/request.js): ./test/result/v3/javascript/core/request.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import {getFormData} from './getFormData';
+import {getQueryString} from './getQueryString';
+import {OpenAPI} from './OpenAPI';
+import {requestUsingFetch} from './requestUsingFetch';
+import {requestUsingXHR} from './requestUsingXHR';
+
+/**
+ * Create the request.
+ * @param options Request method options.
+ * @returns Result object (see above)
+ */
+export async function request(options) {
+
+    // Create the request URL
+    let url = \`\${OpenAPI.BASE}\${options.path}\`;
+
+    // Create request headers
+    const headers = new Headers({
+        ...options.headers,
+        Accept: 'application/json'
+    });
+
+    // Create request settings
+    const request = {
+        headers,
+        method: options.method,
+        credentials: 'same-origin'
+    };
+
+    // If we have a bearer token then we set the authentication header.
+    if (OpenAPI.TOKEN !== null && OpenAPI.TOKEN !== '') {
+        headers.append('Authorization', \`Bearer \${OpenAPI.TOKEN}\`);
+    }
+
+    // Add the query parameters (if defined).
+    if (options.query) {
+        url += getQueryString(options.query);
+    }
+
+    // Append formData as body
+    if (options.formData) {
+        request.body = getFormData(options.formData);
+    } else if (options.body) {
+
+        // If this is blob data, then pass it directly to the body and set content type.
+        // Otherwise we just convert request data to JSON string (needed for fetch api)
+        if (options.body instanceof Blob) {
+            request.body = options.body;
+            if (options.body.type) {
+                headers.append('Content-Type', options.body.type);
+            }
+        } else {
+            request.body = JSON.stringify(options.body);
+            headers.append('Content-Type', 'application/json');
+        }
+    }
+
+    try {
+        switch (OpenAPI.CLIENT) {
+            case 'xhr':
+                return await requestUsingXHR(url, request);
+            default:
+                return await requestUsingFetch(url, request);
+        }
+    } catch (error) {
+        return {
+            url,
+            ok: false,
+            status: 0,
+            statusText: '',
+            body: error
+        };
+    }
+}
+"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/core/requestUsingFetch.js): ./test/result/v3/javascript/core/requestUsingFetch.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+/**
+ * Request content using the new Fetch API. This is the default API that is used and
+ * is create for all JSON, XML and text objects. However it is limited to UTF-8.
+ * This is a problem for some of the Docs content, since that requires UTF-16!
+ * @param url The url to request.
+ * @param request The request object, containing method, headers, body, etc.
+ */
+export async function requestUsingFetch(url, request) {
+
+    // Fetch response using fetch API.
+    const response = await fetch(url, request);
+
+    // Create result object.
+    const result = {
+        url,
+        ok: response.ok,
+        status: response.status,
+        statusText: response.statusText,
+        body: null
+    };
+
+    // Try to parse the content for any response status code.
+    // We check the \\"Content-Type\\" header to see if we need to parse the
+    // content as json or as plain text.
+    const contentType = response.headers.get('Content-Type');
+    if (contentType) {
+        switch (contentType.toLowerCase()) {
+            case 'application/json':
+            case 'application/json; charset=utf-8':
+                result.body = await response.json();
+                break;
+
+            case 'text/plain':
+            case 'text/xml':
+            case 'text/xml; charset=utf-8':
+            case 'text/xml; charset=utf-16':
+                result.body = await response.text();
+                break;
+        }
+    }
+
+    return result;
+}
+"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/core/requestUsingXHR.js): ./test/result/v3/javascript/core/requestUsingXHR.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { isSuccess } from './isSuccess';
+
+/**
+ * Request content using the new legacy XMLHttpRequest API. This method is useful
+ * when we want to request UTF-16 content, since it natively supports loading UTF-16.
+ * We could do the same with the Fetch API, but then we will need to convert the
+ * content using JavaScript... And that is very very slow.
+ * @param url The url to request.
+ * @param request The request object, containing method, headers, body, etc.
+ */
+export async function requestUsingXHR(url, request) {
+    return new Promise(resolve => {
+        const xhr = new XMLHttpRequest();
+
+        // Open the request, remember to do this before adding any headers,
+        // because the request needs to be initialized!
+        xhr.open(request.method, url, true);
+
+        // Add the headers (required when dealing with JSON)
+        const headers = request.headers as Headers;
+        headers.forEach((value, key) => {
+            xhr.setRequestHeader(key, value);
+        });
+
+        // Register the readystate handler, this will fire when the request is done.
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+
+                // Create result object.
+                const result = {
+                    url,
+                    ok: isSuccess(xhr.status),
+                    status: xhr.status,
+                    statusText: xhr.statusText,
+                    body: null
+                };
+
+                // Try to parse the content for any response status code.
+                // We check the \\"Content-Type\\" header to see if we need to parse the
+                // content as json or as plain text.
+                const contentType = xhr.getResponseHeader('Content-Type');
+                if (contentType) {
+                    switch (contentType.toLowerCase()) {
+                        case 'application/json':
+                        case 'application/json; charset=utf-8':
+                            result.body = JSON.parse(xhr.responseText);
+                            break;
+
+                        case 'text/plain':
+                        case 'text/xml':
+                        case 'text/xml; charset=utf-8':
+                        case 'text/xml; charset=utf-16':
+                            result.body = xhr.responseText;
+                            break;
+                    }
+                }
+
+                // Done!
+                resolve(result);
+            }
+        };
+
+        // Start the request!
+        xhr.send(request.body);
+    });
+}
+"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/index.js): ./test/result/v3/javascript/index.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+export { ApiError } from './core/ApiError';
+export { isSuccess } from './core/isSuccess';
+export { OpenAPI } from './core/OpenAPI';
+
+export { ApiResource } from './models/ApiResource';
+export { ApiResourceLink } from './models/ApiResourceLink';
+export { ApiResourceRole } from './models/ApiResourceRole';
+export { ApiResourceRoleLink } from './models/ApiResourceRoleLink';
+export { Application } from './models/Application';
+export { ApplicationLink } from './models/ApplicationLink';
+export { ClaimBasedAccessControlEntry } from './models/ClaimBasedAccessControlEntry';
+
+export { ErrorMessage } from './models/ErrorMessage';
+export { ErrorResponse } from './models/ErrorResponse';
+export { IdentityProvider } from './models/IdentityProvider';
+export { IdentityProviderParameters } from './models/IdentityProviderParameters';
+export { IdentityProviderType } from './models/IdentityProviderType';
+export { IInnerError } from './models/IInnerError';
+export { LdapParameters } from './models/LdapParameters';
+export { LoginOption } from './models/LoginOption';
+export { OpenIdParameters } from './models/OpenIdParameters';
+export { ProblemDetails } from './models/ProblemDetails';
+export { SamlParameters } from './models/SamlParameters';
+export { ServiceAccount } from './models/ServiceAccount';
+export { ServiceAccountBasedAccessControlEntry } from './models/ServiceAccountBasedAccessControlEntry';
+export { User } from './models/User';
+export { UserBasedAccessControlEntry } from './models/UserBasedAccessControlEntry';
+export { UserClientSecret } from './models/UserClientSecret';
+export { WindowsParameters } from './models/WindowsParameters';
+
+export { ApiResourcesService } from './services/ApiResourcesService';
+export { ApplicationsService } from './services/ApplicationsService';
+export { ClaimsService } from './services/ClaimsService';
+export { IdentityProvidersService } from './services/IdentityProvidersService';
+export { ServiceAccountsService } from './services/ServiceAccountsService';
+export { SuggestionsService } from './services/SuggestionsService';
+export { UsersService } from './services/UsersService';
+"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/models/ApiResource.js): ./test/result/v3/javascript/models/ApiResource.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ApiResourceRole } from '../models/ApiResourceRole';
+import * as yup from 'yup';
+
+export let ApiResource;
+(function (ApiResource) {
+
+    ApiResource.schema = (
+        yup.object().shape({
+            id: yup.lazy(() => yup.number().default(undefined)),
+            key: yup.lazy(() => yup.string().default(undefined).isNullable()).isRequired(),
+            name: yup.lazy(() => yup.string().default(undefined).isNullable()).isRequired(),
+            roles: yup.lazy(() => yup.array().of(ApiResourceRole.schema).default(undefined).isNullable())
+        }).noUnknown()
+    );
+
+    ApiResource.validate = async function(value) {
+        return ApiResource.schema.validate(value, { strict: true });
+    };
+
+    ApiResource.validateSync = function(value) {
+        return ApiResource.schema.validateSync(value, { strict: true });
+    };
+
+})(ApiResource || (ApiResource = {}));"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/models/ApiResourceLink.js): ./test/result/v3/javascript/models/ApiResourceLink.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+export let ApiResourceLink;
+(function (ApiResourceLink) {
+
+    ApiResourceLink.schema = (
+        yup.object().shape({
+            id: yup.lazy(() => yup.number().default(undefined)),
+            name: yup.lazy(() => yup.string().default(undefined).isNullable())
+        }).noUnknown()
+    );
+
+    ApiResourceLink.validate = async function(value) {
+        return ApiResourceLink.schema.validate(value, { strict: true });
+    };
+
+    ApiResourceLink.validateSync = function(value) {
+        return ApiResourceLink.schema.validateSync(value, { strict: true });
+    };
+
+})(ApiResourceLink || (ApiResourceLink = {}));"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/models/ApiResourceRole.js): ./test/result/v3/javascript/models/ApiResourceRole.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ApiResource } from '../models/ApiResource';
+import * as yup from 'yup';
+
+export let ApiResourceRole;
+(function (ApiResourceRole) {
+
+    ApiResourceRole.schema = (
+        yup.object().shape({
+            apiResource: yup.lazy(() => ApiResource.schema.default(undefined)),
+            id: yup.lazy(() => yup.number().default(undefined)),
+            key: yup.lazy(() => yup.string().default(undefined).isNullable()).isRequired(),
+            name: yup.lazy(() => yup.string().default(undefined).isNullable()).isRequired()
+        }).noUnknown()
+    );
+
+    ApiResourceRole.validate = async function(value) {
+        return ApiResourceRole.schema.validate(value, { strict: true });
+    };
+
+    ApiResourceRole.validateSync = function(value) {
+        return ApiResourceRole.schema.validateSync(value, { strict: true });
+    };
+
+})(ApiResourceRole || (ApiResourceRole = {}));"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/models/ApiResourceRoleLink.js): ./test/result/v3/javascript/models/ApiResourceRoleLink.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+export let ApiResourceRoleLink;
+(function (ApiResourceRoleLink) {
+
+    ApiResourceRoleLink.schema = (
+        yup.object().shape({
+            id: yup.lazy(() => yup.number().default(undefined)),
+            name: yup.lazy(() => yup.string().default(undefined).isNullable())
+        }).noUnknown()
+    );
+
+    ApiResourceRoleLink.validate = async function(value) {
+        return ApiResourceRoleLink.schema.validate(value, { strict: true });
+    };
+
+    ApiResourceRoleLink.validateSync = function(value) {
+        return ApiResourceRoleLink.schema.validateSync(value, { strict: true });
+    };
+
+})(ApiResourceRoleLink || (ApiResourceRoleLink = {}));"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/models/Application.js): ./test/result/v3/javascript/models/Application.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+export let Application;
+(function (Application) {
+
+    Application.schema = (
+        yup.object().shape({
+            clientId: yup.lazy(() => yup.string().default(undefined).isNullable()),
+            createdAt: yup.lazy(() => yup.string().default(undefined)),
+            createdBy: yup.lazy(() => yup.number().default(undefined).isNullable()),
+            id: yup.lazy(() => yup.number().default(undefined)),
+            modifiedAt: yup.lazy(() => yup.string().default(undefined)),
+            modifiedBy: yup.lazy(() => yup.number().default(undefined).isNullable()),
+            name: yup.lazy(() => yup.string().default(undefined).isNullable()).isRequired(),
+            redirectUrls: yup.lazy(() => yup.array().of(yup.string()).default(undefined).isNullable()).isRequired()
+        }).noUnknown()
+    );
+
+    Application.validate = async function(value) {
+        return Application.schema.validate(value, { strict: true });
+    };
+
+    Application.validateSync = function(value) {
+        return Application.schema.validateSync(value, { strict: true });
+    };
+
+})(Application || (Application = {}));"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/models/ApplicationLink.js): ./test/result/v3/javascript/models/ApplicationLink.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+export let ApplicationLink;
+(function (ApplicationLink) {
+
+    ApplicationLink.schema = (
+        yup.object().shape({
+            id: yup.lazy(() => yup.number().default(undefined)),
+            name: yup.lazy(() => yup.string().default(undefined).isNullable())
+        }).noUnknown()
+    );
+
+    ApplicationLink.validate = async function(value) {
+        return ApplicationLink.schema.validate(value, { strict: true });
+    };
+
+    ApplicationLink.validateSync = function(value) {
+        return ApplicationLink.schema.validateSync(value, { strict: true });
+    };
+
+})(ApplicationLink || (ApplicationLink = {}));"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/models/ClaimBasedAccessControlEntry.js): ./test/result/v3/javascript/models/ClaimBasedAccessControlEntry.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ApiResourceLink } from '../models/ApiResourceLink';
+import { ApiResourceRoleLink } from '../models/ApiResourceRoleLink';
+import { ApplicationLink } from '../models/ApplicationLink';
+import * as yup from 'yup';
+
+export let ClaimBasedAccessControlEntry;
+(function (ClaimBasedAccessControlEntry) {
+
+    ClaimBasedAccessControlEntry.schema = (
+        yup.object().shape({
+            apiResourceRoles: yup.lazy(() => yup.array().of(ApiResourceRoleLink.schema).default(undefined).isNullable()),
+            apiResources: yup.lazy(() => yup.array().of(ApiResourceLink.schema).default(undefined).isNullable()),
+            applications: yup.lazy(() => yup.array().of(ApplicationLink.schema).default(undefined).isNullable()),
+            claimType: yup.lazy(() => yup.string().default(undefined).isNullable()),
+            claimValue: yup.lazy(() => yup.string().default(undefined).isNullable())
+        }).noUnknown()
+    );
+
+    ClaimBasedAccessControlEntry.validate = async function(value) {
+        return ClaimBasedAccessControlEntry.schema.validate(value, { strict: true });
+    };
+
+    ClaimBasedAccessControlEntry.validateSync = function(value) {
+        return ClaimBasedAccessControlEntry.schema.validateSync(value, { strict: true });
+    };
+
+})(ClaimBasedAccessControlEntry || (ClaimBasedAccessControlEntry = {}));"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/models/ErrorMessage.js): ./test/result/v3/javascript/models/ErrorMessage.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { IInnerError } from '../models/IInnerError';
+import * as yup from 'yup';
+
+export let ErrorMessage;
+(function (ErrorMessage) {
+
+    ErrorMessage.schema = (
+        yup.object().shape({
+            code: yup.lazy(() => yup.string().default(undefined).isNullable()),
+            details: yup.lazy(() => yup.array().of(ErrorMessage.schema).default(undefined).isNullable()),
+            innerError: yup.lazy(() => IInnerError.schema.default(undefined)),
+            innerException: yup.lazy(() => ErrorMessage.schema.default(undefined)),
+            localizedMessage: yup.lazy(() => yup.string().default(undefined).isNullable()),
+            message: yup.lazy(() => yup.string().default(undefined).isNullable()),
+            stackTrace: yup.lazy(() => yup.string().default(undefined).isNullable()),
+            target: yup.lazy(() => yup.string().default(undefined).isNullable())
+        }).noUnknown()
+    );
+
+    ErrorMessage.validate = async function(value) {
+        return ErrorMessage.schema.validate(value, { strict: true });
+    };
+
+    ErrorMessage.validateSync = function(value) {
+        return ErrorMessage.schema.validateSync(value, { strict: true });
+    };
+
+})(ErrorMessage || (ErrorMessage = {}));"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/models/ErrorResponse.js): ./test/result/v3/javascript/models/ErrorResponse.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ErrorMessage } from '../models/ErrorMessage';
+import * as yup from 'yup';
+
+export let ErrorResponse;
+(function (ErrorResponse) {
+
+    ErrorResponse.schema = (
+        yup.object().shape({
+            errorMessage: yup.lazy(() => ErrorMessage.schema.default(undefined))
+        }).noUnknown()
+    );
+
+    ErrorResponse.validate = async function(value) {
+        return ErrorResponse.schema.validate(value, { strict: true });
+    };
+
+    ErrorResponse.validateSync = function(value) {
+        return ErrorResponse.schema.validateSync(value, { strict: true });
+    };
+
+})(ErrorResponse || (ErrorResponse = {}));"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/models/IInnerError.js): ./test/result/v3/javascript/models/IInnerError.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+export let IInnerError;
+(function (IInnerError) {
+
+    IInnerError.schema = (
+        yup.object().shape({
+            code: yup.lazy(() => yup.string().default(undefined).isNullable()),
+            innerError: yup.lazy(() => IInnerError.schema.default(undefined))
+        }).noUnknown()
+    );
+
+    IInnerError.validate = async function(value) {
+        return IInnerError.schema.validate(value, { strict: true });
+    };
+
+    IInnerError.validateSync = function(value) {
+        return IInnerError.schema.validateSync(value, { strict: true });
+    };
+
+})(IInnerError || (IInnerError = {}));"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/models/IdentityProvider.js): ./test/result/v3/javascript/models/IdentityProvider.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ClaimBasedAccessControlEntry } from '../models/ClaimBasedAccessControlEntry';
+import { IdentityProviderParameters } from '../models/IdentityProviderParameters';
+import { IdentityProviderType } from '../models/IdentityProviderType';
+import * as yup from 'yup';
+
+export let IdentityProvider;
+(function (IdentityProvider) {
+
+    IdentityProvider.schema = (
+        yup.object().shape({
+            accessControlList: yup.lazy(() => yup.array().of(ClaimBasedAccessControlEntry.schema).default(undefined).isNullable()),
+            createdAt: yup.lazy(() => yup.string().default(undefined)),
+            createdBy: yup.lazy(() => yup.number().default(undefined).isNullable()),
+            description: yup.lazy(() => yup.string().default(undefined).isNullable()),
+            forwardedClaims: yup.lazy(() => yup.array().of(yup.string()).default(undefined).isNullable()),
+            iconUrl: yup.lazy(() => yup.string().default(undefined).isNullable()),
+            iconViewUrl: yup.lazy(() => yup.string().default(undefined).isNullable()),
+            id: yup.lazy(() => yup.number().default(undefined)),
+            isEnabled: yup.lazy(() => yup.boolean().default(undefined)),
+            key: yup.lazy(() => yup.string().default(undefined).isNullable()).isRequired(),
+            modifiedAt: yup.lazy(() => yup.string().default(undefined)),
+            modifiedBy: yup.lazy(() => yup.number().default(undefined).isNullable()),
+            name: yup.lazy(() => yup.string().default(undefined).isNullable()).isRequired(),
+            parameters: yup.lazy(() => IdentityProviderParameters.schema.default(undefined)).isRequired(),
+            postLogoutRedirectUrl: yup.lazy(() => yup.string().default(undefined).isNullable()),
+            redirectUrl: yup.lazy(() => yup.string().default(undefined).isNullable()),
+            type: yup.lazy(() => IdentityProviderType.schema.default(undefined)).isRequired(),
+            validateUrl: yup.lazy(() => yup.string().default(undefined).isNullable())
+        }).noUnknown()
+    );
+
+    IdentityProvider.validate = async function(value) {
+        return IdentityProvider.schema.validate(value, { strict: true });
+    };
+
+    IdentityProvider.validateSync = function(value) {
+        return IdentityProvider.schema.validateSync(value, { strict: true });
+    };
+
+})(IdentityProvider || (IdentityProvider = {}));"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/models/IdentityProviderParameters.js): ./test/result/v3/javascript/models/IdentityProviderParameters.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+export let IdentityProviderParameters;
+(function (IdentityProviderParameters) {
+
+    IdentityProviderParameters.schema = (
+        yup.object()
+    );
+
+    IdentityProviderParameters.validate = async function(value) {
+        return IdentityProviderParameters.schema.validate(value, { strict: true });
+    };
+
+    IdentityProviderParameters.validateSync = function(value) {
+        return IdentityProviderParameters.schema.validateSync(value, { strict: true });
+    };
+
+})(IdentityProviderParameters || (IdentityProviderParameters = {}));"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/models/IdentityProviderType.js): ./test/result/v3/javascript/models/IdentityProviderType.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+export let IdentityProviderType;
+(function (IdentityProviderType) {
+
+    IdentityProviderType.LDAP = 'LDAP';
+    IdentityProviderType.OPEN_ID_CONNECT = 'OpenIdConnect';
+    IdentityProviderType.SAML2P = 'SAML2P';
+    IdentityProviderType.WINDOWS = 'Windows';
+
+    IdentityProviderType.schema = yup.mixed().oneOf([
+        IdentityProviderType.LDAP,
+        IdentityProviderType.OPEN_ID_CONNECT,
+        IdentityProviderType.SAML2P,
+        IdentityProviderType.WINDOWS
+    ]);
+
+    IdentityProviderType.validate = async function(value) {
+        return IdentityProviderType.schema.validate(value, { strict: true });
+    };
+
+    IdentityProviderType.validateSync = function(value) {
+        return IdentityProviderType.schema.validateSync(value, { strict: true });
+    };
+
+})(IdentityProviderType || (IdentityProviderType = {}));"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/models/LdapParameters.js): ./test/result/v3/javascript/models/LdapParameters.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+export let LdapParameters;
+(function (LdapParameters) {
+
+    LdapParameters.schema = (
+        yup.object().shape({
+            additionalAttributes: yup.lazy(() => yup.string().default(undefined).isNullable()),
+            fullNameClaim: yup.lazy(() => yup.string().default(undefined).isNullable()).isRequired(),
+            groupBaseDn: yup.lazy(() => yup.string().default(undefined).isNullable()),
+            groupMemberAttribute: yup.lazy(() => yup.string().default(undefined).isNullable()),
+            port: yup.lazy(() => yup.number().default(undefined)).isRequired(),
+            searchAccount: yup.lazy(() => yup.string().default(undefined).isNullable()).isRequired(),
+            searchAccountPassword: yup.lazy(() => yup.string().default(undefined).isNullable()).isRequired(),
+            separator: yup.lazy(() => yup.string().default(undefined).isNullable()),
+            serverAddress: yup.lazy(() => yup.string().default(undefined).isNullable()).isRequired(),
+            userBaseDn: yup.lazy(() => yup.string().default(undefined).isNullable()).isRequired(),
+            usernameClaim: yup.lazy(() => yup.string().default(undefined).isNullable()).isRequired(),
+            useSsl: yup.lazy(() => yup.boolean().default(undefined)).isRequired()
+        }).noUnknown()
+    );
+
+    LdapParameters.validate = async function(value) {
+        return LdapParameters.schema.validate(value, { strict: true });
+    };
+
+    LdapParameters.validateSync = function(value) {
+        return LdapParameters.schema.validateSync(value, { strict: true });
+    };
+
+})(LdapParameters || (LdapParameters = {}));"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/models/LoginOption.js): ./test/result/v3/javascript/models/LoginOption.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+export let LoginOption;
+(function (LoginOption) {
+
+    LoginOption.schema = (
+        yup.object().shape({
+            iconUrl: yup.lazy(() => yup.string().default(undefined).isNullable()),
+            loginTriggerUrl: yup.lazy(() => yup.string().default(undefined).isNullable()),
+            name: yup.lazy(() => yup.string().default(undefined).isNullable()).isRequired()
+        }).noUnknown()
+    );
+
+    LoginOption.validate = async function(value) {
+        return LoginOption.schema.validate(value, { strict: true });
+    };
+
+    LoginOption.validateSync = function(value) {
+        return LoginOption.schema.validateSync(value, { strict: true });
+    };
+
+})(LoginOption || (LoginOption = {}));"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/models/OpenIdParameters.js): ./test/result/v3/javascript/models/OpenIdParameters.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+export let OpenIdParameters;
+(function (OpenIdParameters) {
+
+    OpenIdParameters.schema = (
+        yup.object().shape({
+            authority: yup.lazy(() => yup.string().default(undefined).isNullable()).isRequired(),
+            clientId: yup.lazy(() => yup.string().default(undefined).isNullable()).isRequired(),
+            clientSecret: yup.lazy(() => yup.string().default(undefined).isNullable()),
+            endSessionEndpoint: yup.lazy(() => yup.string().default(undefined).isNullable()),
+            fullNameClaim: yup.lazy(() => yup.string().default(undefined).isNullable()).isRequired(),
+            sendIdTokenHintDuringLogout: yup.lazy(() => yup.boolean().default(undefined)),
+            separator: yup.lazy(() => yup.string().default(undefined).isNullable()),
+            usernameClaim: yup.lazy(() => yup.string().default(undefined).isNullable()).isRequired()
+        }).noUnknown()
+    );
+
+    OpenIdParameters.validate = async function(value) {
+        return OpenIdParameters.schema.validate(value, { strict: true });
+    };
+
+    OpenIdParameters.validateSync = function(value) {
+        return OpenIdParameters.schema.validateSync(value, { strict: true });
+    };
+
+})(OpenIdParameters || (OpenIdParameters = {}));"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/models/ProblemDetails.js): ./test/result/v3/javascript/models/ProblemDetails.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+
+import * as yup from 'yup';
+
+export let ProblemDetails;
+(function (ProblemDetails) {
+
+    ProblemDetails.schema = (
+        yup.object().shape({
+            detail: yup.lazy(() => yup.string().default(undefined).isNullable()),
+            extensions: yup.lazy(() => yup.lazy(value => {
+                return yup.object().shape(
+                    Object.entries(value).reduce((obj, item) => ({
+                        ...obj,
+                        [item[0]]: (
+                            yup.object()
+                        )
+                    }), {})
+                );
+            }).default(undefined).isNullable()),
+            instance: yup.lazy(() => yup.string().default(undefined).isNullable()),
+            status: yup.lazy(() => yup.number().default(undefined).isNullable()),
+            title: yup.lazy(() => yup.string().default(undefined).isNullable()),
+            type: yup.lazy(() => yup.string().default(undefined).isNullable())
+        }).noUnknown()
+    );
+
+    ProblemDetails.validate = async function(value) {
+        return ProblemDetails.schema.validate(value, { strict: true });
+    };
+
+    ProblemDetails.validateSync = function(value) {
+        return ProblemDetails.schema.validateSync(value, { strict: true });
+    };
+
+})(ProblemDetails || (ProblemDetails = {}));"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/models/SamlParameters.js): ./test/result/v3/javascript/models/SamlParameters.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+export let SamlParameters;
+(function (SamlParameters) {
+
+    SamlParameters.schema = (
+        yup.object().shape({
+            certificates: yup.lazy(() => yup.array().of(yup.string()).default(undefined).isNullable()).isRequired(),
+            fullNameClaim: yup.lazy(() => yup.string().default(undefined).isNullable()).isRequired(),
+            issuerName: yup.lazy(() => yup.string().default(undefined).isNullable()).isRequired(),
+            separator: yup.lazy(() => yup.string().default(undefined).isNullable()),
+            serviceProviderName: yup.lazy(() => yup.string().default(undefined).isNullable()).isRequired(),
+            singleLogoutServiceUrl: yup.lazy(() => yup.string().default(undefined).isNullable()).isRequired(),
+            singleSignOnServiceUrl: yup.lazy(() => yup.string().default(undefined).isNullable()).isRequired(),
+            usernameClaim: yup.lazy(() => yup.string().default(undefined).isNullable()).isRequired()
+        }).noUnknown()
+    );
+
+    SamlParameters.validate = async function(value) {
+        return SamlParameters.schema.validate(value, { strict: true });
+    };
+
+    SamlParameters.validateSync = function(value) {
+        return SamlParameters.schema.validateSync(value, { strict: true });
+    };
+
+})(SamlParameters || (SamlParameters = {}));"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/models/ServiceAccount.js): ./test/result/v3/javascript/models/ServiceAccount.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ServiceAccountBasedAccessControlEntry } from '../models/ServiceAccountBasedAccessControlEntry';
+import { UserClientSecret } from '../models/UserClientSecret';
+import * as yup from 'yup';
+
+export let ServiceAccount;
+(function (ServiceAccount) {
+
+    ServiceAccount.schema = (
+        yup.object().shape({
+            accessControlEntry: yup.lazy(() => ServiceAccountBasedAccessControlEntry.schema.default(undefined)),
+            clientId: yup.lazy(() => yup.string().default(undefined).isNullable()),
+            clientSecrets: yup.lazy(() => yup.array().of(UserClientSecret.schema).default(undefined).isNullable()),
+            createdAt: yup.lazy(() => yup.string().default(undefined)),
+            createdBy: yup.lazy(() => yup.number().default(undefined).isNullable()),
+            id: yup.lazy(() => yup.number().default(undefined)),
+            lastLoginAt: yup.lazy(() => yup.string().default(undefined).isNullable()),
+            modifiedAt: yup.lazy(() => yup.string().default(undefined)),
+            modifiedBy: yup.lazy(() => yup.number().default(undefined).isNullable()),
+            name: yup.lazy(() => yup.string().default(undefined).isNullable()).isRequired()
+        }).noUnknown()
+    );
+
+    ServiceAccount.validate = async function(value) {
+        return ServiceAccount.schema.validate(value, { strict: true });
+    };
+
+    ServiceAccount.validateSync = function(value) {
+        return ServiceAccount.schema.validateSync(value, { strict: true });
+    };
+
+})(ServiceAccount || (ServiceAccount = {}));"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/models/ServiceAccountBasedAccessControlEntry.js): ./test/result/v3/javascript/models/ServiceAccountBasedAccessControlEntry.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ApiResourceLink } from '../models/ApiResourceLink';
+import { ApiResourceRoleLink } from '../models/ApiResourceRoleLink';
+import * as yup from 'yup';
+
+export let ServiceAccountBasedAccessControlEntry;
+(function (ServiceAccountBasedAccessControlEntry) {
+
+    ServiceAccountBasedAccessControlEntry.schema = (
+        yup.object().shape({
+            apiResourceRoles: yup.lazy(() => yup.array().of(ApiResourceRoleLink.schema).default(undefined).isNullable()),
+            apiResources: yup.lazy(() => yup.array().of(ApiResourceLink.schema).default(undefined).isNullable())
+        }).noUnknown()
+    );
+
+    ServiceAccountBasedAccessControlEntry.validate = async function(value) {
+        return ServiceAccountBasedAccessControlEntry.schema.validate(value, { strict: true });
+    };
+
+    ServiceAccountBasedAccessControlEntry.validateSync = function(value) {
+        return ServiceAccountBasedAccessControlEntry.schema.validateSync(value, { strict: true });
+    };
+
+})(ServiceAccountBasedAccessControlEntry || (ServiceAccountBasedAccessControlEntry = {}));"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/models/User.js): ./test/result/v3/javascript/models/User.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { UserBasedAccessControlEntry } from '../models/UserBasedAccessControlEntry';
+import { UserClientSecret } from '../models/UserClientSecret';
+import * as yup from 'yup';
+
+export let User;
+(function (User) {
+
+    User.schema = (
+        yup.object().shape({
+            accessControlEntry: yup.lazy(() => UserBasedAccessControlEntry.schema.default(undefined)),
+            clientId: yup.lazy(() => yup.string().default(undefined).isNullable()),
+            clientSecrets: yup.lazy(() => yup.array().of(UserClientSecret.schema).default(undefined).isNullable()),
+            createdAt: yup.lazy(() => yup.string().default(undefined)),
+            createdBy: yup.lazy(() => yup.number().default(undefined).isNullable()),
+            email: yup.lazy(() => yup.string().default(undefined).isNullable()),
+            id: yup.lazy(() => yup.number().default(undefined)),
+            identityProviderId: yup.lazy(() => yup.number().default(undefined)).isRequired(),
+            identityProviderKey: yup.lazy(() => yup.string().default(undefined).isNullable()).isRequired(),
+            lastLoginAt: yup.lazy(() => yup.string().default(undefined).isNullable()),
+            modifiedAt: yup.lazy(() => yup.string().default(undefined)),
+            modifiedBy: yup.lazy(() => yup.number().default(undefined).isNullable()),
+            name: yup.lazy(() => yup.string().default(undefined).isNullable()).isRequired(),
+            subject: yup.lazy(() => yup.string().default(undefined).isNullable()).isRequired()
+        }).noUnknown()
+    );
+
+    User.validate = async function(value) {
+        return User.schema.validate(value, { strict: true });
+    };
+
+    User.validateSync = function(value) {
+        return User.schema.validateSync(value, { strict: true });
+    };
+
+})(User || (User = {}));"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/models/UserBasedAccessControlEntry.js): ./test/result/v3/javascript/models/UserBasedAccessControlEntry.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ApiResourceLink } from '../models/ApiResourceLink';
+import { ApiResourceRoleLink } from '../models/ApiResourceRoleLink';
+import { ApplicationLink } from '../models/ApplicationLink';
+import * as yup from 'yup';
+
+export let UserBasedAccessControlEntry;
+(function (UserBasedAccessControlEntry) {
+
+    UserBasedAccessControlEntry.schema = (
+        yup.object().shape({
+            apiResourceRoles: yup.lazy(() => yup.array().of(ApiResourceRoleLink.schema).default(undefined).isNullable()),
+            apiResources: yup.lazy(() => yup.array().of(ApiResourceLink.schema).default(undefined).isNullable()),
+            applications: yup.lazy(() => yup.array().of(ApplicationLink.schema).default(undefined).isNullable())
+        }).noUnknown()
+    );
+
+    UserBasedAccessControlEntry.validate = async function(value) {
+        return UserBasedAccessControlEntry.schema.validate(value, { strict: true });
+    };
+
+    UserBasedAccessControlEntry.validateSync = function(value) {
+        return UserBasedAccessControlEntry.schema.validateSync(value, { strict: true });
+    };
+
+})(UserBasedAccessControlEntry || (UserBasedAccessControlEntry = {}));"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/models/UserClientSecret.js): ./test/result/v3/javascript/models/UserClientSecret.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+export let UserClientSecret;
+(function (UserClientSecret) {
+
+    UserClientSecret.schema = (
+        yup.object().shape({
+            clientSecret: yup.lazy(() => yup.string().default(undefined).isNullable()).isRequired(),
+            clientSecretUnHashed: yup.lazy(() => yup.string().default(undefined).isNullable()),
+            expiresAt: yup.lazy(() => yup.string().default(undefined)).isRequired(),
+            id: yup.lazy(() => yup.number().default(undefined)),
+            lastLoginAt: yup.lazy(() => yup.string().default(undefined).isNullable())
+        }).noUnknown()
+    );
+
+    UserClientSecret.validate = async function(value) {
+        return UserClientSecret.schema.validate(value, { strict: true });
+    };
+
+    UserClientSecret.validateSync = function(value) {
+        return UserClientSecret.schema.validateSync(value, { strict: true });
+    };
+
+})(UserClientSecret || (UserClientSecret = {}));"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/models/WindowsParameters.js): ./test/result/v3/javascript/models/WindowsParameters.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+export let WindowsParameters;
+(function (WindowsParameters) {
+
+    WindowsParameters.schema = (
+        yup.object()
+    );
+
+    WindowsParameters.validate = async function(value) {
+        return WindowsParameters.schema.validate(value, { strict: true });
+    };
+
+    WindowsParameters.validateSync = function(value) {
+        return WindowsParameters.schema.validateSync(value, { strict: true });
+    };
+
+})(WindowsParameters || (WindowsParameters = {}));"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/services/ApiResourcesService.js): ./test/result/v3/javascript/services/ApiResourcesService.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ApiError, catchGenericError } from '../core/ApiError';
+import { request } from '../core/request';
+import { OpenAPI } from '../core/OpenAPI';
+
+export class ApiResourcesService {
+
+    /**
+     * @result any Success
+     * @throws ApiError
+     */
+    static async get() {
+
+        const result = await request({
+            method: 'get',
+            path: \`/api/v\${OpenAPI.VERSION}/ApiResources\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`Bad Request\`);
+                case 500: throw new ApiError(result, \`Server Error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @param id
+     * @result any Success
+     * @throws ApiError
+     */
+    static async get1(
+        id
+    ) {
+
+        const result = await request({
+            method: 'get',
+            path: \`/api/v\${OpenAPI.VERSION}/ApiResources/\${id}\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`Bad Request\`);
+                case 404: throw new ApiError(result, \`Not Found\`);
+                case 500: throw new ApiError(result, \`Server Error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @param name
+     * @result any Success
+     * @throws ApiError
+     */
+    static async getByName(
+        name
+    ) {
+
+        const result = await request({
+            method: 'get',
+            path: \`/api/v\${OpenAPI.VERSION}/ApiResources/getByName/\${name}\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`Bad Request\`);
+                case 404: throw new ApiError(result, \`Not Found\`);
+                case 500: throw new ApiError(result, \`Server Error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+}"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/services/ApplicationsService.js): ./test/result/v3/javascript/services/ApplicationsService.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ApiError, catchGenericError } from '../core/ApiError';
+import { request } from '../core/request';
+import { OpenAPI } from '../core/OpenAPI';
+
+export class ApplicationsService {
+
+    /**
+     * @param id
+     * @result any Success
+     * @throws ApiError
+     */
+    static async get(
+        id
+    ) {
+
+        const result = await request({
+            method: 'get',
+            path: \`/api/v\${OpenAPI.VERSION}/Applications/\${id}\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`Bad Request\`);
+                case 404: throw new ApiError(result, \`Not Found\`);
+                case 500: throw new ApiError(result, \`Server Error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @result any Success
+     * @throws ApiError
+     */
+    static async get1() {
+
+        const result = await request({
+            method: 'get',
+            path: \`/api/v\${OpenAPI.VERSION}/Applications\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`Bad Request\`);
+                case 500: throw new ApiError(result, \`Server Error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @param clientId
+     * @result any Success
+     * @throws ApiError
+     */
+    static async getByClientId(
+        clientId
+    ) {
+
+        const result = await request({
+            method: 'get',
+            path: \`/api/v\${OpenAPI.VERSION}/Applications/getByClientId/\${clientId}\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`Bad Request\`);
+                case 404: throw new ApiError(result, \`Not Found\`);
+                case 500: throw new ApiError(result, \`Server Error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @param name
+     * @result any Success
+     * @throws ApiError
+     */
+    static async getByName(
+        name
+    ) {
+
+        const result = await request({
+            method: 'get',
+            path: \`/api/v\${OpenAPI.VERSION}/Applications/getByName/\${name}\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`Bad Request\`);
+                case 404: throw new ApiError(result, \`Not Found\`);
+                case 500: throw new ApiError(result, \`Server Error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @param id
+     * @result any Success
+     * @throws ApiError
+     */
+    static async update(
+        id
+    ) {
+
+        const result = await request({
+            method: 'put',
+            path: \`/api/v\${OpenAPI.VERSION}/Applications/\${id}\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`Bad Request\`);
+                case 404: throw new ApiError(result, \`Not Found\`);
+                case 500: throw new ApiError(result, \`Server Error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+}"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/services/ClaimsService.js): ./test/result/v3/javascript/services/ClaimsService.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ApiError, catchGenericError } from '../core/ApiError';
+import { request } from '../core/request';
+import { OpenAPI } from '../core/OpenAPI';
+
+export class ClaimsService {
+
+    /**
+     * @result any Success
+     * @throws ApiError
+     */
+    static async get() {
+
+        const result = await request({
+            method: 'get',
+            path: \`/api/v\${OpenAPI.VERSION}/Claims\`
+        });
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+}"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/services/IdentityProvidersService.js): ./test/result/v3/javascript/services/IdentityProvidersService.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ApiError, catchGenericError } from '../core/ApiError';
+import { request } from '../core/request';
+import { OpenAPI } from '../core/OpenAPI';
+
+export class IdentityProvidersService {
+
+    /**
+     * @result any Success
+     * @throws ApiError
+     */
+    static async create() {
+
+        const result = await request({
+            method: 'post',
+            path: \`/api/v\${OpenAPI.VERSION}/IdentityProviders\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`Bad Request\`);
+                case 500: throw new ApiError(result, \`Server Error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @param id
+     * @result any Success
+     * @throws ApiError
+     */
+    static async delete(
+        id
+    ) {
+
+        const result = await request({
+            method: 'delete',
+            path: \`/api/v\${OpenAPI.VERSION}/IdentityProviders/\${id}\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`Bad Request\`);
+                case 404: throw new ApiError(result, \`Not Found\`);
+                case 500: throw new ApiError(result, \`Server Error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @result any Success
+     * @throws ApiError
+     */
+    static async get() {
+
+        const result = await request({
+            method: 'get',
+            path: \`/api/v\${OpenAPI.VERSION}/IdentityProviders\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`Bad Request\`);
+                case 500: throw new ApiError(result, \`Server Error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @param id
+     * @result any Success
+     * @throws ApiError
+     */
+    static async get1(
+        id
+    ) {
+
+        const result = await request({
+            method: 'get',
+            path: \`/api/v\${OpenAPI.VERSION}/IdentityProviders/\${id}\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`Bad Request\`);
+                case 404: throw new ApiError(result, \`Not Found\`);
+                case 500: throw new ApiError(result, \`Server Error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @param name
+     * @result any Success
+     * @throws ApiError
+     */
+    static async getIcon(
+        name
+    ) {
+
+        const result = await request({
+            method: 'get',
+            path: \`/api/v\${OpenAPI.VERSION}/IdentityProviders/icon/\${name}\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 416: throw new ApiError(result, \`Client Error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @result any Success
+     * @throws ApiError
+     */
+    static async getLoginOptions() {
+
+        const result = await request({
+            method: 'get',
+            path: \`/api/v\${OpenAPI.VERSION}/IdentityProviders/loginOptions\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`Bad Request\`);
+                case 500: throw new ApiError(result, \`Server Error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @param providerType
+     * @result any Success
+     * @throws ApiError
+     */
+    static async getParametersForIdentityProviderType(
+        providerType
+    ) {
+
+        const result = await request({
+            method: 'get',
+            path: \`/api/v\${OpenAPI.VERSION}/IdentityProviders/getParametersForIdentityProviderType/\${providerType}\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`Bad Request\`);
+                case 404: throw new ApiError(result, \`Not Found\`);
+                case 500: throw new ApiError(result, \`Server Error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @param id
+     * @result any Success
+     * @throws ApiError
+     */
+    static async update(
+        id
+    ) {
+
+        const result = await request({
+            method: 'put',
+            path: \`/api/v\${OpenAPI.VERSION}/IdentityProviders/\${id}\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`Bad Request\`);
+                case 404: throw new ApiError(result, \`Not Found\`);
+                case 500: throw new ApiError(result, \`Server Error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+}"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/services/ServiceAccountsService.js): ./test/result/v3/javascript/services/ServiceAccountsService.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ApiError, catchGenericError } from '../core/ApiError';
+import { request } from '../core/request';
+import { OpenAPI } from '../core/OpenAPI';
+
+export class ServiceAccountsService {
+
+    /**
+     * @param serviceAccountId
+     * @param secretId
+     * @result any Success
+     * @throws ApiError
+     */
+    static async deleteClientSecret(
+        serviceAccountId,
+        secretId
+    ) {
+
+        const result = await request({
+            method: 'delete',
+            path: \`/api/v\${OpenAPI.VERSION}/ServiceAccounts/\${serviceAccountId}/clientSecrets/\${secretId}\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`Bad Request\`);
+                case 404: throw new ApiError(result, \`Not Found\`);
+                case 500: throw new ApiError(result, \`Server Error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @param serviceAccountId
+     * @result any Success
+     * @throws ApiError
+     */
+    static async generateClientSecret(
+        serviceAccountId
+    ) {
+
+        const result = await request({
+            method: 'post',
+            path: \`/api/v\${OpenAPI.VERSION}/ServiceAccounts/\${serviceAccountId}/generateClientSecret\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`Bad Request\`);
+                case 404: throw new ApiError(result, \`Not Found\`);
+                case 500: throw new ApiError(result, \`Server Error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @result any Success
+     * @throws ApiError
+     */
+    static async get() {
+
+        const result = await request({
+            method: 'get',
+            path: \`/api/v\${OpenAPI.VERSION}/ServiceAccounts\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`Bad Request\`);
+                case 500: throw new ApiError(result, \`Server Error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @param id
+     * @result any Success
+     * @throws ApiError
+     */
+    static async get1(
+        id
+    ) {
+
+        const result = await request({
+            method: 'get',
+            path: \`/api/v\${OpenAPI.VERSION}/ServiceAccounts/\${id}\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`Bad Request\`);
+                case 404: throw new ApiError(result, \`Not Found\`);
+                case 500: throw new ApiError(result, \`Server Error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @param secretId
+     * @param serviceAccountId
+     * @result any Success
+     * @throws ApiError
+     */
+    static async updateClientSecret(
+        secretId,
+        serviceAccountId
+    ) {
+
+        const result = await request({
+            method: 'put',
+            path: \`/api/v\${OpenAPI.VERSION}/ServiceAccounts/\${serviceAccountId}/clientSecrets/\${secretId}\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`Bad Request\`);
+                case 404: throw new ApiError(result, \`Not Found\`);
+                case 500: throw new ApiError(result, \`Server Error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+}"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/services/SuggestionsService.js): ./test/result/v3/javascript/services/SuggestionsService.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ApiError, catchGenericError } from '../core/ApiError';
+import { request } from '../core/request';
+import { OpenAPI } from '../core/OpenAPI';
+
+export class SuggestionsService {
+
+    /**
+     * @param searchText
+     * @result any Success
+     * @throws ApiError
+     */
+    static async getClaimTypes(
+        searchText
+    ) {
+
+        const result = await request({
+            method: 'get',
+            path: \`/api/v\${OpenAPI.VERSION}/Suggestions/claimTypes\`,
+            query: {
+                'searchText': searchText
+            }
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`Bad Request\`);
+                case 500: throw new ApiError(result, \`Server Error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+}"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/services/UsersService.js): ./test/result/v3/javascript/services/UsersService.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ApiError, catchGenericError } from '../core/ApiError';
+import { request } from '../core/request';
+import { OpenAPI } from '../core/OpenAPI';
+
+export class UsersService {
+
+    /**
+     * @result any Success
+     * @throws ApiError
+     */
+    static async create() {
+
+        const result = await request({
+            method: 'post',
+            path: \`/api/v\${OpenAPI.VERSION}/Users\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`Bad Request\`);
+                case 500: throw new ApiError(result, \`Server Error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @param id
+     * @result any Success
+     * @throws ApiError
+     */
+    static async delete(
+        id
+    ) {
+
+        const result = await request({
+            method: 'delete',
+            path: \`/api/v\${OpenAPI.VERSION}/Users/\${id}\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`Bad Request\`);
+                case 404: throw new ApiError(result, \`Not Found\`);
+                case 500: throw new ApiError(result, \`Server Error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @param userId
+     * @param secretId
+     * @result any Success
+     * @throws ApiError
+     */
+    static async deleteClientSecret(
+        userId,
+        secretId
+    ) {
+
+        const result = await request({
+            method: 'delete',
+            path: \`/api/v\${OpenAPI.VERSION}/Users/\${userId}/clientSecrets/\${secretId}\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`Bad Request\`);
+                case 404: throw new ApiError(result, \`Not Found\`);
+                case 500: throw new ApiError(result, \`Server Error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @param userId
+     * @result any Success
+     * @throws ApiError
+     */
+    static async generateClientSecret(
+        userId
+    ) {
+
+        const result = await request({
+            method: 'post',
+            path: \`/api/v\${OpenAPI.VERSION}/Users/\${userId}/generateClientSecret\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`Bad Request\`);
+                case 404: throw new ApiError(result, \`Not Found\`);
+                case 500: throw new ApiError(result, \`Server Error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @param id
+     * @result any Success
+     * @throws ApiError
+     */
+    static async get(
+        id
+    ) {
+
+        const result = await request({
+            method: 'get',
+            path: \`/api/v\${OpenAPI.VERSION}/Users/\${id}\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`Bad Request\`);
+                case 404: throw new ApiError(result, \`Not Found\`);
+                case 500: throw new ApiError(result, \`Server Error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @result any Success
+     * @throws ApiError
+     */
+    static async get1() {
+
+        const result = await request({
+            method: 'get',
+            path: \`/api/v\${OpenAPI.VERSION}/Users\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`Bad Request\`);
+                case 500: throw new ApiError(result, \`Server Error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @param id
+     * @result any Success
+     * @throws ApiError
+     */
+    static async update(
+        id
+    ) {
+
+        const result = await request({
+            method: 'put',
+            path: \`/api/v\${OpenAPI.VERSION}/Users/\${id}\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`Bad Request\`);
+                case 404: throw new ApiError(result, \`Not Found\`);
+                case 500: throw new ApiError(result, \`Server Error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @param secretId
+     * @param userId
+     * @result any Success
+     * @throws ApiError
+     */
+    static async updateClientSecret(
+        secretId,
+        userId
+    ) {
+
+        const result = await request({
+            method: 'put',
+            path: \`/api/v\${OpenAPI.VERSION}/Users/\${userId}/clientSecrets/\${secretId}\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`Bad Request\`);
+                case 404: throw new ApiError(result, \`Not Found\`);
+                case 500: throw new ApiError(result, \`Server Error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+}"
+`;
+
+exports[`generation v3 typescript file(./test/result/v3/typescript/core/ApiError.ts): ./test/result/v3/typescript/core/ApiError.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { isSuccess } from './isSuccess';
+import { Result } from './Result';
+
+export class ApiError extends Error {
+
+    public readonly url: string;
+    public readonly status: number;
+    public readonly statusText: string;
+    public readonly body: any;
+
+    constructor(result: Readonly<Result>, message: string) {
+        super(message);
+
+        this.url = result.url;
+        this.status = result.status;
+        this.statusText = result.statusText;
+        this.body = result.body;
+    }
+}
+
+export namespace ApiError {
+    export enum Message {
+        BAD_REQUEST = 'Bad Request',
+        UNAUTHORIZED = 'Unauthorized',
+        FORBIDDEN = 'Forbidden',
+        NOT_FOUND = 'Not Found',
+        INTERNAL_SERVER_ERROR = 'Internal Server Error',
+        BAD_GATEWAY = 'Bad Gateway',
+        SERVICE_UNAVAILABLE = 'Service Unavailable',
+        GENERIC_ERROR = 'Generic Error',
+    }
+}
+
+/**
+ * Catch common errors (based on status code).
+ * @param result
+ */
+export function catchGenericError(result: Result): void {
+    switch (result.status) {
+        case 400: throw new ApiError(result, ApiError.Message.BAD_REQUEST);
+        case 401: throw new ApiError(result, ApiError.Message.UNAUTHORIZED);
+        case 403: throw new ApiError(result, ApiError.Message.FORBIDDEN);
+        case 404: throw new ApiError(result, ApiError.Message.NOT_FOUND);
+        case 500: throw new ApiError(result, ApiError.Message.INTERNAL_SERVER_ERROR);
+        case 502: throw new ApiError(result, ApiError.Message.BAD_GATEWAY);
+        case 503: throw new ApiError(result, ApiError.Message.SERVICE_UNAVAILABLE);
+    }
+
+    if (!isSuccess(result.status)) {
+        throw new ApiError(result, ApiError.Message.GENERIC_ERROR);
+    }
+}
+"
+`;
+
+exports[`generation v3 typescript file(./test/result/v3/typescript/core/OpenAPI.ts): ./test/result/v3/typescript/core/OpenAPI.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+export namespace OpenAPI {
+    export let BASE = '/access-manager';
+    export let VERSION = '1';
+    export let CLIENT = 'fetch';
+    export let TOKEN = '';
+}"
+`;
+
+exports[`generation v3 typescript file(./test/result/v3/typescript/core/RequestOptions.ts): ./test/result/v3/typescript/core/RequestOptions.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+export interface RequestOptions {
+    method: 'get' | 'put' | 'post' | 'delete' | 'options' | 'head' | 'patch';
+    path: string;
+    headers?: { [key: string]: any };
+    query?: { [key: string]: any };
+    formData?: { [key: string]: any };
+    body?: any;
+}
+"
+`;
+
+exports[`generation v3 typescript file(./test/result/v3/typescript/core/Result.ts): ./test/result/v3/typescript/core/Result.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+export interface Result {
+    url: string;
+    ok: boolean;
+    status: number;
+    statusText: string;
+    body: any;
+}
+"
+`;
+
+exports[`generation v3 typescript file(./test/result/v3/typescript/core/getFormData.ts): ./test/result/v3/typescript/core/getFormData.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+/**
+ * Get FormData from object. This method is needed to upload
+ * multipart form data to the REST API.
+ * @param params Key value based object.
+ */
+export function getFormData(params: { [key: string]: any }): FormData {
+    const formData = new FormData();
+    for (const key in params) {
+        if (typeof params[key] !== 'undefined') {
+            const value: any = params[key];
+            if (value !== undefined && value !== null) {
+                formData.append(key, value);
+            }
+        }
+    }
+    return formData;
+}
+"
+`;
+
+exports[`generation v3 typescript file(./test/result/v3/typescript/core/getQueryString.ts): ./test/result/v3/typescript/core/getQueryString.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+/**
+ * Get query string from query parameters object. This method also
+ * supports multi-value items by creating a key for each item.
+ * @param params Key value based object.
+ */
+export function getQueryString(params: { [key: string]: any }): string {
+    const qs: string[] = [];
+    for (const key in params) {
+        if (typeof params[key] !== 'undefined') {
+            const value: any = params[key];
+            if (value !== undefined && value !== null) {
+                if (Array.isArray(value)) {
+                    value.forEach(value => {
+                        qs.push(\`\${encodeURIComponent(key)}=\${encodeURIComponent(String(value))}\`);
+                    });
+                } else {
+                    qs.push(\`\${encodeURIComponent(key)}=\${encodeURIComponent(String(value))}\`);
+                }
+            }
+        }
+    }
+    if (qs.length > 0) {
+        return \`?\${qs.join('&')}\`;
+    }
+    return '';
+}
+"
+`;
+
+exports[`generation v3 typescript file(./test/result/v3/typescript/core/isSuccess.ts): ./test/result/v3/typescript/core/isSuccess.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+/**
+ * Check success response code.
+ * @param status Status code
+ */
+export function isSuccess(status: number): boolean {
+    return status >= 200 && status < 300;
+}
+"
+`;
+
+exports[`generation v3 typescript file(./test/result/v3/typescript/core/request.ts): ./test/result/v3/typescript/core/request.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import {getFormData} from './getFormData';
+import {getQueryString} from './getQueryString';
+import {OpenAPI} from './OpenAPI';
+import {RequestOptions} from './RequestOptions';
+import {requestUsingFetch} from './requestUsingFetch';
+import {requestUsingXHR} from './requestUsingXHR';
+import {Result} from './Result';
+
+/**
+ * Create the request.
+ * @param options Request method options.
+ * @returns Result object (see above)
+ */
+export async function request(options: Readonly<RequestOptions>): Promise<Result> {
+
+    // Create the request URL
+    let url = \`\${OpenAPI.BASE}\${options.path}\`;
+
+    // Create request headers
+    const headers = new Headers({
+        ...options.headers,
+        Accept: 'application/json'
+    });
+
+    // Create request settings
+    const request: RequestInit = {
+        headers,
+        method: options.method,
+        credentials: 'same-origin'
+    };
+
+    // If we have a bearer token then we set the authentication header.
+    if (OpenAPI.TOKEN !== null && OpenAPI.TOKEN !== '') {
+        headers.append('Authorization', \`Bearer \${OpenAPI.TOKEN}\`);
+    }
+
+    // Add the query parameters (if defined).
+    if (options.query) {
+        url += getQueryString(options.query);
+    }
+
+    // Append formData as body
+    if (options.formData) {
+        request.body = getFormData(options.formData);
+    } else if (options.body) {
+
+        // If this is blob data, then pass it directly to the body and set content type.
+        // Otherwise we just convert request data to JSON string (needed for fetch api)
+        if (options.body instanceof Blob) {
+            request.body = options.body;
+            if (options.body.type) {
+                headers.append('Content-Type', options.body.type);
+            }
+        } else {
+            request.body = JSON.stringify(options.body);
+            headers.append('Content-Type', 'application/json');
+        }
+    }
+
+    try {
+        switch (OpenAPI.CLIENT) {
+            case 'xhr':
+                return await requestUsingXHR(url, request);
+            default:
+                return await requestUsingFetch(url, request);
+        }
+    } catch (error) {
+        return {
+            url,
+            ok: false,
+            status: 0,
+            statusText: '',
+            body: error
+        };
+    }
+}
+"
+`;
+
+exports[`generation v3 typescript file(./test/result/v3/typescript/core/requestUsingFetch.ts): ./test/result/v3/typescript/core/requestUsingFetch.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { Result } from './Result';
+
+/**
+ * Request content using the new Fetch API. This is the default API that is used and
+ * is create for all JSON, XML and text objects. However it is limited to UTF-8.
+ * This is a problem for some of the Docs content, since that requires UTF-16!
+ * @param url The url to request.
+ * @param request The request object, containing method, headers, body, etc.
+ */
+export async function requestUsingFetch(url: string, request: Readonly<RequestInit>): Promise<Result> {
+
+    // Fetch response using fetch API.
+    const response = await fetch(url, request);
+
+    // Create result object.
+    const result: Result = {
+        url,
+        ok: response.ok,
+        status: response.status,
+        statusText: response.statusText,
+        body: null
+    };
+
+    // Try to parse the content for any response status code.
+    // We check the \\"Content-Type\\" header to see if we need to parse the
+    // content as json or as plain text.
+    const contentType = response.headers.get('Content-Type');
+    if (contentType) {
+        switch (contentType.toLowerCase()) {
+            case 'application/json':
+            case 'application/json; charset=utf-8':
+                result.body = await response.json();
+                break;
+
+            case 'text/plain':
+            case 'text/xml':
+            case 'text/xml; charset=utf-8':
+            case 'text/xml; charset=utf-16':
+                result.body = await response.text();
+                break;
+        }
+    }
+
+    return result;
+}
+"
+`;
+
+exports[`generation v3 typescript file(./test/result/v3/typescript/core/requestUsingXHR.ts): ./test/result/v3/typescript/core/requestUsingXHR.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { Result } from './Result';
+import { isSuccess } from './isSuccess';
+
+/**
+ * Request content using the new legacy XMLHttpRequest API. This method is useful
+ * when we want to request UTF-16 content, since it natively supports loading UTF-16.
+ * We could do the same with the Fetch API, but then we will need to convert the
+ * content using JavaScript... And that is very very slow.
+ * @param url The url to request.
+ * @param request The request object, containing method, headers, body, etc.
+ */
+export async function requestUsingXHR(url: string, request: Readonly<RequestInit>): Promise<Result> {
+    return new Promise(resolve => {
+        const xhr = new XMLHttpRequest();
+
+        // Open the request, remember to do this before adding any headers,
+        // because the request needs to be initialized!
+        xhr.open(request.method!, url, true);
+
+        // Add the headers (required when dealing with JSON)
+        const headers = request.headers as Headers;
+        headers.forEach((value: string, key: string): void => {
+            xhr.setRequestHeader(key, value);
+        });
+
+        // Register the readystate handler, this will fire when the request is done.
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+
+                // Create result object.
+                const result: Result = {
+                    url,
+                    ok: isSuccess(xhr.status),
+                    status: xhr.status,
+                    statusText: xhr.statusText,
+                    body: null
+                };
+
+                // Try to parse the content for any response status code.
+                // We check the \\"Content-Type\\" header to see if we need to parse the
+                // content as json or as plain text.
+                const contentType = xhr.getResponseHeader('Content-Type');
+                if (contentType) {
+                    switch (contentType.toLowerCase()) {
+                        case 'application/json':
+                        case 'application/json; charset=utf-8':
+                            result.body = JSON.parse(xhr.responseText);
+                            break;
+
+                        case 'text/plain':
+                        case 'text/xml':
+                        case 'text/xml; charset=utf-8':
+                        case 'text/xml; charset=utf-16':
+                            result.body = xhr.responseText;
+                            break;
+                    }
+                }
+
+                // Done!
+                resolve(result);
+            }
+        };
+
+        // Start the request!
+        xhr.send(request.body);
+    });
+}
+"
+`;
+
+exports[`generation v3 typescript file(./test/result/v3/typescript/index.ts): ./test/result/v3/typescript/index.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+export { ApiError } from './core/ApiError';
+export { isSuccess } from './core/isSuccess';
+export { OpenAPI } from './core/OpenAPI';
+
+export { ApiResource } from './models/ApiResource';
+export { ApiResourceLink } from './models/ApiResourceLink';
+export { ApiResourceRole } from './models/ApiResourceRole';
+export { ApiResourceRoleLink } from './models/ApiResourceRoleLink';
+export { Application } from './models/Application';
+export { ApplicationLink } from './models/ApplicationLink';
+export { ClaimBasedAccessControlEntry } from './models/ClaimBasedAccessControlEntry';
+export { Dictionary } from './models/Dictionary';
+export { ErrorMessage } from './models/ErrorMessage';
+export { ErrorResponse } from './models/ErrorResponse';
+export { IdentityProvider } from './models/IdentityProvider';
+export { IdentityProviderParameters } from './models/IdentityProviderParameters';
+export { IdentityProviderType } from './models/IdentityProviderType';
+export { IInnerError } from './models/IInnerError';
+export { LdapParameters } from './models/LdapParameters';
+export { LoginOption } from './models/LoginOption';
+export { OpenIdParameters } from './models/OpenIdParameters';
+export { ProblemDetails } from './models/ProblemDetails';
+export { SamlParameters } from './models/SamlParameters';
+export { ServiceAccount } from './models/ServiceAccount';
+export { ServiceAccountBasedAccessControlEntry } from './models/ServiceAccountBasedAccessControlEntry';
+export { User } from './models/User';
+export { UserBasedAccessControlEntry } from './models/UserBasedAccessControlEntry';
+export { UserClientSecret } from './models/UserClientSecret';
+export { WindowsParameters } from './models/WindowsParameters';
+
+export { ApiResourcesService } from './services/ApiResourcesService';
+export { ApplicationsService } from './services/ApplicationsService';
+export { ClaimsService } from './services/ClaimsService';
+export { IdentityProvidersService } from './services/IdentityProvidersService';
+export { ServiceAccountsService } from './services/ServiceAccountsService';
+export { SuggestionsService } from './services/SuggestionsService';
+export { UsersService } from './services/UsersService';
+"
+`;
+
+exports[`generation v3 typescript file(./test/result/v3/typescript/models/ApiResource.ts): ./test/result/v3/typescript/models/ApiResource.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ApiResourceRole } from '../models/ApiResourceRole';
+import * as yup from 'yup';
+
+export interface ApiResource {
+    id?: number;
+    key: string | null;
+    name: string | null;
+    roles?: Array<ApiResourceRole> | null;
+}
+
+export namespace ApiResource {
+
+    export const schema: yup.ObjectSchema<ApiResource> = (
+        yup.object<ApiResource>().shape({
+            id: yup.lazy(() => yup.number().default(undefined)),
+            key: yup.lazy(() => yup.string().default(undefined).nullable().required()),
+            name: yup.lazy(() => yup.string().default(undefined).nullable().required()),
+            roles: yup.lazy(() => yup.array<ApiResourceRole>().of(ApiResourceRole.schema).default(undefined).nullable())
+        }).noUnknown()
+    );
+
+    export async function validate(value: any): Promise<ApiResource> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): ApiResource {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation v3 typescript file(./test/result/v3/typescript/models/ApiResourceLink.ts): ./test/result/v3/typescript/models/ApiResourceLink.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+export interface ApiResourceLink {
+    id?: number;
+    name?: string | null;
+}
+
+export namespace ApiResourceLink {
+
+    export const schema: yup.ObjectSchema<ApiResourceLink> = (
+        yup.object<ApiResourceLink>().shape({
+            id: yup.lazy(() => yup.number().default(undefined)),
+            name: yup.lazy(() => yup.string().default(undefined).nullable())
+        }).noUnknown()
+    );
+
+    export async function validate(value: any): Promise<ApiResourceLink> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): ApiResourceLink {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation v3 typescript file(./test/result/v3/typescript/models/ApiResourceRole.ts): ./test/result/v3/typescript/models/ApiResourceRole.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ApiResource } from '../models/ApiResource';
+import * as yup from 'yup';
+
+export interface ApiResourceRole {
+    apiResource?: ApiResource;
+    id?: number;
+    key: string | null;
+    name: string | null;
+}
+
+export namespace ApiResourceRole {
+
+    export const schema: yup.ObjectSchema<ApiResourceRole> = (
+        yup.object<ApiResourceRole>().shape({
+            apiResource: yup.lazy(() => ApiResource.schema.default(undefined)),
+            id: yup.lazy(() => yup.number().default(undefined)),
+            key: yup.lazy(() => yup.string().default(undefined).nullable().required()),
+            name: yup.lazy(() => yup.string().default(undefined).nullable().required())
+        }).noUnknown()
+    );
+
+    export async function validate(value: any): Promise<ApiResourceRole> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): ApiResourceRole {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation v3 typescript file(./test/result/v3/typescript/models/ApiResourceRoleLink.ts): ./test/result/v3/typescript/models/ApiResourceRoleLink.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+export interface ApiResourceRoleLink {
+    id?: number;
+    name?: string | null;
+}
+
+export namespace ApiResourceRoleLink {
+
+    export const schema: yup.ObjectSchema<ApiResourceRoleLink> = (
+        yup.object<ApiResourceRoleLink>().shape({
+            id: yup.lazy(() => yup.number().default(undefined)),
+            name: yup.lazy(() => yup.string().default(undefined).nullable())
+        }).noUnknown()
+    );
+
+    export async function validate(value: any): Promise<ApiResourceRoleLink> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): ApiResourceRoleLink {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation v3 typescript file(./test/result/v3/typescript/models/Application.ts): ./test/result/v3/typescript/models/Application.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+export interface Application {
+    clientId?: string | null;
+    createdAt?: string;
+    createdBy?: number | null;
+    id?: number;
+    modifiedAt?: string;
+    modifiedBy?: number | null;
+    name: string | null;
+    redirectUrls: Array<string> | null;
+}
+
+export namespace Application {
+
+    export const schema: yup.ObjectSchema<Application> = (
+        yup.object<Application>().shape({
+            clientId: yup.lazy(() => yup.string().default(undefined).nullable()),
+            createdAt: yup.lazy(() => yup.string().default(undefined)),
+            createdBy: yup.lazy(() => yup.number().default(undefined).nullable()),
+            id: yup.lazy(() => yup.number().default(undefined)),
+            modifiedAt: yup.lazy(() => yup.string().default(undefined)),
+            modifiedBy: yup.lazy(() => yup.number().default(undefined).nullable()),
+            name: yup.lazy(() => yup.string().default(undefined).nullable().required()),
+            redirectUrls: yup.lazy(() => yup.array<string>().of(yup.string()).default(undefined).nullable().required())
+        }).noUnknown()
+    );
+
+    export async function validate(value: any): Promise<Application> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): Application {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation v3 typescript file(./test/result/v3/typescript/models/ApplicationLink.ts): ./test/result/v3/typescript/models/ApplicationLink.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+export interface ApplicationLink {
+    id?: number;
+    name?: string | null;
+}
+
+export namespace ApplicationLink {
+
+    export const schema: yup.ObjectSchema<ApplicationLink> = (
+        yup.object<ApplicationLink>().shape({
+            id: yup.lazy(() => yup.number().default(undefined)),
+            name: yup.lazy(() => yup.string().default(undefined).nullable())
+        }).noUnknown()
+    );
+
+    export async function validate(value: any): Promise<ApplicationLink> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): ApplicationLink {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation v3 typescript file(./test/result/v3/typescript/models/ClaimBasedAccessControlEntry.ts): ./test/result/v3/typescript/models/ClaimBasedAccessControlEntry.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ApiResourceLink } from '../models/ApiResourceLink';
+import { ApiResourceRoleLink } from '../models/ApiResourceRoleLink';
+import { ApplicationLink } from '../models/ApplicationLink';
+import * as yup from 'yup';
+
+export interface ClaimBasedAccessControlEntry {
+    apiResourceRoles?: Array<ApiResourceRoleLink> | null;
+    apiResources?: Array<ApiResourceLink> | null;
+    applications?: Array<ApplicationLink> | null;
+    claimType?: string | null;
+    claimValue?: string | null;
+}
+
+export namespace ClaimBasedAccessControlEntry {
+
+    export const schema: yup.ObjectSchema<ClaimBasedAccessControlEntry> = (
+        yup.object<ClaimBasedAccessControlEntry>().shape({
+            apiResourceRoles: yup.lazy(() => yup.array<ApiResourceRoleLink>().of(ApiResourceRoleLink.schema).default(undefined).nullable()),
+            apiResources: yup.lazy(() => yup.array<ApiResourceLink>().of(ApiResourceLink.schema).default(undefined).nullable()),
+            applications: yup.lazy(() => yup.array<ApplicationLink>().of(ApplicationLink.schema).default(undefined).nullable()),
+            claimType: yup.lazy(() => yup.string().default(undefined).nullable()),
+            claimValue: yup.lazy(() => yup.string().default(undefined).nullable())
+        }).noUnknown()
+    );
+
+    export async function validate(value: any): Promise<ClaimBasedAccessControlEntry> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): ClaimBasedAccessControlEntry {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation v3 typescript file(./test/result/v3/typescript/models/Dictionary.ts): ./test/result/v3/typescript/models/Dictionary.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+export interface Dictionary<T> {
+    [key: string]: T;
+}
+"
+`;
+
+exports[`generation v3 typescript file(./test/result/v3/typescript/models/ErrorMessage.ts): ./test/result/v3/typescript/models/ErrorMessage.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { IInnerError } from '../models/IInnerError';
+import * as yup from 'yup';
+
+export interface ErrorMessage {
+    code?: string | null;
+    details?: Array<ErrorMessage> | null;
+    innerError?: IInnerError;
+    innerException?: ErrorMessage;
+    localizedMessage?: string | null;
+    message?: string | null;
+    stackTrace?: string | null;
+    target?: string | null;
+}
+
+export namespace ErrorMessage {
+
+    export const schema: yup.ObjectSchema<ErrorMessage> = (
+        yup.object<ErrorMessage>().shape({
+            code: yup.lazy(() => yup.string().default(undefined).nullable()),
+            details: yup.lazy(() => yup.array<ErrorMessage>().of(ErrorMessage.schema).default(undefined).nullable()),
+            innerError: yup.lazy(() => IInnerError.schema.default(undefined)),
+            innerException: yup.lazy(() => ErrorMessage.schema.default(undefined)),
+            localizedMessage: yup.lazy(() => yup.string().default(undefined).nullable()),
+            message: yup.lazy(() => yup.string().default(undefined).nullable()),
+            stackTrace: yup.lazy(() => yup.string().default(undefined).nullable()),
+            target: yup.lazy(() => yup.string().default(undefined).nullable())
+        }).noUnknown()
+    );
+
+    export async function validate(value: any): Promise<ErrorMessage> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): ErrorMessage {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation v3 typescript file(./test/result/v3/typescript/models/ErrorResponse.ts): ./test/result/v3/typescript/models/ErrorResponse.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ErrorMessage } from '../models/ErrorMessage';
+import * as yup from 'yup';
+
+export interface ErrorResponse {
+    errorMessage?: ErrorMessage;
+}
+
+export namespace ErrorResponse {
+
+    export const schema: yup.ObjectSchema<ErrorResponse> = (
+        yup.object<ErrorResponse>().shape({
+            errorMessage: yup.lazy(() => ErrorMessage.schema.default(undefined))
+        }).noUnknown()
+    );
+
+    export async function validate(value: any): Promise<ErrorResponse> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): ErrorResponse {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation v3 typescript file(./test/result/v3/typescript/models/IInnerError.ts): ./test/result/v3/typescript/models/IInnerError.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+export interface IInnerError {
+    code?: string | null;
+    innerError?: IInnerError;
+}
+
+export namespace IInnerError {
+
+    export const schema: yup.ObjectSchema<IInnerError> = (
+        yup.object<IInnerError>().shape({
+            code: yup.lazy(() => yup.string().default(undefined).nullable()),
+            innerError: yup.lazy(() => IInnerError.schema.default(undefined))
+        }).noUnknown()
+    );
+
+    export async function validate(value: any): Promise<IInnerError> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): IInnerError {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation v3 typescript file(./test/result/v3/typescript/models/IdentityProvider.ts): ./test/result/v3/typescript/models/IdentityProvider.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ClaimBasedAccessControlEntry } from '../models/ClaimBasedAccessControlEntry';
+import { IdentityProviderParameters } from '../models/IdentityProviderParameters';
+import { IdentityProviderType } from '../models/IdentityProviderType';
+import * as yup from 'yup';
+
+export interface IdentityProvider {
+    accessControlList?: Array<ClaimBasedAccessControlEntry> | null;
+    createdAt?: string;
+    createdBy?: number | null;
+    description?: string | null;
+    forwardedClaims?: Array<string> | null;
+    iconUrl?: string | null;
+    iconViewUrl?: string | null;
+    id?: number;
+    isEnabled?: boolean;
+    key: string | null;
+    modifiedAt?: string;
+    modifiedBy?: number | null;
+    name: string | null;
+    parameters: IdentityProviderParameters;
+    postLogoutRedirectUrl?: string | null;
+    redirectUrl?: string | null;
+    type: IdentityProviderType;
+    validateUrl?: string | null;
+}
+
+export namespace IdentityProvider {
+
+    export const schema: yup.ObjectSchema<IdentityProvider> = (
+        yup.object<IdentityProvider>().shape({
+            accessControlList: yup.lazy(() => yup.array<ClaimBasedAccessControlEntry>().of(ClaimBasedAccessControlEntry.schema).default(undefined).nullable()),
+            createdAt: yup.lazy(() => yup.string().default(undefined)),
+            createdBy: yup.lazy(() => yup.number().default(undefined).nullable()),
+            description: yup.lazy(() => yup.string().default(undefined).nullable()),
+            forwardedClaims: yup.lazy(() => yup.array<string>().of(yup.string()).default(undefined).nullable()),
+            iconUrl: yup.lazy(() => yup.string().default(undefined).nullable()),
+            iconViewUrl: yup.lazy(() => yup.string().default(undefined).nullable()),
+            id: yup.lazy(() => yup.number().default(undefined)),
+            isEnabled: yup.lazy(() => yup.boolean().default(undefined)),
+            key: yup.lazy(() => yup.string().default(undefined).nullable().required()),
+            modifiedAt: yup.lazy(() => yup.string().default(undefined)),
+            modifiedBy: yup.lazy(() => yup.number().default(undefined).nullable()),
+            name: yup.lazy(() => yup.string().default(undefined).nullable().required()),
+            parameters: yup.lazy(() => IdentityProviderParameters.schema.default(undefined).required()),
+            postLogoutRedirectUrl: yup.lazy(() => yup.string().default(undefined).nullable()),
+            redirectUrl: yup.lazy(() => yup.string().default(undefined).nullable()),
+            type: yup.lazy(() => IdentityProviderType.schema.default(undefined).required()),
+            validateUrl: yup.lazy(() => yup.string().default(undefined).nullable())
+        }).noUnknown()
+    );
+
+    export async function validate(value: any): Promise<IdentityProvider> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): IdentityProvider {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation v3 typescript file(./test/result/v3/typescript/models/IdentityProviderParameters.ts): ./test/result/v3/typescript/models/IdentityProviderParameters.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+export interface IdentityProviderParameters {
+}
+
+export namespace IdentityProviderParameters {
+
+    export const schema: yup.ObjectSchema<IdentityProviderParameters> = (
+        yup.object<any>()
+    );
+
+    export async function validate(value: any): Promise<IdentityProviderParameters> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): IdentityProviderParameters {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation v3 typescript file(./test/result/v3/typescript/models/IdentityProviderType.ts): ./test/result/v3/typescript/models/IdentityProviderType.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+export enum IdentityProviderType {
+    LDAP = 'LDAP',
+    OPEN_ID_CONNECT = 'OpenIdConnect',
+    SAML2P = 'SAML2P',
+    WINDOWS = 'Windows'
+}
+
+export namespace IdentityProviderType {
+
+    export const schema = yup.mixed<IdentityProviderType>().oneOf([
+        IdentityProviderType.LDAP,
+        IdentityProviderType.OPEN_ID_CONNECT,
+        IdentityProviderType.SAML2P,
+        IdentityProviderType.WINDOWS
+    ]);
+
+    export async function validate(value: any): Promise<IdentityProviderType> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): IdentityProviderType {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation v3 typescript file(./test/result/v3/typescript/models/LdapParameters.ts): ./test/result/v3/typescript/models/LdapParameters.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+export interface LdapParameters {
+    additionalAttributes?: string | null;
+    fullNameClaim: string | null;
+    groupBaseDn?: string | null;
+    groupMemberAttribute?: string | null;
+    port: number;
+    searchAccount: string | null;
+    searchAccountPassword: string | null;
+    separator?: string | null;
+    serverAddress: string | null;
+    userBaseDn: string | null;
+    usernameClaim: string | null;
+    useSsl: boolean;
+}
+
+export namespace LdapParameters {
+
+    export const schema: yup.ObjectSchema<LdapParameters> = (
+        yup.object<LdapParameters>().shape({
+            additionalAttributes: yup.lazy(() => yup.string().default(undefined).nullable()),
+            fullNameClaim: yup.lazy(() => yup.string().default(undefined).nullable().required()),
+            groupBaseDn: yup.lazy(() => yup.string().default(undefined).nullable()),
+            groupMemberAttribute: yup.lazy(() => yup.string().default(undefined).nullable()),
+            port: yup.lazy(() => yup.number().default(undefined).required()),
+            searchAccount: yup.lazy(() => yup.string().default(undefined).nullable().required()),
+            searchAccountPassword: yup.lazy(() => yup.string().default(undefined).nullable().required()),
+            separator: yup.lazy(() => yup.string().default(undefined).nullable()),
+            serverAddress: yup.lazy(() => yup.string().default(undefined).nullable().required()),
+            userBaseDn: yup.lazy(() => yup.string().default(undefined).nullable().required()),
+            usernameClaim: yup.lazy(() => yup.string().default(undefined).nullable().required()),
+            useSsl: yup.lazy(() => yup.boolean().default(undefined).required())
+        }).noUnknown()
+    );
+
+    export async function validate(value: any): Promise<LdapParameters> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): LdapParameters {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation v3 typescript file(./test/result/v3/typescript/models/LoginOption.ts): ./test/result/v3/typescript/models/LoginOption.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+export interface LoginOption {
+    iconUrl?: string | null;
+    loginTriggerUrl?: string | null;
+    name: string | null;
+}
+
+export namespace LoginOption {
+
+    export const schema: yup.ObjectSchema<LoginOption> = (
+        yup.object<LoginOption>().shape({
+            iconUrl: yup.lazy(() => yup.string().default(undefined).nullable()),
+            loginTriggerUrl: yup.lazy(() => yup.string().default(undefined).nullable()),
+            name: yup.lazy(() => yup.string().default(undefined).nullable().required())
+        }).noUnknown()
+    );
+
+    export async function validate(value: any): Promise<LoginOption> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): LoginOption {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation v3 typescript file(./test/result/v3/typescript/models/OpenIdParameters.ts): ./test/result/v3/typescript/models/OpenIdParameters.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+export interface OpenIdParameters {
+    authority: string | null;
+    clientId: string | null;
+    clientSecret?: string | null;
+    endSessionEndpoint?: string | null;
+    fullNameClaim: string | null;
+    sendIdTokenHintDuringLogout?: boolean;
+    separator?: string | null;
+    usernameClaim: string | null;
+}
+
+export namespace OpenIdParameters {
+
+    export const schema: yup.ObjectSchema<OpenIdParameters> = (
+        yup.object<OpenIdParameters>().shape({
+            authority: yup.lazy(() => yup.string().default(undefined).nullable().required()),
+            clientId: yup.lazy(() => yup.string().default(undefined).nullable().required()),
+            clientSecret: yup.lazy(() => yup.string().default(undefined).nullable()),
+            endSessionEndpoint: yup.lazy(() => yup.string().default(undefined).nullable()),
+            fullNameClaim: yup.lazy(() => yup.string().default(undefined).nullable().required()),
+            sendIdTokenHintDuringLogout: yup.lazy(() => yup.boolean().default(undefined)),
+            separator: yup.lazy(() => yup.string().default(undefined).nullable()),
+            usernameClaim: yup.lazy(() => yup.string().default(undefined).nullable().required())
+        }).noUnknown()
+    );
+
+    export async function validate(value: any): Promise<OpenIdParameters> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): OpenIdParameters {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation v3 typescript file(./test/result/v3/typescript/models/ProblemDetails.ts): ./test/result/v3/typescript/models/ProblemDetails.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { Dictionary } from '../models/Dictionary';
+import * as yup from 'yup';
+
+export interface ProblemDetails {
+    detail?: string | null;
+    extensions?: Dictionary<any> | null;
+    instance?: string | null;
+    status?: number | null;
+    title?: string | null;
+    type?: string | null;
+}
+
+export namespace ProblemDetails {
+
+    export const schema: yup.ObjectSchema<ProblemDetails> = (
+        yup.object<ProblemDetails>().shape({
+            detail: yup.lazy(() => yup.string().default(undefined).nullable()),
+            extensions: yup.lazy(() => yup.lazy<Dictionary<any>>(value => {
+                return yup.object<Dictionary<any>>().shape(
+                    Object.entries(value).reduce((obj, item) => ({
+                        ...obj,
+                        [item[0]]: (
+                            yup.object<any>()
+                        )
+                    }), {})
+                );
+            }).default(undefined).nullable()),
+            instance: yup.lazy(() => yup.string().default(undefined).nullable()),
+            status: yup.lazy(() => yup.number().default(undefined).nullable()),
+            title: yup.lazy(() => yup.string().default(undefined).nullable()),
+            type: yup.lazy(() => yup.string().default(undefined).nullable())
+        }).noUnknown()
+    );
+
+    export async function validate(value: any): Promise<ProblemDetails> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): ProblemDetails {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation v3 typescript file(./test/result/v3/typescript/models/SamlParameters.ts): ./test/result/v3/typescript/models/SamlParameters.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+export interface SamlParameters {
+    certificates: Array<string> | null;
+    fullNameClaim: string | null;
+    issuerName: string | null;
+    separator?: string | null;
+    serviceProviderName: string | null;
+    singleLogoutServiceUrl: string | null;
+    singleSignOnServiceUrl: string | null;
+    usernameClaim: string | null;
+}
+
+export namespace SamlParameters {
+
+    export const schema: yup.ObjectSchema<SamlParameters> = (
+        yup.object<SamlParameters>().shape({
+            certificates: yup.lazy(() => yup.array<string>().of(yup.string()).default(undefined).nullable().required()),
+            fullNameClaim: yup.lazy(() => yup.string().default(undefined).nullable().required()),
+            issuerName: yup.lazy(() => yup.string().default(undefined).nullable().required()),
+            separator: yup.lazy(() => yup.string().default(undefined).nullable()),
+            serviceProviderName: yup.lazy(() => yup.string().default(undefined).nullable().required()),
+            singleLogoutServiceUrl: yup.lazy(() => yup.string().default(undefined).nullable().required()),
+            singleSignOnServiceUrl: yup.lazy(() => yup.string().default(undefined).nullable().required()),
+            usernameClaim: yup.lazy(() => yup.string().default(undefined).nullable().required())
+        }).noUnknown()
+    );
+
+    export async function validate(value: any): Promise<SamlParameters> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): SamlParameters {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation v3 typescript file(./test/result/v3/typescript/models/ServiceAccount.ts): ./test/result/v3/typescript/models/ServiceAccount.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ServiceAccountBasedAccessControlEntry } from '../models/ServiceAccountBasedAccessControlEntry';
+import { UserClientSecret } from '../models/UserClientSecret';
+import * as yup from 'yup';
+
+export interface ServiceAccount {
+    accessControlEntry?: ServiceAccountBasedAccessControlEntry;
+    clientId?: string | null;
+    clientSecrets?: Array<UserClientSecret> | null;
+    createdAt?: string;
+    createdBy?: number | null;
+    id?: number;
+    lastLoginAt?: string | null;
+    modifiedAt?: string;
+    modifiedBy?: number | null;
+    name: string | null;
+}
+
+export namespace ServiceAccount {
+
+    export const schema: yup.ObjectSchema<ServiceAccount> = (
+        yup.object<ServiceAccount>().shape({
+            accessControlEntry: yup.lazy(() => ServiceAccountBasedAccessControlEntry.schema.default(undefined)),
+            clientId: yup.lazy(() => yup.string().default(undefined).nullable()),
+            clientSecrets: yup.lazy(() => yup.array<UserClientSecret>().of(UserClientSecret.schema).default(undefined).nullable()),
+            createdAt: yup.lazy(() => yup.string().default(undefined)),
+            createdBy: yup.lazy(() => yup.number().default(undefined).nullable()),
+            id: yup.lazy(() => yup.number().default(undefined)),
+            lastLoginAt: yup.lazy(() => yup.string().default(undefined).nullable()),
+            modifiedAt: yup.lazy(() => yup.string().default(undefined)),
+            modifiedBy: yup.lazy(() => yup.number().default(undefined).nullable()),
+            name: yup.lazy(() => yup.string().default(undefined).nullable().required())
+        }).noUnknown()
+    );
+
+    export async function validate(value: any): Promise<ServiceAccount> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): ServiceAccount {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation v3 typescript file(./test/result/v3/typescript/models/ServiceAccountBasedAccessControlEntry.ts): ./test/result/v3/typescript/models/ServiceAccountBasedAccessControlEntry.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ApiResourceLink } from '../models/ApiResourceLink';
+import { ApiResourceRoleLink } from '../models/ApiResourceRoleLink';
+import * as yup from 'yup';
+
+export interface ServiceAccountBasedAccessControlEntry {
+    apiResourceRoles?: Array<ApiResourceRoleLink> | null;
+    apiResources?: Array<ApiResourceLink> | null;
+}
+
+export namespace ServiceAccountBasedAccessControlEntry {
+
+    export const schema: yup.ObjectSchema<ServiceAccountBasedAccessControlEntry> = (
+        yup.object<ServiceAccountBasedAccessControlEntry>().shape({
+            apiResourceRoles: yup.lazy(() => yup.array<ApiResourceRoleLink>().of(ApiResourceRoleLink.schema).default(undefined).nullable()),
+            apiResources: yup.lazy(() => yup.array<ApiResourceLink>().of(ApiResourceLink.schema).default(undefined).nullable())
+        }).noUnknown()
+    );
+
+    export async function validate(value: any): Promise<ServiceAccountBasedAccessControlEntry> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): ServiceAccountBasedAccessControlEntry {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation v3 typescript file(./test/result/v3/typescript/models/User.ts): ./test/result/v3/typescript/models/User.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { UserBasedAccessControlEntry } from '../models/UserBasedAccessControlEntry';
+import { UserClientSecret } from '../models/UserClientSecret';
+import * as yup from 'yup';
+
+export interface User {
+    accessControlEntry?: UserBasedAccessControlEntry;
+    clientId?: string | null;
+    clientSecrets?: Array<UserClientSecret> | null;
+    createdAt?: string;
+    createdBy?: number | null;
+    email?: string | null;
+    id?: number;
+    identityProviderId: number;
+    identityProviderKey: string | null;
+    lastLoginAt?: string | null;
+    modifiedAt?: string;
+    modifiedBy?: number | null;
+    name: string | null;
+    subject: string | null;
+}
+
+export namespace User {
+
+    export const schema: yup.ObjectSchema<User> = (
+        yup.object<User>().shape({
+            accessControlEntry: yup.lazy(() => UserBasedAccessControlEntry.schema.default(undefined)),
+            clientId: yup.lazy(() => yup.string().default(undefined).nullable()),
+            clientSecrets: yup.lazy(() => yup.array<UserClientSecret>().of(UserClientSecret.schema).default(undefined).nullable()),
+            createdAt: yup.lazy(() => yup.string().default(undefined)),
+            createdBy: yup.lazy(() => yup.number().default(undefined).nullable()),
+            email: yup.lazy(() => yup.string().default(undefined).nullable()),
+            id: yup.lazy(() => yup.number().default(undefined)),
+            identityProviderId: yup.lazy(() => yup.number().default(undefined).required()),
+            identityProviderKey: yup.lazy(() => yup.string().default(undefined).nullable().required()),
+            lastLoginAt: yup.lazy(() => yup.string().default(undefined).nullable()),
+            modifiedAt: yup.lazy(() => yup.string().default(undefined)),
+            modifiedBy: yup.lazy(() => yup.number().default(undefined).nullable()),
+            name: yup.lazy(() => yup.string().default(undefined).nullable().required()),
+            subject: yup.lazy(() => yup.string().default(undefined).nullable().required())
+        }).noUnknown()
+    );
+
+    export async function validate(value: any): Promise<User> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): User {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation v3 typescript file(./test/result/v3/typescript/models/UserBasedAccessControlEntry.ts): ./test/result/v3/typescript/models/UserBasedAccessControlEntry.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ApiResourceLink } from '../models/ApiResourceLink';
+import { ApiResourceRoleLink } from '../models/ApiResourceRoleLink';
+import { ApplicationLink } from '../models/ApplicationLink';
+import * as yup from 'yup';
+
+export interface UserBasedAccessControlEntry {
+    apiResourceRoles?: Array<ApiResourceRoleLink> | null;
+    apiResources?: Array<ApiResourceLink> | null;
+    applications?: Array<ApplicationLink> | null;
+}
+
+export namespace UserBasedAccessControlEntry {
+
+    export const schema: yup.ObjectSchema<UserBasedAccessControlEntry> = (
+        yup.object<UserBasedAccessControlEntry>().shape({
+            apiResourceRoles: yup.lazy(() => yup.array<ApiResourceRoleLink>().of(ApiResourceRoleLink.schema).default(undefined).nullable()),
+            apiResources: yup.lazy(() => yup.array<ApiResourceLink>().of(ApiResourceLink.schema).default(undefined).nullable()),
+            applications: yup.lazy(() => yup.array<ApplicationLink>().of(ApplicationLink.schema).default(undefined).nullable())
+        }).noUnknown()
+    );
+
+    export async function validate(value: any): Promise<UserBasedAccessControlEntry> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): UserBasedAccessControlEntry {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation v3 typescript file(./test/result/v3/typescript/models/UserClientSecret.ts): ./test/result/v3/typescript/models/UserClientSecret.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+export interface UserClientSecret {
+    clientSecret: string | null;
+    clientSecretUnHashed?: string | null;
+    expiresAt: string;
+    id?: number;
+    lastLoginAt?: string | null;
+}
+
+export namespace UserClientSecret {
+
+    export const schema: yup.ObjectSchema<UserClientSecret> = (
+        yup.object<UserClientSecret>().shape({
+            clientSecret: yup.lazy(() => yup.string().default(undefined).nullable().required()),
+            clientSecretUnHashed: yup.lazy(() => yup.string().default(undefined).nullable()),
+            expiresAt: yup.lazy(() => yup.string().default(undefined).required()),
+            id: yup.lazy(() => yup.number().default(undefined)),
+            lastLoginAt: yup.lazy(() => yup.string().default(undefined).nullable())
+        }).noUnknown()
+    );
+
+    export async function validate(value: any): Promise<UserClientSecret> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): UserClientSecret {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation v3 typescript file(./test/result/v3/typescript/models/WindowsParameters.ts): ./test/result/v3/typescript/models/WindowsParameters.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+export interface WindowsParameters {
+}
+
+export namespace WindowsParameters {
+
+    export const schema: yup.ObjectSchema<WindowsParameters> = (
+        yup.object<any>()
+    );
+
+    export async function validate(value: any): Promise<WindowsParameters> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): WindowsParameters {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation v3 typescript file(./test/result/v3/typescript/services/ApiResourcesService.ts): ./test/result/v3/typescript/services/ApiResourcesService.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ApiError, catchGenericError } from '../core/ApiError';
+import { request } from '../core/request';
+import { OpenAPI } from '../core/OpenAPI';
+
+export class ApiResourcesService {
+
+    /**
+     * @result any Success
+     * @throws ApiError
+     */
+    public static async get(): Promise<any> {
+
+        const result = await request({
+            method: 'get',
+            path: \`/api/v\${OpenAPI.VERSION}/ApiResources\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`Bad Request\`);
+                case 500: throw new ApiError(result, \`Server Error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @param id
+     * @result any Success
+     * @throws ApiError
+     */
+    public static async get1(
+        id: number
+    ): Promise<any> {
+
+        const result = await request({
+            method: 'get',
+            path: \`/api/v\${OpenAPI.VERSION}/ApiResources/\${id}\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`Bad Request\`);
+                case 404: throw new ApiError(result, \`Not Found\`);
+                case 500: throw new ApiError(result, \`Server Error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @param name
+     * @result any Success
+     * @throws ApiError
+     */
+    public static async getByName(
+        name: string
+    ): Promise<any> {
+
+        const result = await request({
+            method: 'get',
+            path: \`/api/v\${OpenAPI.VERSION}/ApiResources/getByName/\${name}\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`Bad Request\`);
+                case 404: throw new ApiError(result, \`Not Found\`);
+                case 500: throw new ApiError(result, \`Server Error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+}"
+`;
+
+exports[`generation v3 typescript file(./test/result/v3/typescript/services/ApplicationsService.ts): ./test/result/v3/typescript/services/ApplicationsService.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ApiError, catchGenericError } from '../core/ApiError';
+import { request } from '../core/request';
+import { OpenAPI } from '../core/OpenAPI';
+
+export class ApplicationsService {
+
+    /**
+     * @param id
+     * @result any Success
+     * @throws ApiError
+     */
+    public static async get(
+        id: number
+    ): Promise<any> {
+
+        const result = await request({
+            method: 'get',
+            path: \`/api/v\${OpenAPI.VERSION}/Applications/\${id}\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`Bad Request\`);
+                case 404: throw new ApiError(result, \`Not Found\`);
+                case 500: throw new ApiError(result, \`Server Error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @result any Success
+     * @throws ApiError
+     */
+    public static async get1(): Promise<any> {
+
+        const result = await request({
+            method: 'get',
+            path: \`/api/v\${OpenAPI.VERSION}/Applications\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`Bad Request\`);
+                case 500: throw new ApiError(result, \`Server Error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @param clientId
+     * @result any Success
+     * @throws ApiError
+     */
+    public static async getByClientId(
+        clientId: string
+    ): Promise<any> {
+
+        const result = await request({
+            method: 'get',
+            path: \`/api/v\${OpenAPI.VERSION}/Applications/getByClientId/\${clientId}\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`Bad Request\`);
+                case 404: throw new ApiError(result, \`Not Found\`);
+                case 500: throw new ApiError(result, \`Server Error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @param name
+     * @result any Success
+     * @throws ApiError
+     */
+    public static async getByName(
+        name: string
+    ): Promise<any> {
+
+        const result = await request({
+            method: 'get',
+            path: \`/api/v\${OpenAPI.VERSION}/Applications/getByName/\${name}\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`Bad Request\`);
+                case 404: throw new ApiError(result, \`Not Found\`);
+                case 500: throw new ApiError(result, \`Server Error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @param id
+     * @result any Success
+     * @throws ApiError
+     */
+    public static async update(
+        id: number
+    ): Promise<any> {
+
+        const result = await request({
+            method: 'put',
+            path: \`/api/v\${OpenAPI.VERSION}/Applications/\${id}\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`Bad Request\`);
+                case 404: throw new ApiError(result, \`Not Found\`);
+                case 500: throw new ApiError(result, \`Server Error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+}"
+`;
+
+exports[`generation v3 typescript file(./test/result/v3/typescript/services/ClaimsService.ts): ./test/result/v3/typescript/services/ClaimsService.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ApiError, catchGenericError } from '../core/ApiError';
+import { request } from '../core/request';
+import { OpenAPI } from '../core/OpenAPI';
+
+export class ClaimsService {
+
+    /**
+     * @result any Success
+     * @throws ApiError
+     */
+    public static async get(): Promise<any> {
+
+        const result = await request({
+            method: 'get',
+            path: \`/api/v\${OpenAPI.VERSION}/Claims\`
+        });
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+}"
+`;
+
+exports[`generation v3 typescript file(./test/result/v3/typescript/services/IdentityProvidersService.ts): ./test/result/v3/typescript/services/IdentityProvidersService.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { IdentityProviderType } from '../models/IdentityProviderType';
+import { ApiError, catchGenericError } from '../core/ApiError';
+import { request } from '../core/request';
+import { OpenAPI } from '../core/OpenAPI';
+
+export class IdentityProvidersService {
+
+    /**
+     * @result any Success
+     * @throws ApiError
+     */
+    public static async create(): Promise<any> {
+
+        const result = await request({
+            method: 'post',
+            path: \`/api/v\${OpenAPI.VERSION}/IdentityProviders\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`Bad Request\`);
+                case 500: throw new ApiError(result, \`Server Error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @param id
+     * @result any Success
+     * @throws ApiError
+     */
+    public static async delete(
+        id: number
+    ): Promise<any> {
+
+        const result = await request({
+            method: 'delete',
+            path: \`/api/v\${OpenAPI.VERSION}/IdentityProviders/\${id}\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`Bad Request\`);
+                case 404: throw new ApiError(result, \`Not Found\`);
+                case 500: throw new ApiError(result, \`Server Error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @result any Success
+     * @throws ApiError
+     */
+    public static async get(): Promise<any> {
+
+        const result = await request({
+            method: 'get',
+            path: \`/api/v\${OpenAPI.VERSION}/IdentityProviders\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`Bad Request\`);
+                case 500: throw new ApiError(result, \`Server Error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @param id
+     * @result any Success
+     * @throws ApiError
+     */
+    public static async get1(
+        id: number
+    ): Promise<any> {
+
+        const result = await request({
+            method: 'get',
+            path: \`/api/v\${OpenAPI.VERSION}/IdentityProviders/\${id}\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`Bad Request\`);
+                case 404: throw new ApiError(result, \`Not Found\`);
+                case 500: throw new ApiError(result, \`Server Error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @param name
+     * @result any Success
+     * @throws ApiError
+     */
+    public static async getIcon(
+        name: string
+    ): Promise<any> {
+
+        const result = await request({
+            method: 'get',
+            path: \`/api/v\${OpenAPI.VERSION}/IdentityProviders/icon/\${name}\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 416: throw new ApiError(result, \`Client Error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @result any Success
+     * @throws ApiError
+     */
+    public static async getLoginOptions(): Promise<any> {
+
+        const result = await request({
+            method: 'get',
+            path: \`/api/v\${OpenAPI.VERSION}/IdentityProviders/loginOptions\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`Bad Request\`);
+                case 500: throw new ApiError(result, \`Server Error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @param providerType
+     * @result any Success
+     * @throws ApiError
+     */
+    public static async getParametersForIdentityProviderType(
+        providerType: IdentityProviderType
+    ): Promise<any> {
+
+        const result = await request({
+            method: 'get',
+            path: \`/api/v\${OpenAPI.VERSION}/IdentityProviders/getParametersForIdentityProviderType/\${providerType}\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`Bad Request\`);
+                case 404: throw new ApiError(result, \`Not Found\`);
+                case 500: throw new ApiError(result, \`Server Error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @param id
+     * @result any Success
+     * @throws ApiError
+     */
+    public static async update(
+        id: number
+    ): Promise<any> {
+
+        const result = await request({
+            method: 'put',
+            path: \`/api/v\${OpenAPI.VERSION}/IdentityProviders/\${id}\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`Bad Request\`);
+                case 404: throw new ApiError(result, \`Not Found\`);
+                case 500: throw new ApiError(result, \`Server Error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+}"
+`;
+
+exports[`generation v3 typescript file(./test/result/v3/typescript/services/ServiceAccountsService.ts): ./test/result/v3/typescript/services/ServiceAccountsService.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ApiError, catchGenericError } from '../core/ApiError';
+import { request } from '../core/request';
+import { OpenAPI } from '../core/OpenAPI';
+
+export class ServiceAccountsService {
+
+    /**
+     * @param serviceAccountId
+     * @param secretId
+     * @result any Success
+     * @throws ApiError
+     */
+    public static async deleteClientSecret(
+        serviceAccountId: number,
+        secretId: number
+    ): Promise<any> {
+
+        const result = await request({
+            method: 'delete',
+            path: \`/api/v\${OpenAPI.VERSION}/ServiceAccounts/\${serviceAccountId}/clientSecrets/\${secretId}\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`Bad Request\`);
+                case 404: throw new ApiError(result, \`Not Found\`);
+                case 500: throw new ApiError(result, \`Server Error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @param serviceAccountId
+     * @result any Success
+     * @throws ApiError
+     */
+    public static async generateClientSecret(
+        serviceAccountId: number
+    ): Promise<any> {
+
+        const result = await request({
+            method: 'post',
+            path: \`/api/v\${OpenAPI.VERSION}/ServiceAccounts/\${serviceAccountId}/generateClientSecret\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`Bad Request\`);
+                case 404: throw new ApiError(result, \`Not Found\`);
+                case 500: throw new ApiError(result, \`Server Error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @result any Success
+     * @throws ApiError
+     */
+    public static async get(): Promise<any> {
+
+        const result = await request({
+            method: 'get',
+            path: \`/api/v\${OpenAPI.VERSION}/ServiceAccounts\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`Bad Request\`);
+                case 500: throw new ApiError(result, \`Server Error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @param id
+     * @result any Success
+     * @throws ApiError
+     */
+    public static async get1(
+        id: number
+    ): Promise<any> {
+
+        const result = await request({
+            method: 'get',
+            path: \`/api/v\${OpenAPI.VERSION}/ServiceAccounts/\${id}\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`Bad Request\`);
+                case 404: throw new ApiError(result, \`Not Found\`);
+                case 500: throw new ApiError(result, \`Server Error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @param secretId
+     * @param serviceAccountId
+     * @result any Success
+     * @throws ApiError
+     */
+    public static async updateClientSecret(
+        secretId: number,
+        serviceAccountId: number
+    ): Promise<any> {
+
+        const result = await request({
+            method: 'put',
+            path: \`/api/v\${OpenAPI.VERSION}/ServiceAccounts/\${serviceAccountId}/clientSecrets/\${secretId}\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`Bad Request\`);
+                case 404: throw new ApiError(result, \`Not Found\`);
+                case 500: throw new ApiError(result, \`Server Error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+}"
+`;
+
+exports[`generation v3 typescript file(./test/result/v3/typescript/services/SuggestionsService.ts): ./test/result/v3/typescript/services/SuggestionsService.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ApiError, catchGenericError } from '../core/ApiError';
+import { request } from '../core/request';
+import { OpenAPI } from '../core/OpenAPI';
+
+export class SuggestionsService {
+
+    /**
+     * @param searchText
+     * @result any Success
+     * @throws ApiError
+     */
+    public static async getClaimTypes(
+        searchText?: string
+    ): Promise<any> {
+
+        const result = await request({
+            method: 'get',
+            path: \`/api/v\${OpenAPI.VERSION}/Suggestions/claimTypes\`,
+            query: {
+                'searchText': searchText
+            }
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`Bad Request\`);
+                case 500: throw new ApiError(result, \`Server Error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+}"
+`;
+
+exports[`generation v3 typescript file(./test/result/v3/typescript/services/UsersService.ts): ./test/result/v3/typescript/services/UsersService.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ApiError, catchGenericError } from '../core/ApiError';
+import { request } from '../core/request';
+import { OpenAPI } from '../core/OpenAPI';
+
+export class UsersService {
+
+    /**
+     * @result any Success
+     * @throws ApiError
+     */
+    public static async create(): Promise<any> {
+
+        const result = await request({
+            method: 'post',
+            path: \`/api/v\${OpenAPI.VERSION}/Users\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`Bad Request\`);
+                case 500: throw new ApiError(result, \`Server Error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @param id
+     * @result any Success
+     * @throws ApiError
+     */
+    public static async delete(
+        id: number
+    ): Promise<any> {
+
+        const result = await request({
+            method: 'delete',
+            path: \`/api/v\${OpenAPI.VERSION}/Users/\${id}\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`Bad Request\`);
+                case 404: throw new ApiError(result, \`Not Found\`);
+                case 500: throw new ApiError(result, \`Server Error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @param userId
+     * @param secretId
+     * @result any Success
+     * @throws ApiError
+     */
+    public static async deleteClientSecret(
+        userId: number,
+        secretId: number
+    ): Promise<any> {
+
+        const result = await request({
+            method: 'delete',
+            path: \`/api/v\${OpenAPI.VERSION}/Users/\${userId}/clientSecrets/\${secretId}\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`Bad Request\`);
+                case 404: throw new ApiError(result, \`Not Found\`);
+                case 500: throw new ApiError(result, \`Server Error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @param userId
+     * @result any Success
+     * @throws ApiError
+     */
+    public static async generateClientSecret(
+        userId: number
+    ): Promise<any> {
+
+        const result = await request({
+            method: 'post',
+            path: \`/api/v\${OpenAPI.VERSION}/Users/\${userId}/generateClientSecret\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`Bad Request\`);
+                case 404: throw new ApiError(result, \`Not Found\`);
+                case 500: throw new ApiError(result, \`Server Error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @param id
+     * @result any Success
+     * @throws ApiError
+     */
+    public static async get(
+        id: number
+    ): Promise<any> {
+
+        const result = await request({
+            method: 'get',
+            path: \`/api/v\${OpenAPI.VERSION}/Users/\${id}\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`Bad Request\`);
+                case 404: throw new ApiError(result, \`Not Found\`);
+                case 500: throw new ApiError(result, \`Server Error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @result any Success
+     * @throws ApiError
+     */
+    public static async get1(): Promise<any> {
+
+        const result = await request({
+            method: 'get',
+            path: \`/api/v\${OpenAPI.VERSION}/Users\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`Bad Request\`);
+                case 500: throw new ApiError(result, \`Server Error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @param id
+     * @result any Success
+     * @throws ApiError
+     */
+    public static async update(
+        id: number
+    ): Promise<any> {
+
+        const result = await request({
+            method: 'put',
+            path: \`/api/v\${OpenAPI.VERSION}/Users/\${id}\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`Bad Request\`);
+                case 404: throw new ApiError(result, \`Not Found\`);
+                case 500: throw new ApiError(result, \`Server Error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @param secretId
+     * @param userId
+     * @result any Success
+     * @throws ApiError
+     */
+    public static async updateClientSecret(
+        secretId: number,
+        userId: number
+    ): Promise<any> {
+
+        const result = await request({
+            method: 'put',
+            path: \`/api/v\${OpenAPI.VERSION}/Users/\${userId}/clientSecrets/\${secretId}\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`Bad Request\`);
+                case 404: throw new ApiError(result, \`Not Found\`);
+                case 500: throw new ApiError(result, \`Server Error\`);
+            }
+        }
 
         catchGenericError(result);
 

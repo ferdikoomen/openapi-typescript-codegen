@@ -1,13 +1,13 @@
+import { Model } from '../../../client/interfaces/Model';
 import { OpenApi } from '../interfaces/OpenApi';
 import { OpenApiSchema } from '../interfaces/OpenApiSchema';
-import { getComment } from './getComment';
-import { getType } from './getType';
-import { Model } from '../../../client/interfaces/Model';
 import { PrimaryType } from './constants';
-import { getEnumType } from './getEnumType';
+import { getComment } from './getComment';
 import { getEnum } from './getEnum';
 import { getEnumFromDescription } from './getEnumFromDescription';
+import { getEnumType } from './getEnumType';
 import { getModelProperties } from './getModelProperties';
+import { getType } from './getType';
 
 export function getModel(openApi: OpenApi, definition: OpenApiSchema, isProperty: boolean = false, name: string = ''): Model {
     const model: Model = {
@@ -20,8 +20,8 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isProperty
         description: getComment(definition.description),
         isProperty: isProperty,
         isReadOnly: definition.readOnly || false,
+        isNullable: definition.nullable || false,
         isRequired: false,
-        isNullable: false,
         imports: [],
         extends: [],
         enum: [],

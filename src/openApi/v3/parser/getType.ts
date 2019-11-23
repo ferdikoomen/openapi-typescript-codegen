@@ -1,7 +1,7 @@
-import { stripNamespace } from './stripNamespace';
-import { Type } from '../../../client/interfaces/Type';
-import { getMappedType, hasMappedType } from './getMappedType';
-import { PrimaryType } from './constants';
+import {PrimaryType} from './constants';
+import {Type} from '../../../client/interfaces/Type';
+import {getMappedType, hasMappedType} from './getMappedType';
+import {stripNamespace} from './stripNamespace';
 
 /**
  * Parse any string value into a type object.

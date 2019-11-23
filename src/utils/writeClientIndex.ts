@@ -1,11 +1,11 @@
-import { Client } from '../client/interfaces/Client';
 import * as fs from 'fs';
 import * as path from 'path';
+import { Client } from '../client/interfaces/Client';
+import { Language } from '../index';
+import { Templates } from './readHandlebarsTemplates';
+import { getFileName } from './getFileName';
 import { getModelNames } from './getModelNames';
 import { getServiceNames } from './getServiceNames';
-import { Language } from '../index';
-import { getFileName } from './getFileName';
-import { Templates } from './readHandlebarsTemplates';
 
 /**
  * Generate the OpenAPI client index file using the Handlebar template and write it to disk.

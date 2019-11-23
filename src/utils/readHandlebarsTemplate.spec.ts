@@ -1,5 +1,5 @@
-import { readHandlebarsTemplate } from './readHandlebarsTemplate';
 import * as fs from 'fs';
+import { readHandlebarsTemplate } from './readHandlebarsTemplate';
 
 jest.mock('fs');
 

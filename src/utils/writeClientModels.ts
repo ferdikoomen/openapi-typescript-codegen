@@ -1,11 +1,11 @@
 import * as fs from 'fs';
-import { Model } from '../client/interfaces/Model';
 import * as path from 'path';
 import { Language } from '../index';
-import { getFileName } from './getFileName';
-import { exportModel } from './exportModel';
+import { Model } from '../client/interfaces/Model';
 import { Templates } from './readHandlebarsTemplates';
+import { exportModel } from './exportModel';
 import { format } from './format';
+import { getFileName } from './getFileName';
 
 /**
  * Generate Models using the Handlebar template and write to disk.

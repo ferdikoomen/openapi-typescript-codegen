@@ -1,13 +1,13 @@
-import { writeClient } from './writeClient';
+import * as fs from 'fs';
+import * as glob from 'glob';
 import * as mkdirp from 'mkdirp';
 import * as rimraf from 'rimraf';
-import * as fs from 'fs';
 import { Client } from '../client/interfaces/Client';
-import { Templates } from './readHandlebarsTemplates';
 import { HttpClient, Language } from '../index';
-import * as glob from 'glob';
 import { Model } from '../client/interfaces/Model';
 import { Service } from '../client/interfaces/Service';
+import { Templates } from './readHandlebarsTemplates';
+import { writeClient } from './writeClient';
 
 jest.mock('rimraf');
 jest.mock('mkdirp');

@@ -1,11 +1,11 @@
 import * as path from 'path';
+import * as ts from 'typescript';
+import { OpenApiVersion, getOpenApiVersion } from './utils/getOpenApiVersion';
+import { getOpenApiSpec } from './utils/getOpenApiSpec';
 import { parse as parseV2 } from './openApi/v2';
 import { parse as parseV3 } from './openApi/v3';
 import { readHandlebarsTemplates } from './utils/readHandlebarsTemplates';
-import { getOpenApiSpec } from './utils/getOpenApiSpec';
 import { writeClient } from './utils/writeClient';
-import * as ts from 'typescript';
-import { getOpenApiVersion, OpenApiVersion } from './utils/getOpenApiVersion';
 
 export enum Language {
     TYPESCRIPT = 'typescript',

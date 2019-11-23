@@ -1,9 +1,9 @@
+import { Model } from '../../../client/interfaces/Model';
 import { OpenApi } from '../interfaces/OpenApi';
 import { OpenApiSchema } from '../interfaces/OpenApiSchema';
 import { getComment } from './getComment';
-import { getType } from './getType';
-import { Model } from '../../../client/interfaces/Model';
 import { getModel } from './getModel';
+import { getType } from './getType';
 
 export function getModelProperties(openApi: OpenApi, definition: OpenApiSchema): Model[] {
     const models: Model[] = [];

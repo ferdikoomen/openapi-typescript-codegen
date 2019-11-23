@@ -1,11 +1,11 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { Service } from '../client/interfaces/Service';
 import { Language } from '../index';
-import { getFileName } from './getFileName';
-import { exportService } from './exportService';
+import { Service } from '../client/interfaces/Service';
 import { Templates } from './readHandlebarsTemplates';
+import { exportService } from './exportService';
 import { format } from './format';
+import { getFileName } from './getFileName';
 
 /**
  * Generate Services using the Handlebar template and write to disk.

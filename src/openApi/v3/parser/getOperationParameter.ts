@@ -1,11 +1,11 @@
-import { OpenApiParameter } from '../interfaces/OpenApiParameter';
 import { OpenApi } from '../interfaces/OpenApi';
-import { getComment } from './getComment';
-import { getOperationParameterName } from './getOperationParameterName';
+import { OpenApiParameter } from '../interfaces/OpenApiParameter';
 import { OperationParameter } from '../../../client/interfaces/OperationParameter';
 import { PrimaryType } from './constants';
-import { getType } from './getType';
+import { getComment } from './getComment';
 import { getModel } from './getModel';
+import { getOperationParameterName } from './getOperationParameterName';
+import { getType } from './getType';
 
 export function getOperationParameter(openApi: OpenApi, parameter: OpenApiParameter): OperationParameter {
     const operationParameter: OperationParameter = {
@@ -29,6 +29,16 @@ export function getOperationParameter(openApi: OpenApi, parameter: OpenApiParame
         enums: [],
         properties: [],
     };
+
+    if (parameter.$ref) {
+        const definitionRef = getType(parameter.$ref);
+        operationParameter.export = 'reference';
+        operationParameter.type = definitionRef.type;
+        operationParameter.base = definitionRef.base;
+        operationParameter.template = definitionRef.template;
+        operationParameter.imports.push(...definitionRef.imports);
+        return operationParameter;
+    }
 
     if (parameter.schema) {
         if (parameter.schema.$ref) {

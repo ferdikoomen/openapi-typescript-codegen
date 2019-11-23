@@ -1,5 +1,5 @@
-import { getFileName } from './getFileName';
 import { Language } from '../index';
+import { getFileName } from './getFileName';
 
 describe('getFileName', () => {
     it('should convert to correct file name', () => {

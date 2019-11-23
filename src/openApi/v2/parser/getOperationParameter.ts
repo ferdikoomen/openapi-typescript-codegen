@@ -1,15 +1,15 @@
-import { OpenApiParameter } from '../interfaces/OpenApiParameter';
 import { OpenApi } from '../interfaces/OpenApi';
-import { getComment } from './getComment';
-import { getOperationParameterName } from './getOperationParameterName';
+import { OpenApiParameter } from '../interfaces/OpenApiParameter';
 import { OperationParameter } from '../../../client/interfaces/OperationParameter';
 import { PrimaryType } from './constants';
-import { getType } from './getType';
+import { getComment } from './getComment';
 import { getEnum } from './getEnum';
-import { getEnumType } from './getEnumType';
 import { getEnumFromDescription } from './getEnumFromDescription';
+import { getEnumType } from './getEnumType';
 import { getModel } from './getModel';
 import { getOperationParameterDefault } from './getOperationParameterDefault';
+import { getOperationParameterName } from './getOperationParameterName';
+import { getType } from './getType';
 
 export function getOperationParameter(openApi: OpenApi, parameter: OpenApiParameter): OperationParameter {
     const operationParameter: OperationParameter = {

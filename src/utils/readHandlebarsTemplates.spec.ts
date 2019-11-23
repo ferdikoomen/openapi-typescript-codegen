@@ -1,7 +1,7 @@
-import { readHandlebarsTemplates } from './readHandlebarsTemplates';
 import * as fs from 'fs';
-import { Language } from '../index';
 import * as glob from 'glob';
+import { Language } from '../index';
+import { readHandlebarsTemplates } from './readHandlebarsTemplates';
 
 jest.mock('fs');
 jest.mock('glob');

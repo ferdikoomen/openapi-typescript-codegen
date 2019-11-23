@@ -1,9 +1,9 @@
-import { Client } from '../client/interfaces/Client';
 import * as fs from 'fs';
 import * as path from 'path';
+import { Client } from '../client/interfaces/Client';
 import { HttpClient, Language } from '../index';
-import { getFileName } from './getFileName';
 import { Templates } from './readHandlebarsTemplates';
+import { getFileName } from './getFileName';
 
 export function writeClientSettings(client: Client, language: Language, httpClient: HttpClient, templates: Templates, outputPath: string): void {
     const fileName = getFileName('OpenAPI', language);

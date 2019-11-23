@@ -1,9 +1,9 @@
+import { Model } from '../../../client/interfaces/Model';
 import { OpenApi } from '../interfaces/OpenApi';
 import { OpenApiSchema } from '../interfaces/OpenApiSchema';
 import { getComment } from './getComment';
-import { getType } from './getType';
-import { Model } from '../../../client/interfaces/Model';
 import { getModel } from './getModel';
+import { getType } from './getType';
 
 export function getModelProperties(openApi: OpenApi, definition: OpenApiSchema): Model[] {
     const models: Model[] = [];
@@ -12,6 +12,7 @@ export function getModelProperties(openApi: OpenApi, definition: OpenApiSchema):
             const property = definition.properties[propertyName];
             const propertyRequired = !!(definition.required && definition.required.includes(propertyName));
             const propertyReadOnly = !!property.readOnly;
+            const propertyNullable = !!property.nullable;
             if (property.$ref) {
                 const model = getType(property.$ref);
                 models.push({
@@ -25,7 +26,7 @@ export function getModelProperties(openApi: OpenApi, definition: OpenApiSchema):
                     isProperty: true,
                     isReadOnly: propertyReadOnly,
                     isRequired: propertyRequired,
-                    isNullable: false,
+                    isNullable: propertyNullable,
                     imports: model.imports,
                     extends: [],
                     enum: [],
@@ -45,7 +46,7 @@ export function getModelProperties(openApi: OpenApi, definition: OpenApiSchema):
                     isProperty: true,
                     isReadOnly: propertyReadOnly,
                     isRequired: propertyRequired,
-                    isNullable: false,
+                    isNullable: propertyNullable,
                     imports: model.imports,
                     extends: model.extends,
                     enum: model.enum,

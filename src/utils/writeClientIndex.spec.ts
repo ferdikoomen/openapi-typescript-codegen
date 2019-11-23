@@ -1,10 +1,10 @@
-import { writeClientIndex } from './writeClientIndex';
 import * as fs from 'fs';
 import { Client } from '../client/interfaces/Client';
 import { Language } from '../index';
 import { Model } from '../client/interfaces/Model';
 import { Service } from '../client/interfaces/Service';
 import { Templates } from './readHandlebarsTemplates';
+import { writeClientIndex } from './writeClientIndex';
 
 jest.mock('fs');
 

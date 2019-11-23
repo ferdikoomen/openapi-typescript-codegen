@@ -1,14 +1,14 @@
-import { writeClientModels } from './writeClientModels';
-import { writeClientServices } from './writeClientServices';
-import { Client } from '../client/interfaces/Client';
-import * as path from 'path';
-import * as mkdirp from 'mkdirp';
-import * as rimraf from 'rimraf';
-import { Templates } from './readHandlebarsTemplates';
-import { writeClientIndex } from './writeClientIndex';
-import { HttpClient, Language } from '../index';
 import * as fs from 'fs';
 import * as glob from 'glob';
+import * as mkdirp from 'mkdirp';
+import * as path from 'path';
+import * as rimraf from 'rimraf';
+import { Client } from '../client/interfaces/Client';
+import { HttpClient, Language } from '../index';
+import { Templates } from './readHandlebarsTemplates';
+import { writeClientIndex } from './writeClientIndex';
+import { writeClientModels } from './writeClientModels';
+import { writeClientServices } from './writeClientServices';
 import { writeClientSettings } from './writeClientSettings';
 
 /**

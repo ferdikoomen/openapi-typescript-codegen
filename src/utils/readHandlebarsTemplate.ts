@@ -1,5 +1,5 @@
-import * as fs from 'fs';
 import * as Handlebars from 'handlebars';
+import * as fs from 'fs';
 
 /**
  * Read and compile the Handlebars template.

@@ -1,9 +1,9 @@
 import * as Handlebars from 'handlebars';
-import { readHandlebarsTemplate } from './readHandlebarsTemplate';
-import { Language } from '../index';
-import * as path from 'path';
-import { registerHandlebarHelpers } from './registerHandlebarHelpers';
 import * as glob from 'glob';
+import * as path from 'path';
+import { Language } from '../index';
+import { readHandlebarsTemplate } from './readHandlebarsTemplate';
+import { registerHandlebarHelpers } from './registerHandlebarHelpers';
 
 export interface Templates {
     index: Handlebars.TemplateDelegate;
