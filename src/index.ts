@@ -4,8 +4,6 @@ import { parse as parseV3 } from './openApi/v3';
 import { readHandlebarsTemplates } from './utils/readHandlebarsTemplates';
 import { getOpenApiSpec } from './utils/getOpenApiSpec';
 import { writeClient } from './utils/writeClient';
-import * as os from 'os';
-import * as chalk from 'chalk';
 import * as ts from 'typescript';
 import { getOpenApiVersion, OpenApiVersion } from './utils/getOpenApiVersion';
 
@@ -31,13 +29,6 @@ export enum HttpClient {
 export function generate(input: string, output: string, language: Language = Language.TYPESCRIPT, httpClient: HttpClient = HttpClient.FETCH): void {
     const inputPath = path.resolve(process.cwd(), input);
     const outputPath = path.resolve(process.cwd(), output);
-
-    console.log(chalk.bold.green('Generate:'));
-    console.log(chalk.grey('  Input:'), input);
-    console.log(chalk.grey('  Output:'), output);
-    console.log(chalk.grey('  Language:'), language);
-    console.log(chalk.grey('  HTTP client:'), httpClient);
-    console.log(os.EOL);
 
     try {
         // Load the specification, read the OpenAPI version and load the

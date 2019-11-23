@@ -9,7 +9,7 @@
         "lib": ["esnext", "dom"],
         "types": ["node", "jest"],
         "typeRoots": ["node_modules/@types"],
-        "declaration": false,
+        "declaration": true,
         "declarationMap": false,
         "sourceMap": false,
         "noImplicitReturns": true,

@@ -1,0 +1,3934 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`generation javascript file(./test/result/v2/javascript/core/ApiError.js): ./test/result/v2/javascript/core/ApiError.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { isSuccess } from \\"./isSuccess\\";
+
+export class ApiError extends Error {
+
+    constructor(result, message) {
+        super(message);
+
+        this.url = result.url;
+        this.status = result.status;
+        this.statusText = result.statusText;
+        this.body = result.body;
+    }
+}
+
+(function (ApiError) {
+    let Message;
+    (function (Message) {
+        Message.BAD_REQUEST = 'Bad Request';
+        Message.UNAUTHORIZED = 'Unauthorized';
+        Message.FORBIDDEN = 'Forbidden';
+        Message.NOT_FOUND = 'Not Found';
+        Message.INTERNAL_SERVER_ERROR = 'Internal Server Error';
+        Message.BAD_GATEWAY = 'Bad Gateway';
+        Message.SERVICE_UNAVAILABLE = 'Service Unavailable';
+        Message.GENERIC_ERROR = 'Generic Error';
+    })(Message = ApiError.Message || (ApiError.Message = {}));
+})(ApiError || (ApiError = {}));
+
+/**
+ * Catch common errors (based on status code).
+ * @param result
+ */
+export function catchGenericError(result) {
+
+    switch (result.status) {
+        case 400: throw new ApiError(result, ApiError.Message.BAD_REQUEST);
+        case 401: throw new ApiError(result, ApiError.Message.UNAUTHORIZED);
+        case 403: throw new ApiError(result, ApiError.Message.FORBIDDEN);
+        case 404: throw new ApiError(result, ApiError.Message.NOT_FOUND);
+        case 500: throw new ApiError(result, ApiError.Message.INTERNAL_SERVER_ERROR);
+        case 502: throw new ApiError(result, ApiError.Message.BAD_GATEWAY);
+        case 503: throw new ApiError(result, ApiError.Message.SERVICE_UNAVAILABLE);
+    }
+
+    if (!isSuccess(result.status)) {
+        throw new ApiError(result, ApiError.Message.GENERIC_ERROR);
+    }
+}
+"
+`;
+
+exports[`generation javascript file(./test/result/v2/javascript/core/OpenAPI.js): ./test/result/v2/javascript/core/OpenAPI.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+export let OpenAPI;
+(function (OpenAPI) {
+    OpenAPI.BASE = 'http://localhost:8080/api';
+    OpenAPI.VERSION = '9.0';
+    OpenAPI.CLIENT = 'xhr';
+    OpenAPI.TOKEN = '';
+})(OpenAPI || (OpenAPI = {}));"
+`;
+
+exports[`generation javascript file(./test/result/v2/javascript/core/getFormData.js): ./test/result/v2/javascript/core/getFormData.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+/**
+ * Get FormData from object. This method is needed to upload
+ * multipart form data to the REST API.
+ * @param params Key value based object.
+ */
+export function getFormData(params) {
+    const formData = new FormData();
+    for (const key in params) {
+        if (typeof params[key] !== 'undefined') {
+            const value = params[key];
+            if (value !== undefined && value !== null) {
+                formData.append(key, value);
+            }
+        }
+    }
+    return formData;
+}
+"
+`;
+
+exports[`generation javascript file(./test/result/v2/javascript/core/getQueryString.js): ./test/result/v2/javascript/core/getQueryString.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+/**
+ * Get query string from query parameters object. This method also
+ * supports multi-value items by creating a key for each item.
+ * @param params Key value based object.
+ */
+export function getQueryString(params) {
+    const qs = [];
+    for (const key in params) {
+        if (typeof params[key] !== 'undefined') {
+            const value = params[key];
+            if (value !== undefined && value !== null) {
+                if (Array.isArray(value)) {
+                    value.forEach(value => {
+                        qs.push(\`\${encodeURIComponent(key)}=\${encodeURIComponent(String(value))}\`);
+                    });
+                } else {
+                    qs.push(\`\${encodeURIComponent(key)}=\${encodeURIComponent(String(value))}\`);
+                }
+            }
+        }
+    }
+    if (qs.length > 0) {
+        return \`?\${qs.join('&')}\`;
+    }
+    return '';
+}
+"
+`;
+
+exports[`generation javascript file(./test/result/v2/javascript/core/isSuccess.js): ./test/result/v2/javascript/core/isSuccess.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+/**
+ * Check success response code.
+ * @param status Status code
+ */
+export function isSuccess(status) {
+    return status >= 200 && status < 300;
+}
+"
+`;
+
+exports[`generation javascript file(./test/result/v2/javascript/core/request.js): ./test/result/v2/javascript/core/request.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import {getFormData} from './getFormData';
+import {getQueryString} from './getQueryString';
+import {OpenAPI} from './OpenAPI';
+import {requestUsingFetch} from './requestUsingFetch';
+import {requestUsingXHR} from './requestUsingXHR';
+
+/**
+ * Create the request.
+ * @param options Request method options.
+ * @returns Result object (see above)
+ */
+export async function request(options) {
+
+    // Create the request URL
+    let url = \`\${OpenAPI.BASE}\${options.path}\`;
+
+    // Create request headers
+    const headers = new Headers({
+        ...options.headers,
+        Accept: 'application/json'
+    });
+
+    // Create request settings
+    const request = {
+        headers,
+        method: options.method,
+        credentials: 'same-origin'
+    };
+
+    // If we have a bearer token then we set the authentication header.
+    if (OpenAPI.TOKEN !== null && OpenAPI.TOKEN !== '') {
+        headers.append('Authorization', \`Bearer \${OpenAPI.TOKEN}\`);
+    }
+
+    // Add the query parameters (if defined).
+    if (options.query) {
+        url += getQueryString(options.query);
+    }
+
+    // Append formData as body
+    if (options.formData) {
+        request.body = getFormData(options.formData);
+    } else if (options.body) {
+
+        // If this is blob data, then pass it directly to the body and set content type.
+        // Otherwise we just convert request data to JSON string (needed for fetch api)
+        if (options.body instanceof Blob) {
+            request.body = options.body;
+            if (options.body.type) {
+                headers.append('Content-Type', options.body.type);
+            }
+        } else {
+            request.body = JSON.stringify(options.body);
+            headers.append('Content-Type', 'application/json');
+        }
+    }
+
+    try {
+        switch (OpenAPI.CLIENT) {
+            case 'xhr':
+                return await requestUsingXHR(url, request);
+            default:
+                return await requestUsingFetch(url, request);
+        }
+    } catch (error) {
+        return {
+            url,
+            ok: false,
+            status: 0,
+            statusText: '',
+            body: error
+        };
+    }
+}
+"
+`;
+
+exports[`generation javascript file(./test/result/v2/javascript/core/requestUsingFetch.js): ./test/result/v2/javascript/core/requestUsingFetch.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+/**
+ * Request content using the new Fetch API. This is the default API that is used and
+ * is create for all JSON, XML and text objects. However it is limited to UTF-8.
+ * This is a problem for some of the Docs content, since that requires UTF-16!
+ * @param url The url to request.
+ * @param request The request object, containing method, headers, body, etc.
+ */
+export async function requestUsingFetch(url, request) {
+
+    // Fetch response using fetch API.
+    const response = await fetch(url, request);
+
+    // Create result object.
+    const result = {
+        url,
+        ok: response.ok,
+        status: response.status,
+        statusText: response.statusText,
+        body: null
+    };
+
+    // Try to parse the content for any response status code.
+    // We check the \\"Content-Type\\" header to see if we need to parse the
+    // content as json or as plain text.
+    const contentType = response.headers.get('Content-Type');
+    if (contentType) {
+        switch (contentType.toLowerCase()) {
+            case 'application/json':
+            case 'application/json; charset=utf-8':
+                result.body = await response.json();
+                break;
+
+            case 'text/plain':
+            case 'text/xml':
+            case 'text/xml; charset=utf-8':
+            case 'text/xml; charset=utf-16':
+                result.body = await response.text();
+                break;
+        }
+    }
+
+    return result;
+}
+"
+`;
+
+exports[`generation javascript file(./test/result/v2/javascript/core/requestUsingXHR.js): ./test/result/v2/javascript/core/requestUsingXHR.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { isSuccess } from './isSuccess';
+
+/**
+ * Request content using the new legacy XMLHttpRequest API. This method is useful
+ * when we want to request UTF-16 content, since it natively supports loading UTF-16.
+ * We could do the same with the Fetch API, but then we will need to convert the
+ * content using JavaScript... And that is very very slow.
+ * @param url The url to request.
+ * @param request The request object, containing method, headers, body, etc.
+ */
+export async function requestUsingXHR(url, request) {
+    return new Promise(resolve => {
+        const xhr = new XMLHttpRequest();
+
+        // Open the request, remember to do this before adding any headers,
+        // because the request needs to be initialized!
+        xhr.open(request.method, url, true);
+
+        // Add the headers (required when dealing with JSON)
+        const headers = request.headers as Headers;
+        headers.forEach((value, key) => {
+            xhr.setRequestHeader(key, value);
+        });
+
+        // Register the readystate handler, this will fire when the request is done.
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+
+                // Create result object.
+                const result = {
+                    url,
+                    ok: isSuccess(xhr.status),
+                    status: xhr.status,
+                    statusText: xhr.statusText,
+                    body: null
+                };
+
+                // Try to parse the content for any response status code.
+                // We check the \\"Content-Type\\" header to see if we need to parse the
+                // content as json or as plain text.
+                const contentType = xhr.getResponseHeader('Content-Type');
+                if (contentType) {
+                    switch (contentType.toLowerCase()) {
+                        case 'application/json':
+                        case 'application/json; charset=utf-8':
+                            result.body = JSON.parse(xhr.responseText);
+                            break;
+
+                        case 'text/plain':
+                        case 'text/xml':
+                        case 'text/xml; charset=utf-8':
+                        case 'text/xml; charset=utf-16':
+                            result.body = xhr.responseText;
+                            break;
+                    }
+                }
+
+                // Done!
+                resolve(result);
+            }
+        };
+
+        // Start the request!
+        xhr.send(request.body);
+    });
+}
+"
+`;
+
+exports[`generation javascript file(./test/result/v2/javascript/index.js): ./test/result/v2/javascript/index.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+export { ApiError } from './core/ApiError';
+export { isSuccess } from './core/isSuccess';
+export { OpenAPI } from './core/OpenAPI';
+
+export { ArrayWithArray } from './models/ArrayWithArray';
+export { ArrayWithBooleans } from './models/ArrayWithBooleans';
+export { ArrayWithNumbers } from './models/ArrayWithNumbers';
+export { ArrayWithProperties } from './models/ArrayWithProperties';
+export { ArrayWithReferences } from './models/ArrayWithReferences';
+export { ArrayWithStrings } from './models/ArrayWithStrings';
+
+export { DictionaryWithArray } from './models/DictionaryWithArray';
+export { DictionaryWithDictionary } from './models/DictionaryWithDictionary';
+export { DictionaryWithProperties } from './models/DictionaryWithProperties';
+export { DictionaryWithReference } from './models/DictionaryWithReference';
+export { DictionaryWithString } from './models/DictionaryWithString';
+export { EnumFromDescription } from './models/EnumFromDescription';
+export { EnumWithNumbers } from './models/EnumWithNumbers';
+export { EnumWithStrings } from './models/EnumWithStrings';
+export { ModelLink } from './models/ModelLink';
+export { ModelThatExtends } from './models/ModelThatExtends';
+export { ModelThatExtendsExtends } from './models/ModelThatExtendsExtends';
+export { ModelWithArray } from './models/ModelWithArray';
+export { ModelWithBoolean } from './models/ModelWithBoolean';
+export { ModelWithCircularReference } from './models/ModelWithCircularReference';
+export { ModelWithDictionary } from './models/ModelWithDictionary';
+export { ModelWithDuplicateImports } from './models/ModelWithDuplicateImports';
+export { ModelWithDuplicateProperties } from './models/ModelWithDuplicateProperties';
+export { ModelWithEnum } from './models/ModelWithEnum';
+export { ModelWithEnumFromDescription } from './models/ModelWithEnumFromDescription';
+export { ModelWithInteger } from './models/ModelWithInteger';
+export { ModelWithLink } from './models/ModelWithLink';
+export { ModelWithNestedProperties } from './models/ModelWithNestedProperties';
+export { ModelWithReference } from './models/ModelWithReference';
+export { ModelWithString } from './models/ModelWithString';
+export { SimpleBoolean } from './models/SimpleBoolean';
+export { SimpleFile } from './models/SimpleFile';
+export { SimpleInteger } from './models/SimpleInteger';
+export { SimpleReference } from './models/SimpleReference';
+export { SimpleString } from './models/SimpleString';
+
+export { ComplexService } from './services/ComplexService';
+export { ParametersService } from './services/ParametersService';
+export { ResponseService } from './services/ResponseService';
+export { SimpleService } from './services/SimpleService';
+export { TypesService } from './services/TypesService';
+"
+`;
+
+exports[`generation javascript file(./test/result/v2/javascript/models/ArrayWithArray.js): ./test/result/v2/javascript/models/ArrayWithArray.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ModelWithString } from '../models/ModelWithString';
+import * as yup from 'yup';
+
+/**
+ * This is a simple array containing an array
+ */
+export let ArrayWithArray;
+(function (ArrayWithArray) {
+
+    ArrayWithArray.schema = yup.array().of(yup.array().of(ModelWithString.schema));
+
+    ArrayWithArray.validate = async function(value) {
+        return ArrayWithArray.schema.validate(value, { strict: true });
+    };
+
+    ArrayWithArray.validateSync = function(value) {
+        return ArrayWithArray.schema.validateSync(value, { strict: true });
+    };
+
+})(ArrayWithArray || (ArrayWithArray = {}));"
+`;
+
+exports[`generation javascript file(./test/result/v2/javascript/models/ArrayWithBooleans.js): ./test/result/v2/javascript/models/ArrayWithBooleans.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+/**
+ * This is a simple array with booleans
+ */
+export let ArrayWithBooleans;
+(function (ArrayWithBooleans) {
+
+    ArrayWithBooleans.schema = yup.array().of(yup.boolean());
+
+    ArrayWithBooleans.validate = async function(value) {
+        return ArrayWithBooleans.schema.validate(value, { strict: true });
+    };
+
+    ArrayWithBooleans.validateSync = function(value) {
+        return ArrayWithBooleans.schema.validateSync(value, { strict: true });
+    };
+
+})(ArrayWithBooleans || (ArrayWithBooleans = {}));"
+`;
+
+exports[`generation javascript file(./test/result/v2/javascript/models/ArrayWithNumbers.js): ./test/result/v2/javascript/models/ArrayWithNumbers.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+/**
+ * This is a simple array with numbers
+ */
+export let ArrayWithNumbers;
+(function (ArrayWithNumbers) {
+
+    ArrayWithNumbers.schema = yup.array().of(yup.number());
+
+    ArrayWithNumbers.validate = async function(value) {
+        return ArrayWithNumbers.schema.validate(value, { strict: true });
+    };
+
+    ArrayWithNumbers.validateSync = function(value) {
+        return ArrayWithNumbers.schema.validateSync(value, { strict: true });
+    };
+
+})(ArrayWithNumbers || (ArrayWithNumbers = {}));"
+`;
+
+exports[`generation javascript file(./test/result/v2/javascript/models/ArrayWithProperties.js): ./test/result/v2/javascript/models/ArrayWithProperties.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+/**
+ * This is a simple array with properties
+ */
+export let ArrayWithProperties;
+(function (ArrayWithProperties) {
+
+    ArrayWithProperties.schema = yup.array().of((
+        yup.object().shape({
+            foo: yup.lazy(() => yup.string().default(undefined)),
+            bar: yup.lazy(() => yup.string().default(undefined))
+        }).noUnknown()
+    ));
+
+    ArrayWithProperties.validate = async function(value) {
+        return ArrayWithProperties.schema.validate(value, { strict: true });
+    };
+
+    ArrayWithProperties.validateSync = function(value) {
+        return ArrayWithProperties.schema.validateSync(value, { strict: true });
+    };
+
+})(ArrayWithProperties || (ArrayWithProperties = {}));"
+`;
+
+exports[`generation javascript file(./test/result/v2/javascript/models/ArrayWithReferences.js): ./test/result/v2/javascript/models/ArrayWithReferences.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ModelWithString } from '../models/ModelWithString';
+import * as yup from 'yup';
+
+/**
+ * This is a simple array with references
+ */
+export let ArrayWithReferences;
+(function (ArrayWithReferences) {
+
+    ArrayWithReferences.schema = yup.array().of(ModelWithString.schema);
+
+    ArrayWithReferences.validate = async function(value) {
+        return ArrayWithReferences.schema.validate(value, { strict: true });
+    };
+
+    ArrayWithReferences.validateSync = function(value) {
+        return ArrayWithReferences.schema.validateSync(value, { strict: true });
+    };
+
+})(ArrayWithReferences || (ArrayWithReferences = {}));"
+`;
+
+exports[`generation javascript file(./test/result/v2/javascript/models/ArrayWithStrings.js): ./test/result/v2/javascript/models/ArrayWithStrings.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+/**
+ * This is a simple array with strings
+ */
+export let ArrayWithStrings;
+(function (ArrayWithStrings) {
+
+    ArrayWithStrings.schema = yup.array().of(yup.string());
+
+    ArrayWithStrings.validate = async function(value) {
+        return ArrayWithStrings.schema.validate(value, { strict: true });
+    };
+
+    ArrayWithStrings.validateSync = function(value) {
+        return ArrayWithStrings.schema.validateSync(value, { strict: true });
+    };
+
+})(ArrayWithStrings || (ArrayWithStrings = {}));"
+`;
+
+exports[`generation javascript file(./test/result/v2/javascript/models/DictionaryWithArray.js): ./test/result/v2/javascript/models/DictionaryWithArray.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+
+import { ModelWithString } from '../models/ModelWithString';
+import * as yup from 'yup';
+
+/**
+ * This is a complex dictionary
+ */
+export let DictionaryWithArray;
+(function (DictionaryWithArray) {
+
+    DictionaryWithArray.schema = yup.lazy(value => {
+        return yup.object().shape(
+            Object.entries(value).reduce((obj, item) => ({
+                ...obj,
+                [item[0]]: yup.array().of(ModelWithString.schema)
+            }), {})
+        );
+    });
+
+    DictionaryWithArray.validate = async function(value) {
+        return DictionaryWithArray.schema.validate(value, { strict: true });
+    };
+
+    DictionaryWithArray.validateSync = function(value) {
+        return DictionaryWithArray.schema.validateSync(value, { strict: true });
+    };
+
+})(DictionaryWithArray || (DictionaryWithArray = {}));"
+`;
+
+exports[`generation javascript file(./test/result/v2/javascript/models/DictionaryWithDictionary.js): ./test/result/v2/javascript/models/DictionaryWithDictionary.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+
+import * as yup from 'yup';
+
+/**
+ * This is a string dictionary
+ */
+export let DictionaryWithDictionary;
+(function (DictionaryWithDictionary) {
+
+    DictionaryWithDictionary.schema = yup.lazy(value => {
+        return yup.object().shape(
+            Object.entries(value).reduce((obj, item) => ({
+                ...obj,
+                [item[0]]: yup.lazy(value => {
+                    return yup.object().shape(
+                        Object.entries(value).reduce((obj, item) => ({
+                            ...obj,
+                            [item[0]]: yup.string()
+                        }), {})
+                    );
+                })
+            }), {})
+        );
+    });
+
+    DictionaryWithDictionary.validate = async function(value) {
+        return DictionaryWithDictionary.schema.validate(value, { strict: true });
+    };
+
+    DictionaryWithDictionary.validateSync = function(value) {
+        return DictionaryWithDictionary.schema.validateSync(value, { strict: true });
+    };
+
+})(DictionaryWithDictionary || (DictionaryWithDictionary = {}));"
+`;
+
+exports[`generation javascript file(./test/result/v2/javascript/models/DictionaryWithProperties.js): ./test/result/v2/javascript/models/DictionaryWithProperties.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+
+import * as yup from 'yup';
+
+/**
+ * This is a complex dictionary
+ */
+export let DictionaryWithProperties;
+(function (DictionaryWithProperties) {
+
+    DictionaryWithProperties.schema = yup.lazy(value => {
+        return yup.object().shape(
+            Object.entries(value).reduce((obj, item) => ({
+                ...obj,
+                [item[0]]: (
+                    yup.object().shape({
+                        foo: yup.lazy(() => yup.string().default(undefined)),
+                        bar: yup.lazy(() => yup.string().default(undefined))
+                    }).noUnknown()
+                )
+            }), {})
+        );
+    });
+
+    DictionaryWithProperties.validate = async function(value) {
+        return DictionaryWithProperties.schema.validate(value, { strict: true });
+    };
+
+    DictionaryWithProperties.validateSync = function(value) {
+        return DictionaryWithProperties.schema.validateSync(value, { strict: true });
+    };
+
+})(DictionaryWithProperties || (DictionaryWithProperties = {}));"
+`;
+
+exports[`generation javascript file(./test/result/v2/javascript/models/DictionaryWithReference.js): ./test/result/v2/javascript/models/DictionaryWithReference.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+
+import { ModelWithString } from '../models/ModelWithString';
+import * as yup from 'yup';
+
+/**
+ * This is a string reference
+ */
+export let DictionaryWithReference;
+(function (DictionaryWithReference) {
+
+    DictionaryWithReference.schema = yup.lazy(value => {
+        return yup.object().shape(
+            Object.entries(value).reduce((obj, item) => ({
+                ...obj,
+                [item[0]]: ModelWithString.schema
+            }), {})
+        );
+    });
+
+    DictionaryWithReference.validate = async function(value) {
+        return DictionaryWithReference.schema.validate(value, { strict: true });
+    };
+
+    DictionaryWithReference.validateSync = function(value) {
+        return DictionaryWithReference.schema.validateSync(value, { strict: true });
+    };
+
+})(DictionaryWithReference || (DictionaryWithReference = {}));"
+`;
+
+exports[`generation javascript file(./test/result/v2/javascript/models/DictionaryWithString.js): ./test/result/v2/javascript/models/DictionaryWithString.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+
+import * as yup from 'yup';
+
+/**
+ * This is a string dictionary
+ */
+export let DictionaryWithString;
+(function (DictionaryWithString) {
+
+    DictionaryWithString.schema = yup.lazy(value => {
+        return yup.object().shape(
+            Object.entries(value).reduce((obj, item) => ({
+                ...obj,
+                [item[0]]: yup.string()
+            }), {})
+        );
+    });
+
+    DictionaryWithString.validate = async function(value) {
+        return DictionaryWithString.schema.validate(value, { strict: true });
+    };
+
+    DictionaryWithString.validateSync = function(value) {
+        return DictionaryWithString.schema.validateSync(value, { strict: true });
+    };
+
+})(DictionaryWithString || (DictionaryWithString = {}));"
+`;
+
+exports[`generation javascript file(./test/result/v2/javascript/models/EnumFromDescription.js): ./test/result/v2/javascript/models/EnumFromDescription.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+/**
+ * Success=1,Warning=2,Error=3
+ */
+export let EnumFromDescription;
+(function (EnumFromDescription) {
+
+    EnumFromDescription.ERROR = 3;
+    EnumFromDescription.SUCCESS = 1;
+    EnumFromDescription.WARNING = 2;
+
+    EnumFromDescription.schema = yup.mixed().oneOf([
+        EnumFromDescription.ERROR,
+        EnumFromDescription.SUCCESS,
+        EnumFromDescription.WARNING
+    ]);
+
+    EnumFromDescription.validate = async function(value) {
+        return EnumFromDescription.schema.validate(value, { strict: true });
+    };
+
+    EnumFromDescription.validateSync = function(value) {
+        return EnumFromDescription.schema.validateSync(value, { strict: true });
+    };
+
+})(EnumFromDescription || (EnumFromDescription = {}));"
+`;
+
+exports[`generation javascript file(./test/result/v2/javascript/models/EnumWithNumbers.js): ./test/result/v2/javascript/models/EnumWithNumbers.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+/**
+ * This is a simple enum with numbers
+ */
+export let EnumWithNumbers;
+(function (EnumWithNumbers) {
+
+    EnumWithNumbers.NUM_1 = 1;
+    EnumWithNumbers.NUM_2 = 2;
+    EnumWithNumbers.NUM_3 = 3;
+
+    EnumWithNumbers.schema = yup.mixed().oneOf([
+        EnumWithNumbers.NUM_1,
+        EnumWithNumbers.NUM_2,
+        EnumWithNumbers.NUM_3
+    ]);
+
+    EnumWithNumbers.validate = async function(value) {
+        return EnumWithNumbers.schema.validate(value, { strict: true });
+    };
+
+    EnumWithNumbers.validateSync = function(value) {
+        return EnumWithNumbers.schema.validateSync(value, { strict: true });
+    };
+
+})(EnumWithNumbers || (EnumWithNumbers = {}));"
+`;
+
+exports[`generation javascript file(./test/result/v2/javascript/models/EnumWithStrings.js): ./test/result/v2/javascript/models/EnumWithStrings.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+/**
+ * This is a simple enum with strings
+ */
+export let EnumWithStrings;
+(function (EnumWithStrings) {
+
+    EnumWithStrings.ERROR = 'Error';
+    EnumWithStrings.SUCCESS = 'Success';
+    EnumWithStrings.WARNING = 'Warning';
+
+    EnumWithStrings.schema = yup.mixed().oneOf([
+        EnumWithStrings.ERROR,
+        EnumWithStrings.SUCCESS,
+        EnumWithStrings.WARNING
+    ]);
+
+    EnumWithStrings.validate = async function(value) {
+        return EnumWithStrings.schema.validate(value, { strict: true });
+    };
+
+    EnumWithStrings.validateSync = function(value) {
+        return EnumWithStrings.schema.validateSync(value, { strict: true });
+    };
+
+})(EnumWithStrings || (EnumWithStrings = {}));"
+`;
+
+exports[`generation javascript file(./test/result/v2/javascript/models/ModelLink.js): ./test/result/v2/javascript/models/ModelLink.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+/**
+ * This is a model that can have a template??
+ */
+export let ModelLink;
+(function (ModelLink) {
+
+    ModelLink.schema = (
+        yup.object().shape({
+            id: yup.lazy(() => yup.string().default(undefined))
+        }).noUnknown()
+    );
+
+    ModelLink.validate = async function(value) {
+        return ModelLink.schema.validate(value, { strict: true });
+    };
+
+    ModelLink.validateSync = function(value) {
+        return ModelLink.schema.validateSync(value, { strict: true });
+    };
+
+})(ModelLink || (ModelLink = {}));"
+`;
+
+exports[`generation javascript file(./test/result/v2/javascript/models/ModelThatExtends.js): ./test/result/v2/javascript/models/ModelThatExtends.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ModelWithString } from '../models/ModelWithString';
+import * as yup from 'yup';
+
+/**
+ * This is a model that extends another model
+ */
+export let ModelThatExtends;
+(function (ModelThatExtends) {
+
+    ModelThatExtends.schema = (
+        ModelWithString.schema.concat(
+            yup.object().shape({
+                propExtendsA: yup.lazy(() => yup.string().default(undefined)),
+                propExtendsB: yup.lazy(() => ModelWithString.schema.default(undefined))
+            }).noUnknown()
+        )
+    );
+
+    ModelThatExtends.validate = async function(value) {
+        return ModelThatExtends.schema.validate(value, { strict: true });
+    };
+
+    ModelThatExtends.validateSync = function(value) {
+        return ModelThatExtends.schema.validateSync(value, { strict: true });
+    };
+
+})(ModelThatExtends || (ModelThatExtends = {}));"
+`;
+
+exports[`generation javascript file(./test/result/v2/javascript/models/ModelThatExtendsExtends.js): ./test/result/v2/javascript/models/ModelThatExtendsExtends.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ModelThatExtends } from '../models/ModelThatExtends';
+import { ModelWithString } from '../models/ModelWithString';
+import * as yup from 'yup';
+
+/**
+ * This is a model that extends another model
+ */
+export let ModelThatExtendsExtends;
+(function (ModelThatExtendsExtends) {
+
+    ModelThatExtendsExtends.schema = (
+        ModelWithString.schema.concat(
+            ModelThatExtends.schema.concat(
+                yup.object().shape({
+                    propExtendsC: yup.lazy(() => yup.string().default(undefined)),
+                    propExtendsD: yup.lazy(() => ModelWithString.schema.default(undefined))
+                }).noUnknown()
+            )
+        )
+    );
+
+    ModelThatExtendsExtends.validate = async function(value) {
+        return ModelThatExtendsExtends.schema.validate(value, { strict: true });
+    };
+
+    ModelThatExtendsExtends.validateSync = function(value) {
+        return ModelThatExtendsExtends.schema.validateSync(value, { strict: true });
+    };
+
+})(ModelThatExtendsExtends || (ModelThatExtendsExtends = {}));"
+`;
+
+exports[`generation javascript file(./test/result/v2/javascript/models/ModelWithArray.js): ./test/result/v2/javascript/models/ModelWithArray.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ModelWithString } from '../models/ModelWithString';
+import * as yup from 'yup';
+
+/**
+ * This is a model with one property containing an array
+ */
+export let ModelWithArray;
+(function (ModelWithArray) {
+
+    ModelWithArray.schema = (
+        yup.object().shape({
+            prop: yup.lazy(() => yup.array().of(ModelWithString.schema).default(undefined))
+        }).noUnknown()
+    );
+
+    ModelWithArray.validate = async function(value) {
+        return ModelWithArray.schema.validate(value, { strict: true });
+    };
+
+    ModelWithArray.validateSync = function(value) {
+        return ModelWithArray.schema.validateSync(value, { strict: true });
+    };
+
+})(ModelWithArray || (ModelWithArray = {}));"
+`;
+
+exports[`generation javascript file(./test/result/v2/javascript/models/ModelWithBoolean.js): ./test/result/v2/javascript/models/ModelWithBoolean.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+/**
+ * This is a model with one boolean property
+ */
+export let ModelWithBoolean;
+(function (ModelWithBoolean) {
+
+    ModelWithBoolean.schema = (
+        yup.object().shape({
+            prop: yup.lazy(() => yup.boolean().default(undefined))
+        }).noUnknown()
+    );
+
+    ModelWithBoolean.validate = async function(value) {
+        return ModelWithBoolean.schema.validate(value, { strict: true });
+    };
+
+    ModelWithBoolean.validateSync = function(value) {
+        return ModelWithBoolean.schema.validateSync(value, { strict: true });
+    };
+
+})(ModelWithBoolean || (ModelWithBoolean = {}));"
+`;
+
+exports[`generation javascript file(./test/result/v2/javascript/models/ModelWithCircularReference.js): ./test/result/v2/javascript/models/ModelWithCircularReference.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+/**
+ * This is a model with one property containing a circular reference
+ */
+export let ModelWithCircularReference;
+(function (ModelWithCircularReference) {
+
+    ModelWithCircularReference.schema = (
+        yup.object().shape({
+            prop: yup.lazy(() => ModelWithCircularReference.schema.default(undefined))
+        }).noUnknown()
+    );
+
+    ModelWithCircularReference.validate = async function(value) {
+        return ModelWithCircularReference.schema.validate(value, { strict: true });
+    };
+
+    ModelWithCircularReference.validateSync = function(value) {
+        return ModelWithCircularReference.schema.validateSync(value, { strict: true });
+    };
+
+})(ModelWithCircularReference || (ModelWithCircularReference = {}));"
+`;
+
+exports[`generation javascript file(./test/result/v2/javascript/models/ModelWithDictionary.js): ./test/result/v2/javascript/models/ModelWithDictionary.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+
+import * as yup from 'yup';
+
+/**
+ * This is a model with one property containing a dictionary
+ */
+export let ModelWithDictionary;
+(function (ModelWithDictionary) {
+
+    ModelWithDictionary.schema = (
+        yup.object().shape({
+            prop: yup.lazy(() => yup.lazy(value => {
+                return yup.object().shape(
+                    Object.entries(value).reduce((obj, item) => ({
+                        ...obj,
+                        [item[0]]: yup.string()
+                    }), {})
+                );
+            }).default(undefined))
+        }).noUnknown()
+    );
+
+    ModelWithDictionary.validate = async function(value) {
+        return ModelWithDictionary.schema.validate(value, { strict: true });
+    };
+
+    ModelWithDictionary.validateSync = function(value) {
+        return ModelWithDictionary.schema.validateSync(value, { strict: true });
+    };
+
+})(ModelWithDictionary || (ModelWithDictionary = {}));"
+`;
+
+exports[`generation javascript file(./test/result/v2/javascript/models/ModelWithDuplicateImports.js): ./test/result/v2/javascript/models/ModelWithDuplicateImports.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ModelWithString } from '../models/ModelWithString';
+import * as yup from 'yup';
+
+/**
+ * This is a model with duplicated imports
+ */
+export let ModelWithDuplicateImports;
+(function (ModelWithDuplicateImports) {
+
+    ModelWithDuplicateImports.schema = (
+        yup.object().shape({
+            propA: yup.lazy(() => ModelWithString.schema.default(undefined)),
+            propB: yup.lazy(() => ModelWithString.schema.default(undefined)),
+            propC: yup.lazy(() => ModelWithString.schema.default(undefined))
+        }).noUnknown()
+    );
+
+    ModelWithDuplicateImports.validate = async function(value) {
+        return ModelWithDuplicateImports.schema.validate(value, { strict: true });
+    };
+
+    ModelWithDuplicateImports.validateSync = function(value) {
+        return ModelWithDuplicateImports.schema.validateSync(value, { strict: true });
+    };
+
+})(ModelWithDuplicateImports || (ModelWithDuplicateImports = {}));"
+`;
+
+exports[`generation javascript file(./test/result/v2/javascript/models/ModelWithDuplicateProperties.js): ./test/result/v2/javascript/models/ModelWithDuplicateProperties.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ModelWithString } from '../models/ModelWithString';
+import * as yup from 'yup';
+
+/**
+ * This is a model with duplicated properties
+ */
+export let ModelWithDuplicateProperties;
+(function (ModelWithDuplicateProperties) {
+
+    ModelWithDuplicateProperties.schema = (
+        yup.object().shape({
+            prop: yup.lazy(() => ModelWithString.schema.default(undefined))
+        }).noUnknown()
+    );
+
+    ModelWithDuplicateProperties.validate = async function(value) {
+        return ModelWithDuplicateProperties.schema.validate(value, { strict: true });
+    };
+
+    ModelWithDuplicateProperties.validateSync = function(value) {
+        return ModelWithDuplicateProperties.schema.validateSync(value, { strict: true });
+    };
+
+})(ModelWithDuplicateProperties || (ModelWithDuplicateProperties = {}));"
+`;
+
+exports[`generation javascript file(./test/result/v2/javascript/models/ModelWithEnum.js): ./test/result/v2/javascript/models/ModelWithEnum.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+/**
+ * This is a model with one enum
+ */
+export let ModelWithEnum;
+(function (ModelWithEnum) {
+
+    /**
+     * This is a simple enum with strings
+     */
+    ModelWithEnum.Test = {
+        SUCCESS: 'Success',
+        WARNING: 'Warning',
+        ERROR: 'Error'
+    };
+
+    ModelWithEnum.schema = (
+        yup.object().shape({
+            Test: yup.lazy(() => yup.mixed().oneOf([
+                Test.SUCCESS,
+                Test.WARNING,
+                Test.ERROR
+            ]).default(undefined))
+        }).noUnknown()
+    );
+
+    ModelWithEnum.validate = async function(value) {
+        return ModelWithEnum.schema.validate(value, { strict: true });
+    };
+
+    ModelWithEnum.validateSync = function(value) {
+        return ModelWithEnum.schema.validateSync(value, { strict: true });
+    };
+
+})(ModelWithEnum || (ModelWithEnum = {}));"
+`;
+
+exports[`generation javascript file(./test/result/v2/javascript/models/ModelWithEnumFromDescription.js): ./test/result/v2/javascript/models/ModelWithEnumFromDescription.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+/**
+ * This is a model with one enum
+ */
+export let ModelWithEnumFromDescription;
+(function (ModelWithEnumFromDescription) {
+
+    /**
+     * Success=1,Warning=2,Error=3
+     */
+    ModelWithEnumFromDescription.Test = {
+        SUCCESS: 1,
+        WARNING: 2,
+        ERROR: 3
+    };
+
+    ModelWithEnumFromDescription.schema = (
+        yup.object().shape({
+            Test: yup.lazy(() => yup.mixed().oneOf([
+                Test.SUCCESS,
+                Test.WARNING,
+                Test.ERROR
+            ]).default(undefined))
+        }).noUnknown()
+    );
+
+    ModelWithEnumFromDescription.validate = async function(value) {
+        return ModelWithEnumFromDescription.schema.validate(value, { strict: true });
+    };
+
+    ModelWithEnumFromDescription.validateSync = function(value) {
+        return ModelWithEnumFromDescription.schema.validateSync(value, { strict: true });
+    };
+
+})(ModelWithEnumFromDescription || (ModelWithEnumFromDescription = {}));"
+`;
+
+exports[`generation javascript file(./test/result/v2/javascript/models/ModelWithInteger.js): ./test/result/v2/javascript/models/ModelWithInteger.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+/**
+ * This is a model with one number property
+ */
+export let ModelWithInteger;
+(function (ModelWithInteger) {
+
+    ModelWithInteger.schema = (
+        yup.object().shape({
+            prop: yup.lazy(() => yup.number().default(undefined))
+        }).noUnknown()
+    );
+
+    ModelWithInteger.validate = async function(value) {
+        return ModelWithInteger.schema.validate(value, { strict: true });
+    };
+
+    ModelWithInteger.validateSync = function(value) {
+        return ModelWithInteger.schema.validateSync(value, { strict: true });
+    };
+
+})(ModelWithInteger || (ModelWithInteger = {}));"
+`;
+
+exports[`generation javascript file(./test/result/v2/javascript/models/ModelWithLink.js): ./test/result/v2/javascript/models/ModelWithLink.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ModelLink } from '../models/ModelLink';
+import { ModelWithString } from '../models/ModelWithString';
+import * as yup from 'yup';
+
+/**
+ * This is a model that can have a template??
+ */
+export let ModelWithLink;
+(function (ModelWithLink) {
+
+    ModelWithLink.schema = (
+        yup.object().shape({
+            prop: yup.lazy(() => ModelLink.schema.default(undefined))
+        }).noUnknown()
+    );
+
+    ModelWithLink.validate = async function(value) {
+        return ModelWithLink.schema.validate(value, { strict: true });
+    };
+
+    ModelWithLink.validateSync = function(value) {
+        return ModelWithLink.schema.validateSync(value, { strict: true });
+    };
+
+})(ModelWithLink || (ModelWithLink = {}));"
+`;
+
+exports[`generation javascript file(./test/result/v2/javascript/models/ModelWithNestedProperties.js): ./test/result/v2/javascript/models/ModelWithNestedProperties.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+/**
+ * This is a model with one nested property
+ */
+export let ModelWithNestedProperties;
+(function (ModelWithNestedProperties) {
+
+    ModelWithNestedProperties.schema = (
+        yup.object().shape({
+            first: yup.lazy(() => (
+                yup.object().shape({
+                    second: yup.lazy(() => (
+                        yup.object().shape({
+                            third: yup.lazy(() => yup.string().default(undefined))
+                        }).noUnknown()
+                    ).default(undefined))
+                }).noUnknown()
+            ).default(undefined))
+        }).noUnknown()
+    );
+
+    ModelWithNestedProperties.validate = async function(value) {
+        return ModelWithNestedProperties.schema.validate(value, { strict: true });
+    };
+
+    ModelWithNestedProperties.validateSync = function(value) {
+        return ModelWithNestedProperties.schema.validateSync(value, { strict: true });
+    };
+
+})(ModelWithNestedProperties || (ModelWithNestedProperties = {}));"
+`;
+
+exports[`generation javascript file(./test/result/v2/javascript/models/ModelWithReference.js): ./test/result/v2/javascript/models/ModelWithReference.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ModelWithString } from '../models/ModelWithString';
+import * as yup from 'yup';
+
+/**
+ * This is a model with one property containing a reference
+ */
+export let ModelWithReference;
+(function (ModelWithReference) {
+
+    ModelWithReference.schema = (
+        yup.object().shape({
+            prop: yup.lazy(() => ModelWithString.schema.default(undefined))
+        }).noUnknown()
+    );
+
+    ModelWithReference.validate = async function(value) {
+        return ModelWithReference.schema.validate(value, { strict: true });
+    };
+
+    ModelWithReference.validateSync = function(value) {
+        return ModelWithReference.schema.validateSync(value, { strict: true });
+    };
+
+})(ModelWithReference || (ModelWithReference = {}));"
+`;
+
+exports[`generation javascript file(./test/result/v2/javascript/models/ModelWithString.js): ./test/result/v2/javascript/models/ModelWithString.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+/**
+ * This is a model with one string property
+ */
+export let ModelWithString;
+(function (ModelWithString) {
+
+    ModelWithString.schema = (
+        yup.object().shape({
+            prop: yup.lazy(() => yup.string().default(undefined))
+        }).noUnknown()
+    );
+
+    ModelWithString.validate = async function(value) {
+        return ModelWithString.schema.validate(value, { strict: true });
+    };
+
+    ModelWithString.validateSync = function(value) {
+        return ModelWithString.schema.validateSync(value, { strict: true });
+    };
+
+})(ModelWithString || (ModelWithString = {}));"
+`;
+
+exports[`generation javascript file(./test/result/v2/javascript/models/SimpleBoolean.js): ./test/result/v2/javascript/models/SimpleBoolean.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+/**
+ * This is a simple boolean
+ */
+export let SimpleBoolean;
+(function (SimpleBoolean) {
+
+    SimpleBoolean.schema = yup.boolean();
+
+    SimpleBoolean.validate = async function(value) {
+        return SimpleBoolean.schema.validate(value, { strict: true });
+    };
+
+    SimpleBoolean.validateSync = function(value) {
+        return SimpleBoolean.schema.validateSync(value, { strict: true });
+    };
+
+})(SimpleBoolean || (SimpleBoolean = {}));"
+`;
+
+exports[`generation javascript file(./test/result/v2/javascript/models/SimpleFile.js): ./test/result/v2/javascript/models/SimpleFile.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+/**
+ * This is a simple file
+ */
+export let SimpleFile;
+(function (SimpleFile) {
+
+    SimpleFile.schema = yup.mixed();
+
+    SimpleFile.validate = async function(value) {
+        return SimpleFile.schema.validate(value, { strict: true });
+    };
+
+    SimpleFile.validateSync = function(value) {
+        return SimpleFile.schema.validateSync(value, { strict: true });
+    };
+
+})(SimpleFile || (SimpleFile = {}));"
+`;
+
+exports[`generation javascript file(./test/result/v2/javascript/models/SimpleInteger.js): ./test/result/v2/javascript/models/SimpleInteger.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+/**
+ * This is a simple number
+ */
+export let SimpleInteger;
+(function (SimpleInteger) {
+
+    SimpleInteger.schema = yup.number();
+
+    SimpleInteger.validate = async function(value) {
+        return SimpleInteger.schema.validate(value, { strict: true });
+    };
+
+    SimpleInteger.validateSync = function(value) {
+        return SimpleInteger.schema.validateSync(value, { strict: true });
+    };
+
+})(SimpleInteger || (SimpleInteger = {}));"
+`;
+
+exports[`generation javascript file(./test/result/v2/javascript/models/SimpleReference.js): ./test/result/v2/javascript/models/SimpleReference.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ModelWithString } from '../models/ModelWithString';
+import * as yup from 'yup';
+
+/**
+ * This is a simple reference
+ */
+export let SimpleReference;
+(function (SimpleReference) {
+
+    SimpleReference.schema = ModelWithString.schema;
+
+    SimpleReference.validate = async function(value) {
+        return SimpleReference.schema.validate(value, { strict: true });
+    };
+
+    SimpleReference.validateSync = function(value) {
+        return SimpleReference.schema.validateSync(value, { strict: true });
+    };
+
+})(SimpleReference || (SimpleReference = {}));"
+`;
+
+exports[`generation javascript file(./test/result/v2/javascript/models/SimpleString.js): ./test/result/v2/javascript/models/SimpleString.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+/**
+ * This is a simple string
+ */
+export let SimpleString;
+(function (SimpleString) {
+
+    SimpleString.schema = yup.string();
+
+    SimpleString.validate = async function(value) {
+        return SimpleString.schema.validate(value, { strict: true });
+    };
+
+    SimpleString.validateSync = function(value) {
+        return SimpleString.schema.validateSync(value, { strict: true });
+    };
+
+})(SimpleString || (SimpleString = {}));"
+`;
+
+exports[`generation javascript file(./test/result/v2/javascript/services/ComplexService.js): ./test/result/v2/javascript/services/ComplexService.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ApiError, catchGenericError } from '../core/ApiError';
+import { request } from '../core/request';
+import { OpenAPI } from '../core/OpenAPI';
+
+export class ComplexService {
+
+    /**
+     * @param parameterObject Parameter containing object
+     * @param parameterReference Parameter containing reference
+     * @result ModelWithString Successful response
+     * @throws ApiError
+     */
+    static async complexTypes(
+        parameterObject,
+        parameterReference
+    ) {
+
+        const result = await request({
+            method: 'get',
+            path: \`/api/v\${OpenAPI.VERSION}/complex\`,
+            query: {
+                'parameterObject': parameterObject,
+                'parameterReference': parameterReference
+            }
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`400 server error\`);
+                case 500: throw new ApiError(result, \`500 server error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+}"
+`;
+
+exports[`generation javascript file(./test/result/v2/javascript/services/ParametersService.js): ./test/result/v2/javascript/services/ParametersService.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ApiError, catchGenericError } from '../core/ApiError';
+import { request } from '../core/request';
+import { OpenAPI } from '../core/OpenAPI';
+
+export class ParametersService {
+
+    /**
+     * @param parameterHeader This is the parameter that goes into the request header
+     * @param parameterQuery This is the parameter that goes into the request query params
+     * @param parameterForm This is the parameter that goes into the request form data
+     * @param parameterBody This is the parameter that is send as request body
+     * @throws ApiError
+     */
+    static async callWithParameters(
+        parameterHeader,
+        parameterQuery,
+        parameterForm,
+        parameterBody
+    ) {
+
+        const result = await request({
+            method: 'get',
+            path: \`/api/v\${OpenAPI.VERSION}/parameters\`,
+            headers: {
+                'parameterHeader': parameterHeader
+            },
+            query: {
+                'parameterQuery': parameterQuery
+            },
+            formData: {
+                'parameterForm': parameterForm
+            },
+            body: parameterBody
+        });
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+}"
+`;
+
+exports[`generation javascript file(./test/result/v2/javascript/services/ResponseService.js): ./test/result/v2/javascript/services/ResponseService.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ApiError, catchGenericError } from '../core/ApiError';
+import { request } from '../core/request';
+import { OpenAPI } from '../core/OpenAPI';
+
+export class ResponseService {
+
+    /**
+     * @result ModelWithString Message for default response
+     * @throws ApiError
+     */
+    static async callWithDuplicateResponses() {
+
+        const result = await request({
+            method: 'post',
+            path: \`/api/v\${OpenAPI.VERSION}/response\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 500: throw new ApiError(result, \`Message for 500 error\`);
+                case 501: throw new ApiError(result, \`Message for 501 error\`);
+                case 502: throw new ApiError(result, \`Message for 502 error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @result ModelWithString Message for default response
+     * @throws ApiError
+     */
+    static async callWithResponse() {
+
+        const result = await request({
+            method: 'get',
+            path: \`/api/v\${OpenAPI.VERSION}/response\`
+        });
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @result ModelWithString Message for default response
+     * @result ModelThatExtends Message for 201 response
+     * @result ModelThatExtendsExtends Message for 202 response
+     * @throws ApiError
+     */
+    static async callWithResponses() {
+
+        const result = await request({
+            method: 'put',
+            path: \`/api/v\${OpenAPI.VERSION}/response\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 500: throw new ApiError(result, \`Message for 500 error\`);
+                case 501: throw new ApiError(result, \`Message for 501 error\`);
+                case 502: throw new ApiError(result, \`Message for 502 error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+}"
+`;
+
+exports[`generation javascript file(./test/result/v2/javascript/services/SimpleService.js): ./test/result/v2/javascript/services/SimpleService.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ApiError, catchGenericError } from '../core/ApiError';
+import { request } from '../core/request';
+import { OpenAPI } from '../core/OpenAPI';
+
+export class SimpleService {
+
+    /**
+     * @throws ApiError
+     */
+    static async deleteCallWithoutParametersAndResponse() {
+
+        const result = await request({
+            method: 'delete',
+            path: \`/api/v\${OpenAPI.VERSION}/simple\`
+        });
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @throws ApiError
+     */
+    static async getCallWithoutParametersAndResponse() {
+
+        const result = await request({
+            method: 'get',
+            path: \`/api/v\${OpenAPI.VERSION}/simple\`
+        });
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @throws ApiError
+     */
+    static async headCallWithoutParametersAndResponse() {
+
+        const result = await request({
+            method: 'head',
+            path: \`/api/v\${OpenAPI.VERSION}/simple\`
+        });
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @throws ApiError
+     */
+    static async optionsCallWithoutParametersAndResponse() {
+
+        const result = await request({
+            method: 'options',
+            path: \`/api/v\${OpenAPI.VERSION}/simple\`
+        });
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @throws ApiError
+     */
+    static async patchCallWithoutParametersAndResponse() {
+
+        const result = await request({
+            method: 'patch',
+            path: \`/api/v\${OpenAPI.VERSION}/simple\`
+        });
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @throws ApiError
+     */
+    static async postCallWithoutParametersAndResponse() {
+
+        const result = await request({
+            method: 'post',
+            path: \`/api/v\${OpenAPI.VERSION}/simple\`
+        });
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @throws ApiError
+     */
+    static async putCallWithoutParametersAndResponse() {
+
+        const result = await request({
+            method: 'put',
+            path: \`/api/v\${OpenAPI.VERSION}/simple\`
+        });
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+}"
+`;
+
+exports[`generation javascript file(./test/result/v2/javascript/services/TypesService.js): ./test/result/v2/javascript/services/TypesService.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ApiError, catchGenericError } from '../core/ApiError';
+import { request } from '../core/request';
+import { OpenAPI } from '../core/OpenAPI';
+
+export class TypesService {
+
+    /**
+     * @param parameterNumber This is a number parameter
+     * @param parameterString This is a string parameter
+     * @param parameterBoolean This is a boolean parameter
+     * @param parameterObject This is an object parameter
+     * @param parameterArray This is an array parameter
+     * @param parameterDictionary This is a dictionary parameter
+     * @param id This is a number parameter
+     * @result number Response is a simple number
+     * @result string Response is a simple string
+     * @result boolean Response is a simple boolean
+     * @result any Response is a simple object
+     * @throws ApiError
+     */
+    static async types(
+        parameterNumber = 123,
+        parameterString = 'default',
+        parameterBoolean = true,
+        parameterObject = null,
+        parameterArray,
+        parameterDictionary,
+        id
+    ) {
+
+        const result = await request({
+            method: 'get',
+            path: \`/api/v\${OpenAPI.VERSION}/types\`,
+            query: {
+                'parameterNumber': parameterNumber,
+                'parameterString': parameterString,
+                'parameterBoolean': parameterBoolean,
+                'parameterObject': parameterObject,
+                'parameterArray': parameterArray,
+                'parameterDictionary': parameterDictionary
+            }
+        });
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+}"
+`;
+
+exports[`generation typescript file(./test/result/v2/typescript/core/ApiError.ts): ./test/result/v2/typescript/core/ApiError.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { isSuccess } from './isSuccess';
+import { Result } from './Result';
+
+export class ApiError extends Error {
+
+    public readonly url: string;
+    public readonly status: number;
+    public readonly statusText: string;
+    public readonly body: any;
+
+    constructor(result: Readonly<Result>, message: string) {
+        super(message);
+
+        this.url = result.url;
+        this.status = result.status;
+        this.statusText = result.statusText;
+        this.body = result.body;
+    }
+}
+
+export namespace ApiError {
+    export enum Message {
+        BAD_REQUEST = 'Bad Request',
+        UNAUTHORIZED = 'Unauthorized',
+        FORBIDDEN = 'Forbidden',
+        NOT_FOUND = 'Not Found',
+        INTERNAL_SERVER_ERROR = 'Internal Server Error',
+        BAD_GATEWAY = 'Bad Gateway',
+        SERVICE_UNAVAILABLE = 'Service Unavailable',
+        GENERIC_ERROR = 'Generic Error',
+    }
+}
+
+/**
+ * Catch common errors (based on status code).
+ * @param result
+ */
+export function catchGenericError(result: Result): void {
+    switch (result.status) {
+        case 400: throw new ApiError(result, ApiError.Message.BAD_REQUEST);
+        case 401: throw new ApiError(result, ApiError.Message.UNAUTHORIZED);
+        case 403: throw new ApiError(result, ApiError.Message.FORBIDDEN);
+        case 404: throw new ApiError(result, ApiError.Message.NOT_FOUND);
+        case 500: throw new ApiError(result, ApiError.Message.INTERNAL_SERVER_ERROR);
+        case 502: throw new ApiError(result, ApiError.Message.BAD_GATEWAY);
+        case 503: throw new ApiError(result, ApiError.Message.SERVICE_UNAVAILABLE);
+    }
+
+    if (!isSuccess(result.status)) {
+        throw new ApiError(result, ApiError.Message.GENERIC_ERROR);
+    }
+}
+"
+`;
+
+exports[`generation typescript file(./test/result/v2/typescript/core/OpenAPI.ts): ./test/result/v2/typescript/core/OpenAPI.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+export namespace OpenAPI {
+    export let BASE = 'http://localhost:8080/api';
+    export let VERSION = '9.0';
+    export let CLIENT = 'fetch';
+    export let TOKEN = '';
+}"
+`;
+
+exports[`generation typescript file(./test/result/v2/typescript/core/RequestOptions.ts): ./test/result/v2/typescript/core/RequestOptions.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+export interface RequestOptions {
+    method: 'get' | 'put' | 'post' | 'delete' | 'options' | 'head' | 'patch';
+    path: string;
+    headers?: { [key: string]: any };
+    query?: { [key: string]: any };
+    formData?: { [key: string]: any };
+    body?: any;
+}
+"
+`;
+
+exports[`generation typescript file(./test/result/v2/typescript/core/Result.ts): ./test/result/v2/typescript/core/Result.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+export interface Result {
+    url: string;
+    ok: boolean;
+    status: number;
+    statusText: string;
+    body: any;
+}
+"
+`;
+
+exports[`generation typescript file(./test/result/v2/typescript/core/getFormData.ts): ./test/result/v2/typescript/core/getFormData.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+/**
+ * Get FormData from object. This method is needed to upload
+ * multipart form data to the REST API.
+ * @param params Key value based object.
+ */
+export function getFormData(params: { [key: string]: any }): FormData {
+    const formData = new FormData();
+    for (const key in params) {
+        if (typeof params[key] !== 'undefined') {
+            const value: any = params[key];
+            if (value !== undefined && value !== null) {
+                formData.append(key, value);
+            }
+        }
+    }
+    return formData;
+}
+"
+`;
+
+exports[`generation typescript file(./test/result/v2/typescript/core/getQueryString.ts): ./test/result/v2/typescript/core/getQueryString.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+/**
+ * Get query string from query parameters object. This method also
+ * supports multi-value items by creating a key for each item.
+ * @param params Key value based object.
+ */
+export function getQueryString(params: { [key: string]: any }): string {
+    const qs: string[] = [];
+    for (const key in params) {
+        if (typeof params[key] !== 'undefined') {
+            const value: any = params[key];
+            if (value !== undefined && value !== null) {
+                if (Array.isArray(value)) {
+                    value.forEach(value => {
+                        qs.push(\`\${encodeURIComponent(key)}=\${encodeURIComponent(String(value))}\`);
+                    });
+                } else {
+                    qs.push(\`\${encodeURIComponent(key)}=\${encodeURIComponent(String(value))}\`);
+                }
+            }
+        }
+    }
+    if (qs.length > 0) {
+        return \`?\${qs.join('&')}\`;
+    }
+    return '';
+}
+"
+`;
+
+exports[`generation typescript file(./test/result/v2/typescript/core/isSuccess.ts): ./test/result/v2/typescript/core/isSuccess.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+/**
+ * Check success response code.
+ * @param status Status code
+ */
+export function isSuccess(status: number): boolean {
+    return status >= 200 && status < 300;
+}
+"
+`;
+
+exports[`generation typescript file(./test/result/v2/typescript/core/request.ts): ./test/result/v2/typescript/core/request.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import {getFormData} from './getFormData';
+import {getQueryString} from './getQueryString';
+import {OpenAPI} from './OpenAPI';
+import {RequestOptions} from './RequestOptions';
+import {requestUsingFetch} from './requestUsingFetch';
+import {requestUsingXHR} from './requestUsingXHR';
+import {Result} from './Result';
+
+/**
+ * Create the request.
+ * @param options Request method options.
+ * @returns Result object (see above)
+ */
+export async function request(options: Readonly<RequestOptions>): Promise<Result> {
+
+    // Create the request URL
+    let url = \`\${OpenAPI.BASE}\${options.path}\`;
+
+    // Create request headers
+    const headers = new Headers({
+        ...options.headers,
+        Accept: 'application/json'
+    });
+
+    // Create request settings
+    const request: RequestInit = {
+        headers,
+        method: options.method,
+        credentials: 'same-origin'
+    };
+
+    // If we have a bearer token then we set the authentication header.
+    if (OpenAPI.TOKEN !== null && OpenAPI.TOKEN !== '') {
+        headers.append('Authorization', \`Bearer \${OpenAPI.TOKEN}\`);
+    }
+
+    // Add the query parameters (if defined).
+    if (options.query) {
+        url += getQueryString(options.query);
+    }
+
+    // Append formData as body
+    if (options.formData) {
+        request.body = getFormData(options.formData);
+    } else if (options.body) {
+
+        // If this is blob data, then pass it directly to the body and set content type.
+        // Otherwise we just convert request data to JSON string (needed for fetch api)
+        if (options.body instanceof Blob) {
+            request.body = options.body;
+            if (options.body.type) {
+                headers.append('Content-Type', options.body.type);
+            }
+        } else {
+            request.body = JSON.stringify(options.body);
+            headers.append('Content-Type', 'application/json');
+        }
+    }
+
+    try {
+        switch (OpenAPI.CLIENT) {
+            case 'xhr':
+                return await requestUsingXHR(url, request);
+            default:
+                return await requestUsingFetch(url, request);
+        }
+    } catch (error) {
+        return {
+            url,
+            ok: false,
+            status: 0,
+            statusText: '',
+            body: error
+        };
+    }
+}
+"
+`;
+
+exports[`generation typescript file(./test/result/v2/typescript/core/requestUsingFetch.ts): ./test/result/v2/typescript/core/requestUsingFetch.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { Result } from './Result';
+
+/**
+ * Request content using the new Fetch API. This is the default API that is used and
+ * is create for all JSON, XML and text objects. However it is limited to UTF-8.
+ * This is a problem for some of the Docs content, since that requires UTF-16!
+ * @param url The url to request.
+ * @param request The request object, containing method, headers, body, etc.
+ */
+export async function requestUsingFetch(url: string, request: Readonly<RequestInit>): Promise<Result> {
+
+    // Fetch response using fetch API.
+    const response = await fetch(url, request);
+
+    // Create result object.
+    const result: Result = {
+        url,
+        ok: response.ok,
+        status: response.status,
+        statusText: response.statusText,
+        body: null
+    };
+
+    // Try to parse the content for any response status code.
+    // We check the \\"Content-Type\\" header to see if we need to parse the
+    // content as json or as plain text.
+    const contentType = response.headers.get('Content-Type');
+    if (contentType) {
+        switch (contentType.toLowerCase()) {
+            case 'application/json':
+            case 'application/json; charset=utf-8':
+                result.body = await response.json();
+                break;
+
+            case 'text/plain':
+            case 'text/xml':
+            case 'text/xml; charset=utf-8':
+            case 'text/xml; charset=utf-16':
+                result.body = await response.text();
+                break;
+        }
+    }
+
+    return result;
+}
+"
+`;
+
+exports[`generation typescript file(./test/result/v2/typescript/core/requestUsingXHR.ts): ./test/result/v2/typescript/core/requestUsingXHR.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { Result } from './Result';
+import { isSuccess } from './isSuccess';
+
+/**
+ * Request content using the new legacy XMLHttpRequest API. This method is useful
+ * when we want to request UTF-16 content, since it natively supports loading UTF-16.
+ * We could do the same with the Fetch API, but then we will need to convert the
+ * content using JavaScript... And that is very very slow.
+ * @param url The url to request.
+ * @param request The request object, containing method, headers, body, etc.
+ */
+export async function requestUsingXHR(url: string, request: Readonly<RequestInit>): Promise<Result> {
+    return new Promise(resolve => {
+        const xhr = new XMLHttpRequest();
+
+        // Open the request, remember to do this before adding any headers,
+        // because the request needs to be initialized!
+        xhr.open(request.method!, url, true);
+
+        // Add the headers (required when dealing with JSON)
+        const headers = request.headers as Headers;
+        headers.forEach((value: string, key: string): void => {
+            xhr.setRequestHeader(key, value);
+        });
+
+        // Register the readystate handler, this will fire when the request is done.
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+
+                // Create result object.
+                const result: Result = {
+                    url,
+                    ok: isSuccess(xhr.status),
+                    status: xhr.status,
+                    statusText: xhr.statusText,
+                    body: null
+                };
+
+                // Try to parse the content for any response status code.
+                // We check the \\"Content-Type\\" header to see if we need to parse the
+                // content as json or as plain text.
+                const contentType = xhr.getResponseHeader('Content-Type');
+                if (contentType) {
+                    switch (contentType.toLowerCase()) {
+                        case 'application/json':
+                        case 'application/json; charset=utf-8':
+                            result.body = JSON.parse(xhr.responseText);
+                            break;
+
+                        case 'text/plain':
+                        case 'text/xml':
+                        case 'text/xml; charset=utf-8':
+                        case 'text/xml; charset=utf-16':
+                            result.body = xhr.responseText;
+                            break;
+                    }
+                }
+
+                // Done!
+                resolve(result);
+            }
+        };
+
+        // Start the request!
+        xhr.send(request.body);
+    });
+}
+"
+`;
+
+exports[`generation typescript file(./test/result/v2/typescript/index.ts): ./test/result/v2/typescript/index.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+export { ApiError } from './core/ApiError';
+export { isSuccess } from './core/isSuccess';
+export { OpenAPI } from './core/OpenAPI';
+
+export { ArrayWithArray } from './models/ArrayWithArray';
+export { ArrayWithBooleans } from './models/ArrayWithBooleans';
+export { ArrayWithNumbers } from './models/ArrayWithNumbers';
+export { ArrayWithProperties } from './models/ArrayWithProperties';
+export { ArrayWithReferences } from './models/ArrayWithReferences';
+export { ArrayWithStrings } from './models/ArrayWithStrings';
+export { Dictionary } from './models/Dictionary';
+export { DictionaryWithArray } from './models/DictionaryWithArray';
+export { DictionaryWithDictionary } from './models/DictionaryWithDictionary';
+export { DictionaryWithProperties } from './models/DictionaryWithProperties';
+export { DictionaryWithReference } from './models/DictionaryWithReference';
+export { DictionaryWithString } from './models/DictionaryWithString';
+export { EnumFromDescription } from './models/EnumFromDescription';
+export { EnumWithNumbers } from './models/EnumWithNumbers';
+export { EnumWithStrings } from './models/EnumWithStrings';
+export { ModelLink } from './models/ModelLink';
+export { ModelThatExtends } from './models/ModelThatExtends';
+export { ModelThatExtendsExtends } from './models/ModelThatExtendsExtends';
+export { ModelWithArray } from './models/ModelWithArray';
+export { ModelWithBoolean } from './models/ModelWithBoolean';
+export { ModelWithCircularReference } from './models/ModelWithCircularReference';
+export { ModelWithDictionary } from './models/ModelWithDictionary';
+export { ModelWithDuplicateImports } from './models/ModelWithDuplicateImports';
+export { ModelWithDuplicateProperties } from './models/ModelWithDuplicateProperties';
+export { ModelWithEnum } from './models/ModelWithEnum';
+export { ModelWithEnumFromDescription } from './models/ModelWithEnumFromDescription';
+export { ModelWithInteger } from './models/ModelWithInteger';
+export { ModelWithLink } from './models/ModelWithLink';
+export { ModelWithNestedProperties } from './models/ModelWithNestedProperties';
+export { ModelWithReference } from './models/ModelWithReference';
+export { ModelWithString } from './models/ModelWithString';
+export { SimpleBoolean } from './models/SimpleBoolean';
+export { SimpleFile } from './models/SimpleFile';
+export { SimpleInteger } from './models/SimpleInteger';
+export { SimpleReference } from './models/SimpleReference';
+export { SimpleString } from './models/SimpleString';
+
+export { ComplexService } from './services/ComplexService';
+export { ParametersService } from './services/ParametersService';
+export { ResponseService } from './services/ResponseService';
+export { SimpleService } from './services/SimpleService';
+export { TypesService } from './services/TypesService';
+"
+`;
+
+exports[`generation typescript file(./test/result/v2/typescript/models/ArrayWithArray.ts): ./test/result/v2/typescript/models/ArrayWithArray.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ModelWithString } from '../models/ModelWithString';
+import * as yup from 'yup';
+
+/**
+ * This is a simple array containing an array
+ */
+export type ArrayWithArray = Array<Array<ModelWithString>>;
+
+export namespace ArrayWithArray {
+
+    export const schema = yup.array<Array<ModelWithString>>().of(yup.array<ModelWithString>().of(ModelWithString.schema));
+
+    export async function validate(value: any): Promise<ArrayWithArray> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): ArrayWithArray {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation typescript file(./test/result/v2/typescript/models/ArrayWithBooleans.ts): ./test/result/v2/typescript/models/ArrayWithBooleans.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+/**
+ * This is a simple array with booleans
+ */
+export type ArrayWithBooleans = Array<boolean>;
+
+export namespace ArrayWithBooleans {
+
+    export const schema = yup.array<boolean>().of(yup.boolean());
+
+    export async function validate(value: any): Promise<ArrayWithBooleans> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): ArrayWithBooleans {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation typescript file(./test/result/v2/typescript/models/ArrayWithNumbers.ts): ./test/result/v2/typescript/models/ArrayWithNumbers.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+/**
+ * This is a simple array with numbers
+ */
+export type ArrayWithNumbers = Array<number>;
+
+export namespace ArrayWithNumbers {
+
+    export const schema = yup.array<number>().of(yup.number());
+
+    export async function validate(value: any): Promise<ArrayWithNumbers> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): ArrayWithNumbers {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation typescript file(./test/result/v2/typescript/models/ArrayWithProperties.ts): ./test/result/v2/typescript/models/ArrayWithProperties.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+/**
+ * This is a simple array with properties
+ */
+export type ArrayWithProperties = Array<{
+    foo?: string,
+    bar?: string
+}>;
+
+export namespace ArrayWithProperties {
+
+    export const schema = yup.array<{
+        foo?: string,
+        bar?: string
+    }>().of((
+        yup.object().shape({
+            foo: yup.lazy(() => yup.string().default(undefined)),
+            bar: yup.lazy(() => yup.string().default(undefined))
+        }).noUnknown()
+    ));
+
+    export async function validate(value: any): Promise<ArrayWithProperties> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): ArrayWithProperties {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation typescript file(./test/result/v2/typescript/models/ArrayWithReferences.ts): ./test/result/v2/typescript/models/ArrayWithReferences.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ModelWithString } from '../models/ModelWithString';
+import * as yup from 'yup';
+
+/**
+ * This is a simple array with references
+ */
+export type ArrayWithReferences = Array<ModelWithString>;
+
+export namespace ArrayWithReferences {
+
+    export const schema = yup.array<ModelWithString>().of(ModelWithString.schema);
+
+    export async function validate(value: any): Promise<ArrayWithReferences> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): ArrayWithReferences {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation typescript file(./test/result/v2/typescript/models/ArrayWithStrings.ts): ./test/result/v2/typescript/models/ArrayWithStrings.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+/**
+ * This is a simple array with strings
+ */
+export type ArrayWithStrings = Array<string>;
+
+export namespace ArrayWithStrings {
+
+    export const schema = yup.array<string>().of(yup.string());
+
+    export async function validate(value: any): Promise<ArrayWithStrings> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): ArrayWithStrings {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation typescript file(./test/result/v2/typescript/models/Dictionary.ts): ./test/result/v2/typescript/models/Dictionary.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+export interface Dictionary<T> {
+    [key: string]: T;
+}
+"
+`;
+
+exports[`generation typescript file(./test/result/v2/typescript/models/DictionaryWithArray.ts): ./test/result/v2/typescript/models/DictionaryWithArray.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { Dictionary } from '../models/Dictionary';
+import { ModelWithString } from '../models/ModelWithString';
+import * as yup from 'yup';
+
+/**
+ * This is a complex dictionary
+ */
+export type DictionaryWithArray = Dictionary<Array<ModelWithString>>;
+
+export namespace DictionaryWithArray {
+
+    export const schema = yup.lazy<Dictionary<Array<ModelWithString>>>(value => {
+        return yup.object<Dictionary<Array<ModelWithString>>>().shape(
+            Object.entries(value).reduce((obj, item) => ({
+                ...obj,
+                [item[0]]: yup.array<ModelWithString>().of(ModelWithString.schema)
+            }), {})
+        );
+    });
+
+    export async function validate(value: any): Promise<DictionaryWithArray> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): DictionaryWithArray {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation typescript file(./test/result/v2/typescript/models/DictionaryWithDictionary.ts): ./test/result/v2/typescript/models/DictionaryWithDictionary.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { Dictionary } from '../models/Dictionary';
+import * as yup from 'yup';
+
+/**
+ * This is a string dictionary
+ */
+export type DictionaryWithDictionary = Dictionary<Dictionary<string>>;
+
+export namespace DictionaryWithDictionary {
+
+    export const schema = yup.lazy<Dictionary<Dictionary<string>>>(value => {
+        return yup.object<Dictionary<Dictionary<string>>>().shape(
+            Object.entries(value).reduce((obj, item) => ({
+                ...obj,
+                [item[0]]: yup.lazy<Dictionary<string>>(value => {
+                    return yup.object<Dictionary<string>>().shape(
+                        Object.entries(value).reduce((obj, item) => ({
+                            ...obj,
+                            [item[0]]: yup.string()
+                        }), {})
+                    );
+                })
+            }), {})
+        );
+    });
+
+    export async function validate(value: any): Promise<DictionaryWithDictionary> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): DictionaryWithDictionary {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation typescript file(./test/result/v2/typescript/models/DictionaryWithProperties.ts): ./test/result/v2/typescript/models/DictionaryWithProperties.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { Dictionary } from '../models/Dictionary';
+import * as yup from 'yup';
+
+/**
+ * This is a complex dictionary
+ */
+export type DictionaryWithProperties = Dictionary<{
+    foo?: string,
+    bar?: string
+}>;
+
+export namespace DictionaryWithProperties {
+
+    export const schema = yup.lazy<Dictionary<{
+        foo?: string,
+        bar?: string
+    }>>(value => {
+        return yup.object<Dictionary<{
+            foo?: string,
+            bar?: string
+        }>>().shape(
+            Object.entries(value).reduce((obj, item) => ({
+                ...obj,
+                [item[0]]: (
+                    yup.object().shape({
+                        foo: yup.lazy(() => yup.string().default(undefined)),
+                        bar: yup.lazy(() => yup.string().default(undefined))
+                    }).noUnknown()
+                )
+            }), {})
+        );
+    });
+
+    export async function validate(value: any): Promise<DictionaryWithProperties> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): DictionaryWithProperties {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation typescript file(./test/result/v2/typescript/models/DictionaryWithReference.ts): ./test/result/v2/typescript/models/DictionaryWithReference.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { Dictionary } from '../models/Dictionary';
+import { ModelWithString } from '../models/ModelWithString';
+import * as yup from 'yup';
+
+/**
+ * This is a string reference
+ */
+export type DictionaryWithReference = Dictionary<ModelWithString>;
+
+export namespace DictionaryWithReference {
+
+    export const schema = yup.lazy<Dictionary<ModelWithString>>(value => {
+        return yup.object<Dictionary<ModelWithString>>().shape(
+            Object.entries(value).reduce((obj, item) => ({
+                ...obj,
+                [item[0]]: ModelWithString.schema
+            }), {})
+        );
+    });
+
+    export async function validate(value: any): Promise<DictionaryWithReference> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): DictionaryWithReference {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation typescript file(./test/result/v2/typescript/models/DictionaryWithString.ts): ./test/result/v2/typescript/models/DictionaryWithString.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { Dictionary } from '../models/Dictionary';
+import * as yup from 'yup';
+
+/**
+ * This is a string dictionary
+ */
+export type DictionaryWithString = Dictionary<string>;
+
+export namespace DictionaryWithString {
+
+    export const schema = yup.lazy<Dictionary<string>>(value => {
+        return yup.object<Dictionary<string>>().shape(
+            Object.entries(value).reduce((obj, item) => ({
+                ...obj,
+                [item[0]]: yup.string()
+            }), {})
+        );
+    });
+
+    export async function validate(value: any): Promise<DictionaryWithString> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): DictionaryWithString {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation typescript file(./test/result/v2/typescript/models/EnumFromDescription.ts): ./test/result/v2/typescript/models/EnumFromDescription.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+/**
+ * Success=1,Warning=2,Error=3
+ */
+export enum EnumFromDescription {
+    ERROR = 3,
+    SUCCESS = 1,
+    WARNING = 2
+}
+
+export namespace EnumFromDescription {
+
+    export const schema = yup.mixed<EnumFromDescription>().oneOf([
+        EnumFromDescription.ERROR,
+        EnumFromDescription.SUCCESS,
+        EnumFromDescription.WARNING
+    ]);
+
+    export async function validate(value: any): Promise<EnumFromDescription> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): EnumFromDescription {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation typescript file(./test/result/v2/typescript/models/EnumWithNumbers.ts): ./test/result/v2/typescript/models/EnumWithNumbers.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+/**
+ * This is a simple enum with numbers
+ */
+export enum EnumWithNumbers {
+    NUM_1 = 1,
+    NUM_2 = 2,
+    NUM_3 = 3
+}
+
+export namespace EnumWithNumbers {
+
+    export const schema = yup.mixed<EnumWithNumbers>().oneOf([
+        EnumWithNumbers.NUM_1,
+        EnumWithNumbers.NUM_2,
+        EnumWithNumbers.NUM_3
+    ]);
+
+    export async function validate(value: any): Promise<EnumWithNumbers> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): EnumWithNumbers {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation typescript file(./test/result/v2/typescript/models/EnumWithStrings.ts): ./test/result/v2/typescript/models/EnumWithStrings.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+/**
+ * This is a simple enum with strings
+ */
+export enum EnumWithStrings {
+    ERROR = 'Error',
+    SUCCESS = 'Success',
+    WARNING = 'Warning'
+}
+
+export namespace EnumWithStrings {
+
+    export const schema = yup.mixed<EnumWithStrings>().oneOf([
+        EnumWithStrings.ERROR,
+        EnumWithStrings.SUCCESS,
+        EnumWithStrings.WARNING
+    ]);
+
+    export async function validate(value: any): Promise<EnumWithStrings> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): EnumWithStrings {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation typescript file(./test/result/v2/typescript/models/ModelLink.ts): ./test/result/v2/typescript/models/ModelLink.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+/**
+ * This is a model that can have a template??
+ */
+export interface ModelLink {
+    id?: string;
+}
+
+export namespace ModelLink {
+
+    export const schema: yup.ObjectSchema<ModelLink> = (
+        yup.object<ModelLink>().shape({
+            id: yup.lazy(() => yup.string().default(undefined))
+        }).noUnknown()
+    );
+
+    export async function validate(value: any): Promise<ModelLink> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): ModelLink {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation typescript file(./test/result/v2/typescript/models/ModelThatExtends.ts): ./test/result/v2/typescript/models/ModelThatExtends.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ModelWithString } from '../models/ModelWithString';
+import * as yup from 'yup';
+
+/**
+ * This is a model that extends another model
+ */
+export interface ModelThatExtends extends ModelWithString {
+    propExtendsA?: string;
+    propExtendsB?: ModelWithString;
+}
+
+export namespace ModelThatExtends {
+
+    export const schema: yup.ObjectSchema<ModelThatExtends> = (
+        ModelWithString.schema.concat(
+            yup.object<ModelThatExtends>().shape({
+                propExtendsA: yup.lazy(() => yup.string().default(undefined)),
+                propExtendsB: yup.lazy(() => ModelWithString.schema.default(undefined))
+            }).noUnknown()
+        )
+    );
+
+    export async function validate(value: any): Promise<ModelThatExtends> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): ModelThatExtends {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation typescript file(./test/result/v2/typescript/models/ModelThatExtendsExtends.ts): ./test/result/v2/typescript/models/ModelThatExtendsExtends.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ModelThatExtends } from '../models/ModelThatExtends';
+import { ModelWithString } from '../models/ModelWithString';
+import * as yup from 'yup';
+
+/**
+ * This is a model that extends another model
+ */
+export interface ModelThatExtendsExtends extends ModelWithString, ModelThatExtends {
+    propExtendsC?: string;
+    propExtendsD?: ModelWithString;
+}
+
+export namespace ModelThatExtendsExtends {
+
+    export const schema: yup.ObjectSchema<ModelThatExtendsExtends> = (
+        ModelWithString.schema.concat(
+            ModelThatExtends.schema.concat(
+                yup.object<ModelThatExtendsExtends>().shape({
+                    propExtendsC: yup.lazy(() => yup.string().default(undefined)),
+                    propExtendsD: yup.lazy(() => ModelWithString.schema.default(undefined))
+                }).noUnknown()
+            )
+        )
+    );
+
+    export async function validate(value: any): Promise<ModelThatExtendsExtends> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): ModelThatExtendsExtends {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation typescript file(./test/result/v2/typescript/models/ModelWithArray.ts): ./test/result/v2/typescript/models/ModelWithArray.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ModelWithString } from '../models/ModelWithString';
+import * as yup from 'yup';
+
+/**
+ * This is a model with one property containing an array
+ */
+export interface ModelWithArray {
+    prop?: Array<ModelWithString>;
+}
+
+export namespace ModelWithArray {
+
+    export const schema: yup.ObjectSchema<ModelWithArray> = (
+        yup.object<ModelWithArray>().shape({
+            prop: yup.lazy(() => yup.array<ModelWithString>().of(ModelWithString.schema).default(undefined))
+        }).noUnknown()
+    );
+
+    export async function validate(value: any): Promise<ModelWithArray> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): ModelWithArray {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation typescript file(./test/result/v2/typescript/models/ModelWithBoolean.ts): ./test/result/v2/typescript/models/ModelWithBoolean.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+/**
+ * This is a model with one boolean property
+ */
+export interface ModelWithBoolean {
+    /**
+     * This is a simple boolean property
+     */
+    prop?: boolean;
+}
+
+export namespace ModelWithBoolean {
+
+    export const schema: yup.ObjectSchema<ModelWithBoolean> = (
+        yup.object<ModelWithBoolean>().shape({
+            prop: yup.lazy(() => yup.boolean().default(undefined))
+        }).noUnknown()
+    );
+
+    export async function validate(value: any): Promise<ModelWithBoolean> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): ModelWithBoolean {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation typescript file(./test/result/v2/typescript/models/ModelWithCircularReference.ts): ./test/result/v2/typescript/models/ModelWithCircularReference.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+/**
+ * This is a model with one property containing a circular reference
+ */
+export interface ModelWithCircularReference {
+    prop?: ModelWithCircularReference;
+}
+
+export namespace ModelWithCircularReference {
+
+    export const schema: yup.ObjectSchema<ModelWithCircularReference> = (
+        yup.object<ModelWithCircularReference>().shape({
+            prop: yup.lazy(() => ModelWithCircularReference.schema.default(undefined))
+        }).noUnknown()
+    );
+
+    export async function validate(value: any): Promise<ModelWithCircularReference> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): ModelWithCircularReference {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation typescript file(./test/result/v2/typescript/models/ModelWithDictionary.ts): ./test/result/v2/typescript/models/ModelWithDictionary.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { Dictionary } from '../models/Dictionary';
+import * as yup from 'yup';
+
+/**
+ * This is a model with one property containing a dictionary
+ */
+export interface ModelWithDictionary {
+    prop?: Dictionary<string>;
+}
+
+export namespace ModelWithDictionary {
+
+    export const schema: yup.ObjectSchema<ModelWithDictionary> = (
+        yup.object<ModelWithDictionary>().shape({
+            prop: yup.lazy(() => yup.lazy<Dictionary<string>>(value => {
+                return yup.object<Dictionary<string>>().shape(
+                    Object.entries(value).reduce((obj, item) => ({
+                        ...obj,
+                        [item[0]]: yup.string()
+                    }), {})
+                );
+            }).default(undefined))
+        }).noUnknown()
+    );
+
+    export async function validate(value: any): Promise<ModelWithDictionary> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): ModelWithDictionary {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation typescript file(./test/result/v2/typescript/models/ModelWithDuplicateImports.ts): ./test/result/v2/typescript/models/ModelWithDuplicateImports.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ModelWithString } from '../models/ModelWithString';
+import * as yup from 'yup';
+
+/**
+ * This is a model with duplicated imports
+ */
+export interface ModelWithDuplicateImports {
+    propA?: ModelWithString;
+    propB?: ModelWithString;
+    propC?: ModelWithString;
+}
+
+export namespace ModelWithDuplicateImports {
+
+    export const schema: yup.ObjectSchema<ModelWithDuplicateImports> = (
+        yup.object<ModelWithDuplicateImports>().shape({
+            propA: yup.lazy(() => ModelWithString.schema.default(undefined)),
+            propB: yup.lazy(() => ModelWithString.schema.default(undefined)),
+            propC: yup.lazy(() => ModelWithString.schema.default(undefined))
+        }).noUnknown()
+    );
+
+    export async function validate(value: any): Promise<ModelWithDuplicateImports> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): ModelWithDuplicateImports {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation typescript file(./test/result/v2/typescript/models/ModelWithDuplicateProperties.ts): ./test/result/v2/typescript/models/ModelWithDuplicateProperties.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ModelWithString } from '../models/ModelWithString';
+import * as yup from 'yup';
+
+/**
+ * This is a model with duplicated properties
+ */
+export interface ModelWithDuplicateProperties {
+    prop?: ModelWithString;
+}
+
+export namespace ModelWithDuplicateProperties {
+
+    export const schema: yup.ObjectSchema<ModelWithDuplicateProperties> = (
+        yup.object<ModelWithDuplicateProperties>().shape({
+            prop: yup.lazy(() => ModelWithString.schema.default(undefined))
+        }).noUnknown()
+    );
+
+    export async function validate(value: any): Promise<ModelWithDuplicateProperties> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): ModelWithDuplicateProperties {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation typescript file(./test/result/v2/typescript/models/ModelWithEnum.ts): ./test/result/v2/typescript/models/ModelWithEnum.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+/**
+ * This is a model with one enum
+ */
+export interface ModelWithEnum {
+    /**
+     * This is a simple enum with strings
+     */
+    Test?: ModelWithEnum.Test;
+}
+
+export namespace ModelWithEnum {
+
+    /**
+     * This is a simple enum with strings
+     */
+    export enum Test {
+        SUCCESS = 'Success',
+        WARNING = 'Warning',
+        ERROR = 'Error'
+    }
+
+    export const schema: yup.ObjectSchema<ModelWithEnum> = (
+        yup.object<ModelWithEnum>().shape({
+            Test: yup.lazy(() => yup.mixed<Test>().oneOf([
+                Test.SUCCESS,
+                Test.WARNING,
+                Test.ERROR
+            ]).default(undefined))
+        }).noUnknown()
+    );
+
+    export async function validate(value: any): Promise<ModelWithEnum> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): ModelWithEnum {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation typescript file(./test/result/v2/typescript/models/ModelWithEnumFromDescription.ts): ./test/result/v2/typescript/models/ModelWithEnumFromDescription.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+/**
+ * This is a model with one enum
+ */
+export interface ModelWithEnumFromDescription {
+    /**
+     * Success=1,Warning=2,Error=3
+     */
+    Test?: ModelWithEnumFromDescription.Test;
+}
+
+export namespace ModelWithEnumFromDescription {
+
+    /**
+     * Success=1,Warning=2,Error=3
+     */
+    export enum Test {
+        SUCCESS = 1,
+        WARNING = 2,
+        ERROR = 3
+    }
+
+    export const schema: yup.ObjectSchema<ModelWithEnumFromDescription> = (
+        yup.object<ModelWithEnumFromDescription>().shape({
+            Test: yup.lazy(() => yup.mixed<Test>().oneOf([
+                Test.SUCCESS,
+                Test.WARNING,
+                Test.ERROR
+            ]).default(undefined))
+        }).noUnknown()
+    );
+
+    export async function validate(value: any): Promise<ModelWithEnumFromDescription> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): ModelWithEnumFromDescription {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation typescript file(./test/result/v2/typescript/models/ModelWithInteger.ts): ./test/result/v2/typescript/models/ModelWithInteger.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+/**
+ * This is a model with one number property
+ */
+export interface ModelWithInteger {
+    /**
+     * This is a simple number property
+     */
+    prop?: number;
+}
+
+export namespace ModelWithInteger {
+
+    export const schema: yup.ObjectSchema<ModelWithInteger> = (
+        yup.object<ModelWithInteger>().shape({
+            prop: yup.lazy(() => yup.number().default(undefined))
+        }).noUnknown()
+    );
+
+    export async function validate(value: any): Promise<ModelWithInteger> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): ModelWithInteger {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation typescript file(./test/result/v2/typescript/models/ModelWithLink.ts): ./test/result/v2/typescript/models/ModelWithLink.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ModelLink } from '../models/ModelLink';
+import { ModelWithString } from '../models/ModelWithString';
+import * as yup from 'yup';
+
+/**
+ * This is a model that can have a template??
+ */
+export interface ModelWithLink {
+    prop?: ModelLink;
+}
+
+export namespace ModelWithLink {
+
+    export const schema: yup.ObjectSchema<ModelWithLink> = (
+        yup.object<ModelWithLink>().shape({
+            prop: yup.lazy(() => ModelLink.schema.default(undefined))
+        }).noUnknown()
+    );
+
+    export async function validate(value: any): Promise<ModelWithLink> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): ModelWithLink {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation typescript file(./test/result/v2/typescript/models/ModelWithNestedProperties.ts): ./test/result/v2/typescript/models/ModelWithNestedProperties.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+/**
+ * This is a model with one nested property
+ */
+export interface ModelWithNestedProperties {
+    first?: {
+        second?: {
+            third?: string
+        }
+    };
+}
+
+export namespace ModelWithNestedProperties {
+
+    export const schema: yup.ObjectSchema<ModelWithNestedProperties> = (
+        yup.object<ModelWithNestedProperties>().shape({
+            first: yup.lazy(() => (
+                yup.object().shape({
+                    second: yup.lazy(() => (
+                        yup.object().shape({
+                            third: yup.lazy(() => yup.string().default(undefined))
+                        }).noUnknown()
+                    ).default(undefined))
+                }).noUnknown()
+            ).default(undefined))
+        }).noUnknown()
+    );
+
+    export async function validate(value: any): Promise<ModelWithNestedProperties> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): ModelWithNestedProperties {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation typescript file(./test/result/v2/typescript/models/ModelWithReference.ts): ./test/result/v2/typescript/models/ModelWithReference.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ModelWithString } from '../models/ModelWithString';
+import * as yup from 'yup';
+
+/**
+ * This is a model with one property containing a reference
+ */
+export interface ModelWithReference {
+    prop?: ModelWithString;
+}
+
+export namespace ModelWithReference {
+
+    export const schema: yup.ObjectSchema<ModelWithReference> = (
+        yup.object<ModelWithReference>().shape({
+            prop: yup.lazy(() => ModelWithString.schema.default(undefined))
+        }).noUnknown()
+    );
+
+    export async function validate(value: any): Promise<ModelWithReference> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): ModelWithReference {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation typescript file(./test/result/v2/typescript/models/ModelWithString.ts): ./test/result/v2/typescript/models/ModelWithString.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+/**
+ * This is a model with one string property
+ */
+export interface ModelWithString {
+    /**
+     * This is a simple string property
+     */
+    prop?: string;
+}
+
+export namespace ModelWithString {
+
+    export const schema: yup.ObjectSchema<ModelWithString> = (
+        yup.object<ModelWithString>().shape({
+            prop: yup.lazy(() => yup.string().default(undefined))
+        }).noUnknown()
+    );
+
+    export async function validate(value: any): Promise<ModelWithString> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): ModelWithString {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation typescript file(./test/result/v2/typescript/models/SimpleBoolean.ts): ./test/result/v2/typescript/models/SimpleBoolean.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+/**
+ * This is a simple boolean
+ */
+export type SimpleBoolean = boolean;
+
+export namespace SimpleBoolean {
+
+    export const schema = yup.boolean();
+
+    export async function validate(value: any): Promise<SimpleBoolean> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): SimpleBoolean {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation typescript file(./test/result/v2/typescript/models/SimpleFile.ts): ./test/result/v2/typescript/models/SimpleFile.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+/**
+ * This is a simple file
+ */
+export type SimpleFile = File;
+
+export namespace SimpleFile {
+
+    export const schema = yup.mixed<File>();
+
+    export async function validate(value: any): Promise<SimpleFile> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): SimpleFile {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation typescript file(./test/result/v2/typescript/models/SimpleInteger.ts): ./test/result/v2/typescript/models/SimpleInteger.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+/**
+ * This is a simple number
+ */
+export type SimpleInteger = number;
+
+export namespace SimpleInteger {
+
+    export const schema = yup.number();
+
+    export async function validate(value: any): Promise<SimpleInteger> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): SimpleInteger {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation typescript file(./test/result/v2/typescript/models/SimpleReference.ts): ./test/result/v2/typescript/models/SimpleReference.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ModelWithString } from '../models/ModelWithString';
+import * as yup from 'yup';
+
+/**
+ * This is a simple reference
+ */
+export type SimpleReference = ModelWithString;
+
+export namespace SimpleReference {
+
+    export const schema = ModelWithString.schema;
+
+    export async function validate(value: any): Promise<SimpleReference> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): SimpleReference {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation typescript file(./test/result/v2/typescript/models/SimpleString.ts): ./test/result/v2/typescript/models/SimpleString.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import * as yup from 'yup';
+
+/**
+ * This is a simple string
+ */
+export type SimpleString = string;
+
+export namespace SimpleString {
+
+    export const schema = yup.string();
+
+    export async function validate(value: any): Promise<SimpleString> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): SimpleString {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation typescript file(./test/result/v2/typescript/services/ComplexService.ts): ./test/result/v2/typescript/services/ComplexService.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ModelWithString } from '../models/ModelWithString';
+import { ApiError, catchGenericError } from '../core/ApiError';
+import { request } from '../core/request';
+import { OpenAPI } from '../core/OpenAPI';
+
+export class ComplexService {
+
+    /**
+     * @param parameterObject Parameter containing object
+     * @param parameterReference Parameter containing reference
+     * @result ModelWithString Successful response
+     * @throws ApiError
+     */
+    public static async complexTypes(
+        parameterObject: {
+            first?: {
+                second?: {
+                    third?: string
+                }
+            }
+        },
+        parameterReference: ModelWithString
+    ): Promise<Array<ModelWithString>> {
+
+        const result = await request({
+            method: 'get',
+            path: \`/api/v\${OpenAPI.VERSION}/complex\`,
+            query: {
+                'parameterObject': parameterObject,
+                'parameterReference': parameterReference
+            }
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`400 server error\`);
+                case 500: throw new ApiError(result, \`500 server error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+}"
+`;
+
+exports[`generation typescript file(./test/result/v2/typescript/services/ParametersService.ts): ./test/result/v2/typescript/services/ParametersService.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ApiError, catchGenericError } from '../core/ApiError';
+import { request } from '../core/request';
+import { OpenAPI } from '../core/OpenAPI';
+
+export class ParametersService {
+
+    /**
+     * @param parameterHeader This is the parameter that goes into the request header
+     * @param parameterQuery This is the parameter that goes into the request query params
+     * @param parameterForm This is the parameter that goes into the request form data
+     * @param parameterBody This is the parameter that is send as request body
+     * @throws ApiError
+     */
+    public static async callWithParameters(
+        parameterHeader: string,
+        parameterQuery: string,
+        parameterForm: string,
+        parameterBody: string
+    ): Promise<void> {
+
+        const result = await request({
+            method: 'get',
+            path: \`/api/v\${OpenAPI.VERSION}/parameters\`,
+            headers: {
+                'parameterHeader': parameterHeader
+            },
+            query: {
+                'parameterQuery': parameterQuery
+            },
+            formData: {
+                'parameterForm': parameterForm
+            },
+            body: parameterBody
+        });
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+}"
+`;
+
+exports[`generation typescript file(./test/result/v2/typescript/services/ResponseService.ts): ./test/result/v2/typescript/services/ResponseService.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ModelThatExtends } from '../models/ModelThatExtends';
+import { ModelThatExtendsExtends } from '../models/ModelThatExtendsExtends';
+import { ModelWithString } from '../models/ModelWithString';
+import { ApiError, catchGenericError } from '../core/ApiError';
+import { request } from '../core/request';
+import { OpenAPI } from '../core/OpenAPI';
+
+export class ResponseService {
+
+    /**
+     * @result ModelWithString Message for default response
+     * @throws ApiError
+     */
+    public static async callWithDuplicateResponses(): Promise<ModelWithString> {
+
+        const result = await request({
+            method: 'post',
+            path: \`/api/v\${OpenAPI.VERSION}/response\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 500: throw new ApiError(result, \`Message for 500 error\`);
+                case 501: throw new ApiError(result, \`Message for 501 error\`);
+                case 502: throw new ApiError(result, \`Message for 502 error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @result ModelWithString Message for default response
+     * @throws ApiError
+     */
+    public static async callWithResponse(): Promise<ModelWithString> {
+
+        const result = await request({
+            method: 'get',
+            path: \`/api/v\${OpenAPI.VERSION}/response\`
+        });
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @result ModelWithString Message for default response
+     * @result ModelThatExtends Message for 201 response
+     * @result ModelThatExtendsExtends Message for 202 response
+     * @throws ApiError
+     */
+    public static async callWithResponses(): Promise<ModelWithString | ModelThatExtends | ModelThatExtendsExtends> {
+
+        const result = await request({
+            method: 'put',
+            path: \`/api/v\${OpenAPI.VERSION}/response\`
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 500: throw new ApiError(result, \`Message for 500 error\`);
+                case 501: throw new ApiError(result, \`Message for 501 error\`);
+                case 502: throw new ApiError(result, \`Message for 502 error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+}"
+`;
+
+exports[`generation typescript file(./test/result/v2/typescript/services/SimpleService.ts): ./test/result/v2/typescript/services/SimpleService.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ApiError, catchGenericError } from '../core/ApiError';
+import { request } from '../core/request';
+import { OpenAPI } from '../core/OpenAPI';
+
+export class SimpleService {
+
+    /**
+     * @throws ApiError
+     */
+    public static async deleteCallWithoutParametersAndResponse(): Promise<void> {
+
+        const result = await request({
+            method: 'delete',
+            path: \`/api/v\${OpenAPI.VERSION}/simple\`
+        });
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @throws ApiError
+     */
+    public static async getCallWithoutParametersAndResponse(): Promise<void> {
+
+        const result = await request({
+            method: 'get',
+            path: \`/api/v\${OpenAPI.VERSION}/simple\`
+        });
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @throws ApiError
+     */
+    public static async headCallWithoutParametersAndResponse(): Promise<void> {
+
+        const result = await request({
+            method: 'head',
+            path: \`/api/v\${OpenAPI.VERSION}/simple\`
+        });
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @throws ApiError
+     */
+    public static async optionsCallWithoutParametersAndResponse(): Promise<void> {
+
+        const result = await request({
+            method: 'options',
+            path: \`/api/v\${OpenAPI.VERSION}/simple\`
+        });
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @throws ApiError
+     */
+    public static async patchCallWithoutParametersAndResponse(): Promise<void> {
+
+        const result = await request({
+            method: 'patch',
+            path: \`/api/v\${OpenAPI.VERSION}/simple\`
+        });
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @throws ApiError
+     */
+    public static async postCallWithoutParametersAndResponse(): Promise<void> {
+
+        const result = await request({
+            method: 'post',
+            path: \`/api/v\${OpenAPI.VERSION}/simple\`
+        });
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @throws ApiError
+     */
+    public static async putCallWithoutParametersAndResponse(): Promise<void> {
+
+        const result = await request({
+            method: 'put',
+            path: \`/api/v\${OpenAPI.VERSION}/simple\`
+        });
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+}"
+`;
+
+exports[`generation typescript file(./test/result/v2/typescript/services/TypesService.ts): ./test/result/v2/typescript/services/TypesService.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { Dictionary } from '../models/Dictionary';
+import { ApiError, catchGenericError } from '../core/ApiError';
+import { request } from '../core/request';
+import { OpenAPI } from '../core/OpenAPI';
+
+export class TypesService {
+
+    /**
+     * @param parameterNumber This is a number parameter
+     * @param parameterString This is a string parameter
+     * @param parameterBoolean This is a boolean parameter
+     * @param parameterObject This is an object parameter
+     * @param parameterArray This is an array parameter
+     * @param parameterDictionary This is a dictionary parameter
+     * @param id This is a number parameter
+     * @result number Response is a simple number
+     * @result string Response is a simple string
+     * @result boolean Response is a simple boolean
+     * @result any Response is a simple object
+     * @throws ApiError
+     */
+    public static async types(
+        parameterNumber: number = 123,
+        parameterString: string = 'default',
+        parameterBoolean: boolean = true,
+        parameterObject: any = null,
+        parameterArray: Array<string>,
+        parameterDictionary: Dictionary<string>,
+        id?: number
+    ): Promise<number | string | boolean | any> {
+
+        const result = await request({
+            method: 'get',
+            path: \`/api/v\${OpenAPI.VERSION}/types\`,
+            query: {
+                'parameterNumber': parameterNumber,
+                'parameterString': parameterString,
+                'parameterBoolean': parameterBoolean,
+                'parameterObject': parameterObject,
+                'parameterArray': parameterArray,
+                'parameterDictionary': parameterDictionary
+            }
+        });
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+}"
+`;

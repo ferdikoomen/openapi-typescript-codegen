@@ -13,7 +13,11 @@ export function format(s: string): string {
             indent--;
             i--;
         }
-        return `${'    '.repeat(i)}${line}`;
+        const result = `${'    '.repeat(i)}${line}`;
+        if (result.trim() === '') {
+            return '';
+        }
+        return result;
     });
     return lines.join(EOL);
 }

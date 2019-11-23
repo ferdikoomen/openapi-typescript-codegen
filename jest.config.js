@@ -1,4 +1,4 @@
 module.exports = {
-    testRegex: '\\.spec\\.ts$',
+    testRegex: '\\.spec\\.(ts|js)$',
     testEnvironment: 'node'
 };

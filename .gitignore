@@ -10,4 +10,4 @@ junit.xml
 *.iml
 dist
 coverage
-test/tmp
+test/result
