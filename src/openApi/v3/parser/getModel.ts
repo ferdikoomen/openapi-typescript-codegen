@@ -1,0 +1,159 @@
+import { OpenApi } from '../interfaces/OpenApi';
+import { OpenApiSchema } from '../interfaces/OpenApiSchema';
+import { getComment } from './getComment';
+import { getType } from './getType';
+import { Model } from '../../../client/interfaces/Model';
+import { PrimaryType } from './constants';
+import { getEnumType } from './getEnumType';
+import { getEnum } from './getEnum';
+import { getEnumFromDescription } from './getEnumFromDescription';
+import { getModelProperties } from './getModelProperties';
+
+export function getModel(openApi: OpenApi, definition: OpenApiSchema, isProperty: boolean = false, name: string = ''): Model {
+    const model: Model = {
+        name: name,
+        export: 'interface',
+        type: PrimaryType.OBJECT,
+        base: PrimaryType.OBJECT,
+        template: null,
+        link: null,
+        description: getComment(definition.description),
+        isProperty: isProperty,
+        isReadOnly: definition.readOnly || false,
+        isRequired: false,
+        isNullable: false,
+        imports: [],
+        extends: [],
+        enum: [],
+        enums: [],
+        properties: [],
+    };
+
+    if (definition.$ref) {
+        const definitionRef = getType(definition.$ref);
+        model.export = 'reference';
+        model.type = definitionRef.type;
+        model.base = definitionRef.base;
+        model.template = definitionRef.template;
+        model.imports.push(...definitionRef.imports);
+        return model;
+    }
+
+    if (definition.enum) {
+        const enumerators = getEnum(definition.enum);
+        if (enumerators.length) {
+            model.export = 'enum';
+            model.type = getEnumType(enumerators);
+            model.base = PrimaryType.STRING;
+            model.enum.push(...enumerators);
+            return model;
+        }
+    }
+
+    if ((definition.type === 'int' || definition.type === 'integer') && definition.description) {
+        const enumerators = getEnumFromDescription(definition.description);
+        if (enumerators.length) {
+            model.export = 'enum';
+            model.type = getEnumType(enumerators);
+            model.base = PrimaryType.NUMBER;
+            model.enum.push(...enumerators);
+            return model;
+        }
+    }
+
+    if (definition.type === 'array' && definition.items) {
+        if (definition.items.$ref) {
+            const arrayItems = getType(definition.items.$ref);
+            model.export = 'array';
+            model.type = arrayItems.type;
+            model.base = arrayItems.base;
+            model.template = arrayItems.template;
+            model.imports.push(...arrayItems.imports);
+            return model;
+        } else {
+            const arrayItems = getModel(openApi, definition.items, true);
+            model.export = 'array';
+            model.type = arrayItems.type;
+            model.base = arrayItems.base;
+            model.template = arrayItems.template;
+            model.link = arrayItems;
+            model.imports.push(...arrayItems.imports);
+            return model;
+        }
+    }
+
+    if (definition.type === 'object' && definition.additionalProperties && typeof definition.additionalProperties === 'object') {
+        if (definition.additionalProperties.$ref) {
+            const additionalProperties = getType(definition.additionalProperties.$ref);
+            model.export = 'dictionary';
+            model.type = additionalProperties.type;
+            model.base = additionalProperties.base;
+            model.template = additionalProperties.template;
+            model.imports.push(...additionalProperties.imports);
+            model.imports.push('Dictionary');
+            return model;
+        } else {
+            const additionalProperties = getModel(openApi, definition.additionalProperties);
+            model.export = 'dictionary';
+            model.type = additionalProperties.type;
+            model.base = additionalProperties.base;
+            model.template = additionalProperties.template;
+            model.link = additionalProperties;
+            model.imports.push(...additionalProperties.imports);
+            model.imports.push('Dictionary');
+            return model;
+        }
+    }
+
+    if (definition.type === 'object') {
+        model.export = 'interface';
+        model.type = PrimaryType.OBJECT;
+        model.base = PrimaryType.OBJECT;
+
+        if (definition.allOf) {
+            definition.allOf.forEach(parent => {
+                if (parent.$ref) {
+                    const parentRef = getType(parent.$ref);
+                    model.extends.push(parentRef.type);
+                    model.imports.push(parentRef.base);
+                }
+                if (parent.type === 'object' && parent.properties) {
+                    const properties = getModelProperties(openApi, parent);
+                    properties.forEach(property => {
+                        model.properties.push(property);
+                        model.imports.push(...property.imports);
+                        if (property.export === 'enum') {
+                            model.enums.push(property);
+                        }
+                    });
+                }
+            });
+        }
+
+        if (definition.properties) {
+            const properties = getModelProperties(openApi, definition);
+            properties.forEach(property => {
+                model.properties.push(property);
+                model.imports.push(...property.imports);
+                if (property.export === 'enum') {
+                    model.enums.push(property);
+                }
+            });
+        }
+
+        return model;
+    }
+
+    // If the schema has a type than it can be a basic or generic type.
+    if (definition.type) {
+        const definitionType = getType(definition.type);
+        model.export = 'generic';
+        model.type = definitionType.type;
+        model.base = definitionType.base;
+        model.template = definitionType.template;
+        model.imports.push(...definitionType.imports);
+        return model;
+    }
+
+    return model;
+}
