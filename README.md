@@ -2,7 +2,6 @@
 
 [![NPM](https://badgen.net/npm/v/openapi-typescript-codegen)](https://www.npmjs.com/package/openapi-typescript-codegen)
 [![License](https://badgen.net/npm/license/openapi-typescript-codegen)](https://www.npmjs.com/package/openapi-typescript-codegen)
-[![Dependencies](https://badgen.net/david/dep/ferdikoomen/openapi-typescript-codegen)](https://david-dm.org/ferdikoomen/openapi-typescript-codegen)
 [![Build Status](https://badgen.net/travis/ferdikoomen/openapi-typescript-codegen/master)](https://travis-ci.org/ferdikoomen/openapi-typescript-codegen)
 [![Quality](https://badgen.net/lgtm/grade/javascript/g/ferdikoomen/openapi-typescript-codegen)](https://lgtm.com/projects/g/ferdikoomen/openapi-typescript-codegen)
 
