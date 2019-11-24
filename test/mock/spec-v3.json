@@ -65,42 +65,63 @@
                         "description": "This is the parameter that goes into the request header",
                         "name": "parameterHeader",
                         "in": "header",
-                        "type": "string",
                         "required": true,
-                        "nullable": true
+                        "nullable": true,
+                        "schema": {
+                            "type": "string"
+                        }
                     },
                     {
                         "description": "This is the parameter that goes into the request query params",
                         "name": "parameterQuery",
                         "in": "query",
-                        "type": "string",
                         "required": true,
-                        "nullable": true
+                        "nullable": true,
+                        "schema": {
+                            "type": "string"
+                        }
                     },
                     {
                         "description": "This is the parameter that goes into the request form data",
                         "name": "parameterForm",
                         "in": "formData",
-                        "type": "string",
                         "required": true,
-                        "nullable": true
+                        "nullable": true,
+                        "schema": {
+                            "type": "string"
+                        }
                     },
                     {
-                        "description": "This is the parameter that is send as request body",
-                        "name": "parameterBody",
-                        "in": "body",
-                        "type": "string",
+                        "description": "This is the parameter that goes into the cookie",
+                        "name": "parameterCookie",
+                        "in": "cookie",
                         "required": true,
-                        "nullable": true
+                        "nullable": true,
+                        "schema": {
+                            "type": "string"
+                        }
                     },
                     {
                         "name": "api-version",
                         "in": "path",
-                        "type": "string",
                         "required": true,
-                        "nullable": true
+                        "nullable": true,
+                        "schema": {
+                            "type": "string"
+                        }
                     }
-                ]
+                ],
+                "requestBody": {
+                    "description": "This is the parameter that goes into the body",
+                    "content": {
+                        "application/json": {
+                            "description": "Message for default response",
+                            "schema": {
+                                "$ref": "#/components/schemas/ModelWithString"
+                            }
+                        }
+                    }
+                }
             }
         },
         "/api/v{api-version}/response": {
@@ -111,9 +132,13 @@
                 "operationId": "CallWithResponse",
                 "responses": {
                     "default": {
-                        "description": "Message for default response",
-                        "schema": {
-                            "$ref": "#/components/schemas/ModelWithString"
+                        "content": {
+                            "application/json": {
+                                "description": "Message for default response",
+                                "schema": {
+                                    "$ref": "#/components/schemas/ModelWithString"
+                                }
+                            }
                         }
                     }
                 }
@@ -126,38 +151,62 @@
                 "responses": {
                     "default": {
                         "description": "Message for default response",
-                        "schema": {
-                            "$ref": "#/components/schemas/ModelWithString"
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ModelWithString"
+                                }
+                            }
                         }
                     },
                     "201": {
                         "description": "Message for 201 response",
-                        "schema": {
-                            "$ref": "#/components/schemas/ModelWithString"
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ModelWithString"
+                                }
+                            }
                         }
                     },
                     "202": {
                         "description": "Message for 202 response",
-                        "schema": {
-                            "$ref": "#/components/schemas/ModelWithString"
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ModelWithString"
+                                }
+                            }
                         }
                     },
                     "500": {
                         "description": "Message for 500 error",
-                        "schema": {
-                            "$ref": "#/components/schemas/ModelWithString"
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ModelWithString"
+                                }
+                            }
                         }
                     },
                     "501": {
                         "description": "Message for 501 error",
-                        "schema": {
-                            "$ref": "#/components/schemas/ModelWithString"
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ModelWithString"
+                                }
+                            }
                         }
                     },
                     "502": {
                         "description": "Message for 502 error",
-                        "schema": {
-                            "$ref": "#/components/schemas/ModelWithString"
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ModelWithString"
+                                }
+                            }
                         }
                     }
                 }
@@ -170,38 +219,62 @@
                 "responses": {
                     "default": {
                         "description": "Message for default response",
-                        "schema": {
-                            "$ref": "#/components/schemas/ModelWithString"
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ModelWithString"
+                                }
+                            }
                         }
                     },
                     "201": {
                         "description": "Message for 201 response",
-                        "schema": {
-                            "$ref": "#/components/schemas/ModelThatExtends"
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ModelThatExtends"
+                                }
+                            }
                         }
                     },
                     "202": {
                         "description": "Message for 202 response",
-                        "schema": {
-                            "$ref": "#/components/schemas/ModelThatExtendsExtends"
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ModelThatExtendsExtends"
+                                }
+                            }
                         }
                     },
                     "500": {
                         "description": "Message for 500 error",
-                        "schema": {
-                            "$ref": "#/components/schemas/ModelWithString"
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ModelWithString"
+                                }
+                            }
                         }
                     },
                     "501": {
                         "description": "Message for 501 error",
-                        "schema": {
-                            "$ref": "#/components/schemas/ModelWithString"
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ModelWithString"
+                                }
+                            }
                         }
                     },
                     "502": {
                         "description": "Message for 502 error",
-                        "schema": {
-                            "$ref": "#/components/schemas/ModelWithString"
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ModelWithString"
+                                }
+                            }
                         }
                     }
                 }
@@ -220,7 +293,9 @@
                         "in": "query",
                         "required": true,
                         "default": 123,
-                        "type": "int"
+                        "schema": {
+                            "type": "int"
+                        }
                     },
                     {
                         "description": "This is a string parameter",
@@ -229,7 +304,9 @@
                         "required": true,
                         "nullable": true,
                         "default": "default",
-                        "type": "string"
+                        "schema": {
+                            "type": "string"
+                        }
                     },
                     {
                         "description": "This is a boolean parameter",
@@ -238,7 +315,9 @@
                         "required": true,
                         "nullable": true,
                         "default": true,
-                        "type": "boolean"
+                        "schema": {
+                            "type": "boolean"
+                        }
                     },
                     {
                         "description": "This is an object parameter",
@@ -247,7 +326,9 @@
                         "required": true,
                         "nullable": true,
                         "default": null,
-                        "type": "object"
+                        "schema": {
+                            "type": "object"
+                        }
                     },
                     {
                         "description": "This is an array parameter",
@@ -255,9 +336,11 @@
                         "in": "query",
                         "required": true,
                         "nullable": true,
-                        "type": "array",
-                        "items": {
-                            "type": "string"
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
                         }
                     },
                     {
@@ -266,9 +349,25 @@
                         "in": "query",
                         "required": true,
                         "nullable": true,
-                        "type": "object",
-                        "items": {
-                            "type": "string"
+                        "schema": {
+                            "type": "object",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "description": "This is an enum parameter",
+                        "name": "parameterEnum",
+                        "in": "query",
+                        "required": true,
+                        "nullable": true,
+                        "schema": {
+                            "enum": [
+                                "Success",
+                                "Warning",
+                                "Error"
+                            ]
                         }
                     },
                     {
@@ -284,27 +383,42 @@
                 "responses": {
                     "200": {
                         "description": "Response is a simple number",
-                        "schema": {
-                            "type": "number"
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "number"
+                                }
+                            }
                         }
                     },
                     "201": {
                         "description": "Response is a simple string",
-                        "schema": {
-                            "type": "string"
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
                         }
                     },
                     "202": {
                         "description": "Response is a simple boolean",
-                        "schema": {
-                            "type": "boolean"
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "boolean"
+                                }
+                            }
                         }
                     },
                     "203": {
                         "description": "Response is a simple object",
-                        "default": null,
-                        "schema": {
-                            "type": "object"
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
                         }
                     }
                 }
@@ -354,10 +468,14 @@
                 "responses": {
                     "200": {
                         "description": "Successful response",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/components/schemas/ModelWithString"
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ModelWithString"
+                                    }
+                                }
                             }
                         }
                     },
@@ -566,6 +684,46 @@
                     "Test": {
                         "type": "integer",
                         "description": "Success=1,Warning=2,Error=3"
+                    }
+                }
+            },
+            "ModelWithNestedEnums": {
+                "description": "This is a model with nested enums",
+                "type": "object",
+                "properties": {
+                    "dictionaryWithEnum": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "enum": [
+                                "Success",
+                                "Warning",
+                                "Error"
+                            ]
+                        }
+                    },
+                    "dictionaryWithEnumFromDescription": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "integer",
+                            "description": "Success=1,Warning=2,Error=3"
+                        }
+                    },
+                    "arrayWithEnum": {
+                        "type": "array",
+                        "additionalProperties": {
+                            "enum": [
+                                "Success",
+                                "Warning",
+                                "Error"
+                            ]
+                        }
+                    },
+                    "arrayWithDescription": {
+                        "type": "array",
+                        "additionalProperties": {
+                            "type": "integer",
+                            "description": "Success=1,Warning=2,Error=3"
+                        }
                     }
                 }
             },

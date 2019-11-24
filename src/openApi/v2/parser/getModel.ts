@@ -5,7 +5,6 @@ import { PrimaryType } from './constants';
 import { getComment } from './getComment';
 import { getEnum } from './getEnum';
 import { getEnumFromDescription } from './getEnumFromDescription';
-import { getEnumType } from './getEnumType';
 import { getModelProperties } from './getModelProperties';
 import { getType } from './getType';
 
@@ -43,7 +42,7 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isProperty
         const enumerators = getEnum(definition.enum);
         if (enumerators.length) {
             model.export = 'enum';
-            model.type = getEnumType(enumerators);
+            model.type = PrimaryType.STRING;
             model.base = PrimaryType.STRING;
             model.enum.push(...enumerators);
             return model;
@@ -54,7 +53,7 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isProperty
         const enumerators = getEnumFromDescription(definition.description);
         if (enumerators.length) {
             model.export = 'enum';
-            model.type = getEnumType(enumerators);
+            model.type = PrimaryType.NUMBER;
             model.base = PrimaryType.NUMBER;
             model.enum.push(...enumerators);
             return model;

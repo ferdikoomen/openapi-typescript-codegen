@@ -32,6 +32,7 @@ export function getOperation(openApi: OpenApi, url: string, method: string, op: 
         parametersQuery: [],
         parametersForm: [],
         parametersHeader: [],
+        parametersCookie: [],
         parametersBody: null,
         imports: [],
         errors: [],
@@ -47,6 +48,7 @@ export function getOperation(openApi: OpenApi, url: string, method: string, op: 
         operation.parametersQuery.push(...parameters.parametersQuery);
         operation.parametersForm.push(...parameters.parametersForm);
         operation.parametersHeader.push(...parameters.parametersHeader);
+        operation.parametersCookie.push(...parameters.parametersCookie);
         operation.parametersBody = parameters.parametersBody;
     }
 

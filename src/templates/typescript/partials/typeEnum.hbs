@@ -1,5 +1,9 @@
 {{~#if parent~}}
 {{{parent}}}.{{{name}}}
 {{~else~}}
-{{{type}}}
+(
+{{~#each enum~}}
+{{{value}}}{{#unless @last}} | {{/unless}}
+{{~/each~}}
+)
 {{~/if~}}

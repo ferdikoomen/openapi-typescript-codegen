@@ -5,7 +5,6 @@ import { PrimaryType } from './constants';
 import { getComment } from './getComment';
 import { getEnum } from './getEnum';
 import { getEnumFromDescription } from './getEnumFromDescription';
-import { getEnumType } from './getEnumType';
 import { getModel } from './getModel';
 import { getOperationParameterDefault } from './getOperationParameterDefault';
 import { getOperationParameterName } from './getOperationParameterName';
@@ -48,7 +47,7 @@ export function getOperationParameter(openApi: OpenApi, parameter: OpenApiParame
         const enumerators = getEnum(parameter.enum);
         if (enumerators.length) {
             operationParameter.export = 'enum';
-            operationParameter.type = getEnumType(enumerators);
+            operationParameter.type = PrimaryType.STRING;
             operationParameter.base = PrimaryType.STRING;
             operationParameter.enum.push(...enumerators);
             return operationParameter;
@@ -59,7 +58,7 @@ export function getOperationParameter(openApi: OpenApi, parameter: OpenApiParame
         const enumerators = getEnumFromDescription(parameter.description);
         if (enumerators.length) {
             operationParameter.export = 'enum';
-            operationParameter.type = getEnumType(enumerators);
+            operationParameter.type = PrimaryType.NUMBER;
             operationParameter.base = PrimaryType.NUMBER;
             operationParameter.enum.push(...enumerators);
             return operationParameter;

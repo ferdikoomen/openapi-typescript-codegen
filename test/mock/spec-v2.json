@@ -262,6 +262,19 @@
                         }
                     },
                     {
+                        "description": "This is an enum parameter",
+                        "name": "parameterEnum",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "Success",
+                                "Warning",
+                                "Error"
+                            ]
+                        }
+                    },
+                    {
                         "description": "This is a number parameter",
                         "name": "id",
                         "in": "path",
@@ -538,7 +551,7 @@
             "description": "This is a model with one enum",
             "type": "object",
             "properties": {
-                "Test": {
+                "test": {
                     "description": "This is a simple enum with strings",
                     "enum": [
                         "Success",
@@ -552,9 +565,49 @@
             "description": "This is a model with one enum",
             "type": "object",
             "properties": {
-                "Test": {
+                "test": {
                     "type": "integer",
                     "description": "Success=1,Warning=2,Error=3"
+                }
+            }
+        },
+        "ModelWithNestedEnums": {
+            "description": "This is a model with nested enums",
+            "type": "object",
+            "properties": {
+                "dictionaryWithEnum": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "enum": [
+                            "Success",
+                            "Warning",
+                            "Error"
+                        ]
+                    }
+                },
+                "dictionaryWithEnumFromDescription": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "integer",
+                        "description": "Success=1,Warning=2,Error=3"
+                    }
+                },
+                "arrayWithEnum": {
+                    "type": "array",
+                    "additionalProperties": {
+                        "enum": [
+                            "Success",
+                            "Warning",
+                            "Error"
+                        ]
+                    }
+                },
+                "arrayWithDescription": {
+                    "type": "array",
+                    "additionalProperties": {
+                        "type": "integer",
+                        "description": "Success=1,Warning=2,Error=3"
+                    }
                 }
             }
         },

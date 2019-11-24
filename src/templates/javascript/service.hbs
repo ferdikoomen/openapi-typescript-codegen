@@ -37,7 +37,12 @@ export class {{{name}}} {
 
         const result = await request({
             method: '{{{method}}}',
-            path: `{{{path}}}`{{#if parametersHeader}},
+            path: `{{{path}}}`{{#if parametersCookie}},
+            cookies: {
+                {{#each parametersCookie}}
+                '{{{prop}}}': {{{name}}}{{#unless @last}},{{/unless}}
+                {{/each}}
+            }{{/if}}{{#if parametersCookie}},
             headers: {
                 {{#each parametersHeader}}
                 '{{{prop}}}': {{{name}}}{{#unless @last}},{{/unless}}

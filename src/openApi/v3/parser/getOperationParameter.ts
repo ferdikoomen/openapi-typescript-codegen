@@ -22,7 +22,7 @@ export function getOperationParameter(openApi: OpenApi, parameter: OpenApiParame
         isProperty: false,
         isReadOnly: false,
         isRequired: parameter.required === true,
-        isNullable: false,
+        isNullable: parameter.nullable === true,
         imports: [],
         extends: [],
         enum: [],

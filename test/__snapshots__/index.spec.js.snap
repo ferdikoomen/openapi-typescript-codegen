@@ -388,6 +388,7 @@ export { ModelWithEnum } from './models/ModelWithEnum';
 export { ModelWithEnumFromDescription } from './models/ModelWithEnumFromDescription';
 export { ModelWithInteger } from './models/ModelWithInteger';
 export { ModelWithLink } from './models/ModelWithLink';
+export { ModelWithNestedEnums } from './models/ModelWithNestedEnums';
 export { ModelWithNestedProperties } from './models/ModelWithNestedProperties';
 export { ModelWithProperties } from './models/ModelWithProperties';
 export { ModelWithReference } from './models/ModelWithReference';
@@ -771,9 +772,9 @@ export let EnumFromDescription;
     EnumFromDescription.WARNING = 2;
 
     EnumFromDescription.schema = yup.mixed().oneOf([
-        EnumFromDescription.ERROR,
-        EnumFromDescription.SUCCESS,
-        EnumFromDescription.WARNING
+        3,
+        1,
+        2
     ]);
 
     EnumFromDescription.validate = async function(value) {
@@ -805,9 +806,9 @@ export let EnumWithNumbers;
     EnumWithNumbers.NUM_3 = 3;
 
     EnumWithNumbers.schema = yup.mixed().oneOf([
-        EnumWithNumbers.NUM_1,
-        EnumWithNumbers.NUM_2,
-        EnumWithNumbers.NUM_3
+        1,
+        2,
+        3
     ]);
 
     EnumWithNumbers.validate = async function(value) {
@@ -839,9 +840,9 @@ export let EnumWithStrings;
     EnumWithStrings.WARNING = 'Warning';
 
     EnumWithStrings.schema = yup.mixed().oneOf([
-        EnumWithStrings.ERROR,
-        EnumWithStrings.SUCCESS,
-        EnumWithStrings.WARNING
+        'Error',
+        'Success',
+        'Warning'
     ]);
 
     EnumWithStrings.validate = async function(value) {
@@ -1165,7 +1166,7 @@ export let ModelWithEnum;
     /**
      * This is a simple enum with strings
      */
-    ModelWithEnum.Test = {
+    ModelWithEnum.test = {
         SUCCESS: 'Success',
         WARNING: 'Warning',
         ERROR: 'Error'
@@ -1173,10 +1174,10 @@ export let ModelWithEnum;
 
     ModelWithEnum.schema = (
         yup.object().shape({
-            Test: yup.lazy(() => yup.mixed().oneOf([
-                Test.SUCCESS,
-                Test.WARNING,
-                Test.ERROR
+            test: yup.lazy(() => yup.mixed().oneOf([
+                test.SUCCESS,
+                test.WARNING,
+                test.ERROR
             ]).default(undefined))
         }).noUnknown()
     );
@@ -1208,7 +1209,7 @@ export let ModelWithEnumFromDescription;
     /**
      * Success=1,Warning=2,Error=3
      */
-    ModelWithEnumFromDescription.Test = {
+    ModelWithEnumFromDescription.test = {
         SUCCESS: 1,
         WARNING: 2,
         ERROR: 3
@@ -1216,10 +1217,10 @@ export let ModelWithEnumFromDescription;
 
     ModelWithEnumFromDescription.schema = (
         yup.object().shape({
-            Test: yup.lazy(() => yup.mixed().oneOf([
-                Test.SUCCESS,
-                Test.WARNING,
-                Test.ERROR
+            test: yup.lazy(() => yup.mixed().oneOf([
+                test.SUCCESS,
+                test.WARNING,
+                test.ERROR
             ]).default(undefined))
         }).noUnknown()
     );
@@ -1295,6 +1296,63 @@ export let ModelWithLink;
     };
 
 })(ModelWithLink || (ModelWithLink = {}));"
+`;
+
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelWithNestedEnums.js): ./test/result/v2/javascript/models/ModelWithNestedEnums.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { array } from '../models/array';
+
+import * as yup from 'yup';
+
+/**
+ * This is a model with nested enums
+ */
+export let ModelWithNestedEnums;
+(function (ModelWithNestedEnums) {
+
+    ModelWithNestedEnums.schema = (
+        yup.object().shape({
+            arrayWithDescription: yup.lazy(() => yup.mixed().default(undefined)),
+            arrayWithEnum: yup.lazy(() => yup.mixed().default(undefined)),
+            dictionaryWithEnum: yup.lazy(() => yup.lazy(value => {
+                return yup.object().shape(
+                    Object.entries(value).reduce((obj, item) => ({
+                        ...obj,
+                        [item[0]]: yup.mixed().oneOf([
+                            'Success',
+                            'Warning',
+                            'Error'
+                        ])
+                    }), {})
+                );
+            }).default(undefined)),
+            dictionaryWithEnumFromDescription: yup.lazy(() => yup.lazy(value => {
+                return yup.object().shape(
+                    Object.entries(value).reduce((obj, item) => ({
+                        ...obj,
+                        [item[0]]: yup.mixed().oneOf([
+                            1,
+                            2,
+                            3
+                        ])
+                    }), {})
+                );
+            }).default(undefined))
+        }).noUnknown()
+    );
+
+    ModelWithNestedEnums.validate = async function(value) {
+        return ModelWithNestedEnums.schema.validate(value, { strict: true });
+    };
+
+    ModelWithNestedEnums.validateSync = function(value) {
+        return ModelWithNestedEnums.schema.validateSync(value, { strict: true });
+    };
+
+})(ModelWithNestedEnums || (ModelWithNestedEnums = {}));"
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelWithNestedProperties.js): ./test/result/v2/javascript/models/ModelWithNestedProperties.js 1`] = `
@@ -1637,9 +1695,6 @@ export class ParametersService {
         const result = await request({
             method: 'get',
             path: \`/api/v\${OpenAPI.VERSION}/parameters\`,
-            headers: {
-                'parameterHeader': parameterHeader
-            },
             query: {
                 'parameterQuery': parameterQuery
             },
@@ -1874,6 +1929,7 @@ export class TypesService {
      * @param parameterObject This is an object parameter
      * @param parameterArray This is an array parameter
      * @param parameterDictionary This is a dictionary parameter
+     * @param parameterEnum This is an enum parameter
      * @param id This is a number parameter
      * @result number Response is a simple number
      * @result string Response is a simple string
@@ -1888,6 +1944,7 @@ export class TypesService {
         parameterObject = null,
         parameterArray,
         parameterDictionary,
+        parameterEnum,
         id
     ) {
 
@@ -1900,7 +1957,8 @@ export class TypesService {
                 'parameterBoolean': parameterBoolean,
                 'parameterObject': parameterObject,
                 'parameterArray': parameterArray,
-                'parameterDictionary': parameterDictionary
+                'parameterDictionary': parameterDictionary,
+                'parameterEnum': parameterEnum
             }
         });
 
@@ -1996,6 +2054,7 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/core/RequestO
 export interface RequestOptions {
     method: 'get' | 'put' | 'post' | 'delete' | 'options' | 'head' | 'patch';
     path: string;
+    cookies?: { [key: string]: any };
     headers?: { [key: string]: any };
     query?: { [key: string]: any };
     formData?: { [key: string]: any };
@@ -2350,6 +2409,7 @@ export { ModelWithEnum } from './models/ModelWithEnum';
 export { ModelWithEnumFromDescription } from './models/ModelWithEnumFromDescription';
 export { ModelWithInteger } from './models/ModelWithInteger';
 export { ModelWithLink } from './models/ModelWithLink';
+export { ModelWithNestedEnums } from './models/ModelWithNestedEnums';
 export { ModelWithNestedProperties } from './models/ModelWithNestedProperties';
 export { ModelWithProperties } from './models/ModelWithProperties';
 export { ModelWithReference } from './models/ModelWithReference';
@@ -3201,7 +3261,7 @@ export interface ModelWithEnum {
     /**
      * This is a simple enum with strings
      */
-    Test?: ModelWithEnum.Test;
+    test?: ModelWithEnum.test;
 }
 
 export namespace ModelWithEnum {
@@ -3209,7 +3269,7 @@ export namespace ModelWithEnum {
     /**
      * This is a simple enum with strings
      */
-    export enum Test {
+    export enum test {
         SUCCESS = 'Success',
         WARNING = 'Warning',
         ERROR = 'Error'
@@ -3217,10 +3277,10 @@ export namespace ModelWithEnum {
 
     export const schema: yup.ObjectSchema<ModelWithEnum> = (
         yup.object<ModelWithEnum>().shape({
-            Test: yup.lazy(() => yup.mixed<Test>().oneOf([
-                Test.SUCCESS,
-                Test.WARNING,
-                Test.ERROR
+            test: yup.lazy(() => yup.mixed<test>().oneOf([
+                test.SUCCESS,
+                test.WARNING,
+                test.ERROR
             ]).default(undefined))
         }).noUnknown()
     );
@@ -3250,7 +3310,7 @@ export interface ModelWithEnumFromDescription {
     /**
      * Success=1,Warning=2,Error=3
      */
-    Test?: ModelWithEnumFromDescription.Test;
+    test?: ModelWithEnumFromDescription.test;
 }
 
 export namespace ModelWithEnumFromDescription {
@@ -3258,7 +3318,7 @@ export namespace ModelWithEnumFromDescription {
     /**
      * Success=1,Warning=2,Error=3
      */
-    export enum Test {
+    export enum test {
         SUCCESS = 1,
         WARNING = 2,
         ERROR = 3
@@ -3266,10 +3326,10 @@ export namespace ModelWithEnumFromDescription {
 
     export const schema: yup.ObjectSchema<ModelWithEnumFromDescription> = (
         yup.object<ModelWithEnumFromDescription>().shape({
-            Test: yup.lazy(() => yup.mixed<Test>().oneOf([
-                Test.SUCCESS,
-                Test.WARNING,
-                Test.ERROR
+            test: yup.lazy(() => yup.mixed<test>().oneOf([
+                test.SUCCESS,
+                test.WARNING,
+                test.ERROR
             ]).default(undefined))
         }).noUnknown()
     );
@@ -3350,6 +3410,69 @@ export namespace ModelWithLink {
     }
 
     export function validateSync(value: any): ModelWithLink {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
+exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelWithNestedEnums.ts): ./test/result/v2/typescript/models/ModelWithNestedEnums.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { array } from '../models/array';
+import { Dictionary } from '../models/Dictionary';
+import * as yup from 'yup';
+
+/**
+ * This is a model with nested enums
+ */
+export interface ModelWithNestedEnums {
+    arrayWithDescription?: array;
+    arrayWithEnum?: array;
+    dictionaryWithEnum?: Dictionary<('Success' | 'Warning' | 'Error')>;
+    dictionaryWithEnumFromDescription?: Dictionary<(1 | 2 | 3)>;
+}
+
+export namespace ModelWithNestedEnums {
+
+    export const schema: yup.ObjectSchema<ModelWithNestedEnums> = (
+        yup.object<ModelWithNestedEnums>().shape({
+            arrayWithDescription: yup.lazy(() => yup.mixed<array>().default(undefined)),
+            arrayWithEnum: yup.lazy(() => yup.mixed<array>().default(undefined)),
+            dictionaryWithEnum: yup.lazy(() => yup.lazy<Dictionary<('Success' | 'Warning' | 'Error')>>(value => {
+                return yup.object<Dictionary<('Success' | 'Warning' | 'Error')>>().shape(
+                    Object.entries(value).reduce((obj, item) => ({
+                        ...obj,
+                        [item[0]]: yup.mixed<string>().oneOf([
+                            'Success',
+                            'Warning',
+                            'Error'
+                        ])
+                    }), {})
+                );
+            }).default(undefined)),
+            dictionaryWithEnumFromDescription: yup.lazy(() => yup.lazy<Dictionary<(1 | 2 | 3)>>(value => {
+                return yup.object<Dictionary<(1 | 2 | 3)>>().shape(
+                    Object.entries(value).reduce((obj, item) => ({
+                        ...obj,
+                        [item[0]]: yup.mixed<number>().oneOf([
+                            1,
+                            2,
+                            3
+                        ])
+                    }), {})
+                );
+            }).default(undefined))
+        }).noUnknown()
+    );
+
+    export async function validate(value: any): Promise<ModelWithNestedEnums> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): ModelWithNestedEnums {
         return schema.validateSync(value, { strict: true });
     }
 }"
@@ -3733,9 +3856,6 @@ export class ParametersService {
         const result = await request({
             method: 'get',
             path: \`/api/v\${OpenAPI.VERSION}/parameters\`,
-            headers: {
-                'parameterHeader': parameterHeader
-            },
             query: {
                 'parameterQuery': parameterQuery
             },
@@ -3977,6 +4097,7 @@ export class TypesService {
      * @param parameterObject This is an object parameter
      * @param parameterArray This is an array parameter
      * @param parameterDictionary This is a dictionary parameter
+     * @param parameterEnum This is an enum parameter
      * @param id This is a number parameter
      * @result number Response is a simple number
      * @result string Response is a simple string
@@ -3991,6 +4112,7 @@ export class TypesService {
         parameterObject: any = null,
         parameterArray: Array<string>,
         parameterDictionary: Dictionary<string>,
+        parameterEnum: ('Success' | 'Warning' | 'Error'),
         id?: number
     ): Promise<number | string | boolean | any> {
 
@@ -4003,7 +4125,8 @@ export class TypesService {
                 'parameterBoolean': parameterBoolean,
                 'parameterObject': parameterObject,
                 'parameterArray': parameterArray,
-                'parameterDictionary': parameterDictionary
+                'parameterDictionary': parameterDictionary,
+                'parameterEnum': parameterEnum
             }
         });
 
@@ -4403,6 +4526,7 @@ export { ModelWithEnum } from './models/ModelWithEnum';
 export { ModelWithEnumFromDescription } from './models/ModelWithEnumFromDescription';
 export { ModelWithInteger } from './models/ModelWithInteger';
 export { ModelWithLink } from './models/ModelWithLink';
+export { ModelWithNestedEnums } from './models/ModelWithNestedEnums';
 export { ModelWithNestedProperties } from './models/ModelWithNestedProperties';
 export { ModelWithProperties } from './models/ModelWithProperties';
 export { ModelWithReference } from './models/ModelWithReference';
@@ -4786,9 +4910,9 @@ export let EnumFromDescription;
     EnumFromDescription.WARNING = 2;
 
     EnumFromDescription.schema = yup.mixed().oneOf([
-        EnumFromDescription.ERROR,
-        EnumFromDescription.SUCCESS,
-        EnumFromDescription.WARNING
+        3,
+        1,
+        2
     ]);
 
     EnumFromDescription.validate = async function(value) {
@@ -4820,9 +4944,9 @@ export let EnumWithNumbers;
     EnumWithNumbers.NUM_3 = 3;
 
     EnumWithNumbers.schema = yup.mixed().oneOf([
-        EnumWithNumbers.NUM_1,
-        EnumWithNumbers.NUM_2,
-        EnumWithNumbers.NUM_3
+        1,
+        2,
+        3
     ]);
 
     EnumWithNumbers.validate = async function(value) {
@@ -4854,9 +4978,9 @@ export let EnumWithStrings;
     EnumWithStrings.WARNING = 'Warning';
 
     EnumWithStrings.schema = yup.mixed().oneOf([
-        EnumWithStrings.ERROR,
-        EnumWithStrings.SUCCESS,
-        EnumWithStrings.WARNING
+        'Error',
+        'Success',
+        'Warning'
     ]);
 
     EnumWithStrings.validate = async function(value) {
@@ -5312,6 +5436,63 @@ export let ModelWithLink;
 })(ModelWithLink || (ModelWithLink = {}));"
 `;
 
+exports[`generation v3 javascript file(./test/result/v3/javascript/models/ModelWithNestedEnums.js): ./test/result/v3/javascript/models/ModelWithNestedEnums.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { array } from '../models/array';
+
+import * as yup from 'yup';
+
+/**
+ * This is a model with nested enums
+ */
+export let ModelWithNestedEnums;
+(function (ModelWithNestedEnums) {
+
+    ModelWithNestedEnums.schema = (
+        yup.object().shape({
+            arrayWithDescription: yup.lazy(() => yup.mixed().default(undefined)),
+            arrayWithEnum: yup.lazy(() => yup.mixed().default(undefined)),
+            dictionaryWithEnum: yup.lazy(() => yup.lazy(value => {
+                return yup.object().shape(
+                    Object.entries(value).reduce((obj, item) => ({
+                        ...obj,
+                        [item[0]]: yup.mixed().oneOf([
+                            'Success',
+                            'Warning',
+                            'Error'
+                        ])
+                    }), {})
+                );
+            }).default(undefined)),
+            dictionaryWithEnumFromDescription: yup.lazy(() => yup.lazy(value => {
+                return yup.object().shape(
+                    Object.entries(value).reduce((obj, item) => ({
+                        ...obj,
+                        [item[0]]: yup.mixed().oneOf([
+                            1,
+                            2,
+                            3
+                        ])
+                    }), {})
+                );
+            }).default(undefined))
+        }).noUnknown()
+    );
+
+    ModelWithNestedEnums.validate = async function(value) {
+        return ModelWithNestedEnums.schema.validate(value, { strict: true });
+    };
+
+    ModelWithNestedEnums.validateSync = function(value) {
+        return ModelWithNestedEnums.schema.validateSync(value, { strict: true });
+    };
+
+})(ModelWithNestedEnums || (ModelWithNestedEnums = {}));"
+`;
+
 exports[`generation v3 javascript file(./test/result/v3/javascript/models/ModelWithNestedProperties.js): ./test/result/v3/javascript/models/ModelWithNestedProperties.js 1`] = `
 "/* istanbul ignore file */
 /* eslint-disable */
@@ -5593,7 +5774,7 @@ export class ComplexService {
     /**
      * @param parameterObject Parameter containing object
      * @param parameterReference Parameter containing reference
-     * @result any Successful response
+     * @result ModelWithString Successful response
      * @throws ApiError
      */
     static async complexTypes(
@@ -5639,22 +5820,35 @@ export class ParametersService {
     /**
      * @param parameterHeader This is the parameter that goes into the request header
      * @param parameterQuery This is the parameter that goes into the request query params
+     * @param parameterForm This is the parameter that goes into the request form data
+     * @param parameterCookie This is the parameter that goes into the cookie
+     * @param requestBody This is the parameter that goes into the body
      * @throws ApiError
      */
     static async callWithParameters(
         parameterHeader,
-        parameterQuery
+        parameterQuery,
+        parameterForm,
+        parameterCookie,
+        requestBody
     ) {
 
         const result = await request({
             method: 'get',
             path: \`/api/v\${OpenAPI.VERSION}/parameters\`,
+            cookies: {
+                'parameterCookie': parameterCookie
+            },
             headers: {
                 'parameterHeader': parameterHeader
             },
             query: {
                 'parameterQuery': parameterQuery
-            }
+            },
+            formData: {
+                'parameterForm': parameterForm
+            },
+            body: requestBody
         });
 
         catchGenericError(result);
@@ -5677,7 +5871,7 @@ import { OpenAPI } from '../core/OpenAPI';
 export class ResponseService {
 
     /**
-     * @result any Message for default response
+     * @result ModelWithString Message for default response
      * @throws ApiError
      */
     static async callWithDuplicateResponses() {
@@ -5701,7 +5895,7 @@ export class ResponseService {
     }
 
     /**
-     * @result any Message for default response
+     * @result ModelWithString
      * @throws ApiError
      */
     static async callWithResponse() {
@@ -5717,7 +5911,9 @@ export class ResponseService {
     }
 
     /**
-     * @result any Message for default response
+     * @result ModelWithString Message for default response
+     * @result ModelThatExtends Message for 201 response
+     * @result ModelThatExtendsExtends Message for 202 response
      * @throws ApiError
      */
     static async callWithResponses() {
@@ -5880,8 +6076,12 @@ export class TypesService {
      * @param parameterObject This is an object parameter
      * @param parameterArray This is an array parameter
      * @param parameterDictionary This is a dictionary parameter
+     * @param parameterEnum This is an enum parameter
      * @param id This is a number parameter
-     * @result any Response is a simple number
+     * @result number Response is a simple number
+     * @result string Response is a simple string
+     * @result boolean Response is a simple boolean
+     * @result any Response is a simple object
      * @throws ApiError
      */
     static async types(
@@ -5891,6 +6091,7 @@ export class TypesService {
         parameterObject,
         parameterArray,
         parameterDictionary,
+        parameterEnum,
         id
     ) {
 
@@ -5903,7 +6104,8 @@ export class TypesService {
                 'parameterBoolean': parameterBoolean,
                 'parameterObject': parameterObject,
                 'parameterArray': parameterArray,
-                'parameterDictionary': parameterDictionary
+                'parameterDictionary': parameterDictionary,
+                'parameterEnum': parameterEnum
             }
         });
 
@@ -5999,6 +6201,7 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/core/RequestO
 export interface RequestOptions {
     method: 'get' | 'put' | 'post' | 'delete' | 'options' | 'head' | 'patch';
     path: string;
+    cookies?: { [key: string]: any };
     headers?: { [key: string]: any };
     query?: { [key: string]: any };
     formData?: { [key: string]: any };
@@ -6353,6 +6556,7 @@ export { ModelWithEnum } from './models/ModelWithEnum';
 export { ModelWithEnumFromDescription } from './models/ModelWithEnumFromDescription';
 export { ModelWithInteger } from './models/ModelWithInteger';
 export { ModelWithLink } from './models/ModelWithLink';
+export { ModelWithNestedEnums } from './models/ModelWithNestedEnums';
 export { ModelWithNestedProperties } from './models/ModelWithNestedProperties';
 export { ModelWithProperties } from './models/ModelWithProperties';
 export { ModelWithReference } from './models/ModelWithReference';
@@ -7358,6 +7562,69 @@ export namespace ModelWithLink {
 }"
 `;
 
+exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelWithNestedEnums.ts): ./test/result/v3/typescript/models/ModelWithNestedEnums.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { array } from '../models/array';
+import { Dictionary } from '../models/Dictionary';
+import * as yup from 'yup';
+
+/**
+ * This is a model with nested enums
+ */
+export interface ModelWithNestedEnums {
+    arrayWithDescription?: array;
+    arrayWithEnum?: array;
+    dictionaryWithEnum?: Dictionary<('Success' | 'Warning' | 'Error')>;
+    dictionaryWithEnumFromDescription?: Dictionary<(1 | 2 | 3)>;
+}
+
+export namespace ModelWithNestedEnums {
+
+    export const schema: yup.ObjectSchema<ModelWithNestedEnums> = (
+        yup.object<ModelWithNestedEnums>().shape({
+            arrayWithDescription: yup.lazy(() => yup.mixed<array>().default(undefined)),
+            arrayWithEnum: yup.lazy(() => yup.mixed<array>().default(undefined)),
+            dictionaryWithEnum: yup.lazy(() => yup.lazy<Dictionary<('Success' | 'Warning' | 'Error')>>(value => {
+                return yup.object<Dictionary<('Success' | 'Warning' | 'Error')>>().shape(
+                    Object.entries(value).reduce((obj, item) => ({
+                        ...obj,
+                        [item[0]]: yup.mixed<string>().oneOf([
+                            'Success',
+                            'Warning',
+                            'Error'
+                        ])
+                    }), {})
+                );
+            }).default(undefined)),
+            dictionaryWithEnumFromDescription: yup.lazy(() => yup.lazy<Dictionary<(1 | 2 | 3)>>(value => {
+                return yup.object<Dictionary<(1 | 2 | 3)>>().shape(
+                    Object.entries(value).reduce((obj, item) => ({
+                        ...obj,
+                        [item[0]]: yup.mixed<number>().oneOf([
+                            1,
+                            2,
+                            3
+                        ])
+                    }), {})
+                );
+            }).default(undefined))
+        }).noUnknown()
+    );
+
+    export async function validate(value: any): Promise<ModelWithNestedEnums> {
+        return schema.validate(value, { strict: true });
+    }
+
+    export function validateSync(value: any): ModelWithNestedEnums {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
+`;
+
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelWithNestedProperties.ts): ./test/result/v3/typescript/models/ModelWithNestedProperties.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
@@ -7671,7 +7938,7 @@ export class ComplexService {
     /**
      * @param parameterObject Parameter containing object
      * @param parameterReference Parameter containing reference
-     * @result any Successful response
+     * @result ModelWithString Successful response
      * @throws ApiError
      */
     public static async complexTypes(
@@ -7683,7 +7950,7 @@ export class ComplexService {
             }
         },
         parameterReference: ModelWithString
-    ): Promise<any> {
+    ): Promise<Array<ModelWithString>> {
 
         const result = await request({
             method: 'get',
@@ -7715,6 +7982,7 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/services/Para
 /* eslint-disable */
 /* prettier-ignore */
 
+import { ModelWithString } from '../models/ModelWithString';
 import { ApiError, catchGenericError } from '../core/ApiError';
 import { request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
@@ -7724,22 +7992,35 @@ export class ParametersService {
     /**
      * @param parameterHeader This is the parameter that goes into the request header
      * @param parameterQuery This is the parameter that goes into the request query params
+     * @param parameterForm This is the parameter that goes into the request form data
+     * @param parameterCookie This is the parameter that goes into the cookie
+     * @param requestBody This is the parameter that goes into the body
      * @throws ApiError
      */
     public static async callWithParameters(
-        parameterHeader: any,
-        parameterQuery: any
+        parameterHeader: string | null,
+        parameterQuery: string | null,
+        parameterForm: string | null,
+        parameterCookie: string | null,
+        requestBody?: ModelWithString
     ): Promise<void> {
 
         const result = await request({
             method: 'get',
             path: \`/api/v\${OpenAPI.VERSION}/parameters\`,
+            cookies: {
+                'parameterCookie': parameterCookie
+            },
             headers: {
                 'parameterHeader': parameterHeader
             },
             query: {
                 'parameterQuery': parameterQuery
-            }
+            },
+            formData: {
+                'parameterForm': parameterForm
+            },
+            body: requestBody
         });
 
         catchGenericError(result);
@@ -7756,6 +8037,9 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/services/Resp
 /* eslint-disable */
 /* prettier-ignore */
 
+import { ModelThatExtends } from '../models/ModelThatExtends';
+import { ModelThatExtendsExtends } from '../models/ModelThatExtendsExtends';
+import { ModelWithString } from '../models/ModelWithString';
 import { ApiError, catchGenericError } from '../core/ApiError';
 import { request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
@@ -7763,10 +8047,10 @@ import { OpenAPI } from '../core/OpenAPI';
 export class ResponseService {
 
     /**
-     * @result any Message for default response
+     * @result ModelWithString Message for default response
      * @throws ApiError
      */
-    public static async callWithDuplicateResponses(): Promise<any> {
+    public static async callWithDuplicateResponses(): Promise<ModelWithString> {
 
         const result = await request({
             method: 'post',
@@ -7787,10 +8071,10 @@ export class ResponseService {
     }
 
     /**
-     * @result any Message for default response
+     * @result ModelWithString
      * @throws ApiError
      */
-    public static async callWithResponse(): Promise<any> {
+    public static async callWithResponse(): Promise<ModelWithString> {
 
         const result = await request({
             method: 'get',
@@ -7803,10 +8087,12 @@ export class ResponseService {
     }
 
     /**
-     * @result any Message for default response
+     * @result ModelWithString Message for default response
+     * @result ModelThatExtends Message for 201 response
+     * @result ModelThatExtendsExtends Message for 202 response
      * @throws ApiError
      */
-    public static async callWithResponses(): Promise<any> {
+    public static async callWithResponses(): Promise<ModelWithString | ModelThatExtends | ModelThatExtendsExtends> {
 
         const result = await request({
             method: 'put',
@@ -7968,19 +8254,24 @@ export class TypesService {
      * @param parameterObject This is an object parameter
      * @param parameterArray This is an array parameter
      * @param parameterDictionary This is a dictionary parameter
+     * @param parameterEnum This is an enum parameter
      * @param id This is a number parameter
-     * @result any Response is a simple number
+     * @result number Response is a simple number
+     * @result string Response is a simple string
+     * @result boolean Response is a simple boolean
+     * @result any Response is a simple object
      * @throws ApiError
      */
     public static async types(
-        parameterNumber: any,
-        parameterString: any,
-        parameterBoolean: any,
-        parameterObject: any,
-        parameterArray: any,
-        parameterDictionary: any,
+        parameterNumber: number,
+        parameterString: string | null,
+        parameterBoolean: boolean | null,
+        parameterObject: any | null,
+        parameterArray: Array<string> | null,
+        parameterDictionary: any | null,
+        parameterEnum: ('Success' | 'Warning' | 'Error') | null,
         id?: number
-    ): Promise<any> {
+    ): Promise<number | string | boolean | any> {
 
         const result = await request({
             method: 'get',
@@ -7991,7 +8282,8 @@ export class TypesService {
                 'parameterBoolean': parameterBoolean,
                 'parameterObject': parameterObject,
                 'parameterArray': parameterArray,
-                'parameterDictionary': parameterDictionary
+                'parameterDictionary': parameterDictionary,
+                'parameterEnum': parameterEnum
             }
         });
 
