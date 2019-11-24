@@ -618,18 +618,59 @@
                 }
             }
         },
+        "ModelWithProperties": {
+            "description": "This is a model with one nested property",
+            "type": "object",
+            "required": [
+                "required",
+                "requiredAndreadOnly"
+            ],
+            "properties": {
+                "required": {
+                    "type": "string"
+                },
+                "requiredAndreadOnly": {
+                    "type": "string",
+                    "readOnly": true
+                },
+                "string": {
+                    "type": "string"
+                },
+                "number": {
+                    "type": "number"
+                },
+                "boolean": {
+                    "type": "boolean"
+                },
+                "reference": {
+                    "$ref": "#/definitions/ModelWithString"
+                }
+            }
+        },
         "ModelWithNestedProperties": {
             "description": "This is a model with one nested property",
             "type": "object",
+            "required": [
+                "first"
+            ],
             "properties": {
                 "first": {
                     "type": "object",
+                    "required": [
+                        "second"
+                    ],
+                    "readOnly": true,
                     "properties": {
                         "second": {
                             "type": "object",
+                            "required": [
+                                "third"
+                            ],
+                            "readOnly": true,
                             "properties": {
                                 "third": {
-                                    "type": "string"
+                                    "type": "string",
+                                    "readOnly": true
                                 }
                             }
                         }

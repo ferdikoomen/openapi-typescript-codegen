@@ -25,7 +25,7 @@ export function getOperationParameter(openApi: OpenApi, parameter: OpenApiParame
         default: getOperationParameterDefault(parameter.default),
         isProperty: false,
         isReadOnly: false,
-        isRequired: parameter.required || false,
+        isRequired: parameter.required === true,
         isNullable: false,
         imports: [],
         extends: [],

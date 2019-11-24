@@ -10,7 +10,7 @@ export interface OpenApiParameter extends OpenApiReference {
     name: string;
     in: 'path' | 'query' | 'header' | 'cookie';
     description?: string;
-    required: boolean;
+    required?: boolean;
     deprecated?: boolean;
     allowEmptyValue?: boolean;
     style?: string;

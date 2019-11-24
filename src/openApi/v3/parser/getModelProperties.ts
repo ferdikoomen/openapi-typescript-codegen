@@ -10,9 +10,7 @@ export function getModelProperties(openApi: OpenApi, definition: OpenApiSchema):
     for (const propertyName in definition.properties) {
         if (definition.properties.hasOwnProperty(propertyName)) {
             const property = definition.properties[propertyName];
-            const propertyRequired = !!(definition.required && definition.required.includes(propertyName));
-            const propertyReadOnly = !!property.readOnly;
-            const propertyNullable = !!property.nullable;
+            const propertyRequired = definition.required && definition.required.includes(propertyName);
             if (property.$ref) {
                 const model = getType(property.$ref);
                 models.push({
@@ -24,9 +22,9 @@ export function getModelProperties(openApi: OpenApi, definition: OpenApiSchema):
                     link: null,
                     description: getComment(property.description),
                     isProperty: true,
-                    isReadOnly: propertyReadOnly,
-                    isRequired: propertyRequired,
-                    isNullable: propertyNullable,
+                    isReadOnly: property.readOnly === true,
+                    isRequired: propertyRequired === true,
+                    isNullable: property.nullable === true,
                     imports: model.imports,
                     extends: [],
                     enum: [],
@@ -44,9 +42,9 @@ export function getModelProperties(openApi: OpenApi, definition: OpenApiSchema):
                     link: model.link,
                     description: getComment(property.description),
                     isProperty: true,
-                    isReadOnly: propertyReadOnly,
-                    isRequired: propertyRequired,
-                    isNullable: propertyNullable,
+                    isReadOnly: property.readOnly === true,
+                    isRequired: propertyRequired === true,
+                    isNullable: property.nullable === true,
                     imports: model.imports,
                     extends: model.extends,
                     enum: model.enum,

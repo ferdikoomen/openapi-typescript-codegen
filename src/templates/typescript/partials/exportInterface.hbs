@@ -10,7 +10,7 @@ export interface {{{name}}}{{#if extends}} extends {{#each extends}}{{{this}}}{{
      * {{{description}}}
      */
     {{/if}}
-    {{#if readOnly}}readonly {{/if}}{{{name}}}{{#unless isRequired}}?{{/unless}}: {{>type parent=../name}}{{#if isNullable}} | null{{/if}};
+    {{#if isReadOnly}}readonly {{/if}}{{{name}}}{{#unless isRequired}}?{{/unless}}: {{>type parent=../name}}{{#if isNullable}} | null{{/if}};
     {{/each}}
 }
 

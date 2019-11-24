@@ -6,7 +6,7 @@
  * {{{description}}}
  */
 {{/if}}
-{{#if readOnly}}readonly {{/if}}{{{name}}}{{#unless isRequired}}?{{/unless}}: {{>type}}{{#if isNullable}} | null{{/if}}{{#unless @last}},{{/unless}}
+{{#if isReadOnly}}readonly {{/if}}{{{name}}}{{#unless isRequired}}?{{/unless}}: {{>type}}{{#if isNullable}} | null{{/if}}{{#unless @last}},{{/unless}}
 {{/each}}
 }
 {{~else~}}

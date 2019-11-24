@@ -42,3 +42,10 @@ export enum Method {
     HEAD = 'head',
     PATCH = 'patch',
 }
+
+export enum ContentType {
+    APPLICATION_JSON_PATCH = 'application/json-patch+json',
+    APPLICATION_JSON = 'application/json',
+    TEXT_JSON = 'text/json',
+    TEXT_PAIN = 'text/plain',
+}

@@ -23,7 +23,7 @@ export function getOperation(openApi: OpenApi, url: string, method: string, op: 
         name: operationName,
         summary: getComment(op.summary),
         description: getComment(op.description),
-        deprecated: op.deprecated || false,
+        deprecated: op.deprecated === true,
         method: method,
         path: operationPath,
         parameters: [],

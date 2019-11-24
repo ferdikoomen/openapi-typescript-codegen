@@ -19,7 +19,7 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isProperty
         link: null,
         description: getComment(definition.description),
         isProperty: isProperty,
-        isReadOnly: definition.readOnly || false,
+        isReadOnly: definition.readOnly === true,
         isNullable: false,
         isRequired: false,
         imports: [],
