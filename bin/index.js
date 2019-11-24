@@ -17,13 +17,10 @@ program
 const SwaggerCodegen = require(path.resolve(__dirname, '../dist/index.js'));
 
 if (SwaggerCodegen) {
-
-    const result = SwaggerCodegen.generate(
+    SwaggerCodegen.generate(
         program.input,
         program.output,
         program.language,
         program.httpClient
     );
-
-    console.log(result);
 }

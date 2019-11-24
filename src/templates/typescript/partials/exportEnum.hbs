@@ -11,7 +11,7 @@ export enum {{{name}}} {
 
 export namespace {{{name}}} {
 
-    export const schema = {{>validation}};
+    export const schema = {{>validation parent=name}};
 
     export async function validate(value: any): Promise<{{{name}}}> {
         return schema.validate(value, { strict: true });

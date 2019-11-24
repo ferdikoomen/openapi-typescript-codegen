@@ -1,9 +1,13 @@
+{{~#equals parent name~}}
 yup.mixed<{{{name}}}>().oneOf([
     {{#each enum}}
-    {{#equals ../name name}}
-    {{{value}}}{{#unless @last}},{{/unless}}
-    {{else}}
-    {{{../name}}}.{{{name}}}{{#unless @last}},{{/unless}}
-    {{/equals}}
+    {{{../parent}}}.{{{name}}}{{#unless @last}},{{/unless}}
     {{/each}}
 ])
+{{~else~}}
+yup.mixed<{{{type}}}>().oneOf([
+    {{#each enum}}
+    {{{value}}}{{#unless @last}},{{/unless}}
+    {{/each}}
+])
+{{~/equals~}}
