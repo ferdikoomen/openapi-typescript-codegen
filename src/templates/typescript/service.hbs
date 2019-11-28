@@ -37,7 +37,7 @@ export class {{{name}}} {
      */
     public static async {{{name}}}({{#if parameters}}
         {{#each parameters}}
-        {{{name}}}{{#unless isRequired}}?{{/unless}}: {{>type}}{{#if isNullable}} | null{{/if}}{{#if default}} = {{{default}}}{{/if}}{{#unless @last}},{{/unless}}
+        {{{name}}}{{#unless isRequired}}{{#unless default}}?{{/unless}}{{/unless}}: {{>type}}{{#if isNullable}} | null{{/if}}{{#if default}} = {{{default}}}{{/if}}{{#unless @last}},{{/unless}}
         {{/each}}
     {{/if}}): Promise<{{>result}}> {
 

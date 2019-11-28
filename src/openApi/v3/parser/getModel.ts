@@ -5,6 +5,7 @@ import { PrimaryType } from './constants';
 import { getComment } from './getComment';
 import { getEnum } from './getEnum';
 import { getEnumFromDescription } from './getEnumFromDescription';
+import { getModelDefault } from './getModelDefault';
 import { getModelProperties } from './getModelProperties';
 import { getType } from './getType';
 
@@ -35,6 +36,7 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isProperty
         model.base = definitionRef.base;
         model.template = definitionRef.template;
         model.imports.push(...definitionRef.imports);
+        model.default = getModelDefault(definition, model);
         return model;
     }
 
@@ -45,6 +47,7 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isProperty
             model.type = PrimaryType.STRING;
             model.base = PrimaryType.STRING;
             model.enum.push(...enumerators);
+            model.default = getModelDefault(definition, model);
             return model;
         }
     }
@@ -56,6 +59,7 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isProperty
             model.type = PrimaryType.NUMBER;
             model.base = PrimaryType.NUMBER;
             model.enum.push(...enumerators);
+            model.default = getModelDefault(definition, model);
             return model;
         }
     }
@@ -68,6 +72,7 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isProperty
             model.base = arrayItems.base;
             model.template = arrayItems.template;
             model.imports.push(...arrayItems.imports);
+            model.default = getModelDefault(definition, model);
             return model;
         } else {
             const arrayItems = getModel(openApi, definition.items, true);
@@ -77,6 +82,7 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isProperty
             model.template = arrayItems.template;
             model.link = arrayItems;
             model.imports.push(...arrayItems.imports);
+            model.default = getModelDefault(definition, model);
             return model;
         }
     }
@@ -90,6 +96,7 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isProperty
             model.template = additionalProperties.template;
             model.imports.push(...additionalProperties.imports);
             model.imports.push('Dictionary');
+            model.default = getModelDefault(definition, model);
             return model;
         } else {
             const additionalProperties = getModel(openApi, definition.additionalProperties);
@@ -100,6 +107,7 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isProperty
             model.link = additionalProperties;
             model.imports.push(...additionalProperties.imports);
             model.imports.push('Dictionary');
+            model.default = getModelDefault(definition, model);
             return model;
         }
     }
@@ -108,6 +116,7 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isProperty
         model.export = 'interface';
         model.type = PrimaryType.OBJECT;
         model.base = PrimaryType.OBJECT;
+        model.default = getModelDefault(definition, model);
 
         if (definition.allOf) {
             definition.allOf.forEach(parent => {
@@ -151,6 +160,7 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isProperty
         model.base = definitionType.base;
         model.template = definitionType.template;
         model.imports.push(...definitionType.imports);
+        model.default = getModelDefault(definition, model);
         return model;
     }
 

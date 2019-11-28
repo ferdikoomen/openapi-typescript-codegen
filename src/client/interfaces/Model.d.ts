@@ -9,6 +9,7 @@ export interface Model extends Schema {
     template: string | null;
     link: Model | null;
     description: string | null;
+    default?: any;
     isProperty: boolean;
     isReadOnly: boolean;
     isRequired: boolean;

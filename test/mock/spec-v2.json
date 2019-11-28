@@ -98,6 +98,61 @@
                 ]
             }
         },
+        "/api/v{api-version}/defaults": {
+            "get": {
+                "tags": [
+                    "Defaults"
+                ],
+                "operationId": "CallWithDefaultParameters",
+                "parameters": [
+                    {
+                        "description": "This is a simple string",
+                        "name": "parameterString",
+                        "in": "query",
+                        "default": "Hello World!",
+                        "type": "string"
+                    },
+                    {
+                        "description": "This is a simple number",
+                        "name": "parameterNumber",
+                        "in": "query",
+                        "default": 123,
+                        "type": "number"
+                    },
+                    {
+                        "description": "This is a simple boolean",
+                        "name": "parameterBoolean",
+                        "in": "query",
+                        "default": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "description": "This is a simple enum",
+                        "name": "parameterEnum",
+                        "in": "query",
+                        "default": 0,
+                        "schema": {
+                            "enum": [
+                                "Success",
+                                "Warning",
+                                "Error"
+                            ]
+                        }
+                    },
+                    {
+                        "description": "This is a simple model",
+                        "name": "parameterModel",
+                        "in": "query",
+                        "default": {
+                            "prop": "Hello World"
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/ModelWithString"
+                        }
+                    }
+                ]
+            }
+        },
         "/api/v{api-version}/response": {
             "get": {
                 "tags": [
@@ -628,6 +683,18 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/ModelWithString"
+                    }
+                },
+                "propWithFile": {
+                    "type": "array",
+                    "items": {
+                        "type": "File"
+                    }
+                },
+                "propWithNumber": {
+                    "type": "array",
+                    "items": {
+                        "type": "int"
                     }
                 }
             }

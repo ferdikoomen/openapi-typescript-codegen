@@ -4,6 +4,7 @@ import { OperationParameter } from '../../../client/interfaces/OperationParamete
 import { PrimaryType } from './constants';
 import { getComment } from './getComment';
 import { getModel } from './getModel';
+import { getModelDefault } from './getModelDefault';
 import { getOperationParameterName } from './getOperationParameterName';
 import { getType } from './getType';
 
@@ -18,7 +19,6 @@ export function getOperationParameter(openApi: OpenApi, parameter: OpenApiParame
         template: null,
         link: null,
         description: getComment(parameter.description),
-        default: undefined,
         isProperty: false,
         isReadOnly: false,
         isRequired: parameter.required === true,
@@ -48,6 +48,8 @@ export function getOperationParameter(openApi: OpenApi, parameter: OpenApiParame
             operationParameter.base = model.base;
             operationParameter.template = model.template;
             operationParameter.imports.push(...model.imports);
+            operationParameter.default = getModelDefault(parameter.schema);
+
             return operationParameter;
         } else {
             const model = getModel(openApi, parameter.schema);
@@ -56,6 +58,7 @@ export function getOperationParameter(openApi: OpenApi, parameter: OpenApiParame
             operationParameter.base = model.base;
             operationParameter.template = model.template;
             operationParameter.link = model.link;
+            operationParameter.default = model.default;
             operationParameter.imports.push(...model.imports);
             operationParameter.extends.push(...model.extends);
             operationParameter.enum.push(...model.enum);

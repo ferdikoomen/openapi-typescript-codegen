@@ -124,6 +124,71 @@
                 }
             }
         },
+        "/api/v{api-version}/defaults": {
+            "get": {
+                "tags": [
+                    "Defaults"
+                ],
+                "operationId": "CallWithDefaultParameters",
+                "parameters": [
+                    {
+                        "description": "This is a simple string",
+                        "name": "parameterString",
+                        "in": "query",
+                        "nullable": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "Hello World!"
+                        }
+                    },
+                    {
+                        "description": "This is a simple number",
+                        "name": "parameterNumber",
+                        "in": "query",
+                        "nullable": true,
+                        "schema": {
+                            "type": "number",
+                            "default": 123
+                        }
+                    },
+                    {
+                        "description": "This is a simple boolean",
+                        "name": "parameterBoolean",
+                        "in": "query",
+                        "nullable": true,
+                        "schema": {
+                            "type": "boolean",
+                            "default": true
+                        }
+                    },
+                    {
+                        "description": "This is a simple enum",
+                        "name": "parameterEnum",
+                        "in": "query",
+                        "schema": {
+                            "enum": [
+                                "Success",
+                                "Warning",
+                                "Error"
+                            ],
+                            "default": 0
+                        }
+                    },
+                    {
+                        "description": "This is a simple model",
+                        "name": "parameterModel",
+                        "in": "query",
+                        "nullable": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/ModelWithString",
+                            "default": {
+                                "prop": "Hello World"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
         "/api/v{api-version}/response": {
             "get": {
                 "tags": [
@@ -292,9 +357,9 @@
                         "name": "parameterNumber",
                         "in": "query",
                         "required": true,
-                        "default": 123,
                         "schema": {
-                            "type": "int"
+                            "type": "int",
+                            "default": 123
                         }
                     },
                     {
@@ -303,9 +368,9 @@
                         "in": "query",
                         "required": true,
                         "nullable": true,
-                        "default": "default",
                         "schema": {
-                            "type": "string"
+                            "type": "string",
+                            "default": "default"
                         }
                     },
                     {
@@ -314,9 +379,9 @@
                         "in": "query",
                         "required": true,
                         "nullable": true,
-                        "default": true,
                         "schema": {
-                            "type": "boolean"
+                            "type": "boolean",
+                            "default": true
                         }
                     },
                     {
@@ -325,9 +390,9 @@
                         "in": "query",
                         "required": true,
                         "nullable": true,
-                        "default": null,
                         "schema": {
-                            "type": "object"
+                            "type": "object",
+                            "default": null
                         }
                     },
                     {
@@ -744,6 +809,18 @@
                         "type": "array",
                         "items": {
                             "$ref": "#/components/schemas/ModelWithString"
+                        }
+                    },
+                    "propWithFile": {
+                        "type": "array",
+                        "items": {
+                            "type": "File"
+                        }
+                    },
+                    "propWithNumber": {
+                        "type": "array",
+                        "items": {
+                            "type": "int"
                         }
                     }
                 }
