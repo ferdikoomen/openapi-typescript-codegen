@@ -400,6 +400,7 @@ export { SimpleReference } from './models/SimpleReference';
 export { SimpleString } from './models/SimpleString';
 
 export { ComplexService } from './services/ComplexService';
+export { DefaultsService } from './services/DefaultsService';
 export { ParametersService } from './services/ParametersService';
 export { ResponseService } from './services/ResponseService';
 export { SimpleService } from './services/SimpleService';
@@ -973,7 +974,9 @@ export let ModelWithArray;
 
     ModelWithArray.schema = (
         yup.object().shape({
-            prop: yup.lazy(() => yup.array().of(ModelWithString.schema).default(undefined))
+            prop: yup.lazy(() => yup.array().of(ModelWithString.schema).default(undefined)),
+            propWithFile: yup.lazy(() => yup.array().of(yup.mixed()).default(undefined)),
+            propWithNumber: yup.lazy(() => yup.array().of(yup.number()).default(undefined))
         }).noUnknown()
     );
 
@@ -1658,6 +1661,55 @@ export class ComplexService {
                 case 500: throw new ApiError(result, \`500 server error\`);
             }
         }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+}"
+`;
+
+exports[`generation v2 javascript file(./test/result/v2/javascript/services/DefaultsService.js): ./test/result/v2/javascript/services/DefaultsService.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ApiError, catchGenericError } from '../core/ApiError';
+import { request } from '../core/request';
+import { OpenAPI } from '../core/OpenAPI';
+
+export class DefaultsService {
+
+    /**
+     * @param parameterString This is a simple string
+     * @param parameterNumber This is a simple number
+     * @param parameterBoolean This is a simple boolean
+     * @param parameterEnum This is a simple enum
+     * @param parameterModel This is a simple model
+     * @throws ApiError
+     */
+    static async callWithDefaultParameters(
+        parameterString = 'Hello World!',
+        parameterNumber = 123,
+        parameterBoolean = true,
+        parameterEnum = 'Success',
+        parameterModel = {
+            \\"prop\\": \\"Hello World\\"
+        }
+    ) {
+
+        const result = await request({
+            method: 'get',
+            path: \`/api/v\${OpenAPI.VERSION}/defaults\`,
+            query: {
+                'parameterString': parameterString,
+                'parameterNumber': parameterNumber,
+                'parameterBoolean': parameterBoolean,
+                'parameterEnum': parameterEnum,
+                'parameterModel': parameterModel
+            }
+        });
 
         catchGenericError(result);
 
@@ -2421,6 +2473,7 @@ export { SimpleReference } from './models/SimpleReference';
 export { SimpleString } from './models/SimpleString';
 
 export { ComplexService } from './services/ComplexService';
+export { DefaultsService } from './services/DefaultsService';
 export { ParametersService } from './services/ParametersService';
 export { ResponseService } from './services/ResponseService';
 export { SimpleService } from './services/SimpleService';
@@ -3044,13 +3097,17 @@ import * as yup from 'yup';
  */
 export interface ModelWithArray {
     prop?: Array<ModelWithString>;
+    propWithFile?: Array<File>;
+    propWithNumber?: Array<number>;
 }
 
 export namespace ModelWithArray {
 
     export const schema: yup.ObjectSchema<ModelWithArray> = (
         yup.object<ModelWithArray>().shape({
-            prop: yup.lazy(() => yup.array<ModelWithString>().of(ModelWithString.schema).default(undefined))
+            prop: yup.lazy(() => yup.array<ModelWithString>().of(ModelWithString.schema).default(undefined)),
+            propWithFile: yup.lazy(() => yup.array<File>().of(yup.mixed<File>()).default(undefined)),
+            propWithNumber: yup.lazy(() => yup.array<number>().of(yup.number()).default(undefined))
         }).noUnknown()
     );
 
@@ -3827,6 +3884,57 @@ export class ComplexService {
 }"
 `;
 
+exports[`generation v2 typescript file(./test/result/v2/typescript/services/DefaultsService.ts): ./test/result/v2/typescript/services/DefaultsService.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ModelWithString } from '../models/ModelWithString';
+import { ApiError, catchGenericError } from '../core/ApiError';
+import { request } from '../core/request';
+import { OpenAPI } from '../core/OpenAPI';
+
+export class DefaultsService {
+
+    /**
+     * @param parameterString This is a simple string
+     * @param parameterNumber This is a simple number
+     * @param parameterBoolean This is a simple boolean
+     * @param parameterEnum This is a simple enum
+     * @param parameterModel This is a simple model
+     * @throws ApiError
+     */
+    public static async callWithDefaultParameters(
+        parameterString: string = 'Hello World!',
+        parameterNumber: number = 123,
+        parameterBoolean: boolean = true,
+        parameterEnum: ('Success' | 'Warning' | 'Error') = 'Success',
+        parameterModel: ModelWithString = {
+            \\"prop\\": \\"Hello World\\"
+        }
+    ): Promise<void> {
+
+        const result = await request({
+            method: 'get',
+            path: \`/api/v\${OpenAPI.VERSION}/defaults\`,
+            query: {
+                'parameterString': parameterString,
+                'parameterNumber': parameterNumber,
+                'parameterBoolean': parameterBoolean,
+                'parameterEnum': parameterEnum,
+                'parameterModel': parameterModel
+            }
+        });
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+}"
+`;
+
 exports[`generation v2 typescript file(./test/result/v2/typescript/services/ParametersService.ts): ./test/result/v2/typescript/services/ParametersService.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
@@ -4538,6 +4646,7 @@ export { SimpleReference } from './models/SimpleReference';
 export { SimpleString } from './models/SimpleString';
 
 export { ComplexService } from './services/ComplexService';
+export { DefaultsService } from './services/DefaultsService';
 export { ParametersService } from './services/ParametersService';
 export { ResponseService } from './services/ResponseService';
 export { SimpleService } from './services/SimpleService';
@@ -5111,7 +5220,9 @@ export let ModelWithArray;
 
     ModelWithArray.schema = (
         yup.object().shape({
-            prop: yup.lazy(() => yup.array().of(ModelWithString.schema).default(undefined))
+            prop: yup.lazy(() => yup.array().of(ModelWithString.schema).default(undefined)),
+            propWithFile: yup.lazy(() => yup.array().of(yup.mixed()).default(undefined)),
+            propWithNumber: yup.lazy(() => yup.array().of(yup.number()).default(undefined))
         }).noUnknown()
     );
 
@@ -5806,6 +5917,55 @@ export class ComplexService {
 }"
 `;
 
+exports[`generation v3 javascript file(./test/result/v3/javascript/services/DefaultsService.js): ./test/result/v3/javascript/services/DefaultsService.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ApiError, catchGenericError } from '../core/ApiError';
+import { request } from '../core/request';
+import { OpenAPI } from '../core/OpenAPI';
+
+export class DefaultsService {
+
+    /**
+     * @param parameterString This is a simple string
+     * @param parameterNumber This is a simple number
+     * @param parameterBoolean This is a simple boolean
+     * @param parameterEnum This is a simple enum
+     * @param parameterModel This is a simple model
+     * @throws ApiError
+     */
+    static async callWithDefaultParameters(
+        parameterString = 'Hello World!',
+        parameterNumber = 123,
+        parameterBoolean = true,
+        parameterEnum = 'Success',
+        parameterModel = {
+            \\"prop\\": \\"Hello World\\"
+        }
+    ) {
+
+        const result = await request({
+            method: 'get',
+            path: \`/api/v\${OpenAPI.VERSION}/defaults\`,
+            query: {
+                'parameterString': parameterString,
+                'parameterNumber': parameterNumber,
+                'parameterBoolean': parameterBoolean,
+                'parameterEnum': parameterEnum,
+                'parameterModel': parameterModel
+            }
+        });
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+}"
+`;
+
 exports[`generation v3 javascript file(./test/result/v3/javascript/services/ParametersService.js): ./test/result/v3/javascript/services/ParametersService.js 1`] = `
 "/* istanbul ignore file */
 /* eslint-disable */
@@ -6085,10 +6245,10 @@ export class TypesService {
      * @throws ApiError
      */
     static async types(
-        parameterNumber,
-        parameterString,
-        parameterBoolean,
-        parameterObject,
+        parameterNumber = 123,
+        parameterString = 'default',
+        parameterBoolean = true,
+        parameterObject = null,
         parameterArray,
         parameterDictionary,
         parameterEnum,
@@ -6568,6 +6728,7 @@ export { SimpleReference } from './models/SimpleReference';
 export { SimpleString } from './models/SimpleString';
 
 export { ComplexService } from './services/ComplexService';
+export { DefaultsService } from './services/DefaultsService';
 export { ParametersService } from './services/ParametersService';
 export { ResponseService } from './services/ResponseService';
 export { SimpleService } from './services/SimpleService';
@@ -7191,13 +7352,17 @@ import * as yup from 'yup';
  */
 export interface ModelWithArray {
     prop?: Array<ModelWithString>;
+    propWithFile?: Array<File>;
+    propWithNumber?: Array<number>;
 }
 
 export namespace ModelWithArray {
 
     export const schema: yup.ObjectSchema<ModelWithArray> = (
         yup.object<ModelWithArray>().shape({
-            prop: yup.lazy(() => yup.array<ModelWithString>().of(ModelWithString.schema).default(undefined))
+            prop: yup.lazy(() => yup.array<ModelWithString>().of(ModelWithString.schema).default(undefined)),
+            propWithFile: yup.lazy(() => yup.array<File>().of(yup.mixed<File>()).default(undefined)),
+            propWithNumber: yup.lazy(() => yup.array<number>().of(yup.number()).default(undefined))
         }).noUnknown()
     );
 
@@ -7976,6 +8141,57 @@ export class ComplexService {
 }"
 `;
 
+exports[`generation v3 typescript file(./test/result/v3/typescript/services/DefaultsService.ts): ./test/result/v3/typescript/services/DefaultsService.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ModelWithString } from '../models/ModelWithString';
+import { ApiError, catchGenericError } from '../core/ApiError';
+import { request } from '../core/request';
+import { OpenAPI } from '../core/OpenAPI';
+
+export class DefaultsService {
+
+    /**
+     * @param parameterString This is a simple string
+     * @param parameterNumber This is a simple number
+     * @param parameterBoolean This is a simple boolean
+     * @param parameterEnum This is a simple enum
+     * @param parameterModel This is a simple model
+     * @throws ApiError
+     */
+    public static async callWithDefaultParameters(
+        parameterString: string | null = 'Hello World!',
+        parameterNumber: number | null = 123,
+        parameterBoolean: boolean | null = true,
+        parameterEnum: ('Success' | 'Warning' | 'Error') = 'Success',
+        parameterModel: ModelWithString | null = {
+            \\"prop\\": \\"Hello World\\"
+        }
+    ): Promise<void> {
+
+        const result = await request({
+            method: 'get',
+            path: \`/api/v\${OpenAPI.VERSION}/defaults\`,
+            query: {
+                'parameterString': parameterString,
+                'parameterNumber': parameterNumber,
+                'parameterBoolean': parameterBoolean,
+                'parameterEnum': parameterEnum,
+                'parameterModel': parameterModel
+            }
+        });
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+}"
+`;
+
 exports[`generation v3 typescript file(./test/result/v3/typescript/services/ParametersService.ts): ./test/result/v3/typescript/services/ParametersService.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
@@ -8263,10 +8479,10 @@ export class TypesService {
      * @throws ApiError
      */
     public static async types(
-        parameterNumber: number,
-        parameterString: string | null,
-        parameterBoolean: boolean | null,
-        parameterObject: any | null,
+        parameterNumber: number = 123,
+        parameterString: string | null = 'default',
+        parameterBoolean: boolean | null = true,
+        parameterObject: any | null = null,
         parameterArray: Array<string> | null,
         parameterDictionary: any | null,
         parameterEnum: ('Success' | 'Warning' | 'Error') | null,
