@@ -70,7 +70,7 @@
         "@types/mkdirp": "0.5.2",
         "@types/node": "12.12.11",
         "@types/rimraf": "2.0.3",
-        "@types/yup": "0.26.24",
+        "@types/yup": "0.26.26",
         "@typescript-eslint/eslint-plugin": "2.8.0",
         "@typescript-eslint/parser": "2.8.0",
         "camelcase": "5.3.1",
