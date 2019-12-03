@@ -18,17 +18,18 @@ import { getServiceNames } from './getServiceNames';
  */
 export function writeClientIndex(client: Client, language: Language, templates: Templates, outputPath: string): void {
     const fileName = getFileName('index', language);
-    try {
-        fs.writeFileSync(
-            path.resolve(outputPath, fileName),
-            templates.index({
-                server: client.server,
-                version: client.version,
-                models: getModelNames(client.models),
-                services: getServiceNames(client.services),
-            })
-        );
-    } catch (e) {
-        throw new Error(`Could not write index: "${fileName}"`);
-    }
+    // try {
+    console.log(fileName);
+    fs.writeFileSync(
+        path.resolve(outputPath, fileName),
+        templates.index({
+            server: client.server,
+            version: client.version,
+            models: getModelNames(client.models),
+            services: getServiceNames(client.services),
+        })
+    );
+    // } catch (e) {
+    //     throw new Error(`Could not write index: "${fileName}"`);
+    // }
 }

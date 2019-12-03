@@ -1,5 +1,5 @@
 {{~#if link~}}
-yup.array<{{>type link}}>().of({{>validation link}})
+yup.array<{{>type link}}>().of({{>validation link}}){{#if isNullable}}.nullable(){{/if}}{{#if isRequired}}.required(){{/if}}
 {{~else~}}
-yup.array<{{{type}}}>().of({{{base}}}.schema)
+yup.array<{{#>isNullable}}{{{type}}}{{/isNullable}}>().of({{{base}}}.schema){{#if isNullable}}.nullable(){{/if}}{{#if isRequired}}.required(){{/if}}
 {{~/if~}}

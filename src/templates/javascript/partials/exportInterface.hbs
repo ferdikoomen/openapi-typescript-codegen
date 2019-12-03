@@ -14,12 +14,12 @@ export let {{{name}}};
     {{/if}}
     {{{../name}}}.{{{name}}} = {
         {{#each enum}}
-        {{{name}}}: {{{value}}}{{#unless @last}},{{/unless}}
+        {{{name}}}: {{{value}}}{{>comma}}
         {{/each}}
     };
 
     {{/each}}
-    {{{name}}}.schema = {{>validation}};
+    {{{name}}}.schema = {{>validation parent=name}};
 
     {{{name}}}.validate = async function(value) {
         return {{{name}}}.schema.validate(value, { strict: true });

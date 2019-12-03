@@ -1,13 +1,13 @@
 {{~#equals parent name~}}
 yup.mixed<{{{name}}}>().oneOf([
     {{#each enum}}
-    {{{../parent}}}.{{{name}}}{{#unless @last}},{{/unless}}
+    {{{../parent}}}.{{{name}}}{{>comma}}
     {{/each}}
-])
+]){{#if isNullable}}.nullable(){{/if}}{{#if isRequired}}.required(){{/if}}
 {{~else~}}
-yup.mixed<{{{type}}}>().oneOf([
+yup.mixed<{{#>isNullable}}{{{type}}}{{/isNullable}}>().oneOf([
     {{#each enum}}
-    {{{value}}}{{#unless @last}},{{/unless}}
+    {{{value}}}{{>comma}}
     {{/each}}
-])
+]){{#if isNullable}}.nullable(){{/if}}{{#if isRequired}}.required(){{/if}}
 {{~/equals~}}

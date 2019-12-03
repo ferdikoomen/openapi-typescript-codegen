@@ -31,7 +31,7 @@ export class {{{name}}} {
      */
     static async {{{name}}}({{#if parameters}}
         {{#each parameters}}
-        {{{name}}}{{#if default}} = {{{default}}}{{/if}}{{#unless @last}},{{/unless}}
+        {{{name}}}{{>defaultValue}}{{>comma}}
         {{/each}}
     {{/if}}) {
 
@@ -40,22 +40,22 @@ export class {{{name}}} {
             path: `{{{path}}}`{{#if parametersCookie}},
             cookies: {
                 {{#each parametersCookie}}
-                '{{{prop}}}': {{{name}}}{{#unless @last}},{{/unless}}
+                '{{{prop}}}': {{{name}}}{{>comma}}
                 {{/each}}
             }{{/if}}{{#if parametersCookie}},
             headers: {
                 {{#each parametersHeader}}
-                '{{{prop}}}': {{{name}}}{{#unless @last}},{{/unless}}
+                '{{{prop}}}': {{{name}}}{{>comma}}
                 {{/each}}
             }{{/if}}{{#if parametersQuery}},
             query: {
                 {{#each parametersQuery}}
-                '{{{prop}}}': {{{name}}}{{#unless @last}},{{/unless}}
+                '{{{prop}}}': {{{name}}}{{>comma}}
                 {{/each}}
             }{{/if}}{{#if parametersForm}},
             formData: {
                 {{#each parametersForm}}
-                '{{{prop}}}': {{{name}}}{{#unless @last}},{{/unless}}
+                '{{{prop}}}': {{{name}}}{{>comma}}
                 {{/each}}
             }{{/if}}{{#if parametersBody}},
             body: {{{parametersBody.name}}}{{/if}}

@@ -649,7 +649,7 @@
                 },
                 "arrayWithEnum": {
                     "type": "array",
-                    "additionalProperties": {
+                    "items": {
                         "enum": [
                             "Success",
                             "Warning",
@@ -659,7 +659,7 @@
                 },
                 "arrayWithDescription": {
                     "type": "array",
-                    "additionalProperties": {
+                    "items": {
                         "type": "integer",
                         "description": "Success=1,Warning=2,Error=3"
                     }
@@ -743,13 +743,13 @@
             "type": "object",
             "required": [
                 "required",
-                "requiredAndreadOnly"
+                "requiredAndReadOnly"
             ],
             "properties": {
                 "required": {
                     "type": "string"
                 },
-                "requiredAndreadOnly": {
+                "requiredAndReadOnly": {
                     "type": "string",
                     "readOnly": true
                 },

@@ -1,9 +1,9 @@
 {{~#equals type 'boolean'~}}
-yup.boolean()
+yup.boolean(){{#if isNullable}}.nullable(){{/if}}{{#if isRequired}}.required(){{/if}}
 {{~else equals type 'number'~}}
-yup.number()
+yup.number(){{#if isNullable}}.nullable(){{/if}}{{#if isRequired}}.required(){{/if}}
 {{~else equals type 'string'~}}
-yup.string()
+yup.string(){{#if isNullable}}.nullable(){{/if}}{{#if isRequired}}.required(){{/if}}
 {{~else~}}
-yup.mixed<{{{type}}}>()
+yup.mixed<{{#>isNullable}}{{{type}}}{{/isNullable}}>(){{#if isNullable}}.nullable(){{/if}}{{#if isRequired}}.required(){{/if}}
 {{~/equals~}}

@@ -40,6 +40,7 @@ export function getOperationParameter(openApi: OpenApi, parameter: OpenApiParame
         operationParameter.template = definitionRef.template;
         operationParameter.imports.push(...definitionRef.imports);
         operationParameter.default = getOperationParameterDefault(parameter, operationParameter);
+        operationParameter.isRequired = operationParameter.default || operationParameter.isRequired;
         return operationParameter;
     }
 
@@ -51,6 +52,7 @@ export function getOperationParameter(openApi: OpenApi, parameter: OpenApiParame
             operationParameter.base = PrimaryType.STRING;
             operationParameter.enum.push(...enumerators);
             operationParameter.default = getOperationParameterDefault(parameter, operationParameter);
+            operationParameter.isRequired = operationParameter.default || operationParameter.isRequired;
             return operationParameter;
         }
     }
@@ -63,6 +65,7 @@ export function getOperationParameter(openApi: OpenApi, parameter: OpenApiParame
             operationParameter.base = PrimaryType.NUMBER;
             operationParameter.enum.push(...enumerators);
             operationParameter.default = getOperationParameterDefault(parameter, operationParameter);
+            operationParameter.isRequired = operationParameter.default || operationParameter.isRequired;
             return operationParameter;
         }
     }
@@ -75,6 +78,7 @@ export function getOperationParameter(openApi: OpenApi, parameter: OpenApiParame
         operationParameter.template = items.template;
         operationParameter.imports.push(...items.imports);
         operationParameter.default = getOperationParameterDefault(parameter, operationParameter);
+        operationParameter.isRequired = operationParameter.default || operationParameter.isRequired;
         return operationParameter;
     }
 
@@ -87,6 +91,7 @@ export function getOperationParameter(openApi: OpenApi, parameter: OpenApiParame
         operationParameter.imports.push(...items.imports);
         operationParameter.imports.push('Dictionary');
         operationParameter.default = getOperationParameterDefault(parameter, operationParameter);
+        operationParameter.isRequired = operationParameter.default || operationParameter.isRequired;
         return operationParameter;
     }
 
@@ -99,6 +104,7 @@ export function getOperationParameter(openApi: OpenApi, parameter: OpenApiParame
             operationParameter.template = model.template;
             operationParameter.imports.push(...model.imports);
             operationParameter.default = getOperationParameterDefault(parameter, operationParameter);
+            operationParameter.isRequired = operationParameter.default || operationParameter.isRequired;
             return operationParameter;
         } else {
             const model = getModel(openApi, parameter.schema);
@@ -113,6 +119,7 @@ export function getOperationParameter(openApi: OpenApi, parameter: OpenApiParame
             operationParameter.enums.push(...model.enums);
             operationParameter.properties.push(...model.properties);
             operationParameter.default = getOperationParameterDefault(parameter, operationParameter);
+            operationParameter.isRequired = operationParameter.default || operationParameter.isRequired;
             return operationParameter;
         }
     }
@@ -126,6 +133,7 @@ export function getOperationParameter(openApi: OpenApi, parameter: OpenApiParame
         operationParameter.template = definitionType.template;
         operationParameter.imports.push(...definitionType.imports);
         operationParameter.default = getOperationParameterDefault(parameter, operationParameter);
+        operationParameter.isRequired = operationParameter.default || operationParameter.isRequired;
         return operationParameter;
     }
 

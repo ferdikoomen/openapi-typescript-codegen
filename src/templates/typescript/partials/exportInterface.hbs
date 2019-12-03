@@ -3,14 +3,14 @@
  * {{{description}}}
  */
 {{/if}}
-export interface {{{name}}}{{#if extends}} extends {{#each extends}}{{{this}}}{{#unless @last}}, {{/unless}}{{/each}}{{/if}} {
+export interface {{{name}}}{{>extends}} {
     {{#each properties}}
     {{#if description}}
     /**
      * {{{description}}}
      */
     {{/if}}
-    {{#if isReadOnly}}readonly {{/if}}{{{name}}}{{#unless isRequired}}?{{/unless}}: {{>type parent=../name}}{{#if isNullable}} | null{{/if}};
+    {{>isReadOnly}}{{{name}}}{{>isRequired}}: {{>type parent=../name}};
     {{/each}}
 }
 
@@ -24,12 +24,12 @@ export namespace {{{name}}} {
     {{/if}}
     export enum {{{name}}} {
         {{#each enum}}
-        {{{name}}} = {{{value}}}{{#unless @last}},{{/unless}}
+        {{{name}}} = {{{value}}}{{>comma}}
         {{/each}}
     }
 
     {{/each}}
-    export const schema: yup.ObjectSchema<{{{name}}}> = {{>validation}};
+    export const schema: yup.ObjectSchema<{{{name}}}> = {{>validation parent=name}};
 
     export async function validate(value: any): Promise<{{{name}}}> {
         return schema.validate(value, { strict: true });
