@@ -1,9 +1,11 @@
+{{~#>validationBasics~}}
 {{~#equals type 'boolean'~}}
-yup.boolean(){{#if isNullable}}.nullable(){{/if}}{{#if isRequired}}.required(){{/if}}
+yup.boolean()
 {{~else equals type 'number'~}}
-yup.number(){{#if isNullable}}.nullable(){{/if}}{{#if isRequired}}.required(){{/if}}
+yup.number()
 {{~else equals type 'string'~}}
-yup.string(){{#if isNullable}}.nullable(){{/if}}{{#if isRequired}}.required(){{/if}}
+yup.string()
 {{~else~}}
-yup.mixed<{{#>isNullable}}{{{type}}}{{/isNullable}}>(){{#if isNullable}}.nullable(){{/if}}{{#if isRequired}}.required(){{/if}}
+yup.mixed<{{#>isNullable}}{{{type}}}{{/isNullable}}>()
 {{~/equals~}}
+{{~/validationBasics~}}

@@ -24,7 +24,11 @@ export function getType(value?: string, template?: string): Type {
             const match1 = getType(matches[1]);
             const match2 = getType(matches[2]);
 
-            if (match2.type) {
+            if (match1.type === PrimaryType.ARRAY) {
+                result.type = `${match2.type}[]`;
+                result.base = `${match2.type}`;
+                match1.imports = [];
+            } else if (match2.type) {
                 result.type = `${match1.type}<${match2.type}>`;
                 result.base = match1.type;
                 result.template = match2.type;

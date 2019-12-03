@@ -1,13 +1,15 @@
+{{~#>validationBasics~}}
 {{~#equals parent name~}}
 yup.mixed<{{{name}}}>().oneOf([
     {{#each enum}}
     {{{../parent}}}.{{{name}}}{{>comma}}
     {{/each}}
-]){{#if isNullable}}.nullable(){{/if}}{{#if isRequired}}.required(){{/if}}
+])
 {{~else~}}
 yup.mixed<{{#>isNullable}}{{{type}}}{{/isNullable}}>().oneOf([
     {{#each enum}}
     {{{value}}}{{>comma}}
     {{/each}}
-]){{#if isNullable}}.nullable(){{/if}}{{#if isRequired}}.required(){{/if}}
+])
 {{~/equals~}}
+{{~/validationBasics~}}

@@ -1,9 +1,10 @@
+{{~#>validationBasics~}}
 {{#if extends}}
 {{#each extends}}
 {{{this}}}.schema.concat(
 {{/each}}
 {{/if}}
-{{#if properties}}
+{{~#if properties~}}
 yup.object{{#unless isProperty}}{{#if name}}<{{{name}}}>{{/if}}{{/unless}}().shape({
     {{#each properties}}
     {{#equals ../parent name}}
@@ -13,12 +14,12 @@ yup.object{{#unless isProperty}}{{#if name}}<{{{name}}}>{{/if}}{{/unless}}().sha
     {{/equals}}
     {{/each}}
 }).noUnknown()
-{{else}}
+{{~else~}}
 yup.object<any>()
-{{/if}}
+{{~/if~}}
 {{#if extends}}
 {{#each extends}}
 )
 {{/each}}
 {{/if}}
-{{#if isNullable}}.nullable(){{/if}}{{#if isRequired}}.required(){{/if}}
+{{~/validationBasics~}}

@@ -1,1 +1,3 @@
-{{{base}}}.schema{{#if isNullable}}.nullable(){{/if}}{{#if isRequired}}.required(){{/if}}
+{{~#>validationBasics~}}
+{{{base}}}.schema
+{{~/validationBasics~}}
