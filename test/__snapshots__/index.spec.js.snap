@@ -4653,7 +4653,6 @@ export { ModelWithNestedProperties } from './models/ModelWithNestedProperties';
 export { ModelWithProperties } from './models/ModelWithProperties';
 export { ModelWithReference } from './models/ModelWithReference';
 export { ModelWithString } from './models/ModelWithString';
-export { ProblemDetails } from './models/ProblemDetails';
 export { SimpleBoolean } from './models/SimpleBoolean';
 export { SimpleFile } from './models/SimpleFile';
 export { SimpleInteger } from './models/SimpleInteger';
@@ -5762,48 +5761,6 @@ export let ModelWithString;
 })(ModelWithString || (ModelWithString = {}));"
 `;
 
-exports[`generation v3 javascript file(./test/result/v3/javascript/models/ProblemDetails.js): ./test/result/v3/javascript/models/ProblemDetails.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-
-import * as yup from 'yup';
-
-export let ProblemDetails;
-(function (ProblemDetails) {
-
-    ProblemDetails.schema = (
-        yup.object().shape({
-            detail: yup.string().nullable(),
-            extensions: yup.lazy(value => {
-                return yup.object().shape(
-                    Object.keys(value).reduce((object, key) => ({
-                        ...object,
-                        [key]: (
-                            yup.object()
-                        )
-                    }), {})
-                ).noUnknown();
-            }),
-            instance: yup.string().nullable(),
-            status: yup.number().nullable(),
-            title: yup.string().nullable(),
-            type: yup.string().nullable()
-        }).noUnknown()
-    );
-
-    ProblemDetails.validate = async function(value) {
-        return ProblemDetails.schema.validate(value, { strict: true });
-    };
-
-    ProblemDetails.validateSync = function(value) {
-        return ProblemDetails.schema.validateSync(value, { strict: true });
-    };
-
-})(ProblemDetails || (ProblemDetails = {}));"
-`;
-
 exports[`generation v3 javascript file(./test/result/v3/javascript/models/SimpleBoolean.js): ./test/result/v3/javascript/models/SimpleBoolean.js 1`] = `
 "/* istanbul ignore file */
 /* eslint-disable */
@@ -6785,7 +6742,6 @@ export { ModelWithNestedProperties } from './models/ModelWithNestedProperties';
 export { ModelWithProperties } from './models/ModelWithProperties';
 export { ModelWithReference } from './models/ModelWithReference';
 export { ModelWithString } from './models/ModelWithString';
-export { ProblemDetails } from './models/ProblemDetails';
 export { SimpleBoolean } from './models/SimpleBoolean';
 export { SimpleFile } from './models/SimpleFile';
 export { SimpleInteger } from './models/SimpleInteger';
@@ -8018,56 +7974,6 @@ export namespace ModelWithString {
     }
 
     export function validateSync(value: any): ModelWithString {
-        return schema.validateSync(value, { strict: true });
-    }
-}"
-`;
-
-exports[`generation v3 typescript file(./test/result/v3/typescript/models/ProblemDetails.ts): ./test/result/v3/typescript/models/ProblemDetails.ts 1`] = `
-"/* istanbul ignore file */
-/* tslint:disable */
-/* eslint-disable */
-/* prettier-ignore */
-
-import { Dictionary } from '../models/Dictionary';
-import * as yup from 'yup';
-
-export interface ProblemDetails {
-    detail?: string | null;
-    readonly extensions?: Dictionary<any> | null;
-    instance?: string | null;
-    status?: number | null;
-    title?: string | null;
-    type?: string | null;
-}
-
-export namespace ProblemDetails {
-
-    export const schema: yup.ObjectSchema<ProblemDetails> = (
-        yup.object().shape({
-            detail: yup.string().nullable(),
-            extensions: yup.lazy<Dictionary<any>>(value => {
-                return yup.object<Dictionary<any>>().shape(
-                    Object.keys(value).reduce((object, key) => ({
-                        ...object,
-                        [key]: (
-                            yup.object<any>()
-                        )
-                    }), {})
-                ).noUnknown();
-            }),
-            instance: yup.string().nullable(),
-            status: yup.number().nullable(),
-            title: yup.string().nullable(),
-            type: yup.string().nullable()
-        }).noUnknown()
-    );
-
-    export async function validate(value: any): Promise<ProblemDetails> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): ProblemDetails {
         return schema.validateSync(value, { strict: true });
     }
 }"
