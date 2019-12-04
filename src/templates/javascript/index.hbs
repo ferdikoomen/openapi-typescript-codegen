@@ -8,7 +8,7 @@ export { OpenAPI } from './core/OpenAPI';
 {{#if models}}
 
 {{#each models}}
-{{#notEquals this 'Dictionary'}}export { {{{this}}} } from './models/{{{this}}}';{{/notEquals}}
+export { {{{this}}} } from './models/{{{this}}}';
 {{/each}}
 {{/if}}
 {{#if services}}

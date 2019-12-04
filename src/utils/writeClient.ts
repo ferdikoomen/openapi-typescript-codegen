@@ -53,10 +53,10 @@ export function writeClient(client: Client, language: Language, httpClient: Http
 
     // Write the client files
     try {
-        writeClientIndex(client, language, templates, outputPath);
+        writeClientSettings(client, language, httpClient, templates, outputPathCore);
         writeClientModels(client.models, language, templates, outputPathModels);
         writeClientServices(client.services, language, templates, outputPathServices);
-        writeClientSettings(client, language, httpClient, templates, outputPathCore);
+        writeClientIndex(client, language, templates, outputPathModels, outputPathServices, outputPath);
     } catch (e) {
         throw e;
     }

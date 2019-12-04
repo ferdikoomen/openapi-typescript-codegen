@@ -8,16 +8,3 @@ export enum {{{name}}} {
     {{{name}}} = {{{value}}}{{>comma}}
     {{/each}}
 }
-
-export namespace {{{name}}} {
-
-    export const schema = {{>validation parent=name}};
-
-    export async function validate(value: any): Promise<{{{name}}}> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): {{{name}}} {
-        return schema.validateSync(value, { strict: true });
-    }
-}

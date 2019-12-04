@@ -1,6 +1,6 @@
 {
     "name": "openapi-typescript-codegen",
-    "version": "0.0.3",
+    "version": "0.0.5",
     "description": "NodeJS library that generates Typescript or Javascript clients based on the OpenAPI specification.",
     "author": "Ferdi Koomen",
     "homepage": "https://github.com/ferdikoomen/openapi-typescript-codegen",
@@ -70,7 +70,6 @@
         "@types/mkdirp": "0.5.2",
         "@types/node": "12.12.14",
         "@types/rimraf": "2.0.3",
-        "@types/yup": "0.26.26",
         "@typescript-eslint/eslint-plugin": "2.10.0",
         "@typescript-eslint/parser": "2.10.0",
         "camelcase": "5.3.1",
@@ -89,7 +88,6 @@
         "path": "0.12.7",
         "prettier": "1.19.1",
         "rimraf": "3.0.0",
-        "typescript": "3.7.2",
-        "yup": "0.27.0"
+        "typescript": "3.7.2"
     }
 }

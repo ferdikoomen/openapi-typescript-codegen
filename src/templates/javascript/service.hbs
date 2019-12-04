@@ -3,7 +3,7 @@
 /* prettier-ignore */
 
 import { ApiError, catchGenericError } from '../core/ApiError';
-import { request } from '../core/request';
+import { request as $request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
 export class {{{name}}} {
@@ -31,11 +31,11 @@ export class {{{name}}} {
      */
     static async {{{name}}}({{#if parameters}}
         {{#each parameters}}
-        {{{name}}}{{>defaultValue}}{{>comma}}
+        {{{name}}}{{#if default}} = {{{default}}}{{/if}}{{>comma}}
         {{/each}}
     {{/if}}) {
 
-        const result = await request({
+        const result = await $request({
             method: '{{{method}}}',
             path: `{{{path}}}`{{#if parametersCookie}},
             cookies: {

@@ -16,13 +16,16 @@ describe('writeClientServices', () => {
             operations: [],
             imports: [],
         });
+
         const templates: Templates = {
             index: () => 'dummy',
             model: () => 'dummy',
             service: () => 'dummy',
             settings: () => 'dummy',
         };
+
         writeClientServices(services, Language.TYPESCRIPT, templates, '/');
+
         expect(fsWriteFileSync).toBeCalledWith('/Item.ts', 'dummy');
     });
 });

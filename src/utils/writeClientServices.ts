@@ -17,13 +17,12 @@ import { getFileName } from './getFileName';
 export function writeClientServices(services: Map<string, Service>, language: Language, templates: Templates, outputPath: string): void {
     services.forEach(service => {
         const fileName = getFileName(service.name, language);
-        // try {
-        console.log(fileName);
-        const templateData = exportService(service);
-        const templateResult = templates.service(templateData);
-        fs.writeFileSync(path.resolve(outputPath, fileName), format(templateResult));
-        // } catch (e) {
-        //     throw new Error(`Could not write service: "${fileName}"`);
-        // }
+        try {
+            const templateData = exportService(service);
+            const templateResult = templates.service(templateData);
+            fs.writeFileSync(path.resolve(outputPath, fileName), format(templateResult));
+        } catch (e) {
+            throw new Error(`Could not write service: "${fileName}"`);
+        }
     });
 }

@@ -4,15 +4,12 @@
 
 {{#if imports}}
 {{#each imports}}
-{{#notEquals this 'Dictionary'}}import { {{{this}}} } from '../models/{{{this}}}';{{/notEquals}}
+import { {{{this}}} } from '../models/{{{this}}}';
 {{/each}}
 {{/if}}
-import * as yup from 'yup';
 
 {{#equals export 'interface'}}
-{{>exportInterface}}
+{{>exportEnums}}
 {{else equals export 'enum'}}
 {{>exportEnum}}
-{{else}}
-{{>exportGeneric}}
 {{/equals}}

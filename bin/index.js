@@ -10,8 +10,8 @@ program
     .version(pkg.version)
     .option('--input [value]', 'Path to swagger specification', './spec.json')
     .option('--output [value]', 'Output directory', './generated')
-    .option('--language', 'Language to generate [typescript, javascript]', 'typescript')
-    .option('--http-client', 'HTTP client to generate [fetch, xhr]', 'fetch')
+    .option('--language [value]', 'Language to generate [typescript, javascript]', 'typescript')
+    .option('--http-client [value]', 'HTTP client to generate [fetch, xhr]', 'fetch')
     .parse(process.argv);
 
 const SwaggerCodegen = require(path.resolve(__dirname, '../dist/index.js'));

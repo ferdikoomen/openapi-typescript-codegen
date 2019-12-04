@@ -29,13 +29,16 @@ describe('writeClientModels', () => {
             enums: [],
             properties: [],
         });
+
         const templates: Templates = {
             index: () => 'dummy',
             model: () => 'dummy',
             service: () => 'dummy',
             settings: () => 'dummy',
         };
+
         writeClientModels(models, Language.TYPESCRIPT, templates, '/');
+
         expect(fsWriteFileSync).toBeCalledWith('/Item.ts', 'dummy');
     });
 });

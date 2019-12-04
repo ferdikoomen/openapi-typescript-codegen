@@ -2,13 +2,12 @@
 /* tslint:disable */
 /* eslint-disable */
 /* prettier-ignore */
-
 {{#if imports}}
+
 {{#each imports}}
 import { {{{this}}} } from '../models/{{{this}}}';
 {{/each}}
 {{/if}}
-import * as yup from 'yup';
 
 {{#equals export 'interface'}}
 {{>exportInterface}}

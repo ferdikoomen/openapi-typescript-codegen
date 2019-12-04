@@ -19,14 +19,4 @@ export let {{{name}}};
     };
 
     {{/each}}
-    {{{name}}}.schema = {{>validation parent=name}};
-
-    {{{name}}}.validate = async function(value) {
-        return {{{name}}}.schema.validate(value, { strict: true });
-    };
-
-    {{{name}}}.validateSync = function(value) {
-        return {{{name}}}.schema.validateSync(value, { strict: true });
-    };
-
 })({{{name}}} || ({{{name}}} = {}));

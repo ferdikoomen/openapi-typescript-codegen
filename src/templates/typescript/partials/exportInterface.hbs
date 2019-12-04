@@ -29,13 +29,4 @@ export namespace {{{name}}} {
     }
 
     {{/each}}
-    export const schema: yup.ObjectSchema<{{{name}}}> = {{>validation parent=name}};
-
-    export async function validate(value: any): Promise<{{{name}}}> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): {{{name}}} {
-        return schema.validateSync(value, { strict: true });
-    }
 }

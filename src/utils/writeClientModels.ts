@@ -6,6 +6,7 @@ import { Templates } from './readHandlebarsTemplates';
 import { exportModel } from './exportModel';
 import { format } from './format';
 import { getFileName } from './getFileName';
+import { shouldExportModel } from './shouldExportModel';
 
 /**
  * Generate Models using the Handlebar template and write to disk.
@@ -16,14 +17,15 @@ import { getFileName } from './getFileName';
  */
 export function writeClientModels(models: Map<string, Model>, language: Language, templates: Templates, outputPath: string): void {
     models.forEach(model => {
-        const fileName = getFileName(model.name, language);
-        // try {
-        console.log(fileName);
-        const templateData = exportModel(model);
-        const templateResult = templates.model(templateData);
-        fs.writeFileSync(path.resolve(outputPath, fileName), format(templateResult));
-        // } catch (e) {
-        //     throw new Error(`Could not write model: "${fileName}"`);
-        // }
+        if (shouldExportModel(model, language)) {
+            const fileName = getFileName(model.name, language);
+            try {
+                const templateData = exportModel(model);
+                const templateResult = templates.model(templateData);
+                fs.writeFileSync(path.resolve(outputPath, fileName), format(templateResult));
+            } catch (e) {
+                throw new Error(`Could not write model: "${fileName}"`);
+            }
+        }
     });
 }

@@ -360,399 +360,19 @@ export { ApiError } from './core/ApiError';
 export { isSuccess } from './core/isSuccess';
 export { OpenAPI } from './core/OpenAPI';
 
-export { ArrayWithArray } from './models/ArrayWithArray';
-export { ArrayWithBooleans } from './models/ArrayWithBooleans';
-export { ArrayWithNumbers } from './models/ArrayWithNumbers';
-export { ArrayWithProperties } from './models/ArrayWithProperties';
-export { ArrayWithReferences } from './models/ArrayWithReferences';
-export { ArrayWithStrings } from './models/ArrayWithStrings';
+export { EnumFromDescription.js } from './models/EnumFromDescription.js';
+export { EnumWithNumbers.js } from './models/EnumWithNumbers.js';
+export { EnumWithStrings.js } from './models/EnumWithStrings.js';
+export { ModelWithEnum.js } from './models/ModelWithEnum.js';
+export { ModelWithEnumFromDescription.js } from './models/ModelWithEnumFromDescription.js';
 
-export { DictionaryWithArray } from './models/DictionaryWithArray';
-export { DictionaryWithDictionary } from './models/DictionaryWithDictionary';
-export { DictionaryWithProperties } from './models/DictionaryWithProperties';
-export { DictionaryWithReference } from './models/DictionaryWithReference';
-export { DictionaryWithString } from './models/DictionaryWithString';
-export { EnumFromDescription } from './models/EnumFromDescription';
-export { EnumWithNumbers } from './models/EnumWithNumbers';
-export { EnumWithStrings } from './models/EnumWithStrings';
-export { ModelLink } from './models/ModelLink';
-export { ModelThatExtends } from './models/ModelThatExtends';
-export { ModelThatExtendsExtends } from './models/ModelThatExtendsExtends';
-export { ModelWithArray } from './models/ModelWithArray';
-export { ModelWithBoolean } from './models/ModelWithBoolean';
-export { ModelWithCircularReference } from './models/ModelWithCircularReference';
-export { ModelWithDictionary } from './models/ModelWithDictionary';
-export { ModelWithDuplicateImports } from './models/ModelWithDuplicateImports';
-export { ModelWithDuplicateProperties } from './models/ModelWithDuplicateProperties';
-export { ModelWithEnum } from './models/ModelWithEnum';
-export { ModelWithEnumFromDescription } from './models/ModelWithEnumFromDescription';
-export { ModelWithInteger } from './models/ModelWithInteger';
-export { ModelWithLink } from './models/ModelWithLink';
-export { ModelWithNestedEnums } from './models/ModelWithNestedEnums';
-export { ModelWithNestedProperties } from './models/ModelWithNestedProperties';
-export { ModelWithProperties } from './models/ModelWithProperties';
-export { ModelWithReference } from './models/ModelWithReference';
-export { ModelWithString } from './models/ModelWithString';
-export { SimpleBoolean } from './models/SimpleBoolean';
-export { SimpleFile } from './models/SimpleFile';
-export { SimpleInteger } from './models/SimpleInteger';
-export { SimpleReference } from './models/SimpleReference';
-export { SimpleString } from './models/SimpleString';
-
-export { ComplexService } from './services/ComplexService';
-export { DefaultsService } from './services/DefaultsService';
-export { ParametersService } from './services/ParametersService';
-export { ResponseService } from './services/ResponseService';
-export { SimpleService } from './services/SimpleService';
-export { TypesService } from './services/TypesService';
+export { ComplexService.js } from './services/ComplexService.js';
+export { DefaultsService.js } from './services/DefaultsService.js';
+export { ParametersService.js } from './services/ParametersService.js';
+export { ResponseService.js } from './services/ResponseService.js';
+export { SimpleService.js } from './services/SimpleService.js';
+export { TypesService.js } from './services/TypesService.js';
 "
-`;
-
-exports[`generation v2 javascript file(./test/result/v2/javascript/models/ArrayWithArray.js): ./test/result/v2/javascript/models/ArrayWithArray.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-import { ModelWithString } from '../models/ModelWithString';
-import * as yup from 'yup';
-
-/**
- * This is a simple array containing an array
- */
-export let ArrayWithArray;
-(function (ArrayWithArray) {
-
-    ArrayWithArray.schema = yup.array().of(yup.array().of(ModelWithString.schema));
-
-    ArrayWithArray.validate = async function(value) {
-        return ArrayWithArray.schema.validate(value, { strict: true });
-    };
-
-    ArrayWithArray.validateSync = function(value) {
-        return ArrayWithArray.schema.validateSync(value, { strict: true });
-    };
-
-})(ArrayWithArray || (ArrayWithArray = {}));"
-`;
-
-exports[`generation v2 javascript file(./test/result/v2/javascript/models/ArrayWithBooleans.js): ./test/result/v2/javascript/models/ArrayWithBooleans.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-import * as yup from 'yup';
-
-/**
- * This is a simple array with booleans
- */
-export let ArrayWithBooleans;
-(function (ArrayWithBooleans) {
-
-    ArrayWithBooleans.schema = yup.array().of(yup.boolean());
-
-    ArrayWithBooleans.validate = async function(value) {
-        return ArrayWithBooleans.schema.validate(value, { strict: true });
-    };
-
-    ArrayWithBooleans.validateSync = function(value) {
-        return ArrayWithBooleans.schema.validateSync(value, { strict: true });
-    };
-
-})(ArrayWithBooleans || (ArrayWithBooleans = {}));"
-`;
-
-exports[`generation v2 javascript file(./test/result/v2/javascript/models/ArrayWithNumbers.js): ./test/result/v2/javascript/models/ArrayWithNumbers.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-import * as yup from 'yup';
-
-/**
- * This is a simple array with numbers
- */
-export let ArrayWithNumbers;
-(function (ArrayWithNumbers) {
-
-    ArrayWithNumbers.schema = yup.array().of(yup.number());
-
-    ArrayWithNumbers.validate = async function(value) {
-        return ArrayWithNumbers.schema.validate(value, { strict: true });
-    };
-
-    ArrayWithNumbers.validateSync = function(value) {
-        return ArrayWithNumbers.schema.validateSync(value, { strict: true });
-    };
-
-})(ArrayWithNumbers || (ArrayWithNumbers = {}));"
-`;
-
-exports[`generation v2 javascript file(./test/result/v2/javascript/models/ArrayWithProperties.js): ./test/result/v2/javascript/models/ArrayWithProperties.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-import * as yup from 'yup';
-
-/**
- * This is a simple array with properties
- */
-export let ArrayWithProperties;
-(function (ArrayWithProperties) {
-
-    ArrayWithProperties.schema = yup.array().of((
-        yup.object().shape({
-            foo: yup.string(),
-            bar: yup.string()
-        }).noUnknown()
-    ));
-
-    ArrayWithProperties.validate = async function(value) {
-        return ArrayWithProperties.schema.validate(value, { strict: true });
-    };
-
-    ArrayWithProperties.validateSync = function(value) {
-        return ArrayWithProperties.schema.validateSync(value, { strict: true });
-    };
-
-})(ArrayWithProperties || (ArrayWithProperties = {}));"
-`;
-
-exports[`generation v2 javascript file(./test/result/v2/javascript/models/ArrayWithReferences.js): ./test/result/v2/javascript/models/ArrayWithReferences.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-import { ModelWithString } from '../models/ModelWithString';
-import * as yup from 'yup';
-
-/**
- * This is a simple array with references
- */
-export let ArrayWithReferences;
-(function (ArrayWithReferences) {
-
-    ArrayWithReferences.schema = yup.array().of(ModelWithString.schema);
-
-    ArrayWithReferences.validate = async function(value) {
-        return ArrayWithReferences.schema.validate(value, { strict: true });
-    };
-
-    ArrayWithReferences.validateSync = function(value) {
-        return ArrayWithReferences.schema.validateSync(value, { strict: true });
-    };
-
-})(ArrayWithReferences || (ArrayWithReferences = {}));"
-`;
-
-exports[`generation v2 javascript file(./test/result/v2/javascript/models/ArrayWithStrings.js): ./test/result/v2/javascript/models/ArrayWithStrings.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-import * as yup from 'yup';
-
-/**
- * This is a simple array with strings
- */
-export let ArrayWithStrings;
-(function (ArrayWithStrings) {
-
-    ArrayWithStrings.schema = yup.array().of(yup.string());
-
-    ArrayWithStrings.validate = async function(value) {
-        return ArrayWithStrings.schema.validate(value, { strict: true });
-    };
-
-    ArrayWithStrings.validateSync = function(value) {
-        return ArrayWithStrings.schema.validateSync(value, { strict: true });
-    };
-
-})(ArrayWithStrings || (ArrayWithStrings = {}));"
-`;
-
-exports[`generation v2 javascript file(./test/result/v2/javascript/models/DictionaryWithArray.js): ./test/result/v2/javascript/models/DictionaryWithArray.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-
-import { ModelWithString } from '../models/ModelWithString';
-import * as yup from 'yup';
-
-/**
- * This is a complex dictionary
- */
-export let DictionaryWithArray;
-(function (DictionaryWithArray) {
-
-    DictionaryWithArray.schema = yup.lazy(value => {
-        return yup.object().shape(
-            Object.keys(value).reduce((object, key) => ({
-                ...object,
-                [key]: yup.array().of(ModelWithString.schema)
-            }), {})
-        ).noUnknown();
-    });
-
-    DictionaryWithArray.validate = async function(value) {
-        return DictionaryWithArray.schema.validate(value, { strict: true });
-    };
-
-    DictionaryWithArray.validateSync = function(value) {
-        return DictionaryWithArray.schema.validateSync(value, { strict: true });
-    };
-
-})(DictionaryWithArray || (DictionaryWithArray = {}));"
-`;
-
-exports[`generation v2 javascript file(./test/result/v2/javascript/models/DictionaryWithDictionary.js): ./test/result/v2/javascript/models/DictionaryWithDictionary.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-
-import * as yup from 'yup';
-
-/**
- * This is a string dictionary
- */
-export let DictionaryWithDictionary;
-(function (DictionaryWithDictionary) {
-
-    DictionaryWithDictionary.schema = yup.lazy(value => {
-        return yup.object().shape(
-            Object.keys(value).reduce((object, key) => ({
-                ...object,
-                [key]: yup.lazy(value => {
-                    return yup.object().shape(
-                        Object.keys(value).reduce((object, key) => ({
-                            ...object,
-                            [key]: yup.string()
-                        }), {})
-                    ).noUnknown();
-                })
-            }), {})
-        ).noUnknown();
-    });
-
-    DictionaryWithDictionary.validate = async function(value) {
-        return DictionaryWithDictionary.schema.validate(value, { strict: true });
-    };
-
-    DictionaryWithDictionary.validateSync = function(value) {
-        return DictionaryWithDictionary.schema.validateSync(value, { strict: true });
-    };
-
-})(DictionaryWithDictionary || (DictionaryWithDictionary = {}));"
-`;
-
-exports[`generation v2 javascript file(./test/result/v2/javascript/models/DictionaryWithProperties.js): ./test/result/v2/javascript/models/DictionaryWithProperties.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-
-import * as yup from 'yup';
-
-/**
- * This is a complex dictionary
- */
-export let DictionaryWithProperties;
-(function (DictionaryWithProperties) {
-
-    DictionaryWithProperties.schema = yup.lazy(value => {
-        return yup.object().shape(
-            Object.keys(value).reduce((object, key) => ({
-                ...object,
-                [key]: (
-                    yup.object().shape({
-                        foo: yup.string(),
-                        bar: yup.string()
-                    }).noUnknown()
-                )
-            }), {})
-        ).noUnknown();
-    });
-
-    DictionaryWithProperties.validate = async function(value) {
-        return DictionaryWithProperties.schema.validate(value, { strict: true });
-    };
-
-    DictionaryWithProperties.validateSync = function(value) {
-        return DictionaryWithProperties.schema.validateSync(value, { strict: true });
-    };
-
-})(DictionaryWithProperties || (DictionaryWithProperties = {}));"
-`;
-
-exports[`generation v2 javascript file(./test/result/v2/javascript/models/DictionaryWithReference.js): ./test/result/v2/javascript/models/DictionaryWithReference.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-
-import { ModelWithString } from '../models/ModelWithString';
-import * as yup from 'yup';
-
-/**
- * This is a string reference
- */
-export let DictionaryWithReference;
-(function (DictionaryWithReference) {
-
-    DictionaryWithReference.schema = yup.lazy(value => {
-        return yup.object().shape(
-            Object.keys(value).reduce((key, item) => ({
-                ...object,
-                [key]: ModelWithString.schema
-            }), {})
-        ).noUnknown();
-    });
-
-    DictionaryWithReference.validate = async function(value) {
-        return DictionaryWithReference.schema.validate(value, { strict: true });
-    };
-
-    DictionaryWithReference.validateSync = function(value) {
-        return DictionaryWithReference.schema.validateSync(value, { strict: true });
-    };
-
-})(DictionaryWithReference || (DictionaryWithReference = {}));"
-`;
-
-exports[`generation v2 javascript file(./test/result/v2/javascript/models/DictionaryWithString.js): ./test/result/v2/javascript/models/DictionaryWithString.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-
-import * as yup from 'yup';
-
-/**
- * This is a string dictionary
- */
-export let DictionaryWithString;
-(function (DictionaryWithString) {
-
-    DictionaryWithString.schema = yup.lazy(value => {
-        return yup.object().shape(
-            Object.keys(value).reduce((object, key) => ({
-                ...object,
-                [key]: yup.string()
-            }), {})
-        ).noUnknown();
-    });
-
-    DictionaryWithString.validate = async function(value) {
-        return DictionaryWithString.schema.validate(value, { strict: true });
-    };
-
-    DictionaryWithString.validateSync = function(value) {
-        return DictionaryWithString.schema.validateSync(value, { strict: true });
-    };
-
-})(DictionaryWithString || (DictionaryWithString = {}));"
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/models/EnumFromDescription.js): ./test/result/v2/javascript/models/EnumFromDescription.js 1`] = `
@@ -760,7 +380,6 @@ exports[`generation v2 javascript file(./test/result/v2/javascript/models/EnumFr
 /* eslint-disable */
 /* prettier-ignore */
 
-import * as yup from 'yup';
 
 /**
  * Success=1,Warning=2,Error=3
@@ -772,20 +391,6 @@ export let EnumFromDescription;
     EnumFromDescription.SUCCESS = 1;
     EnumFromDescription.WARNING = 2;
 
-    EnumFromDescription.schema = yup.mixed().oneOf([
-        3,
-        1,
-        2
-    ]);
-
-    EnumFromDescription.validate = async function(value) {
-        return EnumFromDescription.schema.validate(value, { strict: true });
-    };
-
-    EnumFromDescription.validateSync = function(value) {
-        return EnumFromDescription.schema.validateSync(value, { strict: true });
-    };
-
 })(EnumFromDescription || (EnumFromDescription = {}));"
 `;
 
@@ -794,7 +399,6 @@ exports[`generation v2 javascript file(./test/result/v2/javascript/models/EnumWi
 /* eslint-disable */
 /* prettier-ignore */
 
-import * as yup from 'yup';
 
 /**
  * This is a simple enum with numbers
@@ -806,20 +410,6 @@ export let EnumWithNumbers;
     EnumWithNumbers.NUM_2 = 2;
     EnumWithNumbers.NUM_3 = 3;
 
-    EnumWithNumbers.schema = yup.mixed().oneOf([
-        1,
-        2,
-        3
-    ]);
-
-    EnumWithNumbers.validate = async function(value) {
-        return EnumWithNumbers.schema.validate(value, { strict: true });
-    };
-
-    EnumWithNumbers.validateSync = function(value) {
-        return EnumWithNumbers.schema.validateSync(value, { strict: true });
-    };
-
 })(EnumWithNumbers || (EnumWithNumbers = {}));"
 `;
 
@@ -828,7 +418,6 @@ exports[`generation v2 javascript file(./test/result/v2/javascript/models/EnumWi
 /* eslint-disable */
 /* prettier-ignore */
 
-import * as yup from 'yup';
 
 /**
  * This is a simple enum with strings
@@ -840,317 +429,7 @@ export let EnumWithStrings;
     EnumWithStrings.SUCCESS = 'Success';
     EnumWithStrings.WARNING = 'Warning';
 
-    EnumWithStrings.schema = yup.mixed().oneOf([
-        'Error',
-        'Success',
-        'Warning'
-    ]);
-
-    EnumWithStrings.validate = async function(value) {
-        return EnumWithStrings.schema.validate(value, { strict: true });
-    };
-
-    EnumWithStrings.validateSync = function(value) {
-        return EnumWithStrings.schema.validateSync(value, { strict: true });
-    };
-
 })(EnumWithStrings || (EnumWithStrings = {}));"
-`;
-
-exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelLink.js): ./test/result/v2/javascript/models/ModelLink.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-import * as yup from 'yup';
-
-/**
- * This is a model that can have a template??
- */
-export let ModelLink;
-(function (ModelLink) {
-
-    ModelLink.schema = (
-        yup.object().shape({
-            id: yup.string()
-        }).noUnknown()
-    );
-
-    ModelLink.validate = async function(value) {
-        return ModelLink.schema.validate(value, { strict: true });
-    };
-
-    ModelLink.validateSync = function(value) {
-        return ModelLink.schema.validateSync(value, { strict: true });
-    };
-
-})(ModelLink || (ModelLink = {}));"
-`;
-
-exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelThatExtends.js): ./test/result/v2/javascript/models/ModelThatExtends.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-import { ModelWithString } from '../models/ModelWithString';
-import * as yup from 'yup';
-
-/**
- * This is a model that extends another model
- */
-export let ModelThatExtends;
-(function (ModelThatExtends) {
-
-    ModelThatExtends.schema = (
-        ModelWithString.schema.concat(
-            yup.object().shape({
-                propExtendsA: yup.string(),
-                propExtendsB: ModelWithString.schema
-            }).noUnknown()
-        )
-    );
-
-    ModelThatExtends.validate = async function(value) {
-        return ModelThatExtends.schema.validate(value, { strict: true });
-    };
-
-    ModelThatExtends.validateSync = function(value) {
-        return ModelThatExtends.schema.validateSync(value, { strict: true });
-    };
-
-})(ModelThatExtends || (ModelThatExtends = {}));"
-`;
-
-exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelThatExtendsExtends.js): ./test/result/v2/javascript/models/ModelThatExtendsExtends.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-import { ModelThatExtends } from '../models/ModelThatExtends';
-import { ModelWithString } from '../models/ModelWithString';
-import * as yup from 'yup';
-
-/**
- * This is a model that extends another model
- */
-export let ModelThatExtendsExtends;
-(function (ModelThatExtendsExtends) {
-
-    ModelThatExtendsExtends.schema = (
-        ModelWithString.schema.concat(
-            ModelThatExtends.schema.concat(
-                yup.object().shape({
-                    propExtendsC: yup.string(),
-                    propExtendsD: ModelWithString.schema
-                }).noUnknown()
-            )
-        )
-    );
-
-    ModelThatExtendsExtends.validate = async function(value) {
-        return ModelThatExtendsExtends.schema.validate(value, { strict: true });
-    };
-
-    ModelThatExtendsExtends.validateSync = function(value) {
-        return ModelThatExtendsExtends.schema.validateSync(value, { strict: true });
-    };
-
-})(ModelThatExtendsExtends || (ModelThatExtendsExtends = {}));"
-`;
-
-exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelWithArray.js): ./test/result/v2/javascript/models/ModelWithArray.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-import { ModelWithString } from '../models/ModelWithString';
-import * as yup from 'yup';
-
-/**
- * This is a model with one property containing an array
- */
-export let ModelWithArray;
-(function (ModelWithArray) {
-
-    ModelWithArray.schema = (
-        yup.object().shape({
-            prop: yup.array().of(ModelWithString.schema),
-            propWithFile: yup.array().of(yup.mixed()),
-            propWithNumber: yup.array().of(yup.number())
-        }).noUnknown()
-    );
-
-    ModelWithArray.validate = async function(value) {
-        return ModelWithArray.schema.validate(value, { strict: true });
-    };
-
-    ModelWithArray.validateSync = function(value) {
-        return ModelWithArray.schema.validateSync(value, { strict: true });
-    };
-
-})(ModelWithArray || (ModelWithArray = {}));"
-`;
-
-exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelWithBoolean.js): ./test/result/v2/javascript/models/ModelWithBoolean.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-import * as yup from 'yup';
-
-/**
- * This is a model with one boolean property
- */
-export let ModelWithBoolean;
-(function (ModelWithBoolean) {
-
-    ModelWithBoolean.schema = (
-        yup.object().shape({
-            prop: yup.boolean()
-        }).noUnknown()
-    );
-
-    ModelWithBoolean.validate = async function(value) {
-        return ModelWithBoolean.schema.validate(value, { strict: true });
-    };
-
-    ModelWithBoolean.validateSync = function(value) {
-        return ModelWithBoolean.schema.validateSync(value, { strict: true });
-    };
-
-})(ModelWithBoolean || (ModelWithBoolean = {}));"
-`;
-
-exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelWithCircularReference.js): ./test/result/v2/javascript/models/ModelWithCircularReference.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-import * as yup from 'yup';
-
-/**
- * This is a model with one property containing a circular reference
- */
-export let ModelWithCircularReference;
-(function (ModelWithCircularReference) {
-
-    ModelWithCircularReference.schema = (
-        yup.object().shape({
-            prop: ModelWithCircularReference.schema
-        }).noUnknown()
-    );
-
-    ModelWithCircularReference.validate = async function(value) {
-        return ModelWithCircularReference.schema.validate(value, { strict: true });
-    };
-
-    ModelWithCircularReference.validateSync = function(value) {
-        return ModelWithCircularReference.schema.validateSync(value, { strict: true });
-    };
-
-})(ModelWithCircularReference || (ModelWithCircularReference = {}));"
-`;
-
-exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelWithDictionary.js): ./test/result/v2/javascript/models/ModelWithDictionary.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-
-import * as yup from 'yup';
-
-/**
- * This is a model with one property containing a dictionary
- */
-export let ModelWithDictionary;
-(function (ModelWithDictionary) {
-
-    ModelWithDictionary.schema = (
-        yup.object().shape({
-            prop: yup.lazy(value => {
-                return yup.object().shape(
-                    Object.keys(value).reduce((object, key) => ({
-                        ...object,
-                        [key]: yup.string()
-                    }), {})
-                ).noUnknown();
-            })
-        }).noUnknown()
-    );
-
-    ModelWithDictionary.validate = async function(value) {
-        return ModelWithDictionary.schema.validate(value, { strict: true });
-    };
-
-    ModelWithDictionary.validateSync = function(value) {
-        return ModelWithDictionary.schema.validateSync(value, { strict: true });
-    };
-
-})(ModelWithDictionary || (ModelWithDictionary = {}));"
-`;
-
-exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelWithDuplicateImports.js): ./test/result/v2/javascript/models/ModelWithDuplicateImports.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-import { ModelWithString } from '../models/ModelWithString';
-import * as yup from 'yup';
-
-/**
- * This is a model with duplicated imports
- */
-export let ModelWithDuplicateImports;
-(function (ModelWithDuplicateImports) {
-
-    ModelWithDuplicateImports.schema = (
-        yup.object().shape({
-            propA: ModelWithString.schema,
-            propB: ModelWithString.schema,
-            propC: ModelWithString.schema
-        }).noUnknown()
-    );
-
-    ModelWithDuplicateImports.validate = async function(value) {
-        return ModelWithDuplicateImports.schema.validate(value, { strict: true });
-    };
-
-    ModelWithDuplicateImports.validateSync = function(value) {
-        return ModelWithDuplicateImports.schema.validateSync(value, { strict: true });
-    };
-
-})(ModelWithDuplicateImports || (ModelWithDuplicateImports = {}));"
-`;
-
-exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelWithDuplicateProperties.js): ./test/result/v2/javascript/models/ModelWithDuplicateProperties.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-import { ModelWithString } from '../models/ModelWithString';
-import * as yup from 'yup';
-
-/**
- * This is a model with duplicated properties
- */
-export let ModelWithDuplicateProperties;
-(function (ModelWithDuplicateProperties) {
-
-    ModelWithDuplicateProperties.schema = (
-        yup.object().shape({
-            prop: ModelWithString.schema
-        }).noUnknown()
-    );
-
-    ModelWithDuplicateProperties.validate = async function(value) {
-        return ModelWithDuplicateProperties.schema.validate(value, { strict: true });
-    };
-
-    ModelWithDuplicateProperties.validateSync = function(value) {
-        return ModelWithDuplicateProperties.schema.validateSync(value, { strict: true });
-    };
-
-})(ModelWithDuplicateProperties || (ModelWithDuplicateProperties = {}));"
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelWithEnum.js): ./test/result/v2/javascript/models/ModelWithEnum.js 1`] = `
@@ -1158,7 +437,6 @@ exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelW
 /* eslint-disable */
 /* prettier-ignore */
 
-import * as yup from 'yup';
 
 /**
  * This is a model with one enum
@@ -1175,24 +453,6 @@ export let ModelWithEnum;
         ERROR: 'Error'
     };
 
-    ModelWithEnum.schema = (
-        yup.object().shape({
-            test: yup.mixed().oneOf([
-                'Success',
-                'Warning',
-                'Error'
-            ])
-        }).noUnknown()
-    );
-
-    ModelWithEnum.validate = async function(value) {
-        return ModelWithEnum.schema.validate(value, { strict: true });
-    };
-
-    ModelWithEnum.validateSync = function(value) {
-        return ModelWithEnum.schema.validateSync(value, { strict: true });
-    };
-
 })(ModelWithEnum || (ModelWithEnum = {}));"
 `;
 
@@ -1201,7 +461,6 @@ exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelW
 /* eslint-disable */
 /* prettier-ignore */
 
-import * as yup from 'yup';
 
 /**
  * This is a model with one enum
@@ -1218,417 +477,7 @@ export let ModelWithEnumFromDescription;
         ERROR: 3
     };
 
-    ModelWithEnumFromDescription.schema = (
-        yup.object().shape({
-            test: yup.mixed().oneOf([
-                1,
-                2,
-                3
-            ])
-        }).noUnknown()
-    );
-
-    ModelWithEnumFromDescription.validate = async function(value) {
-        return ModelWithEnumFromDescription.schema.validate(value, { strict: true });
-    };
-
-    ModelWithEnumFromDescription.validateSync = function(value) {
-        return ModelWithEnumFromDescription.schema.validateSync(value, { strict: true });
-    };
-
 })(ModelWithEnumFromDescription || (ModelWithEnumFromDescription = {}));"
-`;
-
-exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelWithInteger.js): ./test/result/v2/javascript/models/ModelWithInteger.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-import * as yup from 'yup';
-
-/**
- * This is a model with one number property
- */
-export let ModelWithInteger;
-(function (ModelWithInteger) {
-
-    ModelWithInteger.schema = (
-        yup.object().shape({
-            prop: yup.number()
-        }).noUnknown()
-    );
-
-    ModelWithInteger.validate = async function(value) {
-        return ModelWithInteger.schema.validate(value, { strict: true });
-    };
-
-    ModelWithInteger.validateSync = function(value) {
-        return ModelWithInteger.schema.validateSync(value, { strict: true });
-    };
-
-})(ModelWithInteger || (ModelWithInteger = {}));"
-`;
-
-exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelWithLink.js): ./test/result/v2/javascript/models/ModelWithLink.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-import { ModelLink } from '../models/ModelLink';
-import { ModelWithString } from '../models/ModelWithString';
-import * as yup from 'yup';
-
-/**
- * This is a model that can have a template??
- */
-export let ModelWithLink;
-(function (ModelWithLink) {
-
-    ModelWithLink.schema = (
-        yup.object().shape({
-            prop: ModelLink.schema
-        }).noUnknown()
-    );
-
-    ModelWithLink.validate = async function(value) {
-        return ModelWithLink.schema.validate(value, { strict: true });
-    };
-
-    ModelWithLink.validateSync = function(value) {
-        return ModelWithLink.schema.validateSync(value, { strict: true });
-    };
-
-})(ModelWithLink || (ModelWithLink = {}));"
-`;
-
-exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelWithNestedEnums.js): ./test/result/v2/javascript/models/ModelWithNestedEnums.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-
-import * as yup from 'yup';
-
-/**
- * This is a model with nested enums
- */
-export let ModelWithNestedEnums;
-(function (ModelWithNestedEnums) {
-
-    ModelWithNestedEnums.schema = (
-        yup.object().shape({
-            arrayWithDescription: yup.array().of(yup.mixed().oneOf([
-                1,
-                2,
-                3
-            ])),
-            arrayWithEnum: yup.array().of(yup.mixed().oneOf([
-                'Success',
-                'Warning',
-                'Error'
-            ])),
-            dictionaryWithEnum: yup.lazy(value => {
-                return yup.object().shape(
-                    Object.keys(value).reduce((object, key) => ({
-                        ...object,
-                        [key]: yup.mixed().oneOf([
-                            'Success',
-                            'Warning',
-                            'Error'
-                        ])
-                    }), {})
-                ).noUnknown();
-            }),
-            dictionaryWithEnumFromDescription: yup.lazy(value => {
-                return yup.object().shape(
-                    Object.keys(value).reduce((object, key) => ({
-                        ...object,
-                        [key]: yup.mixed().oneOf([
-                            1,
-                            2,
-                            3
-                        ])
-                    }), {})
-                ).noUnknown();
-            })
-        }).noUnknown()
-    );
-
-    ModelWithNestedEnums.validate = async function(value) {
-        return ModelWithNestedEnums.schema.validate(value, { strict: true });
-    };
-
-    ModelWithNestedEnums.validateSync = function(value) {
-        return ModelWithNestedEnums.schema.validateSync(value, { strict: true });
-    };
-
-})(ModelWithNestedEnums || (ModelWithNestedEnums = {}));"
-`;
-
-exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelWithNestedProperties.js): ./test/result/v2/javascript/models/ModelWithNestedProperties.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-import * as yup from 'yup';
-
-/**
- * This is a model with one nested property
- */
-export let ModelWithNestedProperties;
-(function (ModelWithNestedProperties) {
-
-    ModelWithNestedProperties.schema = (
-        yup.object().shape({
-            first: (
-                yup.object().shape({
-                    second: (
-                        yup.object().shape({
-                            third: yup.string().required()
-                        }).noUnknown()
-                    ).required()
-                }).noUnknown()
-            ).required()
-        }).noUnknown()
-    );
-
-    ModelWithNestedProperties.validate = async function(value) {
-        return ModelWithNestedProperties.schema.validate(value, { strict: true });
-    };
-
-    ModelWithNestedProperties.validateSync = function(value) {
-        return ModelWithNestedProperties.schema.validateSync(value, { strict: true });
-    };
-
-})(ModelWithNestedProperties || (ModelWithNestedProperties = {}));"
-`;
-
-exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelWithProperties.js): ./test/result/v2/javascript/models/ModelWithProperties.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-import { ModelWithString } from '../models/ModelWithString';
-import * as yup from 'yup';
-
-/**
- * This is a model with one nested property
- */
-export let ModelWithProperties;
-(function (ModelWithProperties) {
-
-    ModelWithProperties.schema = (
-        yup.object().shape({
-            boolean: yup.boolean(),
-            number: yup.number(),
-            reference: ModelWithString.schema,
-            required: yup.string().required(),
-            requiredAndReadOnly: yup.string().required(),
-            string: yup.string()
-        }).noUnknown()
-    );
-
-    ModelWithProperties.validate = async function(value) {
-        return ModelWithProperties.schema.validate(value, { strict: true });
-    };
-
-    ModelWithProperties.validateSync = function(value) {
-        return ModelWithProperties.schema.validateSync(value, { strict: true });
-    };
-
-})(ModelWithProperties || (ModelWithProperties = {}));"
-`;
-
-exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelWithReference.js): ./test/result/v2/javascript/models/ModelWithReference.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-import { ModelWithString } from '../models/ModelWithString';
-import * as yup from 'yup';
-
-/**
- * This is a model with one property containing a reference
- */
-export let ModelWithReference;
-(function (ModelWithReference) {
-
-    ModelWithReference.schema = (
-        yup.object().shape({
-            prop: ModelWithString.schema
-        }).noUnknown()
-    );
-
-    ModelWithReference.validate = async function(value) {
-        return ModelWithReference.schema.validate(value, { strict: true });
-    };
-
-    ModelWithReference.validateSync = function(value) {
-        return ModelWithReference.schema.validateSync(value, { strict: true });
-    };
-
-})(ModelWithReference || (ModelWithReference = {}));"
-`;
-
-exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelWithString.js): ./test/result/v2/javascript/models/ModelWithString.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-import * as yup from 'yup';
-
-/**
- * This is a model with one string property
- */
-export let ModelWithString;
-(function (ModelWithString) {
-
-    ModelWithString.schema = (
-        yup.object().shape({
-            prop: yup.string()
-        }).noUnknown()
-    );
-
-    ModelWithString.validate = async function(value) {
-        return ModelWithString.schema.validate(value, { strict: true });
-    };
-
-    ModelWithString.validateSync = function(value) {
-        return ModelWithString.schema.validateSync(value, { strict: true });
-    };
-
-})(ModelWithString || (ModelWithString = {}));"
-`;
-
-exports[`generation v2 javascript file(./test/result/v2/javascript/models/SimpleBoolean.js): ./test/result/v2/javascript/models/SimpleBoolean.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-import * as yup from 'yup';
-
-/**
- * This is a simple boolean
- */
-export let SimpleBoolean;
-(function (SimpleBoolean) {
-
-    SimpleBoolean.schema = yup.boolean();
-
-    SimpleBoolean.validate = async function(value) {
-        return SimpleBoolean.schema.validate(value, { strict: true });
-    };
-
-    SimpleBoolean.validateSync = function(value) {
-        return SimpleBoolean.schema.validateSync(value, { strict: true });
-    };
-
-})(SimpleBoolean || (SimpleBoolean = {}));"
-`;
-
-exports[`generation v2 javascript file(./test/result/v2/javascript/models/SimpleFile.js): ./test/result/v2/javascript/models/SimpleFile.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-import * as yup from 'yup';
-
-/**
- * This is a simple file
- */
-export let SimpleFile;
-(function (SimpleFile) {
-
-    SimpleFile.schema = yup.mixed();
-
-    SimpleFile.validate = async function(value) {
-        return SimpleFile.schema.validate(value, { strict: true });
-    };
-
-    SimpleFile.validateSync = function(value) {
-        return SimpleFile.schema.validateSync(value, { strict: true });
-    };
-
-})(SimpleFile || (SimpleFile = {}));"
-`;
-
-exports[`generation v2 javascript file(./test/result/v2/javascript/models/SimpleInteger.js): ./test/result/v2/javascript/models/SimpleInteger.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-import * as yup from 'yup';
-
-/**
- * This is a simple number
- */
-export let SimpleInteger;
-(function (SimpleInteger) {
-
-    SimpleInteger.schema = yup.number();
-
-    SimpleInteger.validate = async function(value) {
-        return SimpleInteger.schema.validate(value, { strict: true });
-    };
-
-    SimpleInteger.validateSync = function(value) {
-        return SimpleInteger.schema.validateSync(value, { strict: true });
-    };
-
-})(SimpleInteger || (SimpleInteger = {}));"
-`;
-
-exports[`generation v2 javascript file(./test/result/v2/javascript/models/SimpleReference.js): ./test/result/v2/javascript/models/SimpleReference.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-import { ModelWithString } from '../models/ModelWithString';
-import * as yup from 'yup';
-
-/**
- * This is a simple reference
- */
-export let SimpleReference;
-(function (SimpleReference) {
-
-    SimpleReference.schema = ModelWithString.schema;
-
-    SimpleReference.validate = async function(value) {
-        return SimpleReference.schema.validate(value, { strict: true });
-    };
-
-    SimpleReference.validateSync = function(value) {
-        return SimpleReference.schema.validateSync(value, { strict: true });
-    };
-
-})(SimpleReference || (SimpleReference = {}));"
-`;
-
-exports[`generation v2 javascript file(./test/result/v2/javascript/models/SimpleString.js): ./test/result/v2/javascript/models/SimpleString.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-import * as yup from 'yup';
-
-/**
- * This is a simple string
- */
-export let SimpleString;
-(function (SimpleString) {
-
-    SimpleString.schema = yup.string();
-
-    SimpleString.validate = async function(value) {
-        return SimpleString.schema.validate(value, { strict: true });
-    };
-
-    SimpleString.validateSync = function(value) {
-        return SimpleString.schema.validateSync(value, { strict: true });
-    };
-
-})(SimpleString || (SimpleString = {}));"
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/services/ComplexService.js): ./test/result/v2/javascript/services/ComplexService.js 1`] = `
@@ -1637,7 +486,7 @@ exports[`generation v2 javascript file(./test/result/v2/javascript/services/Comp
 /* prettier-ignore */
 
 import { ApiError, catchGenericError } from '../core/ApiError';
-import { request } from '../core/request';
+import { request as $request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
 export class ComplexService {
@@ -1653,7 +502,7 @@ export class ComplexService {
         parameterReference
     ) {
 
-        const result = await request({
+        const result = await $request({
             method: 'get',
             path: \`/api/v\${OpenAPI.VERSION}/complex\`,
             query: {
@@ -1683,7 +532,7 @@ exports[`generation v2 javascript file(./test/result/v2/javascript/services/Defa
 /* prettier-ignore */
 
 import { ApiError, catchGenericError } from '../core/ApiError';
-import { request } from '../core/request';
+import { request as $request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
 export class DefaultsService {
@@ -1706,7 +555,7 @@ export class DefaultsService {
         }
     ) {
 
-        const result = await request({
+        const result = await $request({
             method: 'get',
             path: \`/api/v\${OpenAPI.VERSION}/defaults\`,
             query: {
@@ -1732,7 +581,7 @@ exports[`generation v2 javascript file(./test/result/v2/javascript/services/Para
 /* prettier-ignore */
 
 import { ApiError, catchGenericError } from '../core/ApiError';
-import { request } from '../core/request';
+import { request as $request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
 export class ParametersService {
@@ -1751,7 +600,7 @@ export class ParametersService {
         parameterBody
     ) {
 
-        const result = await request({
+        const result = await $request({
             method: 'get',
             path: \`/api/v\${OpenAPI.VERSION}/parameters\`,
             query: {
@@ -1777,7 +626,7 @@ exports[`generation v2 javascript file(./test/result/v2/javascript/services/Resp
 /* prettier-ignore */
 
 import { ApiError, catchGenericError } from '../core/ApiError';
-import { request } from '../core/request';
+import { request as $request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
 export class ResponseService {
@@ -1788,7 +637,7 @@ export class ResponseService {
      */
     static async callWithDuplicateResponses() {
 
-        const result = await request({
+        const result = await $request({
             method: 'post',
             path: \`/api/v\${OpenAPI.VERSION}/response\`
         });
@@ -1812,7 +661,7 @@ export class ResponseService {
      */
     static async callWithResponse() {
 
-        const result = await request({
+        const result = await $request({
             method: 'get',
             path: \`/api/v\${OpenAPI.VERSION}/response\`
         });
@@ -1830,7 +679,7 @@ export class ResponseService {
      */
     static async callWithResponses() {
 
-        const result = await request({
+        const result = await $request({
             method: 'put',
             path: \`/api/v\${OpenAPI.VERSION}/response\`
         });
@@ -1857,7 +706,7 @@ exports[`generation v2 javascript file(./test/result/v2/javascript/services/Simp
 /* prettier-ignore */
 
 import { ApiError, catchGenericError } from '../core/ApiError';
-import { request } from '../core/request';
+import { request as $request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
 export class SimpleService {
@@ -1867,7 +716,7 @@ export class SimpleService {
      */
     static async deleteCallWithoutParametersAndResponse() {
 
-        const result = await request({
+        const result = await $request({
             method: 'delete',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`
         });
@@ -1882,7 +731,7 @@ export class SimpleService {
      */
     static async getCallWithoutParametersAndResponse() {
 
-        const result = await request({
+        const result = await $request({
             method: 'get',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`
         });
@@ -1897,7 +746,7 @@ export class SimpleService {
      */
     static async headCallWithoutParametersAndResponse() {
 
-        const result = await request({
+        const result = await $request({
             method: 'head',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`
         });
@@ -1912,7 +761,7 @@ export class SimpleService {
      */
     static async optionsCallWithoutParametersAndResponse() {
 
-        const result = await request({
+        const result = await $request({
             method: 'options',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`
         });
@@ -1927,7 +776,7 @@ export class SimpleService {
      */
     static async patchCallWithoutParametersAndResponse() {
 
-        const result = await request({
+        const result = await $request({
             method: 'patch',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`
         });
@@ -1942,7 +791,7 @@ export class SimpleService {
      */
     static async postCallWithoutParametersAndResponse() {
 
-        const result = await request({
+        const result = await $request({
             method: 'post',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`
         });
@@ -1957,7 +806,7 @@ export class SimpleService {
      */
     static async putCallWithoutParametersAndResponse() {
 
-        const result = await request({
+        const result = await $request({
             method: 'put',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`
         });
@@ -1976,7 +825,7 @@ exports[`generation v2 javascript file(./test/result/v2/javascript/services/Type
 /* prettier-ignore */
 
 import { ApiError, catchGenericError } from '../core/ApiError';
-import { request } from '../core/request';
+import { request as $request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
 export class TypesService {
@@ -2007,7 +856,7 @@ export class TypesService {
         id
     ) {
 
-        const result = await request({
+        const result = await $request({
             method: 'get',
             path: \`/api/v\${OpenAPI.VERSION}/types\`,
             query: {
@@ -2440,51 +1289,51 @@ export { ApiError } from './core/ApiError';
 export { isSuccess } from './core/isSuccess';
 export { OpenAPI } from './core/OpenAPI';
 
-export { ArrayWithArray } from './models/ArrayWithArray';
-export { ArrayWithBooleans } from './models/ArrayWithBooleans';
-export { ArrayWithNumbers } from './models/ArrayWithNumbers';
-export { ArrayWithProperties } from './models/ArrayWithProperties';
-export { ArrayWithReferences } from './models/ArrayWithReferences';
-export { ArrayWithStrings } from './models/ArrayWithStrings';
-export { Dictionary } from './models/Dictionary';
-export { DictionaryWithArray } from './models/DictionaryWithArray';
-export { DictionaryWithDictionary } from './models/DictionaryWithDictionary';
-export { DictionaryWithProperties } from './models/DictionaryWithProperties';
-export { DictionaryWithReference } from './models/DictionaryWithReference';
-export { DictionaryWithString } from './models/DictionaryWithString';
-export { EnumFromDescription } from './models/EnumFromDescription';
-export { EnumWithNumbers } from './models/EnumWithNumbers';
-export { EnumWithStrings } from './models/EnumWithStrings';
-export { ModelLink } from './models/ModelLink';
-export { ModelThatExtends } from './models/ModelThatExtends';
-export { ModelThatExtendsExtends } from './models/ModelThatExtendsExtends';
-export { ModelWithArray } from './models/ModelWithArray';
-export { ModelWithBoolean } from './models/ModelWithBoolean';
-export { ModelWithCircularReference } from './models/ModelWithCircularReference';
-export { ModelWithDictionary } from './models/ModelWithDictionary';
-export { ModelWithDuplicateImports } from './models/ModelWithDuplicateImports';
-export { ModelWithDuplicateProperties } from './models/ModelWithDuplicateProperties';
-export { ModelWithEnum } from './models/ModelWithEnum';
-export { ModelWithEnumFromDescription } from './models/ModelWithEnumFromDescription';
-export { ModelWithInteger } from './models/ModelWithInteger';
-export { ModelWithLink } from './models/ModelWithLink';
-export { ModelWithNestedEnums } from './models/ModelWithNestedEnums';
-export { ModelWithNestedProperties } from './models/ModelWithNestedProperties';
-export { ModelWithProperties } from './models/ModelWithProperties';
-export { ModelWithReference } from './models/ModelWithReference';
-export { ModelWithString } from './models/ModelWithString';
-export { SimpleBoolean } from './models/SimpleBoolean';
-export { SimpleFile } from './models/SimpleFile';
-export { SimpleInteger } from './models/SimpleInteger';
-export { SimpleReference } from './models/SimpleReference';
-export { SimpleString } from './models/SimpleString';
+export { ArrayWithArray.ts } from './models/ArrayWithArray.ts';
+export { ArrayWithBooleans.ts } from './models/ArrayWithBooleans.ts';
+export { ArrayWithNumbers.ts } from './models/ArrayWithNumbers.ts';
+export { ArrayWithProperties.ts } from './models/ArrayWithProperties.ts';
+export { ArrayWithReferences.ts } from './models/ArrayWithReferences.ts';
+export { ArrayWithStrings.ts } from './models/ArrayWithStrings.ts';
+export { Dictionary.ts } from './models/Dictionary.ts';
+export { DictionaryWithArray.ts } from './models/DictionaryWithArray.ts';
+export { DictionaryWithDictionary.ts } from './models/DictionaryWithDictionary.ts';
+export { DictionaryWithProperties.ts } from './models/DictionaryWithProperties.ts';
+export { DictionaryWithReference.ts } from './models/DictionaryWithReference.ts';
+export { DictionaryWithString.ts } from './models/DictionaryWithString.ts';
+export { EnumFromDescription.ts } from './models/EnumFromDescription.ts';
+export { EnumWithNumbers.ts } from './models/EnumWithNumbers.ts';
+export { EnumWithStrings.ts } from './models/EnumWithStrings.ts';
+export { ModelLink.ts } from './models/ModelLink.ts';
+export { ModelThatExtends.ts } from './models/ModelThatExtends.ts';
+export { ModelThatExtendsExtends.ts } from './models/ModelThatExtendsExtends.ts';
+export { ModelWithArray.ts } from './models/ModelWithArray.ts';
+export { ModelWithBoolean.ts } from './models/ModelWithBoolean.ts';
+export { ModelWithCircularReference.ts } from './models/ModelWithCircularReference.ts';
+export { ModelWithDictionary.ts } from './models/ModelWithDictionary.ts';
+export { ModelWithDuplicateImports.ts } from './models/ModelWithDuplicateImports.ts';
+export { ModelWithDuplicateProperties.ts } from './models/ModelWithDuplicateProperties.ts';
+export { ModelWithEnum.ts } from './models/ModelWithEnum.ts';
+export { ModelWithEnumFromDescription.ts } from './models/ModelWithEnumFromDescription.ts';
+export { ModelWithInteger.ts } from './models/ModelWithInteger.ts';
+export { ModelWithLink.ts } from './models/ModelWithLink.ts';
+export { ModelWithNestedEnums.ts } from './models/ModelWithNestedEnums.ts';
+export { ModelWithNestedProperties.ts } from './models/ModelWithNestedProperties.ts';
+export { ModelWithProperties.ts } from './models/ModelWithProperties.ts';
+export { ModelWithReference.ts } from './models/ModelWithReference.ts';
+export { ModelWithString.ts } from './models/ModelWithString.ts';
+export { SimpleBoolean.ts } from './models/SimpleBoolean.ts';
+export { SimpleFile.ts } from './models/SimpleFile.ts';
+export { SimpleInteger.ts } from './models/SimpleInteger.ts';
+export { SimpleReference.ts } from './models/SimpleReference.ts';
+export { SimpleString.ts } from './models/SimpleString.ts';
 
-export { ComplexService } from './services/ComplexService';
-export { DefaultsService } from './services/DefaultsService';
-export { ParametersService } from './services/ParametersService';
-export { ResponseService } from './services/ResponseService';
-export { SimpleService } from './services/SimpleService';
-export { TypesService } from './services/TypesService';
+export { ComplexService.ts } from './services/ComplexService.ts';
+export { DefaultsService.ts } from './services/DefaultsService.ts';
+export { ParametersService.ts } from './services/ParametersService.ts';
+export { ResponseService.ts } from './services/ResponseService.ts';
+export { SimpleService.ts } from './services/SimpleService.ts';
+export { TypesService.ts } from './services/TypesService.ts';
 "
 `;
 
@@ -2495,25 +1344,11 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/models/ArrayW
 /* prettier-ignore */
 
 import { ModelWithString } from '../models/ModelWithString';
-import * as yup from 'yup';
 
 /**
  * This is a simple array containing an array
  */
-export type ArrayWithArray = Array<Array<ModelWithString>>;
-
-export namespace ArrayWithArray {
-
-    export const schema = yup.array<Array<ModelWithString>>().of(yup.array<ModelWithString>().of(ModelWithString.schema));
-
-    export async function validate(value: any): Promise<ArrayWithArray> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): ArrayWithArray {
-        return schema.validateSync(value, { strict: true });
-    }
-}"
+export type ArrayWithArray = Array<Array<ModelWithString>>;"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/ArrayWithBooleans.ts): ./test/result/v2/typescript/models/ArrayWithBooleans.ts 1`] = `
@@ -2522,25 +1357,10 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/models/ArrayW
 /* eslint-disable */
 /* prettier-ignore */
 
-import * as yup from 'yup';
-
 /**
  * This is a simple array with booleans
  */
-export type ArrayWithBooleans = Array<boolean>;
-
-export namespace ArrayWithBooleans {
-
-    export const schema = yup.array<boolean>().of(yup.boolean());
-
-    export async function validate(value: any): Promise<ArrayWithBooleans> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): ArrayWithBooleans {
-        return schema.validateSync(value, { strict: true });
-    }
-}"
+export type ArrayWithBooleans = Array<boolean>;"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/ArrayWithNumbers.ts): ./test/result/v2/typescript/models/ArrayWithNumbers.ts 1`] = `
@@ -2549,25 +1369,10 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/models/ArrayW
 /* eslint-disable */
 /* prettier-ignore */
 
-import * as yup from 'yup';
-
 /**
  * This is a simple array with numbers
  */
-export type ArrayWithNumbers = Array<number>;
-
-export namespace ArrayWithNumbers {
-
-    export const schema = yup.array<number>().of(yup.number());
-
-    export async function validate(value: any): Promise<ArrayWithNumbers> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): ArrayWithNumbers {
-        return schema.validateSync(value, { strict: true });
-    }
-}"
+export type ArrayWithNumbers = Array<number>;"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/ArrayWithProperties.ts): ./test/result/v2/typescript/models/ArrayWithProperties.ts 1`] = `
@@ -2576,36 +1381,13 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/models/ArrayW
 /* eslint-disable */
 /* prettier-ignore */
 
-import * as yup from 'yup';
-
 /**
  * This is a simple array with properties
  */
 export type ArrayWithProperties = Array<{
     foo?: string,
     bar?: string
-}>;
-
-export namespace ArrayWithProperties {
-
-    export const schema = yup.array<{
-        foo?: string,
-        bar?: string
-    }>().of((
-        yup.object().shape({
-            foo: yup.string(),
-            bar: yup.string()
-        }).noUnknown()
-    ));
-
-    export async function validate(value: any): Promise<ArrayWithProperties> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): ArrayWithProperties {
-        return schema.validateSync(value, { strict: true });
-    }
-}"
+}>;"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/ArrayWithReferences.ts): ./test/result/v2/typescript/models/ArrayWithReferences.ts 1`] = `
@@ -2615,25 +1397,11 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/models/ArrayW
 /* prettier-ignore */
 
 import { ModelWithString } from '../models/ModelWithString';
-import * as yup from 'yup';
 
 /**
  * This is a simple array with references
  */
-export type ArrayWithReferences = Array<ModelWithString>;
-
-export namespace ArrayWithReferences {
-
-    export const schema = yup.array<ModelWithString>().of(ModelWithString.schema);
-
-    export async function validate(value: any): Promise<ArrayWithReferences> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): ArrayWithReferences {
-        return schema.validateSync(value, { strict: true });
-    }
-}"
+export type ArrayWithReferences = Array<ModelWithString>;"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/ArrayWithStrings.ts): ./test/result/v2/typescript/models/ArrayWithStrings.ts 1`] = `
@@ -2642,25 +1410,10 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/models/ArrayW
 /* eslint-disable */
 /* prettier-ignore */
 
-import * as yup from 'yup';
-
 /**
  * This is a simple array with strings
  */
-export type ArrayWithStrings = Array<string>;
-
-export namespace ArrayWithStrings {
-
-    export const schema = yup.array<string>().of(yup.string());
-
-    export async function validate(value: any): Promise<ArrayWithStrings> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): ArrayWithStrings {
-        return schema.validateSync(value, { strict: true });
-    }
-}"
+export type ArrayWithStrings = Array<string>;"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/Dictionary.ts): ./test/result/v2/typescript/models/Dictionary.ts 1`] = `
@@ -2683,32 +1436,11 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/models/Dictio
 
 import { Dictionary } from '../models/Dictionary';
 import { ModelWithString } from '../models/ModelWithString';
-import * as yup from 'yup';
 
 /**
  * This is a complex dictionary
  */
-export type DictionaryWithArray = Dictionary<Array<ModelWithString>>;
-
-export namespace DictionaryWithArray {
-
-    export const schema = yup.lazy<Dictionary<Array<ModelWithString>>>(value => {
-        return yup.object<Dictionary<Array<ModelWithString>>>().shape(
-            Object.keys(value).reduce((object, key) => ({
-                ...object,
-                [key]: yup.array<ModelWithString>().of(ModelWithString.schema)
-            }), {})
-        ).noUnknown();
-    });
-
-    export async function validate(value: any): Promise<DictionaryWithArray> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): DictionaryWithArray {
-        return schema.validateSync(value, { strict: true });
-    }
-}"
+export type DictionaryWithArray = Dictionary<Array<ModelWithString>>;"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/DictionaryWithDictionary.ts): ./test/result/v2/typescript/models/DictionaryWithDictionary.ts 1`] = `
@@ -2718,39 +1450,11 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/models/Dictio
 /* prettier-ignore */
 
 import { Dictionary } from '../models/Dictionary';
-import * as yup from 'yup';
 
 /**
  * This is a string dictionary
  */
-export type DictionaryWithDictionary = Dictionary<Dictionary<string>>;
-
-export namespace DictionaryWithDictionary {
-
-    export const schema = yup.lazy<Dictionary<Dictionary<string>>>(value => {
-        return yup.object<Dictionary<Dictionary<string>>>().shape(
-            Object.keys(value).reduce((object, key) => ({
-                ...object,
-                [key]: yup.lazy<Dictionary<string>>(value => {
-                    return yup.object<Dictionary<string>>().shape(
-                        Object.keys(value).reduce((object, key) => ({
-                            ...object,
-                            [key]: yup.string()
-                        }), {})
-                    ).noUnknown();
-                })
-            }), {})
-        ).noUnknown();
-    });
-
-    export async function validate(value: any): Promise<DictionaryWithDictionary> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): DictionaryWithDictionary {
-        return schema.validateSync(value, { strict: true });
-    }
-}"
+export type DictionaryWithDictionary = Dictionary<Dictionary<string>>;"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/DictionaryWithProperties.ts): ./test/result/v2/typescript/models/DictionaryWithProperties.ts 1`] = `
@@ -2760,7 +1464,6 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/models/Dictio
 /* prettier-ignore */
 
 import { Dictionary } from '../models/Dictionary';
-import * as yup from 'yup';
 
 /**
  * This is a complex dictionary
@@ -2768,38 +1471,7 @@ import * as yup from 'yup';
 export type DictionaryWithProperties = Dictionary<{
     foo?: string,
     bar?: string
-}>;
-
-export namespace DictionaryWithProperties {
-
-    export const schema = yup.lazy<Dictionary<{
-        foo?: string,
-        bar?: string
-    }>>(value => {
-        return yup.object<Dictionary<{
-            foo?: string,
-            bar?: string
-        }>>().shape(
-            Object.keys(value).reduce((object, key) => ({
-                ...object,
-                [key]: (
-                    yup.object().shape({
-                        foo: yup.string(),
-                        bar: yup.string()
-                    }).noUnknown()
-                )
-            }), {})
-        ).noUnknown();
-    });
-
-    export async function validate(value: any): Promise<DictionaryWithProperties> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): DictionaryWithProperties {
-        return schema.validateSync(value, { strict: true });
-    }
-}"
+}>;"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/DictionaryWithReference.ts): ./test/result/v2/typescript/models/DictionaryWithReference.ts 1`] = `
@@ -2810,32 +1482,11 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/models/Dictio
 
 import { Dictionary } from '../models/Dictionary';
 import { ModelWithString } from '../models/ModelWithString';
-import * as yup from 'yup';
 
 /**
  * This is a string reference
  */
-export type DictionaryWithReference = Dictionary<ModelWithString>;
-
-export namespace DictionaryWithReference {
-
-    export const schema = yup.lazy<Dictionary<ModelWithString>>(value => {
-        return yup.object<Dictionary<ModelWithString>>().shape(
-            Object.keys(value).reduce((object, key) => ({
-                ...object,
-                [key]: ModelWithString.schema
-            }), {})
-        ).noUnknown();
-    });
-
-    export async function validate(value: any): Promise<DictionaryWithReference> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): DictionaryWithReference {
-        return schema.validateSync(value, { strict: true });
-    }
-}"
+export type DictionaryWithReference = Dictionary<ModelWithString>;"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/DictionaryWithString.ts): ./test/result/v2/typescript/models/DictionaryWithString.ts 1`] = `
@@ -2845,32 +1496,11 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/models/Dictio
 /* prettier-ignore */
 
 import { Dictionary } from '../models/Dictionary';
-import * as yup from 'yup';
 
 /**
  * This is a string dictionary
  */
-export type DictionaryWithString = Dictionary<string>;
-
-export namespace DictionaryWithString {
-
-    export const schema = yup.lazy<Dictionary<string>>(value => {
-        return yup.object<Dictionary<string>>().shape(
-            Object.keys(value).reduce((object, key) => ({
-                ...object,
-                [key]: yup.string()
-            }), {})
-        ).noUnknown();
-    });
-
-    export async function validate(value: any): Promise<DictionaryWithString> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): DictionaryWithString {
-        return schema.validateSync(value, { strict: true });
-    }
-}"
+export type DictionaryWithString = Dictionary<string>;"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/EnumFromDescription.ts): ./test/result/v2/typescript/models/EnumFromDescription.ts 1`] = `
@@ -2879,8 +1509,6 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/models/EnumFr
 /* eslint-disable */
 /* prettier-ignore */
 
-import * as yup from 'yup';
-
 /**
  * Success=1,Warning=2,Error=3
  */
@@ -2888,23 +1516,6 @@ export enum EnumFromDescription {
     ERROR = 3,
     SUCCESS = 1,
     WARNING = 2
-}
-
-export namespace EnumFromDescription {
-
-    export const schema = yup.mixed<EnumFromDescription>().oneOf([
-        EnumFromDescription.ERROR,
-        EnumFromDescription.SUCCESS,
-        EnumFromDescription.WARNING
-    ]);
-
-    export async function validate(value: any): Promise<EnumFromDescription> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): EnumFromDescription {
-        return schema.validateSync(value, { strict: true });
-    }
 }"
 `;
 
@@ -2914,8 +1525,6 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/models/EnumWi
 /* eslint-disable */
 /* prettier-ignore */
 
-import * as yup from 'yup';
-
 /**
  * This is a simple enum with numbers
  */
@@ -2923,23 +1532,6 @@ export enum EnumWithNumbers {
     NUM_1 = 1,
     NUM_2 = 2,
     NUM_3 = 3
-}
-
-export namespace EnumWithNumbers {
-
-    export const schema = yup.mixed<EnumWithNumbers>().oneOf([
-        EnumWithNumbers.NUM_1,
-        EnumWithNumbers.NUM_2,
-        EnumWithNumbers.NUM_3
-    ]);
-
-    export async function validate(value: any): Promise<EnumWithNumbers> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): EnumWithNumbers {
-        return schema.validateSync(value, { strict: true });
-    }
 }"
 `;
 
@@ -2949,8 +1541,6 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/models/EnumWi
 /* eslint-disable */
 /* prettier-ignore */
 
-import * as yup from 'yup';
-
 /**
  * This is a simple enum with strings
  */
@@ -2958,23 +1548,6 @@ export enum EnumWithStrings {
     ERROR = 'Error',
     SUCCESS = 'Success',
     WARNING = 'Warning'
-}
-
-export namespace EnumWithStrings {
-
-    export const schema = yup.mixed<EnumWithStrings>().oneOf([
-        EnumWithStrings.ERROR,
-        EnumWithStrings.SUCCESS,
-        EnumWithStrings.WARNING
-    ]);
-
-    export async function validate(value: any): Promise<EnumWithStrings> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): EnumWithStrings {
-        return schema.validateSync(value, { strict: true });
-    }
 }"
 `;
 
@@ -2983,8 +1556,6 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelL
 /* tslint:disable */
 /* eslint-disable */
 /* prettier-ignore */
-
-import * as yup from 'yup';
 
 /**
  * This is a model that can have a template??
@@ -2995,19 +1566,6 @@ export interface ModelLink {
 
 export namespace ModelLink {
 
-    export const schema: yup.ObjectSchema<ModelLink> = (
-        yup.object().shape({
-            id: yup.string()
-        }).noUnknown()
-    );
-
-    export async function validate(value: any): Promise<ModelLink> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): ModelLink {
-        return schema.validateSync(value, { strict: true });
-    }
 }"
 `;
 
@@ -3018,7 +1576,6 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelT
 /* prettier-ignore */
 
 import { ModelWithString } from '../models/ModelWithString';
-import * as yup from 'yup';
 
 /**
  * This is a model that extends another model
@@ -3030,22 +1587,6 @@ export interface ModelThatExtends extends ModelWithString {
 
 export namespace ModelThatExtends {
 
-    export const schema: yup.ObjectSchema<ModelThatExtends> = (
-        ModelWithString.schema.concat(
-            yup.object().shape({
-                propExtendsA: yup.string(),
-                propExtendsB: ModelWithString.schema
-            }).noUnknown()
-        )
-    );
-
-    export async function validate(value: any): Promise<ModelThatExtends> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): ModelThatExtends {
-        return schema.validateSync(value, { strict: true });
-    }
 }"
 `;
 
@@ -3057,7 +1598,6 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelT
 
 import { ModelThatExtends } from '../models/ModelThatExtends';
 import { ModelWithString } from '../models/ModelWithString';
-import * as yup from 'yup';
 
 /**
  * This is a model that extends another model
@@ -3069,24 +1609,6 @@ export interface ModelThatExtendsExtends extends ModelWithString, ModelThatExten
 
 export namespace ModelThatExtendsExtends {
 
-    export const schema: yup.ObjectSchema<ModelThatExtendsExtends> = (
-        ModelWithString.schema.concat(
-            ModelThatExtends.schema.concat(
-                yup.object().shape({
-                    propExtendsC: yup.string(),
-                    propExtendsD: ModelWithString.schema
-                }).noUnknown()
-            )
-        )
-    );
-
-    export async function validate(value: any): Promise<ModelThatExtendsExtends> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): ModelThatExtendsExtends {
-        return schema.validateSync(value, { strict: true });
-    }
 }"
 `;
 
@@ -3097,7 +1619,6 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelW
 /* prettier-ignore */
 
 import { ModelWithString } from '../models/ModelWithString';
-import * as yup from 'yup';
 
 /**
  * This is a model with one property containing an array
@@ -3110,21 +1631,6 @@ export interface ModelWithArray {
 
 export namespace ModelWithArray {
 
-    export const schema: yup.ObjectSchema<ModelWithArray> = (
-        yup.object().shape({
-            prop: yup.array<ModelWithString>().of(ModelWithString.schema),
-            propWithFile: yup.array<File>().of(yup.mixed<File>()),
-            propWithNumber: yup.array<number>().of(yup.number())
-        }).noUnknown()
-    );
-
-    export async function validate(value: any): Promise<ModelWithArray> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): ModelWithArray {
-        return schema.validateSync(value, { strict: true });
-    }
 }"
 `;
 
@@ -3133,8 +1639,6 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelW
 /* tslint:disable */
 /* eslint-disable */
 /* prettier-ignore */
-
-import * as yup from 'yup';
 
 /**
  * This is a model with one boolean property
@@ -3148,19 +1652,6 @@ export interface ModelWithBoolean {
 
 export namespace ModelWithBoolean {
 
-    export const schema: yup.ObjectSchema<ModelWithBoolean> = (
-        yup.object().shape({
-            prop: yup.boolean()
-        }).noUnknown()
-    );
-
-    export async function validate(value: any): Promise<ModelWithBoolean> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): ModelWithBoolean {
-        return schema.validateSync(value, { strict: true });
-    }
 }"
 `;
 
@@ -3169,8 +1660,6 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelW
 /* tslint:disable */
 /* eslint-disable */
 /* prettier-ignore */
-
-import * as yup from 'yup';
 
 /**
  * This is a model with one property containing a circular reference
@@ -3181,19 +1670,6 @@ export interface ModelWithCircularReference {
 
 export namespace ModelWithCircularReference {
 
-    export const schema: yup.ObjectSchema<ModelWithCircularReference> = (
-        yup.object().shape({
-            prop: ModelWithCircularReference.schema
-        }).noUnknown()
-    );
-
-    export async function validate(value: any): Promise<ModelWithCircularReference> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): ModelWithCircularReference {
-        return schema.validateSync(value, { strict: true });
-    }
 }"
 `;
 
@@ -3204,7 +1680,6 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelW
 /* prettier-ignore */
 
 import { Dictionary } from '../models/Dictionary';
-import * as yup from 'yup';
 
 /**
  * This is a model with one property containing a dictionary
@@ -3215,26 +1690,6 @@ export interface ModelWithDictionary {
 
 export namespace ModelWithDictionary {
 
-    export const schema: yup.ObjectSchema<ModelWithDictionary> = (
-        yup.object().shape({
-            prop: yup.lazy<Dictionary<string>>(value => {
-                return yup.object<Dictionary<string>>().shape(
-                    Object.keys(value).reduce((object, key) => ({
-                        ...object,
-                        [key]: yup.string()
-                    }), {})
-                ).noUnknown();
-            })
-        }).noUnknown()
-    );
-
-    export async function validate(value: any): Promise<ModelWithDictionary> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): ModelWithDictionary {
-        return schema.validateSync(value, { strict: true });
-    }
 }"
 `;
 
@@ -3245,7 +1700,6 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelW
 /* prettier-ignore */
 
 import { ModelWithString } from '../models/ModelWithString';
-import * as yup from 'yup';
 
 /**
  * This is a model with duplicated imports
@@ -3258,21 +1712,6 @@ export interface ModelWithDuplicateImports {
 
 export namespace ModelWithDuplicateImports {
 
-    export const schema: yup.ObjectSchema<ModelWithDuplicateImports> = (
-        yup.object().shape({
-            propA: ModelWithString.schema,
-            propB: ModelWithString.schema,
-            propC: ModelWithString.schema
-        }).noUnknown()
-    );
-
-    export async function validate(value: any): Promise<ModelWithDuplicateImports> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): ModelWithDuplicateImports {
-        return schema.validateSync(value, { strict: true });
-    }
 }"
 `;
 
@@ -3283,7 +1722,6 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelW
 /* prettier-ignore */
 
 import { ModelWithString } from '../models/ModelWithString';
-import * as yup from 'yup';
 
 /**
  * This is a model with duplicated properties
@@ -3294,19 +1732,6 @@ export interface ModelWithDuplicateProperties {
 
 export namespace ModelWithDuplicateProperties {
 
-    export const schema: yup.ObjectSchema<ModelWithDuplicateProperties> = (
-        yup.object().shape({
-            prop: ModelWithString.schema
-        }).noUnknown()
-    );
-
-    export async function validate(value: any): Promise<ModelWithDuplicateProperties> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): ModelWithDuplicateProperties {
-        return schema.validateSync(value, { strict: true });
-    }
 }"
 `;
 
@@ -3315,8 +1740,6 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelW
 /* tslint:disable */
 /* eslint-disable */
 /* prettier-ignore */
-
-import * as yup from 'yup';
 
 /**
  * This is a model with one enum
@@ -3339,23 +1762,6 @@ export namespace ModelWithEnum {
         ERROR = 'Error'
     }
 
-    export const schema: yup.ObjectSchema<ModelWithEnum> = (
-        yup.object().shape({
-            test: yup.mixed<string>().oneOf([
-                'Success',
-                'Warning',
-                'Error'
-            ])
-        }).noUnknown()
-    );
-
-    export async function validate(value: any): Promise<ModelWithEnum> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): ModelWithEnum {
-        return schema.validateSync(value, { strict: true });
-    }
 }"
 `;
 
@@ -3364,8 +1770,6 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelW
 /* tslint:disable */
 /* eslint-disable */
 /* prettier-ignore */
-
-import * as yup from 'yup';
 
 /**
  * This is a model with one enum
@@ -3388,23 +1792,6 @@ export namespace ModelWithEnumFromDescription {
         ERROR = 3
     }
 
-    export const schema: yup.ObjectSchema<ModelWithEnumFromDescription> = (
-        yup.object().shape({
-            test: yup.mixed<number>().oneOf([
-                1,
-                2,
-                3
-            ])
-        }).noUnknown()
-    );
-
-    export async function validate(value: any): Promise<ModelWithEnumFromDescription> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): ModelWithEnumFromDescription {
-        return schema.validateSync(value, { strict: true });
-    }
 }"
 `;
 
@@ -3413,8 +1800,6 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelW
 /* tslint:disable */
 /* eslint-disable */
 /* prettier-ignore */
-
-import * as yup from 'yup';
 
 /**
  * This is a model with one number property
@@ -3428,19 +1813,6 @@ export interface ModelWithInteger {
 
 export namespace ModelWithInteger {
 
-    export const schema: yup.ObjectSchema<ModelWithInteger> = (
-        yup.object().shape({
-            prop: yup.number()
-        }).noUnknown()
-    );
-
-    export async function validate(value: any): Promise<ModelWithInteger> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): ModelWithInteger {
-        return schema.validateSync(value, { strict: true });
-    }
 }"
 `;
 
@@ -3452,7 +1824,6 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelW
 
 import { ModelLink } from '../models/ModelLink';
 import { ModelWithString } from '../models/ModelWithString';
-import * as yup from 'yup';
 
 /**
  * This is a model that can have a template??
@@ -3463,19 +1834,6 @@ export interface ModelWithLink {
 
 export namespace ModelWithLink {
 
-    export const schema: yup.ObjectSchema<ModelWithLink> = (
-        yup.object().shape({
-            prop: ModelLink.schema
-        }).noUnknown()
-    );
-
-    export async function validate(value: any): Promise<ModelWithLink> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): ModelWithLink {
-        return schema.validateSync(value, { strict: true });
-    }
 }"
 `;
 
@@ -3486,7 +1844,6 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelW
 /* prettier-ignore */
 
 import { Dictionary } from '../models/Dictionary';
-import * as yup from 'yup';
 
 /**
  * This is a model with nested enums
@@ -3500,52 +1857,6 @@ export interface ModelWithNestedEnums {
 
 export namespace ModelWithNestedEnums {
 
-    export const schema: yup.ObjectSchema<ModelWithNestedEnums> = (
-        yup.object().shape({
-            arrayWithDescription: yup.array<(1 | 2 | 3)>().of(yup.mixed<number>().oneOf([
-                1,
-                2,
-                3
-            ])),
-            arrayWithEnum: yup.array<('Success' | 'Warning' | 'Error')>().of(yup.mixed<string>().oneOf([
-                'Success',
-                'Warning',
-                'Error'
-            ])),
-            dictionaryWithEnum: yup.lazy<Dictionary<('Success' | 'Warning' | 'Error')>>(value => {
-                return yup.object<Dictionary<('Success' | 'Warning' | 'Error')>>().shape(
-                    Object.keys(value).reduce((object, key) => ({
-                        ...object,
-                        [key]: yup.mixed<string>().oneOf([
-                            'Success',
-                            'Warning',
-                            'Error'
-                        ])
-                    }), {})
-                ).noUnknown();
-            }),
-            dictionaryWithEnumFromDescription: yup.lazy<Dictionary<(1 | 2 | 3)>>(value => {
-                return yup.object<Dictionary<(1 | 2 | 3)>>().shape(
-                    Object.keys(value).reduce((object, key) => ({
-                        ...object,
-                        [key]: yup.mixed<number>().oneOf([
-                            1,
-                            2,
-                            3
-                        ])
-                    }), {})
-                ).noUnknown();
-            })
-        }).noUnknown()
-    );
-
-    export async function validate(value: any): Promise<ModelWithNestedEnums> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): ModelWithNestedEnums {
-        return schema.validateSync(value, { strict: true });
-    }
 }"
 `;
 
@@ -3554,8 +1865,6 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelW
 /* tslint:disable */
 /* eslint-disable */
 /* prettier-ignore */
-
-import * as yup from 'yup';
 
 /**
  * This is a model with one nested property
@@ -3570,27 +1879,6 @@ export interface ModelWithNestedProperties {
 
 export namespace ModelWithNestedProperties {
 
-    export const schema: yup.ObjectSchema<ModelWithNestedProperties> = (
-        yup.object().shape({
-            first: (
-                yup.object().shape({
-                    second: (
-                        yup.object().shape({
-                            third: yup.string().required()
-                        }).noUnknown()
-                    ).required()
-                }).noUnknown()
-            ).required()
-        }).noUnknown()
-    );
-
-    export async function validate(value: any): Promise<ModelWithNestedProperties> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): ModelWithNestedProperties {
-        return schema.validateSync(value, { strict: true });
-    }
 }"
 `;
 
@@ -3601,7 +1889,6 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelW
 /* prettier-ignore */
 
 import { ModelWithString } from '../models/ModelWithString';
-import * as yup from 'yup';
 
 /**
  * This is a model with one nested property
@@ -3617,24 +1904,6 @@ export interface ModelWithProperties {
 
 export namespace ModelWithProperties {
 
-    export const schema: yup.ObjectSchema<ModelWithProperties> = (
-        yup.object().shape({
-            boolean: yup.boolean(),
-            number: yup.number(),
-            reference: ModelWithString.schema,
-            required: yup.string().required(),
-            requiredAndReadOnly: yup.string().required(),
-            string: yup.string()
-        }).noUnknown()
-    );
-
-    export async function validate(value: any): Promise<ModelWithProperties> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): ModelWithProperties {
-        return schema.validateSync(value, { strict: true });
-    }
 }"
 `;
 
@@ -3645,7 +1914,6 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelW
 /* prettier-ignore */
 
 import { ModelWithString } from '../models/ModelWithString';
-import * as yup from 'yup';
 
 /**
  * This is a model with one property containing a reference
@@ -3656,19 +1924,6 @@ export interface ModelWithReference {
 
 export namespace ModelWithReference {
 
-    export const schema: yup.ObjectSchema<ModelWithReference> = (
-        yup.object().shape({
-            prop: ModelWithString.schema
-        }).noUnknown()
-    );
-
-    export async function validate(value: any): Promise<ModelWithReference> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): ModelWithReference {
-        return schema.validateSync(value, { strict: true });
-    }
 }"
 `;
 
@@ -3677,8 +1932,6 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelW
 /* tslint:disable */
 /* eslint-disable */
 /* prettier-ignore */
-
-import * as yup from 'yup';
 
 /**
  * This is a model with one string property
@@ -3692,19 +1945,6 @@ export interface ModelWithString {
 
 export namespace ModelWithString {
 
-    export const schema: yup.ObjectSchema<ModelWithString> = (
-        yup.object().shape({
-            prop: yup.string()
-        }).noUnknown()
-    );
-
-    export async function validate(value: any): Promise<ModelWithString> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): ModelWithString {
-        return schema.validateSync(value, { strict: true });
-    }
 }"
 `;
 
@@ -3714,25 +1954,10 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/models/Simple
 /* eslint-disable */
 /* prettier-ignore */
 
-import * as yup from 'yup';
-
 /**
  * This is a simple boolean
  */
-export type SimpleBoolean = boolean;
-
-export namespace SimpleBoolean {
-
-    export const schema = yup.boolean();
-
-    export async function validate(value: any): Promise<SimpleBoolean> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): SimpleBoolean {
-        return schema.validateSync(value, { strict: true });
-    }
-}"
+export type SimpleBoolean = boolean;"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/SimpleFile.ts): ./test/result/v2/typescript/models/SimpleFile.ts 1`] = `
@@ -3741,25 +1966,10 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/models/Simple
 /* eslint-disable */
 /* prettier-ignore */
 
-import * as yup from 'yup';
-
 /**
  * This is a simple file
  */
-export type SimpleFile = File;
-
-export namespace SimpleFile {
-
-    export const schema = yup.mixed<File>();
-
-    export async function validate(value: any): Promise<SimpleFile> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): SimpleFile {
-        return schema.validateSync(value, { strict: true });
-    }
-}"
+export type SimpleFile = File;"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/SimpleInteger.ts): ./test/result/v2/typescript/models/SimpleInteger.ts 1`] = `
@@ -3768,25 +1978,10 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/models/Simple
 /* eslint-disable */
 /* prettier-ignore */
 
-import * as yup from 'yup';
-
 /**
  * This is a simple number
  */
-export type SimpleInteger = number;
-
-export namespace SimpleInteger {
-
-    export const schema = yup.number();
-
-    export async function validate(value: any): Promise<SimpleInteger> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): SimpleInteger {
-        return schema.validateSync(value, { strict: true });
-    }
-}"
+export type SimpleInteger = number;"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/SimpleReference.ts): ./test/result/v2/typescript/models/SimpleReference.ts 1`] = `
@@ -3796,25 +1991,11 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/models/Simple
 /* prettier-ignore */
 
 import { ModelWithString } from '../models/ModelWithString';
-import * as yup from 'yup';
 
 /**
  * This is a simple reference
  */
-export type SimpleReference = ModelWithString;
-
-export namespace SimpleReference {
-
-    export const schema = ModelWithString.schema;
-
-    export async function validate(value: any): Promise<SimpleReference> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): SimpleReference {
-        return schema.validateSync(value, { strict: true });
-    }
-}"
+export type SimpleReference = ModelWithString;"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/SimpleString.ts): ./test/result/v2/typescript/models/SimpleString.ts 1`] = `
@@ -3823,25 +2004,10 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/models/Simple
 /* eslint-disable */
 /* prettier-ignore */
 
-import * as yup from 'yup';
-
 /**
  * This is a simple string
  */
-export type SimpleString = string;
-
-export namespace SimpleString {
-
-    export const schema = yup.string();
-
-    export async function validate(value: any): Promise<SimpleString> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): SimpleString {
-        return schema.validateSync(value, { strict: true });
-    }
-}"
+export type SimpleString = string;"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/services/ComplexService.ts): ./test/result/v2/typescript/services/ComplexService.ts 1`] = `
@@ -3852,7 +2018,7 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/services/Comp
 
 import { ModelWithString } from '../models/ModelWithString';
 import { ApiError, catchGenericError } from '../core/ApiError';
-import { request } from '../core/request';
+import { request as $request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
 export class ComplexService {
@@ -3874,7 +2040,7 @@ export class ComplexService {
         parameterReference: ModelWithString
     ): Promise<Array<ModelWithString>> {
 
-        const result = await request({
+        const result = await $request({
             method: 'get',
             path: \`/api/v\${OpenAPI.VERSION}/complex\`,
             query: {
@@ -3906,7 +2072,7 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/services/Defa
 
 import { ModelWithString } from '../models/ModelWithString';
 import { ApiError, catchGenericError } from '../core/ApiError';
-import { request } from '../core/request';
+import { request as $request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
 export class DefaultsService {
@@ -3929,7 +2095,7 @@ export class DefaultsService {
         }
     ): Promise<void> {
 
-        const result = await request({
+        const result = await $request({
             method: 'get',
             path: \`/api/v\${OpenAPI.VERSION}/defaults\`,
             query: {
@@ -3956,7 +2122,7 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/services/Para
 /* prettier-ignore */
 
 import { ApiError, catchGenericError } from '../core/ApiError';
-import { request } from '../core/request';
+import { request as $request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
 export class ParametersService {
@@ -3975,7 +2141,7 @@ export class ParametersService {
         parameterBody: string
     ): Promise<void> {
 
-        const result = await request({
+        const result = await $request({
             method: 'get',
             path: \`/api/v\${OpenAPI.VERSION}/parameters\`,
             query: {
@@ -4005,7 +2171,7 @@ import { ModelThatExtends } from '../models/ModelThatExtends';
 import { ModelThatExtendsExtends } from '../models/ModelThatExtendsExtends';
 import { ModelWithString } from '../models/ModelWithString';
 import { ApiError, catchGenericError } from '../core/ApiError';
-import { request } from '../core/request';
+import { request as $request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
 export class ResponseService {
@@ -4016,7 +2182,7 @@ export class ResponseService {
      */
     public static async callWithDuplicateResponses(): Promise<ModelWithString> {
 
-        const result = await request({
+        const result = await $request({
             method: 'post',
             path: \`/api/v\${OpenAPI.VERSION}/response\`
         });
@@ -4040,7 +2206,7 @@ export class ResponseService {
      */
     public static async callWithResponse(): Promise<ModelWithString> {
 
-        const result = await request({
+        const result = await $request({
             method: 'get',
             path: \`/api/v\${OpenAPI.VERSION}/response\`
         });
@@ -4058,7 +2224,7 @@ export class ResponseService {
      */
     public static async callWithResponses(): Promise<ModelWithString | ModelThatExtends | ModelThatExtendsExtends> {
 
-        const result = await request({
+        const result = await $request({
             method: 'put',
             path: \`/api/v\${OpenAPI.VERSION}/response\`
         });
@@ -4086,7 +2252,7 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/services/Simp
 /* prettier-ignore */
 
 import { ApiError, catchGenericError } from '../core/ApiError';
-import { request } from '../core/request';
+import { request as $request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
 export class SimpleService {
@@ -4096,7 +2262,7 @@ export class SimpleService {
      */
     public static async deleteCallWithoutParametersAndResponse(): Promise<void> {
 
-        const result = await request({
+        const result = await $request({
             method: 'delete',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`
         });
@@ -4111,7 +2277,7 @@ export class SimpleService {
      */
     public static async getCallWithoutParametersAndResponse(): Promise<void> {
 
-        const result = await request({
+        const result = await $request({
             method: 'get',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`
         });
@@ -4126,7 +2292,7 @@ export class SimpleService {
      */
     public static async headCallWithoutParametersAndResponse(): Promise<void> {
 
-        const result = await request({
+        const result = await $request({
             method: 'head',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`
         });
@@ -4141,7 +2307,7 @@ export class SimpleService {
      */
     public static async optionsCallWithoutParametersAndResponse(): Promise<void> {
 
-        const result = await request({
+        const result = await $request({
             method: 'options',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`
         });
@@ -4156,7 +2322,7 @@ export class SimpleService {
      */
     public static async patchCallWithoutParametersAndResponse(): Promise<void> {
 
-        const result = await request({
+        const result = await $request({
             method: 'patch',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`
         });
@@ -4171,7 +2337,7 @@ export class SimpleService {
      */
     public static async postCallWithoutParametersAndResponse(): Promise<void> {
 
-        const result = await request({
+        const result = await $request({
             method: 'post',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`
         });
@@ -4186,7 +2352,7 @@ export class SimpleService {
      */
     public static async putCallWithoutParametersAndResponse(): Promise<void> {
 
-        const result = await request({
+        const result = await $request({
             method: 'put',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`
         });
@@ -4207,7 +2373,7 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/services/Type
 
 import { Dictionary } from '../models/Dictionary';
 import { ApiError, catchGenericError } from '../core/ApiError';
-import { request } from '../core/request';
+import { request as $request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
 export class TypesService {
@@ -4238,7 +2404,7 @@ export class TypesService {
         id?: number
     ): Promise<number | string | boolean | any> {
 
-        const result = await request({
+        const result = await $request({
             method: 'get',
             path: \`/api/v\${OpenAPI.VERSION}/types\`,
             query: {
@@ -4620,399 +2786,19 @@ export { ApiError } from './core/ApiError';
 export { isSuccess } from './core/isSuccess';
 export { OpenAPI } from './core/OpenAPI';
 
-export { ArrayWithArray } from './models/ArrayWithArray';
-export { ArrayWithBooleans } from './models/ArrayWithBooleans';
-export { ArrayWithNumbers } from './models/ArrayWithNumbers';
-export { ArrayWithProperties } from './models/ArrayWithProperties';
-export { ArrayWithReferences } from './models/ArrayWithReferences';
-export { ArrayWithStrings } from './models/ArrayWithStrings';
+export { EnumFromDescription.js } from './models/EnumFromDescription.js';
+export { EnumWithNumbers.js } from './models/EnumWithNumbers.js';
+export { EnumWithStrings.js } from './models/EnumWithStrings.js';
+export { ModelWithEnum.js } from './models/ModelWithEnum.js';
+export { ModelWithEnumFromDescription.js } from './models/ModelWithEnumFromDescription.js';
 
-export { DictionaryWithArray } from './models/DictionaryWithArray';
-export { DictionaryWithDictionary } from './models/DictionaryWithDictionary';
-export { DictionaryWithProperties } from './models/DictionaryWithProperties';
-export { DictionaryWithReference } from './models/DictionaryWithReference';
-export { DictionaryWithString } from './models/DictionaryWithString';
-export { EnumFromDescription } from './models/EnumFromDescription';
-export { EnumWithNumbers } from './models/EnumWithNumbers';
-export { EnumWithStrings } from './models/EnumWithStrings';
-export { ModelLink } from './models/ModelLink';
-export { ModelThatExtends } from './models/ModelThatExtends';
-export { ModelThatExtendsExtends } from './models/ModelThatExtendsExtends';
-export { ModelWithArray } from './models/ModelWithArray';
-export { ModelWithBoolean } from './models/ModelWithBoolean';
-export { ModelWithCircularReference } from './models/ModelWithCircularReference';
-export { ModelWithDictionary } from './models/ModelWithDictionary';
-export { ModelWithDuplicateImports } from './models/ModelWithDuplicateImports';
-export { ModelWithDuplicateProperties } from './models/ModelWithDuplicateProperties';
-export { ModelWithEnum } from './models/ModelWithEnum';
-export { ModelWithEnumFromDescription } from './models/ModelWithEnumFromDescription';
-export { ModelWithInteger } from './models/ModelWithInteger';
-export { ModelWithLink } from './models/ModelWithLink';
-export { ModelWithNestedEnums } from './models/ModelWithNestedEnums';
-export { ModelWithNestedProperties } from './models/ModelWithNestedProperties';
-export { ModelWithProperties } from './models/ModelWithProperties';
-export { ModelWithReference } from './models/ModelWithReference';
-export { ModelWithString } from './models/ModelWithString';
-export { SimpleBoolean } from './models/SimpleBoolean';
-export { SimpleFile } from './models/SimpleFile';
-export { SimpleInteger } from './models/SimpleInteger';
-export { SimpleReference } from './models/SimpleReference';
-export { SimpleString } from './models/SimpleString';
-
-export { ComplexService } from './services/ComplexService';
-export { DefaultsService } from './services/DefaultsService';
-export { ParametersService } from './services/ParametersService';
-export { ResponseService } from './services/ResponseService';
-export { SimpleService } from './services/SimpleService';
-export { TypesService } from './services/TypesService';
+export { ComplexService.js } from './services/ComplexService.js';
+export { DefaultsService.js } from './services/DefaultsService.js';
+export { ParametersService.js } from './services/ParametersService.js';
+export { ResponseService.js } from './services/ResponseService.js';
+export { SimpleService.js } from './services/SimpleService.js';
+export { TypesService.js } from './services/TypesService.js';
 "
-`;
-
-exports[`generation v3 javascript file(./test/result/v3/javascript/models/ArrayWithArray.js): ./test/result/v3/javascript/models/ArrayWithArray.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-import { ModelWithString } from '../models/ModelWithString';
-import * as yup from 'yup';
-
-/**
- * This is a simple array containing an array
- */
-export let ArrayWithArray;
-(function (ArrayWithArray) {
-
-    ArrayWithArray.schema = yup.array().of(yup.array().of(ModelWithString.schema));
-
-    ArrayWithArray.validate = async function(value) {
-        return ArrayWithArray.schema.validate(value, { strict: true });
-    };
-
-    ArrayWithArray.validateSync = function(value) {
-        return ArrayWithArray.schema.validateSync(value, { strict: true });
-    };
-
-})(ArrayWithArray || (ArrayWithArray = {}));"
-`;
-
-exports[`generation v3 javascript file(./test/result/v3/javascript/models/ArrayWithBooleans.js): ./test/result/v3/javascript/models/ArrayWithBooleans.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-import * as yup from 'yup';
-
-/**
- * This is a simple array with booleans
- */
-export let ArrayWithBooleans;
-(function (ArrayWithBooleans) {
-
-    ArrayWithBooleans.schema = yup.array().of(yup.boolean());
-
-    ArrayWithBooleans.validate = async function(value) {
-        return ArrayWithBooleans.schema.validate(value, { strict: true });
-    };
-
-    ArrayWithBooleans.validateSync = function(value) {
-        return ArrayWithBooleans.schema.validateSync(value, { strict: true });
-    };
-
-})(ArrayWithBooleans || (ArrayWithBooleans = {}));"
-`;
-
-exports[`generation v3 javascript file(./test/result/v3/javascript/models/ArrayWithNumbers.js): ./test/result/v3/javascript/models/ArrayWithNumbers.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-import * as yup from 'yup';
-
-/**
- * This is a simple array with numbers
- */
-export let ArrayWithNumbers;
-(function (ArrayWithNumbers) {
-
-    ArrayWithNumbers.schema = yup.array().of(yup.number());
-
-    ArrayWithNumbers.validate = async function(value) {
-        return ArrayWithNumbers.schema.validate(value, { strict: true });
-    };
-
-    ArrayWithNumbers.validateSync = function(value) {
-        return ArrayWithNumbers.schema.validateSync(value, { strict: true });
-    };
-
-})(ArrayWithNumbers || (ArrayWithNumbers = {}));"
-`;
-
-exports[`generation v3 javascript file(./test/result/v3/javascript/models/ArrayWithProperties.js): ./test/result/v3/javascript/models/ArrayWithProperties.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-import * as yup from 'yup';
-
-/**
- * This is a simple array with properties
- */
-export let ArrayWithProperties;
-(function (ArrayWithProperties) {
-
-    ArrayWithProperties.schema = yup.array().of((
-        yup.object().shape({
-            foo: yup.string(),
-            bar: yup.string()
-        }).noUnknown()
-    ));
-
-    ArrayWithProperties.validate = async function(value) {
-        return ArrayWithProperties.schema.validate(value, { strict: true });
-    };
-
-    ArrayWithProperties.validateSync = function(value) {
-        return ArrayWithProperties.schema.validateSync(value, { strict: true });
-    };
-
-})(ArrayWithProperties || (ArrayWithProperties = {}));"
-`;
-
-exports[`generation v3 javascript file(./test/result/v3/javascript/models/ArrayWithReferences.js): ./test/result/v3/javascript/models/ArrayWithReferences.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-import { ModelWithString } from '../models/ModelWithString';
-import * as yup from 'yup';
-
-/**
- * This is a simple array with references
- */
-export let ArrayWithReferences;
-(function (ArrayWithReferences) {
-
-    ArrayWithReferences.schema = yup.array().of(ModelWithString.schema);
-
-    ArrayWithReferences.validate = async function(value) {
-        return ArrayWithReferences.schema.validate(value, { strict: true });
-    };
-
-    ArrayWithReferences.validateSync = function(value) {
-        return ArrayWithReferences.schema.validateSync(value, { strict: true });
-    };
-
-})(ArrayWithReferences || (ArrayWithReferences = {}));"
-`;
-
-exports[`generation v3 javascript file(./test/result/v3/javascript/models/ArrayWithStrings.js): ./test/result/v3/javascript/models/ArrayWithStrings.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-import * as yup from 'yup';
-
-/**
- * This is a simple array with strings
- */
-export let ArrayWithStrings;
-(function (ArrayWithStrings) {
-
-    ArrayWithStrings.schema = yup.array().of(yup.string());
-
-    ArrayWithStrings.validate = async function(value) {
-        return ArrayWithStrings.schema.validate(value, { strict: true });
-    };
-
-    ArrayWithStrings.validateSync = function(value) {
-        return ArrayWithStrings.schema.validateSync(value, { strict: true });
-    };
-
-})(ArrayWithStrings || (ArrayWithStrings = {}));"
-`;
-
-exports[`generation v3 javascript file(./test/result/v3/javascript/models/DictionaryWithArray.js): ./test/result/v3/javascript/models/DictionaryWithArray.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-
-import { ModelWithString } from '../models/ModelWithString';
-import * as yup from 'yup';
-
-/**
- * This is a complex dictionary
- */
-export let DictionaryWithArray;
-(function (DictionaryWithArray) {
-
-    DictionaryWithArray.schema = yup.lazy(value => {
-        return yup.object().shape(
-            Object.keys(value).reduce((object, key) => ({
-                ...object,
-                [key]: yup.array().of(ModelWithString.schema)
-            }), {})
-        ).noUnknown();
-    });
-
-    DictionaryWithArray.validate = async function(value) {
-        return DictionaryWithArray.schema.validate(value, { strict: true });
-    };
-
-    DictionaryWithArray.validateSync = function(value) {
-        return DictionaryWithArray.schema.validateSync(value, { strict: true });
-    };
-
-})(DictionaryWithArray || (DictionaryWithArray = {}));"
-`;
-
-exports[`generation v3 javascript file(./test/result/v3/javascript/models/DictionaryWithDictionary.js): ./test/result/v3/javascript/models/DictionaryWithDictionary.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-
-import * as yup from 'yup';
-
-/**
- * This is a string dictionary
- */
-export let DictionaryWithDictionary;
-(function (DictionaryWithDictionary) {
-
-    DictionaryWithDictionary.schema = yup.lazy(value => {
-        return yup.object().shape(
-            Object.keys(value).reduce((object, key) => ({
-                ...object,
-                [key]: yup.lazy(value => {
-                    return yup.object().shape(
-                        Object.keys(value).reduce((object, key) => ({
-                            ...object,
-                            [key]: yup.string()
-                        }), {})
-                    ).noUnknown();
-                })
-            }), {})
-        ).noUnknown();
-    });
-
-    DictionaryWithDictionary.validate = async function(value) {
-        return DictionaryWithDictionary.schema.validate(value, { strict: true });
-    };
-
-    DictionaryWithDictionary.validateSync = function(value) {
-        return DictionaryWithDictionary.schema.validateSync(value, { strict: true });
-    };
-
-})(DictionaryWithDictionary || (DictionaryWithDictionary = {}));"
-`;
-
-exports[`generation v3 javascript file(./test/result/v3/javascript/models/DictionaryWithProperties.js): ./test/result/v3/javascript/models/DictionaryWithProperties.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-
-import * as yup from 'yup';
-
-/**
- * This is a complex dictionary
- */
-export let DictionaryWithProperties;
-(function (DictionaryWithProperties) {
-
-    DictionaryWithProperties.schema = yup.lazy(value => {
-        return yup.object().shape(
-            Object.keys(value).reduce((object, key) => ({
-                ...object,
-                [key]: (
-                    yup.object().shape({
-                        foo: yup.string(),
-                        bar: yup.string()
-                    }).noUnknown()
-                )
-            }), {})
-        ).noUnknown();
-    });
-
-    DictionaryWithProperties.validate = async function(value) {
-        return DictionaryWithProperties.schema.validate(value, { strict: true });
-    };
-
-    DictionaryWithProperties.validateSync = function(value) {
-        return DictionaryWithProperties.schema.validateSync(value, { strict: true });
-    };
-
-})(DictionaryWithProperties || (DictionaryWithProperties = {}));"
-`;
-
-exports[`generation v3 javascript file(./test/result/v3/javascript/models/DictionaryWithReference.js): ./test/result/v3/javascript/models/DictionaryWithReference.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-
-import { ModelWithString } from '../models/ModelWithString';
-import * as yup from 'yup';
-
-/**
- * This is a string reference
- */
-export let DictionaryWithReference;
-(function (DictionaryWithReference) {
-
-    DictionaryWithReference.schema = yup.lazy(value => {
-        return yup.object().shape(
-            Object.keys(value).reduce((key, item) => ({
-                ...object,
-                [key]: ModelWithString.schema
-            }), {})
-        ).noUnknown();
-    });
-
-    DictionaryWithReference.validate = async function(value) {
-        return DictionaryWithReference.schema.validate(value, { strict: true });
-    };
-
-    DictionaryWithReference.validateSync = function(value) {
-        return DictionaryWithReference.schema.validateSync(value, { strict: true });
-    };
-
-})(DictionaryWithReference || (DictionaryWithReference = {}));"
-`;
-
-exports[`generation v3 javascript file(./test/result/v3/javascript/models/DictionaryWithString.js): ./test/result/v3/javascript/models/DictionaryWithString.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-
-import * as yup from 'yup';
-
-/**
- * This is a string dictionary
- */
-export let DictionaryWithString;
-(function (DictionaryWithString) {
-
-    DictionaryWithString.schema = yup.lazy(value => {
-        return yup.object().shape(
-            Object.keys(value).reduce((object, key) => ({
-                ...object,
-                [key]: yup.string()
-            }), {})
-        ).noUnknown();
-    });
-
-    DictionaryWithString.validate = async function(value) {
-        return DictionaryWithString.schema.validate(value, { strict: true });
-    };
-
-    DictionaryWithString.validateSync = function(value) {
-        return DictionaryWithString.schema.validateSync(value, { strict: true });
-    };
-
-})(DictionaryWithString || (DictionaryWithString = {}));"
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/models/EnumFromDescription.js): ./test/result/v3/javascript/models/EnumFromDescription.js 1`] = `
@@ -5020,7 +2806,6 @@ exports[`generation v3 javascript file(./test/result/v3/javascript/models/EnumFr
 /* eslint-disable */
 /* prettier-ignore */
 
-import * as yup from 'yup';
 
 /**
  * Success=1,Warning=2,Error=3
@@ -5032,20 +2817,6 @@ export let EnumFromDescription;
     EnumFromDescription.SUCCESS = 1;
     EnumFromDescription.WARNING = 2;
 
-    EnumFromDescription.schema = yup.mixed().oneOf([
-        3,
-        1,
-        2
-    ]);
-
-    EnumFromDescription.validate = async function(value) {
-        return EnumFromDescription.schema.validate(value, { strict: true });
-    };
-
-    EnumFromDescription.validateSync = function(value) {
-        return EnumFromDescription.schema.validateSync(value, { strict: true });
-    };
-
 })(EnumFromDescription || (EnumFromDescription = {}));"
 `;
 
@@ -5054,7 +2825,6 @@ exports[`generation v3 javascript file(./test/result/v3/javascript/models/EnumWi
 /* eslint-disable */
 /* prettier-ignore */
 
-import * as yup from 'yup';
 
 /**
  * This is a simple enum with numbers
@@ -5066,20 +2836,6 @@ export let EnumWithNumbers;
     EnumWithNumbers.NUM_2 = 2;
     EnumWithNumbers.NUM_3 = 3;
 
-    EnumWithNumbers.schema = yup.mixed().oneOf([
-        1,
-        2,
-        3
-    ]);
-
-    EnumWithNumbers.validate = async function(value) {
-        return EnumWithNumbers.schema.validate(value, { strict: true });
-    };
-
-    EnumWithNumbers.validateSync = function(value) {
-        return EnumWithNumbers.schema.validateSync(value, { strict: true });
-    };
-
 })(EnumWithNumbers || (EnumWithNumbers = {}));"
 `;
 
@@ -5088,7 +2844,6 @@ exports[`generation v3 javascript file(./test/result/v3/javascript/models/EnumWi
 /* eslint-disable */
 /* prettier-ignore */
 
-import * as yup from 'yup';
 
 /**
  * This is a simple enum with strings
@@ -5100,317 +2855,7 @@ export let EnumWithStrings;
     EnumWithStrings.SUCCESS = 'Success';
     EnumWithStrings.WARNING = 'Warning';
 
-    EnumWithStrings.schema = yup.mixed().oneOf([
-        'Error',
-        'Success',
-        'Warning'
-    ]);
-
-    EnumWithStrings.validate = async function(value) {
-        return EnumWithStrings.schema.validate(value, { strict: true });
-    };
-
-    EnumWithStrings.validateSync = function(value) {
-        return EnumWithStrings.schema.validateSync(value, { strict: true });
-    };
-
 })(EnumWithStrings || (EnumWithStrings = {}));"
-`;
-
-exports[`generation v3 javascript file(./test/result/v3/javascript/models/ModelLink.js): ./test/result/v3/javascript/models/ModelLink.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-import * as yup from 'yup';
-
-/**
- * This is a model that can have a template??
- */
-export let ModelLink;
-(function (ModelLink) {
-
-    ModelLink.schema = (
-        yup.object().shape({
-            id: yup.string()
-        }).noUnknown()
-    );
-
-    ModelLink.validate = async function(value) {
-        return ModelLink.schema.validate(value, { strict: true });
-    };
-
-    ModelLink.validateSync = function(value) {
-        return ModelLink.schema.validateSync(value, { strict: true });
-    };
-
-})(ModelLink || (ModelLink = {}));"
-`;
-
-exports[`generation v3 javascript file(./test/result/v3/javascript/models/ModelThatExtends.js): ./test/result/v3/javascript/models/ModelThatExtends.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-import { ModelWithString } from '../models/ModelWithString';
-import * as yup from 'yup';
-
-/**
- * This is a model that extends another model
- */
-export let ModelThatExtends;
-(function (ModelThatExtends) {
-
-    ModelThatExtends.schema = (
-        ModelWithString.schema.concat(
-            yup.object().shape({
-                propExtendsA: yup.string(),
-                propExtendsB: ModelWithString.schema
-            }).noUnknown()
-        )
-    );
-
-    ModelThatExtends.validate = async function(value) {
-        return ModelThatExtends.schema.validate(value, { strict: true });
-    };
-
-    ModelThatExtends.validateSync = function(value) {
-        return ModelThatExtends.schema.validateSync(value, { strict: true });
-    };
-
-})(ModelThatExtends || (ModelThatExtends = {}));"
-`;
-
-exports[`generation v3 javascript file(./test/result/v3/javascript/models/ModelThatExtendsExtends.js): ./test/result/v3/javascript/models/ModelThatExtendsExtends.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-import { ModelThatExtends } from '../models/ModelThatExtends';
-import { ModelWithString } from '../models/ModelWithString';
-import * as yup from 'yup';
-
-/**
- * This is a model that extends another model
- */
-export let ModelThatExtendsExtends;
-(function (ModelThatExtendsExtends) {
-
-    ModelThatExtendsExtends.schema = (
-        ModelWithString.schema.concat(
-            ModelThatExtends.schema.concat(
-                yup.object().shape({
-                    propExtendsC: yup.string(),
-                    propExtendsD: ModelWithString.schema
-                }).noUnknown()
-            )
-        )
-    );
-
-    ModelThatExtendsExtends.validate = async function(value) {
-        return ModelThatExtendsExtends.schema.validate(value, { strict: true });
-    };
-
-    ModelThatExtendsExtends.validateSync = function(value) {
-        return ModelThatExtendsExtends.schema.validateSync(value, { strict: true });
-    };
-
-})(ModelThatExtendsExtends || (ModelThatExtendsExtends = {}));"
-`;
-
-exports[`generation v3 javascript file(./test/result/v3/javascript/models/ModelWithArray.js): ./test/result/v3/javascript/models/ModelWithArray.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-import { ModelWithString } from '../models/ModelWithString';
-import * as yup from 'yup';
-
-/**
- * This is a model with one property containing an array
- */
-export let ModelWithArray;
-(function (ModelWithArray) {
-
-    ModelWithArray.schema = (
-        yup.object().shape({
-            prop: yup.array().of(ModelWithString.schema),
-            propWithFile: yup.array().of(yup.mixed()),
-            propWithNumber: yup.array().of(yup.number())
-        }).noUnknown()
-    );
-
-    ModelWithArray.validate = async function(value) {
-        return ModelWithArray.schema.validate(value, { strict: true });
-    };
-
-    ModelWithArray.validateSync = function(value) {
-        return ModelWithArray.schema.validateSync(value, { strict: true });
-    };
-
-})(ModelWithArray || (ModelWithArray = {}));"
-`;
-
-exports[`generation v3 javascript file(./test/result/v3/javascript/models/ModelWithBoolean.js): ./test/result/v3/javascript/models/ModelWithBoolean.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-import * as yup from 'yup';
-
-/**
- * This is a model with one boolean property
- */
-export let ModelWithBoolean;
-(function (ModelWithBoolean) {
-
-    ModelWithBoolean.schema = (
-        yup.object().shape({
-            prop: yup.boolean()
-        }).noUnknown()
-    );
-
-    ModelWithBoolean.validate = async function(value) {
-        return ModelWithBoolean.schema.validate(value, { strict: true });
-    };
-
-    ModelWithBoolean.validateSync = function(value) {
-        return ModelWithBoolean.schema.validateSync(value, { strict: true });
-    };
-
-})(ModelWithBoolean || (ModelWithBoolean = {}));"
-`;
-
-exports[`generation v3 javascript file(./test/result/v3/javascript/models/ModelWithCircularReference.js): ./test/result/v3/javascript/models/ModelWithCircularReference.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-import * as yup from 'yup';
-
-/**
- * This is a model with one property containing a circular reference
- */
-export let ModelWithCircularReference;
-(function (ModelWithCircularReference) {
-
-    ModelWithCircularReference.schema = (
-        yup.object().shape({
-            prop: ModelWithCircularReference.schema
-        }).noUnknown()
-    );
-
-    ModelWithCircularReference.validate = async function(value) {
-        return ModelWithCircularReference.schema.validate(value, { strict: true });
-    };
-
-    ModelWithCircularReference.validateSync = function(value) {
-        return ModelWithCircularReference.schema.validateSync(value, { strict: true });
-    };
-
-})(ModelWithCircularReference || (ModelWithCircularReference = {}));"
-`;
-
-exports[`generation v3 javascript file(./test/result/v3/javascript/models/ModelWithDictionary.js): ./test/result/v3/javascript/models/ModelWithDictionary.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-
-import * as yup from 'yup';
-
-/**
- * This is a model with one property containing a dictionary
- */
-export let ModelWithDictionary;
-(function (ModelWithDictionary) {
-
-    ModelWithDictionary.schema = (
-        yup.object().shape({
-            prop: yup.lazy(value => {
-                return yup.object().shape(
-                    Object.keys(value).reduce((object, key) => ({
-                        ...object,
-                        [key]: yup.string()
-                    }), {})
-                ).noUnknown();
-            })
-        }).noUnknown()
-    );
-
-    ModelWithDictionary.validate = async function(value) {
-        return ModelWithDictionary.schema.validate(value, { strict: true });
-    };
-
-    ModelWithDictionary.validateSync = function(value) {
-        return ModelWithDictionary.schema.validateSync(value, { strict: true });
-    };
-
-})(ModelWithDictionary || (ModelWithDictionary = {}));"
-`;
-
-exports[`generation v3 javascript file(./test/result/v3/javascript/models/ModelWithDuplicateImports.js): ./test/result/v3/javascript/models/ModelWithDuplicateImports.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-import { ModelWithString } from '../models/ModelWithString';
-import * as yup from 'yup';
-
-/**
- * This is a model with duplicated imports
- */
-export let ModelWithDuplicateImports;
-(function (ModelWithDuplicateImports) {
-
-    ModelWithDuplicateImports.schema = (
-        yup.object().shape({
-            propA: ModelWithString.schema,
-            propB: ModelWithString.schema,
-            propC: ModelWithString.schema
-        }).noUnknown()
-    );
-
-    ModelWithDuplicateImports.validate = async function(value) {
-        return ModelWithDuplicateImports.schema.validate(value, { strict: true });
-    };
-
-    ModelWithDuplicateImports.validateSync = function(value) {
-        return ModelWithDuplicateImports.schema.validateSync(value, { strict: true });
-    };
-
-})(ModelWithDuplicateImports || (ModelWithDuplicateImports = {}));"
-`;
-
-exports[`generation v3 javascript file(./test/result/v3/javascript/models/ModelWithDuplicateProperties.js): ./test/result/v3/javascript/models/ModelWithDuplicateProperties.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-import { ModelWithString } from '../models/ModelWithString';
-import * as yup from 'yup';
-
-/**
- * This is a model with duplicated properties
- */
-export let ModelWithDuplicateProperties;
-(function (ModelWithDuplicateProperties) {
-
-    ModelWithDuplicateProperties.schema = (
-        yup.object().shape({
-            prop: ModelWithString.schema
-        }).noUnknown()
-    );
-
-    ModelWithDuplicateProperties.validate = async function(value) {
-        return ModelWithDuplicateProperties.schema.validate(value, { strict: true });
-    };
-
-    ModelWithDuplicateProperties.validateSync = function(value) {
-        return ModelWithDuplicateProperties.schema.validateSync(value, { strict: true });
-    };
-
-})(ModelWithDuplicateProperties || (ModelWithDuplicateProperties = {}));"
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/models/ModelWithEnum.js): ./test/result/v3/javascript/models/ModelWithEnum.js 1`] = `
@@ -5418,7 +2863,6 @@ exports[`generation v3 javascript file(./test/result/v3/javascript/models/ModelW
 /* eslint-disable */
 /* prettier-ignore */
 
-import * as yup from 'yup';
 
 /**
  * This is a model with one enum
@@ -5435,24 +2879,6 @@ export let ModelWithEnum;
         ERROR: 'Error'
     };
 
-    ModelWithEnum.schema = (
-        yup.object().shape({
-            Test: yup.mixed().oneOf([
-                'Success',
-                'Warning',
-                'Error'
-            ])
-        }).noUnknown()
-    );
-
-    ModelWithEnum.validate = async function(value) {
-        return ModelWithEnum.schema.validate(value, { strict: true });
-    };
-
-    ModelWithEnum.validateSync = function(value) {
-        return ModelWithEnum.schema.validateSync(value, { strict: true });
-    };
-
 })(ModelWithEnum || (ModelWithEnum = {}));"
 `;
 
@@ -5461,7 +2887,6 @@ exports[`generation v3 javascript file(./test/result/v3/javascript/models/ModelW
 /* eslint-disable */
 /* prettier-ignore */
 
-import * as yup from 'yup';
 
 /**
  * This is a model with one enum
@@ -5478,418 +2903,7 @@ export let ModelWithEnumFromDescription;
         ERROR: 3
     };
 
-    ModelWithEnumFromDescription.schema = (
-        yup.object().shape({
-            Test: yup.mixed().oneOf([
-                1,
-                2,
-                3
-            ])
-        }).noUnknown()
-    );
-
-    ModelWithEnumFromDescription.validate = async function(value) {
-        return ModelWithEnumFromDescription.schema.validate(value, { strict: true });
-    };
-
-    ModelWithEnumFromDescription.validateSync = function(value) {
-        return ModelWithEnumFromDescription.schema.validateSync(value, { strict: true });
-    };
-
 })(ModelWithEnumFromDescription || (ModelWithEnumFromDescription = {}));"
-`;
-
-exports[`generation v3 javascript file(./test/result/v3/javascript/models/ModelWithInteger.js): ./test/result/v3/javascript/models/ModelWithInteger.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-import * as yup from 'yup';
-
-/**
- * This is a model with one number property
- */
-export let ModelWithInteger;
-(function (ModelWithInteger) {
-
-    ModelWithInteger.schema = (
-        yup.object().shape({
-            prop: yup.number()
-        }).noUnknown()
-    );
-
-    ModelWithInteger.validate = async function(value) {
-        return ModelWithInteger.schema.validate(value, { strict: true });
-    };
-
-    ModelWithInteger.validateSync = function(value) {
-        return ModelWithInteger.schema.validateSync(value, { strict: true });
-    };
-
-})(ModelWithInteger || (ModelWithInteger = {}));"
-`;
-
-exports[`generation v3 javascript file(./test/result/v3/javascript/models/ModelWithLink.js): ./test/result/v3/javascript/models/ModelWithLink.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-import { ModelLink } from '../models/ModelLink';
-import { ModelWithString } from '../models/ModelWithString';
-import * as yup from 'yup';
-
-/**
- * This is a model that can have a template??
- */
-export let ModelWithLink;
-(function (ModelWithLink) {
-
-    ModelWithLink.schema = (
-        yup.object().shape({
-            prop: ModelLink.schema
-        }).noUnknown()
-    );
-
-    ModelWithLink.validate = async function(value) {
-        return ModelWithLink.schema.validate(value, { strict: true });
-    };
-
-    ModelWithLink.validateSync = function(value) {
-        return ModelWithLink.schema.validateSync(value, { strict: true });
-    };
-
-})(ModelWithLink || (ModelWithLink = {}));"
-`;
-
-exports[`generation v3 javascript file(./test/result/v3/javascript/models/ModelWithNestedEnums.js): ./test/result/v3/javascript/models/ModelWithNestedEnums.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-
-import * as yup from 'yup';
-
-/**
- * This is a model with nested enums
- */
-export let ModelWithNestedEnums;
-(function (ModelWithNestedEnums) {
-
-    ModelWithNestedEnums.schema = (
-        yup.object().shape({
-            arrayWithDescription: yup.array().of(yup.mixed().oneOf([
-                1,
-                2,
-                3
-            ])),
-            arrayWithEnum: yup.array().of(yup.mixed().oneOf([
-                'Success',
-                'Warning',
-                'Error'
-            ])),
-            dictionaryWithEnum: yup.lazy(value => {
-                return yup.object().shape(
-                    Object.keys(value).reduce((object, key) => ({
-                        ...object,
-                        [key]: yup.mixed().oneOf([
-                            'Success',
-                            'Warning',
-                            'Error'
-                        ])
-                    }), {})
-                ).noUnknown();
-            }),
-            dictionaryWithEnumFromDescription: yup.lazy(value => {
-                return yup.object().shape(
-                    Object.keys(value).reduce((object, key) => ({
-                        ...object,
-                        [key]: yup.mixed().oneOf([
-                            1,
-                            2,
-                            3
-                        ])
-                    }), {})
-                ).noUnknown();
-            })
-        }).noUnknown()
-    );
-
-    ModelWithNestedEnums.validate = async function(value) {
-        return ModelWithNestedEnums.schema.validate(value, { strict: true });
-    };
-
-    ModelWithNestedEnums.validateSync = function(value) {
-        return ModelWithNestedEnums.schema.validateSync(value, { strict: true });
-    };
-
-})(ModelWithNestedEnums || (ModelWithNestedEnums = {}));"
-`;
-
-exports[`generation v3 javascript file(./test/result/v3/javascript/models/ModelWithNestedProperties.js): ./test/result/v3/javascript/models/ModelWithNestedProperties.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-import * as yup from 'yup';
-
-/**
- * This is a model with one nested property
- */
-export let ModelWithNestedProperties;
-(function (ModelWithNestedProperties) {
-
-    ModelWithNestedProperties.schema = (
-        yup.object().shape({
-            first: (
-                yup.object().shape({
-                    second: (
-                        yup.object().shape({
-                            third: yup.string().nullable().required()
-                        }).noUnknown()
-                    ).nullable().required()
-                }).noUnknown()
-            ).nullable().required()
-        }).noUnknown()
-    );
-
-    ModelWithNestedProperties.validate = async function(value) {
-        return ModelWithNestedProperties.schema.validate(value, { strict: true });
-    };
-
-    ModelWithNestedProperties.validateSync = function(value) {
-        return ModelWithNestedProperties.schema.validateSync(value, { strict: true });
-    };
-
-})(ModelWithNestedProperties || (ModelWithNestedProperties = {}));"
-`;
-
-exports[`generation v3 javascript file(./test/result/v3/javascript/models/ModelWithProperties.js): ./test/result/v3/javascript/models/ModelWithProperties.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-import { ModelWithString } from '../models/ModelWithString';
-import * as yup from 'yup';
-
-/**
- * This is a model with one nested property
- */
-export let ModelWithProperties;
-(function (ModelWithProperties) {
-
-    ModelWithProperties.schema = (
-        yup.object().shape({
-            boolean: yup.boolean(),
-            number: yup.number(),
-            reference: ModelWithString.schema,
-            required: yup.string().required(),
-            requiredAndNullable: yup.string().nullable().required(),
-            requiredAndReadOnly: yup.string().required(),
-            string: yup.string()
-        }).noUnknown()
-    );
-
-    ModelWithProperties.validate = async function(value) {
-        return ModelWithProperties.schema.validate(value, { strict: true });
-    };
-
-    ModelWithProperties.validateSync = function(value) {
-        return ModelWithProperties.schema.validateSync(value, { strict: true });
-    };
-
-})(ModelWithProperties || (ModelWithProperties = {}));"
-`;
-
-exports[`generation v3 javascript file(./test/result/v3/javascript/models/ModelWithReference.js): ./test/result/v3/javascript/models/ModelWithReference.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-import { ModelWithString } from '../models/ModelWithString';
-import * as yup from 'yup';
-
-/**
- * This is a model with one property containing a reference
- */
-export let ModelWithReference;
-(function (ModelWithReference) {
-
-    ModelWithReference.schema = (
-        yup.object().shape({
-            prop: ModelWithString.schema
-        }).noUnknown()
-    );
-
-    ModelWithReference.validate = async function(value) {
-        return ModelWithReference.schema.validate(value, { strict: true });
-    };
-
-    ModelWithReference.validateSync = function(value) {
-        return ModelWithReference.schema.validateSync(value, { strict: true });
-    };
-
-})(ModelWithReference || (ModelWithReference = {}));"
-`;
-
-exports[`generation v3 javascript file(./test/result/v3/javascript/models/ModelWithString.js): ./test/result/v3/javascript/models/ModelWithString.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-import * as yup from 'yup';
-
-/**
- * This is a model with one string property
- */
-export let ModelWithString;
-(function (ModelWithString) {
-
-    ModelWithString.schema = (
-        yup.object().shape({
-            prop: yup.string()
-        }).noUnknown()
-    );
-
-    ModelWithString.validate = async function(value) {
-        return ModelWithString.schema.validate(value, { strict: true });
-    };
-
-    ModelWithString.validateSync = function(value) {
-        return ModelWithString.schema.validateSync(value, { strict: true });
-    };
-
-})(ModelWithString || (ModelWithString = {}));"
-`;
-
-exports[`generation v3 javascript file(./test/result/v3/javascript/models/SimpleBoolean.js): ./test/result/v3/javascript/models/SimpleBoolean.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-import * as yup from 'yup';
-
-/**
- * This is a simple boolean
- */
-export let SimpleBoolean;
-(function (SimpleBoolean) {
-
-    SimpleBoolean.schema = yup.boolean();
-
-    SimpleBoolean.validate = async function(value) {
-        return SimpleBoolean.schema.validate(value, { strict: true });
-    };
-
-    SimpleBoolean.validateSync = function(value) {
-        return SimpleBoolean.schema.validateSync(value, { strict: true });
-    };
-
-})(SimpleBoolean || (SimpleBoolean = {}));"
-`;
-
-exports[`generation v3 javascript file(./test/result/v3/javascript/models/SimpleFile.js): ./test/result/v3/javascript/models/SimpleFile.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-import * as yup from 'yup';
-
-/**
- * This is a simple file
- */
-export let SimpleFile;
-(function (SimpleFile) {
-
-    SimpleFile.schema = yup.mixed();
-
-    SimpleFile.validate = async function(value) {
-        return SimpleFile.schema.validate(value, { strict: true });
-    };
-
-    SimpleFile.validateSync = function(value) {
-        return SimpleFile.schema.validateSync(value, { strict: true });
-    };
-
-})(SimpleFile || (SimpleFile = {}));"
-`;
-
-exports[`generation v3 javascript file(./test/result/v3/javascript/models/SimpleInteger.js): ./test/result/v3/javascript/models/SimpleInteger.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-import * as yup from 'yup';
-
-/**
- * This is a simple number
- */
-export let SimpleInteger;
-(function (SimpleInteger) {
-
-    SimpleInteger.schema = yup.number();
-
-    SimpleInteger.validate = async function(value) {
-        return SimpleInteger.schema.validate(value, { strict: true });
-    };
-
-    SimpleInteger.validateSync = function(value) {
-        return SimpleInteger.schema.validateSync(value, { strict: true });
-    };
-
-})(SimpleInteger || (SimpleInteger = {}));"
-`;
-
-exports[`generation v3 javascript file(./test/result/v3/javascript/models/SimpleReference.js): ./test/result/v3/javascript/models/SimpleReference.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-import { ModelWithString } from '../models/ModelWithString';
-import * as yup from 'yup';
-
-/**
- * This is a simple reference
- */
-export let SimpleReference;
-(function (SimpleReference) {
-
-    SimpleReference.schema = ModelWithString.schema;
-
-    SimpleReference.validate = async function(value) {
-        return SimpleReference.schema.validate(value, { strict: true });
-    };
-
-    SimpleReference.validateSync = function(value) {
-        return SimpleReference.schema.validateSync(value, { strict: true });
-    };
-
-})(SimpleReference || (SimpleReference = {}));"
-`;
-
-exports[`generation v3 javascript file(./test/result/v3/javascript/models/SimpleString.js): ./test/result/v3/javascript/models/SimpleString.js 1`] = `
-"/* istanbul ignore file */
-/* eslint-disable */
-/* prettier-ignore */
-
-import * as yup from 'yup';
-
-/**
- * This is a simple string
- */
-export let SimpleString;
-(function (SimpleString) {
-
-    SimpleString.schema = yup.string();
-
-    SimpleString.validate = async function(value) {
-        return SimpleString.schema.validate(value, { strict: true });
-    };
-
-    SimpleString.validateSync = function(value) {
-        return SimpleString.schema.validateSync(value, { strict: true });
-    };
-
-})(SimpleString || (SimpleString = {}));"
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/services/ComplexService.js): ./test/result/v3/javascript/services/ComplexService.js 1`] = `
@@ -5898,7 +2912,7 @@ exports[`generation v3 javascript file(./test/result/v3/javascript/services/Comp
 /* prettier-ignore */
 
 import { ApiError, catchGenericError } from '../core/ApiError';
-import { request } from '../core/request';
+import { request as $request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
 export class ComplexService {
@@ -5914,7 +2928,7 @@ export class ComplexService {
         parameterReference
     ) {
 
-        const result = await request({
+        const result = await $request({
             method: 'get',
             path: \`/api/v\${OpenAPI.VERSION}/complex\`,
             query: {
@@ -5944,7 +2958,7 @@ exports[`generation v3 javascript file(./test/result/v3/javascript/services/Defa
 /* prettier-ignore */
 
 import { ApiError, catchGenericError } from '../core/ApiError';
-import { request } from '../core/request';
+import { request as $request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
 export class DefaultsService {
@@ -5967,7 +2981,7 @@ export class DefaultsService {
         }
     ) {
 
-        const result = await request({
+        const result = await $request({
             method: 'get',
             path: \`/api/v\${OpenAPI.VERSION}/defaults\`,
             query: {
@@ -5993,7 +3007,7 @@ exports[`generation v3 javascript file(./test/result/v3/javascript/services/Para
 /* prettier-ignore */
 
 import { ApiError, catchGenericError } from '../core/ApiError';
-import { request } from '../core/request';
+import { request as $request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
 export class ParametersService {
@@ -6014,7 +3028,7 @@ export class ParametersService {
         requestBody
     ) {
 
-        const result = await request({
+        const result = await $request({
             method: 'get',
             path: \`/api/v\${OpenAPI.VERSION}/parameters\`,
             cookies: {
@@ -6046,7 +3060,7 @@ exports[`generation v3 javascript file(./test/result/v3/javascript/services/Resp
 /* prettier-ignore */
 
 import { ApiError, catchGenericError } from '../core/ApiError';
-import { request } from '../core/request';
+import { request as $request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
 export class ResponseService {
@@ -6057,7 +3071,7 @@ export class ResponseService {
      */
     static async callWithDuplicateResponses() {
 
-        const result = await request({
+        const result = await $request({
             method: 'post',
             path: \`/api/v\${OpenAPI.VERSION}/response\`
         });
@@ -6081,7 +3095,7 @@ export class ResponseService {
      */
     static async callWithResponse() {
 
-        const result = await request({
+        const result = await $request({
             method: 'get',
             path: \`/api/v\${OpenAPI.VERSION}/response\`
         });
@@ -6099,7 +3113,7 @@ export class ResponseService {
      */
     static async callWithResponses() {
 
-        const result = await request({
+        const result = await $request({
             method: 'put',
             path: \`/api/v\${OpenAPI.VERSION}/response\`
         });
@@ -6126,7 +3140,7 @@ exports[`generation v3 javascript file(./test/result/v3/javascript/services/Simp
 /* prettier-ignore */
 
 import { ApiError, catchGenericError } from '../core/ApiError';
-import { request } from '../core/request';
+import { request as $request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
 export class SimpleService {
@@ -6136,7 +3150,7 @@ export class SimpleService {
      */
     static async deleteCallWithoutParametersAndResponse() {
 
-        const result = await request({
+        const result = await $request({
             method: 'delete',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`
         });
@@ -6151,7 +3165,7 @@ export class SimpleService {
      */
     static async getCallWithoutParametersAndResponse() {
 
-        const result = await request({
+        const result = await $request({
             method: 'get',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`
         });
@@ -6166,7 +3180,7 @@ export class SimpleService {
      */
     static async headCallWithoutParametersAndResponse() {
 
-        const result = await request({
+        const result = await $request({
             method: 'head',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`
         });
@@ -6181,7 +3195,7 @@ export class SimpleService {
      */
     static async optionsCallWithoutParametersAndResponse() {
 
-        const result = await request({
+        const result = await $request({
             method: 'options',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`
         });
@@ -6196,7 +3210,7 @@ export class SimpleService {
      */
     static async patchCallWithoutParametersAndResponse() {
 
-        const result = await request({
+        const result = await $request({
             method: 'patch',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`
         });
@@ -6211,7 +3225,7 @@ export class SimpleService {
      */
     static async postCallWithoutParametersAndResponse() {
 
-        const result = await request({
+        const result = await $request({
             method: 'post',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`
         });
@@ -6226,7 +3240,7 @@ export class SimpleService {
      */
     static async putCallWithoutParametersAndResponse() {
 
-        const result = await request({
+        const result = await $request({
             method: 'put',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`
         });
@@ -6245,7 +3259,7 @@ exports[`generation v3 javascript file(./test/result/v3/javascript/services/Type
 /* prettier-ignore */
 
 import { ApiError, catchGenericError } from '../core/ApiError';
-import { request } from '../core/request';
+import { request as $request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
 export class TypesService {
@@ -6276,7 +3290,7 @@ export class TypesService {
         id
     ) {
 
-        const result = await request({
+        const result = await $request({
             method: 'get',
             path: \`/api/v\${OpenAPI.VERSION}/types\`,
             query: {
@@ -6709,51 +3723,51 @@ export { ApiError } from './core/ApiError';
 export { isSuccess } from './core/isSuccess';
 export { OpenAPI } from './core/OpenAPI';
 
-export { ArrayWithArray } from './models/ArrayWithArray';
-export { ArrayWithBooleans } from './models/ArrayWithBooleans';
-export { ArrayWithNumbers } from './models/ArrayWithNumbers';
-export { ArrayWithProperties } from './models/ArrayWithProperties';
-export { ArrayWithReferences } from './models/ArrayWithReferences';
-export { ArrayWithStrings } from './models/ArrayWithStrings';
-export { Dictionary } from './models/Dictionary';
-export { DictionaryWithArray } from './models/DictionaryWithArray';
-export { DictionaryWithDictionary } from './models/DictionaryWithDictionary';
-export { DictionaryWithProperties } from './models/DictionaryWithProperties';
-export { DictionaryWithReference } from './models/DictionaryWithReference';
-export { DictionaryWithString } from './models/DictionaryWithString';
-export { EnumFromDescription } from './models/EnumFromDescription';
-export { EnumWithNumbers } from './models/EnumWithNumbers';
-export { EnumWithStrings } from './models/EnumWithStrings';
-export { ModelLink } from './models/ModelLink';
-export { ModelThatExtends } from './models/ModelThatExtends';
-export { ModelThatExtendsExtends } from './models/ModelThatExtendsExtends';
-export { ModelWithArray } from './models/ModelWithArray';
-export { ModelWithBoolean } from './models/ModelWithBoolean';
-export { ModelWithCircularReference } from './models/ModelWithCircularReference';
-export { ModelWithDictionary } from './models/ModelWithDictionary';
-export { ModelWithDuplicateImports } from './models/ModelWithDuplicateImports';
-export { ModelWithDuplicateProperties } from './models/ModelWithDuplicateProperties';
-export { ModelWithEnum } from './models/ModelWithEnum';
-export { ModelWithEnumFromDescription } from './models/ModelWithEnumFromDescription';
-export { ModelWithInteger } from './models/ModelWithInteger';
-export { ModelWithLink } from './models/ModelWithLink';
-export { ModelWithNestedEnums } from './models/ModelWithNestedEnums';
-export { ModelWithNestedProperties } from './models/ModelWithNestedProperties';
-export { ModelWithProperties } from './models/ModelWithProperties';
-export { ModelWithReference } from './models/ModelWithReference';
-export { ModelWithString } from './models/ModelWithString';
-export { SimpleBoolean } from './models/SimpleBoolean';
-export { SimpleFile } from './models/SimpleFile';
-export { SimpleInteger } from './models/SimpleInteger';
-export { SimpleReference } from './models/SimpleReference';
-export { SimpleString } from './models/SimpleString';
+export { ArrayWithArray.ts } from './models/ArrayWithArray.ts';
+export { ArrayWithBooleans.ts } from './models/ArrayWithBooleans.ts';
+export { ArrayWithNumbers.ts } from './models/ArrayWithNumbers.ts';
+export { ArrayWithProperties.ts } from './models/ArrayWithProperties.ts';
+export { ArrayWithReferences.ts } from './models/ArrayWithReferences.ts';
+export { ArrayWithStrings.ts } from './models/ArrayWithStrings.ts';
+export { Dictionary.ts } from './models/Dictionary.ts';
+export { DictionaryWithArray.ts } from './models/DictionaryWithArray.ts';
+export { DictionaryWithDictionary.ts } from './models/DictionaryWithDictionary.ts';
+export { DictionaryWithProperties.ts } from './models/DictionaryWithProperties.ts';
+export { DictionaryWithReference.ts } from './models/DictionaryWithReference.ts';
+export { DictionaryWithString.ts } from './models/DictionaryWithString.ts';
+export { EnumFromDescription.ts } from './models/EnumFromDescription.ts';
+export { EnumWithNumbers.ts } from './models/EnumWithNumbers.ts';
+export { EnumWithStrings.ts } from './models/EnumWithStrings.ts';
+export { ModelLink.ts } from './models/ModelLink.ts';
+export { ModelThatExtends.ts } from './models/ModelThatExtends.ts';
+export { ModelThatExtendsExtends.ts } from './models/ModelThatExtendsExtends.ts';
+export { ModelWithArray.ts } from './models/ModelWithArray.ts';
+export { ModelWithBoolean.ts } from './models/ModelWithBoolean.ts';
+export { ModelWithCircularReference.ts } from './models/ModelWithCircularReference.ts';
+export { ModelWithDictionary.ts } from './models/ModelWithDictionary.ts';
+export { ModelWithDuplicateImports.ts } from './models/ModelWithDuplicateImports.ts';
+export { ModelWithDuplicateProperties.ts } from './models/ModelWithDuplicateProperties.ts';
+export { ModelWithEnum.ts } from './models/ModelWithEnum.ts';
+export { ModelWithEnumFromDescription.ts } from './models/ModelWithEnumFromDescription.ts';
+export { ModelWithInteger.ts } from './models/ModelWithInteger.ts';
+export { ModelWithLink.ts } from './models/ModelWithLink.ts';
+export { ModelWithNestedEnums.ts } from './models/ModelWithNestedEnums.ts';
+export { ModelWithNestedProperties.ts } from './models/ModelWithNestedProperties.ts';
+export { ModelWithProperties.ts } from './models/ModelWithProperties.ts';
+export { ModelWithReference.ts } from './models/ModelWithReference.ts';
+export { ModelWithString.ts } from './models/ModelWithString.ts';
+export { SimpleBoolean.ts } from './models/SimpleBoolean.ts';
+export { SimpleFile.ts } from './models/SimpleFile.ts';
+export { SimpleInteger.ts } from './models/SimpleInteger.ts';
+export { SimpleReference.ts } from './models/SimpleReference.ts';
+export { SimpleString.ts } from './models/SimpleString.ts';
 
-export { ComplexService } from './services/ComplexService';
-export { DefaultsService } from './services/DefaultsService';
-export { ParametersService } from './services/ParametersService';
-export { ResponseService } from './services/ResponseService';
-export { SimpleService } from './services/SimpleService';
-export { TypesService } from './services/TypesService';
+export { ComplexService.ts } from './services/ComplexService.ts';
+export { DefaultsService.ts } from './services/DefaultsService.ts';
+export { ParametersService.ts } from './services/ParametersService.ts';
+export { ResponseService.ts } from './services/ResponseService.ts';
+export { SimpleService.ts } from './services/SimpleService.ts';
+export { TypesService.ts } from './services/TypesService.ts';
 "
 `;
 
@@ -6764,25 +3778,11 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/models/ArrayW
 /* prettier-ignore */
 
 import { ModelWithString } from '../models/ModelWithString';
-import * as yup from 'yup';
 
 /**
  * This is a simple array containing an array
  */
-export type ArrayWithArray = Array<Array<ModelWithString>>;
-
-export namespace ArrayWithArray {
-
-    export const schema = yup.array<Array<ModelWithString>>().of(yup.array<ModelWithString>().of(ModelWithString.schema));
-
-    export async function validate(value: any): Promise<ArrayWithArray> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): ArrayWithArray {
-        return schema.validateSync(value, { strict: true });
-    }
-}"
+export type ArrayWithArray = Array<Array<ModelWithString>>;"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/ArrayWithBooleans.ts): ./test/result/v3/typescript/models/ArrayWithBooleans.ts 1`] = `
@@ -6791,25 +3791,10 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/models/ArrayW
 /* eslint-disable */
 /* prettier-ignore */
 
-import * as yup from 'yup';
-
 /**
  * This is a simple array with booleans
  */
-export type ArrayWithBooleans = Array<boolean>;
-
-export namespace ArrayWithBooleans {
-
-    export const schema = yup.array<boolean>().of(yup.boolean());
-
-    export async function validate(value: any): Promise<ArrayWithBooleans> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): ArrayWithBooleans {
-        return schema.validateSync(value, { strict: true });
-    }
-}"
+export type ArrayWithBooleans = Array<boolean>;"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/ArrayWithNumbers.ts): ./test/result/v3/typescript/models/ArrayWithNumbers.ts 1`] = `
@@ -6818,25 +3803,10 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/models/ArrayW
 /* eslint-disable */
 /* prettier-ignore */
 
-import * as yup from 'yup';
-
 /**
  * This is a simple array with numbers
  */
-export type ArrayWithNumbers = Array<number>;
-
-export namespace ArrayWithNumbers {
-
-    export const schema = yup.array<number>().of(yup.number());
-
-    export async function validate(value: any): Promise<ArrayWithNumbers> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): ArrayWithNumbers {
-        return schema.validateSync(value, { strict: true });
-    }
-}"
+export type ArrayWithNumbers = Array<number>;"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/ArrayWithProperties.ts): ./test/result/v3/typescript/models/ArrayWithProperties.ts 1`] = `
@@ -6845,36 +3815,13 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/models/ArrayW
 /* eslint-disable */
 /* prettier-ignore */
 
-import * as yup from 'yup';
-
 /**
  * This is a simple array with properties
  */
 export type ArrayWithProperties = Array<{
     foo?: string,
     bar?: string
-}>;
-
-export namespace ArrayWithProperties {
-
-    export const schema = yup.array<{
-        foo?: string,
-        bar?: string
-    }>().of((
-        yup.object().shape({
-            foo: yup.string(),
-            bar: yup.string()
-        }).noUnknown()
-    ));
-
-    export async function validate(value: any): Promise<ArrayWithProperties> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): ArrayWithProperties {
-        return schema.validateSync(value, { strict: true });
-    }
-}"
+}>;"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/ArrayWithReferences.ts): ./test/result/v3/typescript/models/ArrayWithReferences.ts 1`] = `
@@ -6884,25 +3831,11 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/models/ArrayW
 /* prettier-ignore */
 
 import { ModelWithString } from '../models/ModelWithString';
-import * as yup from 'yup';
 
 /**
  * This is a simple array with references
  */
-export type ArrayWithReferences = Array<ModelWithString>;
-
-export namespace ArrayWithReferences {
-
-    export const schema = yup.array<ModelWithString>().of(ModelWithString.schema);
-
-    export async function validate(value: any): Promise<ArrayWithReferences> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): ArrayWithReferences {
-        return schema.validateSync(value, { strict: true });
-    }
-}"
+export type ArrayWithReferences = Array<ModelWithString>;"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/ArrayWithStrings.ts): ./test/result/v3/typescript/models/ArrayWithStrings.ts 1`] = `
@@ -6911,25 +3844,10 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/models/ArrayW
 /* eslint-disable */
 /* prettier-ignore */
 
-import * as yup from 'yup';
-
 /**
  * This is a simple array with strings
  */
-export type ArrayWithStrings = Array<string>;
-
-export namespace ArrayWithStrings {
-
-    export const schema = yup.array<string>().of(yup.string());
-
-    export async function validate(value: any): Promise<ArrayWithStrings> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): ArrayWithStrings {
-        return schema.validateSync(value, { strict: true });
-    }
-}"
+export type ArrayWithStrings = Array<string>;"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/Dictionary.ts): ./test/result/v3/typescript/models/Dictionary.ts 1`] = `
@@ -6952,32 +3870,11 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/models/Dictio
 
 import { Dictionary } from '../models/Dictionary';
 import { ModelWithString } from '../models/ModelWithString';
-import * as yup from 'yup';
 
 /**
  * This is a complex dictionary
  */
-export type DictionaryWithArray = Dictionary<Array<ModelWithString>>;
-
-export namespace DictionaryWithArray {
-
-    export const schema = yup.lazy<Dictionary<Array<ModelWithString>>>(value => {
-        return yup.object<Dictionary<Array<ModelWithString>>>().shape(
-            Object.keys(value).reduce((object, key) => ({
-                ...object,
-                [key]: yup.array<ModelWithString>().of(ModelWithString.schema)
-            }), {})
-        ).noUnknown();
-    });
-
-    export async function validate(value: any): Promise<DictionaryWithArray> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): DictionaryWithArray {
-        return schema.validateSync(value, { strict: true });
-    }
-}"
+export type DictionaryWithArray = Dictionary<Array<ModelWithString>>;"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/DictionaryWithDictionary.ts): ./test/result/v3/typescript/models/DictionaryWithDictionary.ts 1`] = `
@@ -6987,39 +3884,11 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/models/Dictio
 /* prettier-ignore */
 
 import { Dictionary } from '../models/Dictionary';
-import * as yup from 'yup';
 
 /**
  * This is a string dictionary
  */
-export type DictionaryWithDictionary = Dictionary<Dictionary<string>>;
-
-export namespace DictionaryWithDictionary {
-
-    export const schema = yup.lazy<Dictionary<Dictionary<string>>>(value => {
-        return yup.object<Dictionary<Dictionary<string>>>().shape(
-            Object.keys(value).reduce((object, key) => ({
-                ...object,
-                [key]: yup.lazy<Dictionary<string>>(value => {
-                    return yup.object<Dictionary<string>>().shape(
-                        Object.keys(value).reduce((object, key) => ({
-                            ...object,
-                            [key]: yup.string()
-                        }), {})
-                    ).noUnknown();
-                })
-            }), {})
-        ).noUnknown();
-    });
-
-    export async function validate(value: any): Promise<DictionaryWithDictionary> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): DictionaryWithDictionary {
-        return schema.validateSync(value, { strict: true });
-    }
-}"
+export type DictionaryWithDictionary = Dictionary<Dictionary<string>>;"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/DictionaryWithProperties.ts): ./test/result/v3/typescript/models/DictionaryWithProperties.ts 1`] = `
@@ -7029,7 +3898,6 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/models/Dictio
 /* prettier-ignore */
 
 import { Dictionary } from '../models/Dictionary';
-import * as yup from 'yup';
 
 /**
  * This is a complex dictionary
@@ -7037,38 +3905,7 @@ import * as yup from 'yup';
 export type DictionaryWithProperties = Dictionary<{
     foo?: string,
     bar?: string
-}>;
-
-export namespace DictionaryWithProperties {
-
-    export const schema = yup.lazy<Dictionary<{
-        foo?: string,
-        bar?: string
-    }>>(value => {
-        return yup.object<Dictionary<{
-            foo?: string,
-            bar?: string
-        }>>().shape(
-            Object.keys(value).reduce((object, key) => ({
-                ...object,
-                [key]: (
-                    yup.object().shape({
-                        foo: yup.string(),
-                        bar: yup.string()
-                    }).noUnknown()
-                )
-            }), {})
-        ).noUnknown();
-    });
-
-    export async function validate(value: any): Promise<DictionaryWithProperties> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): DictionaryWithProperties {
-        return schema.validateSync(value, { strict: true });
-    }
-}"
+}>;"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/DictionaryWithReference.ts): ./test/result/v3/typescript/models/DictionaryWithReference.ts 1`] = `
@@ -7079,32 +3916,11 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/models/Dictio
 
 import { Dictionary } from '../models/Dictionary';
 import { ModelWithString } from '../models/ModelWithString';
-import * as yup from 'yup';
 
 /**
  * This is a string reference
  */
-export type DictionaryWithReference = Dictionary<ModelWithString>;
-
-export namespace DictionaryWithReference {
-
-    export const schema = yup.lazy<Dictionary<ModelWithString>>(value => {
-        return yup.object<Dictionary<ModelWithString>>().shape(
-            Object.keys(value).reduce((object, key) => ({
-                ...object,
-                [key]: ModelWithString.schema
-            }), {})
-        ).noUnknown();
-    });
-
-    export async function validate(value: any): Promise<DictionaryWithReference> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): DictionaryWithReference {
-        return schema.validateSync(value, { strict: true });
-    }
-}"
+export type DictionaryWithReference = Dictionary<ModelWithString>;"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/DictionaryWithString.ts): ./test/result/v3/typescript/models/DictionaryWithString.ts 1`] = `
@@ -7114,32 +3930,11 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/models/Dictio
 /* prettier-ignore */
 
 import { Dictionary } from '../models/Dictionary';
-import * as yup from 'yup';
 
 /**
  * This is a string dictionary
  */
-export type DictionaryWithString = Dictionary<string>;
-
-export namespace DictionaryWithString {
-
-    export const schema = yup.lazy<Dictionary<string>>(value => {
-        return yup.object<Dictionary<string>>().shape(
-            Object.keys(value).reduce((object, key) => ({
-                ...object,
-                [key]: yup.string()
-            }), {})
-        ).noUnknown();
-    });
-
-    export async function validate(value: any): Promise<DictionaryWithString> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): DictionaryWithString {
-        return schema.validateSync(value, { strict: true });
-    }
-}"
+export type DictionaryWithString = Dictionary<string>;"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/EnumFromDescription.ts): ./test/result/v3/typescript/models/EnumFromDescription.ts 1`] = `
@@ -7148,8 +3943,6 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/models/EnumFr
 /* eslint-disable */
 /* prettier-ignore */
 
-import * as yup from 'yup';
-
 /**
  * Success=1,Warning=2,Error=3
  */
@@ -7157,23 +3950,6 @@ export enum EnumFromDescription {
     ERROR = 3,
     SUCCESS = 1,
     WARNING = 2
-}
-
-export namespace EnumFromDescription {
-
-    export const schema = yup.mixed<EnumFromDescription>().oneOf([
-        EnumFromDescription.ERROR,
-        EnumFromDescription.SUCCESS,
-        EnumFromDescription.WARNING
-    ]);
-
-    export async function validate(value: any): Promise<EnumFromDescription> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): EnumFromDescription {
-        return schema.validateSync(value, { strict: true });
-    }
 }"
 `;
 
@@ -7183,8 +3959,6 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/models/EnumWi
 /* eslint-disable */
 /* prettier-ignore */
 
-import * as yup from 'yup';
-
 /**
  * This is a simple enum with numbers
  */
@@ -7192,23 +3966,6 @@ export enum EnumWithNumbers {
     NUM_1 = 1,
     NUM_2 = 2,
     NUM_3 = 3
-}
-
-export namespace EnumWithNumbers {
-
-    export const schema = yup.mixed<EnumWithNumbers>().oneOf([
-        EnumWithNumbers.NUM_1,
-        EnumWithNumbers.NUM_2,
-        EnumWithNumbers.NUM_3
-    ]);
-
-    export async function validate(value: any): Promise<EnumWithNumbers> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): EnumWithNumbers {
-        return schema.validateSync(value, { strict: true });
-    }
 }"
 `;
 
@@ -7218,8 +3975,6 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/models/EnumWi
 /* eslint-disable */
 /* prettier-ignore */
 
-import * as yup from 'yup';
-
 /**
  * This is a simple enum with strings
  */
@@ -7227,23 +3982,6 @@ export enum EnumWithStrings {
     ERROR = 'Error',
     SUCCESS = 'Success',
     WARNING = 'Warning'
-}
-
-export namespace EnumWithStrings {
-
-    export const schema = yup.mixed<EnumWithStrings>().oneOf([
-        EnumWithStrings.ERROR,
-        EnumWithStrings.SUCCESS,
-        EnumWithStrings.WARNING
-    ]);
-
-    export async function validate(value: any): Promise<EnumWithStrings> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): EnumWithStrings {
-        return schema.validateSync(value, { strict: true });
-    }
 }"
 `;
 
@@ -7252,8 +3990,6 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelL
 /* tslint:disable */
 /* eslint-disable */
 /* prettier-ignore */
-
-import * as yup from 'yup';
 
 /**
  * This is a model that can have a template??
@@ -7264,19 +4000,6 @@ export interface ModelLink {
 
 export namespace ModelLink {
 
-    export const schema: yup.ObjectSchema<ModelLink> = (
-        yup.object().shape({
-            id: yup.string()
-        }).noUnknown()
-    );
-
-    export async function validate(value: any): Promise<ModelLink> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): ModelLink {
-        return schema.validateSync(value, { strict: true });
-    }
 }"
 `;
 
@@ -7287,7 +4010,6 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelT
 /* prettier-ignore */
 
 import { ModelWithString } from '../models/ModelWithString';
-import * as yup from 'yup';
 
 /**
  * This is a model that extends another model
@@ -7299,22 +4021,6 @@ export interface ModelThatExtends extends ModelWithString {
 
 export namespace ModelThatExtends {
 
-    export const schema: yup.ObjectSchema<ModelThatExtends> = (
-        ModelWithString.schema.concat(
-            yup.object().shape({
-                propExtendsA: yup.string(),
-                propExtendsB: ModelWithString.schema
-            }).noUnknown()
-        )
-    );
-
-    export async function validate(value: any): Promise<ModelThatExtends> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): ModelThatExtends {
-        return schema.validateSync(value, { strict: true });
-    }
 }"
 `;
 
@@ -7326,7 +4032,6 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelT
 
 import { ModelThatExtends } from '../models/ModelThatExtends';
 import { ModelWithString } from '../models/ModelWithString';
-import * as yup from 'yup';
 
 /**
  * This is a model that extends another model
@@ -7338,24 +4043,6 @@ export interface ModelThatExtendsExtends extends ModelWithString, ModelThatExten
 
 export namespace ModelThatExtendsExtends {
 
-    export const schema: yup.ObjectSchema<ModelThatExtendsExtends> = (
-        ModelWithString.schema.concat(
-            ModelThatExtends.schema.concat(
-                yup.object().shape({
-                    propExtendsC: yup.string(),
-                    propExtendsD: ModelWithString.schema
-                }).noUnknown()
-            )
-        )
-    );
-
-    export async function validate(value: any): Promise<ModelThatExtendsExtends> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): ModelThatExtendsExtends {
-        return schema.validateSync(value, { strict: true });
-    }
 }"
 `;
 
@@ -7366,7 +4053,6 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelW
 /* prettier-ignore */
 
 import { ModelWithString } from '../models/ModelWithString';
-import * as yup from 'yup';
 
 /**
  * This is a model with one property containing an array
@@ -7379,21 +4065,6 @@ export interface ModelWithArray {
 
 export namespace ModelWithArray {
 
-    export const schema: yup.ObjectSchema<ModelWithArray> = (
-        yup.object().shape({
-            prop: yup.array<ModelWithString>().of(ModelWithString.schema),
-            propWithFile: yup.array<File>().of(yup.mixed<File>()),
-            propWithNumber: yup.array<number>().of(yup.number())
-        }).noUnknown()
-    );
-
-    export async function validate(value: any): Promise<ModelWithArray> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): ModelWithArray {
-        return schema.validateSync(value, { strict: true });
-    }
 }"
 `;
 
@@ -7402,8 +4073,6 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelW
 /* tslint:disable */
 /* eslint-disable */
 /* prettier-ignore */
-
-import * as yup from 'yup';
 
 /**
  * This is a model with one boolean property
@@ -7417,19 +4086,6 @@ export interface ModelWithBoolean {
 
 export namespace ModelWithBoolean {
 
-    export const schema: yup.ObjectSchema<ModelWithBoolean> = (
-        yup.object().shape({
-            prop: yup.boolean()
-        }).noUnknown()
-    );
-
-    export async function validate(value: any): Promise<ModelWithBoolean> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): ModelWithBoolean {
-        return schema.validateSync(value, { strict: true });
-    }
 }"
 `;
 
@@ -7438,8 +4094,6 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelW
 /* tslint:disable */
 /* eslint-disable */
 /* prettier-ignore */
-
-import * as yup from 'yup';
 
 /**
  * This is a model with one property containing a circular reference
@@ -7450,19 +4104,6 @@ export interface ModelWithCircularReference {
 
 export namespace ModelWithCircularReference {
 
-    export const schema: yup.ObjectSchema<ModelWithCircularReference> = (
-        yup.object().shape({
-            prop: ModelWithCircularReference.schema
-        }).noUnknown()
-    );
-
-    export async function validate(value: any): Promise<ModelWithCircularReference> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): ModelWithCircularReference {
-        return schema.validateSync(value, { strict: true });
-    }
 }"
 `;
 
@@ -7473,7 +4114,6 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelW
 /* prettier-ignore */
 
 import { Dictionary } from '../models/Dictionary';
-import * as yup from 'yup';
 
 /**
  * This is a model with one property containing a dictionary
@@ -7484,26 +4124,6 @@ export interface ModelWithDictionary {
 
 export namespace ModelWithDictionary {
 
-    export const schema: yup.ObjectSchema<ModelWithDictionary> = (
-        yup.object().shape({
-            prop: yup.lazy<Dictionary<string>>(value => {
-                return yup.object<Dictionary<string>>().shape(
-                    Object.keys(value).reduce((object, key) => ({
-                        ...object,
-                        [key]: yup.string()
-                    }), {})
-                ).noUnknown();
-            })
-        }).noUnknown()
-    );
-
-    export async function validate(value: any): Promise<ModelWithDictionary> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): ModelWithDictionary {
-        return schema.validateSync(value, { strict: true });
-    }
 }"
 `;
 
@@ -7514,7 +4134,6 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelW
 /* prettier-ignore */
 
 import { ModelWithString } from '../models/ModelWithString';
-import * as yup from 'yup';
 
 /**
  * This is a model with duplicated imports
@@ -7527,21 +4146,6 @@ export interface ModelWithDuplicateImports {
 
 export namespace ModelWithDuplicateImports {
 
-    export const schema: yup.ObjectSchema<ModelWithDuplicateImports> = (
-        yup.object().shape({
-            propA: ModelWithString.schema,
-            propB: ModelWithString.schema,
-            propC: ModelWithString.schema
-        }).noUnknown()
-    );
-
-    export async function validate(value: any): Promise<ModelWithDuplicateImports> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): ModelWithDuplicateImports {
-        return schema.validateSync(value, { strict: true });
-    }
 }"
 `;
 
@@ -7552,7 +4156,6 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelW
 /* prettier-ignore */
 
 import { ModelWithString } from '../models/ModelWithString';
-import * as yup from 'yup';
 
 /**
  * This is a model with duplicated properties
@@ -7563,19 +4166,6 @@ export interface ModelWithDuplicateProperties {
 
 export namespace ModelWithDuplicateProperties {
 
-    export const schema: yup.ObjectSchema<ModelWithDuplicateProperties> = (
-        yup.object().shape({
-            prop: ModelWithString.schema
-        }).noUnknown()
-    );
-
-    export async function validate(value: any): Promise<ModelWithDuplicateProperties> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): ModelWithDuplicateProperties {
-        return schema.validateSync(value, { strict: true });
-    }
 }"
 `;
 
@@ -7584,8 +4174,6 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelW
 /* tslint:disable */
 /* eslint-disable */
 /* prettier-ignore */
-
-import * as yup from 'yup';
 
 /**
  * This is a model with one enum
@@ -7608,23 +4196,6 @@ export namespace ModelWithEnum {
         ERROR = 'Error'
     }
 
-    export const schema: yup.ObjectSchema<ModelWithEnum> = (
-        yup.object().shape({
-            Test: yup.mixed<string>().oneOf([
-                'Success',
-                'Warning',
-                'Error'
-            ])
-        }).noUnknown()
-    );
-
-    export async function validate(value: any): Promise<ModelWithEnum> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): ModelWithEnum {
-        return schema.validateSync(value, { strict: true });
-    }
 }"
 `;
 
@@ -7633,8 +4204,6 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelW
 /* tslint:disable */
 /* eslint-disable */
 /* prettier-ignore */
-
-import * as yup from 'yup';
 
 /**
  * This is a model with one enum
@@ -7657,23 +4226,6 @@ export namespace ModelWithEnumFromDescription {
         ERROR = 3
     }
 
-    export const schema: yup.ObjectSchema<ModelWithEnumFromDescription> = (
-        yup.object().shape({
-            Test: yup.mixed<number>().oneOf([
-                1,
-                2,
-                3
-            ])
-        }).noUnknown()
-    );
-
-    export async function validate(value: any): Promise<ModelWithEnumFromDescription> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): ModelWithEnumFromDescription {
-        return schema.validateSync(value, { strict: true });
-    }
 }"
 `;
 
@@ -7682,8 +4234,6 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelW
 /* tslint:disable */
 /* eslint-disable */
 /* prettier-ignore */
-
-import * as yup from 'yup';
 
 /**
  * This is a model with one number property
@@ -7697,19 +4247,6 @@ export interface ModelWithInteger {
 
 export namespace ModelWithInteger {
 
-    export const schema: yup.ObjectSchema<ModelWithInteger> = (
-        yup.object().shape({
-            prop: yup.number()
-        }).noUnknown()
-    );
-
-    export async function validate(value: any): Promise<ModelWithInteger> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): ModelWithInteger {
-        return schema.validateSync(value, { strict: true });
-    }
 }"
 `;
 
@@ -7721,7 +4258,6 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelW
 
 import { ModelLink } from '../models/ModelLink';
 import { ModelWithString } from '../models/ModelWithString';
-import * as yup from 'yup';
 
 /**
  * This is a model that can have a template??
@@ -7732,19 +4268,6 @@ export interface ModelWithLink {
 
 export namespace ModelWithLink {
 
-    export const schema: yup.ObjectSchema<ModelWithLink> = (
-        yup.object().shape({
-            prop: ModelLink.schema
-        }).noUnknown()
-    );
-
-    export async function validate(value: any): Promise<ModelWithLink> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): ModelWithLink {
-        return schema.validateSync(value, { strict: true });
-    }
 }"
 `;
 
@@ -7755,7 +4278,6 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelW
 /* prettier-ignore */
 
 import { Dictionary } from '../models/Dictionary';
-import * as yup from 'yup';
 
 /**
  * This is a model with nested enums
@@ -7769,52 +4291,6 @@ export interface ModelWithNestedEnums {
 
 export namespace ModelWithNestedEnums {
 
-    export const schema: yup.ObjectSchema<ModelWithNestedEnums> = (
-        yup.object().shape({
-            arrayWithDescription: yup.array<(1 | 2 | 3)>().of(yup.mixed<number>().oneOf([
-                1,
-                2,
-                3
-            ])),
-            arrayWithEnum: yup.array<('Success' | 'Warning' | 'Error')>().of(yup.mixed<string>().oneOf([
-                'Success',
-                'Warning',
-                'Error'
-            ])),
-            dictionaryWithEnum: yup.lazy<Dictionary<('Success' | 'Warning' | 'Error')>>(value => {
-                return yup.object<Dictionary<('Success' | 'Warning' | 'Error')>>().shape(
-                    Object.keys(value).reduce((object, key) => ({
-                        ...object,
-                        [key]: yup.mixed<string>().oneOf([
-                            'Success',
-                            'Warning',
-                            'Error'
-                        ])
-                    }), {})
-                ).noUnknown();
-            }),
-            dictionaryWithEnumFromDescription: yup.lazy<Dictionary<(1 | 2 | 3)>>(value => {
-                return yup.object<Dictionary<(1 | 2 | 3)>>().shape(
-                    Object.keys(value).reduce((object, key) => ({
-                        ...object,
-                        [key]: yup.mixed<number>().oneOf([
-                            1,
-                            2,
-                            3
-                        ])
-                    }), {})
-                ).noUnknown();
-            })
-        }).noUnknown()
-    );
-
-    export async function validate(value: any): Promise<ModelWithNestedEnums> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): ModelWithNestedEnums {
-        return schema.validateSync(value, { strict: true });
-    }
 }"
 `;
 
@@ -7823,8 +4299,6 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelW
 /* tslint:disable */
 /* eslint-disable */
 /* prettier-ignore */
-
-import * as yup from 'yup';
 
 /**
  * This is a model with one nested property
@@ -7839,27 +4313,6 @@ export interface ModelWithNestedProperties {
 
 export namespace ModelWithNestedProperties {
 
-    export const schema: yup.ObjectSchema<ModelWithNestedProperties> = (
-        yup.object().shape({
-            first: (
-                yup.object().shape({
-                    second: (
-                        yup.object().shape({
-                            third: yup.string().nullable().required()
-                        }).noUnknown()
-                    ).nullable().required()
-                }).noUnknown()
-            ).nullable().required()
-        }).noUnknown()
-    );
-
-    export async function validate(value: any): Promise<ModelWithNestedProperties> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): ModelWithNestedProperties {
-        return schema.validateSync(value, { strict: true });
-    }
 }"
 `;
 
@@ -7870,7 +4323,6 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelW
 /* prettier-ignore */
 
 import { ModelWithString } from '../models/ModelWithString';
-import * as yup from 'yup';
 
 /**
  * This is a model with one nested property
@@ -7887,25 +4339,6 @@ export interface ModelWithProperties {
 
 export namespace ModelWithProperties {
 
-    export const schema: yup.ObjectSchema<ModelWithProperties> = (
-        yup.object().shape({
-            boolean: yup.boolean(),
-            number: yup.number(),
-            reference: ModelWithString.schema,
-            required: yup.string().required(),
-            requiredAndNullable: yup.string().nullable().required(),
-            requiredAndReadOnly: yup.string().required(),
-            string: yup.string()
-        }).noUnknown()
-    );
-
-    export async function validate(value: any): Promise<ModelWithProperties> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): ModelWithProperties {
-        return schema.validateSync(value, { strict: true });
-    }
 }"
 `;
 
@@ -7916,7 +4349,6 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelW
 /* prettier-ignore */
 
 import { ModelWithString } from '../models/ModelWithString';
-import * as yup from 'yup';
 
 /**
  * This is a model with one property containing a reference
@@ -7927,19 +4359,6 @@ export interface ModelWithReference {
 
 export namespace ModelWithReference {
 
-    export const schema: yup.ObjectSchema<ModelWithReference> = (
-        yup.object().shape({
-            prop: ModelWithString.schema
-        }).noUnknown()
-    );
-
-    export async function validate(value: any): Promise<ModelWithReference> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): ModelWithReference {
-        return schema.validateSync(value, { strict: true });
-    }
 }"
 `;
 
@@ -7948,8 +4367,6 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelW
 /* tslint:disable */
 /* eslint-disable */
 /* prettier-ignore */
-
-import * as yup from 'yup';
 
 /**
  * This is a model with one string property
@@ -7963,19 +4380,6 @@ export interface ModelWithString {
 
 export namespace ModelWithString {
 
-    export const schema: yup.ObjectSchema<ModelWithString> = (
-        yup.object().shape({
-            prop: yup.string()
-        }).noUnknown()
-    );
-
-    export async function validate(value: any): Promise<ModelWithString> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): ModelWithString {
-        return schema.validateSync(value, { strict: true });
-    }
 }"
 `;
 
@@ -7985,25 +4389,10 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/models/Simple
 /* eslint-disable */
 /* prettier-ignore */
 
-import * as yup from 'yup';
-
 /**
  * This is a simple boolean
  */
-export type SimpleBoolean = boolean;
-
-export namespace SimpleBoolean {
-
-    export const schema = yup.boolean();
-
-    export async function validate(value: any): Promise<SimpleBoolean> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): SimpleBoolean {
-        return schema.validateSync(value, { strict: true });
-    }
-}"
+export type SimpleBoolean = boolean;"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/SimpleFile.ts): ./test/result/v3/typescript/models/SimpleFile.ts 1`] = `
@@ -8012,25 +4401,10 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/models/Simple
 /* eslint-disable */
 /* prettier-ignore */
 
-import * as yup from 'yup';
-
 /**
  * This is a simple file
  */
-export type SimpleFile = File;
-
-export namespace SimpleFile {
-
-    export const schema = yup.mixed<File>();
-
-    export async function validate(value: any): Promise<SimpleFile> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): SimpleFile {
-        return schema.validateSync(value, { strict: true });
-    }
-}"
+export type SimpleFile = File;"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/SimpleInteger.ts): ./test/result/v3/typescript/models/SimpleInteger.ts 1`] = `
@@ -8039,25 +4413,10 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/models/Simple
 /* eslint-disable */
 /* prettier-ignore */
 
-import * as yup from 'yup';
-
 /**
  * This is a simple number
  */
-export type SimpleInteger = number;
-
-export namespace SimpleInteger {
-
-    export const schema = yup.number();
-
-    export async function validate(value: any): Promise<SimpleInteger> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): SimpleInteger {
-        return schema.validateSync(value, { strict: true });
-    }
-}"
+export type SimpleInteger = number;"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/SimpleReference.ts): ./test/result/v3/typescript/models/SimpleReference.ts 1`] = `
@@ -8067,25 +4426,11 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/models/Simple
 /* prettier-ignore */
 
 import { ModelWithString } from '../models/ModelWithString';
-import * as yup from 'yup';
 
 /**
  * This is a simple reference
  */
-export type SimpleReference = ModelWithString;
-
-export namespace SimpleReference {
-
-    export const schema = ModelWithString.schema;
-
-    export async function validate(value: any): Promise<SimpleReference> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): SimpleReference {
-        return schema.validateSync(value, { strict: true });
-    }
-}"
+export type SimpleReference = ModelWithString;"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/SimpleString.ts): ./test/result/v3/typescript/models/SimpleString.ts 1`] = `
@@ -8094,25 +4439,10 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/models/Simple
 /* eslint-disable */
 /* prettier-ignore */
 
-import * as yup from 'yup';
-
 /**
  * This is a simple string
  */
-export type SimpleString = string;
-
-export namespace SimpleString {
-
-    export const schema = yup.string();
-
-    export async function validate(value: any): Promise<SimpleString> {
-        return schema.validate(value, { strict: true });
-    }
-
-    export function validateSync(value: any): SimpleString {
-        return schema.validateSync(value, { strict: true });
-    }
-}"
+export type SimpleString = string;"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/services/ComplexService.ts): ./test/result/v3/typescript/services/ComplexService.ts 1`] = `
@@ -8123,7 +4453,7 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/services/Comp
 
 import { ModelWithString } from '../models/ModelWithString';
 import { ApiError, catchGenericError } from '../core/ApiError';
-import { request } from '../core/request';
+import { request as $request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
 export class ComplexService {
@@ -8145,7 +4475,7 @@ export class ComplexService {
         parameterReference: ModelWithString
     ): Promise<Array<ModelWithString>> {
 
-        const result = await request({
+        const result = await $request({
             method: 'get',
             path: \`/api/v\${OpenAPI.VERSION}/complex\`,
             query: {
@@ -8177,7 +4507,7 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/services/Defa
 
 import { ModelWithString } from '../models/ModelWithString';
 import { ApiError, catchGenericError } from '../core/ApiError';
-import { request } from '../core/request';
+import { request as $request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
 export class DefaultsService {
@@ -8200,7 +4530,7 @@ export class DefaultsService {
         }
     ): Promise<void> {
 
-        const result = await request({
+        const result = await $request({
             method: 'get',
             path: \`/api/v\${OpenAPI.VERSION}/defaults\`,
             query: {
@@ -8228,7 +4558,7 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/services/Para
 
 import { ModelWithString } from '../models/ModelWithString';
 import { ApiError, catchGenericError } from '../core/ApiError';
-import { request } from '../core/request';
+import { request as $request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
 export class ParametersService {
@@ -8249,7 +4579,7 @@ export class ParametersService {
         requestBody?: ModelWithString
     ): Promise<void> {
 
-        const result = await request({
+        const result = await $request({
             method: 'get',
             path: \`/api/v\${OpenAPI.VERSION}/parameters\`,
             cookies: {
@@ -8285,7 +4615,7 @@ import { ModelThatExtends } from '../models/ModelThatExtends';
 import { ModelThatExtendsExtends } from '../models/ModelThatExtendsExtends';
 import { ModelWithString } from '../models/ModelWithString';
 import { ApiError, catchGenericError } from '../core/ApiError';
-import { request } from '../core/request';
+import { request as $request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
 export class ResponseService {
@@ -8296,7 +4626,7 @@ export class ResponseService {
      */
     public static async callWithDuplicateResponses(): Promise<ModelWithString> {
 
-        const result = await request({
+        const result = await $request({
             method: 'post',
             path: \`/api/v\${OpenAPI.VERSION}/response\`
         });
@@ -8320,7 +4650,7 @@ export class ResponseService {
      */
     public static async callWithResponse(): Promise<ModelWithString> {
 
-        const result = await request({
+        const result = await $request({
             method: 'get',
             path: \`/api/v\${OpenAPI.VERSION}/response\`
         });
@@ -8338,7 +4668,7 @@ export class ResponseService {
      */
     public static async callWithResponses(): Promise<ModelWithString | ModelThatExtends | ModelThatExtendsExtends> {
 
-        const result = await request({
+        const result = await $request({
             method: 'put',
             path: \`/api/v\${OpenAPI.VERSION}/response\`
         });
@@ -8366,7 +4696,7 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/services/Simp
 /* prettier-ignore */
 
 import { ApiError, catchGenericError } from '../core/ApiError';
-import { request } from '../core/request';
+import { request as $request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
 export class SimpleService {
@@ -8376,7 +4706,7 @@ export class SimpleService {
      */
     public static async deleteCallWithoutParametersAndResponse(): Promise<void> {
 
-        const result = await request({
+        const result = await $request({
             method: 'delete',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`
         });
@@ -8391,7 +4721,7 @@ export class SimpleService {
      */
     public static async getCallWithoutParametersAndResponse(): Promise<void> {
 
-        const result = await request({
+        const result = await $request({
             method: 'get',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`
         });
@@ -8406,7 +4736,7 @@ export class SimpleService {
      */
     public static async headCallWithoutParametersAndResponse(): Promise<void> {
 
-        const result = await request({
+        const result = await $request({
             method: 'head',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`
         });
@@ -8421,7 +4751,7 @@ export class SimpleService {
      */
     public static async optionsCallWithoutParametersAndResponse(): Promise<void> {
 
-        const result = await request({
+        const result = await $request({
             method: 'options',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`
         });
@@ -8436,7 +4766,7 @@ export class SimpleService {
      */
     public static async patchCallWithoutParametersAndResponse(): Promise<void> {
 
-        const result = await request({
+        const result = await $request({
             method: 'patch',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`
         });
@@ -8451,7 +4781,7 @@ export class SimpleService {
      */
     public static async postCallWithoutParametersAndResponse(): Promise<void> {
 
-        const result = await request({
+        const result = await $request({
             method: 'post',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`
         });
@@ -8466,7 +4796,7 @@ export class SimpleService {
      */
     public static async putCallWithoutParametersAndResponse(): Promise<void> {
 
-        const result = await request({
+        const result = await $request({
             method: 'put',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`
         });
@@ -8486,7 +4816,7 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/services/Type
 /* prettier-ignore */
 
 import { ApiError, catchGenericError } from '../core/ApiError';
-import { request } from '../core/request';
+import { request as $request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
 export class TypesService {
@@ -8517,7 +4847,7 @@ export class TypesService {
         id?: number
     ): Promise<number | string | boolean | any> {
 
-        const result = await request({
+        const result = await $request({
             method: 'get',
             path: \`/api/v\${OpenAPI.VERSION}/types\`,
             query: {

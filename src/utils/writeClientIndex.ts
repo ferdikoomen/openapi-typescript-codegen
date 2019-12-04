@@ -4,8 +4,7 @@ import { Client } from '../client/interfaces/Client';
 import { Language } from '../index';
 import { Templates } from './readHandlebarsTemplates';
 import { getFileName } from './getFileName';
-import { getModelNames } from './getModelNames';
-import { getServiceNames } from './getServiceNames';
+import { getImports } from './getImports';
 
 /**
  * Generate the OpenAPI client index file using the Handlebar template and write it to disk.
@@ -14,22 +13,23 @@ import { getServiceNames } from './getServiceNames';
  * @param client Client object, containing, models, schemas and services.
  * @param language The output language (Typescript or javascript).
  * @param templates The loaded handlebar templates.
+ * @param outputPathModels
+ * @param outputPathServices
  * @param outputPath
  */
-export function writeClientIndex(client: Client, language: Language, templates: Templates, outputPath: string): void {
+export function writeClientIndex(client: Client, language: Language, templates: Templates, outputPathModels: string, outputPathServices: string, outputPath: string): void {
     const fileName = getFileName('index', language);
-    // try {
-    console.log(fileName);
-    fs.writeFileSync(
-        path.resolve(outputPath, fileName),
-        templates.index({
-            server: client.server,
-            version: client.version,
-            models: getModelNames(client.models),
-            services: getServiceNames(client.services),
-        })
-    );
-    // } catch (e) {
-    //     throw new Error(`Could not write index: "${fileName}"`);
-    // }
+    try {
+        fs.writeFileSync(
+            path.resolve(outputPath, fileName),
+            templates.index({
+                server: client.server,
+                version: client.version,
+                models: getImports(outputPathModels),
+                services: getImports(outputPathServices),
+            })
+        );
+    } catch (e) {
+        throw new Error(`Could not write index: "${fileName}"`);
+    }
 }

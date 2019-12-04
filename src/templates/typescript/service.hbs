@@ -9,7 +9,7 @@ import { {{{this}}} } from '../models/{{{this}}}';
 {{/each}}
 {{/if}}
 import { ApiError, catchGenericError } from '../core/ApiError';
-import { request } from '../core/request';
+import { request as $request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
 export class {{{name}}} {
@@ -37,11 +37,11 @@ export class {{{name}}} {
      */
     public static async {{{name}}}({{#if parameters}}
         {{#each parameters}}
-        {{{name}}}{{>isRequired}}: {{>type}}{{>defaultValue}}{{>comma}}
+        {{{name}}}{{>isRequired}}: {{>type}}{{#if default}} = {{{default}}}{{/if}}{{>comma}}
         {{/each}}
     {{/if}}): Promise<{{>result}}> {
 
-        const result = await request({
+        const result = await $request({
             method: '{{{method}}}',
             path: `{{{path}}}`{{#if parametersCookie}},
             cookies: {
