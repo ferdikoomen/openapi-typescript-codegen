@@ -6,7 +6,7 @@ import { getOperation } from './getOperation';
 /**
  * Get the OpenAPI services
  */
-export function getServices(openApi: OpenApi): Map<string, Service> {
+export function getServices(openApi: OpenApi): Service[] {
     const services = new Map<string, Service>();
     for (const url in openApi.paths) {
         if (openApi.paths.hasOwnProperty(url)) {
@@ -45,5 +45,5 @@ export function getServices(openApi: OpenApi): Map<string, Service> {
             }
         }
     }
-    return services;
+    return Array.from(services.values());
 }

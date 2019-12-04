@@ -14,7 +14,7 @@ import { getFileName } from './getFileName';
  * @param templates The loaded handlebar templates.
  * @param outputPath
  */
-export function writeClientServices(services: Map<string, Service>, language: Language, templates: Templates, outputPath: string): void {
+export function writeClientServices(services: Service[], language: Language, templates: Templates, outputPath: string): void {
     services.forEach(service => {
         const fileName = getFileName(service.name, language);
         try {

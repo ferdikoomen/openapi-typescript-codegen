@@ -3,7 +3,7 @@ import { OpenApi } from '../interfaces/OpenApi';
 import { getModel } from './getModel';
 import { getType } from './getType';
 
-export function getModels(openApi: OpenApi): Map<string, Model> {
+export function getModels(openApi: OpenApi): Model[] {
     const models = new Map<string, Model>();
     for (const definitionName in openApi.definitions) {
         if (openApi.definitions.hasOwnProperty(definitionName)) {
@@ -13,5 +13,5 @@ export function getModels(openApi: OpenApi): Map<string, Model> {
             models.set(definitionType.base, model);
         }
     }
-    return models;
+    return Array.from(models.values());
 }

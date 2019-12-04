@@ -6,6 +6,8 @@ import * as rimraf from 'rimraf';
 import { Client } from '../client/interfaces/Client';
 import { HttpClient, Language } from '../index';
 import { Templates } from './readHandlebarsTemplates';
+import { getFilteredModels } from './getFilteredModels';
+import { getFilteredServices } from './getFilteredServices';
 import { writeClientIndex } from './writeClientIndex';
 import { writeClientModels } from './writeClientModels';
 import { writeClientServices } from './writeClientServices';
@@ -51,12 +53,16 @@ export function writeClient(client: Client, language: Language, httpClient: Http
         );
     });
 
+    // Filter unused models and services.
+    client.models = getFilteredModels(client.models, language);
+    client.services = getFilteredServices(client.services, language);
+
     // Write the client files
     try {
         writeClientSettings(client, language, httpClient, templates, outputPathCore);
         writeClientModels(client.models, language, templates, outputPathModels);
         writeClientServices(client.services, language, templates, outputPathServices);
-        writeClientIndex(client, language, templates, outputPathModels, outputPathServices, outputPath);
+        writeClientIndex(client, language, templates, outputPath);
     } catch (e) {
         throw e;
     }

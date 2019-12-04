@@ -2,8 +2,6 @@ import * as fs from 'fs';
 import * as glob from 'glob';
 import { Client } from '../client/interfaces/Client';
 import { Language } from '../index';
-import { Model } from '../client/interfaces/Model';
-import { Service } from '../client/interfaces/Service';
 import { Templates } from './readHandlebarsTemplates';
 import { writeClientIndex } from './writeClientIndex';
 
@@ -18,8 +16,8 @@ describe('writeClientIndex', () => {
         const client: Client = {
             server: 'http://localhost:8080',
             version: '1.0',
-            models: new Map<string, Model>(),
-            services: new Map<string, Service>(),
+            models: [],
+            services: [],
         };
 
         const templates: Templates = {
@@ -31,7 +29,7 @@ describe('writeClientIndex', () => {
 
         globSync.mockReturnValue([]);
 
-        writeClientIndex(client, Language.TYPESCRIPT, templates, '/', '/', '/');
+        writeClientIndex(client, Language.TYPESCRIPT, templates, '/');
 
         expect(fsWriteFileSync).toBeCalledWith('/index.ts', 'dummy');
     });

@@ -10,8 +10,8 @@ const fsWriteFileSync = fs.writeFileSync as jest.MockedFunction<typeof fs.writeF
 
 describe('writeClientModels', () => {
     it('should write to filesystem', () => {
-        const models = new Map<string, Model>();
-        models.set('Item', {
+        const models: Model[] = [];
+        models.push({
             export: 'interface',
             name: 'Item',
             type: 'Item',
