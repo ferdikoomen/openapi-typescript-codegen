@@ -1,11 +1,9 @@
-{{~#>validationBasics~}}
 {{~#equals type 'boolean'~}}
-yup.boolean()
+yup.boolean(){{>validationBasics}}
 {{~else equals type 'number'~}}
-yup.number()
+yup.number(){{>validationBasics}}
 {{~else equals type 'string'~}}
-yup.string()
+yup.string(){{>validationBasics}}
 {{~else~}}
-yup.mixed()
+yup.mixed(){{>validationBasics}}
 {{~/equals~}}
-{{~/validationBasics~}}

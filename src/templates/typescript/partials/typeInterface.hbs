@@ -1,4 +1,3 @@
-{{~#>isNullable~}}
 {{~#if properties~}}
 {
 {{#each properties}}
@@ -9,8 +8,7 @@
 {{/if}}
 {{>isReadOnly}}{{{name}}}{{>isRequired}}: {{>type}}{{>comma}}
 {{/each}}
-}
+}{{>isNullable}}
 {{~else~}}
 any
 {{~/if~}}
-{{~/isNullable~}}

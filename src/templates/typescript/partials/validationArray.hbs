@@ -1,7 +1,6 @@
-{{~#>validationBasics~}}
 {{~#if link~}}
 yup.array<{{>type link}}>().of({{>validation link}})
 {{~else~}}
-yup.array<{{#>isNullable}}{{{type}}}{{/isNullable}}>().of({{{base}}}.schema)
+yup.array<{{{type}}}{{>isNullable}}>().of({{{base}}}.schema)
 {{~/if~}}
-{{~/validationBasics~}}
+{{>validationBasics}}

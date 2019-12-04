@@ -1,7 +1,5 @@
-{{~#>isNullable~}}
 {{~#if link~}}
-Array<{{>type link}}>
+Array<{{>type link}}>{{>isNullable}}
 {{~else~}}
-Array<{{{type}}}>
+Array<{{{type}}}>{{>isNullable}}
 {{~/if~}}
-{{~/isNullable~}}

@@ -1,7 +1,5 @@
-{{~#>validationBasics~}}
 {{~#if link~}}
-yup.array().of({{>validation link}})
+yup.array().of({{>validation link}}){{>validationBasics}}
 {{~else~}}
-yup.array().of({{{base}}}.schema)
+yup.array().of({{{base}}}.schema){{>validationBasics}}
 {{~/if~}}
-{{~/validationBasics~}}

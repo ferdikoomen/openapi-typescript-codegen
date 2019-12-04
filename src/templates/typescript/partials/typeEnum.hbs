@@ -1,11 +1,9 @@
-{{~#>isNullable~}}
 {{~#if parent~}}
-{{{parent}}}.{{{name}}}
+{{{parent}}}.{{{name}}}{{>isNullable}}
 {{~else~}}
 (
 {{~#each enum~}}
 {{{value}}}{{#unless @last}} | {{/unless}}
 {{~/each~}}
-)
+){{>isNullable}}
 {{~/if~}}
-{{~/isNullable~}}

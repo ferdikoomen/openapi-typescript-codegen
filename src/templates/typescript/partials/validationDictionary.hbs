@@ -8,8 +8,8 @@ yup.lazy<Dictionary<{{>type link}}>>(value => {
     ).noUnknown();
 })
 {{~else~}}
-yup.lazy<Dictionary<{{#>isNullable}}{{{type}}}{{/isNullable}}>>(value => {
-    return yup.object<Dictionary<{{#>isNullable}}{{{type}}}{{/isNullable}}>>().shape(
+yup.lazy<Dictionary<{{{type}}}{{>isNullable}}>>(value => {
+    return yup.object<Dictionary<{{{type}}}{{>isNullable}}>>().shape(
         Object.keys(value).reduce((object, key) => ({
             ...object,
             [key]: {{{base}}}.schema

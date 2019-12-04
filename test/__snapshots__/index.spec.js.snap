@@ -500,10 +500,12 @@ import * as yup from 'yup';
 export let ArrayWithProperties;
 (function (ArrayWithProperties) {
 
-    ArrayWithProperties.schema = yup.array().of(yup.object().shape({
-        foo: yup.string(),
-        bar: yup.string()
-    }).noUnknown());
+    ArrayWithProperties.schema = yup.array().of((
+        yup.object().shape({
+            foo: yup.string(),
+            bar: yup.string()
+        }).noUnknown()
+    ));
 
     ArrayWithProperties.validate = async function(value) {
         return ArrayWithProperties.schema.validate(value, { strict: true });
@@ -663,10 +665,12 @@ export let DictionaryWithProperties;
         return yup.object().shape(
             Object.keys(value).reduce((object, key) => ({
                 ...object,
-                [key]: yup.object().shape({
-                    foo: yup.string(),
-                    bar: yup.string()
-                }).noUnknown()
+                [key]: (
+                    yup.object().shape({
+                        foo: yup.string(),
+                        bar: yup.string()
+                    }).noUnknown()
+                )
             }), {})
         ).noUnknown();
     });
@@ -866,9 +870,11 @@ import * as yup from 'yup';
 export let ModelLink;
 (function (ModelLink) {
 
-    ModelLink.schema = yup.object().shape({
-        id: yup.string()
-    }).noUnknown();
+    ModelLink.schema = (
+        yup.object().shape({
+            id: yup.string()
+        }).noUnknown()
+    );
 
     ModelLink.validate = async function(value) {
         return ModelLink.schema.validate(value, { strict: true });
@@ -895,22 +901,24 @@ import * as yup from 'yup';
 export let ModelThatExtends;
 (function (ModelThatExtends) {
 
-    ModelThatExtends.schema = ModelWithString.schema.concat(
-        yup.object().shape({
-            propExtendsA: yup.string(),
-            propExtendsB: ModelWithString.schema
-        }).noUnknown())
-        ;
+    ModelThatExtends.schema = (
+        ModelWithString.schema.concat(
+            yup.object().shape({
+                propExtendsA: yup.string(),
+                propExtendsB: ModelWithString.schema
+            }).noUnknown()
+        )
+    );
 
-        ModelThatExtends.validate = async function(value) {
-            return ModelThatExtends.schema.validate(value, { strict: true });
-        };
+    ModelThatExtends.validate = async function(value) {
+        return ModelThatExtends.schema.validate(value, { strict: true });
+    };
 
-        ModelThatExtends.validateSync = function(value) {
-            return ModelThatExtends.schema.validateSync(value, { strict: true });
-        };
+    ModelThatExtends.validateSync = function(value) {
+        return ModelThatExtends.schema.validateSync(value, { strict: true });
+    };
 
-    })(ModelThatExtends || (ModelThatExtends = {}));"
+})(ModelThatExtends || (ModelThatExtends = {}));"
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelThatExtendsExtends.js): ./test/result/v2/javascript/models/ModelThatExtendsExtends.js 1`] = `
@@ -928,24 +936,26 @@ import * as yup from 'yup';
 export let ModelThatExtendsExtends;
 (function (ModelThatExtendsExtends) {
 
-    ModelThatExtendsExtends.schema = ModelWithString.schema.concat(
-        ModelThatExtends.schema.concat(
-            yup.object().shape({
-                propExtendsC: yup.string(),
-                propExtendsD: ModelWithString.schema
-            }).noUnknown())
+    ModelThatExtendsExtends.schema = (
+        ModelWithString.schema.concat(
+            ModelThatExtends.schema.concat(
+                yup.object().shape({
+                    propExtendsC: yup.string(),
+                    propExtendsD: ModelWithString.schema
+                }).noUnknown()
+            )
         )
-        ;
+    );
 
-        ModelThatExtendsExtends.validate = async function(value) {
-            return ModelThatExtendsExtends.schema.validate(value, { strict: true });
-        };
+    ModelThatExtendsExtends.validate = async function(value) {
+        return ModelThatExtendsExtends.schema.validate(value, { strict: true });
+    };
 
-        ModelThatExtendsExtends.validateSync = function(value) {
-            return ModelThatExtendsExtends.schema.validateSync(value, { strict: true });
-        };
+    ModelThatExtendsExtends.validateSync = function(value) {
+        return ModelThatExtendsExtends.schema.validateSync(value, { strict: true });
+    };
 
-    })(ModelThatExtendsExtends || (ModelThatExtendsExtends = {}));"
+})(ModelThatExtendsExtends || (ModelThatExtendsExtends = {}));"
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelWithArray.js): ./test/result/v2/javascript/models/ModelWithArray.js 1`] = `
@@ -962,11 +972,13 @@ import * as yup from 'yup';
 export let ModelWithArray;
 (function (ModelWithArray) {
 
-    ModelWithArray.schema = yup.object().shape({
-        prop: yup.array().of(ModelWithString.schema),
-        propWithFile: yup.array().of(yup.mixed()),
-        propWithNumber: yup.array().of(yup.number())
-    }).noUnknown();
+    ModelWithArray.schema = (
+        yup.object().shape({
+            prop: yup.array().of(ModelWithString.schema),
+            propWithFile: yup.array().of(yup.mixed()),
+            propWithNumber: yup.array().of(yup.number())
+        }).noUnknown()
+    );
 
     ModelWithArray.validate = async function(value) {
         return ModelWithArray.schema.validate(value, { strict: true });
@@ -992,9 +1004,11 @@ import * as yup from 'yup';
 export let ModelWithBoolean;
 (function (ModelWithBoolean) {
 
-    ModelWithBoolean.schema = yup.object().shape({
-        prop: yup.boolean()
-    }).noUnknown();
+    ModelWithBoolean.schema = (
+        yup.object().shape({
+            prop: yup.boolean()
+        }).noUnknown()
+    );
 
     ModelWithBoolean.validate = async function(value) {
         return ModelWithBoolean.schema.validate(value, { strict: true });
@@ -1020,9 +1034,11 @@ import * as yup from 'yup';
 export let ModelWithCircularReference;
 (function (ModelWithCircularReference) {
 
-    ModelWithCircularReference.schema = yup.object().shape({
-        prop: ModelWithCircularReference.schema
-    }).noUnknown();
+    ModelWithCircularReference.schema = (
+        yup.object().shape({
+            prop: ModelWithCircularReference.schema
+        }).noUnknown()
+    );
 
     ModelWithCircularReference.validate = async function(value) {
         return ModelWithCircularReference.schema.validate(value, { strict: true });
@@ -1049,16 +1065,18 @@ import * as yup from 'yup';
 export let ModelWithDictionary;
 (function (ModelWithDictionary) {
 
-    ModelWithDictionary.schema = yup.object().shape({
-        prop: yup.lazy(value => {
-            return yup.object().shape(
-                Object.keys(value).reduce((object, key) => ({
-                    ...object,
-                    [key]: yup.string()
-                }), {})
-            ).noUnknown();
-        })
-    }).noUnknown();
+    ModelWithDictionary.schema = (
+        yup.object().shape({
+            prop: yup.lazy(value => {
+                return yup.object().shape(
+                    Object.keys(value).reduce((object, key) => ({
+                        ...object,
+                        [key]: yup.string()
+                    }), {})
+                ).noUnknown();
+            })
+        }).noUnknown()
+    );
 
     ModelWithDictionary.validate = async function(value) {
         return ModelWithDictionary.schema.validate(value, { strict: true });
@@ -1085,11 +1103,13 @@ import * as yup from 'yup';
 export let ModelWithDuplicateImports;
 (function (ModelWithDuplicateImports) {
 
-    ModelWithDuplicateImports.schema = yup.object().shape({
-        propA: ModelWithString.schema,
-        propB: ModelWithString.schema,
-        propC: ModelWithString.schema
-    }).noUnknown();
+    ModelWithDuplicateImports.schema = (
+        yup.object().shape({
+            propA: ModelWithString.schema,
+            propB: ModelWithString.schema,
+            propC: ModelWithString.schema
+        }).noUnknown()
+    );
 
     ModelWithDuplicateImports.validate = async function(value) {
         return ModelWithDuplicateImports.schema.validate(value, { strict: true });
@@ -1116,9 +1136,11 @@ import * as yup from 'yup';
 export let ModelWithDuplicateProperties;
 (function (ModelWithDuplicateProperties) {
 
-    ModelWithDuplicateProperties.schema = yup.object().shape({
-        prop: ModelWithString.schema
-    }).noUnknown();
+    ModelWithDuplicateProperties.schema = (
+        yup.object().shape({
+            prop: ModelWithString.schema
+        }).noUnknown()
+    );
 
     ModelWithDuplicateProperties.validate = async function(value) {
         return ModelWithDuplicateProperties.schema.validate(value, { strict: true });
@@ -1153,13 +1175,15 @@ export let ModelWithEnum;
         ERROR: 'Error'
     };
 
-    ModelWithEnum.schema = yup.object().shape({
-        test: yup.mixed().oneOf([
-            'Success',
-            'Warning',
-            'Error'
-        ])
-    }).noUnknown();
+    ModelWithEnum.schema = (
+        yup.object().shape({
+            test: yup.mixed().oneOf([
+                'Success',
+                'Warning',
+                'Error'
+            ])
+        }).noUnknown()
+    );
 
     ModelWithEnum.validate = async function(value) {
         return ModelWithEnum.schema.validate(value, { strict: true });
@@ -1194,13 +1218,15 @@ export let ModelWithEnumFromDescription;
         ERROR: 3
     };
 
-    ModelWithEnumFromDescription.schema = yup.object().shape({
-        test: yup.mixed().oneOf([
-            1,
-            2,
-            3
-        ])
-    }).noUnknown();
+    ModelWithEnumFromDescription.schema = (
+        yup.object().shape({
+            test: yup.mixed().oneOf([
+                1,
+                2,
+                3
+            ])
+        }).noUnknown()
+    );
 
     ModelWithEnumFromDescription.validate = async function(value) {
         return ModelWithEnumFromDescription.schema.validate(value, { strict: true });
@@ -1226,9 +1252,11 @@ import * as yup from 'yup';
 export let ModelWithInteger;
 (function (ModelWithInteger) {
 
-    ModelWithInteger.schema = yup.object().shape({
-        prop: yup.number()
-    }).noUnknown();
+    ModelWithInteger.schema = (
+        yup.object().shape({
+            prop: yup.number()
+        }).noUnknown()
+    );
 
     ModelWithInteger.validate = async function(value) {
         return ModelWithInteger.schema.validate(value, { strict: true });
@@ -1256,9 +1284,11 @@ import * as yup from 'yup';
 export let ModelWithLink;
 (function (ModelWithLink) {
 
-    ModelWithLink.schema = yup.object().shape({
-        prop: ModelLink.schema
-    }).noUnknown();
+    ModelWithLink.schema = (
+        yup.object().shape({
+            prop: ModelLink.schema
+        }).noUnknown()
+    );
 
     ModelWithLink.validate = async function(value) {
         return ModelWithLink.schema.validate(value, { strict: true });
@@ -1285,42 +1315,44 @@ import * as yup from 'yup';
 export let ModelWithNestedEnums;
 (function (ModelWithNestedEnums) {
 
-    ModelWithNestedEnums.schema = yup.object().shape({
-        arrayWithDescription: yup.array().of(yup.mixed().oneOf([
-            1,
-            2,
-            3
-        ])),
-        arrayWithEnum: yup.array().of(yup.mixed().oneOf([
-            'Success',
-            'Warning',
-            'Error'
-        ])),
-        dictionaryWithEnum: yup.lazy(value => {
-            return yup.object().shape(
-                Object.keys(value).reduce((object, key) => ({
-                    ...object,
-                    [key]: yup.mixed().oneOf([
-                        'Success',
-                        'Warning',
-                        'Error'
-                    ])
-                }), {})
-            ).noUnknown();
-        }),
-        dictionaryWithEnumFromDescription: yup.lazy(value => {
-            return yup.object().shape(
-                Object.keys(value).reduce((object, key) => ({
-                    ...object,
-                    [key]: yup.mixed().oneOf([
-                        1,
-                        2,
-                        3
-                    ])
-                }), {})
-            ).noUnknown();
-        })
-    }).noUnknown();
+    ModelWithNestedEnums.schema = (
+        yup.object().shape({
+            arrayWithDescription: yup.array().of(yup.mixed().oneOf([
+                1,
+                2,
+                3
+            ])),
+            arrayWithEnum: yup.array().of(yup.mixed().oneOf([
+                'Success',
+                'Warning',
+                'Error'
+            ])),
+            dictionaryWithEnum: yup.lazy(value => {
+                return yup.object().shape(
+                    Object.keys(value).reduce((object, key) => ({
+                        ...object,
+                        [key]: yup.mixed().oneOf([
+                            'Success',
+                            'Warning',
+                            'Error'
+                        ])
+                    }), {})
+                ).noUnknown();
+            }),
+            dictionaryWithEnumFromDescription: yup.lazy(value => {
+                return yup.object().shape(
+                    Object.keys(value).reduce((object, key) => ({
+                        ...object,
+                        [key]: yup.mixed().oneOf([
+                            1,
+                            2,
+                            3
+                        ])
+                    }), {})
+                ).noUnknown();
+            })
+        }).noUnknown()
+    );
 
     ModelWithNestedEnums.validate = async function(value) {
         return ModelWithNestedEnums.schema.validate(value, { strict: true });
@@ -1346,13 +1378,19 @@ import * as yup from 'yup';
 export let ModelWithNestedProperties;
 (function (ModelWithNestedProperties) {
 
-    ModelWithNestedProperties.schema = yup.object().shape({
-        first: yup.object().shape({
-            second: yup.object().shape({
-                third: yup.string().required()
-            }).noUnknown().required()
-        }).noUnknown().required()
-    }).noUnknown();
+    ModelWithNestedProperties.schema = (
+        yup.object().shape({
+            first: (
+                yup.object().shape({
+                    second: (
+                        yup.object().shape({
+                            third: yup.string().required()
+                        }).noUnknown()
+                    ).required()
+                }).noUnknown()
+            ).required()
+        }).noUnknown()
+    );
 
     ModelWithNestedProperties.validate = async function(value) {
         return ModelWithNestedProperties.schema.validate(value, { strict: true });
@@ -1379,14 +1417,16 @@ import * as yup from 'yup';
 export let ModelWithProperties;
 (function (ModelWithProperties) {
 
-    ModelWithProperties.schema = yup.object().shape({
-        boolean: yup.boolean(),
-        number: yup.number(),
-        reference: ModelWithString.schema,
-        required: yup.string().required(),
-        requiredAndReadOnly: yup.string().required(),
-        string: yup.string()
-    }).noUnknown();
+    ModelWithProperties.schema = (
+        yup.object().shape({
+            boolean: yup.boolean(),
+            number: yup.number(),
+            reference: ModelWithString.schema,
+            required: yup.string().required(),
+            requiredAndReadOnly: yup.string().required(),
+            string: yup.string()
+        }).noUnknown()
+    );
 
     ModelWithProperties.validate = async function(value) {
         return ModelWithProperties.schema.validate(value, { strict: true });
@@ -1413,9 +1453,11 @@ import * as yup from 'yup';
 export let ModelWithReference;
 (function (ModelWithReference) {
 
-    ModelWithReference.schema = yup.object().shape({
-        prop: ModelWithString.schema
-    }).noUnknown();
+    ModelWithReference.schema = (
+        yup.object().shape({
+            prop: ModelWithString.schema
+        }).noUnknown()
+    );
 
     ModelWithReference.validate = async function(value) {
         return ModelWithReference.schema.validate(value, { strict: true });
@@ -1441,9 +1483,11 @@ import * as yup from 'yup';
 export let ModelWithString;
 (function (ModelWithString) {
 
-    ModelWithString.schema = yup.object().shape({
-        prop: yup.string()
-    }).noUnknown();
+    ModelWithString.schema = (
+        yup.object().shape({
+            prop: yup.string()
+        }).noUnknown()
+    );
 
     ModelWithString.validate = async function(value) {
         return ModelWithString.schema.validate(value, { strict: true });
@@ -2547,10 +2591,12 @@ export namespace ArrayWithProperties {
     export const schema = yup.array<{
         foo?: string,
         bar?: string
-    }>().of(yup.object().shape({
-        foo: yup.string(),
-        bar: yup.string()
-    }).noUnknown());
+    }>().of((
+        yup.object().shape({
+            foo: yup.string(),
+            bar: yup.string()
+        }).noUnknown()
+    ));
 
     export async function validate(value: any): Promise<ArrayWithProperties> {
         return schema.validate(value, { strict: true });
@@ -2736,10 +2782,12 @@ export namespace DictionaryWithProperties {
         }>>().shape(
             Object.keys(value).reduce((object, key) => ({
                 ...object,
-                [key]: yup.object().shape({
-                    foo: yup.string(),
-                    bar: yup.string()
-                }).noUnknown()
+                [key]: (
+                    yup.object().shape({
+                        foo: yup.string(),
+                        bar: yup.string()
+                    }).noUnknown()
+                )
             }), {})
         ).noUnknown();
     });
@@ -2947,9 +2995,11 @@ export interface ModelLink {
 
 export namespace ModelLink {
 
-    export const schema: yup.ObjectSchema<ModelLink> = yup.object<ModelLink>().shape({
-        id: yup.string()
-    }).noUnknown();
+    export const schema: yup.ObjectSchema<ModelLink> = (
+        yup.object().shape({
+            id: yup.string()
+        }).noUnknown()
+    );
 
     export async function validate(value: any): Promise<ModelLink> {
         return schema.validate(value, { strict: true });
@@ -2980,21 +3030,23 @@ export interface ModelThatExtends extends ModelWithString {
 
 export namespace ModelThatExtends {
 
-    export const schema: yup.ObjectSchema<ModelThatExtends> = ModelWithString.schema.concat(
-        yup.object<ModelThatExtends>().shape({
-            propExtendsA: yup.string(),
-            propExtendsB: ModelWithString.schema
-        }).noUnknown())
-        ;
+    export const schema: yup.ObjectSchema<ModelThatExtends> = (
+        ModelWithString.schema.concat(
+            yup.object().shape({
+                propExtendsA: yup.string(),
+                propExtendsB: ModelWithString.schema
+            }).noUnknown()
+        )
+    );
 
-        export async function validate(value: any): Promise<ModelThatExtends> {
-            return schema.validate(value, { strict: true });
-        }
+    export async function validate(value: any): Promise<ModelThatExtends> {
+        return schema.validate(value, { strict: true });
+    }
 
-        export function validateSync(value: any): ModelThatExtends {
-            return schema.validateSync(value, { strict: true });
-        }
-    }"
+    export function validateSync(value: any): ModelThatExtends {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelThatExtendsExtends.ts): ./test/result/v2/typescript/models/ModelThatExtendsExtends.ts 1`] = `
@@ -3017,23 +3069,25 @@ export interface ModelThatExtendsExtends extends ModelWithString, ModelThatExten
 
 export namespace ModelThatExtendsExtends {
 
-    export const schema: yup.ObjectSchema<ModelThatExtendsExtends> = ModelWithString.schema.concat(
-        ModelThatExtends.schema.concat(
-            yup.object<ModelThatExtendsExtends>().shape({
-                propExtendsC: yup.string(),
-                propExtendsD: ModelWithString.schema
-            }).noUnknown())
+    export const schema: yup.ObjectSchema<ModelThatExtendsExtends> = (
+        ModelWithString.schema.concat(
+            ModelThatExtends.schema.concat(
+                yup.object().shape({
+                    propExtendsC: yup.string(),
+                    propExtendsD: ModelWithString.schema
+                }).noUnknown()
+            )
         )
-        ;
+    );
 
-        export async function validate(value: any): Promise<ModelThatExtendsExtends> {
-            return schema.validate(value, { strict: true });
-        }
+    export async function validate(value: any): Promise<ModelThatExtendsExtends> {
+        return schema.validate(value, { strict: true });
+    }
 
-        export function validateSync(value: any): ModelThatExtendsExtends {
-            return schema.validateSync(value, { strict: true });
-        }
-    }"
+    export function validateSync(value: any): ModelThatExtendsExtends {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelWithArray.ts): ./test/result/v2/typescript/models/ModelWithArray.ts 1`] = `
@@ -3056,11 +3110,13 @@ export interface ModelWithArray {
 
 export namespace ModelWithArray {
 
-    export const schema: yup.ObjectSchema<ModelWithArray> = yup.object<ModelWithArray>().shape({
-        prop: yup.array<ModelWithString>().of(ModelWithString.schema),
-        propWithFile: yup.array<File>().of(yup.mixed<File>()),
-        propWithNumber: yup.array<number>().of(yup.number())
-    }).noUnknown();
+    export const schema: yup.ObjectSchema<ModelWithArray> = (
+        yup.object().shape({
+            prop: yup.array<ModelWithString>().of(ModelWithString.schema),
+            propWithFile: yup.array<File>().of(yup.mixed<File>()),
+            propWithNumber: yup.array<number>().of(yup.number())
+        }).noUnknown()
+    );
 
     export async function validate(value: any): Promise<ModelWithArray> {
         return schema.validate(value, { strict: true });
@@ -3092,9 +3148,11 @@ export interface ModelWithBoolean {
 
 export namespace ModelWithBoolean {
 
-    export const schema: yup.ObjectSchema<ModelWithBoolean> = yup.object<ModelWithBoolean>().shape({
-        prop: yup.boolean()
-    }).noUnknown();
+    export const schema: yup.ObjectSchema<ModelWithBoolean> = (
+        yup.object().shape({
+            prop: yup.boolean()
+        }).noUnknown()
+    );
 
     export async function validate(value: any): Promise<ModelWithBoolean> {
         return schema.validate(value, { strict: true });
@@ -3123,9 +3181,11 @@ export interface ModelWithCircularReference {
 
 export namespace ModelWithCircularReference {
 
-    export const schema: yup.ObjectSchema<ModelWithCircularReference> = yup.object<ModelWithCircularReference>().shape({
-        prop: ModelWithCircularReference.schema
-    }).noUnknown();
+    export const schema: yup.ObjectSchema<ModelWithCircularReference> = (
+        yup.object().shape({
+            prop: ModelWithCircularReference.schema
+        }).noUnknown()
+    );
 
     export async function validate(value: any): Promise<ModelWithCircularReference> {
         return schema.validate(value, { strict: true });
@@ -3155,16 +3215,18 @@ export interface ModelWithDictionary {
 
 export namespace ModelWithDictionary {
 
-    export const schema: yup.ObjectSchema<ModelWithDictionary> = yup.object<ModelWithDictionary>().shape({
-        prop: yup.lazy<Dictionary<string>>(value => {
-            return yup.object<Dictionary<string>>().shape(
-                Object.keys(value).reduce((object, key) => ({
-                    ...object,
-                    [key]: yup.string()
-                }), {})
-            ).noUnknown();
-        })
-    }).noUnknown();
+    export const schema: yup.ObjectSchema<ModelWithDictionary> = (
+        yup.object().shape({
+            prop: yup.lazy<Dictionary<string>>(value => {
+                return yup.object<Dictionary<string>>().shape(
+                    Object.keys(value).reduce((object, key) => ({
+                        ...object,
+                        [key]: yup.string()
+                    }), {})
+                ).noUnknown();
+            })
+        }).noUnknown()
+    );
 
     export async function validate(value: any): Promise<ModelWithDictionary> {
         return schema.validate(value, { strict: true });
@@ -3196,11 +3258,13 @@ export interface ModelWithDuplicateImports {
 
 export namespace ModelWithDuplicateImports {
 
-    export const schema: yup.ObjectSchema<ModelWithDuplicateImports> = yup.object<ModelWithDuplicateImports>().shape({
-        propA: ModelWithString.schema,
-        propB: ModelWithString.schema,
-        propC: ModelWithString.schema
-    }).noUnknown();
+    export const schema: yup.ObjectSchema<ModelWithDuplicateImports> = (
+        yup.object().shape({
+            propA: ModelWithString.schema,
+            propB: ModelWithString.schema,
+            propC: ModelWithString.schema
+        }).noUnknown()
+    );
 
     export async function validate(value: any): Promise<ModelWithDuplicateImports> {
         return schema.validate(value, { strict: true });
@@ -3230,9 +3294,11 @@ export interface ModelWithDuplicateProperties {
 
 export namespace ModelWithDuplicateProperties {
 
-    export const schema: yup.ObjectSchema<ModelWithDuplicateProperties> = yup.object<ModelWithDuplicateProperties>().shape({
-        prop: ModelWithString.schema
-    }).noUnknown();
+    export const schema: yup.ObjectSchema<ModelWithDuplicateProperties> = (
+        yup.object().shape({
+            prop: ModelWithString.schema
+        }).noUnknown()
+    );
 
     export async function validate(value: any): Promise<ModelWithDuplicateProperties> {
         return schema.validate(value, { strict: true });
@@ -3273,13 +3339,15 @@ export namespace ModelWithEnum {
         ERROR = 'Error'
     }
 
-    export const schema: yup.ObjectSchema<ModelWithEnum> = yup.object<ModelWithEnum>().shape({
-        test: yup.mixed<string>().oneOf([
-            'Success',
-            'Warning',
-            'Error'
-        ])
-    }).noUnknown();
+    export const schema: yup.ObjectSchema<ModelWithEnum> = (
+        yup.object().shape({
+            test: yup.mixed<string>().oneOf([
+                'Success',
+                'Warning',
+                'Error'
+            ])
+        }).noUnknown()
+    );
 
     export async function validate(value: any): Promise<ModelWithEnum> {
         return schema.validate(value, { strict: true });
@@ -3320,13 +3388,15 @@ export namespace ModelWithEnumFromDescription {
         ERROR = 3
     }
 
-    export const schema: yup.ObjectSchema<ModelWithEnumFromDescription> = yup.object<ModelWithEnumFromDescription>().shape({
-        test: yup.mixed<number>().oneOf([
-            1,
-            2,
-            3
-        ])
-    }).noUnknown();
+    export const schema: yup.ObjectSchema<ModelWithEnumFromDescription> = (
+        yup.object().shape({
+            test: yup.mixed<number>().oneOf([
+                1,
+                2,
+                3
+            ])
+        }).noUnknown()
+    );
 
     export async function validate(value: any): Promise<ModelWithEnumFromDescription> {
         return schema.validate(value, { strict: true });
@@ -3358,9 +3428,11 @@ export interface ModelWithInteger {
 
 export namespace ModelWithInteger {
 
-    export const schema: yup.ObjectSchema<ModelWithInteger> = yup.object<ModelWithInteger>().shape({
-        prop: yup.number()
-    }).noUnknown();
+    export const schema: yup.ObjectSchema<ModelWithInteger> = (
+        yup.object().shape({
+            prop: yup.number()
+        }).noUnknown()
+    );
 
     export async function validate(value: any): Promise<ModelWithInteger> {
         return schema.validate(value, { strict: true });
@@ -3391,9 +3463,11 @@ export interface ModelWithLink {
 
 export namespace ModelWithLink {
 
-    export const schema: yup.ObjectSchema<ModelWithLink> = yup.object<ModelWithLink>().shape({
-        prop: ModelLink.schema
-    }).noUnknown();
+    export const schema: yup.ObjectSchema<ModelWithLink> = (
+        yup.object().shape({
+            prop: ModelLink.schema
+        }).noUnknown()
+    );
 
     export async function validate(value: any): Promise<ModelWithLink> {
         return schema.validate(value, { strict: true });
@@ -3426,42 +3500,44 @@ export interface ModelWithNestedEnums {
 
 export namespace ModelWithNestedEnums {
 
-    export const schema: yup.ObjectSchema<ModelWithNestedEnums> = yup.object<ModelWithNestedEnums>().shape({
-        arrayWithDescription: yup.array<(1 | 2 | 3)>().of(yup.mixed<number>().oneOf([
-            1,
-            2,
-            3
-        ])),
-        arrayWithEnum: yup.array<('Success' | 'Warning' | 'Error')>().of(yup.mixed<string>().oneOf([
-            'Success',
-            'Warning',
-            'Error'
-        ])),
-        dictionaryWithEnum: yup.lazy<Dictionary<('Success' | 'Warning' | 'Error')>>(value => {
-            return yup.object<Dictionary<('Success' | 'Warning' | 'Error')>>().shape(
-                Object.keys(value).reduce((object, key) => ({
-                    ...object,
-                    [key]: yup.mixed<string>().oneOf([
-                        'Success',
-                        'Warning',
-                        'Error'
-                    ])
-                }), {})
-            ).noUnknown();
-        }),
-        dictionaryWithEnumFromDescription: yup.lazy<Dictionary<(1 | 2 | 3)>>(value => {
-            return yup.object<Dictionary<(1 | 2 | 3)>>().shape(
-                Object.keys(value).reduce((object, key) => ({
-                    ...object,
-                    [key]: yup.mixed<number>().oneOf([
-                        1,
-                        2,
-                        3
-                    ])
-                }), {})
-            ).noUnknown();
-        })
-    }).noUnknown();
+    export const schema: yup.ObjectSchema<ModelWithNestedEnums> = (
+        yup.object().shape({
+            arrayWithDescription: yup.array<(1 | 2 | 3)>().of(yup.mixed<number>().oneOf([
+                1,
+                2,
+                3
+            ])),
+            arrayWithEnum: yup.array<('Success' | 'Warning' | 'Error')>().of(yup.mixed<string>().oneOf([
+                'Success',
+                'Warning',
+                'Error'
+            ])),
+            dictionaryWithEnum: yup.lazy<Dictionary<('Success' | 'Warning' | 'Error')>>(value => {
+                return yup.object<Dictionary<('Success' | 'Warning' | 'Error')>>().shape(
+                    Object.keys(value).reduce((object, key) => ({
+                        ...object,
+                        [key]: yup.mixed<string>().oneOf([
+                            'Success',
+                            'Warning',
+                            'Error'
+                        ])
+                    }), {})
+                ).noUnknown();
+            }),
+            dictionaryWithEnumFromDescription: yup.lazy<Dictionary<(1 | 2 | 3)>>(value => {
+                return yup.object<Dictionary<(1 | 2 | 3)>>().shape(
+                    Object.keys(value).reduce((object, key) => ({
+                        ...object,
+                        [key]: yup.mixed<number>().oneOf([
+                            1,
+                            2,
+                            3
+                        ])
+                    }), {})
+                ).noUnknown();
+            })
+        }).noUnknown()
+    );
 
     export async function validate(value: any): Promise<ModelWithNestedEnums> {
         return schema.validate(value, { strict: true });
@@ -3494,13 +3570,19 @@ export interface ModelWithNestedProperties {
 
 export namespace ModelWithNestedProperties {
 
-    export const schema: yup.ObjectSchema<ModelWithNestedProperties> = yup.object<ModelWithNestedProperties>().shape({
-        first: yup.object().shape({
-            second: yup.object().shape({
-                third: yup.string().required()
-            }).noUnknown().required()
-        }).noUnknown().required()
-    }).noUnknown();
+    export const schema: yup.ObjectSchema<ModelWithNestedProperties> = (
+        yup.object().shape({
+            first: (
+                yup.object().shape({
+                    second: (
+                        yup.object().shape({
+                            third: yup.string().required()
+                        }).noUnknown()
+                    ).required()
+                }).noUnknown()
+            ).required()
+        }).noUnknown()
+    );
 
     export async function validate(value: any): Promise<ModelWithNestedProperties> {
         return schema.validate(value, { strict: true });
@@ -3535,14 +3617,16 @@ export interface ModelWithProperties {
 
 export namespace ModelWithProperties {
 
-    export const schema: yup.ObjectSchema<ModelWithProperties> = yup.object<ModelWithProperties>().shape({
-        boolean: yup.boolean(),
-        number: yup.number(),
-        reference: ModelWithString.schema,
-        required: yup.string().required(),
-        requiredAndReadOnly: yup.string().required(),
-        string: yup.string()
-    }).noUnknown();
+    export const schema: yup.ObjectSchema<ModelWithProperties> = (
+        yup.object().shape({
+            boolean: yup.boolean(),
+            number: yup.number(),
+            reference: ModelWithString.schema,
+            required: yup.string().required(),
+            requiredAndReadOnly: yup.string().required(),
+            string: yup.string()
+        }).noUnknown()
+    );
 
     export async function validate(value: any): Promise<ModelWithProperties> {
         return schema.validate(value, { strict: true });
@@ -3572,9 +3656,11 @@ export interface ModelWithReference {
 
 export namespace ModelWithReference {
 
-    export const schema: yup.ObjectSchema<ModelWithReference> = yup.object<ModelWithReference>().shape({
-        prop: ModelWithString.schema
-    }).noUnknown();
+    export const schema: yup.ObjectSchema<ModelWithReference> = (
+        yup.object().shape({
+            prop: ModelWithString.schema
+        }).noUnknown()
+    );
 
     export async function validate(value: any): Promise<ModelWithReference> {
         return schema.validate(value, { strict: true });
@@ -3606,9 +3692,11 @@ export interface ModelWithString {
 
 export namespace ModelWithString {
 
-    export const schema: yup.ObjectSchema<ModelWithString> = yup.object<ModelWithString>().shape({
-        prop: yup.string()
-    }).noUnknown();
+    export const schema: yup.ObjectSchema<ModelWithString> = (
+        yup.object().shape({
+            prop: yup.string()
+        }).noUnknown()
+    );
 
     export async function validate(value: any): Promise<ModelWithString> {
         return schema.validate(value, { strict: true });
@@ -4673,10 +4761,12 @@ import * as yup from 'yup';
 export let ArrayWithProperties;
 (function (ArrayWithProperties) {
 
-    ArrayWithProperties.schema = yup.array().of(yup.object().shape({
-        foo: yup.string(),
-        bar: yup.string()
-    }).noUnknown());
+    ArrayWithProperties.schema = yup.array().of((
+        yup.object().shape({
+            foo: yup.string(),
+            bar: yup.string()
+        }).noUnknown()
+    ));
 
     ArrayWithProperties.validate = async function(value) {
         return ArrayWithProperties.schema.validate(value, { strict: true });
@@ -4836,10 +4926,12 @@ export let DictionaryWithProperties;
         return yup.object().shape(
             Object.keys(value).reduce((object, key) => ({
                 ...object,
-                [key]: yup.object().shape({
-                    foo: yup.string(),
-                    bar: yup.string()
-                }).noUnknown()
+                [key]: (
+                    yup.object().shape({
+                        foo: yup.string(),
+                        bar: yup.string()
+                    }).noUnknown()
+                )
             }), {})
         ).noUnknown();
     });
@@ -5039,9 +5131,11 @@ import * as yup from 'yup';
 export let ModelLink;
 (function (ModelLink) {
 
-    ModelLink.schema = yup.object().shape({
-        id: yup.string()
-    }).noUnknown();
+    ModelLink.schema = (
+        yup.object().shape({
+            id: yup.string()
+        }).noUnknown()
+    );
 
     ModelLink.validate = async function(value) {
         return ModelLink.schema.validate(value, { strict: true });
@@ -5068,22 +5162,24 @@ import * as yup from 'yup';
 export let ModelThatExtends;
 (function (ModelThatExtends) {
 
-    ModelThatExtends.schema = ModelWithString.schema.concat(
-        yup.object().shape({
-            propExtendsA: yup.string(),
-            propExtendsB: ModelWithString.schema
-        }).noUnknown())
-        ;
+    ModelThatExtends.schema = (
+        ModelWithString.schema.concat(
+            yup.object().shape({
+                propExtendsA: yup.string(),
+                propExtendsB: ModelWithString.schema
+            }).noUnknown()
+        )
+    );
 
-        ModelThatExtends.validate = async function(value) {
-            return ModelThatExtends.schema.validate(value, { strict: true });
-        };
+    ModelThatExtends.validate = async function(value) {
+        return ModelThatExtends.schema.validate(value, { strict: true });
+    };
 
-        ModelThatExtends.validateSync = function(value) {
-            return ModelThatExtends.schema.validateSync(value, { strict: true });
-        };
+    ModelThatExtends.validateSync = function(value) {
+        return ModelThatExtends.schema.validateSync(value, { strict: true });
+    };
 
-    })(ModelThatExtends || (ModelThatExtends = {}));"
+})(ModelThatExtends || (ModelThatExtends = {}));"
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/models/ModelThatExtendsExtends.js): ./test/result/v3/javascript/models/ModelThatExtendsExtends.js 1`] = `
@@ -5101,24 +5197,26 @@ import * as yup from 'yup';
 export let ModelThatExtendsExtends;
 (function (ModelThatExtendsExtends) {
 
-    ModelThatExtendsExtends.schema = ModelWithString.schema.concat(
-        ModelThatExtends.schema.concat(
-            yup.object().shape({
-                propExtendsC: yup.string(),
-                propExtendsD: ModelWithString.schema
-            }).noUnknown())
+    ModelThatExtendsExtends.schema = (
+        ModelWithString.schema.concat(
+            ModelThatExtends.schema.concat(
+                yup.object().shape({
+                    propExtendsC: yup.string(),
+                    propExtendsD: ModelWithString.schema
+                }).noUnknown()
+            )
         )
-        ;
+    );
 
-        ModelThatExtendsExtends.validate = async function(value) {
-            return ModelThatExtendsExtends.schema.validate(value, { strict: true });
-        };
+    ModelThatExtendsExtends.validate = async function(value) {
+        return ModelThatExtendsExtends.schema.validate(value, { strict: true });
+    };
 
-        ModelThatExtendsExtends.validateSync = function(value) {
-            return ModelThatExtendsExtends.schema.validateSync(value, { strict: true });
-        };
+    ModelThatExtendsExtends.validateSync = function(value) {
+        return ModelThatExtendsExtends.schema.validateSync(value, { strict: true });
+    };
 
-    })(ModelThatExtendsExtends || (ModelThatExtendsExtends = {}));"
+})(ModelThatExtendsExtends || (ModelThatExtendsExtends = {}));"
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/models/ModelWithArray.js): ./test/result/v3/javascript/models/ModelWithArray.js 1`] = `
@@ -5135,11 +5233,13 @@ import * as yup from 'yup';
 export let ModelWithArray;
 (function (ModelWithArray) {
 
-    ModelWithArray.schema = yup.object().shape({
-        prop: yup.array().of(ModelWithString.schema),
-        propWithFile: yup.array().of(yup.mixed()),
-        propWithNumber: yup.array().of(yup.number())
-    }).noUnknown();
+    ModelWithArray.schema = (
+        yup.object().shape({
+            prop: yup.array().of(ModelWithString.schema),
+            propWithFile: yup.array().of(yup.mixed()),
+            propWithNumber: yup.array().of(yup.number())
+        }).noUnknown()
+    );
 
     ModelWithArray.validate = async function(value) {
         return ModelWithArray.schema.validate(value, { strict: true });
@@ -5165,9 +5265,11 @@ import * as yup from 'yup';
 export let ModelWithBoolean;
 (function (ModelWithBoolean) {
 
-    ModelWithBoolean.schema = yup.object().shape({
-        prop: yup.boolean()
-    }).noUnknown();
+    ModelWithBoolean.schema = (
+        yup.object().shape({
+            prop: yup.boolean()
+        }).noUnknown()
+    );
 
     ModelWithBoolean.validate = async function(value) {
         return ModelWithBoolean.schema.validate(value, { strict: true });
@@ -5193,9 +5295,11 @@ import * as yup from 'yup';
 export let ModelWithCircularReference;
 (function (ModelWithCircularReference) {
 
-    ModelWithCircularReference.schema = yup.object().shape({
-        prop: ModelWithCircularReference.schema
-    }).noUnknown();
+    ModelWithCircularReference.schema = (
+        yup.object().shape({
+            prop: ModelWithCircularReference.schema
+        }).noUnknown()
+    );
 
     ModelWithCircularReference.validate = async function(value) {
         return ModelWithCircularReference.schema.validate(value, { strict: true });
@@ -5222,16 +5326,18 @@ import * as yup from 'yup';
 export let ModelWithDictionary;
 (function (ModelWithDictionary) {
 
-    ModelWithDictionary.schema = yup.object().shape({
-        prop: yup.lazy(value => {
-            return yup.object().shape(
-                Object.keys(value).reduce((object, key) => ({
-                    ...object,
-                    [key]: yup.string()
-                }), {})
-            ).noUnknown();
-        })
-    }).noUnknown();
+    ModelWithDictionary.schema = (
+        yup.object().shape({
+            prop: yup.lazy(value => {
+                return yup.object().shape(
+                    Object.keys(value).reduce((object, key) => ({
+                        ...object,
+                        [key]: yup.string()
+                    }), {})
+                ).noUnknown();
+            })
+        }).noUnknown()
+    );
 
     ModelWithDictionary.validate = async function(value) {
         return ModelWithDictionary.schema.validate(value, { strict: true });
@@ -5258,11 +5364,13 @@ import * as yup from 'yup';
 export let ModelWithDuplicateImports;
 (function (ModelWithDuplicateImports) {
 
-    ModelWithDuplicateImports.schema = yup.object().shape({
-        propA: ModelWithString.schema,
-        propB: ModelWithString.schema,
-        propC: ModelWithString.schema
-    }).noUnknown();
+    ModelWithDuplicateImports.schema = (
+        yup.object().shape({
+            propA: ModelWithString.schema,
+            propB: ModelWithString.schema,
+            propC: ModelWithString.schema
+        }).noUnknown()
+    );
 
     ModelWithDuplicateImports.validate = async function(value) {
         return ModelWithDuplicateImports.schema.validate(value, { strict: true });
@@ -5289,9 +5397,11 @@ import * as yup from 'yup';
 export let ModelWithDuplicateProperties;
 (function (ModelWithDuplicateProperties) {
 
-    ModelWithDuplicateProperties.schema = yup.object().shape({
-        prop: ModelWithString.schema
-    }).noUnknown();
+    ModelWithDuplicateProperties.schema = (
+        yup.object().shape({
+            prop: ModelWithString.schema
+        }).noUnknown()
+    );
 
     ModelWithDuplicateProperties.validate = async function(value) {
         return ModelWithDuplicateProperties.schema.validate(value, { strict: true });
@@ -5326,13 +5436,15 @@ export let ModelWithEnum;
         ERROR: 'Error'
     };
 
-    ModelWithEnum.schema = yup.object().shape({
-        Test: yup.mixed().oneOf([
-            'Success',
-            'Warning',
-            'Error'
-        ])
-    }).noUnknown();
+    ModelWithEnum.schema = (
+        yup.object().shape({
+            Test: yup.mixed().oneOf([
+                'Success',
+                'Warning',
+                'Error'
+            ])
+        }).noUnknown()
+    );
 
     ModelWithEnum.validate = async function(value) {
         return ModelWithEnum.schema.validate(value, { strict: true });
@@ -5367,13 +5479,15 @@ export let ModelWithEnumFromDescription;
         ERROR: 3
     };
 
-    ModelWithEnumFromDescription.schema = yup.object().shape({
-        Test: yup.mixed().oneOf([
-            1,
-            2,
-            3
-        ])
-    }).noUnknown();
+    ModelWithEnumFromDescription.schema = (
+        yup.object().shape({
+            Test: yup.mixed().oneOf([
+                1,
+                2,
+                3
+            ])
+        }).noUnknown()
+    );
 
     ModelWithEnumFromDescription.validate = async function(value) {
         return ModelWithEnumFromDescription.schema.validate(value, { strict: true });
@@ -5399,9 +5513,11 @@ import * as yup from 'yup';
 export let ModelWithInteger;
 (function (ModelWithInteger) {
 
-    ModelWithInteger.schema = yup.object().shape({
-        prop: yup.number()
-    }).noUnknown();
+    ModelWithInteger.schema = (
+        yup.object().shape({
+            prop: yup.number()
+        }).noUnknown()
+    );
 
     ModelWithInteger.validate = async function(value) {
         return ModelWithInteger.schema.validate(value, { strict: true });
@@ -5429,9 +5545,11 @@ import * as yup from 'yup';
 export let ModelWithLink;
 (function (ModelWithLink) {
 
-    ModelWithLink.schema = yup.object().shape({
-        prop: ModelLink.schema
-    }).noUnknown();
+    ModelWithLink.schema = (
+        yup.object().shape({
+            prop: ModelLink.schema
+        }).noUnknown()
+    );
 
     ModelWithLink.validate = async function(value) {
         return ModelWithLink.schema.validate(value, { strict: true });
@@ -5458,42 +5576,44 @@ import * as yup from 'yup';
 export let ModelWithNestedEnums;
 (function (ModelWithNestedEnums) {
 
-    ModelWithNestedEnums.schema = yup.object().shape({
-        arrayWithDescription: yup.array().of(yup.mixed().oneOf([
-            1,
-            2,
-            3
-        ])),
-        arrayWithEnum: yup.array().of(yup.mixed().oneOf([
-            'Success',
-            'Warning',
-            'Error'
-        ])),
-        dictionaryWithEnum: yup.lazy(value => {
-            return yup.object().shape(
-                Object.keys(value).reduce((object, key) => ({
-                    ...object,
-                    [key]: yup.mixed().oneOf([
-                        'Success',
-                        'Warning',
-                        'Error'
-                    ])
-                }), {})
-            ).noUnknown();
-        }),
-        dictionaryWithEnumFromDescription: yup.lazy(value => {
-            return yup.object().shape(
-                Object.keys(value).reduce((object, key) => ({
-                    ...object,
-                    [key]: yup.mixed().oneOf([
-                        1,
-                        2,
-                        3
-                    ])
-                }), {})
-            ).noUnknown();
-        })
-    }).noUnknown();
+    ModelWithNestedEnums.schema = (
+        yup.object().shape({
+            arrayWithDescription: yup.array().of(yup.mixed().oneOf([
+                1,
+                2,
+                3
+            ])),
+            arrayWithEnum: yup.array().of(yup.mixed().oneOf([
+                'Success',
+                'Warning',
+                'Error'
+            ])),
+            dictionaryWithEnum: yup.lazy(value => {
+                return yup.object().shape(
+                    Object.keys(value).reduce((object, key) => ({
+                        ...object,
+                        [key]: yup.mixed().oneOf([
+                            'Success',
+                            'Warning',
+                            'Error'
+                        ])
+                    }), {})
+                ).noUnknown();
+            }),
+            dictionaryWithEnumFromDescription: yup.lazy(value => {
+                return yup.object().shape(
+                    Object.keys(value).reduce((object, key) => ({
+                        ...object,
+                        [key]: yup.mixed().oneOf([
+                            1,
+                            2,
+                            3
+                        ])
+                    }), {})
+                ).noUnknown();
+            })
+        }).noUnknown()
+    );
 
     ModelWithNestedEnums.validate = async function(value) {
         return ModelWithNestedEnums.schema.validate(value, { strict: true });
@@ -5519,13 +5639,19 @@ import * as yup from 'yup';
 export let ModelWithNestedProperties;
 (function (ModelWithNestedProperties) {
 
-    ModelWithNestedProperties.schema = yup.object().shape({
-        first: yup.object().shape({
-            second: yup.object().shape({
-                third: yup.string().nullable().required()
-            }).noUnknown().nullable().required()
-        }).noUnknown().nullable().required()
-    }).noUnknown();
+    ModelWithNestedProperties.schema = (
+        yup.object().shape({
+            first: (
+                yup.object().shape({
+                    second: (
+                        yup.object().shape({
+                            third: yup.string().nullable().required()
+                        }).noUnknown()
+                    ).nullable().required()
+                }).noUnknown()
+            ).nullable().required()
+        }).noUnknown()
+    );
 
     ModelWithNestedProperties.validate = async function(value) {
         return ModelWithNestedProperties.schema.validate(value, { strict: true });
@@ -5552,15 +5678,17 @@ import * as yup from 'yup';
 export let ModelWithProperties;
 (function (ModelWithProperties) {
 
-    ModelWithProperties.schema = yup.object().shape({
-        boolean: yup.boolean(),
-        number: yup.number(),
-        reference: ModelWithString.schema,
-        required: yup.string().required(),
-        requiredAndNullable: yup.string().nullable().required(),
-        requiredAndReadOnly: yup.string().required(),
-        string: yup.string()
-    }).noUnknown();
+    ModelWithProperties.schema = (
+        yup.object().shape({
+            boolean: yup.boolean(),
+            number: yup.number(),
+            reference: ModelWithString.schema,
+            required: yup.string().required(),
+            requiredAndNullable: yup.string().nullable().required(),
+            requiredAndReadOnly: yup.string().required(),
+            string: yup.string()
+        }).noUnknown()
+    );
 
     ModelWithProperties.validate = async function(value) {
         return ModelWithProperties.schema.validate(value, { strict: true });
@@ -5587,9 +5715,11 @@ import * as yup from 'yup';
 export let ModelWithReference;
 (function (ModelWithReference) {
 
-    ModelWithReference.schema = yup.object().shape({
-        prop: ModelWithString.schema
-    }).noUnknown();
+    ModelWithReference.schema = (
+        yup.object().shape({
+            prop: ModelWithString.schema
+        }).noUnknown()
+    );
 
     ModelWithReference.validate = async function(value) {
         return ModelWithReference.schema.validate(value, { strict: true });
@@ -5615,9 +5745,11 @@ import * as yup from 'yup';
 export let ModelWithString;
 (function (ModelWithString) {
 
-    ModelWithString.schema = yup.object().shape({
-        prop: yup.string()
-    }).noUnknown();
+    ModelWithString.schema = (
+        yup.object().shape({
+            prop: yup.string()
+        }).noUnknown()
+    );
 
     ModelWithString.validate = async function(value) {
         return ModelWithString.schema.validate(value, { strict: true });
@@ -5641,21 +5773,25 @@ import * as yup from 'yup';
 export let ProblemDetails;
 (function (ProblemDetails) {
 
-    ProblemDetails.schema = yup.object().shape({
-        detail: yup.string().nullable(),
-        extensions: yup.lazy(value => {
-            return yup.object().shape(
-                Object.keys(value).reduce((object, key) => ({
-                    ...object,
-                    [key]: yup.object()
-                }), {})
-            ).noUnknown();
-        }),
-        instance: yup.string().nullable(),
-        status: yup.number().nullable(),
-        title: yup.string().nullable(),
-        type: yup.string().nullable()
-    }).noUnknown();
+    ProblemDetails.schema = (
+        yup.object().shape({
+            detail: yup.string().nullable(),
+            extensions: yup.lazy(value => {
+                return yup.object().shape(
+                    Object.keys(value).reduce((object, key) => ({
+                        ...object,
+                        [key]: (
+                            yup.object()
+                        )
+                    }), {})
+                ).noUnknown();
+            }),
+            instance: yup.string().nullable(),
+            status: yup.number().nullable(),
+            title: yup.string().nullable(),
+            type: yup.string().nullable()
+        }).noUnknown()
+    );
 
     ProblemDetails.validate = async function(value) {
         return ProblemDetails.schema.validate(value, { strict: true });
@@ -6768,10 +6904,12 @@ export namespace ArrayWithProperties {
     export const schema = yup.array<{
         foo?: string,
         bar?: string
-    }>().of(yup.object().shape({
-        foo: yup.string(),
-        bar: yup.string()
-    }).noUnknown());
+    }>().of((
+        yup.object().shape({
+            foo: yup.string(),
+            bar: yup.string()
+        }).noUnknown()
+    ));
 
     export async function validate(value: any): Promise<ArrayWithProperties> {
         return schema.validate(value, { strict: true });
@@ -6957,10 +7095,12 @@ export namespace DictionaryWithProperties {
         }>>().shape(
             Object.keys(value).reduce((object, key) => ({
                 ...object,
-                [key]: yup.object().shape({
-                    foo: yup.string(),
-                    bar: yup.string()
-                }).noUnknown()
+                [key]: (
+                    yup.object().shape({
+                        foo: yup.string(),
+                        bar: yup.string()
+                    }).noUnknown()
+                )
             }), {})
         ).noUnknown();
     });
@@ -7168,9 +7308,11 @@ export interface ModelLink {
 
 export namespace ModelLink {
 
-    export const schema: yup.ObjectSchema<ModelLink> = yup.object<ModelLink>().shape({
-        id: yup.string()
-    }).noUnknown();
+    export const schema: yup.ObjectSchema<ModelLink> = (
+        yup.object().shape({
+            id: yup.string()
+        }).noUnknown()
+    );
 
     export async function validate(value: any): Promise<ModelLink> {
         return schema.validate(value, { strict: true });
@@ -7201,21 +7343,23 @@ export interface ModelThatExtends extends ModelWithString {
 
 export namespace ModelThatExtends {
 
-    export const schema: yup.ObjectSchema<ModelThatExtends> = ModelWithString.schema.concat(
-        yup.object<ModelThatExtends>().shape({
-            propExtendsA: yup.string(),
-            propExtendsB: ModelWithString.schema
-        }).noUnknown())
-        ;
+    export const schema: yup.ObjectSchema<ModelThatExtends> = (
+        ModelWithString.schema.concat(
+            yup.object().shape({
+                propExtendsA: yup.string(),
+                propExtendsB: ModelWithString.schema
+            }).noUnknown()
+        )
+    );
 
-        export async function validate(value: any): Promise<ModelThatExtends> {
-            return schema.validate(value, { strict: true });
-        }
+    export async function validate(value: any): Promise<ModelThatExtends> {
+        return schema.validate(value, { strict: true });
+    }
 
-        export function validateSync(value: any): ModelThatExtends {
-            return schema.validateSync(value, { strict: true });
-        }
-    }"
+    export function validateSync(value: any): ModelThatExtends {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelThatExtendsExtends.ts): ./test/result/v3/typescript/models/ModelThatExtendsExtends.ts 1`] = `
@@ -7238,23 +7382,25 @@ export interface ModelThatExtendsExtends extends ModelWithString, ModelThatExten
 
 export namespace ModelThatExtendsExtends {
 
-    export const schema: yup.ObjectSchema<ModelThatExtendsExtends> = ModelWithString.schema.concat(
-        ModelThatExtends.schema.concat(
-            yup.object<ModelThatExtendsExtends>().shape({
-                propExtendsC: yup.string(),
-                propExtendsD: ModelWithString.schema
-            }).noUnknown())
+    export const schema: yup.ObjectSchema<ModelThatExtendsExtends> = (
+        ModelWithString.schema.concat(
+            ModelThatExtends.schema.concat(
+                yup.object().shape({
+                    propExtendsC: yup.string(),
+                    propExtendsD: ModelWithString.schema
+                }).noUnknown()
+            )
         )
-        ;
+    );
 
-        export async function validate(value: any): Promise<ModelThatExtendsExtends> {
-            return schema.validate(value, { strict: true });
-        }
+    export async function validate(value: any): Promise<ModelThatExtendsExtends> {
+        return schema.validate(value, { strict: true });
+    }
 
-        export function validateSync(value: any): ModelThatExtendsExtends {
-            return schema.validateSync(value, { strict: true });
-        }
-    }"
+    export function validateSync(value: any): ModelThatExtendsExtends {
+        return schema.validateSync(value, { strict: true });
+    }
+}"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelWithArray.ts): ./test/result/v3/typescript/models/ModelWithArray.ts 1`] = `
@@ -7277,11 +7423,13 @@ export interface ModelWithArray {
 
 export namespace ModelWithArray {
 
-    export const schema: yup.ObjectSchema<ModelWithArray> = yup.object<ModelWithArray>().shape({
-        prop: yup.array<ModelWithString>().of(ModelWithString.schema),
-        propWithFile: yup.array<File>().of(yup.mixed<File>()),
-        propWithNumber: yup.array<number>().of(yup.number())
-    }).noUnknown();
+    export const schema: yup.ObjectSchema<ModelWithArray> = (
+        yup.object().shape({
+            prop: yup.array<ModelWithString>().of(ModelWithString.schema),
+            propWithFile: yup.array<File>().of(yup.mixed<File>()),
+            propWithNumber: yup.array<number>().of(yup.number())
+        }).noUnknown()
+    );
 
     export async function validate(value: any): Promise<ModelWithArray> {
         return schema.validate(value, { strict: true });
@@ -7313,9 +7461,11 @@ export interface ModelWithBoolean {
 
 export namespace ModelWithBoolean {
 
-    export const schema: yup.ObjectSchema<ModelWithBoolean> = yup.object<ModelWithBoolean>().shape({
-        prop: yup.boolean()
-    }).noUnknown();
+    export const schema: yup.ObjectSchema<ModelWithBoolean> = (
+        yup.object().shape({
+            prop: yup.boolean()
+        }).noUnknown()
+    );
 
     export async function validate(value: any): Promise<ModelWithBoolean> {
         return schema.validate(value, { strict: true });
@@ -7344,9 +7494,11 @@ export interface ModelWithCircularReference {
 
 export namespace ModelWithCircularReference {
 
-    export const schema: yup.ObjectSchema<ModelWithCircularReference> = yup.object<ModelWithCircularReference>().shape({
-        prop: ModelWithCircularReference.schema
-    }).noUnknown();
+    export const schema: yup.ObjectSchema<ModelWithCircularReference> = (
+        yup.object().shape({
+            prop: ModelWithCircularReference.schema
+        }).noUnknown()
+    );
 
     export async function validate(value: any): Promise<ModelWithCircularReference> {
         return schema.validate(value, { strict: true });
@@ -7376,16 +7528,18 @@ export interface ModelWithDictionary {
 
 export namespace ModelWithDictionary {
 
-    export const schema: yup.ObjectSchema<ModelWithDictionary> = yup.object<ModelWithDictionary>().shape({
-        prop: yup.lazy<Dictionary<string>>(value => {
-            return yup.object<Dictionary<string>>().shape(
-                Object.keys(value).reduce((object, key) => ({
-                    ...object,
-                    [key]: yup.string()
-                }), {})
-            ).noUnknown();
-        })
-    }).noUnknown();
+    export const schema: yup.ObjectSchema<ModelWithDictionary> = (
+        yup.object().shape({
+            prop: yup.lazy<Dictionary<string>>(value => {
+                return yup.object<Dictionary<string>>().shape(
+                    Object.keys(value).reduce((object, key) => ({
+                        ...object,
+                        [key]: yup.string()
+                    }), {})
+                ).noUnknown();
+            })
+        }).noUnknown()
+    );
 
     export async function validate(value: any): Promise<ModelWithDictionary> {
         return schema.validate(value, { strict: true });
@@ -7417,11 +7571,13 @@ export interface ModelWithDuplicateImports {
 
 export namespace ModelWithDuplicateImports {
 
-    export const schema: yup.ObjectSchema<ModelWithDuplicateImports> = yup.object<ModelWithDuplicateImports>().shape({
-        propA: ModelWithString.schema,
-        propB: ModelWithString.schema,
-        propC: ModelWithString.schema
-    }).noUnknown();
+    export const schema: yup.ObjectSchema<ModelWithDuplicateImports> = (
+        yup.object().shape({
+            propA: ModelWithString.schema,
+            propB: ModelWithString.schema,
+            propC: ModelWithString.schema
+        }).noUnknown()
+    );
 
     export async function validate(value: any): Promise<ModelWithDuplicateImports> {
         return schema.validate(value, { strict: true });
@@ -7451,9 +7607,11 @@ export interface ModelWithDuplicateProperties {
 
 export namespace ModelWithDuplicateProperties {
 
-    export const schema: yup.ObjectSchema<ModelWithDuplicateProperties> = yup.object<ModelWithDuplicateProperties>().shape({
-        prop: ModelWithString.schema
-    }).noUnknown();
+    export const schema: yup.ObjectSchema<ModelWithDuplicateProperties> = (
+        yup.object().shape({
+            prop: ModelWithString.schema
+        }).noUnknown()
+    );
 
     export async function validate(value: any): Promise<ModelWithDuplicateProperties> {
         return schema.validate(value, { strict: true });
@@ -7494,13 +7652,15 @@ export namespace ModelWithEnum {
         ERROR = 'Error'
     }
 
-    export const schema: yup.ObjectSchema<ModelWithEnum> = yup.object<ModelWithEnum>().shape({
-        Test: yup.mixed<string>().oneOf([
-            'Success',
-            'Warning',
-            'Error'
-        ])
-    }).noUnknown();
+    export const schema: yup.ObjectSchema<ModelWithEnum> = (
+        yup.object().shape({
+            Test: yup.mixed<string>().oneOf([
+                'Success',
+                'Warning',
+                'Error'
+            ])
+        }).noUnknown()
+    );
 
     export async function validate(value: any): Promise<ModelWithEnum> {
         return schema.validate(value, { strict: true });
@@ -7541,13 +7701,15 @@ export namespace ModelWithEnumFromDescription {
         ERROR = 3
     }
 
-    export const schema: yup.ObjectSchema<ModelWithEnumFromDescription> = yup.object<ModelWithEnumFromDescription>().shape({
-        Test: yup.mixed<number>().oneOf([
-            1,
-            2,
-            3
-        ])
-    }).noUnknown();
+    export const schema: yup.ObjectSchema<ModelWithEnumFromDescription> = (
+        yup.object().shape({
+            Test: yup.mixed<number>().oneOf([
+                1,
+                2,
+                3
+            ])
+        }).noUnknown()
+    );
 
     export async function validate(value: any): Promise<ModelWithEnumFromDescription> {
         return schema.validate(value, { strict: true });
@@ -7579,9 +7741,11 @@ export interface ModelWithInteger {
 
 export namespace ModelWithInteger {
 
-    export const schema: yup.ObjectSchema<ModelWithInteger> = yup.object<ModelWithInteger>().shape({
-        prop: yup.number()
-    }).noUnknown();
+    export const schema: yup.ObjectSchema<ModelWithInteger> = (
+        yup.object().shape({
+            prop: yup.number()
+        }).noUnknown()
+    );
 
     export async function validate(value: any): Promise<ModelWithInteger> {
         return schema.validate(value, { strict: true });
@@ -7612,9 +7776,11 @@ export interface ModelWithLink {
 
 export namespace ModelWithLink {
 
-    export const schema: yup.ObjectSchema<ModelWithLink> = yup.object<ModelWithLink>().shape({
-        prop: ModelLink.schema
-    }).noUnknown();
+    export const schema: yup.ObjectSchema<ModelWithLink> = (
+        yup.object().shape({
+            prop: ModelLink.schema
+        }).noUnknown()
+    );
 
     export async function validate(value: any): Promise<ModelWithLink> {
         return schema.validate(value, { strict: true });
@@ -7647,42 +7813,44 @@ export interface ModelWithNestedEnums {
 
 export namespace ModelWithNestedEnums {
 
-    export const schema: yup.ObjectSchema<ModelWithNestedEnums> = yup.object<ModelWithNestedEnums>().shape({
-        arrayWithDescription: yup.array<(1 | 2 | 3)>().of(yup.mixed<number>().oneOf([
-            1,
-            2,
-            3
-        ])),
-        arrayWithEnum: yup.array<('Success' | 'Warning' | 'Error')>().of(yup.mixed<string>().oneOf([
-            'Success',
-            'Warning',
-            'Error'
-        ])),
-        dictionaryWithEnum: yup.lazy<Dictionary<('Success' | 'Warning' | 'Error')>>(value => {
-            return yup.object<Dictionary<('Success' | 'Warning' | 'Error')>>().shape(
-                Object.keys(value).reduce((object, key) => ({
-                    ...object,
-                    [key]: yup.mixed<string>().oneOf([
-                        'Success',
-                        'Warning',
-                        'Error'
-                    ])
-                }), {})
-            ).noUnknown();
-        }),
-        dictionaryWithEnumFromDescription: yup.lazy<Dictionary<(1 | 2 | 3)>>(value => {
-            return yup.object<Dictionary<(1 | 2 | 3)>>().shape(
-                Object.keys(value).reduce((object, key) => ({
-                    ...object,
-                    [key]: yup.mixed<number>().oneOf([
-                        1,
-                        2,
-                        3
-                    ])
-                }), {})
-            ).noUnknown();
-        })
-    }).noUnknown();
+    export const schema: yup.ObjectSchema<ModelWithNestedEnums> = (
+        yup.object().shape({
+            arrayWithDescription: yup.array<(1 | 2 | 3)>().of(yup.mixed<number>().oneOf([
+                1,
+                2,
+                3
+            ])),
+            arrayWithEnum: yup.array<('Success' | 'Warning' | 'Error')>().of(yup.mixed<string>().oneOf([
+                'Success',
+                'Warning',
+                'Error'
+            ])),
+            dictionaryWithEnum: yup.lazy<Dictionary<('Success' | 'Warning' | 'Error')>>(value => {
+                return yup.object<Dictionary<('Success' | 'Warning' | 'Error')>>().shape(
+                    Object.keys(value).reduce((object, key) => ({
+                        ...object,
+                        [key]: yup.mixed<string>().oneOf([
+                            'Success',
+                            'Warning',
+                            'Error'
+                        ])
+                    }), {})
+                ).noUnknown();
+            }),
+            dictionaryWithEnumFromDescription: yup.lazy<Dictionary<(1 | 2 | 3)>>(value => {
+                return yup.object<Dictionary<(1 | 2 | 3)>>().shape(
+                    Object.keys(value).reduce((object, key) => ({
+                        ...object,
+                        [key]: yup.mixed<number>().oneOf([
+                            1,
+                            2,
+                            3
+                        ])
+                    }), {})
+                ).noUnknown();
+            })
+        }).noUnknown()
+    );
 
     export async function validate(value: any): Promise<ModelWithNestedEnums> {
         return schema.validate(value, { strict: true });
@@ -7715,13 +7883,19 @@ export interface ModelWithNestedProperties {
 
 export namespace ModelWithNestedProperties {
 
-    export const schema: yup.ObjectSchema<ModelWithNestedProperties> = yup.object<ModelWithNestedProperties>().shape({
-        first: yup.object().shape({
-            second: yup.object().shape({
-                third: yup.string().nullable().required()
-            }).noUnknown().nullable().required()
-        }).noUnknown().nullable().required()
-    }).noUnknown();
+    export const schema: yup.ObjectSchema<ModelWithNestedProperties> = (
+        yup.object().shape({
+            first: (
+                yup.object().shape({
+                    second: (
+                        yup.object().shape({
+                            third: yup.string().nullable().required()
+                        }).noUnknown()
+                    ).nullable().required()
+                }).noUnknown()
+            ).nullable().required()
+        }).noUnknown()
+    );
 
     export async function validate(value: any): Promise<ModelWithNestedProperties> {
         return schema.validate(value, { strict: true });
@@ -7757,15 +7931,17 @@ export interface ModelWithProperties {
 
 export namespace ModelWithProperties {
 
-    export const schema: yup.ObjectSchema<ModelWithProperties> = yup.object<ModelWithProperties>().shape({
-        boolean: yup.boolean(),
-        number: yup.number(),
-        reference: ModelWithString.schema,
-        required: yup.string().required(),
-        requiredAndNullable: yup.string().nullable().required(),
-        requiredAndReadOnly: yup.string().required(),
-        string: yup.string()
-    }).noUnknown();
+    export const schema: yup.ObjectSchema<ModelWithProperties> = (
+        yup.object().shape({
+            boolean: yup.boolean(),
+            number: yup.number(),
+            reference: ModelWithString.schema,
+            required: yup.string().required(),
+            requiredAndNullable: yup.string().nullable().required(),
+            requiredAndReadOnly: yup.string().required(),
+            string: yup.string()
+        }).noUnknown()
+    );
 
     export async function validate(value: any): Promise<ModelWithProperties> {
         return schema.validate(value, { strict: true });
@@ -7795,9 +7971,11 @@ export interface ModelWithReference {
 
 export namespace ModelWithReference {
 
-    export const schema: yup.ObjectSchema<ModelWithReference> = yup.object<ModelWithReference>().shape({
-        prop: ModelWithString.schema
-    }).noUnknown();
+    export const schema: yup.ObjectSchema<ModelWithReference> = (
+        yup.object().shape({
+            prop: ModelWithString.schema
+        }).noUnknown()
+    );
 
     export async function validate(value: any): Promise<ModelWithReference> {
         return schema.validate(value, { strict: true });
@@ -7829,9 +8007,11 @@ export interface ModelWithString {
 
 export namespace ModelWithString {
 
-    export const schema: yup.ObjectSchema<ModelWithString> = yup.object<ModelWithString>().shape({
-        prop: yup.string()
-    }).noUnknown();
+    export const schema: yup.ObjectSchema<ModelWithString> = (
+        yup.object().shape({
+            prop: yup.string()
+        }).noUnknown()
+    );
 
     export async function validate(value: any): Promise<ModelWithString> {
         return schema.validate(value, { strict: true });
@@ -7863,21 +8043,25 @@ export interface ProblemDetails {
 
 export namespace ProblemDetails {
 
-    export const schema: yup.ObjectSchema<ProblemDetails> = yup.object<ProblemDetails>().shape({
-        detail: yup.string().nullable(),
-        extensions: yup.lazy<Dictionary<any>>(value => {
-            return yup.object<Dictionary<any>>().shape(
-                Object.keys(value).reduce((object, key) => ({
-                    ...object,
-                    [key]: yup.object<any>()
-                }), {})
-            ).noUnknown();
-        }),
-        instance: yup.string().nullable(),
-        status: yup.number().nullable(),
-        title: yup.string().nullable(),
-        type: yup.string().nullable()
-    }).noUnknown();
+    export const schema: yup.ObjectSchema<ProblemDetails> = (
+        yup.object().shape({
+            detail: yup.string().nullable(),
+            extensions: yup.lazy<Dictionary<any>>(value => {
+                return yup.object<Dictionary<any>>().shape(
+                    Object.keys(value).reduce((object, key) => ({
+                        ...object,
+                        [key]: (
+                            yup.object<any>()
+                        )
+                    }), {})
+                ).noUnknown();
+            }),
+            instance: yup.string().nullable(),
+            status: yup.number().nullable(),
+            title: yup.string().nullable(),
+            type: yup.string().nullable()
+        }).noUnknown()
+    );
 
     export async function validate(value: any): Promise<ProblemDetails> {
         return schema.validate(value, { strict: true });
@@ -8420,9 +8604,9 @@ export class TypesService {
         parameterNumber: number = 123,
         parameterString: string | null = 'default',
         parameterBoolean: boolean | null = true,
-        parameterObject: any | null = null,
+        parameterObject: any = null,
         parameterArray: Array<string> | null,
-        parameterDictionary: any | null,
+        parameterDictionary: any,
         parameterEnum: ('Success' | 'Warning' | 'Error') | null,
         id?: number
     ): Promise<number | string | boolean | any> {

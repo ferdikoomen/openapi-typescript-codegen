@@ -9,11 +9,11 @@ export namespace {{{name}}} {
 
     export const schema = {{>validation}};
 
-    export async function validate(value: any): Promise<{{#>isNullable}}{{{name}}}{{/isNullable}}> {
+    export async function validate(value: any): Promise<{{{name}}}{{>isNullable}}> {
         return schema.validate(value, { strict: true });
     }
 
-    export function validateSync(value: any): {{#>isNullable}}{{{name}}}{{/isNullable}} {
+    export function validateSync(value: any): {{{name}}}{{>isNullable}} {
         return schema.validateSync(value, { strict: true });
     }
 }
