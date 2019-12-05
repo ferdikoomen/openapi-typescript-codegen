@@ -4,8 +4,6 @@ import * as mkdirp from 'mkdirp';
 import * as rimraf from 'rimraf';
 import { Client } from '../client/interfaces/Client';
 import { HttpClient, Language } from '../index';
-import { Model } from '../client/interfaces/Model';
-import { Service } from '../client/interfaces/Service';
 import { Templates } from './readHandlebarsTemplates';
 import { writeClient } from './writeClient';
 
@@ -24,8 +22,8 @@ describe('writeClient', () => {
         const client: Client = {
             server: 'http://localhost:8080',
             version: 'v1',
-            models: new Map<string, Model>(),
-            services: new Map<string, Service>(),
+            models: [],
+            services: [],
         };
 
         const templates: Templates = {
