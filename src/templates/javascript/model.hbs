@@ -2,12 +2,6 @@
 /* eslint-disable */
 /* prettier-ignore */
 
-{{#if imports}}
-{{#each imports}}
-import { {{{this}}} } from '../models/{{{this}}}';
-{{/each}}
-{{/if}}
-
 {{#equals export 'interface'}}
 {{>exportInterface}}
 {{else equals export 'enum'}}

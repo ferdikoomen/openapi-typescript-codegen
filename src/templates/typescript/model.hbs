@@ -2,8 +2,9 @@
 /* tslint:disable */
 /* eslint-disable */
 /* prettier-ignore */
-{{#if imports}}
 
+import { Schema } from '../core/Schema';
+{{#if imports}}
 {{#each imports}}
 import { {{{this}}} } from '../models/{{{this}}}';
 {{/each}}

@@ -6,10 +6,17 @@
 export { ApiError } from './core/ApiError';
 export { isSuccess } from './core/isSuccess';
 export { OpenAPI } from './core/OpenAPI';
+import { FieldSchema, Schema } from './core/Schema';
 {{#if models}}
 
 {{#each models}}
-export { {{{this}}} } from './models/{{{this}}}';
+import { {{{this}}} } from './models/{{{this}}}';
+{{/each}}
+{{/if}}
+{{#if models}}
+
+{{#each models}}
+export { {{{this}}} };
 {{/each}}
 {{/if}}
 {{#if services}}
@@ -17,4 +24,20 @@ export { {{{this}}} } from './models/{{{this}}}';
 {{#each services}}
 export { {{{this}}} } from './services/{{{this}}}';
 {{/each}}
+{{/if}}
+{{#if models}}
+
+const schemas = {
+{{#each models}}
+    '{{{this}}}': {{{this}}}.schema,
+{{/each}}
+};
+
+export function getSchema<T>(schema: string): Schema<T> | FieldSchema | null {
+    if (schemas.hasOwnProperty(schema)) {
+        return schemas[schema];
+    }
+    return null;
+}
+
 {{/if}}

@@ -8,7 +8,11 @@ export { OpenAPI } from './core/OpenAPI';
 {{#if models}}
 
 {{#each models}}
-export { {{{this}}} } from './models/{{{this}}}';
+import { {{{this}}} } from './models/{{{this}}}';
+{{/each}}
+
+{{#each models}}
+export { {{{this}}} };
 {{/each}}
 {{/if}}
 {{#if services}}
@@ -16,4 +20,19 @@ export { {{{this}}} } from './models/{{{this}}}';
 {{#each services}}
 export { {{{this}}} } from './services/{{{this}}}';
 {{/each}}
+{{/if}}
+{{#if models}}
+
+const schemas = {
+{{#each models}}
+    '{{{this}}}': {{{this}}}.schema,
+{{/each}}
+};
+
+export function getSchema(schema) {
+    if (schemas.hasOwnProperty(schema)) {
+        return schemas[schema];
+    }
+    return null;
+}
 {{/if}}

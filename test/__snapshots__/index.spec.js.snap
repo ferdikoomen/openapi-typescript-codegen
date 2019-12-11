@@ -687,6 +687,11 @@ export let EnumFromDescription;
 
     EnumFromDescription.schema = {
         type: 'Enum',
+        enums: [
+            3,
+            1,
+            2,
+        ],
     };
 
 })(EnumFromDescription || (EnumFromDescription = {}));"
@@ -710,6 +715,11 @@ export let EnumWithNumbers;
 
     EnumWithNumbers.schema = {
         type: 'Enum',
+        enums: [
+            1,
+            2,
+            3,
+        ],
     };
 
 })(EnumWithNumbers || (EnumWithNumbers = {}));"
@@ -733,6 +743,11 @@ export let EnumWithStrings;
 
     EnumWithStrings.schema = {
         type: 'Enum',
+        enums: [
+            'Error',
+            'Success',
+            'Warning',
+        ],
     };
 
 })(EnumWithStrings || (EnumWithStrings = {}));"
@@ -986,6 +1001,11 @@ export let ModelWithEnum;
     ModelWithEnum.schema = {
         test: {
             type: 'Enum',
+            enums: [
+                'Success',
+                'Warning',
+                'Error',
+            ],
         },
     };
 
@@ -1016,6 +1036,11 @@ export let ModelWithEnumFromDescription;
     ModelWithEnumFromDescription.schema = {
         test: {
             type: 'Enum',
+            enums: [
+                1,
+                2,
+                3,
+            ],
         },
     };
 
@@ -1084,24 +1109,44 @@ export let ModelWithNestedEnums;
             type: 'Array',
             item: {
                 type: 'Enum',
+                enums: [
+                    1,
+                    2,
+                    3,
+                ],
             },
         },
         arrayWithEnum: {
             type: 'Array',
             item: {
                 type: 'Enum',
+                enums: [
+                    'Success',
+                    'Warning',
+                    'Error',
+                ],
             },
         },
         dictionaryWithEnum: {
             type: 'Dictionary',
             item: {
                 type: 'Enum',
+                enums: [
+                    'Success',
+                    'Warning',
+                    'Error',
+                ],
             },
         },
         dictionaryWithEnumFromDescription: {
             type: 'Dictionary',
             item: {
                 type: 'Enum',
+                enums: [
+                    1,
+                    2,
+                    3,
+                ],
             },
         },
     };
@@ -2496,6 +2541,11 @@ export namespace EnumFromDescription {
 
     export const schema = {
         type: 'Enum',
+        enums: [
+            3,
+            1,
+            2,
+        ],
     };
 
 }"
@@ -2520,6 +2570,11 @@ export namespace EnumWithNumbers {
 
     export const schema = {
         type: 'Enum',
+        enums: [
+            1,
+            2,
+            3,
+        ],
     };
 
 }"
@@ -2544,6 +2599,11 @@ export namespace EnumWithStrings {
 
     export const schema = {
         type: 'Enum',
+        enums: [
+            'Error',
+            'Success',
+            'Warning',
+        ],
     };
 
 }"
@@ -2845,6 +2905,11 @@ export namespace ModelWithEnum {
     export const schema = {
         test: {
             type: 'Enum',
+            enums: [
+                'Success',
+                'Warning',
+                'Error',
+            ],
         },
     };
 
@@ -2881,6 +2946,11 @@ export namespace ModelWithEnumFromDescription {
     export const schema = {
         test: {
             type: 'Enum',
+            enums: [
+                1,
+                2,
+                3,
+            ],
         },
     };
 
@@ -2966,24 +3036,44 @@ export namespace ModelWithNestedEnums {
             type: 'Array',
             item: {
                 type: 'Enum',
+                enums: [
+                    1,
+                    2,
+                    3,
+                ],
             },
         },
         arrayWithEnum: {
             type: 'Array',
             item: {
                 type: 'Enum',
+                enums: [
+                    'Success',
+                    'Warning',
+                    'Error',
+                ],
             },
         },
         dictionaryWithEnum: {
             type: 'Dictionary',
             item: {
                 type: 'Enum',
+                enums: [
+                    'Success',
+                    'Warning',
+                    'Error',
+                ],
             },
         },
         dictionaryWithEnumFromDescription: {
             type: 'Dictionary',
             item: {
                 type: 'Enum',
+                enums: [
+                    1,
+                    2,
+                    3,
+                ],
             },
         },
     };
@@ -4339,6 +4429,11 @@ export let EnumFromDescription;
 
     EnumFromDescription.schema = {
         type: 'Enum',
+        enums: [
+            3,
+            1,
+            2,
+        ],
     };
 
 })(EnumFromDescription || (EnumFromDescription = {}));"
@@ -4362,6 +4457,11 @@ export let EnumWithNumbers;
 
     EnumWithNumbers.schema = {
         type: 'Enum',
+        enums: [
+            1,
+            2,
+            3,
+        ],
     };
 
 })(EnumWithNumbers || (EnumWithNumbers = {}));"
@@ -4385,6 +4485,11 @@ export let EnumWithStrings;
 
     EnumWithStrings.schema = {
         type: 'Enum',
+        enums: [
+            'Error',
+            'Success',
+            'Warning',
+        ],
     };
 
 })(EnumWithStrings || (EnumWithStrings = {}));"
@@ -4638,6 +4743,11 @@ export let ModelWithEnum;
     ModelWithEnum.schema = {
         Test: {
             type: 'Enum',
+            enums: [
+                'Success',
+                'Warning',
+                'Error',
+            ],
         },
     };
 
@@ -4668,6 +4778,11 @@ export let ModelWithEnumFromDescription;
     ModelWithEnumFromDescription.schema = {
         Test: {
             type: 'Enum',
+            enums: [
+                1,
+                2,
+                3,
+            ],
         },
     };
 
@@ -4736,24 +4851,44 @@ export let ModelWithNestedEnums;
             type: 'Array',
             item: {
                 type: 'Enum',
+                enums: [
+                    1,
+                    2,
+                    3,
+                ],
             },
         },
         arrayWithEnum: {
             type: 'Array',
             item: {
                 type: 'Enum',
+                enums: [
+                    'Success',
+                    'Warning',
+                    'Error',
+                ],
             },
         },
         dictionaryWithEnum: {
             type: 'Dictionary',
             item: {
                 type: 'Enum',
+                enums: [
+                    'Success',
+                    'Warning',
+                    'Error',
+                ],
             },
         },
         dictionaryWithEnumFromDescription: {
             type: 'Dictionary',
             item: {
                 type: 'Enum',
+                enums: [
+                    1,
+                    2,
+                    3,
+                ],
             },
         },
     };
@@ -6161,6 +6296,11 @@ export namespace EnumFromDescription {
 
     export const schema = {
         type: 'Enum',
+        enums: [
+            3,
+            1,
+            2,
+        ],
     };
 
 }"
@@ -6185,6 +6325,11 @@ export namespace EnumWithNumbers {
 
     export const schema = {
         type: 'Enum',
+        enums: [
+            1,
+            2,
+            3,
+        ],
     };
 
 }"
@@ -6209,6 +6354,11 @@ export namespace EnumWithStrings {
 
     export const schema = {
         type: 'Enum',
+        enums: [
+            'Error',
+            'Success',
+            'Warning',
+        ],
     };
 
 }"
@@ -6510,6 +6660,11 @@ export namespace ModelWithEnum {
     export const schema = {
         Test: {
             type: 'Enum',
+            enums: [
+                'Success',
+                'Warning',
+                'Error',
+            ],
         },
     };
 
@@ -6546,6 +6701,11 @@ export namespace ModelWithEnumFromDescription {
     export const schema = {
         Test: {
             type: 'Enum',
+            enums: [
+                1,
+                2,
+                3,
+            ],
         },
     };
 
@@ -6631,24 +6791,44 @@ export namespace ModelWithNestedEnums {
             type: 'Array',
             item: {
                 type: 'Enum',
+                enums: [
+                    1,
+                    2,
+                    3,
+                ],
             },
         },
         arrayWithEnum: {
             type: 'Array',
             item: {
                 type: 'Enum',
+                enums: [
+                    'Success',
+                    'Warning',
+                    'Error',
+                ],
             },
         },
         dictionaryWithEnum: {
             type: 'Dictionary',
             item: {
                 type: 'Enum',
+                enums: [
+                    'Success',
+                    'Warning',
+                    'Error',
+                ],
             },
         },
         dictionaryWithEnumFromDescription: {
             type: 'Dictionary',
             item: {
                 type: 'Enum',
+                enums: [
+                    1,
+                    2,
+                    3,
+                ],
             },
         },
     };
