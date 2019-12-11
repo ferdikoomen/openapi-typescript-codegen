@@ -1,5 +1,10 @@
 {
-    type: 'Enum',
+    type: 'Dictionary',
+{{#if link~}}
+    item: {{>schema link}},
+{{else}}
+    item: '{{{base}}}',
+{{/if}}
 {{#if isReadOnly~}}
     isReadOnly: {{{isReadOnly}}},
 {{/if}}

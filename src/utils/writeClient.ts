@@ -54,8 +54,8 @@ export function writeClient(client: Client, language: Language, httpClient: Http
     });
 
     // Filter unused models and services.
-    client.models = getFilteredModels(client.models, language);
-    client.services = getFilteredServices(client.services, language);
+    // client.models = getFilteredModels(client.models, language);
+    // client.services = getFilteredServices(client.services, language);
 
     // Write the client files
     try {

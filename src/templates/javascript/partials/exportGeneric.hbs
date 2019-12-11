@@ -6,12 +6,6 @@
 export let {{{name}}};
 (function ({{{name}}}) {
 
-    {{#if enum}}
-    {{#each enum}}
-    {{{../name}}}.{{{name}}} = {{{value}}};
-    {{/each}}
-
-    {{/if}}
     {{{name}}}.schema = {{>schema}};
 
 })({{{name}}} || ({{{name}}} = {}));

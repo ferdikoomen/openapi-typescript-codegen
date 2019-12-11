@@ -6,6 +6,7 @@
 export let {{{name}}};
 (function ({{{name}}}) {
 
+    {{#if enums}}
     {{#each enums}}
     {{#if description}}
     /**
@@ -19,4 +20,7 @@ export let {{{name}}};
     };
 
     {{/each}}
+    {{/if}}
+    {{{name}}}.schema = {{>schema}};
+
 })({{{name}}} || ({{{name}}} = {}));

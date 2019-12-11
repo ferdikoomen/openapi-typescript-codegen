@@ -1,5 +1,7 @@
 {
-    type: 'Enum',
+{{#each properties}}
+    {{{name}}}: {{>schema}},
+{{/each}}
 {{#if isReadOnly~}}
     isReadOnly: {{{isReadOnly}}},
 {{/if}}

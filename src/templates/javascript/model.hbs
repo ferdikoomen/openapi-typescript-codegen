@@ -9,7 +9,9 @@ import { {{{this}}} } from '../models/{{{this}}}';
 {{/if}}
 
 {{#equals export 'interface'}}
-{{>exportEnums}}
+{{>exportInterface}}
 {{else equals export 'enum'}}
 {{>exportEnum}}
+{{else}}
+{{>exportGeneric}}
 {{/equals}}
