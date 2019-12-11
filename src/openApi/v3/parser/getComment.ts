@@ -1,4 +1,4 @@
-import { EOL } from 'os';
+import {EOL} from 'os';
 
 export function getComment(comment?: string): string | null {
     if (comment) {

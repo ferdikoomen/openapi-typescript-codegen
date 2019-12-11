@@ -1,4 +1,4 @@
-import { isPrimaryType } from './isPrimaryType';
+import {isPrimaryType} from './isPrimaryType';
 
 describe('isPrimaryType', () => {
     it('should return true for primary types', () => {

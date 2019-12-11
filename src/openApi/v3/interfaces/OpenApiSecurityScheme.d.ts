@@ -1,5 +1,5 @@
-import { OpenApiOAuthFlows } from './OpenApiOAuthFlows';
-import { OpenApiReference } from './OpenApiReference';
+import {OpenApiOAuthFlows} from './OpenApiOAuthFlows';
+import {OpenApiReference} from './OpenApiReference';
 
 /**
  * https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#securitySchemeObject

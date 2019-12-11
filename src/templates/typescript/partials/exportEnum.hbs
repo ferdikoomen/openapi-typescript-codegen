@@ -5,6 +5,12 @@
 {{/if}}
 export enum {{{name}}} {
     {{#each enum}}
-    {{{name}}} = {{{value}}}{{>comma}}
+    {{{name}}} = {{{value}}},
     {{/each}}
+}
+
+export namespace {{{name}}} {
+
+    export const schema = {{>schema}};
+
 }

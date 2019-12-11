@@ -1,4 +1,4 @@
-import { stripNamespace } from './stripNamespace';
+import {stripNamespace} from './stripNamespace';
 
 describe('stripNamespace', () => {
     it('should strip namespace', () => {

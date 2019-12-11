@@ -1,12 +1,12 @@
-import { Model } from '../../../client/interfaces/Model';
-import { OpenApi } from '../interfaces/OpenApi';
-import { OpenApiSchema } from '../interfaces/OpenApiSchema';
-import { PrimaryType } from './constants';
-import { getComment } from './getComment';
-import { getEnum } from './getEnum';
-import { getEnumFromDescription } from './getEnumFromDescription';
-import { getModelProperties } from './getModelProperties';
-import { getType } from './getType';
+import {Model} from '../../../client/interfaces/Model';
+import {OpenApi} from '../interfaces/OpenApi';
+import {OpenApiSchema} from '../interfaces/OpenApiSchema';
+import {PrimaryType} from './constants';
+import {getComment} from './getComment';
+import {getEnum} from './getEnum';
+import {getEnumFromDescription} from './getEnumFromDescription';
+import {getModelProperties} from './getModelProperties';
+import {getType} from './getType';
 
 export function getModel(openApi: OpenApi, definition: OpenApiSchema, isProperty: boolean = false, name: string = ''): Model {
     const model: Model = {
@@ -21,6 +21,20 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isProperty
         isReadOnly: definition.readOnly === true,
         isNullable: false,
         isRequired: false,
+        format: definition.format,
+        maximum: definition.maximum,
+        exclusiveMaximum: definition.exclusiveMaximum,
+        minimum: definition.minimum,
+        exclusiveMinimum: definition.exclusiveMinimum,
+        multipleOf: definition.multipleOf,
+        maxLength: definition.maxLength,
+        minLength: definition.minLength,
+        pattern: definition.pattern,
+        maxItems: definition.maxItems,
+        minItems: definition.minItems,
+        uniqueItems: definition.uniqueItems,
+        maxProperties: definition.maxProperties,
+        minProperties: definition.minProperties,
         imports: [],
         extends: [],
         enum: [],

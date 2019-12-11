@@ -1,5 +1,5 @@
-import { OpenApiParameter } from '../interfaces/OpenApiParameter';
-import { OperationParameter } from '../../../client/interfaces/OperationParameter';
+import {OpenApiParameter} from '../interfaces/OpenApiParameter';
+import {OperationParameter} from '../../../client/interfaces/OperationParameter';
 
 export function getOperationParameterDefault(parameter: OpenApiParameter, operationParameter: OperationParameter): string | null {
     if (parameter.default === null) {

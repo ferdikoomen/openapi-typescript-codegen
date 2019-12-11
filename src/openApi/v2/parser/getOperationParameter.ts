@@ -1,14 +1,14 @@
-import { OpenApi } from '../interfaces/OpenApi';
-import { OpenApiParameter } from '../interfaces/OpenApiParameter';
-import { OperationParameter } from '../../../client/interfaces/OperationParameter';
-import { PrimaryType } from './constants';
-import { getComment } from './getComment';
-import { getEnum } from './getEnum';
-import { getEnumFromDescription } from './getEnumFromDescription';
-import { getModel } from './getModel';
-import { getOperationParameterDefault } from './getOperationParameterDefault';
-import { getOperationParameterName } from './getOperationParameterName';
-import { getType } from './getType';
+import {OpenApi} from '../interfaces/OpenApi';
+import {OpenApiParameter} from '../interfaces/OpenApiParameter';
+import {OperationParameter} from '../../../client/interfaces/OperationParameter';
+import {PrimaryType} from './constants';
+import {getComment} from './getComment';
+import {getEnum} from './getEnum';
+import {getEnumFromDescription} from './getEnumFromDescription';
+import {getModel} from './getModel';
+import {getOperationParameterDefault} from './getOperationParameterDefault';
+import {getOperationParameterName} from './getOperationParameterName';
+import {getType} from './getType';
 
 export function getOperationParameter(openApi: OpenApi, parameter: OpenApiParameter): OperationParameter {
     const operationParameter: OperationParameter = {
@@ -25,6 +25,18 @@ export function getOperationParameter(openApi: OpenApi, parameter: OpenApiParame
         isReadOnly: false,
         isRequired: parameter.required === true,
         isNullable: false,
+        format: parameter.format,
+        maximum: parameter.maximum,
+        exclusiveMaximum: parameter.exclusiveMaximum,
+        minimum: parameter.minimum,
+        exclusiveMinimum: parameter.exclusiveMinimum,
+        multipleOf: parameter.multipleOf,
+        maxLength: parameter.maxLength,
+        minLength: parameter.minLength,
+        pattern: parameter.pattern,
+        maxItems: parameter.maxItems,
+        minItems: parameter.minItems,
+        uniqueItems: parameter.uniqueItems,
         imports: [],
         extends: [],
         enum: [],

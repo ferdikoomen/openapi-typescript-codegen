@@ -1,11 +1,11 @@
-import { OpenApi } from '../interfaces/OpenApi';
-import { OpenApiResponse } from '../interfaces/OpenApiResponse';
-import { OperationResponse } from '../../../client/interfaces/OperationResponse';
-import { PrimaryType } from './constants';
-import { getComment } from './getComment';
-import { getContent } from './getContent';
-import { getModel } from './getModel';
-import { getType } from './getType';
+import {OpenApi} from '../interfaces/OpenApi';
+import {OpenApiResponse} from '../interfaces/OpenApiResponse';
+import {OperationResponse} from '../../../client/interfaces/OperationResponse';
+import {PrimaryType} from './constants';
+import {getComment} from './getComment';
+import {getContent} from './getContent';
+import {getModel} from './getModel';
+import {getType} from './getType';
 
 export function getOperationResponse(openApi: OpenApi, response: OpenApiResponse, responseCode: number): OperationResponse {
     const operationResponse: OperationResponse = {
@@ -45,6 +45,23 @@ export function getOperationResponse(openApi: OpenApi, response: OpenApiResponse
                 operationResponse.base = model.base;
                 operationResponse.template = model.template;
                 operationResponse.link = model.link;
+                operationResponse.isReadOnly = model.isReadOnly;
+                operationResponse.isRequired = model.isRequired;
+                operationResponse.isNullable = model.isNullable;
+                operationResponse.format = model.format;
+                operationResponse.maximum = model.maximum;
+                operationResponse.exclusiveMaximum = model.exclusiveMaximum;
+                operationResponse.minimum = model.minimum;
+                operationResponse.exclusiveMinimum = model.exclusiveMinimum;
+                operationResponse.multipleOf = model.multipleOf;
+                operationResponse.maxLength = model.maxLength;
+                operationResponse.minLength = model.minLength;
+                operationResponse.pattern = model.pattern;
+                operationResponse.maxItems = model.maxItems;
+                operationResponse.minItems = model.minItems;
+                operationResponse.uniqueItems = model.uniqueItems;
+                operationResponse.maxProperties = model.maxProperties;
+                operationResponse.minProperties = model.minProperties;
                 operationResponse.imports.push(...model.imports);
                 operationResponse.extends.push(...model.extends);
                 operationResponse.enum.push(...model.enum);

@@ -1,4 +1,4 @@
-import { getOperationName } from './getOperationName';
+import {getOperationName} from './getOperationName';
 
 describe('getOperationName', () => {
     it('should produce correct result', () => {

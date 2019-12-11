@@ -1,0 +1,14 @@
+{
+{{#each properties}}
+    {{{name}}}: {{>schema}},
+{{/each}}
+{{#if isReadOnly~}}
+    isReadOnly: {{{isReadOnly}}},
+{{/if}}
+{{#if isRequired~}}
+    isRequired: {{{isRequired}}},
+{{/if}}
+{{#if isNullable~}}
+    isNullable: {{{isNullable}}},
+{{/if}}
+}

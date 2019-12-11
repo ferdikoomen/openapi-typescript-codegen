@@ -1,5 +1,5 @@
-import { Enum } from '../../../client/interfaces/Enum';
-import { PrimaryType } from './constants';
+import {Enum} from '../../../client/interfaces/Enum';
+import {PrimaryType} from './constants';
 
 export function getEnum(values?: (string | number)[]): Enum[] {
     if (Array.isArray(values)) {

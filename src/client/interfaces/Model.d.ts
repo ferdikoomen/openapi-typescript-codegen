@@ -1,5 +1,5 @@
 import { Enum } from './Enum';
-import { Schema } from './Schema';
+import {Schema} from "./Schema";
 
 export interface Model extends Schema {
     name: string;
@@ -10,10 +10,6 @@ export interface Model extends Schema {
     link: Model | null;
     description: string | null;
     default?: any;
-    isProperty: boolean;
-    isReadOnly: boolean;
-    isRequired: boolean;
-    isNullable: boolean;
     imports: string[];
     extends: string[];
     enum: Enum[];

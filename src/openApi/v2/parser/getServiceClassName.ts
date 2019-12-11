@@ -6,7 +6,7 @@ import camelCase from 'camelcase';
  */
 export function getServiceClassName(value: string): string {
     const clean = value.replace(/[^\w\s\-]+/g, '_').trim();
-    const name = camelCase(clean, { pascalCase: true });
+    const name = camelCase(clean, {pascalCase: true});
     if (name && !name.endsWith('Service')) {
         return `${name}Service`;
     }

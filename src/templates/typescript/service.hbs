@@ -37,34 +37,44 @@ export class {{{name}}} {
      */
     public static async {{{name}}}({{#if parameters}}
         {{#each parameters}}
-        {{{name}}}{{>isRequired}}: {{>type}}{{#if default}} = {{{default}}}{{/if}}{{>comma}}
+        {{{name}}}{{>isRequired}}: {{>type}}{{#if default}} = {{{default}}}{{/if}},
         {{/each}}
     {{/if}}): Promise<{{>result}}> {
 
         const result = await $request({
             method: '{{{method}}}',
-            path: `{{{path}}}`{{#if parametersCookie}},
+            path: `{{{path}}}`,
+            {{#if parametersCookie~}}
             cookies: {
                 {{#each parametersCookie}}
-                '{{{prop}}}': {{{name}}}{{>comma}}
+                '{{{prop}}}': {{{name}}},
                 {{/each}}
-            }{{/if}}{{#if parametersCookie}},
+            },
+            {{/if}}
+            {{#if parametersHeader~}}
             headers: {
                 {{#each parametersHeader}}
-                '{{{prop}}}': {{{name}}}{{>comma}}
+                '{{{prop}}}': {{{name}}},
                 {{/each}}
-            }{{/if}}{{#if parametersQuery}},
+            },
+            {{/if}}
+            {{#if parametersQuery~}}
             query: {
                 {{#each parametersQuery}}
-                '{{{prop}}}': {{{name}}}{{>comma}}
+                '{{{prop}}}': {{{name}}},
                 {{/each}}
-            }{{/if}}{{#if parametersForm}},
+            },
+            {{/if}}
+            {{#if parametersForm~}}
             formData: {
                 {{#each parametersForm}}
-                '{{{prop}}}': {{{name}}}{{>comma}}
+                '{{{prop}}}': {{{name}}},
                 {{/each}}
-            }{{/if}}{{#if parametersBody}},
-            body: {{{parametersBody.name}}}{{/if}}
+            },
+            {{/if}}
+            {{#if parametersBody~}}
+            body: {{{parametersBody.name}}},
+            {{/if}}
         });
         {{#if errors}}
 

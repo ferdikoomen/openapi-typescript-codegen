@@ -1563,10 +1563,7 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelL
 export interface ModelLink {
     id?: string;
 }
-
-export namespace ModelLink {
-
-}"
+"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelThatExtends.ts): ./test/result/v2/typescript/models/ModelThatExtends.ts 1`] = `
@@ -1584,10 +1581,7 @@ export interface ModelThatExtends extends ModelWithString {
     propExtendsA?: string;
     propExtendsB?: ModelWithString;
 }
-
-export namespace ModelThatExtends {
-
-}"
+"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelThatExtendsExtends.ts): ./test/result/v2/typescript/models/ModelThatExtendsExtends.ts 1`] = `
@@ -1606,10 +1600,7 @@ export interface ModelThatExtendsExtends extends ModelWithString, ModelThatExten
     propExtendsC?: string;
     propExtendsD?: ModelWithString;
 }
-
-export namespace ModelThatExtendsExtends {
-
-}"
+"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelWithArray.ts): ./test/result/v2/typescript/models/ModelWithArray.ts 1`] = `
@@ -1628,10 +1619,7 @@ export interface ModelWithArray {
     propWithFile?: Array<File>;
     propWithNumber?: Array<number>;
 }
-
-export namespace ModelWithArray {
-
-}"
+"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelWithBoolean.ts): ./test/result/v2/typescript/models/ModelWithBoolean.ts 1`] = `
@@ -1649,10 +1637,7 @@ export interface ModelWithBoolean {
      */
     prop?: boolean;
 }
-
-export namespace ModelWithBoolean {
-
-}"
+"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelWithCircularReference.ts): ./test/result/v2/typescript/models/ModelWithCircularReference.ts 1`] = `
@@ -1667,10 +1652,7 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelW
 export interface ModelWithCircularReference {
     prop?: ModelWithCircularReference;
 }
-
-export namespace ModelWithCircularReference {
-
-}"
+"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelWithDictionary.ts): ./test/result/v2/typescript/models/ModelWithDictionary.ts 1`] = `
@@ -1687,10 +1669,7 @@ import { Dictionary } from '../models/Dictionary';
 export interface ModelWithDictionary {
     prop?: Dictionary<string>;
 }
-
-export namespace ModelWithDictionary {
-
-}"
+"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelWithDuplicateImports.ts): ./test/result/v2/typescript/models/ModelWithDuplicateImports.ts 1`] = `
@@ -1709,10 +1688,7 @@ export interface ModelWithDuplicateImports {
     propB?: ModelWithString;
     propC?: ModelWithString;
 }
-
-export namespace ModelWithDuplicateImports {
-
-}"
+"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelWithDuplicateProperties.ts): ./test/result/v2/typescript/models/ModelWithDuplicateProperties.ts 1`] = `
@@ -1729,10 +1705,7 @@ import { ModelWithString } from '../models/ModelWithString';
 export interface ModelWithDuplicateProperties {
     prop?: ModelWithString;
 }
-
-export namespace ModelWithDuplicateProperties {
-
-}"
+"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelWithEnum.ts): ./test/result/v2/typescript/models/ModelWithEnum.ts 1`] = `
@@ -1762,7 +1735,8 @@ export namespace ModelWithEnum {
         ERROR = 'Error'
     }
 
-}"
+}
+"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelWithEnumFromDescription.ts): ./test/result/v2/typescript/models/ModelWithEnumFromDescription.ts 1`] = `
@@ -1792,7 +1766,8 @@ export namespace ModelWithEnumFromDescription {
         ERROR = 3
     }
 
-}"
+}
+"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelWithInteger.ts): ./test/result/v2/typescript/models/ModelWithInteger.ts 1`] = `
@@ -1810,10 +1785,7 @@ export interface ModelWithInteger {
      */
     prop?: number;
 }
-
-export namespace ModelWithInteger {
-
-}"
+"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelWithLink.ts): ./test/result/v2/typescript/models/ModelWithLink.ts 1`] = `
@@ -1831,10 +1803,7 @@ import { ModelWithString } from '../models/ModelWithString';
 export interface ModelWithLink {
     prop?: ModelLink;
 }
-
-export namespace ModelWithLink {
-
-}"
+"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelWithNestedEnums.ts): ./test/result/v2/typescript/models/ModelWithNestedEnums.ts 1`] = `
@@ -1854,10 +1823,7 @@ export interface ModelWithNestedEnums {
     dictionaryWithEnum?: Dictionary<('Success' | 'Warning' | 'Error')>;
     dictionaryWithEnumFromDescription?: Dictionary<(1 | 2 | 3)>;
 }
-
-export namespace ModelWithNestedEnums {
-
-}"
+"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelWithNestedProperties.ts): ./test/result/v2/typescript/models/ModelWithNestedProperties.ts 1`] = `
@@ -1876,10 +1842,7 @@ export interface ModelWithNestedProperties {
         }
     };
 }
-
-export namespace ModelWithNestedProperties {
-
-}"
+"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelWithProperties.ts): ./test/result/v2/typescript/models/ModelWithProperties.ts 1`] = `
@@ -1901,10 +1864,7 @@ export interface ModelWithProperties {
     readonly requiredAndReadOnly: string;
     string?: string;
 }
-
-export namespace ModelWithProperties {
-
-}"
+"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelWithReference.ts): ./test/result/v2/typescript/models/ModelWithReference.ts 1`] = `
@@ -1921,10 +1881,7 @@ import { ModelWithString } from '../models/ModelWithString';
 export interface ModelWithReference {
     prop?: ModelWithString;
 }
-
-export namespace ModelWithReference {
-
-}"
+"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelWithString.ts): ./test/result/v2/typescript/models/ModelWithString.ts 1`] = `
@@ -1942,10 +1899,7 @@ export interface ModelWithString {
      */
     prop?: string;
 }
-
-export namespace ModelWithString {
-
-}"
+"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/SimpleBoolean.ts): ./test/result/v2/typescript/models/SimpleBoolean.ts 1`] = `
@@ -2918,22 +2872,22 @@ import { OpenAPI } from '../core/OpenAPI';
 export class ComplexService {
 
     /**
-     * @param parameterObject Parameter containing object
      * @param parameterReference Parameter containing reference
+     * @param parameterObject Parameter containing object
      * @result ModelWithString Successful response
      * @throws ApiError
      */
     static async complexTypes(
-        parameterObject,
-        parameterReference
+        parameterReference,
+        parameterObject
     ) {
 
         const result = await $request({
             method: 'get',
             path: \`/api/v\${OpenAPI.VERSION}/complex\`,
             query: {
-                'parameterObject': parameterObject,
-                'parameterReference': parameterReference
+                'parameterReference': parameterReference,
+                'parameterObject': parameterObject
             }
         });
 
@@ -3997,10 +3951,7 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelL
 export interface ModelLink {
     id?: string;
 }
-
-export namespace ModelLink {
-
-}"
+"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelThatExtends.ts): ./test/result/v3/typescript/models/ModelThatExtends.ts 1`] = `
@@ -4018,10 +3969,7 @@ export interface ModelThatExtends extends ModelWithString {
     propExtendsA?: string;
     propExtendsB?: ModelWithString;
 }
-
-export namespace ModelThatExtends {
-
-}"
+"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelThatExtendsExtends.ts): ./test/result/v3/typescript/models/ModelThatExtendsExtends.ts 1`] = `
@@ -4040,10 +3988,7 @@ export interface ModelThatExtendsExtends extends ModelWithString, ModelThatExten
     propExtendsC?: string;
     propExtendsD?: ModelWithString;
 }
-
-export namespace ModelThatExtendsExtends {
-
-}"
+"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelWithArray.ts): ./test/result/v3/typescript/models/ModelWithArray.ts 1`] = `
@@ -4062,10 +4007,7 @@ export interface ModelWithArray {
     propWithFile?: Array<File>;
     propWithNumber?: Array<number>;
 }
-
-export namespace ModelWithArray {
-
-}"
+"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelWithBoolean.ts): ./test/result/v3/typescript/models/ModelWithBoolean.ts 1`] = `
@@ -4083,10 +4025,7 @@ export interface ModelWithBoolean {
      */
     prop?: boolean;
 }
-
-export namespace ModelWithBoolean {
-
-}"
+"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelWithCircularReference.ts): ./test/result/v3/typescript/models/ModelWithCircularReference.ts 1`] = `
@@ -4101,10 +4040,7 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelW
 export interface ModelWithCircularReference {
     prop?: ModelWithCircularReference;
 }
-
-export namespace ModelWithCircularReference {
-
-}"
+"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelWithDictionary.ts): ./test/result/v3/typescript/models/ModelWithDictionary.ts 1`] = `
@@ -4121,10 +4057,7 @@ import { Dictionary } from '../models/Dictionary';
 export interface ModelWithDictionary {
     prop?: Dictionary<string>;
 }
-
-export namespace ModelWithDictionary {
-
-}"
+"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelWithDuplicateImports.ts): ./test/result/v3/typescript/models/ModelWithDuplicateImports.ts 1`] = `
@@ -4143,10 +4076,7 @@ export interface ModelWithDuplicateImports {
     propB?: ModelWithString;
     propC?: ModelWithString;
 }
-
-export namespace ModelWithDuplicateImports {
-
-}"
+"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelWithDuplicateProperties.ts): ./test/result/v3/typescript/models/ModelWithDuplicateProperties.ts 1`] = `
@@ -4163,10 +4093,7 @@ import { ModelWithString } from '../models/ModelWithString';
 export interface ModelWithDuplicateProperties {
     prop?: ModelWithString;
 }
-
-export namespace ModelWithDuplicateProperties {
-
-}"
+"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelWithEnum.ts): ./test/result/v3/typescript/models/ModelWithEnum.ts 1`] = `
@@ -4196,7 +4123,8 @@ export namespace ModelWithEnum {
         ERROR = 'Error'
     }
 
-}"
+}
+"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelWithEnumFromDescription.ts): ./test/result/v3/typescript/models/ModelWithEnumFromDescription.ts 1`] = `
@@ -4226,7 +4154,8 @@ export namespace ModelWithEnumFromDescription {
         ERROR = 3
     }
 
-}"
+}
+"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelWithInteger.ts): ./test/result/v3/typescript/models/ModelWithInteger.ts 1`] = `
@@ -4244,10 +4173,7 @@ export interface ModelWithInteger {
      */
     prop?: number;
 }
-
-export namespace ModelWithInteger {
-
-}"
+"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelWithLink.ts): ./test/result/v3/typescript/models/ModelWithLink.ts 1`] = `
@@ -4265,10 +4191,7 @@ import { ModelWithString } from '../models/ModelWithString';
 export interface ModelWithLink {
     prop?: ModelLink;
 }
-
-export namespace ModelWithLink {
-
-}"
+"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelWithNestedEnums.ts): ./test/result/v3/typescript/models/ModelWithNestedEnums.ts 1`] = `
@@ -4288,10 +4211,7 @@ export interface ModelWithNestedEnums {
     dictionaryWithEnum?: Dictionary<('Success' | 'Warning' | 'Error')>;
     dictionaryWithEnumFromDescription?: Dictionary<(1 | 2 | 3)>;
 }
-
-export namespace ModelWithNestedEnums {
-
-}"
+"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelWithNestedProperties.ts): ./test/result/v3/typescript/models/ModelWithNestedProperties.ts 1`] = `
@@ -4310,10 +4230,7 @@ export interface ModelWithNestedProperties {
         } | null
     } | null;
 }
-
-export namespace ModelWithNestedProperties {
-
-}"
+"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelWithProperties.ts): ./test/result/v3/typescript/models/ModelWithProperties.ts 1`] = `
@@ -4336,10 +4253,7 @@ export interface ModelWithProperties {
     readonly requiredAndReadOnly: string;
     string?: string;
 }
-
-export namespace ModelWithProperties {
-
-}"
+"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelWithReference.ts): ./test/result/v3/typescript/models/ModelWithReference.ts 1`] = `
@@ -4356,10 +4270,7 @@ import { ModelWithString } from '../models/ModelWithString';
 export interface ModelWithReference {
     prop?: ModelWithString;
 }
-
-export namespace ModelWithReference {
-
-}"
+"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelWithString.ts): ./test/result/v3/typescript/models/ModelWithString.ts 1`] = `
@@ -4377,10 +4288,7 @@ export interface ModelWithString {
      */
     prop?: string;
 }
-
-export namespace ModelWithString {
-
-}"
+"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/SimpleBoolean.ts): ./test/result/v3/typescript/models/SimpleBoolean.ts 1`] = `
@@ -4459,28 +4367,28 @@ import { OpenAPI } from '../core/OpenAPI';
 export class ComplexService {
 
     /**
-     * @param parameterObject Parameter containing object
      * @param parameterReference Parameter containing reference
+     * @param parameterObject Parameter containing object
      * @result ModelWithString Successful response
      * @throws ApiError
      */
     public static async complexTypes(
-        parameterObject: {
+        parameterReference: ModelWithString,
+        parameterObject?: {
             first?: {
                 second?: {
                     third?: string
                 }
             }
-        },
-        parameterReference: ModelWithString
+        }
     ): Promise<Array<ModelWithString>> {
 
         const result = await $request({
             method: 'get',
             path: \`/api/v\${OpenAPI.VERSION}/complex\`,
             query: {
-                'parameterObject': parameterObject,
-                'parameterReference': parameterReference
+                'parameterReference': parameterReference,
+                'parameterObject': parameterObject
             }
         });
 
@@ -4521,9 +4429,9 @@ export class DefaultsService {
      * @throws ApiError
      */
     public static async callWithDefaultParameters(
-        parameterString?: string | null = 'Hello World!',
-        parameterNumber?: number | null = 123,
-        parameterBoolean?: boolean | null = true,
+        parameterString?: string = 'Hello World!',
+        parameterNumber?: number = 123,
+        parameterBoolean?: boolean = true,
         parameterEnum?: ('Success' | 'Warning' | 'Error') = 'Success',
         parameterModel?: ModelWithString | null = {
             \\"prop\\": \\"Hello World\\"
@@ -4572,10 +4480,10 @@ export class ParametersService {
      * @throws ApiError
      */
     public static async callWithParameters(
-        parameterHeader: string | null,
-        parameterQuery: string | null,
-        parameterForm: string | null,
-        parameterCookie: string | null,
+        parameterHeader?: string,
+        parameterQuery?: string,
+        parameterForm?: string,
+        parameterCookie?: string,
         requestBody?: ModelWithString
     ): Promise<void> {
 
@@ -4837,13 +4745,13 @@ export class TypesService {
      * @throws ApiError
      */
     public static async types(
-        parameterNumber: number = 123,
-        parameterString: string | null = 'default',
-        parameterBoolean: boolean | null = true,
-        parameterObject: any = null,
-        parameterArray: Array<string> | null,
-        parameterDictionary: any,
-        parameterEnum: ('Success' | 'Warning' | 'Error') | null,
+        parameterNumber?: number = 123,
+        parameterString?: string = 'default',
+        parameterBoolean?: boolean = true,
+        parameterObject?: any = null,
+        parameterArray?: Array<string>,
+        parameterDictionary?: any,
+        parameterEnum?: ('Success' | 'Warning' | 'Error'),
         id?: number
     ): Promise<number | string | boolean | any> {
 

@@ -28,5 +28,5 @@ OpenAPI.generate(
     OpenAPI.HttpClient.XHR,
 );
 
-OpenAPI.compile('./test/result/v2/typescript/');
-OpenAPI.compile('./test/result/v3/typescript/');
+// OpenAPI.compile('./test/result/v2/typescript/');
+// OpenAPI.compile('./test/result/v3/typescript/');

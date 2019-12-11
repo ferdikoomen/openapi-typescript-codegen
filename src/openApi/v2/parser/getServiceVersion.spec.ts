@@ -1,4 +1,4 @@
-import { getServiceVersion } from './getServiceVersion';
+import {getServiceVersion} from './getServiceVersion';
 
 describe('getServiceVersion', () => {
     it('should produce correct result', () => {

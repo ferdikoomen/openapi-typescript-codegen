@@ -1,5 +1,5 @@
-import { OpenApiContact } from './OpenApiContact';
-import { OpenApiLicense } from './OpenApiLicense';
+import {OpenApiContact} from './OpenApiContact';
+import {OpenApiLicense} from './OpenApiLicense';
 
 /**
  * https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#infoObject

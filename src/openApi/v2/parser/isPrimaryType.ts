@@ -1,4 +1,4 @@
-import { PrimaryType } from './constants';
+import {PrimaryType} from './constants';
 
 /**
  * Check if given type is a primary type.

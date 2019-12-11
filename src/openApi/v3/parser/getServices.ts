@@ -1,7 +1,7 @@
-import { Method } from './constants';
-import { OpenApi } from '../interfaces/OpenApi';
-import { Service } from '../../../client/interfaces/Service';
-import { getOperation } from './getOperation';
+import {Method} from './constants';
+import {OpenApi} from '../interfaces/OpenApi';
+import {Service} from '../../../client/interfaces/Service';
+import {getOperation} from './getOperation';
 
 /**
  * Get the OpenAPI services

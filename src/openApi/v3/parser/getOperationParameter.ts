@@ -1,12 +1,12 @@
-import { OpenApi } from '../interfaces/OpenApi';
-import { OpenApiParameter } from '../interfaces/OpenApiParameter';
-import { OperationParameter } from '../../../client/interfaces/OperationParameter';
-import { PrimaryType } from './constants';
-import { getComment } from './getComment';
-import { getModel } from './getModel';
-import { getModelDefault } from './getModelDefault';
-import { getOperationParameterName } from './getOperationParameterName';
-import { getType } from './getType';
+import {OpenApi} from '../interfaces/OpenApi';
+import {OpenApiParameter} from '../interfaces/OpenApiParameter';
+import {OperationParameter} from '../../../client/interfaces/OperationParameter';
+import {PrimaryType} from './constants';
+import {getComment} from './getComment';
+import {getModel} from './getModel';
+import {getModelDefault} from './getModelDefault';
+import {getOperationParameterName} from './getOperationParameterName';
+import {getType} from './getType';
 
 export function getOperationParameter(openApi: OpenApi, parameter: OpenApiParameter): OperationParameter {
     const operationParameter: OperationParameter = {
@@ -49,6 +49,7 @@ export function getOperationParameter(openApi: OpenApi, parameter: OpenApiParame
             operationParameter.template = model.template;
             operationParameter.imports.push(...model.imports);
             operationParameter.default = getModelDefault(parameter.schema);
+            operationParameter.isRequired = operationParameter.default || operationParameter.isRequired;
 
             return operationParameter;
         } else {
@@ -58,7 +59,25 @@ export function getOperationParameter(openApi: OpenApi, parameter: OpenApiParame
             operationParameter.base = model.base;
             operationParameter.template = model.template;
             operationParameter.link = model.link;
+            operationParameter.isReadOnly = model.isReadOnly;
+            operationParameter.isRequired = model.isRequired;
+            operationParameter.isNullable = model.isNullable;
+            operationParameter.format = model.format;
+            operationParameter.maximum = model.maximum;
+            operationParameter.exclusiveMaximum = model.exclusiveMaximum;
+            operationParameter.minimum = model.minimum;
+            operationParameter.exclusiveMinimum = model.exclusiveMinimum;
+            operationParameter.multipleOf = model.multipleOf;
+            operationParameter.maxLength = model.maxLength;
+            operationParameter.minLength = model.minLength;
+            operationParameter.pattern = model.pattern;
+            operationParameter.maxItems = model.maxItems;
+            operationParameter.minItems = model.minItems;
+            operationParameter.uniqueItems = model.uniqueItems;
+            operationParameter.maxProperties = model.maxProperties;
+            operationParameter.minProperties = model.minProperties;
             operationParameter.default = model.default;
+            operationParameter.isRequired = model.default || model.isRequired;
             operationParameter.imports.push(...model.imports);
             operationParameter.extends.push(...model.extends);
             operationParameter.enum.push(...model.enum);

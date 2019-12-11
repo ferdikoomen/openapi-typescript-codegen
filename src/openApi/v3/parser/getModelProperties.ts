@@ -1,9 +1,9 @@
-import { Model } from '../../../client/interfaces/Model';
-import { OpenApi } from '../interfaces/OpenApi';
-import { OpenApiSchema } from '../interfaces/OpenApiSchema';
-import { getComment } from './getComment';
-import { getModel } from './getModel';
-import { getType } from './getType';
+import {Model} from '../../../client/interfaces/Model';
+import {OpenApi} from '../interfaces/OpenApi';
+import {OpenApiSchema} from '../interfaces/OpenApiSchema';
+import {getComment} from './getComment';
+import {getModel} from './getModel';
+import {getType} from './getType';
 
 export function getModelProperties(openApi: OpenApi, definition: OpenApiSchema): Model[] {
     const models: Model[] = [];
@@ -25,6 +25,20 @@ export function getModelProperties(openApi: OpenApi, definition: OpenApiSchema):
                     isReadOnly: property.readOnly === true,
                     isRequired: propertyRequired === true,
                     isNullable: property.nullable === true,
+                    format: property.format,
+                    maximum: property.maximum,
+                    exclusiveMaximum: property.exclusiveMaximum,
+                    minimum: property.minimum,
+                    exclusiveMinimum: property.exclusiveMinimum,
+                    multipleOf: property.multipleOf,
+                    maxLength: property.maxLength,
+                    minLength: property.minLength,
+                    pattern: property.pattern,
+                    maxItems: property.maxItems,
+                    minItems: property.minItems,
+                    uniqueItems: property.uniqueItems,
+                    maxProperties: property.maxProperties,
+                    minProperties: property.minProperties,
                     imports: model.imports,
                     extends: [],
                     enum: [],
@@ -45,6 +59,20 @@ export function getModelProperties(openApi: OpenApi, definition: OpenApiSchema):
                     isReadOnly: property.readOnly === true,
                     isRequired: propertyRequired === true,
                     isNullable: property.nullable === true,
+                    format: property.format,
+                    maximum: property.maximum,
+                    exclusiveMaximum: property.exclusiveMaximum,
+                    minimum: property.minimum,
+                    exclusiveMinimum: property.exclusiveMinimum,
+                    multipleOf: property.multipleOf,
+                    maxLength: property.maxLength,
+                    minLength: property.minLength,
+                    pattern: property.pattern,
+                    maxItems: property.maxItems,
+                    minItems: property.minItems,
+                    uniqueItems: property.uniqueItems,
+                    maxProperties: property.maxProperties,
+                    minProperties: property.minProperties,
                     imports: model.imports,
                     extends: model.extends,
                     enum: model.enum,

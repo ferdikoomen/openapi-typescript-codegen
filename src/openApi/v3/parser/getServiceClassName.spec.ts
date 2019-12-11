@@ -1,4 +1,4 @@
-import { getServiceClassName } from './getServiceClassName';
+import {getServiceClassName} from './getServiceClassName';
 
 describe('getServiceClassName', () => {
     it('should produce correct result', () => {

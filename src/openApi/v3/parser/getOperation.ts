@@ -1,15 +1,15 @@
-import { OpenApi } from '../interfaces/OpenApi';
-import { OpenApiOperation } from '../interfaces/OpenApiOperation';
-import { Operation } from '../../../client/interfaces/Operation';
-import { getComment } from './getComment';
-import { getOperationErrors } from './getOperationErrors';
-import { getOperationName } from './getOperationName';
-import { getOperationParameters } from './getOperationParameters';
-import { getOperationPath } from './getOperationPath';
-import { getOperationRequestBody } from './getOperationRequestBody';
-import { getOperationResponses } from './getOperationResponses';
-import { getOperationResults } from './getOperationResults';
-import { getServiceClassName } from './getServiceClassName';
+import {OpenApi} from '../interfaces/OpenApi';
+import {OpenApiOperation} from '../interfaces/OpenApiOperation';
+import {Operation} from '../../../client/interfaces/Operation';
+import {getComment} from './getComment';
+import {getOperationErrors} from './getOperationErrors';
+import {getOperationName} from './getOperationName';
+import {getOperationParameters} from './getOperationParameters';
+import {getOperationPath} from './getOperationPath';
+import {getOperationRequestBody} from './getOperationRequestBody';
+import {getOperationResponses} from './getOperationResponses';
+import {getOperationResults} from './getOperationResults';
+import {getServiceClassName} from './getServiceClassName';
 
 export function getOperation(openApi: OpenApi, url: string, method: string, op: OpenApiOperation): Operation {
     const serviceName = (op.tags && op.tags[0]) || 'Service';

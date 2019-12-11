@@ -16,6 +16,7 @@ export interface {{{name}}}{{>extends}} {
 
 export namespace {{{name}}} {
 
+    {{#if enums}}
     {{#each enums}}
     {{#if description}}
     /**
@@ -24,9 +25,12 @@ export namespace {{{name}}} {
     {{/if}}
     export enum {{{name}}} {
         {{#each enum}}
-        {{{name}}} = {{{value}}}{{>comma}}
+        {{{name}}} = {{{value}}},
         {{/each}}
     }
 
     {{/each}}
+    {{/if}}
+    export const schema = {{>schema}};
+
 }
