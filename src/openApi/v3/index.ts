@@ -1,9 +1,9 @@
-import {Client} from '../../client/interfaces/Client';
-import {OpenApi} from './interfaces/OpenApi';
-import {getModels} from './parser/getModels';
-import {getServer} from './parser/getServer';
-import {getServiceVersion} from './parser/getServiceVersion';
-import {getServices} from './parser/getServices';
+import { Client } from '../../client/interfaces/Client';
+import { OpenApi } from './interfaces/OpenApi';
+import { getModels } from './parser/getModels';
+import { getServer } from './parser/getServer';
+import { getServiceVersion } from './parser/getServiceVersion';
+import { getServices } from './parser/getServices';
 
 /**
  * Parse the OpenAPI specification to a Client model that contains

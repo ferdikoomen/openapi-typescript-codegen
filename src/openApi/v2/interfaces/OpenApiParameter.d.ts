@@ -1,6 +1,6 @@
-import {OpenApiItems} from './OpenApiItems';
-import {OpenApiReference} from './OpenApiReference';
-import {OpenApiSchema} from './OpenApiSchema';
+import { OpenApiItems } from './OpenApiItems';
+import { OpenApiReference } from './OpenApiReference';
+import { OpenApiSchema } from './OpenApiSchema';
 
 /**
  * https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#parameterObject

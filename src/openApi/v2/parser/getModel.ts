@@ -1,12 +1,12 @@
-import {Model} from '../../../client/interfaces/Model';
-import {OpenApi} from '../interfaces/OpenApi';
-import {OpenApiSchema} from '../interfaces/OpenApiSchema';
-import {PrimaryType} from './constants';
-import {getComment} from './getComment';
-import {getEnum} from './getEnum';
-import {getEnumFromDescription} from './getEnumFromDescription';
-import {getModelProperties} from './getModelProperties';
-import {getType} from './getType';
+import { Model } from '../../../client/interfaces/Model';
+import { OpenApi } from '../interfaces/OpenApi';
+import { OpenApiSchema } from '../interfaces/OpenApiSchema';
+import { PrimaryType } from './constants';
+import { getComment } from './getComment';
+import { getEnum } from './getEnum';
+import { getEnumFromDescription } from './getEnumFromDescription';
+import { getModelProperties } from './getModelProperties';
+import { getType } from './getType';
 
 export function getModel(openApi: OpenApi, definition: OpenApiSchema, isProperty: boolean = false, name: string = ''): Model {
     const model: Model = {

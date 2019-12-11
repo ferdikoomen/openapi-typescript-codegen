@@ -360,11 +360,43 @@ export { ApiError } from './core/ApiError';
 export { isSuccess } from './core/isSuccess';
 export { OpenAPI } from './core/OpenAPI';
 
+export { ArrayWithArray } from './models/ArrayWithArray';
+export { ArrayWithBooleans } from './models/ArrayWithBooleans';
+export { ArrayWithNumbers } from './models/ArrayWithNumbers';
+export { ArrayWithProperties } from './models/ArrayWithProperties';
+export { ArrayWithReferences } from './models/ArrayWithReferences';
+export { ArrayWithStrings } from './models/ArrayWithStrings';
+export { DictionaryWithArray } from './models/DictionaryWithArray';
+export { DictionaryWithDictionary } from './models/DictionaryWithDictionary';
+export { DictionaryWithProperties } from './models/DictionaryWithProperties';
+export { DictionaryWithReference } from './models/DictionaryWithReference';
+export { DictionaryWithString } from './models/DictionaryWithString';
 export { EnumFromDescription } from './models/EnumFromDescription';
 export { EnumWithNumbers } from './models/EnumWithNumbers';
 export { EnumWithStrings } from './models/EnumWithStrings';
+export { ModelLink } from './models/ModelLink';
+export { ModelThatExtends } from './models/ModelThatExtends';
+export { ModelThatExtendsExtends } from './models/ModelThatExtendsExtends';
+export { ModelWithArray } from './models/ModelWithArray';
+export { ModelWithBoolean } from './models/ModelWithBoolean';
+export { ModelWithCircularReference } from './models/ModelWithCircularReference';
+export { ModelWithDictionary } from './models/ModelWithDictionary';
+export { ModelWithDuplicateImports } from './models/ModelWithDuplicateImports';
+export { ModelWithDuplicateProperties } from './models/ModelWithDuplicateProperties';
 export { ModelWithEnum } from './models/ModelWithEnum';
 export { ModelWithEnumFromDescription } from './models/ModelWithEnumFromDescription';
+export { ModelWithInteger } from './models/ModelWithInteger';
+export { ModelWithLink } from './models/ModelWithLink';
+export { ModelWithNestedEnums } from './models/ModelWithNestedEnums';
+export { ModelWithNestedProperties } from './models/ModelWithNestedProperties';
+export { ModelWithProperties } from './models/ModelWithProperties';
+export { ModelWithReference } from './models/ModelWithReference';
+export { ModelWithString } from './models/ModelWithString';
+export { SimpleBoolean } from './models/SimpleBoolean';
+export { SimpleFile } from './models/SimpleFile';
+export { SimpleInteger } from './models/SimpleInteger';
+export { SimpleReference } from './models/SimpleReference';
+export { SimpleString } from './models/SimpleString';
 
 export { ComplexService } from './services/ComplexService';
 export { DefaultsService } from './services/DefaultsService';
@@ -373,6 +405,268 @@ export { ResponseService } from './services/ResponseService';
 export { SimpleService } from './services/SimpleService';
 export { TypesService } from './services/TypesService';
 "
+`;
+
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/ArrayWithArray.js): ./test/result/v2/javascript/models/ArrayWithArray.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ModelWithString } from '../models/ModelWithString';
+
+/**
+ * This is a simple array containing an array
+ */
+export let ArrayWithArray;
+(function (ArrayWithArray) {
+
+    ArrayWithArray.schema = {
+        type: 'Array',
+        item: {
+            type: 'Array',
+            item: 'ModelWithString',
+        },
+    };
+
+})(ArrayWithArray || (ArrayWithArray = {}));"
+`;
+
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/ArrayWithBooleans.js): ./test/result/v2/javascript/models/ArrayWithBooleans.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+
+/**
+ * This is a simple array with booleans
+ */
+export let ArrayWithBooleans;
+(function (ArrayWithBooleans) {
+
+    ArrayWithBooleans.schema = {
+        type: 'Array',
+        item: {
+            type: 'boolean',
+        },
+    };
+
+})(ArrayWithBooleans || (ArrayWithBooleans = {}));"
+`;
+
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/ArrayWithNumbers.js): ./test/result/v2/javascript/models/ArrayWithNumbers.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+
+/**
+ * This is a simple array with numbers
+ */
+export let ArrayWithNumbers;
+(function (ArrayWithNumbers) {
+
+    ArrayWithNumbers.schema = {
+        type: 'Array',
+        item: {
+            type: 'number',
+        },
+    };
+
+})(ArrayWithNumbers || (ArrayWithNumbers = {}));"
+`;
+
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/ArrayWithProperties.js): ./test/result/v2/javascript/models/ArrayWithProperties.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+
+/**
+ * This is a simple array with properties
+ */
+export let ArrayWithProperties;
+(function (ArrayWithProperties) {
+
+    ArrayWithProperties.schema = {
+        type: 'Array',
+        item: {
+            foo: {
+                type: 'string',
+            },
+            bar: {
+                type: 'string',
+            },
+        },
+    };
+
+})(ArrayWithProperties || (ArrayWithProperties = {}));"
+`;
+
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/ArrayWithReferences.js): ./test/result/v2/javascript/models/ArrayWithReferences.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ModelWithString } from '../models/ModelWithString';
+
+/**
+ * This is a simple array with references
+ */
+export let ArrayWithReferences;
+(function (ArrayWithReferences) {
+
+    ArrayWithReferences.schema = {
+        type: 'Array',
+        item: 'ModelWithString',
+    };
+
+})(ArrayWithReferences || (ArrayWithReferences = {}));"
+`;
+
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/ArrayWithStrings.js): ./test/result/v2/javascript/models/ArrayWithStrings.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+
+/**
+ * This is a simple array with strings
+ */
+export let ArrayWithStrings;
+(function (ArrayWithStrings) {
+
+    ArrayWithStrings.schema = {
+        type: 'Array',
+        item: {
+            type: 'string',
+        },
+    };
+
+})(ArrayWithStrings || (ArrayWithStrings = {}));"
+`;
+
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/DictionaryWithArray.js): ./test/result/v2/javascript/models/DictionaryWithArray.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { Dictionary } from '../models/Dictionary';
+import { ModelWithString } from '../models/ModelWithString';
+
+/**
+ * This is a complex dictionary
+ */
+export let DictionaryWithArray;
+(function (DictionaryWithArray) {
+
+    DictionaryWithArray.schema = {
+        type: 'Dictionary',
+        item: {
+            type: 'Array',
+            item: 'ModelWithString',
+        },
+    };
+
+})(DictionaryWithArray || (DictionaryWithArray = {}));"
+`;
+
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/DictionaryWithDictionary.js): ./test/result/v2/javascript/models/DictionaryWithDictionary.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { Dictionary } from '../models/Dictionary';
+
+/**
+ * This is a string dictionary
+ */
+export let DictionaryWithDictionary;
+(function (DictionaryWithDictionary) {
+
+    DictionaryWithDictionary.schema = {
+        type: 'Dictionary',
+        item: {
+            type: 'Dictionary',
+            item: {
+                type: 'string',
+            },
+        },
+    };
+
+})(DictionaryWithDictionary || (DictionaryWithDictionary = {}));"
+`;
+
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/DictionaryWithProperties.js): ./test/result/v2/javascript/models/DictionaryWithProperties.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { Dictionary } from '../models/Dictionary';
+
+/**
+ * This is a complex dictionary
+ */
+export let DictionaryWithProperties;
+(function (DictionaryWithProperties) {
+
+    DictionaryWithProperties.schema = {
+        type: 'Dictionary',
+        item: {
+            foo: {
+                type: 'string',
+            },
+            bar: {
+                type: 'string',
+            },
+        },
+    };
+
+})(DictionaryWithProperties || (DictionaryWithProperties = {}));"
+`;
+
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/DictionaryWithReference.js): ./test/result/v2/javascript/models/DictionaryWithReference.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { Dictionary } from '../models/Dictionary';
+import { ModelWithString } from '../models/ModelWithString';
+
+/**
+ * This is a string reference
+ */
+export let DictionaryWithReference;
+(function (DictionaryWithReference) {
+
+    DictionaryWithReference.schema = {
+        type: 'Dictionary',
+        item: 'ModelWithString',
+    };
+
+})(DictionaryWithReference || (DictionaryWithReference = {}));"
+`;
+
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/DictionaryWithString.js): ./test/result/v2/javascript/models/DictionaryWithString.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { Dictionary } from '../models/Dictionary';
+
+/**
+ * This is a string dictionary
+ */
+export let DictionaryWithString;
+(function (DictionaryWithString) {
+
+    DictionaryWithString.schema = {
+        type: 'Dictionary',
+        item: {
+            type: 'string',
+        },
+    };
+
+})(DictionaryWithString || (DictionaryWithString = {}));"
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/models/EnumFromDescription.js): ./test/result/v2/javascript/models/EnumFromDescription.js 1`] = `
@@ -390,6 +684,10 @@ export let EnumFromDescription;
     EnumFromDescription.ERROR = 3;
     EnumFromDescription.SUCCESS = 1;
     EnumFromDescription.WARNING = 2;
+
+    EnumFromDescription.schema = {
+        type: 'Enum',
+    };
 
 })(EnumFromDescription || (EnumFromDescription = {}));"
 `;
@@ -410,6 +708,10 @@ export let EnumWithNumbers;
     EnumWithNumbers.NUM_2 = 2;
     EnumWithNumbers.NUM_3 = 3;
 
+    EnumWithNumbers.schema = {
+        type: 'Enum',
+    };
+
 })(EnumWithNumbers || (EnumWithNumbers = {}));"
 `;
 
@@ -429,7 +731,235 @@ export let EnumWithStrings;
     EnumWithStrings.SUCCESS = 'Success';
     EnumWithStrings.WARNING = 'Warning';
 
+    EnumWithStrings.schema = {
+        type: 'Enum',
+    };
+
 })(EnumWithStrings || (EnumWithStrings = {}));"
+`;
+
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelLink.js): ./test/result/v2/javascript/models/ModelLink.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+
+/**
+ * This is a model that can have a template??
+ */
+export let ModelLink;
+(function (ModelLink) {
+
+    ModelLink.schema = {
+        id: {
+            type: 'string',
+        },
+    };
+
+})(ModelLink || (ModelLink = {}));"
+`;
+
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelThatExtends.js): ./test/result/v2/javascript/models/ModelThatExtends.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ModelWithString } from '../models/ModelWithString';
+
+/**
+ * This is a model that extends another model
+ */
+export let ModelThatExtends;
+(function (ModelThatExtends) {
+
+    ModelThatExtends.schema = {
+        propExtendsA: {
+            type: 'string',
+        },
+        propExtendsB: {
+            type: 'ModelWithString',
+        },
+    };
+
+})(ModelThatExtends || (ModelThatExtends = {}));"
+`;
+
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelThatExtendsExtends.js): ./test/result/v2/javascript/models/ModelThatExtendsExtends.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ModelThatExtends } from '../models/ModelThatExtends';
+import { ModelWithString } from '../models/ModelWithString';
+
+/**
+ * This is a model that extends another model
+ */
+export let ModelThatExtendsExtends;
+(function (ModelThatExtendsExtends) {
+
+    ModelThatExtendsExtends.schema = {
+        propExtendsC: {
+            type: 'string',
+        },
+        propExtendsD: {
+            type: 'ModelWithString',
+        },
+    };
+
+})(ModelThatExtendsExtends || (ModelThatExtendsExtends = {}));"
+`;
+
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelWithArray.js): ./test/result/v2/javascript/models/ModelWithArray.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ModelWithString } from '../models/ModelWithString';
+
+/**
+ * This is a model with one property containing an array
+ */
+export let ModelWithArray;
+(function (ModelWithArray) {
+
+    ModelWithArray.schema = {
+        prop: {
+            type: 'Array',
+            item: 'ModelWithString',
+        },
+        propWithFile: {
+            type: 'Array',
+            item: {
+                type: 'File',
+            },
+        },
+        propWithNumber: {
+            type: 'Array',
+            item: {
+                type: 'number',
+            },
+        },
+    };
+
+})(ModelWithArray || (ModelWithArray = {}));"
+`;
+
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelWithBoolean.js): ./test/result/v2/javascript/models/ModelWithBoolean.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+
+/**
+ * This is a model with one boolean property
+ */
+export let ModelWithBoolean;
+(function (ModelWithBoolean) {
+
+    ModelWithBoolean.schema = {
+        prop: {
+            type: 'boolean',
+        },
+    };
+
+})(ModelWithBoolean || (ModelWithBoolean = {}));"
+`;
+
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelWithCircularReference.js): ./test/result/v2/javascript/models/ModelWithCircularReference.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+
+/**
+ * This is a model with one property containing a circular reference
+ */
+export let ModelWithCircularReference;
+(function (ModelWithCircularReference) {
+
+    ModelWithCircularReference.schema = {
+        prop: {
+            type: 'ModelWithCircularReference',
+        },
+    };
+
+})(ModelWithCircularReference || (ModelWithCircularReference = {}));"
+`;
+
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelWithDictionary.js): ./test/result/v2/javascript/models/ModelWithDictionary.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { Dictionary } from '../models/Dictionary';
+
+/**
+ * This is a model with one property containing a dictionary
+ */
+export let ModelWithDictionary;
+(function (ModelWithDictionary) {
+
+    ModelWithDictionary.schema = {
+        prop: {
+            type: 'Dictionary',
+            item: {
+                type: 'string',
+            },
+        },
+    };
+
+})(ModelWithDictionary || (ModelWithDictionary = {}));"
+`;
+
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelWithDuplicateImports.js): ./test/result/v2/javascript/models/ModelWithDuplicateImports.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ModelWithString } from '../models/ModelWithString';
+
+/**
+ * This is a model with duplicated imports
+ */
+export let ModelWithDuplicateImports;
+(function (ModelWithDuplicateImports) {
+
+    ModelWithDuplicateImports.schema = {
+        propA: {
+            type: 'ModelWithString',
+        },
+        propB: {
+            type: 'ModelWithString',
+        },
+        propC: {
+            type: 'ModelWithString',
+        },
+    };
+
+})(ModelWithDuplicateImports || (ModelWithDuplicateImports = {}));"
+`;
+
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelWithDuplicateProperties.js): ./test/result/v2/javascript/models/ModelWithDuplicateProperties.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ModelWithString } from '../models/ModelWithString';
+
+/**
+ * This is a model with duplicated properties
+ */
+export let ModelWithDuplicateProperties;
+(function (ModelWithDuplicateProperties) {
+
+    ModelWithDuplicateProperties.schema = {
+        prop: {
+            type: 'ModelWithString',
+        },
+    };
+
+})(ModelWithDuplicateProperties || (ModelWithDuplicateProperties = {}));"
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelWithEnum.js): ./test/result/v2/javascript/models/ModelWithEnum.js 1`] = `
@@ -450,7 +980,13 @@ export let ModelWithEnum;
     ModelWithEnum.test = {
         SUCCESS: 'Success',
         WARNING: 'Warning',
-        ERROR: 'Error'
+        ERROR: 'Error',
+    };
+
+    ModelWithEnum.schema = {
+        test: {
+            type: 'Enum',
+        },
     };
 
 })(ModelWithEnum || (ModelWithEnum = {}));"
@@ -474,10 +1010,313 @@ export let ModelWithEnumFromDescription;
     ModelWithEnumFromDescription.test = {
         SUCCESS: 1,
         WARNING: 2,
-        ERROR: 3
+        ERROR: 3,
+    };
+
+    ModelWithEnumFromDescription.schema = {
+        test: {
+            type: 'Enum',
+        },
     };
 
 })(ModelWithEnumFromDescription || (ModelWithEnumFromDescription = {}));"
+`;
+
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelWithInteger.js): ./test/result/v2/javascript/models/ModelWithInteger.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+
+/**
+ * This is a model with one number property
+ */
+export let ModelWithInteger;
+(function (ModelWithInteger) {
+
+    ModelWithInteger.schema = {
+        prop: {
+            type: 'number',
+        },
+    };
+
+})(ModelWithInteger || (ModelWithInteger = {}));"
+`;
+
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelWithLink.js): ./test/result/v2/javascript/models/ModelWithLink.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ModelLink } from '../models/ModelLink';
+import { ModelWithString } from '../models/ModelWithString';
+
+/**
+ * This is a model that can have a template??
+ */
+export let ModelWithLink;
+(function (ModelWithLink) {
+
+    ModelWithLink.schema = {
+        prop: {
+            type: 'ModelLink',
+        },
+    };
+
+})(ModelWithLink || (ModelWithLink = {}));"
+`;
+
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelWithNestedEnums.js): ./test/result/v2/javascript/models/ModelWithNestedEnums.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { Dictionary } from '../models/Dictionary';
+
+/**
+ * This is a model with nested enums
+ */
+export let ModelWithNestedEnums;
+(function (ModelWithNestedEnums) {
+
+    ModelWithNestedEnums.schema = {
+        arrayWithDescription: {
+            type: 'Array',
+            item: {
+                type: 'Enum',
+            },
+        },
+        arrayWithEnum: {
+            type: 'Array',
+            item: {
+                type: 'Enum',
+            },
+        },
+        dictionaryWithEnum: {
+            type: 'Dictionary',
+            item: {
+                type: 'Enum',
+            },
+        },
+        dictionaryWithEnumFromDescription: {
+            type: 'Dictionary',
+            item: {
+                type: 'Enum',
+            },
+        },
+    };
+
+})(ModelWithNestedEnums || (ModelWithNestedEnums = {}));"
+`;
+
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelWithNestedProperties.js): ./test/result/v2/javascript/models/ModelWithNestedProperties.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+
+/**
+ * This is a model with one nested property
+ */
+export let ModelWithNestedProperties;
+(function (ModelWithNestedProperties) {
+
+    ModelWithNestedProperties.schema = {
+        first: {
+            second: {
+                third: {
+                    type: 'string',
+                    isReadOnly: true,
+                    isRequired: true,
+                },
+                isReadOnly: true,
+                isRequired: true,
+            },
+            isReadOnly: true,
+            isRequired: true,
+        },
+    };
+
+})(ModelWithNestedProperties || (ModelWithNestedProperties = {}));"
+`;
+
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelWithProperties.js): ./test/result/v2/javascript/models/ModelWithProperties.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ModelWithString } from '../models/ModelWithString';
+
+/**
+ * This is a model with one nested property
+ */
+export let ModelWithProperties;
+(function (ModelWithProperties) {
+
+    ModelWithProperties.schema = {
+        boolean: {
+            type: 'boolean',
+        },
+        number: {
+            type: 'number',
+        },
+        reference: {
+            type: 'ModelWithString',
+        },
+        required: {
+            type: 'string',
+            isRequired: true,
+        },
+        requiredAndReadOnly: {
+            type: 'string',
+            isReadOnly: true,
+            isRequired: true,
+        },
+        string: {
+            type: 'string',
+        },
+    };
+
+})(ModelWithProperties || (ModelWithProperties = {}));"
+`;
+
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelWithReference.js): ./test/result/v2/javascript/models/ModelWithReference.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ModelWithString } from '../models/ModelWithString';
+
+/**
+ * This is a model with one property containing a reference
+ */
+export let ModelWithReference;
+(function (ModelWithReference) {
+
+    ModelWithReference.schema = {
+        prop: {
+            type: 'ModelWithString',
+        },
+    };
+
+})(ModelWithReference || (ModelWithReference = {}));"
+`;
+
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelWithString.js): ./test/result/v2/javascript/models/ModelWithString.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+
+/**
+ * This is a model with one string property
+ */
+export let ModelWithString;
+(function (ModelWithString) {
+
+    ModelWithString.schema = {
+        prop: {
+            type: 'string',
+        },
+    };
+
+})(ModelWithString || (ModelWithString = {}));"
+`;
+
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/SimpleBoolean.js): ./test/result/v2/javascript/models/SimpleBoolean.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+
+/**
+ * This is a simple boolean
+ */
+export let SimpleBoolean;
+(function (SimpleBoolean) {
+
+    SimpleBoolean.schema = {
+        type: 'boolean',
+    };
+
+})(SimpleBoolean || (SimpleBoolean = {}));"
+`;
+
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/SimpleFile.js): ./test/result/v2/javascript/models/SimpleFile.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+
+/**
+ * This is a simple file
+ */
+export let SimpleFile;
+(function (SimpleFile) {
+
+    SimpleFile.schema = {
+        type: 'File',
+    };
+
+})(SimpleFile || (SimpleFile = {}));"
+`;
+
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/SimpleInteger.js): ./test/result/v2/javascript/models/SimpleInteger.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+
+/**
+ * This is a simple number
+ */
+export let SimpleInteger;
+(function (SimpleInteger) {
+
+    SimpleInteger.schema = {
+        type: 'number',
+    };
+
+})(SimpleInteger || (SimpleInteger = {}));"
+`;
+
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/SimpleReference.js): ./test/result/v2/javascript/models/SimpleReference.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ModelWithString } from '../models/ModelWithString';
+
+/**
+ * This is a simple reference
+ */
+export let SimpleReference;
+(function (SimpleReference) {
+
+    SimpleReference.schema = {
+        type: 'ModelWithString',
+    };
+
+})(SimpleReference || (SimpleReference = {}));"
+`;
+
+exports[`generation v2 javascript file(./test/result/v2/javascript/models/SimpleString.js): ./test/result/v2/javascript/models/SimpleString.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+
+/**
+ * This is a simple string
+ */
+export let SimpleString;
+(function (SimpleString) {
+
+    SimpleString.schema = {
+        type: 'string',
+    };
+
+})(SimpleString || (SimpleString = {}));"
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/services/ComplexService.js): ./test/result/v2/javascript/services/ComplexService.js 1`] = `
@@ -499,7 +1338,7 @@ export class ComplexService {
      */
     static async complexTypes(
         parameterObject,
-        parameterReference
+        parameterReference,
     ) {
 
         const result = await $request({
@@ -507,8 +1346,8 @@ export class ComplexService {
             path: \`/api/v\${OpenAPI.VERSION}/complex\`,
             query: {
                 'parameterObject': parameterObject,
-                'parameterReference': parameterReference
-            }
+                'parameterReference': parameterReference,
+            },
         });
 
         if (!result.ok) {
@@ -552,7 +1391,7 @@ export class DefaultsService {
         parameterEnum = 'Success',
         parameterModel = {
             \\"prop\\": \\"Hello World\\"
-        }
+        },
     ) {
 
         const result = await $request({
@@ -563,8 +1402,8 @@ export class DefaultsService {
                 'parameterNumber': parameterNumber,
                 'parameterBoolean': parameterBoolean,
                 'parameterEnum': parameterEnum,
-                'parameterModel': parameterModel
-            }
+                'parameterModel': parameterModel,
+            },
         });
 
         catchGenericError(result);
@@ -597,19 +1436,22 @@ export class ParametersService {
         parameterHeader,
         parameterQuery,
         parameterForm,
-        parameterBody
+        parameterBody,
     ) {
 
         const result = await $request({
             method: 'get',
             path: \`/api/v\${OpenAPI.VERSION}/parameters\`,
+            headers: {
+                'parameterHeader': parameterHeader,
+            },
             query: {
-                'parameterQuery': parameterQuery
+                'parameterQuery': parameterQuery,
             },
             formData: {
-                'parameterForm': parameterForm
+                'parameterForm': parameterForm,
             },
-            body: parameterBody
+            body: parameterBody,
         });
 
         catchGenericError(result);
@@ -639,7 +1481,7 @@ export class ResponseService {
 
         const result = await $request({
             method: 'post',
-            path: \`/api/v\${OpenAPI.VERSION}/response\`
+            path: \`/api/v\${OpenAPI.VERSION}/response\`,
         });
 
         if (!result.ok) {
@@ -663,7 +1505,7 @@ export class ResponseService {
 
         const result = await $request({
             method: 'get',
-            path: \`/api/v\${OpenAPI.VERSION}/response\`
+            path: \`/api/v\${OpenAPI.VERSION}/response\`,
         });
 
         catchGenericError(result);
@@ -681,7 +1523,7 @@ export class ResponseService {
 
         const result = await $request({
             method: 'put',
-            path: \`/api/v\${OpenAPI.VERSION}/response\`
+            path: \`/api/v\${OpenAPI.VERSION}/response\`,
         });
 
         if (!result.ok) {
@@ -718,7 +1560,7 @@ export class SimpleService {
 
         const result = await $request({
             method: 'delete',
-            path: \`/api/v\${OpenAPI.VERSION}/simple\`
+            path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
 
         catchGenericError(result);
@@ -733,7 +1575,7 @@ export class SimpleService {
 
         const result = await $request({
             method: 'get',
-            path: \`/api/v\${OpenAPI.VERSION}/simple\`
+            path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
 
         catchGenericError(result);
@@ -748,7 +1590,7 @@ export class SimpleService {
 
         const result = await $request({
             method: 'head',
-            path: \`/api/v\${OpenAPI.VERSION}/simple\`
+            path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
 
         catchGenericError(result);
@@ -763,7 +1605,7 @@ export class SimpleService {
 
         const result = await $request({
             method: 'options',
-            path: \`/api/v\${OpenAPI.VERSION}/simple\`
+            path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
 
         catchGenericError(result);
@@ -778,7 +1620,7 @@ export class SimpleService {
 
         const result = await $request({
             method: 'patch',
-            path: \`/api/v\${OpenAPI.VERSION}/simple\`
+            path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
 
         catchGenericError(result);
@@ -793,7 +1635,7 @@ export class SimpleService {
 
         const result = await $request({
             method: 'post',
-            path: \`/api/v\${OpenAPI.VERSION}/simple\`
+            path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
 
         catchGenericError(result);
@@ -808,7 +1650,7 @@ export class SimpleService {
 
         const result = await $request({
             method: 'put',
-            path: \`/api/v\${OpenAPI.VERSION}/simple\`
+            path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
 
         catchGenericError(result);
@@ -853,7 +1695,7 @@ export class TypesService {
         parameterArray,
         parameterDictionary,
         parameterEnum,
-        id
+        id,
     ) {
 
         const result = await $request({
@@ -866,8 +1708,8 @@ export class TypesService {
                 'parameterObject': parameterObject,
                 'parameterArray': parameterArray,
                 'parameterDictionary': parameterDictionary,
-                'parameterEnum': parameterEnum
-            }
+                'parameterEnum': parameterEnum,
+            },
         });
 
         catchGenericError(result);
@@ -1348,7 +2190,19 @@ import { ModelWithString } from '../models/ModelWithString';
 /**
  * This is a simple array containing an array
  */
-export type ArrayWithArray = Array<Array<ModelWithString>>;"
+export type ArrayWithArray = Array<Array<ModelWithString>>;
+
+export namespace ArrayWithArray {
+
+    export const schema = {
+        type: 'Array',
+        item: {
+            type: 'Array',
+            item: 'ModelWithString',
+        },
+    };
+
+}"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/ArrayWithBooleans.ts): ./test/result/v2/typescript/models/ArrayWithBooleans.ts 1`] = `
@@ -1360,7 +2214,18 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/models/ArrayW
 /**
  * This is a simple array with booleans
  */
-export type ArrayWithBooleans = Array<boolean>;"
+export type ArrayWithBooleans = Array<boolean>;
+
+export namespace ArrayWithBooleans {
+
+    export const schema = {
+        type: 'Array',
+        item: {
+            type: 'boolean',
+        },
+    };
+
+}"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/ArrayWithNumbers.ts): ./test/result/v2/typescript/models/ArrayWithNumbers.ts 1`] = `
@@ -1372,7 +2237,18 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/models/ArrayW
 /**
  * This is a simple array with numbers
  */
-export type ArrayWithNumbers = Array<number>;"
+export type ArrayWithNumbers = Array<number>;
+
+export namespace ArrayWithNumbers {
+
+    export const schema = {
+        type: 'Array',
+        item: {
+            type: 'number',
+        },
+    };
+
+}"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/ArrayWithProperties.ts): ./test/result/v2/typescript/models/ArrayWithProperties.ts 1`] = `
@@ -1386,8 +2262,24 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/models/ArrayW
  */
 export type ArrayWithProperties = Array<{
     foo?: string,
-    bar?: string
-}>;"
+    bar?: string,
+}>;
+
+export namespace ArrayWithProperties {
+
+    export const schema = {
+        type: 'Array',
+        item: {
+            foo: {
+                type: 'string',
+            },
+            bar: {
+                type: 'string',
+            },
+        },
+    };
+
+}"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/ArrayWithReferences.ts): ./test/result/v2/typescript/models/ArrayWithReferences.ts 1`] = `
@@ -1401,7 +2293,16 @@ import { ModelWithString } from '../models/ModelWithString';
 /**
  * This is a simple array with references
  */
-export type ArrayWithReferences = Array<ModelWithString>;"
+export type ArrayWithReferences = Array<ModelWithString>;
+
+export namespace ArrayWithReferences {
+
+    export const schema = {
+        type: 'Array',
+        item: 'ModelWithString',
+    };
+
+}"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/ArrayWithStrings.ts): ./test/result/v2/typescript/models/ArrayWithStrings.ts 1`] = `
@@ -1413,7 +2314,18 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/models/ArrayW
 /**
  * This is a simple array with strings
  */
-export type ArrayWithStrings = Array<string>;"
+export type ArrayWithStrings = Array<string>;
+
+export namespace ArrayWithStrings {
+
+    export const schema = {
+        type: 'Array',
+        item: {
+            type: 'string',
+        },
+    };
+
+}"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/Dictionary.ts): ./test/result/v2/typescript/models/Dictionary.ts 1`] = `
@@ -1440,7 +2352,19 @@ import { ModelWithString } from '../models/ModelWithString';
 /**
  * This is a complex dictionary
  */
-export type DictionaryWithArray = Dictionary<Array<ModelWithString>>;"
+export type DictionaryWithArray = Dictionary<Array<ModelWithString>>;
+
+export namespace DictionaryWithArray {
+
+    export const schema = {
+        type: 'Dictionary',
+        item: {
+            type: 'Array',
+            item: 'ModelWithString',
+        },
+    };
+
+}"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/DictionaryWithDictionary.ts): ./test/result/v2/typescript/models/DictionaryWithDictionary.ts 1`] = `
@@ -1454,7 +2378,21 @@ import { Dictionary } from '../models/Dictionary';
 /**
  * This is a string dictionary
  */
-export type DictionaryWithDictionary = Dictionary<Dictionary<string>>;"
+export type DictionaryWithDictionary = Dictionary<Dictionary<string>>;
+
+export namespace DictionaryWithDictionary {
+
+    export const schema = {
+        type: 'Dictionary',
+        item: {
+            type: 'Dictionary',
+            item: {
+                type: 'string',
+            },
+        },
+    };
+
+}"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/DictionaryWithProperties.ts): ./test/result/v2/typescript/models/DictionaryWithProperties.ts 1`] = `
@@ -1470,8 +2408,24 @@ import { Dictionary } from '../models/Dictionary';
  */
 export type DictionaryWithProperties = Dictionary<{
     foo?: string,
-    bar?: string
-}>;"
+    bar?: string,
+}>;
+
+export namespace DictionaryWithProperties {
+
+    export const schema = {
+        type: 'Dictionary',
+        item: {
+            foo: {
+                type: 'string',
+            },
+            bar: {
+                type: 'string',
+            },
+        },
+    };
+
+}"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/DictionaryWithReference.ts): ./test/result/v2/typescript/models/DictionaryWithReference.ts 1`] = `
@@ -1486,7 +2440,16 @@ import { ModelWithString } from '../models/ModelWithString';
 /**
  * This is a string reference
  */
-export type DictionaryWithReference = Dictionary<ModelWithString>;"
+export type DictionaryWithReference = Dictionary<ModelWithString>;
+
+export namespace DictionaryWithReference {
+
+    export const schema = {
+        type: 'Dictionary',
+        item: 'ModelWithString',
+    };
+
+}"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/DictionaryWithString.ts): ./test/result/v2/typescript/models/DictionaryWithString.ts 1`] = `
@@ -1500,7 +2463,18 @@ import { Dictionary } from '../models/Dictionary';
 /**
  * This is a string dictionary
  */
-export type DictionaryWithString = Dictionary<string>;"
+export type DictionaryWithString = Dictionary<string>;
+
+export namespace DictionaryWithString {
+
+    export const schema = {
+        type: 'Dictionary',
+        item: {
+            type: 'string',
+        },
+    };
+
+}"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/EnumFromDescription.ts): ./test/result/v2/typescript/models/EnumFromDescription.ts 1`] = `
@@ -1515,7 +2489,15 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/models/EnumFr
 export enum EnumFromDescription {
     ERROR = 3,
     SUCCESS = 1,
-    WARNING = 2
+    WARNING = 2,
+}
+
+export namespace EnumFromDescription {
+
+    export const schema = {
+        type: 'Enum',
+    };
+
 }"
 `;
 
@@ -1531,7 +2513,15 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/models/EnumWi
 export enum EnumWithNumbers {
     NUM_1 = 1,
     NUM_2 = 2,
-    NUM_3 = 3
+    NUM_3 = 3,
+}
+
+export namespace EnumWithNumbers {
+
+    export const schema = {
+        type: 'Enum',
+    };
+
 }"
 `;
 
@@ -1547,7 +2537,15 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/models/EnumWi
 export enum EnumWithStrings {
     ERROR = 'Error',
     SUCCESS = 'Success',
-    WARNING = 'Warning'
+    WARNING = 'Warning',
+}
+
+export namespace EnumWithStrings {
+
+    export const schema = {
+        type: 'Enum',
+    };
+
 }"
 `;
 
@@ -1563,7 +2561,16 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelL
 export interface ModelLink {
     id?: string;
 }
-"
+
+export namespace ModelLink {
+
+    export const schema = {
+        id: {
+            type: 'string',
+        },
+    };
+
+}"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelThatExtends.ts): ./test/result/v2/typescript/models/ModelThatExtends.ts 1`] = `
@@ -1581,7 +2588,19 @@ export interface ModelThatExtends extends ModelWithString {
     propExtendsA?: string;
     propExtendsB?: ModelWithString;
 }
-"
+
+export namespace ModelThatExtends {
+
+    export const schema = {
+        propExtendsA: {
+            type: 'string',
+        },
+        propExtendsB: {
+            type: 'ModelWithString',
+        },
+    };
+
+}"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelThatExtendsExtends.ts): ./test/result/v2/typescript/models/ModelThatExtendsExtends.ts 1`] = `
@@ -1600,7 +2619,19 @@ export interface ModelThatExtendsExtends extends ModelWithString, ModelThatExten
     propExtendsC?: string;
     propExtendsD?: ModelWithString;
 }
-"
+
+export namespace ModelThatExtendsExtends {
+
+    export const schema = {
+        propExtendsC: {
+            type: 'string',
+        },
+        propExtendsD: {
+            type: 'ModelWithString',
+        },
+    };
+
+}"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelWithArray.ts): ./test/result/v2/typescript/models/ModelWithArray.ts 1`] = `
@@ -1619,7 +2650,29 @@ export interface ModelWithArray {
     propWithFile?: Array<File>;
     propWithNumber?: Array<number>;
 }
-"
+
+export namespace ModelWithArray {
+
+    export const schema = {
+        prop: {
+            type: 'Array',
+            item: 'ModelWithString',
+        },
+        propWithFile: {
+            type: 'Array',
+            item: {
+                type: 'File',
+            },
+        },
+        propWithNumber: {
+            type: 'Array',
+            item: {
+                type: 'number',
+            },
+        },
+    };
+
+}"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelWithBoolean.ts): ./test/result/v2/typescript/models/ModelWithBoolean.ts 1`] = `
@@ -1637,7 +2690,16 @@ export interface ModelWithBoolean {
      */
     prop?: boolean;
 }
-"
+
+export namespace ModelWithBoolean {
+
+    export const schema = {
+        prop: {
+            type: 'boolean',
+        },
+    };
+
+}"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelWithCircularReference.ts): ./test/result/v2/typescript/models/ModelWithCircularReference.ts 1`] = `
@@ -1652,7 +2714,16 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelW
 export interface ModelWithCircularReference {
     prop?: ModelWithCircularReference;
 }
-"
+
+export namespace ModelWithCircularReference {
+
+    export const schema = {
+        prop: {
+            type: 'ModelWithCircularReference',
+        },
+    };
+
+}"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelWithDictionary.ts): ./test/result/v2/typescript/models/ModelWithDictionary.ts 1`] = `
@@ -1669,7 +2740,19 @@ import { Dictionary } from '../models/Dictionary';
 export interface ModelWithDictionary {
     prop?: Dictionary<string>;
 }
-"
+
+export namespace ModelWithDictionary {
+
+    export const schema = {
+        prop: {
+            type: 'Dictionary',
+            item: {
+                type: 'string',
+            },
+        },
+    };
+
+}"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelWithDuplicateImports.ts): ./test/result/v2/typescript/models/ModelWithDuplicateImports.ts 1`] = `
@@ -1688,7 +2771,22 @@ export interface ModelWithDuplicateImports {
     propB?: ModelWithString;
     propC?: ModelWithString;
 }
-"
+
+export namespace ModelWithDuplicateImports {
+
+    export const schema = {
+        propA: {
+            type: 'ModelWithString',
+        },
+        propB: {
+            type: 'ModelWithString',
+        },
+        propC: {
+            type: 'ModelWithString',
+        },
+    };
+
+}"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelWithDuplicateProperties.ts): ./test/result/v2/typescript/models/ModelWithDuplicateProperties.ts 1`] = `
@@ -1705,7 +2803,16 @@ import { ModelWithString } from '../models/ModelWithString';
 export interface ModelWithDuplicateProperties {
     prop?: ModelWithString;
 }
-"
+
+export namespace ModelWithDuplicateProperties {
+
+    export const schema = {
+        prop: {
+            type: 'ModelWithString',
+        },
+    };
+
+}"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelWithEnum.ts): ./test/result/v2/typescript/models/ModelWithEnum.ts 1`] = `
@@ -1732,11 +2839,16 @@ export namespace ModelWithEnum {
     export enum test {
         SUCCESS = 'Success',
         WARNING = 'Warning',
-        ERROR = 'Error'
+        ERROR = 'Error',
     }
 
-}
-"
+    export const schema = {
+        test: {
+            type: 'Enum',
+        },
+    };
+
+}"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelWithEnumFromDescription.ts): ./test/result/v2/typescript/models/ModelWithEnumFromDescription.ts 1`] = `
@@ -1763,11 +2875,16 @@ export namespace ModelWithEnumFromDescription {
     export enum test {
         SUCCESS = 1,
         WARNING = 2,
-        ERROR = 3
+        ERROR = 3,
     }
 
-}
-"
+    export const schema = {
+        test: {
+            type: 'Enum',
+        },
+    };
+
+}"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelWithInteger.ts): ./test/result/v2/typescript/models/ModelWithInteger.ts 1`] = `
@@ -1785,7 +2902,16 @@ export interface ModelWithInteger {
      */
     prop?: number;
 }
-"
+
+export namespace ModelWithInteger {
+
+    export const schema = {
+        prop: {
+            type: 'number',
+        },
+    };
+
+}"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelWithLink.ts): ./test/result/v2/typescript/models/ModelWithLink.ts 1`] = `
@@ -1803,7 +2929,16 @@ import { ModelWithString } from '../models/ModelWithString';
 export interface ModelWithLink {
     prop?: ModelLink;
 }
-"
+
+export namespace ModelWithLink {
+
+    export const schema = {
+        prop: {
+            type: 'ModelLink',
+        },
+    };
+
+}"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelWithNestedEnums.ts): ./test/result/v2/typescript/models/ModelWithNestedEnums.ts 1`] = `
@@ -1823,7 +2958,37 @@ export interface ModelWithNestedEnums {
     dictionaryWithEnum?: Dictionary<('Success' | 'Warning' | 'Error')>;
     dictionaryWithEnumFromDescription?: Dictionary<(1 | 2 | 3)>;
 }
-"
+
+export namespace ModelWithNestedEnums {
+
+    export const schema = {
+        arrayWithDescription: {
+            type: 'Array',
+            item: {
+                type: 'Enum',
+            },
+        },
+        arrayWithEnum: {
+            type: 'Array',
+            item: {
+                type: 'Enum',
+            },
+        },
+        dictionaryWithEnum: {
+            type: 'Dictionary',
+            item: {
+                type: 'Enum',
+            },
+        },
+        dictionaryWithEnumFromDescription: {
+            type: 'Dictionary',
+            item: {
+                type: 'Enum',
+            },
+        },
+    };
+
+}"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelWithNestedProperties.ts): ./test/result/v2/typescript/models/ModelWithNestedProperties.ts 1`] = `
@@ -1838,11 +3003,30 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelW
 export interface ModelWithNestedProperties {
     readonly first: {
         readonly second: {
-            readonly third: string
-        }
+            readonly third: string,
+        },
     };
 }
-"
+
+export namespace ModelWithNestedProperties {
+
+    export const schema = {
+        first: {
+            second: {
+                third: {
+                    type: 'string',
+                    isReadOnly: true,
+                    isRequired: true,
+                },
+                isReadOnly: true,
+                isRequired: true,
+            },
+            isReadOnly: true,
+            isRequired: true,
+        },
+    };
+
+}"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelWithProperties.ts): ./test/result/v2/typescript/models/ModelWithProperties.ts 1`] = `
@@ -1864,7 +3048,34 @@ export interface ModelWithProperties {
     readonly requiredAndReadOnly: string;
     string?: string;
 }
-"
+
+export namespace ModelWithProperties {
+
+    export const schema = {
+        boolean: {
+            type: 'boolean',
+        },
+        number: {
+            type: 'number',
+        },
+        reference: {
+            type: 'ModelWithString',
+        },
+        required: {
+            type: 'string',
+            isRequired: true,
+        },
+        requiredAndReadOnly: {
+            type: 'string',
+            isReadOnly: true,
+            isRequired: true,
+        },
+        string: {
+            type: 'string',
+        },
+    };
+
+}"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelWithReference.ts): ./test/result/v2/typescript/models/ModelWithReference.ts 1`] = `
@@ -1881,7 +3092,16 @@ import { ModelWithString } from '../models/ModelWithString';
 export interface ModelWithReference {
     prop?: ModelWithString;
 }
-"
+
+export namespace ModelWithReference {
+
+    export const schema = {
+        prop: {
+            type: 'ModelWithString',
+        },
+    };
+
+}"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/ModelWithString.ts): ./test/result/v2/typescript/models/ModelWithString.ts 1`] = `
@@ -1899,7 +3119,16 @@ export interface ModelWithString {
      */
     prop?: string;
 }
-"
+
+export namespace ModelWithString {
+
+    export const schema = {
+        prop: {
+            type: 'string',
+        },
+    };
+
+}"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/SimpleBoolean.ts): ./test/result/v2/typescript/models/SimpleBoolean.ts 1`] = `
@@ -1911,7 +3140,15 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/models/Simple
 /**
  * This is a simple boolean
  */
-export type SimpleBoolean = boolean;"
+export type SimpleBoolean = boolean;
+
+export namespace SimpleBoolean {
+
+    export const schema = {
+        type: 'boolean',
+    };
+
+}"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/SimpleFile.ts): ./test/result/v2/typescript/models/SimpleFile.ts 1`] = `
@@ -1923,7 +3160,15 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/models/Simple
 /**
  * This is a simple file
  */
-export type SimpleFile = File;"
+export type SimpleFile = File;
+
+export namespace SimpleFile {
+
+    export const schema = {
+        type: 'File',
+    };
+
+}"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/SimpleInteger.ts): ./test/result/v2/typescript/models/SimpleInteger.ts 1`] = `
@@ -1935,7 +3180,15 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/models/Simple
 /**
  * This is a simple number
  */
-export type SimpleInteger = number;"
+export type SimpleInteger = number;
+
+export namespace SimpleInteger {
+
+    export const schema = {
+        type: 'number',
+    };
+
+}"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/SimpleReference.ts): ./test/result/v2/typescript/models/SimpleReference.ts 1`] = `
@@ -1949,7 +3202,15 @@ import { ModelWithString } from '../models/ModelWithString';
 /**
  * This is a simple reference
  */
-export type SimpleReference = ModelWithString;"
+export type SimpleReference = ModelWithString;
+
+export namespace SimpleReference {
+
+    export const schema = {
+        type: 'ModelWithString',
+    };
+
+}"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/models/SimpleString.ts): ./test/result/v2/typescript/models/SimpleString.ts 1`] = `
@@ -1961,7 +3222,15 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/models/Simple
 /**
  * This is a simple string
  */
-export type SimpleString = string;"
+export type SimpleString = string;
+
+export namespace SimpleString {
+
+    export const schema = {
+        type: 'string',
+    };
+
+}"
 `;
 
 exports[`generation v2 typescript file(./test/result/v2/typescript/services/ComplexService.ts): ./test/result/v2/typescript/services/ComplexService.ts 1`] = `
@@ -1987,11 +3256,11 @@ export class ComplexService {
         parameterObject: {
             first?: {
                 second?: {
-                    third?: string
-                }
-            }
+                    third?: string,
+                },
+            },
         },
-        parameterReference: ModelWithString
+        parameterReference: ModelWithString,
     ): Promise<Array<ModelWithString>> {
 
         const result = await $request({
@@ -1999,8 +3268,8 @@ export class ComplexService {
             path: \`/api/v\${OpenAPI.VERSION}/complex\`,
             query: {
                 'parameterObject': parameterObject,
-                'parameterReference': parameterReference
-            }
+                'parameterReference': parameterReference,
+            },
         });
 
         if (!result.ok) {
@@ -2046,7 +3315,7 @@ export class DefaultsService {
         parameterEnum: ('Success' | 'Warning' | 'Error') = 'Success',
         parameterModel: ModelWithString = {
             \\"prop\\": \\"Hello World\\"
-        }
+        },
     ): Promise<void> {
 
         const result = await $request({
@@ -2057,8 +3326,8 @@ export class DefaultsService {
                 'parameterNumber': parameterNumber,
                 'parameterBoolean': parameterBoolean,
                 'parameterEnum': parameterEnum,
-                'parameterModel': parameterModel
-            }
+                'parameterModel': parameterModel,
+            },
         });
 
         catchGenericError(result);
@@ -2092,19 +3361,22 @@ export class ParametersService {
         parameterHeader: string,
         parameterQuery: string,
         parameterForm: string,
-        parameterBody: string
+        parameterBody: string,
     ): Promise<void> {
 
         const result = await $request({
             method: 'get',
             path: \`/api/v\${OpenAPI.VERSION}/parameters\`,
+            headers: {
+                'parameterHeader': parameterHeader,
+            },
             query: {
-                'parameterQuery': parameterQuery
+                'parameterQuery': parameterQuery,
             },
             formData: {
-                'parameterForm': parameterForm
+                'parameterForm': parameterForm,
             },
-            body: parameterBody
+            body: parameterBody,
         });
 
         catchGenericError(result);
@@ -2138,7 +3410,7 @@ export class ResponseService {
 
         const result = await $request({
             method: 'post',
-            path: \`/api/v\${OpenAPI.VERSION}/response\`
+            path: \`/api/v\${OpenAPI.VERSION}/response\`,
         });
 
         if (!result.ok) {
@@ -2162,7 +3434,7 @@ export class ResponseService {
 
         const result = await $request({
             method: 'get',
-            path: \`/api/v\${OpenAPI.VERSION}/response\`
+            path: \`/api/v\${OpenAPI.VERSION}/response\`,
         });
 
         catchGenericError(result);
@@ -2180,7 +3452,7 @@ export class ResponseService {
 
         const result = await $request({
             method: 'put',
-            path: \`/api/v\${OpenAPI.VERSION}/response\`
+            path: \`/api/v\${OpenAPI.VERSION}/response\`,
         });
 
         if (!result.ok) {
@@ -2218,7 +3490,7 @@ export class SimpleService {
 
         const result = await $request({
             method: 'delete',
-            path: \`/api/v\${OpenAPI.VERSION}/simple\`
+            path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
 
         catchGenericError(result);
@@ -2233,7 +3505,7 @@ export class SimpleService {
 
         const result = await $request({
             method: 'get',
-            path: \`/api/v\${OpenAPI.VERSION}/simple\`
+            path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
 
         catchGenericError(result);
@@ -2248,7 +3520,7 @@ export class SimpleService {
 
         const result = await $request({
             method: 'head',
-            path: \`/api/v\${OpenAPI.VERSION}/simple\`
+            path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
 
         catchGenericError(result);
@@ -2263,7 +3535,7 @@ export class SimpleService {
 
         const result = await $request({
             method: 'options',
-            path: \`/api/v\${OpenAPI.VERSION}/simple\`
+            path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
 
         catchGenericError(result);
@@ -2278,7 +3550,7 @@ export class SimpleService {
 
         const result = await $request({
             method: 'patch',
-            path: \`/api/v\${OpenAPI.VERSION}/simple\`
+            path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
 
         catchGenericError(result);
@@ -2293,7 +3565,7 @@ export class SimpleService {
 
         const result = await $request({
             method: 'post',
-            path: \`/api/v\${OpenAPI.VERSION}/simple\`
+            path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
 
         catchGenericError(result);
@@ -2308,7 +3580,7 @@ export class SimpleService {
 
         const result = await $request({
             method: 'put',
-            path: \`/api/v\${OpenAPI.VERSION}/simple\`
+            path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
 
         catchGenericError(result);
@@ -2355,7 +3627,7 @@ export class TypesService {
         parameterArray: Array<string>,
         parameterDictionary: Dictionary<string>,
         parameterEnum: ('Success' | 'Warning' | 'Error'),
-        id?: number
+        id?: number,
     ): Promise<number | string | boolean | any> {
 
         const result = await $request({
@@ -2368,8 +3640,8 @@ export class TypesService {
                 'parameterObject': parameterObject,
                 'parameterArray': parameterArray,
                 'parameterDictionary': parameterDictionary,
-                'parameterEnum': parameterEnum
-            }
+                'parameterEnum': parameterEnum,
+            },
         });
 
         catchGenericError(result);
@@ -2740,11 +4012,43 @@ export { ApiError } from './core/ApiError';
 export { isSuccess } from './core/isSuccess';
 export { OpenAPI } from './core/OpenAPI';
 
+export { ArrayWithArray } from './models/ArrayWithArray';
+export { ArrayWithBooleans } from './models/ArrayWithBooleans';
+export { ArrayWithNumbers } from './models/ArrayWithNumbers';
+export { ArrayWithProperties } from './models/ArrayWithProperties';
+export { ArrayWithReferences } from './models/ArrayWithReferences';
+export { ArrayWithStrings } from './models/ArrayWithStrings';
+export { DictionaryWithArray } from './models/DictionaryWithArray';
+export { DictionaryWithDictionary } from './models/DictionaryWithDictionary';
+export { DictionaryWithProperties } from './models/DictionaryWithProperties';
+export { DictionaryWithReference } from './models/DictionaryWithReference';
+export { DictionaryWithString } from './models/DictionaryWithString';
 export { EnumFromDescription } from './models/EnumFromDescription';
 export { EnumWithNumbers } from './models/EnumWithNumbers';
 export { EnumWithStrings } from './models/EnumWithStrings';
+export { ModelLink } from './models/ModelLink';
+export { ModelThatExtends } from './models/ModelThatExtends';
+export { ModelThatExtendsExtends } from './models/ModelThatExtendsExtends';
+export { ModelWithArray } from './models/ModelWithArray';
+export { ModelWithBoolean } from './models/ModelWithBoolean';
+export { ModelWithCircularReference } from './models/ModelWithCircularReference';
+export { ModelWithDictionary } from './models/ModelWithDictionary';
+export { ModelWithDuplicateImports } from './models/ModelWithDuplicateImports';
+export { ModelWithDuplicateProperties } from './models/ModelWithDuplicateProperties';
 export { ModelWithEnum } from './models/ModelWithEnum';
 export { ModelWithEnumFromDescription } from './models/ModelWithEnumFromDescription';
+export { ModelWithInteger } from './models/ModelWithInteger';
+export { ModelWithLink } from './models/ModelWithLink';
+export { ModelWithNestedEnums } from './models/ModelWithNestedEnums';
+export { ModelWithNestedProperties } from './models/ModelWithNestedProperties';
+export { ModelWithProperties } from './models/ModelWithProperties';
+export { ModelWithReference } from './models/ModelWithReference';
+export { ModelWithString } from './models/ModelWithString';
+export { SimpleBoolean } from './models/SimpleBoolean';
+export { SimpleFile } from './models/SimpleFile';
+export { SimpleInteger } from './models/SimpleInteger';
+export { SimpleReference } from './models/SimpleReference';
+export { SimpleString } from './models/SimpleString';
 
 export { ComplexService } from './services/ComplexService';
 export { DefaultsService } from './services/DefaultsService';
@@ -2753,6 +4057,268 @@ export { ResponseService } from './services/ResponseService';
 export { SimpleService } from './services/SimpleService';
 export { TypesService } from './services/TypesService';
 "
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/models/ArrayWithArray.js): ./test/result/v3/javascript/models/ArrayWithArray.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ModelWithString } from '../models/ModelWithString';
+
+/**
+ * This is a simple array containing an array
+ */
+export let ArrayWithArray;
+(function (ArrayWithArray) {
+
+    ArrayWithArray.schema = {
+        type: 'Array',
+        item: {
+            type: 'Array',
+            item: 'ModelWithString',
+        },
+    };
+
+})(ArrayWithArray || (ArrayWithArray = {}));"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/models/ArrayWithBooleans.js): ./test/result/v3/javascript/models/ArrayWithBooleans.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+
+/**
+ * This is a simple array with booleans
+ */
+export let ArrayWithBooleans;
+(function (ArrayWithBooleans) {
+
+    ArrayWithBooleans.schema = {
+        type: 'Array',
+        item: {
+            type: 'boolean',
+        },
+    };
+
+})(ArrayWithBooleans || (ArrayWithBooleans = {}));"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/models/ArrayWithNumbers.js): ./test/result/v3/javascript/models/ArrayWithNumbers.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+
+/**
+ * This is a simple array with numbers
+ */
+export let ArrayWithNumbers;
+(function (ArrayWithNumbers) {
+
+    ArrayWithNumbers.schema = {
+        type: 'Array',
+        item: {
+            type: 'number',
+        },
+    };
+
+})(ArrayWithNumbers || (ArrayWithNumbers = {}));"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/models/ArrayWithProperties.js): ./test/result/v3/javascript/models/ArrayWithProperties.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+
+/**
+ * This is a simple array with properties
+ */
+export let ArrayWithProperties;
+(function (ArrayWithProperties) {
+
+    ArrayWithProperties.schema = {
+        type: 'Array',
+        item: {
+            foo: {
+                type: 'string',
+            },
+            bar: {
+                type: 'string',
+            },
+        },
+    };
+
+})(ArrayWithProperties || (ArrayWithProperties = {}));"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/models/ArrayWithReferences.js): ./test/result/v3/javascript/models/ArrayWithReferences.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ModelWithString } from '../models/ModelWithString';
+
+/**
+ * This is a simple array with references
+ */
+export let ArrayWithReferences;
+(function (ArrayWithReferences) {
+
+    ArrayWithReferences.schema = {
+        type: 'Array',
+        item: 'ModelWithString',
+    };
+
+})(ArrayWithReferences || (ArrayWithReferences = {}));"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/models/ArrayWithStrings.js): ./test/result/v3/javascript/models/ArrayWithStrings.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+
+/**
+ * This is a simple array with strings
+ */
+export let ArrayWithStrings;
+(function (ArrayWithStrings) {
+
+    ArrayWithStrings.schema = {
+        type: 'Array',
+        item: {
+            type: 'string',
+        },
+    };
+
+})(ArrayWithStrings || (ArrayWithStrings = {}));"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/models/DictionaryWithArray.js): ./test/result/v3/javascript/models/DictionaryWithArray.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { Dictionary } from '../models/Dictionary';
+import { ModelWithString } from '../models/ModelWithString';
+
+/**
+ * This is a complex dictionary
+ */
+export let DictionaryWithArray;
+(function (DictionaryWithArray) {
+
+    DictionaryWithArray.schema = {
+        type: 'Dictionary',
+        item: {
+            type: 'Array',
+            item: 'ModelWithString',
+        },
+    };
+
+})(DictionaryWithArray || (DictionaryWithArray = {}));"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/models/DictionaryWithDictionary.js): ./test/result/v3/javascript/models/DictionaryWithDictionary.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { Dictionary } from '../models/Dictionary';
+
+/**
+ * This is a string dictionary
+ */
+export let DictionaryWithDictionary;
+(function (DictionaryWithDictionary) {
+
+    DictionaryWithDictionary.schema = {
+        type: 'Dictionary',
+        item: {
+            type: 'Dictionary',
+            item: {
+                type: 'string',
+            },
+        },
+    };
+
+})(DictionaryWithDictionary || (DictionaryWithDictionary = {}));"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/models/DictionaryWithProperties.js): ./test/result/v3/javascript/models/DictionaryWithProperties.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { Dictionary } from '../models/Dictionary';
+
+/**
+ * This is a complex dictionary
+ */
+export let DictionaryWithProperties;
+(function (DictionaryWithProperties) {
+
+    DictionaryWithProperties.schema = {
+        type: 'Dictionary',
+        item: {
+            foo: {
+                type: 'string',
+            },
+            bar: {
+                type: 'string',
+            },
+        },
+    };
+
+})(DictionaryWithProperties || (DictionaryWithProperties = {}));"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/models/DictionaryWithReference.js): ./test/result/v3/javascript/models/DictionaryWithReference.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { Dictionary } from '../models/Dictionary';
+import { ModelWithString } from '../models/ModelWithString';
+
+/**
+ * This is a string reference
+ */
+export let DictionaryWithReference;
+(function (DictionaryWithReference) {
+
+    DictionaryWithReference.schema = {
+        type: 'Dictionary',
+        item: 'ModelWithString',
+    };
+
+})(DictionaryWithReference || (DictionaryWithReference = {}));"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/models/DictionaryWithString.js): ./test/result/v3/javascript/models/DictionaryWithString.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { Dictionary } from '../models/Dictionary';
+
+/**
+ * This is a string dictionary
+ */
+export let DictionaryWithString;
+(function (DictionaryWithString) {
+
+    DictionaryWithString.schema = {
+        type: 'Dictionary',
+        item: {
+            type: 'string',
+        },
+    };
+
+})(DictionaryWithString || (DictionaryWithString = {}));"
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/models/EnumFromDescription.js): ./test/result/v3/javascript/models/EnumFromDescription.js 1`] = `
@@ -2770,6 +4336,10 @@ export let EnumFromDescription;
     EnumFromDescription.ERROR = 3;
     EnumFromDescription.SUCCESS = 1;
     EnumFromDescription.WARNING = 2;
+
+    EnumFromDescription.schema = {
+        type: 'Enum',
+    };
 
 })(EnumFromDescription || (EnumFromDescription = {}));"
 `;
@@ -2790,6 +4360,10 @@ export let EnumWithNumbers;
     EnumWithNumbers.NUM_2 = 2;
     EnumWithNumbers.NUM_3 = 3;
 
+    EnumWithNumbers.schema = {
+        type: 'Enum',
+    };
+
 })(EnumWithNumbers || (EnumWithNumbers = {}));"
 `;
 
@@ -2809,7 +4383,235 @@ export let EnumWithStrings;
     EnumWithStrings.SUCCESS = 'Success';
     EnumWithStrings.WARNING = 'Warning';
 
+    EnumWithStrings.schema = {
+        type: 'Enum',
+    };
+
 })(EnumWithStrings || (EnumWithStrings = {}));"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/models/ModelLink.js): ./test/result/v3/javascript/models/ModelLink.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+
+/**
+ * This is a model that can have a template??
+ */
+export let ModelLink;
+(function (ModelLink) {
+
+    ModelLink.schema = {
+        id: {
+            type: 'string',
+        },
+    };
+
+})(ModelLink || (ModelLink = {}));"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/models/ModelThatExtends.js): ./test/result/v3/javascript/models/ModelThatExtends.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ModelWithString } from '../models/ModelWithString';
+
+/**
+ * This is a model that extends another model
+ */
+export let ModelThatExtends;
+(function (ModelThatExtends) {
+
+    ModelThatExtends.schema = {
+        propExtendsA: {
+            type: 'string',
+        },
+        propExtendsB: {
+            type: 'ModelWithString',
+        },
+    };
+
+})(ModelThatExtends || (ModelThatExtends = {}));"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/models/ModelThatExtendsExtends.js): ./test/result/v3/javascript/models/ModelThatExtendsExtends.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ModelThatExtends } from '../models/ModelThatExtends';
+import { ModelWithString } from '../models/ModelWithString';
+
+/**
+ * This is a model that extends another model
+ */
+export let ModelThatExtendsExtends;
+(function (ModelThatExtendsExtends) {
+
+    ModelThatExtendsExtends.schema = {
+        propExtendsC: {
+            type: 'string',
+        },
+        propExtendsD: {
+            type: 'ModelWithString',
+        },
+    };
+
+})(ModelThatExtendsExtends || (ModelThatExtendsExtends = {}));"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/models/ModelWithArray.js): ./test/result/v3/javascript/models/ModelWithArray.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ModelWithString } from '../models/ModelWithString';
+
+/**
+ * This is a model with one property containing an array
+ */
+export let ModelWithArray;
+(function (ModelWithArray) {
+
+    ModelWithArray.schema = {
+        prop: {
+            type: 'Array',
+            item: 'ModelWithString',
+        },
+        propWithFile: {
+            type: 'Array',
+            item: {
+                type: 'File',
+            },
+        },
+        propWithNumber: {
+            type: 'Array',
+            item: {
+                type: 'number',
+            },
+        },
+    };
+
+})(ModelWithArray || (ModelWithArray = {}));"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/models/ModelWithBoolean.js): ./test/result/v3/javascript/models/ModelWithBoolean.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+
+/**
+ * This is a model with one boolean property
+ */
+export let ModelWithBoolean;
+(function (ModelWithBoolean) {
+
+    ModelWithBoolean.schema = {
+        prop: {
+            type: 'boolean',
+        },
+    };
+
+})(ModelWithBoolean || (ModelWithBoolean = {}));"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/models/ModelWithCircularReference.js): ./test/result/v3/javascript/models/ModelWithCircularReference.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+
+/**
+ * This is a model with one property containing a circular reference
+ */
+export let ModelWithCircularReference;
+(function (ModelWithCircularReference) {
+
+    ModelWithCircularReference.schema = {
+        prop: {
+            type: 'ModelWithCircularReference',
+        },
+    };
+
+})(ModelWithCircularReference || (ModelWithCircularReference = {}));"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/models/ModelWithDictionary.js): ./test/result/v3/javascript/models/ModelWithDictionary.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { Dictionary } from '../models/Dictionary';
+
+/**
+ * This is a model with one property containing a dictionary
+ */
+export let ModelWithDictionary;
+(function (ModelWithDictionary) {
+
+    ModelWithDictionary.schema = {
+        prop: {
+            type: 'Dictionary',
+            item: {
+                type: 'string',
+            },
+        },
+    };
+
+})(ModelWithDictionary || (ModelWithDictionary = {}));"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/models/ModelWithDuplicateImports.js): ./test/result/v3/javascript/models/ModelWithDuplicateImports.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ModelWithString } from '../models/ModelWithString';
+
+/**
+ * This is a model with duplicated imports
+ */
+export let ModelWithDuplicateImports;
+(function (ModelWithDuplicateImports) {
+
+    ModelWithDuplicateImports.schema = {
+        propA: {
+            type: 'ModelWithString',
+        },
+        propB: {
+            type: 'ModelWithString',
+        },
+        propC: {
+            type: 'ModelWithString',
+        },
+    };
+
+})(ModelWithDuplicateImports || (ModelWithDuplicateImports = {}));"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/models/ModelWithDuplicateProperties.js): ./test/result/v3/javascript/models/ModelWithDuplicateProperties.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ModelWithString } from '../models/ModelWithString';
+
+/**
+ * This is a model with duplicated properties
+ */
+export let ModelWithDuplicateProperties;
+(function (ModelWithDuplicateProperties) {
+
+    ModelWithDuplicateProperties.schema = {
+        prop: {
+            type: 'ModelWithString',
+        },
+    };
+
+})(ModelWithDuplicateProperties || (ModelWithDuplicateProperties = {}));"
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/models/ModelWithEnum.js): ./test/result/v3/javascript/models/ModelWithEnum.js 1`] = `
@@ -2830,7 +4632,13 @@ export let ModelWithEnum;
     ModelWithEnum.Test = {
         SUCCESS: 'Success',
         WARNING: 'Warning',
-        ERROR: 'Error'
+        ERROR: 'Error',
+    };
+
+    ModelWithEnum.schema = {
+        Test: {
+            type: 'Enum',
+        },
     };
 
 })(ModelWithEnum || (ModelWithEnum = {}));"
@@ -2854,10 +4662,321 @@ export let ModelWithEnumFromDescription;
     ModelWithEnumFromDescription.Test = {
         SUCCESS: 1,
         WARNING: 2,
-        ERROR: 3
+        ERROR: 3,
+    };
+
+    ModelWithEnumFromDescription.schema = {
+        Test: {
+            type: 'Enum',
+        },
     };
 
 })(ModelWithEnumFromDescription || (ModelWithEnumFromDescription = {}));"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/models/ModelWithInteger.js): ./test/result/v3/javascript/models/ModelWithInteger.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+
+/**
+ * This is a model with one number property
+ */
+export let ModelWithInteger;
+(function (ModelWithInteger) {
+
+    ModelWithInteger.schema = {
+        prop: {
+            type: 'number',
+        },
+    };
+
+})(ModelWithInteger || (ModelWithInteger = {}));"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/models/ModelWithLink.js): ./test/result/v3/javascript/models/ModelWithLink.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ModelLink } from '../models/ModelLink';
+import { ModelWithString } from '../models/ModelWithString';
+
+/**
+ * This is a model that can have a template??
+ */
+export let ModelWithLink;
+(function (ModelWithLink) {
+
+    ModelWithLink.schema = {
+        prop: {
+            type: 'ModelLink',
+        },
+    };
+
+})(ModelWithLink || (ModelWithLink = {}));"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/models/ModelWithNestedEnums.js): ./test/result/v3/javascript/models/ModelWithNestedEnums.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { Dictionary } from '../models/Dictionary';
+
+/**
+ * This is a model with nested enums
+ */
+export let ModelWithNestedEnums;
+(function (ModelWithNestedEnums) {
+
+    ModelWithNestedEnums.schema = {
+        arrayWithDescription: {
+            type: 'Array',
+            item: {
+                type: 'Enum',
+            },
+        },
+        arrayWithEnum: {
+            type: 'Array',
+            item: {
+                type: 'Enum',
+            },
+        },
+        dictionaryWithEnum: {
+            type: 'Dictionary',
+            item: {
+                type: 'Enum',
+            },
+        },
+        dictionaryWithEnumFromDescription: {
+            type: 'Dictionary',
+            item: {
+                type: 'Enum',
+            },
+        },
+    };
+
+})(ModelWithNestedEnums || (ModelWithNestedEnums = {}));"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/models/ModelWithNestedProperties.js): ./test/result/v3/javascript/models/ModelWithNestedProperties.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+
+/**
+ * This is a model with one nested property
+ */
+export let ModelWithNestedProperties;
+(function (ModelWithNestedProperties) {
+
+    ModelWithNestedProperties.schema = {
+        first: {
+            second: {
+                third: {
+                    type: 'string',
+                    isReadOnly: true,
+                    isRequired: true,
+                    isNullable: true,
+                },
+                isReadOnly: true,
+                isRequired: true,
+                isNullable: true,
+            },
+            isReadOnly: true,
+            isRequired: true,
+            isNullable: true,
+        },
+    };
+
+})(ModelWithNestedProperties || (ModelWithNestedProperties = {}));"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/models/ModelWithProperties.js): ./test/result/v3/javascript/models/ModelWithProperties.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ModelWithString } from '../models/ModelWithString';
+
+/**
+ * This is a model with one nested property
+ */
+export let ModelWithProperties;
+(function (ModelWithProperties) {
+
+    ModelWithProperties.schema = {
+        boolean: {
+            type: 'boolean',
+        },
+        number: {
+            type: 'number',
+        },
+        reference: {
+            type: 'ModelWithString',
+        },
+        required: {
+            type: 'string',
+            isRequired: true,
+        },
+        requiredAndNullable: {
+            type: 'string',
+            isRequired: true,
+            isNullable: true,
+        },
+        requiredAndReadOnly: {
+            type: 'string',
+            isReadOnly: true,
+            isRequired: true,
+        },
+        string: {
+            type: 'string',
+        },
+    };
+
+})(ModelWithProperties || (ModelWithProperties = {}));"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/models/ModelWithReference.js): ./test/result/v3/javascript/models/ModelWithReference.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ModelWithString } from '../models/ModelWithString';
+
+/**
+ * This is a model with one property containing a reference
+ */
+export let ModelWithReference;
+(function (ModelWithReference) {
+
+    ModelWithReference.schema = {
+        prop: {
+            type: 'ModelWithString',
+        },
+    };
+
+})(ModelWithReference || (ModelWithReference = {}));"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/models/ModelWithString.js): ./test/result/v3/javascript/models/ModelWithString.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+
+/**
+ * This is a model with one string property
+ */
+export let ModelWithString;
+(function (ModelWithString) {
+
+    ModelWithString.schema = {
+        prop: {
+            type: 'string',
+        },
+    };
+
+})(ModelWithString || (ModelWithString = {}));"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/models/SimpleBoolean.js): ./test/result/v3/javascript/models/SimpleBoolean.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+
+/**
+ * This is a simple boolean
+ */
+export let SimpleBoolean;
+(function (SimpleBoolean) {
+
+    SimpleBoolean.schema = {
+        type: 'boolean',
+    };
+
+})(SimpleBoolean || (SimpleBoolean = {}));"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/models/SimpleFile.js): ./test/result/v3/javascript/models/SimpleFile.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+
+/**
+ * This is a simple file
+ */
+export let SimpleFile;
+(function (SimpleFile) {
+
+    SimpleFile.schema = {
+        type: 'File',
+    };
+
+})(SimpleFile || (SimpleFile = {}));"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/models/SimpleInteger.js): ./test/result/v3/javascript/models/SimpleInteger.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+
+/**
+ * This is a simple number
+ */
+export let SimpleInteger;
+(function (SimpleInteger) {
+
+    SimpleInteger.schema = {
+        type: 'number',
+    };
+
+})(SimpleInteger || (SimpleInteger = {}));"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/models/SimpleReference.js): ./test/result/v3/javascript/models/SimpleReference.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ModelWithString } from '../models/ModelWithString';
+
+/**
+ * This is a simple reference
+ */
+export let SimpleReference;
+(function (SimpleReference) {
+
+    SimpleReference.schema = {
+        type: 'ModelWithString',
+    };
+
+})(SimpleReference || (SimpleReference = {}));"
+`;
+
+exports[`generation v3 javascript file(./test/result/v3/javascript/models/SimpleString.js): ./test/result/v3/javascript/models/SimpleString.js 1`] = `
+"/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+
+/**
+ * This is a simple string
+ */
+export let SimpleString;
+(function (SimpleString) {
+
+    SimpleString.schema = {
+        type: 'string',
+    };
+
+})(SimpleString || (SimpleString = {}));"
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/services/ComplexService.js): ./test/result/v3/javascript/services/ComplexService.js 1`] = `
@@ -2879,7 +4998,7 @@ export class ComplexService {
      */
     static async complexTypes(
         parameterReference,
-        parameterObject
+        parameterObject,
     ) {
 
         const result = await $request({
@@ -2887,8 +5006,8 @@ export class ComplexService {
             path: \`/api/v\${OpenAPI.VERSION}/complex\`,
             query: {
                 'parameterReference': parameterReference,
-                'parameterObject': parameterObject
-            }
+                'parameterObject': parameterObject,
+            },
         });
 
         if (!result.ok) {
@@ -2932,7 +5051,7 @@ export class DefaultsService {
         parameterEnum = 'Success',
         parameterModel = {
             \\"prop\\": \\"Hello World\\"
-        }
+        },
     ) {
 
         const result = await $request({
@@ -2943,8 +5062,8 @@ export class DefaultsService {
                 'parameterNumber': parameterNumber,
                 'parameterBoolean': parameterBoolean,
                 'parameterEnum': parameterEnum,
-                'parameterModel': parameterModel
-            }
+                'parameterModel': parameterModel,
+            },
         });
 
         catchGenericError(result);
@@ -2979,25 +5098,25 @@ export class ParametersService {
         parameterQuery,
         parameterForm,
         parameterCookie,
-        requestBody
+        requestBody,
     ) {
 
         const result = await $request({
             method: 'get',
             path: \`/api/v\${OpenAPI.VERSION}/parameters\`,
             cookies: {
-                'parameterCookie': parameterCookie
+                'parameterCookie': parameterCookie,
             },
             headers: {
-                'parameterHeader': parameterHeader
+                'parameterHeader': parameterHeader,
             },
             query: {
-                'parameterQuery': parameterQuery
+                'parameterQuery': parameterQuery,
             },
             formData: {
-                'parameterForm': parameterForm
+                'parameterForm': parameterForm,
             },
-            body: requestBody
+            body: requestBody,
         });
 
         catchGenericError(result);
@@ -3027,7 +5146,7 @@ export class ResponseService {
 
         const result = await $request({
             method: 'post',
-            path: \`/api/v\${OpenAPI.VERSION}/response\`
+            path: \`/api/v\${OpenAPI.VERSION}/response\`,
         });
 
         if (!result.ok) {
@@ -3051,7 +5170,7 @@ export class ResponseService {
 
         const result = await $request({
             method: 'get',
-            path: \`/api/v\${OpenAPI.VERSION}/response\`
+            path: \`/api/v\${OpenAPI.VERSION}/response\`,
         });
 
         catchGenericError(result);
@@ -3069,7 +5188,7 @@ export class ResponseService {
 
         const result = await $request({
             method: 'put',
-            path: \`/api/v\${OpenAPI.VERSION}/response\`
+            path: \`/api/v\${OpenAPI.VERSION}/response\`,
         });
 
         if (!result.ok) {
@@ -3106,7 +5225,7 @@ export class SimpleService {
 
         const result = await $request({
             method: 'delete',
-            path: \`/api/v\${OpenAPI.VERSION}/simple\`
+            path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
 
         catchGenericError(result);
@@ -3121,7 +5240,7 @@ export class SimpleService {
 
         const result = await $request({
             method: 'get',
-            path: \`/api/v\${OpenAPI.VERSION}/simple\`
+            path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
 
         catchGenericError(result);
@@ -3136,7 +5255,7 @@ export class SimpleService {
 
         const result = await $request({
             method: 'head',
-            path: \`/api/v\${OpenAPI.VERSION}/simple\`
+            path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
 
         catchGenericError(result);
@@ -3151,7 +5270,7 @@ export class SimpleService {
 
         const result = await $request({
             method: 'options',
-            path: \`/api/v\${OpenAPI.VERSION}/simple\`
+            path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
 
         catchGenericError(result);
@@ -3166,7 +5285,7 @@ export class SimpleService {
 
         const result = await $request({
             method: 'patch',
-            path: \`/api/v\${OpenAPI.VERSION}/simple\`
+            path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
 
         catchGenericError(result);
@@ -3181,7 +5300,7 @@ export class SimpleService {
 
         const result = await $request({
             method: 'post',
-            path: \`/api/v\${OpenAPI.VERSION}/simple\`
+            path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
 
         catchGenericError(result);
@@ -3196,7 +5315,7 @@ export class SimpleService {
 
         const result = await $request({
             method: 'put',
-            path: \`/api/v\${OpenAPI.VERSION}/simple\`
+            path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
 
         catchGenericError(result);
@@ -3241,7 +5360,7 @@ export class TypesService {
         parameterArray,
         parameterDictionary,
         parameterEnum,
-        id
+        id,
     ) {
 
         const result = await $request({
@@ -3254,8 +5373,8 @@ export class TypesService {
                 'parameterObject': parameterObject,
                 'parameterArray': parameterArray,
                 'parameterDictionary': parameterDictionary,
-                'parameterEnum': parameterEnum
-            }
+                'parameterEnum': parameterEnum,
+            },
         });
 
         catchGenericError(result);
@@ -3736,7 +5855,19 @@ import { ModelWithString } from '../models/ModelWithString';
 /**
  * This is a simple array containing an array
  */
-export type ArrayWithArray = Array<Array<ModelWithString>>;"
+export type ArrayWithArray = Array<Array<ModelWithString>>;
+
+export namespace ArrayWithArray {
+
+    export const schema = {
+        type: 'Array',
+        item: {
+            type: 'Array',
+            item: 'ModelWithString',
+        },
+    };
+
+}"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/ArrayWithBooleans.ts): ./test/result/v3/typescript/models/ArrayWithBooleans.ts 1`] = `
@@ -3748,7 +5879,18 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/models/ArrayW
 /**
  * This is a simple array with booleans
  */
-export type ArrayWithBooleans = Array<boolean>;"
+export type ArrayWithBooleans = Array<boolean>;
+
+export namespace ArrayWithBooleans {
+
+    export const schema = {
+        type: 'Array',
+        item: {
+            type: 'boolean',
+        },
+    };
+
+}"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/ArrayWithNumbers.ts): ./test/result/v3/typescript/models/ArrayWithNumbers.ts 1`] = `
@@ -3760,7 +5902,18 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/models/ArrayW
 /**
  * This is a simple array with numbers
  */
-export type ArrayWithNumbers = Array<number>;"
+export type ArrayWithNumbers = Array<number>;
+
+export namespace ArrayWithNumbers {
+
+    export const schema = {
+        type: 'Array',
+        item: {
+            type: 'number',
+        },
+    };
+
+}"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/ArrayWithProperties.ts): ./test/result/v3/typescript/models/ArrayWithProperties.ts 1`] = `
@@ -3774,8 +5927,24 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/models/ArrayW
  */
 export type ArrayWithProperties = Array<{
     foo?: string,
-    bar?: string
-}>;"
+    bar?: string,
+}>;
+
+export namespace ArrayWithProperties {
+
+    export const schema = {
+        type: 'Array',
+        item: {
+            foo: {
+                type: 'string',
+            },
+            bar: {
+                type: 'string',
+            },
+        },
+    };
+
+}"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/ArrayWithReferences.ts): ./test/result/v3/typescript/models/ArrayWithReferences.ts 1`] = `
@@ -3789,7 +5958,16 @@ import { ModelWithString } from '../models/ModelWithString';
 /**
  * This is a simple array with references
  */
-export type ArrayWithReferences = Array<ModelWithString>;"
+export type ArrayWithReferences = Array<ModelWithString>;
+
+export namespace ArrayWithReferences {
+
+    export const schema = {
+        type: 'Array',
+        item: 'ModelWithString',
+    };
+
+}"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/ArrayWithStrings.ts): ./test/result/v3/typescript/models/ArrayWithStrings.ts 1`] = `
@@ -3801,7 +5979,18 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/models/ArrayW
 /**
  * This is a simple array with strings
  */
-export type ArrayWithStrings = Array<string>;"
+export type ArrayWithStrings = Array<string>;
+
+export namespace ArrayWithStrings {
+
+    export const schema = {
+        type: 'Array',
+        item: {
+            type: 'string',
+        },
+    };
+
+}"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/Dictionary.ts): ./test/result/v3/typescript/models/Dictionary.ts 1`] = `
@@ -3828,7 +6017,19 @@ import { ModelWithString } from '../models/ModelWithString';
 /**
  * This is a complex dictionary
  */
-export type DictionaryWithArray = Dictionary<Array<ModelWithString>>;"
+export type DictionaryWithArray = Dictionary<Array<ModelWithString>>;
+
+export namespace DictionaryWithArray {
+
+    export const schema = {
+        type: 'Dictionary',
+        item: {
+            type: 'Array',
+            item: 'ModelWithString',
+        },
+    };
+
+}"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/DictionaryWithDictionary.ts): ./test/result/v3/typescript/models/DictionaryWithDictionary.ts 1`] = `
@@ -3842,7 +6043,21 @@ import { Dictionary } from '../models/Dictionary';
 /**
  * This is a string dictionary
  */
-export type DictionaryWithDictionary = Dictionary<Dictionary<string>>;"
+export type DictionaryWithDictionary = Dictionary<Dictionary<string>>;
+
+export namespace DictionaryWithDictionary {
+
+    export const schema = {
+        type: 'Dictionary',
+        item: {
+            type: 'Dictionary',
+            item: {
+                type: 'string',
+            },
+        },
+    };
+
+}"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/DictionaryWithProperties.ts): ./test/result/v3/typescript/models/DictionaryWithProperties.ts 1`] = `
@@ -3858,8 +6073,24 @@ import { Dictionary } from '../models/Dictionary';
  */
 export type DictionaryWithProperties = Dictionary<{
     foo?: string,
-    bar?: string
-}>;"
+    bar?: string,
+}>;
+
+export namespace DictionaryWithProperties {
+
+    export const schema = {
+        type: 'Dictionary',
+        item: {
+            foo: {
+                type: 'string',
+            },
+            bar: {
+                type: 'string',
+            },
+        },
+    };
+
+}"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/DictionaryWithReference.ts): ./test/result/v3/typescript/models/DictionaryWithReference.ts 1`] = `
@@ -3874,7 +6105,16 @@ import { ModelWithString } from '../models/ModelWithString';
 /**
  * This is a string reference
  */
-export type DictionaryWithReference = Dictionary<ModelWithString>;"
+export type DictionaryWithReference = Dictionary<ModelWithString>;
+
+export namespace DictionaryWithReference {
+
+    export const schema = {
+        type: 'Dictionary',
+        item: 'ModelWithString',
+    };
+
+}"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/DictionaryWithString.ts): ./test/result/v3/typescript/models/DictionaryWithString.ts 1`] = `
@@ -3888,7 +6128,18 @@ import { Dictionary } from '../models/Dictionary';
 /**
  * This is a string dictionary
  */
-export type DictionaryWithString = Dictionary<string>;"
+export type DictionaryWithString = Dictionary<string>;
+
+export namespace DictionaryWithString {
+
+    export const schema = {
+        type: 'Dictionary',
+        item: {
+            type: 'string',
+        },
+    };
+
+}"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/EnumFromDescription.ts): ./test/result/v3/typescript/models/EnumFromDescription.ts 1`] = `
@@ -3903,7 +6154,15 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/models/EnumFr
 export enum EnumFromDescription {
     ERROR = 3,
     SUCCESS = 1,
-    WARNING = 2
+    WARNING = 2,
+}
+
+export namespace EnumFromDescription {
+
+    export const schema = {
+        type: 'Enum',
+    };
+
 }"
 `;
 
@@ -3919,7 +6178,15 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/models/EnumWi
 export enum EnumWithNumbers {
     NUM_1 = 1,
     NUM_2 = 2,
-    NUM_3 = 3
+    NUM_3 = 3,
+}
+
+export namespace EnumWithNumbers {
+
+    export const schema = {
+        type: 'Enum',
+    };
+
 }"
 `;
 
@@ -3935,7 +6202,15 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/models/EnumWi
 export enum EnumWithStrings {
     ERROR = 'Error',
     SUCCESS = 'Success',
-    WARNING = 'Warning'
+    WARNING = 'Warning',
+}
+
+export namespace EnumWithStrings {
+
+    export const schema = {
+        type: 'Enum',
+    };
+
 }"
 `;
 
@@ -3951,7 +6226,16 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelL
 export interface ModelLink {
     id?: string;
 }
-"
+
+export namespace ModelLink {
+
+    export const schema = {
+        id: {
+            type: 'string',
+        },
+    };
+
+}"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelThatExtends.ts): ./test/result/v3/typescript/models/ModelThatExtends.ts 1`] = `
@@ -3969,7 +6253,19 @@ export interface ModelThatExtends extends ModelWithString {
     propExtendsA?: string;
     propExtendsB?: ModelWithString;
 }
-"
+
+export namespace ModelThatExtends {
+
+    export const schema = {
+        propExtendsA: {
+            type: 'string',
+        },
+        propExtendsB: {
+            type: 'ModelWithString',
+        },
+    };
+
+}"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelThatExtendsExtends.ts): ./test/result/v3/typescript/models/ModelThatExtendsExtends.ts 1`] = `
@@ -3988,7 +6284,19 @@ export interface ModelThatExtendsExtends extends ModelWithString, ModelThatExten
     propExtendsC?: string;
     propExtendsD?: ModelWithString;
 }
-"
+
+export namespace ModelThatExtendsExtends {
+
+    export const schema = {
+        propExtendsC: {
+            type: 'string',
+        },
+        propExtendsD: {
+            type: 'ModelWithString',
+        },
+    };
+
+}"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelWithArray.ts): ./test/result/v3/typescript/models/ModelWithArray.ts 1`] = `
@@ -4007,7 +6315,29 @@ export interface ModelWithArray {
     propWithFile?: Array<File>;
     propWithNumber?: Array<number>;
 }
-"
+
+export namespace ModelWithArray {
+
+    export const schema = {
+        prop: {
+            type: 'Array',
+            item: 'ModelWithString',
+        },
+        propWithFile: {
+            type: 'Array',
+            item: {
+                type: 'File',
+            },
+        },
+        propWithNumber: {
+            type: 'Array',
+            item: {
+                type: 'number',
+            },
+        },
+    };
+
+}"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelWithBoolean.ts): ./test/result/v3/typescript/models/ModelWithBoolean.ts 1`] = `
@@ -4025,7 +6355,16 @@ export interface ModelWithBoolean {
      */
     prop?: boolean;
 }
-"
+
+export namespace ModelWithBoolean {
+
+    export const schema = {
+        prop: {
+            type: 'boolean',
+        },
+    };
+
+}"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelWithCircularReference.ts): ./test/result/v3/typescript/models/ModelWithCircularReference.ts 1`] = `
@@ -4040,7 +6379,16 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelW
 export interface ModelWithCircularReference {
     prop?: ModelWithCircularReference;
 }
-"
+
+export namespace ModelWithCircularReference {
+
+    export const schema = {
+        prop: {
+            type: 'ModelWithCircularReference',
+        },
+    };
+
+}"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelWithDictionary.ts): ./test/result/v3/typescript/models/ModelWithDictionary.ts 1`] = `
@@ -4057,7 +6405,19 @@ import { Dictionary } from '../models/Dictionary';
 export interface ModelWithDictionary {
     prop?: Dictionary<string>;
 }
-"
+
+export namespace ModelWithDictionary {
+
+    export const schema = {
+        prop: {
+            type: 'Dictionary',
+            item: {
+                type: 'string',
+            },
+        },
+    };
+
+}"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelWithDuplicateImports.ts): ./test/result/v3/typescript/models/ModelWithDuplicateImports.ts 1`] = `
@@ -4076,7 +6436,22 @@ export interface ModelWithDuplicateImports {
     propB?: ModelWithString;
     propC?: ModelWithString;
 }
-"
+
+export namespace ModelWithDuplicateImports {
+
+    export const schema = {
+        propA: {
+            type: 'ModelWithString',
+        },
+        propB: {
+            type: 'ModelWithString',
+        },
+        propC: {
+            type: 'ModelWithString',
+        },
+    };
+
+}"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelWithDuplicateProperties.ts): ./test/result/v3/typescript/models/ModelWithDuplicateProperties.ts 1`] = `
@@ -4093,7 +6468,16 @@ import { ModelWithString } from '../models/ModelWithString';
 export interface ModelWithDuplicateProperties {
     prop?: ModelWithString;
 }
-"
+
+export namespace ModelWithDuplicateProperties {
+
+    export const schema = {
+        prop: {
+            type: 'ModelWithString',
+        },
+    };
+
+}"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelWithEnum.ts): ./test/result/v3/typescript/models/ModelWithEnum.ts 1`] = `
@@ -4120,11 +6504,16 @@ export namespace ModelWithEnum {
     export enum Test {
         SUCCESS = 'Success',
         WARNING = 'Warning',
-        ERROR = 'Error'
+        ERROR = 'Error',
     }
 
-}
-"
+    export const schema = {
+        Test: {
+            type: 'Enum',
+        },
+    };
+
+}"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelWithEnumFromDescription.ts): ./test/result/v3/typescript/models/ModelWithEnumFromDescription.ts 1`] = `
@@ -4151,11 +6540,16 @@ export namespace ModelWithEnumFromDescription {
     export enum Test {
         SUCCESS = 1,
         WARNING = 2,
-        ERROR = 3
+        ERROR = 3,
     }
 
-}
-"
+    export const schema = {
+        Test: {
+            type: 'Enum',
+        },
+    };
+
+}"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelWithInteger.ts): ./test/result/v3/typescript/models/ModelWithInteger.ts 1`] = `
@@ -4173,7 +6567,16 @@ export interface ModelWithInteger {
      */
     prop?: number;
 }
-"
+
+export namespace ModelWithInteger {
+
+    export const schema = {
+        prop: {
+            type: 'number',
+        },
+    };
+
+}"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelWithLink.ts): ./test/result/v3/typescript/models/ModelWithLink.ts 1`] = `
@@ -4191,7 +6594,16 @@ import { ModelWithString } from '../models/ModelWithString';
 export interface ModelWithLink {
     prop?: ModelLink;
 }
-"
+
+export namespace ModelWithLink {
+
+    export const schema = {
+        prop: {
+            type: 'ModelLink',
+        },
+    };
+
+}"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelWithNestedEnums.ts): ./test/result/v3/typescript/models/ModelWithNestedEnums.ts 1`] = `
@@ -4211,7 +6623,37 @@ export interface ModelWithNestedEnums {
     dictionaryWithEnum?: Dictionary<('Success' | 'Warning' | 'Error')>;
     dictionaryWithEnumFromDescription?: Dictionary<(1 | 2 | 3)>;
 }
-"
+
+export namespace ModelWithNestedEnums {
+
+    export const schema = {
+        arrayWithDescription: {
+            type: 'Array',
+            item: {
+                type: 'Enum',
+            },
+        },
+        arrayWithEnum: {
+            type: 'Array',
+            item: {
+                type: 'Enum',
+            },
+        },
+        dictionaryWithEnum: {
+            type: 'Dictionary',
+            item: {
+                type: 'Enum',
+            },
+        },
+        dictionaryWithEnumFromDescription: {
+            type: 'Dictionary',
+            item: {
+                type: 'Enum',
+            },
+        },
+    };
+
+}"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelWithNestedProperties.ts): ./test/result/v3/typescript/models/ModelWithNestedProperties.ts 1`] = `
@@ -4226,11 +6668,33 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelW
 export interface ModelWithNestedProperties {
     readonly first: {
         readonly second: {
-            readonly third: string | null
-        } | null
+            readonly third: string | null,
+        } | null,
     } | null;
 }
-"
+
+export namespace ModelWithNestedProperties {
+
+    export const schema = {
+        first: {
+            second: {
+                third: {
+                    type: 'string',
+                    isReadOnly: true,
+                    isRequired: true,
+                    isNullable: true,
+                },
+                isReadOnly: true,
+                isRequired: true,
+                isNullable: true,
+            },
+            isReadOnly: true,
+            isRequired: true,
+            isNullable: true,
+        },
+    };
+
+}"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelWithProperties.ts): ./test/result/v3/typescript/models/ModelWithProperties.ts 1`] = `
@@ -4253,7 +6717,39 @@ export interface ModelWithProperties {
     readonly requiredAndReadOnly: string;
     string?: string;
 }
-"
+
+export namespace ModelWithProperties {
+
+    export const schema = {
+        boolean: {
+            type: 'boolean',
+        },
+        number: {
+            type: 'number',
+        },
+        reference: {
+            type: 'ModelWithString',
+        },
+        required: {
+            type: 'string',
+            isRequired: true,
+        },
+        requiredAndNullable: {
+            type: 'string',
+            isRequired: true,
+            isNullable: true,
+        },
+        requiredAndReadOnly: {
+            type: 'string',
+            isReadOnly: true,
+            isRequired: true,
+        },
+        string: {
+            type: 'string',
+        },
+    };
+
+}"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelWithReference.ts): ./test/result/v3/typescript/models/ModelWithReference.ts 1`] = `
@@ -4270,7 +6766,16 @@ import { ModelWithString } from '../models/ModelWithString';
 export interface ModelWithReference {
     prop?: ModelWithString;
 }
-"
+
+export namespace ModelWithReference {
+
+    export const schema = {
+        prop: {
+            type: 'ModelWithString',
+        },
+    };
+
+}"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/ModelWithString.ts): ./test/result/v3/typescript/models/ModelWithString.ts 1`] = `
@@ -4288,7 +6793,16 @@ export interface ModelWithString {
      */
     prop?: string;
 }
-"
+
+export namespace ModelWithString {
+
+    export const schema = {
+        prop: {
+            type: 'string',
+        },
+    };
+
+}"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/SimpleBoolean.ts): ./test/result/v3/typescript/models/SimpleBoolean.ts 1`] = `
@@ -4300,7 +6814,15 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/models/Simple
 /**
  * This is a simple boolean
  */
-export type SimpleBoolean = boolean;"
+export type SimpleBoolean = boolean;
+
+export namespace SimpleBoolean {
+
+    export const schema = {
+        type: 'boolean',
+    };
+
+}"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/SimpleFile.ts): ./test/result/v3/typescript/models/SimpleFile.ts 1`] = `
@@ -4312,7 +6834,15 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/models/Simple
 /**
  * This is a simple file
  */
-export type SimpleFile = File;"
+export type SimpleFile = File;
+
+export namespace SimpleFile {
+
+    export const schema = {
+        type: 'File',
+    };
+
+}"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/SimpleInteger.ts): ./test/result/v3/typescript/models/SimpleInteger.ts 1`] = `
@@ -4324,7 +6854,15 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/models/Simple
 /**
  * This is a simple number
  */
-export type SimpleInteger = number;"
+export type SimpleInteger = number;
+
+export namespace SimpleInteger {
+
+    export const schema = {
+        type: 'number',
+    };
+
+}"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/SimpleReference.ts): ./test/result/v3/typescript/models/SimpleReference.ts 1`] = `
@@ -4338,7 +6876,15 @@ import { ModelWithString } from '../models/ModelWithString';
 /**
  * This is a simple reference
  */
-export type SimpleReference = ModelWithString;"
+export type SimpleReference = ModelWithString;
+
+export namespace SimpleReference {
+
+    export const schema = {
+        type: 'ModelWithString',
+    };
+
+}"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/models/SimpleString.ts): ./test/result/v3/typescript/models/SimpleString.ts 1`] = `
@@ -4350,7 +6896,15 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/models/Simple
 /**
  * This is a simple string
  */
-export type SimpleString = string;"
+export type SimpleString = string;
+
+export namespace SimpleString {
+
+    export const schema = {
+        type: 'string',
+    };
+
+}"
 `;
 
 exports[`generation v3 typescript file(./test/result/v3/typescript/services/ComplexService.ts): ./test/result/v3/typescript/services/ComplexService.ts 1`] = `
@@ -4377,10 +6931,10 @@ export class ComplexService {
         parameterObject?: {
             first?: {
                 second?: {
-                    third?: string
-                }
-            }
-        }
+                    third?: string,
+                },
+            },
+        },
     ): Promise<Array<ModelWithString>> {
 
         const result = await $request({
@@ -4388,8 +6942,8 @@ export class ComplexService {
             path: \`/api/v\${OpenAPI.VERSION}/complex\`,
             query: {
                 'parameterReference': parameterReference,
-                'parameterObject': parameterObject
-            }
+                'parameterObject': parameterObject,
+            },
         });
 
         if (!result.ok) {
@@ -4429,13 +6983,13 @@ export class DefaultsService {
      * @throws ApiError
      */
     public static async callWithDefaultParameters(
-        parameterString?: string = 'Hello World!',
-        parameterNumber?: number = 123,
-        parameterBoolean?: boolean = true,
-        parameterEnum?: ('Success' | 'Warning' | 'Error') = 'Success',
-        parameterModel?: ModelWithString | null = {
+        parameterString: string = 'Hello World!',
+        parameterNumber: number = 123,
+        parameterBoolean: boolean = true,
+        parameterEnum: ('Success' | 'Warning' | 'Error') = 'Success',
+        parameterModel: ModelWithString | null = {
             \\"prop\\": \\"Hello World\\"
-        }
+        },
     ): Promise<void> {
 
         const result = await $request({
@@ -4446,8 +7000,8 @@ export class DefaultsService {
                 'parameterNumber': parameterNumber,
                 'parameterBoolean': parameterBoolean,
                 'parameterEnum': parameterEnum,
-                'parameterModel': parameterModel
-            }
+                'parameterModel': parameterModel,
+            },
         });
 
         catchGenericError(result);
@@ -4484,25 +7038,25 @@ export class ParametersService {
         parameterQuery?: string,
         parameterForm?: string,
         parameterCookie?: string,
-        requestBody?: ModelWithString
+        requestBody?: ModelWithString,
     ): Promise<void> {
 
         const result = await $request({
             method: 'get',
             path: \`/api/v\${OpenAPI.VERSION}/parameters\`,
             cookies: {
-                'parameterCookie': parameterCookie
+                'parameterCookie': parameterCookie,
             },
             headers: {
-                'parameterHeader': parameterHeader
+                'parameterHeader': parameterHeader,
             },
             query: {
-                'parameterQuery': parameterQuery
+                'parameterQuery': parameterQuery,
             },
             formData: {
-                'parameterForm': parameterForm
+                'parameterForm': parameterForm,
             },
-            body: requestBody
+            body: requestBody,
         });
 
         catchGenericError(result);
@@ -4536,7 +7090,7 @@ export class ResponseService {
 
         const result = await $request({
             method: 'post',
-            path: \`/api/v\${OpenAPI.VERSION}/response\`
+            path: \`/api/v\${OpenAPI.VERSION}/response\`,
         });
 
         if (!result.ok) {
@@ -4560,7 +7114,7 @@ export class ResponseService {
 
         const result = await $request({
             method: 'get',
-            path: \`/api/v\${OpenAPI.VERSION}/response\`
+            path: \`/api/v\${OpenAPI.VERSION}/response\`,
         });
 
         catchGenericError(result);
@@ -4578,7 +7132,7 @@ export class ResponseService {
 
         const result = await $request({
             method: 'put',
-            path: \`/api/v\${OpenAPI.VERSION}/response\`
+            path: \`/api/v\${OpenAPI.VERSION}/response\`,
         });
 
         if (!result.ok) {
@@ -4616,7 +7170,7 @@ export class SimpleService {
 
         const result = await $request({
             method: 'delete',
-            path: \`/api/v\${OpenAPI.VERSION}/simple\`
+            path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
 
         catchGenericError(result);
@@ -4631,7 +7185,7 @@ export class SimpleService {
 
         const result = await $request({
             method: 'get',
-            path: \`/api/v\${OpenAPI.VERSION}/simple\`
+            path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
 
         catchGenericError(result);
@@ -4646,7 +7200,7 @@ export class SimpleService {
 
         const result = await $request({
             method: 'head',
-            path: \`/api/v\${OpenAPI.VERSION}/simple\`
+            path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
 
         catchGenericError(result);
@@ -4661,7 +7215,7 @@ export class SimpleService {
 
         const result = await $request({
             method: 'options',
-            path: \`/api/v\${OpenAPI.VERSION}/simple\`
+            path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
 
         catchGenericError(result);
@@ -4676,7 +7230,7 @@ export class SimpleService {
 
         const result = await $request({
             method: 'patch',
-            path: \`/api/v\${OpenAPI.VERSION}/simple\`
+            path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
 
         catchGenericError(result);
@@ -4691,7 +7245,7 @@ export class SimpleService {
 
         const result = await $request({
             method: 'post',
-            path: \`/api/v\${OpenAPI.VERSION}/simple\`
+            path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
 
         catchGenericError(result);
@@ -4706,7 +7260,7 @@ export class SimpleService {
 
         const result = await $request({
             method: 'put',
-            path: \`/api/v\${OpenAPI.VERSION}/simple\`
+            path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
 
         catchGenericError(result);
@@ -4745,14 +7299,14 @@ export class TypesService {
      * @throws ApiError
      */
     public static async types(
-        parameterNumber?: number = 123,
-        parameterString?: string = 'default',
-        parameterBoolean?: boolean = true,
-        parameterObject?: any = null,
+        parameterNumber: number = 123,
+        parameterString: string = 'default',
+        parameterBoolean: boolean = true,
+        parameterObject: any = null,
         parameterArray?: Array<string>,
         parameterDictionary?: any,
         parameterEnum?: ('Success' | 'Warning' | 'Error'),
-        id?: number
+        id?: number,
     ): Promise<number | string | boolean | any> {
 
         const result = await $request({
@@ -4765,8 +7319,8 @@ export class TypesService {
                 'parameterObject': parameterObject,
                 'parameterArray': parameterArray,
                 'parameterDictionary': parameterDictionary,
-                'parameterEnum': parameterEnum
-            }
+                'parameterEnum': parameterEnum,
+            },
         });
 
         catchGenericError(result);

@@ -1,7 +1,7 @@
-import {Model} from '../../../client/interfaces/Model';
-import {OpenApi} from '../interfaces/OpenApi';
-import {getModel} from './getModel';
-import {getType} from './getType';
+import { Model } from '../../../client/interfaces/Model';
+import { OpenApi } from '../interfaces/OpenApi';
+import { getModel } from './getModel';
+import { getType } from './getType';
 
 export function getModels(openApi: OpenApi): Model[] {
     const models = new Map<string, Model>();

@@ -1,6 +1,6 @@
-import {Model} from '../../../client/interfaces/Model';
-import {OperationResponse} from '../../../client/interfaces/OperationResponse';
-import {PrimaryType} from './constants';
+import { Model } from '../../../client/interfaces/Model';
+import { OperationResponse } from '../../../client/interfaces/OperationResponse';
+import { PrimaryType } from './constants';
 
 function areEqual(a: Model, b: Model): boolean {
     const equal = a.type === b.type && a.base === b.base && a.template === b.template;

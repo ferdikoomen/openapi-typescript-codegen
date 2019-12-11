@@ -1,12 +1,12 @@
-import {OpenApi} from '../interfaces/OpenApi';
-import {OpenApiParameter} from '../interfaces/OpenApiParameter';
-import {OperationParameter} from '../../../client/interfaces/OperationParameter';
-import {PrimaryType} from './constants';
-import {getComment} from './getComment';
-import {getModel} from './getModel';
-import {getModelDefault} from './getModelDefault';
-import {getOperationParameterName} from './getOperationParameterName';
-import {getType} from './getType';
+import { OpenApi } from '../interfaces/OpenApi';
+import { OpenApiParameter } from '../interfaces/OpenApiParameter';
+import { OperationParameter } from '../../../client/interfaces/OperationParameter';
+import { PrimaryType } from './constants';
+import { getComment } from './getComment';
+import { getModel } from './getModel';
+import { getModelDefault } from './getModelDefault';
+import { getOperationParameterName } from './getOperationParameterName';
+import { getType } from './getType';
 
 export function getOperationParameter(openApi: OpenApi, parameter: OpenApiParameter): OperationParameter {
     const operationParameter: OperationParameter = {

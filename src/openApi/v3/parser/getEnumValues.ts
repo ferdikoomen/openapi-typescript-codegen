@@ -1,4 +1,4 @@
-import {Enum} from '../../../client/interfaces/Enum';
+import { Enum } from '../../../client/interfaces/Enum';
 
 export function getEnumValues(enumerators: Enum[]): string[] {
     // Fetch values from the symbols, just to be sure we filter out

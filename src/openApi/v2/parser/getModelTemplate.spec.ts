@@ -1,4 +1,4 @@
-import {getModelTemplate} from './getModelTemplate';
+import { getModelTemplate } from './getModelTemplate';
 
 describe('getModelTemplate', () => {
     it('should return generic for template type', () => {

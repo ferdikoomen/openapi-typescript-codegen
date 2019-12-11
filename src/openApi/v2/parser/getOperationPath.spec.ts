@@ -1,4 +1,4 @@
-import {getOperationPath} from './getOperationPath';
+import { getOperationPath } from './getOperationPath';
 
 describe('getOperationPath', () => {
     it('should produce correct result', () => {

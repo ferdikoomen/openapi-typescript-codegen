@@ -1,5 +1,5 @@
-import {Model} from '../../../client/interfaces/Model';
-import {OpenApiSchema} from '../interfaces/OpenApiSchema';
+import { Model } from '../../../client/interfaces/Model';
+import { OpenApiSchema } from '../interfaces/OpenApiSchema';
 
 export function getModelDefault(definition: OpenApiSchema, model?: Model): string | null {
     if (definition.default === null) {

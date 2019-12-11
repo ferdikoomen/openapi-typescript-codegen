@@ -1,8 +1,8 @@
-import {ContentType} from './constants';
-import {Dictionary} from '../../../utils/types';
-import {OpenApi} from '../interfaces/OpenApi';
-import {OpenApiMediaType} from '../interfaces/OpenApiMediaType';
-import {OpenApiSchema} from '../interfaces/OpenApiSchema';
+import { ContentType } from './constants';
+import { Dictionary } from '../../../utils/types';
+import { OpenApi } from '../interfaces/OpenApi';
+import { OpenApiMediaType } from '../interfaces/OpenApiMediaType';
+import { OpenApiSchema } from '../interfaces/OpenApiSchema';
 
 export function getContent(openApi: OpenApi, content: Dictionary<OpenApiMediaType>): OpenApiSchema | null {
     /* prettier-ignore */

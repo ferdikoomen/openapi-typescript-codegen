@@ -1,4 +1,4 @@
-import {getServer} from './getServer';
+import { getServer } from './getServer';
 
 describe('getServer', () => {
     it('should produce correct result', () => {

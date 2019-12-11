@@ -1,4 +1,4 @@
-import {getMappedType} from './getMappedType';
+import { getMappedType } from './getMappedType';
 
 describe('getMappedType', () => {
     it('should map types to the basics', () => {

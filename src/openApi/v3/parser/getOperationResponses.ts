@@ -1,10 +1,10 @@
-import {OpenApi} from '../interfaces/OpenApi';
-import {OpenApiResponse} from '../interfaces/OpenApiResponse';
-import {OpenApiResponses} from '../interfaces/OpenApiResponses';
-import {OperationResponse} from '../../../client/interfaces/OperationResponse';
-import {getOperationResponse} from './getOperationResponse';
-import {getOperationResponseCode} from './getOperationResponseCode';
-import {getRef} from './getRef';
+import { OpenApi } from '../interfaces/OpenApi';
+import { OpenApiResponse } from '../interfaces/OpenApiResponse';
+import { OpenApiResponses } from '../interfaces/OpenApiResponses';
+import { OperationResponse } from '../../../client/interfaces/OperationResponse';
+import { getOperationResponse } from './getOperationResponse';
+import { getOperationResponseCode } from './getOperationResponseCode';
+import { getRef } from './getRef';
 
 export function getOperationResponses(openApi: OpenApi, responses: OpenApiResponses): OperationResponse[] {
     const operationResponses: OperationResponse[] = [];

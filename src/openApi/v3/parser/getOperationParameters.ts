@@ -1,9 +1,9 @@
-import {OpenApi} from '../interfaces/OpenApi';
-import {OpenApiParameter} from '../interfaces/OpenApiParameter';
-import {OperationParameter} from '../../../client/interfaces/OperationParameter';
-import {OperationParameters} from '../../../client/interfaces/OperationParameters';
-import {getOperationParameter} from './getOperationParameter';
-import {getRef} from './getRef';
+import { OpenApi } from '../interfaces/OpenApi';
+import { OpenApiParameter } from '../interfaces/OpenApiParameter';
+import { OperationParameter } from '../../../client/interfaces/OperationParameter';
+import { OperationParameters } from '../../../client/interfaces/OperationParameters';
+import { getOperationParameter } from './getOperationParameter';
+import { getRef } from './getRef';
 
 function sortByRequired(a: OperationParameter, b: OperationParameter): number {
     return a.isRequired && !b.isRequired ? -1 : !a.isRequired && b.isRequired ? 1 : 0;

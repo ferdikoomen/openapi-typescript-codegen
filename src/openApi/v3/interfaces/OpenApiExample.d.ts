@@ -1,4 +1,4 @@
-import {OpenApiReference} from './OpenApiReference';
+import { OpenApiReference } from './OpenApiReference';
 
 /**
  * https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#exampleObject

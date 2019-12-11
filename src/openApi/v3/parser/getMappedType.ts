@@ -1,4 +1,4 @@
-import {PrimaryType, TYPE_MAPPINGS} from './constants';
+import { PrimaryType, TYPE_MAPPINGS } from './constants';
 
 /**
  * Get mapped type for given type to any basic Typescript/Javascript type.
