@@ -27,13 +27,13 @@ export { {{{this}}} } from './services/{{{this}}}';
 {{/if}}
 {{#if models}}
 
-const schemas = {
+const schemas: Schema = {
 {{#each models}}
     '{{{this}}}': {{{this}}}.schema,
 {{/each}}
 };
 
-export function getSchema<T>(schema: string): Schema<T> | FieldSchema | null {
+export function getSchema<T>(schema: string): Schema<T> | null {
     if (schemas.hasOwnProperty(schema)) {
         return schemas[schema];
     }
