@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/core/ApiError.js): ./test/result/v2/javascript/core/ApiError.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -57,7 +59,9 @@ export function catchGenericError(result) {
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/core/OpenAPI.js): ./test/result/v2/javascript/core/OpenAPI.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -71,7 +75,9 @@ export let OpenAPI;
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/core/getFormData.js): ./test/result/v2/javascript/core/getFormData.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -96,7 +102,9 @@ export function getFormData(params) {
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/core/getQueryString.js): ./test/result/v2/javascript/core/getQueryString.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -130,7 +138,9 @@ export function getQueryString(params) {
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/core/isSuccess.js): ./test/result/v2/javascript/core/isSuccess.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -145,7 +155,9 @@ export function isSuccess(status) {
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/core/request.js): ./test/result/v2/javascript/core/request.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -227,7 +239,9 @@ export async function request(options) {
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/core/requestUsingFetch.js): ./test/result/v2/javascript/core/requestUsingFetch.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -278,7 +292,9 @@ export async function requestUsingFetch(url, request) {
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/core/requestUsingXHR.js): ./test/result/v2/javascript/core/requestUsingXHR.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -352,7 +368,9 @@ export async function requestUsingXHR(url, request) {
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/index.js): ./test/result/v2/javascript/index.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -366,6 +384,7 @@ import { ArrayWithNumbers } from './models/ArrayWithNumbers';
 import { ArrayWithProperties } from './models/ArrayWithProperties';
 import { ArrayWithReferences } from './models/ArrayWithReferences';
 import { ArrayWithStrings } from './models/ArrayWithStrings';
+import { Dictionary } from './models/Dictionary';
 import { DictionaryWithArray } from './models/DictionaryWithArray';
 import { DictionaryWithDictionary } from './models/DictionaryWithDictionary';
 import { DictionaryWithProperties } from './models/DictionaryWithProperties';
@@ -404,6 +423,7 @@ export { ArrayWithNumbers };
 export { ArrayWithProperties };
 export { ArrayWithReferences };
 export { ArrayWithStrings };
+export { Dictionary };
 export { DictionaryWithArray };
 export { DictionaryWithDictionary };
 export { DictionaryWithProperties };
@@ -450,6 +470,7 @@ const schemas = {
     'ArrayWithProperties': ArrayWithProperties.schema,
     'ArrayWithReferences': ArrayWithReferences.schema,
     'ArrayWithStrings': ArrayWithStrings.schema,
+    'Dictionary': Dictionary.schema,
     'DictionaryWithArray': DictionaryWithArray.schema,
     'DictionaryWithDictionary': DictionaryWithDictionary.schema,
     'DictionaryWithProperties': DictionaryWithProperties.schema,
@@ -493,7 +514,9 @@ export function getSchema(schema) {
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/models/ArrayWithArray.js): ./test/result/v2/javascript/models/ArrayWithArray.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -515,7 +538,9 @@ export let ArrayWithArray;
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/models/ArrayWithBooleans.js): ./test/result/v2/javascript/models/ArrayWithBooleans.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -536,7 +561,9 @@ export let ArrayWithBooleans;
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/models/ArrayWithNumbers.js): ./test/result/v2/javascript/models/ArrayWithNumbers.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -557,7 +584,9 @@ export let ArrayWithNumbers;
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/models/ArrayWithProperties.js): ./test/result/v2/javascript/models/ArrayWithProperties.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -583,7 +612,9 @@ export let ArrayWithProperties;
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/models/ArrayWithReferences.js): ./test/result/v2/javascript/models/ArrayWithReferences.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -602,7 +633,9 @@ export let ArrayWithReferences;
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/models/ArrayWithStrings.js): ./test/result/v2/javascript/models/ArrayWithStrings.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -623,7 +656,9 @@ export let ArrayWithStrings;
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/models/Dictionary.js): ./test/result/v2/javascript/models/Dictionary.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -631,7 +666,10 @@ export let Dictionary;
 (function (Dictionary) {
 
     Dictionary.schema = {
-        type: 'Dictionary'
+        type: 'Dictionary',
+        item: {
+            type: 'any'
+        }
     };
 
 })(Dictionary || (Dictionary = {}));
@@ -639,7 +677,9 @@ export let Dictionary;
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/models/DictionaryWithArray.js): ./test/result/v2/javascript/models/DictionaryWithArray.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -661,7 +701,9 @@ export let DictionaryWithArray;
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/models/DictionaryWithDictionary.js): ./test/result/v2/javascript/models/DictionaryWithDictionary.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -685,7 +727,9 @@ export let DictionaryWithDictionary;
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/models/DictionaryWithProperties.js): ./test/result/v2/javascript/models/DictionaryWithProperties.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -711,7 +755,9 @@ export let DictionaryWithProperties;
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/models/DictionaryWithReference.js): ./test/result/v2/javascript/models/DictionaryWithReference.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -730,7 +776,9 @@ export let DictionaryWithReference;
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/models/DictionaryWithString.js): ./test/result/v2/javascript/models/DictionaryWithString.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -751,7 +799,9 @@ export let DictionaryWithString;
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/models/EnumFromDescription.js): ./test/result/v2/javascript/models/EnumFromDescription.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -778,7 +828,9 @@ export let EnumFromDescription;
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/models/EnumWithNumbers.js): ./test/result/v2/javascript/models/EnumWithNumbers.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -805,7 +857,9 @@ export let EnumWithNumbers;
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/models/EnumWithStrings.js): ./test/result/v2/javascript/models/EnumWithStrings.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -832,7 +886,9 @@ export let EnumWithStrings;
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelLink.js): ./test/result/v2/javascript/models/ModelLink.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -852,7 +908,9 @@ export let ModelLink;
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelThatExtends.js): ./test/result/v2/javascript/models/ModelThatExtends.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -875,7 +933,9 @@ export let ModelThatExtends;
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelThatExtendsExtends.js): ./test/result/v2/javascript/models/ModelThatExtendsExtends.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -898,7 +958,9 @@ export let ModelThatExtendsExtends;
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelWithArray.js): ./test/result/v2/javascript/models/ModelWithArray.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -931,7 +993,9 @@ export let ModelWithArray;
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelWithBoolean.js): ./test/result/v2/javascript/models/ModelWithBoolean.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -951,7 +1015,9 @@ export let ModelWithBoolean;
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelWithCircularReference.js): ./test/result/v2/javascript/models/ModelWithCircularReference.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -971,7 +1037,9 @@ export let ModelWithCircularReference;
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelWithDictionary.js): ./test/result/v2/javascript/models/ModelWithDictionary.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -994,7 +1062,9 @@ export let ModelWithDictionary;
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelWithDuplicateImports.js): ./test/result/v2/javascript/models/ModelWithDuplicateImports.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -1020,7 +1090,9 @@ export let ModelWithDuplicateImports;
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelWithDuplicateProperties.js): ./test/result/v2/javascript/models/ModelWithDuplicateProperties.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -1040,7 +1112,9 @@ export let ModelWithDuplicateProperties;
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelWithEnum.js): ./test/result/v2/javascript/models/ModelWithEnum.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -1074,7 +1148,9 @@ export let ModelWithEnum;
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelWithEnumFromDescription.js): ./test/result/v2/javascript/models/ModelWithEnumFromDescription.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -1108,7 +1184,9 @@ export let ModelWithEnumFromDescription;
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelWithInteger.js): ./test/result/v2/javascript/models/ModelWithInteger.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -1128,7 +1206,9 @@ export let ModelWithInteger;
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelWithLink.js): ./test/result/v2/javascript/models/ModelWithLink.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -1148,7 +1228,9 @@ export let ModelWithLink;
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelWithNestedEnums.js): ./test/result/v2/javascript/models/ModelWithNestedEnums.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -1209,7 +1291,9 @@ export let ModelWithNestedEnums;
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelWithNestedProperties.js): ./test/result/v2/javascript/models/ModelWithNestedProperties.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -1239,7 +1323,9 @@ export let ModelWithNestedProperties;
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelWithProperties.js): ./test/result/v2/javascript/models/ModelWithProperties.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -1277,7 +1363,9 @@ export let ModelWithProperties;
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelWithReference.js): ./test/result/v2/javascript/models/ModelWithReference.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -1297,7 +1385,9 @@ export let ModelWithReference;
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/models/ModelWithString.js): ./test/result/v2/javascript/models/ModelWithString.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -1317,7 +1407,9 @@ export let ModelWithString;
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/models/SimpleBoolean.js): ./test/result/v2/javascript/models/SimpleBoolean.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -1335,7 +1427,9 @@ export let SimpleBoolean;
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/models/SimpleFile.js): ./test/result/v2/javascript/models/SimpleFile.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -1353,7 +1447,9 @@ export let SimpleFile;
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/models/SimpleInteger.js): ./test/result/v2/javascript/models/SimpleInteger.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -1371,7 +1467,9 @@ export let SimpleInteger;
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/models/SimpleReference.js): ./test/result/v2/javascript/models/SimpleReference.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -1389,7 +1487,9 @@ export let SimpleReference;
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/models/SimpleString.js): ./test/result/v2/javascript/models/SimpleString.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -1407,7 +1507,9 @@ export let SimpleString;
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/services/ComplexService.js): ./test/result/v2/javascript/services/ComplexService.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -1453,7 +1555,9 @@ export class ComplexService {
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/services/DefaultsService.js): ./test/result/v2/javascript/services/DefaultsService.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -1502,7 +1606,9 @@ export class DefaultsService {
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/services/ParametersService.js): ./test/result/v2/javascript/services/ParametersService.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -1550,7 +1656,9 @@ export class ParametersService {
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/services/ResponseService.js): ./test/result/v2/javascript/services/ResponseService.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -1630,7 +1738,9 @@ export class ResponseService {
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/services/SimpleService.js): ./test/result/v2/javascript/services/SimpleService.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -1749,7 +1859,9 @@ export class SimpleService {
 `;
 
 exports[`generation v2 javascript file(./test/result/v2/javascript/services/TypesService.js): ./test/result/v2/javascript/services/TypesService.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -1922,7 +2034,9 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/core/Schema.t
 /* eslint-disable */
 /* prettier-ignore */
 
-export type FieldSchema = {
+import { Dictionary } from \\"../models/Dictionary\\";
+
+type FieldSchema = {
     readonly type?: string;
     readonly isReadOnly?: boolean;
     readonly isRequired?: boolean;
@@ -1943,11 +2057,28 @@ export type FieldSchema = {
     readonly minProperties?: number;
 }
 
-export type Schema<T> = FieldSchema & {
-    readonly item?: string | Schema<T> | FieldSchema;
-} & {
-    readonly [K in keyof T]: Schema<T[K]> | FieldSchema;
+type ArraySchema<T> = FieldSchema & {
+    readonly item: Schema<T>;
 }
+
+type DictionarySchema<T> = FieldSchema & {
+    readonly item: Schema<T>;
+}
+
+type ObjectSchema<T> = FieldSchema & {
+    readonly [K in keyof T]: Schema<T[K]>;
+}
+
+export type Schema<T> =
+    T extends string ? FieldSchema :
+    T extends number ? FieldSchema :
+    T extends boolean ? FieldSchema :
+    T extends File ? FieldSchema :
+    T extends Blob ? FieldSchema :
+    T extends Array<infer U> ? ArraySchema<U> :
+    T extends Dictionary<infer U> ? DictionarySchema<U> :
+    T extends Object ? ObjectSchema<T> :
+    FieldSchema
 "
 `;
 
@@ -2252,7 +2383,7 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/index.ts): ./
 export { ApiError } from './core/ApiError';
 export { isSuccess } from './core/isSuccess';
 export { OpenAPI } from './core/OpenAPI';
-import { FieldSchema, Schema } from './core/Schema';
+import { Schema } from './core/Schema';
 
 import { ArrayWithArray } from './models/ArrayWithArray';
 import { ArrayWithBooleans } from './models/ArrayWithBooleans';
@@ -2380,7 +2511,7 @@ const schemas = {
     'SimpleString': SimpleString.schema,
 };
 
-export function getSchema<T>(schema: string): Schema<T> | FieldSchema | null {
+export function getSchema<K extends keyof typeof schemas>(schema: K) {
     if (schemas.hasOwnProperty(schema)) {
         return schemas[schema];
     }
@@ -2410,7 +2541,9 @@ export namespace ArrayWithArray {
         type: 'Array',
         item: {
             type: 'Array',
-            item: 'ModelWithString',
+            item: {
+                type: 'ModelWithString',
+            }
         },
     };
 
@@ -2518,7 +2651,9 @@ export namespace ArrayWithReferences {
 
     export const schema: Schema<ArrayWithReferences> = {
         type: 'Array',
-        item: 'ModelWithString',
+        item: {
+            type: 'ModelWithString',
+        }
     };
 
 }"
@@ -2558,13 +2693,22 @@ exports[`generation v2 typescript file(./test/result/v2/typescript/models/Dictio
 import { Schema } from '../core/Schema';
 
 export interface Dictionary<T> {
+
+    /**
+     * @internal
+     */
+    readonly __type: T,
+
     [key: string]: T;
 }
 
 export namespace Dictionary {
 
-    export const schema: Schema<Dictionary> = {
-        type: 'Dictionary'
+    export const schema: Schema<Dictionary<any>> = {
+        type: 'Dictionary',
+        item: {
+            type: 'any'
+        }
     };
 
 }
@@ -2592,7 +2736,9 @@ export namespace DictionaryWithArray {
         type: 'Dictionary',
         item: {
             type: 'Array',
-            item: 'ModelWithString',
+            item: {
+                type: 'ModelWithString',
+            }
         },
     };
 
@@ -2681,7 +2827,9 @@ export namespace DictionaryWithReference {
 
     export const schema: Schema<DictionaryWithReference> = {
         type: 'Dictionary',
-        item: 'ModelWithString',
+        item: {
+            type: 'ModelWithString',
+        }
     };
 
 }"
@@ -2734,11 +2882,6 @@ export namespace EnumFromDescription {
 
     export const schema: Schema<EnumFromDescription> = {
         type: 'Enum',
-        enums: [
-            3,
-            1,
-            2,
-        ],
     };
 
 }"
@@ -2765,11 +2908,6 @@ export namespace EnumWithNumbers {
 
     export const schema: Schema<EnumWithNumbers> = {
         type: 'Enum',
-        enums: [
-            1,
-            2,
-            3,
-        ],
     };
 
 }"
@@ -2796,11 +2934,6 @@ export namespace EnumWithStrings {
 
     export const schema: Schema<EnumWithStrings> = {
         type: 'Enum',
-        enums: [
-            'Error',
-            'Success',
-            'Warning',
-        ],
     };
 
 }"
@@ -2918,7 +3051,9 @@ export namespace ModelWithArray {
     export const schema: Schema<ModelWithArray> = {
         prop: {
             type: 'Array',
-            item: 'ModelWithString',
+            item: {
+                type: 'ModelWithString',
+            }
         },
         propWithFile: {
             type: 'Array',
@@ -3116,11 +3251,6 @@ export namespace ModelWithEnum {
     export const schema: Schema<ModelWithEnum> = {
         test: {
             type: 'Enum',
-            enums: [
-                'Success',
-                'Warning',
-                'Error',
-            ],
         },
     };
 
@@ -3159,11 +3289,6 @@ export namespace ModelWithEnumFromDescription {
     export const schema: Schema<ModelWithEnumFromDescription> = {
         test: {
             type: 'Enum',
-            enums: [
-                1,
-                2,
-                3,
-            ],
         },
     };
 
@@ -3253,44 +3378,24 @@ export namespace ModelWithNestedEnums {
             type: 'Array',
             item: {
                 type: 'Enum',
-                enums: [
-                    1,
-                    2,
-                    3,
-                ],
             },
         },
         arrayWithEnum: {
             type: 'Array',
             item: {
                 type: 'Enum',
-                enums: [
-                    'Success',
-                    'Warning',
-                    'Error',
-                ],
             },
         },
         dictionaryWithEnum: {
             type: 'Dictionary',
             item: {
                 type: 'Enum',
-                enums: [
-                    'Success',
-                    'Warning',
-                    'Error',
-                ],
             },
         },
         dictionaryWithEnumFromDescription: {
             type: 'Dictionary',
             item: {
                 type: 'Enum',
-                enums: [
-                    1,
-                    2,
-                    3,
-                ],
             },
         },
     };
@@ -3975,7 +4080,9 @@ export class TypesService {
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/core/ApiError.js): ./test/result/v3/javascript/core/ApiError.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -4031,7 +4138,9 @@ export function catchGenericError(result) {
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/core/OpenAPI.js): ./test/result/v3/javascript/core/OpenAPI.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -4045,7 +4154,9 @@ export let OpenAPI;
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/core/getFormData.js): ./test/result/v3/javascript/core/getFormData.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -4070,7 +4181,9 @@ export function getFormData(params) {
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/core/getQueryString.js): ./test/result/v3/javascript/core/getQueryString.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -4104,7 +4217,9 @@ export function getQueryString(params) {
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/core/isSuccess.js): ./test/result/v3/javascript/core/isSuccess.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -4119,7 +4234,9 @@ export function isSuccess(status) {
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/core/request.js): ./test/result/v3/javascript/core/request.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -4201,7 +4318,9 @@ export async function request(options) {
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/core/requestUsingFetch.js): ./test/result/v3/javascript/core/requestUsingFetch.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -4252,7 +4371,9 @@ export async function requestUsingFetch(url, request) {
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/core/requestUsingXHR.js): ./test/result/v3/javascript/core/requestUsingXHR.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -4326,7 +4447,9 @@ export async function requestUsingXHR(url, request) {
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/index.js): ./test/result/v3/javascript/index.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -4340,6 +4463,7 @@ import { ArrayWithNumbers } from './models/ArrayWithNumbers';
 import { ArrayWithProperties } from './models/ArrayWithProperties';
 import { ArrayWithReferences } from './models/ArrayWithReferences';
 import { ArrayWithStrings } from './models/ArrayWithStrings';
+import { Dictionary } from './models/Dictionary';
 import { DictionaryWithArray } from './models/DictionaryWithArray';
 import { DictionaryWithDictionary } from './models/DictionaryWithDictionary';
 import { DictionaryWithProperties } from './models/DictionaryWithProperties';
@@ -4378,6 +4502,7 @@ export { ArrayWithNumbers };
 export { ArrayWithProperties };
 export { ArrayWithReferences };
 export { ArrayWithStrings };
+export { Dictionary };
 export { DictionaryWithArray };
 export { DictionaryWithDictionary };
 export { DictionaryWithProperties };
@@ -4412,6 +4537,7 @@ export { SimpleString };
 
 export { ComplexService } from './services/ComplexService';
 export { DefaultsService } from './services/DefaultsService';
+export { MultipartService } from './services/MultipartService';
 export { ParametersService } from './services/ParametersService';
 export { ResponseService } from './services/ResponseService';
 export { SimpleService } from './services/SimpleService';
@@ -4424,6 +4550,7 @@ const schemas = {
     'ArrayWithProperties': ArrayWithProperties.schema,
     'ArrayWithReferences': ArrayWithReferences.schema,
     'ArrayWithStrings': ArrayWithStrings.schema,
+    'Dictionary': Dictionary.schema,
     'DictionaryWithArray': DictionaryWithArray.schema,
     'DictionaryWithDictionary': DictionaryWithDictionary.schema,
     'DictionaryWithProperties': DictionaryWithProperties.schema,
@@ -4467,7 +4594,9 @@ export function getSchema(schema) {
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/models/ArrayWithArray.js): ./test/result/v3/javascript/models/ArrayWithArray.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -4489,7 +4618,9 @@ export let ArrayWithArray;
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/models/ArrayWithBooleans.js): ./test/result/v3/javascript/models/ArrayWithBooleans.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -4510,7 +4641,9 @@ export let ArrayWithBooleans;
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/models/ArrayWithNumbers.js): ./test/result/v3/javascript/models/ArrayWithNumbers.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -4531,7 +4664,9 @@ export let ArrayWithNumbers;
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/models/ArrayWithProperties.js): ./test/result/v3/javascript/models/ArrayWithProperties.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -4557,7 +4692,9 @@ export let ArrayWithProperties;
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/models/ArrayWithReferences.js): ./test/result/v3/javascript/models/ArrayWithReferences.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -4576,7 +4713,9 @@ export let ArrayWithReferences;
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/models/ArrayWithStrings.js): ./test/result/v3/javascript/models/ArrayWithStrings.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -4597,7 +4736,9 @@ export let ArrayWithStrings;
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/models/Dictionary.js): ./test/result/v3/javascript/models/Dictionary.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -4605,7 +4746,10 @@ export let Dictionary;
 (function (Dictionary) {
 
     Dictionary.schema = {
-        type: 'Dictionary'
+        type: 'Dictionary',
+        item: {
+            type: 'any'
+        }
     };
 
 })(Dictionary || (Dictionary = {}));
@@ -4613,7 +4757,9 @@ export let Dictionary;
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/models/DictionaryWithArray.js): ./test/result/v3/javascript/models/DictionaryWithArray.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -4635,7 +4781,9 @@ export let DictionaryWithArray;
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/models/DictionaryWithDictionary.js): ./test/result/v3/javascript/models/DictionaryWithDictionary.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -4659,7 +4807,9 @@ export let DictionaryWithDictionary;
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/models/DictionaryWithProperties.js): ./test/result/v3/javascript/models/DictionaryWithProperties.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -4685,7 +4835,9 @@ export let DictionaryWithProperties;
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/models/DictionaryWithReference.js): ./test/result/v3/javascript/models/DictionaryWithReference.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -4704,7 +4856,9 @@ export let DictionaryWithReference;
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/models/DictionaryWithString.js): ./test/result/v3/javascript/models/DictionaryWithString.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -4725,7 +4879,9 @@ export let DictionaryWithString;
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/models/EnumFromDescription.js): ./test/result/v3/javascript/models/EnumFromDescription.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -4752,7 +4908,9 @@ export let EnumFromDescription;
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/models/EnumWithNumbers.js): ./test/result/v3/javascript/models/EnumWithNumbers.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -4779,7 +4937,9 @@ export let EnumWithNumbers;
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/models/EnumWithStrings.js): ./test/result/v3/javascript/models/EnumWithStrings.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -4806,7 +4966,9 @@ export let EnumWithStrings;
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/models/ModelLink.js): ./test/result/v3/javascript/models/ModelLink.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -4826,7 +4988,9 @@ export let ModelLink;
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/models/ModelThatExtends.js): ./test/result/v3/javascript/models/ModelThatExtends.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -4849,7 +5013,9 @@ export let ModelThatExtends;
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/models/ModelThatExtendsExtends.js): ./test/result/v3/javascript/models/ModelThatExtendsExtends.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -4872,7 +5038,9 @@ export let ModelThatExtendsExtends;
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/models/ModelWithArray.js): ./test/result/v3/javascript/models/ModelWithArray.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -4905,7 +5073,9 @@ export let ModelWithArray;
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/models/ModelWithBoolean.js): ./test/result/v3/javascript/models/ModelWithBoolean.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -4925,7 +5095,9 @@ export let ModelWithBoolean;
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/models/ModelWithCircularReference.js): ./test/result/v3/javascript/models/ModelWithCircularReference.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -4945,7 +5117,9 @@ export let ModelWithCircularReference;
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/models/ModelWithDictionary.js): ./test/result/v3/javascript/models/ModelWithDictionary.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -4968,7 +5142,9 @@ export let ModelWithDictionary;
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/models/ModelWithDuplicateImports.js): ./test/result/v3/javascript/models/ModelWithDuplicateImports.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -4994,7 +5170,9 @@ export let ModelWithDuplicateImports;
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/models/ModelWithDuplicateProperties.js): ./test/result/v3/javascript/models/ModelWithDuplicateProperties.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -5014,7 +5192,9 @@ export let ModelWithDuplicateProperties;
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/models/ModelWithEnum.js): ./test/result/v3/javascript/models/ModelWithEnum.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -5048,7 +5228,9 @@ export let ModelWithEnum;
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/models/ModelWithEnumFromDescription.js): ./test/result/v3/javascript/models/ModelWithEnumFromDescription.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -5082,7 +5264,9 @@ export let ModelWithEnumFromDescription;
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/models/ModelWithInteger.js): ./test/result/v3/javascript/models/ModelWithInteger.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -5102,7 +5286,9 @@ export let ModelWithInteger;
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/models/ModelWithLink.js): ./test/result/v3/javascript/models/ModelWithLink.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -5122,7 +5308,9 @@ export let ModelWithLink;
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/models/ModelWithNestedEnums.js): ./test/result/v3/javascript/models/ModelWithNestedEnums.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -5183,7 +5371,9 @@ export let ModelWithNestedEnums;
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/models/ModelWithNestedProperties.js): ./test/result/v3/javascript/models/ModelWithNestedProperties.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -5216,7 +5406,9 @@ export let ModelWithNestedProperties;
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/models/ModelWithProperties.js): ./test/result/v3/javascript/models/ModelWithProperties.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -5259,7 +5451,9 @@ export let ModelWithProperties;
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/models/ModelWithReference.js): ./test/result/v3/javascript/models/ModelWithReference.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -5279,7 +5473,9 @@ export let ModelWithReference;
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/models/ModelWithString.js): ./test/result/v3/javascript/models/ModelWithString.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -5299,7 +5495,9 @@ export let ModelWithString;
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/models/SimpleBoolean.js): ./test/result/v3/javascript/models/SimpleBoolean.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -5317,7 +5515,9 @@ export let SimpleBoolean;
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/models/SimpleFile.js): ./test/result/v3/javascript/models/SimpleFile.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -5335,7 +5535,9 @@ export let SimpleFile;
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/models/SimpleInteger.js): ./test/result/v3/javascript/models/SimpleInteger.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -5353,7 +5555,9 @@ export let SimpleInteger;
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/models/SimpleReference.js): ./test/result/v3/javascript/models/SimpleReference.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -5371,7 +5575,9 @@ export let SimpleReference;
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/models/SimpleString.js): ./test/result/v3/javascript/models/SimpleString.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -5389,7 +5595,9 @@ export let SimpleString;
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/services/ComplexService.js): ./test/result/v3/javascript/services/ComplexService.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -5435,7 +5643,9 @@ export class ComplexService {
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/services/DefaultsService.js): ./test/result/v3/javascript/services/DefaultsService.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -5483,8 +5693,42 @@ export class DefaultsService {
 }"
 `;
 
+exports[`generation v3 javascript file(./test/result/v3/javascript/services/MultipartService.js): ./test/result/v3/javascript/services/MultipartService.js 1`] = `
+"'use strict';
+
+/* istanbul ignore file */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ApiError, catchGenericError } from '../core/ApiError';
+import { request as $request } from '../core/request';
+import { OpenAPI } from '../core/OpenAPI';
+
+export class MultipartService {
+
+    /**
+     * @result any OK
+     * @throws ApiError
+     */
+    static async multipartResponse() {
+
+        const result = await $request({
+            method: 'get',
+            path: \`/api/v\${OpenAPI.VERSION}/multipart\`,
+        });
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+}"
+`;
+
 exports[`generation v3 javascript file(./test/result/v3/javascript/services/ParametersService.js): ./test/result/v3/javascript/services/ParametersService.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -5537,7 +5781,9 @@ export class ParametersService {
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/services/ResponseService.js): ./test/result/v3/javascript/services/ResponseService.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -5617,7 +5863,9 @@ export class ResponseService {
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/services/SimpleService.js): ./test/result/v3/javascript/services/SimpleService.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -5736,7 +5984,9 @@ export class SimpleService {
 `;
 
 exports[`generation v3 javascript file(./test/result/v3/javascript/services/TypesService.js): ./test/result/v3/javascript/services/TypesService.js 1`] = `
-"/* istanbul ignore file */
+"'use strict';
+
+/* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
 
@@ -5909,7 +6159,9 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/core/Schema.t
 /* eslint-disable */
 /* prettier-ignore */
 
-export type FieldSchema = {
+import { Dictionary } from \\"../models/Dictionary\\";
+
+type FieldSchema = {
     readonly type?: string;
     readonly isReadOnly?: boolean;
     readonly isRequired?: boolean;
@@ -5930,11 +6182,28 @@ export type FieldSchema = {
     readonly minProperties?: number;
 }
 
-export type Schema<T> = FieldSchema & {
-    readonly item?: string | Schema<T> | FieldSchema;
-} & {
-    readonly [K in keyof T]: Schema<T[K]> | FieldSchema;
+type ArraySchema<T> = FieldSchema & {
+    readonly item: Schema<T>;
 }
+
+type DictionarySchema<T> = FieldSchema & {
+    readonly item: Schema<T>;
+}
+
+type ObjectSchema<T> = FieldSchema & {
+    readonly [K in keyof T]: Schema<T[K]>;
+}
+
+export type Schema<T> =
+    T extends string ? FieldSchema :
+    T extends number ? FieldSchema :
+    T extends boolean ? FieldSchema :
+    T extends File ? FieldSchema :
+    T extends Blob ? FieldSchema :
+    T extends Array<infer U> ? ArraySchema<U> :
+    T extends Dictionary<infer U> ? DictionarySchema<U> :
+    T extends Object ? ObjectSchema<T> :
+    FieldSchema
 "
 `;
 
@@ -6239,7 +6508,7 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/index.ts): ./
 export { ApiError } from './core/ApiError';
 export { isSuccess } from './core/isSuccess';
 export { OpenAPI } from './core/OpenAPI';
-import { FieldSchema, Schema } from './core/Schema';
+import { Schema } from './core/Schema';
 
 import { ArrayWithArray } from './models/ArrayWithArray';
 import { ArrayWithBooleans } from './models/ArrayWithBooleans';
@@ -6321,6 +6590,7 @@ export { SimpleString };
 
 export { ComplexService } from './services/ComplexService';
 export { DefaultsService } from './services/DefaultsService';
+export { MultipartService } from './services/MultipartService';
 export { ParametersService } from './services/ParametersService';
 export { ResponseService } from './services/ResponseService';
 export { SimpleService } from './services/SimpleService';
@@ -6367,7 +6637,7 @@ const schemas = {
     'SimpleString': SimpleString.schema,
 };
 
-export function getSchema<T>(schema: string): Schema<T> | FieldSchema | null {
+export function getSchema<K extends keyof typeof schemas>(schema: K) {
     if (schemas.hasOwnProperty(schema)) {
         return schemas[schema];
     }
@@ -6397,7 +6667,9 @@ export namespace ArrayWithArray {
         type: 'Array',
         item: {
             type: 'Array',
-            item: 'ModelWithString',
+            item: {
+                type: 'ModelWithString',
+            }
         },
     };
 
@@ -6505,7 +6777,9 @@ export namespace ArrayWithReferences {
 
     export const schema: Schema<ArrayWithReferences> = {
         type: 'Array',
-        item: 'ModelWithString',
+        item: {
+            type: 'ModelWithString',
+        }
     };
 
 }"
@@ -6545,13 +6819,22 @@ exports[`generation v3 typescript file(./test/result/v3/typescript/models/Dictio
 import { Schema } from '../core/Schema';
 
 export interface Dictionary<T> {
+
+    /**
+     * @internal
+     */
+    readonly __type: T,
+
     [key: string]: T;
 }
 
 export namespace Dictionary {
 
-    export const schema: Schema<Dictionary> = {
-        type: 'Dictionary'
+    export const schema: Schema<Dictionary<any>> = {
+        type: 'Dictionary',
+        item: {
+            type: 'any'
+        }
     };
 
 }
@@ -6579,7 +6862,9 @@ export namespace DictionaryWithArray {
         type: 'Dictionary',
         item: {
             type: 'Array',
-            item: 'ModelWithString',
+            item: {
+                type: 'ModelWithString',
+            }
         },
     };
 
@@ -6668,7 +6953,9 @@ export namespace DictionaryWithReference {
 
     export const schema: Schema<DictionaryWithReference> = {
         type: 'Dictionary',
-        item: 'ModelWithString',
+        item: {
+            type: 'ModelWithString',
+        }
     };
 
 }"
@@ -6721,11 +7008,6 @@ export namespace EnumFromDescription {
 
     export const schema: Schema<EnumFromDescription> = {
         type: 'Enum',
-        enums: [
-            3,
-            1,
-            2,
-        ],
     };
 
 }"
@@ -6752,11 +7034,6 @@ export namespace EnumWithNumbers {
 
     export const schema: Schema<EnumWithNumbers> = {
         type: 'Enum',
-        enums: [
-            1,
-            2,
-            3,
-        ],
     };
 
 }"
@@ -6783,11 +7060,6 @@ export namespace EnumWithStrings {
 
     export const schema: Schema<EnumWithStrings> = {
         type: 'Enum',
-        enums: [
-            'Error',
-            'Success',
-            'Warning',
-        ],
     };
 
 }"
@@ -6905,7 +7177,9 @@ export namespace ModelWithArray {
     export const schema: Schema<ModelWithArray> = {
         prop: {
             type: 'Array',
-            item: 'ModelWithString',
+            item: {
+                type: 'ModelWithString',
+            }
         },
         propWithFile: {
             type: 'Array',
@@ -7103,11 +7377,6 @@ export namespace ModelWithEnum {
     export const schema: Schema<ModelWithEnum> = {
         Test: {
             type: 'Enum',
-            enums: [
-                'Success',
-                'Warning',
-                'Error',
-            ],
         },
     };
 
@@ -7146,11 +7415,6 @@ export namespace ModelWithEnumFromDescription {
     export const schema: Schema<ModelWithEnumFromDescription> = {
         Test: {
             type: 'Enum',
-            enums: [
-                1,
-                2,
-                3,
-            ],
         },
     };
 
@@ -7240,44 +7504,24 @@ export namespace ModelWithNestedEnums {
             type: 'Array',
             item: {
                 type: 'Enum',
-                enums: [
-                    1,
-                    2,
-                    3,
-                ],
             },
         },
         arrayWithEnum: {
             type: 'Array',
             item: {
                 type: 'Enum',
-                enums: [
-                    'Success',
-                    'Warning',
-                    'Error',
-                ],
             },
         },
         dictionaryWithEnum: {
             type: 'Dictionary',
             item: {
                 type: 'Enum',
-                enums: [
-                    'Success',
-                    'Warning',
-                    'Error',
-                ],
             },
         },
         dictionaryWithEnumFromDescription: {
             type: 'Dictionary',
             item: {
                 type: 'Enum',
-                enums: [
-                    1,
-                    2,
-                    3,
-                ],
             },
         },
     };
@@ -7646,6 +7890,43 @@ export class DefaultsService {
                 'parameterEnum': parameterEnum,
                 'parameterModel': parameterModel,
             },
+        });
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+}"
+`;
+
+exports[`generation v3 typescript file(./test/result/v3/typescript/services/MultipartService.ts): ./test/result/v3/typescript/services/MultipartService.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ApiError, catchGenericError } from '../core/ApiError';
+import { request as $request } from '../core/request';
+import { OpenAPI } from '../core/OpenAPI';
+
+export class MultipartService {
+
+    /**
+     * @result any OK
+     * @throws ApiError
+     */
+    public static async multipartResponse(): Promise<{
+        file?: string,
+        metadata?: {
+            foo?: string,
+            bar?: string,
+        },
+    }> {
+
+        const result = await $request({
+            method: 'get',
+            path: \`/api/v\${OpenAPI.VERSION}/multipart\`,
         });
 
         catchGenericError(result);

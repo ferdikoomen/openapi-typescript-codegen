@@ -59,7 +59,7 @@ describe('getModelNames', () => {
             properties: [],
         });
 
-        expect(getModelNames([])).toEqual([]);
-        expect(getModelNames(models)).toEqual(['Doe', 'Jane', 'John']);
+        expect(getModelNames([])).toEqual(['Dictionary']);
+        expect(getModelNames(models)).toEqual(['Dictionary', 'Doe', 'Jane', 'John']);
     });
 });

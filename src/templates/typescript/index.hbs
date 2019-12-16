@@ -6,7 +6,7 @@
 export { ApiError } from './core/ApiError';
 export { isSuccess } from './core/isSuccess';
 export { OpenAPI } from './core/OpenAPI';
-import { FieldSchema, Schema } from './core/Schema';
+import { Schema } from './core/Schema';
 {{#if models}}
 
 {{#each models}}
@@ -27,13 +27,13 @@ export { {{{this}}} } from './services/{{{this}}}';
 {{/if}}
 {{#if models}}
 
-const schemas: Schema = {
+const schemas = {
 {{#each models}}
     '{{{this}}}': {{{this}}}.schema,
 {{/each}}
 };
 
-export function getSchema<T>(schema: string): Schema<T> | null {
+export function getSchema<K extends keyof typeof schemas>(schema: K) {
     if (schemas.hasOwnProperty(schema)) {
         return schemas[schema];
     }

@@ -552,6 +552,43 @@
                     }
                 }
             }
+        },
+        "/api/v{api-version}/multipart": {
+            "get": {
+                "tags": [
+                    "multipart"
+                ],
+                "operationId": "MultipartResponse",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "multipart/mixed": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "file": {
+                                            "type": "string",
+                                            "format": "binary"
+                                        },
+                                        "metadata": {
+                                            "type": "object",
+                                            "properties": {
+                                                "foo": {
+                                                    "type": "string"
+                                                },
+                                                "bar": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {

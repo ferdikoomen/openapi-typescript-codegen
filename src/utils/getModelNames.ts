@@ -1,10 +1,9 @@
-import { Language } from '../index';
 import { Model } from '../client/interfaces/Model';
 
-export function getModelNames(models: Model[], language: Language): string[] {
+export function getModelNames(models: Model[]): string[] {
     return models
         .map(model => model.name)
-        .concat(language === Language.TYPESCRIPT ? ['Dictionary'] : [])
+        .concat('Dictionary')
         .sort((a, b) => {
             const nameA = a.toLowerCase();
             const nameB = b.toLowerCase();

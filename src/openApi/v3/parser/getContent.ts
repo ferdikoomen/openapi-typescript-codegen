@@ -18,5 +18,14 @@ export function getContent(openApi: OpenApi, content: Dictionary<OpenApiMediaTyp
     ) || (
         content[ContentType.TEXT_PAIN] &&
         content[ContentType.TEXT_PAIN].schema
+    ) || (
+        content[ContentType.MULTIPART_MIXED] &&
+        content[ContentType.MULTIPART_MIXED].schema
+    ) || (
+        content[ContentType.MULTIPART_RELATED] &&
+        content[ContentType.MULTIPART_RELATED].schema
+    ) || (
+        content[ContentType.MULTIPART_BATCH] &&
+        content[ContentType.MULTIPART_BATCH].schema
     ) || null;
 }

@@ -49,4 +49,7 @@ export enum ContentType {
     APPLICATION_JSON = 'application/json',
     TEXT_JSON = 'text/json',
     TEXT_PAIN = 'text/plain',
+    MULTIPART_MIXED = 'multipart/mixed',
+    MULTIPART_RELATED = 'multipart/related',
+    MULTIPART_BATCH = 'multipart/batch',
 }

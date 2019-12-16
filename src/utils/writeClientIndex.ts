@@ -24,7 +24,7 @@ export function writeClientIndex(client: Client, language: Language, templates: 
             templates.index({
                 server: client.server,
                 version: client.version,
-                models: getModelNames(client.models, language),
+                models: getModelNames(client.models),
                 services: getServiceNames(client.services),
             })
         );

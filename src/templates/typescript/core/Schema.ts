@@ -30,18 +30,21 @@ type ArraySchema<T> = FieldSchema & {
     readonly item: Schema<T>;
 }
 
+type DictionarySchema<T> = FieldSchema & {
+    readonly item: Schema<T>;
+}
+
 type ObjectSchema<T> = FieldSchema & {
     readonly [K in keyof T]: Schema<T[K]>;
 }
 
-export type Schema<T = any> =
+export type Schema<T> =
     T extends string ? FieldSchema :
     T extends number ? FieldSchema :
     T extends boolean ? FieldSchema :
     T extends File ? FieldSchema :
     T extends Blob ? FieldSchema :
     T extends Array<infer U> ? ArraySchema<U> :
-    // T extends Dictionary<infer U> ? ArraySchema<U> :
-    // Check if infer type!
+    T extends Dictionary<infer U> ? DictionarySchema<U> :
     T extends Object ? ObjectSchema<T> :
     FieldSchema

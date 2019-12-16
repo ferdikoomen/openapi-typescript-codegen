@@ -1,3 +1,5 @@
+'use strict';
+
 /* istanbul ignore file */
 /* eslint-disable */
 /* prettier-ignore */
