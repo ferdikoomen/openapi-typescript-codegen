@@ -1,10 +1,7 @@
 {
-    type: 'Dictionary',
-{{#if link~}}
-    item: {{>schema link}},
-{{else}}
-    item: '{{{base}}}',
-{{/if}}
+{{#each properties}}
+    {{{name}}}: {{>definition}},
+{{/each}}
 {{#if isReadOnly~}}
     isReadOnly: {{{isReadOnly}}},
 {{/if}}

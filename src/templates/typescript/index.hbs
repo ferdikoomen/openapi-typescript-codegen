@@ -4,9 +4,9 @@
 /* prettier-ignore */
 
 export { ApiError } from './core/ApiError';
+export { Definition } from './core/Definition';
 export { isSuccess } from './core/isSuccess';
 export { OpenAPI } from './core/OpenAPI';
-import { Schema } from './core/Schema';
 {{#if models}}
 
 {{#each models}}
@@ -27,15 +27,15 @@ export { {{{this}}} } from './services/{{{this}}}';
 {{/if}}
 {{#if models}}
 
-const schemas = {
+const definitions = {
 {{#each models}}
-    '{{{this}}}': {{{this}}}.schema,
+    '{{{this}}}': {{{this}}}.definition,
 {{/each}}
 };
 
-export function getSchema<K extends keyof typeof schemas>(schema: K) {
-    if (schemas.hasOwnProperty(schema)) {
-        return schemas[schema];
+export function getDefinition<K extends keyof typeof definitions>(definition: K) {
+    if (definitions.hasOwnProperty(definition)) {
+        return definitions[definition];
     }
     return null;
 }

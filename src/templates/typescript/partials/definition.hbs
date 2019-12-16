@@ -1,11 +1,11 @@
 {{#equals export 'interface'}}
-{{>schemaInterface}}
+{{>definitionInterface}}
 {{else equals export 'enum'}}
-{{>schemaEnum}}
+{{>definitionEnum}}
 {{else equals export 'array'}}
-{{>schemaArray}}
+{{>definitionArray}}
 {{else equals export 'dictionary'}}
-{{>schemaDictionary}}
+{{>definitionDictionary}}
 {{else}}
-{{>schemaGeneric}}
+{{>definitionGeneric}}
 {{/equals}}

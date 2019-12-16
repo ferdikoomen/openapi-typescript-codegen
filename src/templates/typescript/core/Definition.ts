@@ -5,7 +5,7 @@
 
 import { Dictionary } from "../models/Dictionary";
 
-type FieldSchema = {
+type FieldDefinition = {
     readonly type?: string;
     readonly isReadOnly?: boolean;
     readonly isRequired?: boolean;
@@ -26,25 +26,25 @@ type FieldSchema = {
     readonly minProperties?: number;
 }
 
-type ArraySchema<T> = FieldSchema & {
-    readonly item: Schema<T>;
+type ArrayDefinition<T> = FieldDefinition & {
+    readonly item: Definition<T>;
 }
 
-type DictionarySchema<T> = FieldSchema & {
-    readonly item: Schema<T>;
+type DictionaryDefinition<T> = FieldDefinition & {
+    readonly item: Definition<T>;
 }
 
-type ObjectSchema<T> = FieldSchema & {
-    readonly [K in keyof T]: Schema<T[K]>;
+type ObjectDefinition<T> = FieldDefinition & {
+    readonly [K in keyof T]: Definition<T[K]>;
 }
 
-export type Schema<T> =
-    T extends string ? FieldSchema :
-    T extends number ? FieldSchema :
-    T extends boolean ? FieldSchema :
-    T extends File ? FieldSchema :
-    T extends Blob ? FieldSchema :
-    T extends Array<infer U> ? ArraySchema<U> :
-    T extends Dictionary<infer U> ? DictionarySchema<U> :
-    T extends Object ? ObjectSchema<T> :
-    FieldSchema
+export type Definition<T> =
+    T extends string ? FieldDefinition :
+    T extends number ? FieldDefinition :
+    T extends boolean ? FieldDefinition :
+    T extends File ? FieldDefinition :
+    T extends Blob ? FieldDefinition :
+    T extends Array<infer U> ? ArrayDefinition<U> :
+    T extends Dictionary<infer U> ? DictionaryDefinition<U> :
+    T extends Object ? ObjectDefinition<T> :
+    FieldDefinition

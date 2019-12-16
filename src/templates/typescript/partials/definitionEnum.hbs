@@ -1,12 +1,5 @@
 {
-    type: 'Array',
-{{#if link~}}
-    item: {{>schema link}},
-{{else}}
-    item: {
-        type: '{{{base}}}',
-    }
-{{/if}}
+    type: 'Enum',
 {{#if isReadOnly~}}
     isReadOnly: {{{isReadOnly}}},
 {{/if}}

@@ -3,7 +3,7 @@
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema } from '../core/Schema';
+import { Definition } from '../core/Definition';
 
 export interface Dictionary<T> {
 
@@ -17,7 +17,7 @@ export interface Dictionary<T> {
 
 export namespace Dictionary {
 
-    export const schema: Schema<Dictionary<any>> = {
+    export const definition: Definition<Dictionary<any>> = {
         type: 'Dictionary',
         item: {
             type: 'any'

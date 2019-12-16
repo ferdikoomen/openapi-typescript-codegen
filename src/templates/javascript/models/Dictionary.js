@@ -7,7 +7,7 @@
 export let Dictionary;
 (function (Dictionary) {
 
-    Dictionary.schema = {
+    Dictionary.definition = {
         type: 'Dictionary',
         item: {
             type: 'any'

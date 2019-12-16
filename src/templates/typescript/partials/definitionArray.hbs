@@ -1,9 +1,11 @@
 {
     type: 'Array',
 {{#if link~}}
-    item: {{>schema link}},
+    item: {{>definition link}},
 {{else}}
-    item: '{{{base}}}',
+    item: {
+        type: '{{{base}}}',
+    },
 {{/if}}
 {{#if isReadOnly~}}
     isReadOnly: {{{isReadOnly}}},
