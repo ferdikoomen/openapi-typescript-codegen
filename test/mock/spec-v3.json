@@ -834,7 +834,7 @@
                 "type": "object",
                 "properties": {
                     "prop": {
-                        "$ref": "#/components/schemas/ModelWithString"
+                        "$ref": "#/components/schemas/ModelWithProperties"
                     }
                 }
             },

@@ -4,11 +4,11 @@
 /* eslint-disable */
 /* prettier-ignore */
 
-import {getFormData} from './getFormData';
-import {getQueryString} from './getQueryString';
-import {OpenAPI} from './OpenAPI';
-import {requestUsingFetch} from './requestUsingFetch';
-import {requestUsingXHR} from './requestUsingXHR';
+import { getFormData } from './getFormData';
+import { getQueryString } from './getQueryString';
+import { OpenAPI } from './OpenAPI';
+import { requestUsingFetch } from './requestUsingFetch';
+import { requestUsingXHR } from './requestUsingXHR';
 
 /**
  * Create the request.
@@ -23,14 +23,14 @@ export async function request(options) {
     // Create request headers
     const headers = new Headers({
         ...options.headers,
-        Accept: 'application/json'
+        Accept: 'application/json',
     });
 
     // Create request settings
     const request = {
         headers,
         method: options.method,
-        credentials: 'same-origin'
+        credentials: 'same-origin',
     };
 
     // If we have a bearer token then we set the authentication header.

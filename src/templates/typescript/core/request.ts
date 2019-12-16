@@ -3,13 +3,13 @@
 /* eslint-disable */
 /* prettier-ignore */
 
-import {getFormData} from './getFormData';
-import {getQueryString} from './getQueryString';
-import {OpenAPI} from './OpenAPI';
-import {RequestOptions} from './RequestOptions';
-import {requestUsingFetch} from './requestUsingFetch';
-import {requestUsingXHR} from './requestUsingXHR';
-import {Result} from './Result';
+import { getFormData } from './getFormData';
+import { getQueryString } from './getQueryString';
+import { OpenAPI } from './OpenAPI';
+import { RequestOptions } from './RequestOptions';
+import { requestUsingFetch } from './requestUsingFetch';
+import { requestUsingXHR } from './requestUsingXHR';
+import { Result } from './Result';
 
 /**
  * Create the request.
@@ -24,14 +24,14 @@ export async function request(options: Readonly<RequestOptions>): Promise<Result
     // Create request headers
     const headers = new Headers({
         ...options.headers,
-        Accept: 'application/json'
+        Accept: 'application/json',
     });
 
     // Create request settings
     const request: RequestInit = {
         headers,
         method: options.method,
-        credentials: 'same-origin'
+        credentials: 'same-origin',
     };
 
     // If we have a bearer token then we set the authentication header.
@@ -75,7 +75,7 @@ export async function request(options: Readonly<RequestOptions>): Promise<Result
             ok: false,
             status: 0,
             statusText: '',
-            body: error
+            body: error,
         };
     }
 }

@@ -671,7 +671,7 @@
             "type": "object",
             "properties": {
                 "prop": {
-                    "$ref": "#/definitions/ModelWithString"
+                    "$ref": "#/definitions/ModelWithProperties"
                 }
             }
         },

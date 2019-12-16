@@ -1,7 +1,16 @@
 {
-{{#each properties}}
-    {{{name}}}: {{>definition}},
-{{/each}}
+    properties: {
+{{#if extends}}
+    {{#each extends}}
+        ...{{{this}}}.definition.properties,
+    {{/each}}
+{{/if}}
+{{#if properties}}
+    {{#each properties}}
+        {{{name}}}: {{>definition}},
+    {{/each}}
+{{/if}}
+    },
 {{#if isReadOnly~}}
     isReadOnly: {{{isReadOnly}}},
 {{/if}}

@@ -3,14 +3,14 @@
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Dictionary } from "../models/Dictionary";
+import { Dictionary } from '../models/Dictionary';
 
-type FieldDefinition = {
+export type FieldDefinition = {
     readonly type?: string;
     readonly isReadOnly?: boolean;
     readonly isRequired?: boolean;
     readonly isNullable?: boolean;
-    readonly format?: 'int32' | 'int64' | 'float' | 'double' | 'string' | 'boolean' | 'byte' | 'binary' | 'date' | 'date-time' | 'password';
+    readonly format?: string;
     readonly maximum?: number;
     readonly exclusiveMaximum?: boolean;
     readonly minimum?: number;
@@ -35,8 +35,8 @@ type DictionaryDefinition<T> = FieldDefinition & {
 }
 
 type ObjectDefinition<T> = FieldDefinition & {
-    readonly [K in keyof T]: Definition<T[K]>;
-}
+        readonly [K in keyof T]: Definition<T[K]>;
+    }
 
 export type Definition<T> =
     T extends string ? FieldDefinition :

@@ -1,12 +1,5 @@
 {
     type: 'Array',
-{{#if link~}}
-    item: {{>definition link}},
-{{else}}
-    item: {
-        type: '{{{base}}}',
-    },
-{{/if}}
 {{#if isReadOnly~}}
     isReadOnly: {{{isReadOnly}}},
 {{/if}}

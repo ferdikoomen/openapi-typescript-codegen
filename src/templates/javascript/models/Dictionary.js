@@ -8,10 +8,7 @@ export let Dictionary;
 (function (Dictionary) {
 
     Dictionary.definition = {
-        type: 'Dictionary',
-        item: {
-            type: 'any'
-        }
+        type: 'Dictionary'
     };
 
 })(Dictionary || (Dictionary = {}));

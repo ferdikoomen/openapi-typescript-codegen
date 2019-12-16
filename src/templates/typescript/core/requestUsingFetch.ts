@@ -23,7 +23,7 @@ export async function requestUsingFetch(url: string, request: Readonly<RequestIn
         ok: response.ok,
         status: response.status,
         statusText: response.statusText,
-        body: null
+        body: null,
     };
 
     // Try to parse the content for any response status code.
