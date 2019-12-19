@@ -62,7 +62,7 @@
         "prettier:fix": "prettier \"./src/**/*.ts\" --write"
     },
     "devDependencies": {
-        "@babel/core": "7.7.5",
+        "@babel/core": "7.7.7",
         "@babel/preset-env": "7.7.6",
         "@babel/preset-typescript": "7.7.4",
         "@types/jest": "24.0.24",
