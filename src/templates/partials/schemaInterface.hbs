@@ -2,12 +2,12 @@
     properties: {
 {{#if extends}}
     {{#each extends}}
-        ...{{{this}}}.definition.properties,
+        ...${{{this}}}.properties,
     {{/each}}
 {{/if}}
 {{#if properties}}
     {{#each properties}}
-        {{{name}}}: {{>definition}},
+        {{{name}}}: {{>schema}},
     {{/each}}
 {{/if}}
     },

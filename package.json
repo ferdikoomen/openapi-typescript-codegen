@@ -43,10 +43,8 @@
         "dist/index.d.ts",
         "dist/**/*.js",
         "dist/**/*.d.ts",
-        "src/templates/javascript/**/*.hbs",
-        "src/templates/javascript/**/*.js",
-        "src/templates/typescript/**/*.hbs",
-        "src/templates/typescript/**/*.ts"
+        "src/templates/**/*.hbs",
+        "src/templates/**/*.ts"
     ],
     "scripts": {
         "clean": "rimraf \"./dist\" \"./coverage\" \"./test/result\"",

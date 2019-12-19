@@ -3,7 +3,7 @@ import * as glob from 'glob';
 import * as mkdirp from 'mkdirp';
 import * as rimraf from 'rimraf';
 import { Client } from '../client/interfaces/Client';
-import { HttpClient, Language } from '../index';
+import { HttpClient } from '../index';
 import { Templates } from './readHandlebarsTemplates';
 import { writeClient } from './writeClient';
 
@@ -27,15 +27,18 @@ describe('writeClient', () => {
         };
 
         const templates: Templates = {
-            index: () => 'dummy',
             model: () => 'dummy',
+            models: () => 'dummy',
+            schema: () => 'dummy',
+            schemas: () => 'dummy',
             service: () => 'dummy',
+            services: () => 'dummy',
             settings: () => 'dummy',
         };
 
         globSync.mockReturnValue([]);
 
-        writeClient(client, Language.TYPESCRIPT, HttpClient.FETCH, templates, '/');
+        writeClient(client, HttpClient.FETCH, templates, '/');
 
         expect(rimrafSync).toBeCalled();
         expect(mkdirpSync).toBeCalled();

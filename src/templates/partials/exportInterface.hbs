@@ -13,10 +13,10 @@ export interface {{{name}}}{{>extends}} {
     {{>isReadOnly}}{{{name}}}{{>isRequired}}: {{>type parent=../name}};
     {{/each}}
 }
+{{#if enums}}
 
 export namespace {{{name}}} {
 
-    {{#if enums}}
     {{#each enums}}
     {{#if description}}
     /**
@@ -30,7 +30,6 @@ export namespace {{{name}}} {
     }
 
     {{/each}}
-    {{/if}}
-    export const definition = {{>definition}};
 
 }
+{{/if}}

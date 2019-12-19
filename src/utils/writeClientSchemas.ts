@@ -7,22 +7,22 @@ import { format } from './format';
 import { getModelNames } from './getModelNames';
 
 /**
- * Generate Models using the Handlebar template and write to disk.
+ * Generate Schemas using the Handlebar template and write to disk.
  * @param models Array of Models to write.
  * @param templates The loaded handlebar templates.
  * @param outputPath
  */
-export function writeClientModels(models: Model[], templates: Templates, outputPath: string): void {
+export function writeClientSchemas(models: Model[], templates: Templates, outputPath: string): void {
     models.forEach(model => {
-        const file = path.resolve(outputPath, `${model.name}.ts`);
+        const file = path.resolve(outputPath, `$${model.name}.ts`);
         const templateData = exportModel(model);
-        const templateResult = templates.model(templateData);
+        const templateResult = templates.schema(templateData);
         fs.writeFileSync(file, format(templateResult));
     });
 
     const file = path.resolve(outputPath, 'index.ts');
-    const templateResult = templates.models({
-        models: getModelNames(models),
+    const templateResult = templates.schemas({
+        schemas: getModelNames(models),
     });
     fs.writeFileSync(file, format(templateResult));
 }

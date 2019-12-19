@@ -10,7 +10,6 @@ program
     .version(pkg.version)
     .option('--input [value]', 'Path to swagger specification', './spec.json')
     .option('--output [value]', 'Output directory', './generated')
-    .option('--language [value]', 'Language to generate [typescript, javascript]', 'typescript')
     .option('--http-client [value]', 'HTTP client to generate [fetch, xhr]', 'fetch')
     .parse(process.argv);
 
@@ -20,7 +19,6 @@ if (SwaggerCodegen) {
     SwaggerCodegen.generate(
         program.input,
         program.output,
-        program.language,
         program.httpClient
     );
 }

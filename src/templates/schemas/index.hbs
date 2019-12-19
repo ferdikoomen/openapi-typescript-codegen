@@ -1,0 +1,8 @@
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+{{#each schemas}}
+export { ${{{this}}} as {{{this}}} } from './${{{this}}}';
+{{/each}}

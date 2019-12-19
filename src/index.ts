@@ -7,11 +7,6 @@ import { parse as parseV3 } from './openApi/v3';
 import { readHandlebarsTemplates } from './utils/readHandlebarsTemplates';
 import { writeClient } from './utils/writeClient';
 
-export enum Language {
-    TYPESCRIPT = 'typescript',
-    JAVASCRIPT = 'javascript',
-}
-
 export enum HttpClient {
     FETCH = 'fetch',
     XHR = 'xhr',
@@ -23,10 +18,9 @@ export enum HttpClient {
  * service layer, etc.
  * @param input The relative location of the OpenAPI spec.
  * @param output The relative location of the output directory.
- * @param language: The language that should be generated (Typescript or Javascript).
  * @param httpClient: The selected httpClient (fetch or XHR).
  */
-export function generate(input: string, output: string, language: Language = Language.TYPESCRIPT, httpClient: HttpClient = HttpClient.FETCH): void {
+export function generate(input: string, output: string, httpClient: HttpClient = HttpClient.FETCH): void {
     const inputPath = path.resolve(process.cwd(), input);
     const outputPath = path.resolve(process.cwd(), output);
 
@@ -35,22 +29,18 @@ export function generate(input: string, output: string, language: Language = Lan
         // handlebar templates for the given language
         const openApi = getOpenApiSpec(inputPath);
         const openApiVersion = getOpenApiVersion(openApi);
-        const templates = readHandlebarsTemplates(language);
+        const templates = readHandlebarsTemplates();
 
-        switch (language) {
-            case Language.JAVASCRIPT:
-            case Language.TYPESCRIPT:
-                // Generate and write version 2 client
-                if (openApiVersion === OpenApiVersion.V2) {
-                    const clientV2 = parseV2(openApi);
-                    writeClient(clientV2, language, httpClient, templates, outputPath);
-                }
+        switch (openApiVersion) {
+            case OpenApiVersion.V2:
+                const clientV2 = parseV2(openApi);
+                writeClient(clientV2, httpClient, templates, outputPath);
+                break;
 
-                // Generate and write version 3 client
-                if (openApiVersion === OpenApiVersion.V3) {
-                    const clientV3 = parseV3(openApi);
-                    writeClient(clientV3, language, httpClient, templates, outputPath);
-                }
+            case OpenApiVersion.V3:
+                const clientV3 = parseV3(openApi);
+                writeClient(clientV3, httpClient, templates, outputPath);
+                break;
         }
     } catch (e) {
         console.error(e);

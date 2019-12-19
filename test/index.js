@@ -1,32 +1,16 @@
 const OpenAPI = require('../dist');
 
 OpenAPI.generate(
-    './test/mock/spec-v2.json',
-    './test/result/v2/typescript/',
-    OpenAPI.Language.TYPESCRIPT,
+    './test/mock/v2/spec.json',
+    './test/result/v2/',
     OpenAPI.HttpClient.FETCH,
 );
 
 OpenAPI.generate(
-    './test/mock/spec-v2.json',
-    './test/result/v2/javascript/',
-    OpenAPI.Language.JAVASCRIPT,
-    OpenAPI.HttpClient.XHR,
-);
-
-OpenAPI.generate(
-    './test/mock/spec-v3.json',
-    './test/result/v3/typescript/',
-    OpenAPI.Language.TYPESCRIPT,
+    './test/mock/v3/spec.json',
+    './test/result/v3/',
     OpenAPI.HttpClient.FETCH,
 );
 
-OpenAPI.generate(
-    './test/mock/spec-v3.json',
-    './test/result/v3/javascript/',
-    OpenAPI.Language.JAVASCRIPT,
-    OpenAPI.HttpClient.XHR,
-);
-
-OpenAPI.compile('./test/result/v2/typescript/');
-OpenAPI.compile('./test/result/v3/typescript/');
+OpenAPI.compile('./test/result/v2/');
+OpenAPI.compile('./test/result/v3/');

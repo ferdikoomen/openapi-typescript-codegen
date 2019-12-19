@@ -1,8 +1,13 @@
-'use strict';
-
 /* istanbul ignore file */
+/* tslint:disable */
 /* eslint-disable */
 /* prettier-ignore */
+
+{{#if imports}}
+{{#each imports}}
+import { {{{this}}} } from './{{{this}}}';
+{{/each}}
+{{/if}}
 
 {{#equals export 'interface'}}
 {{>exportInterface}}
