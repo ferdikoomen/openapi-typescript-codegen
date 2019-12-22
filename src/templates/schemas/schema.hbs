@@ -8,5 +8,7 @@
 import { ${{{this}}} } from './${{{this}}}';
 {{/each}}
 {{/if}}
+import { Schema as __Schema } from '../core/Schema';
+import { {{{name}}} } from '../models/{{{name}}}';
 
-export const ${{{name}}} = {{>schema}};
+export const ${{{name}}}: __Schema<{{{name}}}> = {{>schema}};

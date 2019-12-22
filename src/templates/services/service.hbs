@@ -9,7 +9,7 @@ import { {{{this}}} } from '../models/{{{this}}}';
 {{/each}}
 {{/if}}
 import { ApiError, catchGenericError } from '../core/ApiError';
-import { request as $request } from '../core/request';
+import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
 export class {{{name}}} {
@@ -41,7 +41,7 @@ export class {{{name}}} {
         {{/each}}
     {{/if}}): Promise<{{>result}}> {
 
-        const result = await $request({
+        const result = await __request({
             method: '{{{method}}}',
             path: `{{{path}}}`,
             {{#if parametersCookie~}}
