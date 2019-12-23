@@ -5,11 +5,9 @@ import { readHandlebarsTemplate } from './readHandlebarsTemplate';
 import { registerHandlebarHelpers } from './registerHandlebarHelpers';
 
 export interface Templates {
-    models: Handlebars.TemplateDelegate;
+    index: Handlebars.TemplateDelegate;
     model: Handlebars.TemplateDelegate;
-    schemas: Handlebars.TemplateDelegate;
     schema: Handlebars.TemplateDelegate;
-    services: Handlebars.TemplateDelegate;
     service: Handlebars.TemplateDelegate;
     settings: Handlebars.TemplateDelegate;
 }
@@ -23,12 +21,10 @@ export function readHandlebarsTemplates(): Templates {
         registerHandlebarHelpers();
 
         const templates: Templates = {
-            models: readHandlebarsTemplate(path.resolve(__dirname, `../../src/templates/models/index.hbs`)),
-            model: readHandlebarsTemplate(path.resolve(__dirname, `../../src/templates/models/model.hbs`)),
-            schemas: readHandlebarsTemplate(path.resolve(__dirname, `../../src/templates/schemas/index.hbs`)),
-            schema: readHandlebarsTemplate(path.resolve(__dirname, `../../src/templates/schemas/schema.hbs`)),
-            services: readHandlebarsTemplate(path.resolve(__dirname, `../../src/templates/services/index.hbs`)),
-            service: readHandlebarsTemplate(path.resolve(__dirname, `../../src/templates/services/service.hbs`)),
+            index: readHandlebarsTemplate(path.resolve(__dirname, `../../src/templates/index.hbs`)),
+            model: readHandlebarsTemplate(path.resolve(__dirname, `../../src/templates/model.hbs`)),
+            schema: readHandlebarsTemplate(path.resolve(__dirname, `../../src/templates/schema.hbs`)),
+            service: readHandlebarsTemplate(path.resolve(__dirname, `../../src/templates/service.hbs`)),
             settings: readHandlebarsTemplate(path.resolve(__dirname, `../../src/templates/core/OpenAPI.hbs`)),
         };
 

@@ -4,7 +4,6 @@ import { Service } from '../client/interfaces/Service';
 import { Templates } from './readHandlebarsTemplates';
 import { exportService } from './exportService';
 import { format } from './format';
-import { getServiceNames } from './getServiceNames';
 
 /**
  * Generate Services using the Handlebar template and write to disk.
@@ -19,10 +18,4 @@ export function writeClientServices(services: Service[], templates: Templates, o
         const templateResult = templates.service(templateData);
         fs.writeFileSync(file, format(templateResult));
     });
-
-    const file = path.resolve(outputPath, 'index.ts');
-    const templateResult = templates.services({
-        services: getServiceNames(services),
-    });
-    fs.writeFileSync(file, format(templateResult));
 }

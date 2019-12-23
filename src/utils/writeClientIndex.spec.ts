@@ -1,27 +1,20 @@
 import * as fs from 'fs';
 import * as glob from 'glob';
-import * as mkdirp from 'mkdirp';
-import * as rimraf from 'rimraf';
 import { Client } from '../client/interfaces/Client';
-import { HttpClient } from '../index';
 import { Templates } from './readHandlebarsTemplates';
-import { writeClient } from './writeClient';
+import { writeClientIndex } from './writeClientIndex';
 
-jest.mock('rimraf');
-jest.mock('mkdirp');
 jest.mock('fs');
 jest.mock('glob');
 
-const rimrafSync = mkdirp.sync as jest.MockedFunction<typeof mkdirp.sync>;
-const mkdirpSync = rimraf.sync as jest.MockedFunction<typeof rimraf.sync>;
 const fsWriteFileSync = fs.writeFileSync as jest.MockedFunction<typeof fs.writeFileSync>;
 const globSync = glob.sync as jest.MockedFunction<typeof glob.sync>;
 
-describe('writeClient', () => {
+describe('writeClientIndex', () => {
     it('should write to filesystem', () => {
         const client: Client = {
             server: 'http://localhost:8080',
-            version: 'v1',
+            version: '1.0',
             models: [],
             services: [],
         };
@@ -36,11 +29,8 @@ describe('writeClient', () => {
 
         globSync.mockReturnValue([]);
 
-        writeClient(client, HttpClient.FETCH, templates, '/');
+        writeClientIndex(client, templates, '/');
 
-        expect(rimrafSync).toBeCalled();
-        expect(mkdirpSync).toBeCalled();
-        expect(fsWriteFileSync).toBeCalled();
-        expect(globSync).toBeCalled();
+        expect(fsWriteFileSync).toBeCalledWith('/index.ts', 'dummy');
     });
 });

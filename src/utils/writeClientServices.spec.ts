@@ -1,5 +1,4 @@
 import * as fs from 'fs';
-import { Language } from '../index';
 import { Service } from '../client/interfaces/Service';
 import { Templates } from './readHandlebarsTemplates';
 import { writeClientServices } from './writeClientServices';
@@ -18,12 +17,10 @@ describe('writeClientServices', () => {
         });
 
         const templates: Templates = {
+            index: () => 'dummy',
             model: () => 'dummy',
-            models: () => 'dummy',
             schema: () => 'dummy',
-            schemas: () => 'dummy',
             service: () => 'dummy',
-            services: () => 'dummy',
             settings: () => 'dummy',
         };
 

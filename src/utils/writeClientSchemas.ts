@@ -4,7 +4,6 @@ import { Model } from '../client/interfaces/Model';
 import { Templates } from './readHandlebarsTemplates';
 import { exportModel } from './exportModel';
 import { format } from './format';
-import { getModelNames } from './getModelNames';
 
 /**
  * Generate Schemas using the Handlebar template and write to disk.
@@ -19,10 +18,4 @@ export function writeClientSchemas(models: Model[], templates: Templates, output
         const templateResult = templates.schema(templateData);
         fs.writeFileSync(file, format(templateResult));
     });
-
-    const file = path.resolve(outputPath, 'index.ts');
-    const templateResult = templates.schemas({
-        schemas: getModelNames(models),
-    });
-    fs.writeFileSync(file, format(templateResult));
 }

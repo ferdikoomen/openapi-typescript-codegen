@@ -18,7 +18,7 @@ export enum HttpClient {
  * service layer, etc.
  * @param input The relative location of the OpenAPI spec.
  * @param output The relative location of the output directory.
- * @param httpClient: The selected httpClient (fetch or XHR).
+ * @param httpClient The selected httpClient (fetch or XHR).
  */
 export function generate(input: string, output: string, httpClient: HttpClient = HttpClient.FETCH): void {
     const inputPath = path.resolve(process.cwd(), input);

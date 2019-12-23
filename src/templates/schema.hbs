@@ -2,13 +2,11 @@
 /* tslint:disable */
 /* eslint-disable */
 /* prettier-ignore */
-
 {{#if extends}}
+
 {{#each extends}}
 import { ${{{this}}} } from './${{{this}}}';
 {{/each}}
 {{/if}}
-import { Schema as __Schema } from '../core/Schema';
-import { {{{name}}} } from '../models/{{{name}}}';
 
-export const ${{{name}}}: __Schema<{{{name}}}> = {{>schema}};
+export const ${{{name}}} = {{>schema}};

@@ -1,0 +1,26 @@
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+export { ApiError } from './core/ApiError';
+export { isSuccess } from './core/isSuccess';
+export { OpenAPI } from './core/OpenAPI';
+{{#if models}}
+
+{{#each models}}
+export { {{{this}}} } from './models/{{{this}}}';
+{{/each}}
+{{/if}}
+{{#if models}}
+
+{{#each models}}
+export { ${{{this}}} } from './schemas/${{{this}}}';
+{{/each}}
+{{/if}}
+{{#if services}}
+
+{{#each services}}
+export { {{{this}}} } from './services/{{{this}}}';
+{{/each}}
+{{/if}}

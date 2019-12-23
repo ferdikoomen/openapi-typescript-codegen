@@ -6,6 +6,7 @@ import * as rimraf from 'rimraf';
 import { Client } from '../client/interfaces/Client';
 import { HttpClient } from '../index';
 import { Templates } from './readHandlebarsTemplates';
+import { writeClientIndex } from './writeClientIndex';
 import { writeClientModels } from './writeClientModels';
 import { writeClientSchemas } from './writeClientSchemas';
 import { writeClientServices } from './writeClientServices';
@@ -53,8 +54,9 @@ export function writeClient(client: Client, httpClient: HttpClient, templates: T
     });
 
     // Write the client files
-    writeClientSettings(client, httpClient, templates, outputPathCore);
     writeClientModels(client.models, templates, outputPathModels);
     writeClientSchemas(client.models, templates, outputPathSchemas);
     writeClientServices(client.services, templates, outputPathServices);
+    writeClientSettings(client, httpClient, templates, outputPathCore);
+    writeClientIndex(client, templates, outputPath);
 }

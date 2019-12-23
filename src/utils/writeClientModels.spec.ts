@@ -30,12 +30,10 @@ describe('writeClientModels', () => {
         });
 
         const templates: Templates = {
+            index: () => 'dummy',
             model: () => 'dummy',
-            models: () => 'dummy',
             schema: () => 'dummy',
-            schemas: () => 'dummy',
             service: () => 'dummy',
-            services: () => 'dummy',
             settings: () => 'dummy',
         };
 

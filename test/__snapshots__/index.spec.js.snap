@@ -109,50 +109,6 @@ export interface Result {
 "
 `;
 
-exports[`generation v2 file(./test/result/v2/core/Schema.ts): ./test/result/v2/core/Schema.ts 1`] = `
-"/* istanbul ignore file */
-/* tslint:disable */
-/* eslint-disable */
-/* prettier-ignore */
-
-export type FieldSchema = {
-    readonly type?: string;
-    readonly isReadOnly?: boolean;
-    readonly isRequired?: boolean;
-    readonly isNullable?: boolean;
-    readonly format?: string;
-    readonly maximum?: number;
-    readonly exclusiveMaximum?: boolean;
-    readonly minimum?: number;
-    readonly exclusiveMinimum?: boolean;
-    readonly multipleOf?: number;
-    readonly maxLength?: number;
-    readonly minLength?: number;
-    readonly pattern?: string;
-    readonly maxItems?: number;
-    readonly minItems?: number;
-    readonly uniqueItems?: boolean;
-    readonly maxProperties?: number;
-    readonly minProperties?: number;
-}
-
-export type ObjectSchema<T> = FieldSchema & {
-    properties?: {
-        readonly [K in keyof T]: Schema<T[K]>;
-    }
-}
-
-export type Schema<T> =
-    T extends string ? FieldSchema :
-    T extends number ? FieldSchema :
-    T extends boolean ? FieldSchema :
-    T extends File ? FieldSchema :
-    T extends Blob ? FieldSchema :
-    T extends Object ? ObjectSchema<T> :
-    FieldSchema
-"
-`;
-
 exports[`generation v2 file(./test/result/v2/core/getFormData.ts): ./test/result/v2/core/getFormData.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
@@ -210,27 +166,6 @@ export function getQueryString(params: { [key: string]: any }): string {
         return \`?\${qs.join('&')}\`;
     }
     return '';
-}
-"
-`;
-
-exports[`generation v2 file(./test/result/v2/core/getSchema.ts): ./test/result/v2/core/getSchema.ts 1`] = `
-"/* istanbul ignore file */
-/* tslint:disable */
-/* eslint-disable */
-/* prettier-ignore */
-
-import * as schemas from '../schemas';
-
-/**
- * Get a schema object for a given model name.
- * @param model The model name to return the schema from.
- */
-export function getSchema<K extends keyof typeof schemas, T>(model: K) {
-    if (schemas.hasOwnProperty(model)) {
-        return schemas[model];
-    }
-    return null;
 }
 "
 `;
@@ -473,12 +408,91 @@ exports[`generation v2 file(./test/result/v2/index.ts): ./test/result/v2/index.t
 /* prettier-ignore */
 
 export { ApiError } from './core/ApiError';
-export { getSchema } from './core/getSchema';
 export { isSuccess } from './core/isSuccess';
 export { OpenAPI } from './core/OpenAPI';
-export { FieldSchema, Schema, ObjectSchema } from './core/Schema';
-export * from './models/';
-export * from './services/';
+
+export { ArrayWithArray } from './models/ArrayWithArray';
+export { ArrayWithBooleans } from './models/ArrayWithBooleans';
+export { ArrayWithNumbers } from './models/ArrayWithNumbers';
+export { ArrayWithProperties } from './models/ArrayWithProperties';
+export { ArrayWithReferences } from './models/ArrayWithReferences';
+export { ArrayWithStrings } from './models/ArrayWithStrings';
+export { DictionaryWithArray } from './models/DictionaryWithArray';
+export { DictionaryWithDictionary } from './models/DictionaryWithDictionary';
+export { DictionaryWithProperties } from './models/DictionaryWithProperties';
+export { DictionaryWithReference } from './models/DictionaryWithReference';
+export { DictionaryWithString } from './models/DictionaryWithString';
+export { EnumFromDescription } from './models/EnumFromDescription';
+export { EnumWithNumbers } from './models/EnumWithNumbers';
+export { EnumWithStrings } from './models/EnumWithStrings';
+export { ModelLink } from './models/ModelLink';
+export { ModelThatExtends } from './models/ModelThatExtends';
+export { ModelThatExtendsExtends } from './models/ModelThatExtendsExtends';
+export { ModelWithArray } from './models/ModelWithArray';
+export { ModelWithBoolean } from './models/ModelWithBoolean';
+export { ModelWithCircularReference } from './models/ModelWithCircularReference';
+export { ModelWithDictionary } from './models/ModelWithDictionary';
+export { ModelWithDuplicateImports } from './models/ModelWithDuplicateImports';
+export { ModelWithDuplicateProperties } from './models/ModelWithDuplicateProperties';
+export { ModelWithEnum } from './models/ModelWithEnum';
+export { ModelWithEnumFromDescription } from './models/ModelWithEnumFromDescription';
+export { ModelWithInteger } from './models/ModelWithInteger';
+export { ModelWithLink } from './models/ModelWithLink';
+export { ModelWithNestedEnums } from './models/ModelWithNestedEnums';
+export { ModelWithNestedProperties } from './models/ModelWithNestedProperties';
+export { ModelWithProperties } from './models/ModelWithProperties';
+export { ModelWithReference } from './models/ModelWithReference';
+export { ModelWithString } from './models/ModelWithString';
+export { SimpleBoolean } from './models/SimpleBoolean';
+export { SimpleFile } from './models/SimpleFile';
+export { SimpleInteger } from './models/SimpleInteger';
+export { SimpleReference } from './models/SimpleReference';
+export { SimpleString } from './models/SimpleString';
+
+export { $ArrayWithArray } from './schemas/$ArrayWithArray';
+export { $ArrayWithBooleans } from './schemas/$ArrayWithBooleans';
+export { $ArrayWithNumbers } from './schemas/$ArrayWithNumbers';
+export { $ArrayWithProperties } from './schemas/$ArrayWithProperties';
+export { $ArrayWithReferences } from './schemas/$ArrayWithReferences';
+export { $ArrayWithStrings } from './schemas/$ArrayWithStrings';
+export { $DictionaryWithArray } from './schemas/$DictionaryWithArray';
+export { $DictionaryWithDictionary } from './schemas/$DictionaryWithDictionary';
+export { $DictionaryWithProperties } from './schemas/$DictionaryWithProperties';
+export { $DictionaryWithReference } from './schemas/$DictionaryWithReference';
+export { $DictionaryWithString } from './schemas/$DictionaryWithString';
+export { $EnumFromDescription } from './schemas/$EnumFromDescription';
+export { $EnumWithNumbers } from './schemas/$EnumWithNumbers';
+export { $EnumWithStrings } from './schemas/$EnumWithStrings';
+export { $ModelLink } from './schemas/$ModelLink';
+export { $ModelThatExtends } from './schemas/$ModelThatExtends';
+export { $ModelThatExtendsExtends } from './schemas/$ModelThatExtendsExtends';
+export { $ModelWithArray } from './schemas/$ModelWithArray';
+export { $ModelWithBoolean } from './schemas/$ModelWithBoolean';
+export { $ModelWithCircularReference } from './schemas/$ModelWithCircularReference';
+export { $ModelWithDictionary } from './schemas/$ModelWithDictionary';
+export { $ModelWithDuplicateImports } from './schemas/$ModelWithDuplicateImports';
+export { $ModelWithDuplicateProperties } from './schemas/$ModelWithDuplicateProperties';
+export { $ModelWithEnum } from './schemas/$ModelWithEnum';
+export { $ModelWithEnumFromDescription } from './schemas/$ModelWithEnumFromDescription';
+export { $ModelWithInteger } from './schemas/$ModelWithInteger';
+export { $ModelWithLink } from './schemas/$ModelWithLink';
+export { $ModelWithNestedEnums } from './schemas/$ModelWithNestedEnums';
+export { $ModelWithNestedProperties } from './schemas/$ModelWithNestedProperties';
+export { $ModelWithProperties } from './schemas/$ModelWithProperties';
+export { $ModelWithReference } from './schemas/$ModelWithReference';
+export { $ModelWithString } from './schemas/$ModelWithString';
+export { $SimpleBoolean } from './schemas/$SimpleBoolean';
+export { $SimpleFile } from './schemas/$SimpleFile';
+export { $SimpleInteger } from './schemas/$SimpleInteger';
+export { $SimpleReference } from './schemas/$SimpleReference';
+export { $SimpleString } from './schemas/$SimpleString';
+
+export { ComplexService } from './services/ComplexService';
+export { DefaultsService } from './services/DefaultsService';
+export { ParametersService } from './services/ParametersService';
+export { ResponseService } from './services/ResponseService';
+export { SimpleService } from './services/SimpleService';
+export { TypesService } from './services/TypesService';
 "
 `;
 
@@ -1130,62 +1144,13 @@ exports[`generation v2 file(./test/result/v2/models/SimpleString.ts): ./test/res
 export type SimpleString = string;"
 `;
 
-exports[`generation v2 file(./test/result/v2/models/index.ts): ./test/result/v2/models/index.ts 1`] = `
-"/* istanbul ignore file */
-/* tslint:disable */
-/* eslint-disable */
-/* prettier-ignore */
-
-export { ArrayWithArray } from './ArrayWithArray';
-export { ArrayWithBooleans } from './ArrayWithBooleans';
-export { ArrayWithNumbers } from './ArrayWithNumbers';
-export { ArrayWithProperties } from './ArrayWithProperties';
-export { ArrayWithReferences } from './ArrayWithReferences';
-export { ArrayWithStrings } from './ArrayWithStrings';
-export { DictionaryWithArray } from './DictionaryWithArray';
-export { DictionaryWithDictionary } from './DictionaryWithDictionary';
-export { DictionaryWithProperties } from './DictionaryWithProperties';
-export { DictionaryWithReference } from './DictionaryWithReference';
-export { DictionaryWithString } from './DictionaryWithString';
-export { EnumFromDescription } from './EnumFromDescription';
-export { EnumWithNumbers } from './EnumWithNumbers';
-export { EnumWithStrings } from './EnumWithStrings';
-export { ModelLink } from './ModelLink';
-export { ModelThatExtends } from './ModelThatExtends';
-export { ModelThatExtendsExtends } from './ModelThatExtendsExtends';
-export { ModelWithArray } from './ModelWithArray';
-export { ModelWithBoolean } from './ModelWithBoolean';
-export { ModelWithCircularReference } from './ModelWithCircularReference';
-export { ModelWithDictionary } from './ModelWithDictionary';
-export { ModelWithDuplicateImports } from './ModelWithDuplicateImports';
-export { ModelWithDuplicateProperties } from './ModelWithDuplicateProperties';
-export { ModelWithEnum } from './ModelWithEnum';
-export { ModelWithEnumFromDescription } from './ModelWithEnumFromDescription';
-export { ModelWithInteger } from './ModelWithInteger';
-export { ModelWithLink } from './ModelWithLink';
-export { ModelWithNestedEnums } from './ModelWithNestedEnums';
-export { ModelWithNestedProperties } from './ModelWithNestedProperties';
-export { ModelWithProperties } from './ModelWithProperties';
-export { ModelWithReference } from './ModelWithReference';
-export { ModelWithString } from './ModelWithString';
-export { SimpleBoolean } from './SimpleBoolean';
-export { SimpleFile } from './SimpleFile';
-export { SimpleInteger } from './SimpleInteger';
-export { SimpleReference } from './SimpleReference';
-export { SimpleString } from './SimpleString';
-"
-`;
-
 exports[`generation v2 file(./test/result/v2/schemas/$ArrayWithArray.ts): ./test/result/v2/schemas/$ArrayWithArray.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { ArrayWithArray } from '../models/ArrayWithArray';
-
-export const $ArrayWithArray: __Schema<ArrayWithArray> = {
+export const $ArrayWithArray = {
     type: 'Array',
 };"
 `;
@@ -1196,10 +1161,7 @@ exports[`generation v2 file(./test/result/v2/schemas/$ArrayWithBooleans.ts): ./t
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { ArrayWithBooleans } from '../models/ArrayWithBooleans';
-
-export const $ArrayWithBooleans: __Schema<ArrayWithBooleans> = {
+export const $ArrayWithBooleans = {
     type: 'Array',
 };"
 `;
@@ -1210,10 +1172,7 @@ exports[`generation v2 file(./test/result/v2/schemas/$ArrayWithNumbers.ts): ./te
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { ArrayWithNumbers } from '../models/ArrayWithNumbers';
-
-export const $ArrayWithNumbers: __Schema<ArrayWithNumbers> = {
+export const $ArrayWithNumbers = {
     type: 'Array',
 };"
 `;
@@ -1224,10 +1183,7 @@ exports[`generation v2 file(./test/result/v2/schemas/$ArrayWithProperties.ts): .
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { ArrayWithProperties } from '../models/ArrayWithProperties';
-
-export const $ArrayWithProperties: __Schema<ArrayWithProperties> = {
+export const $ArrayWithProperties = {
     type: 'Array',
 };"
 `;
@@ -1238,10 +1194,7 @@ exports[`generation v2 file(./test/result/v2/schemas/$ArrayWithReferences.ts): .
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { ArrayWithReferences } from '../models/ArrayWithReferences';
-
-export const $ArrayWithReferences: __Schema<ArrayWithReferences> = {
+export const $ArrayWithReferences = {
     type: 'Array',
 };"
 `;
@@ -1252,24 +1205,9 @@ exports[`generation v2 file(./test/result/v2/schemas/$ArrayWithStrings.ts): ./te
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { ArrayWithStrings } from '../models/ArrayWithStrings';
-
-export const $ArrayWithStrings: __Schema<ArrayWithStrings> = {
+export const $ArrayWithStrings = {
     type: 'Array',
 };"
-`;
-
-exports[`generation v2 file(./test/result/v2/schemas/$Dictionary.ts): ./test/result/v2/schemas/$Dictionary.ts 1`] = `
-"/* istanbul ignore file */
-/* tslint:disable */
-/* eslint-disable */
-/* prettier-ignore */
-
-export const $Dictionary = {
-    type: 'Dictionary'
-};
-"
 `;
 
 exports[`generation v2 file(./test/result/v2/schemas/$DictionaryWithArray.ts): ./test/result/v2/schemas/$DictionaryWithArray.ts 1`] = `
@@ -1278,10 +1216,7 @@ exports[`generation v2 file(./test/result/v2/schemas/$DictionaryWithArray.ts): .
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { DictionaryWithArray } from '../models/DictionaryWithArray';
-
-export const $DictionaryWithArray: __Schema<DictionaryWithArray> = {
+export const $DictionaryWithArray = {
     type: 'Dictionary',
 };"
 `;
@@ -1292,10 +1227,7 @@ exports[`generation v2 file(./test/result/v2/schemas/$DictionaryWithDictionary.t
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { DictionaryWithDictionary } from '../models/DictionaryWithDictionary';
-
-export const $DictionaryWithDictionary: __Schema<DictionaryWithDictionary> = {
+export const $DictionaryWithDictionary = {
     type: 'Dictionary',
 };"
 `;
@@ -1306,10 +1238,7 @@ exports[`generation v2 file(./test/result/v2/schemas/$DictionaryWithProperties.t
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { DictionaryWithProperties } from '../models/DictionaryWithProperties';
-
-export const $DictionaryWithProperties: __Schema<DictionaryWithProperties> = {
+export const $DictionaryWithProperties = {
     type: 'Dictionary',
 };"
 `;
@@ -1320,10 +1249,7 @@ exports[`generation v2 file(./test/result/v2/schemas/$DictionaryWithReference.ts
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { DictionaryWithReference } from '../models/DictionaryWithReference';
-
-export const $DictionaryWithReference: __Schema<DictionaryWithReference> = {
+export const $DictionaryWithReference = {
     type: 'Dictionary',
 };"
 `;
@@ -1334,10 +1260,7 @@ exports[`generation v2 file(./test/result/v2/schemas/$DictionaryWithString.ts): 
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { DictionaryWithString } from '../models/DictionaryWithString';
-
-export const $DictionaryWithString: __Schema<DictionaryWithString> = {
+export const $DictionaryWithString = {
     type: 'Dictionary',
 };"
 `;
@@ -1348,10 +1271,7 @@ exports[`generation v2 file(./test/result/v2/schemas/$EnumFromDescription.ts): .
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { EnumFromDescription } from '../models/EnumFromDescription';
-
-export const $EnumFromDescription: __Schema<EnumFromDescription> = {
+export const $EnumFromDescription = {
     type: 'Enum',
 };"
 `;
@@ -1362,10 +1282,7 @@ exports[`generation v2 file(./test/result/v2/schemas/$EnumWithNumbers.ts): ./tes
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { EnumWithNumbers } from '../models/EnumWithNumbers';
-
-export const $EnumWithNumbers: __Schema<EnumWithNumbers> = {
+export const $EnumWithNumbers = {
     type: 'Enum',
 };"
 `;
@@ -1376,10 +1293,7 @@ exports[`generation v2 file(./test/result/v2/schemas/$EnumWithStrings.ts): ./tes
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { EnumWithStrings } from '../models/EnumWithStrings';
-
-export const $EnumWithStrings: __Schema<EnumWithStrings> = {
+export const $EnumWithStrings = {
     type: 'Enum',
 };"
 `;
@@ -1390,10 +1304,7 @@ exports[`generation v2 file(./test/result/v2/schemas/$ModelLink.ts): ./test/resu
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { ModelLink } from '../models/ModelLink';
-
-export const $ModelLink: __Schema<ModelLink> = {
+export const $ModelLink = {
     properties: {
         id: {
             type: 'string',
@@ -1409,10 +1320,8 @@ exports[`generation v2 file(./test/result/v2/schemas/$ModelThatExtends.ts): ./te
 /* prettier-ignore */
 
 import { $ModelWithString } from './$ModelWithString';
-import { Schema as __Schema } from '../core/Schema';
-import { ModelThatExtends } from '../models/ModelThatExtends';
 
-export const $ModelThatExtends: __Schema<ModelThatExtends> = {
+export const $ModelThatExtends = {
     properties: {
         ...$ModelWithString.properties,
         propExtendsA: {
@@ -1433,10 +1342,8 @@ exports[`generation v2 file(./test/result/v2/schemas/$ModelThatExtendsExtends.ts
 
 import { $ModelWithString } from './$ModelWithString';
 import { $ModelThatExtends } from './$ModelThatExtends';
-import { Schema as __Schema } from '../core/Schema';
-import { ModelThatExtendsExtends } from '../models/ModelThatExtendsExtends';
 
-export const $ModelThatExtendsExtends: __Schema<ModelThatExtendsExtends> = {
+export const $ModelThatExtendsExtends = {
     properties: {
         ...$ModelWithString.properties,
         ...$ModelThatExtends.properties,
@@ -1456,10 +1363,7 @@ exports[`generation v2 file(./test/result/v2/schemas/$ModelWithArray.ts): ./test
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { ModelWithArray } from '../models/ModelWithArray';
-
-export const $ModelWithArray: __Schema<ModelWithArray> = {
+export const $ModelWithArray = {
     properties: {
         prop: {
             type: 'Array',
@@ -1480,10 +1384,7 @@ exports[`generation v2 file(./test/result/v2/schemas/$ModelWithBoolean.ts): ./te
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { ModelWithBoolean } from '../models/ModelWithBoolean';
-
-export const $ModelWithBoolean: __Schema<ModelWithBoolean> = {
+export const $ModelWithBoolean = {
     properties: {
         prop: {
             type: 'boolean',
@@ -1498,10 +1399,7 @@ exports[`generation v2 file(./test/result/v2/schemas/$ModelWithCircularReference
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { ModelWithCircularReference } from '../models/ModelWithCircularReference';
-
-export const $ModelWithCircularReference: __Schema<ModelWithCircularReference> = {
+export const $ModelWithCircularReference = {
     properties: {
         prop: {
             type: 'ModelWithCircularReference',
@@ -1516,10 +1414,7 @@ exports[`generation v2 file(./test/result/v2/schemas/$ModelWithDictionary.ts): .
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { ModelWithDictionary } from '../models/ModelWithDictionary';
-
-export const $ModelWithDictionary: __Schema<ModelWithDictionary> = {
+export const $ModelWithDictionary = {
     properties: {
         prop: {
             type: 'Dictionary',
@@ -1534,10 +1429,7 @@ exports[`generation v2 file(./test/result/v2/schemas/$ModelWithDuplicateImports.
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { ModelWithDuplicateImports } from '../models/ModelWithDuplicateImports';
-
-export const $ModelWithDuplicateImports: __Schema<ModelWithDuplicateImports> = {
+export const $ModelWithDuplicateImports = {
     properties: {
         propA: {
             type: 'ModelWithString',
@@ -1558,10 +1450,7 @@ exports[`generation v2 file(./test/result/v2/schemas/$ModelWithDuplicateProperti
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { ModelWithDuplicateProperties } from '../models/ModelWithDuplicateProperties';
-
-export const $ModelWithDuplicateProperties: __Schema<ModelWithDuplicateProperties> = {
+export const $ModelWithDuplicateProperties = {
     properties: {
         prop: {
             type: 'ModelWithString',
@@ -1576,10 +1465,7 @@ exports[`generation v2 file(./test/result/v2/schemas/$ModelWithEnum.ts): ./test/
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { ModelWithEnum } from '../models/ModelWithEnum';
-
-export const $ModelWithEnum: __Schema<ModelWithEnum> = {
+export const $ModelWithEnum = {
     properties: {
         test: {
             type: 'Enum',
@@ -1594,10 +1480,7 @@ exports[`generation v2 file(./test/result/v2/schemas/$ModelWithEnumFromDescripti
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { ModelWithEnumFromDescription } from '../models/ModelWithEnumFromDescription';
-
-export const $ModelWithEnumFromDescription: __Schema<ModelWithEnumFromDescription> = {
+export const $ModelWithEnumFromDescription = {
     properties: {
         test: {
             type: 'Enum',
@@ -1612,10 +1495,7 @@ exports[`generation v2 file(./test/result/v2/schemas/$ModelWithInteger.ts): ./te
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { ModelWithInteger } from '../models/ModelWithInteger';
-
-export const $ModelWithInteger: __Schema<ModelWithInteger> = {
+export const $ModelWithInteger = {
     properties: {
         prop: {
             type: 'number',
@@ -1630,10 +1510,7 @@ exports[`generation v2 file(./test/result/v2/schemas/$ModelWithLink.ts): ./test/
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { ModelWithLink } from '../models/ModelWithLink';
-
-export const $ModelWithLink: __Schema<ModelWithLink> = {
+export const $ModelWithLink = {
     properties: {
         prop: {
             type: 'ModelLink',
@@ -1648,10 +1525,7 @@ exports[`generation v2 file(./test/result/v2/schemas/$ModelWithNestedEnums.ts): 
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { ModelWithNestedEnums } from '../models/ModelWithNestedEnums';
-
-export const $ModelWithNestedEnums: __Schema<ModelWithNestedEnums> = {
+export const $ModelWithNestedEnums = {
     properties: {
         arrayWithDescription: {
             type: 'Array',
@@ -1675,10 +1549,7 @@ exports[`generation v2 file(./test/result/v2/schemas/$ModelWithNestedProperties.
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { ModelWithNestedProperties } from '../models/ModelWithNestedProperties';
-
-export const $ModelWithNestedProperties: __Schema<ModelWithNestedProperties> = {
+export const $ModelWithNestedProperties = {
     properties: {
         first: {
             properties: {
@@ -1707,10 +1578,7 @@ exports[`generation v2 file(./test/result/v2/schemas/$ModelWithProperties.ts): .
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { ModelWithProperties } from '../models/ModelWithProperties';
-
-export const $ModelWithProperties: __Schema<ModelWithProperties> = {
+export const $ModelWithProperties = {
     properties: {
         boolean: {
             type: 'boolean',
@@ -1743,10 +1611,7 @@ exports[`generation v2 file(./test/result/v2/schemas/$ModelWithReference.ts): ./
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { ModelWithReference } from '../models/ModelWithReference';
-
-export const $ModelWithReference: __Schema<ModelWithReference> = {
+export const $ModelWithReference = {
     properties: {
         prop: {
             type: 'ModelWithProperties',
@@ -1761,10 +1626,7 @@ exports[`generation v2 file(./test/result/v2/schemas/$ModelWithString.ts): ./tes
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { ModelWithString } from '../models/ModelWithString';
-
-export const $ModelWithString: __Schema<ModelWithString> = {
+export const $ModelWithString = {
     properties: {
         prop: {
             type: 'string',
@@ -1779,10 +1641,7 @@ exports[`generation v2 file(./test/result/v2/schemas/$SimpleBoolean.ts): ./test/
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { SimpleBoolean } from '../models/SimpleBoolean';
-
-export const $SimpleBoolean: __Schema<SimpleBoolean> = {
+export const $SimpleBoolean = {
     type: 'boolean',
 };"
 `;
@@ -1793,10 +1652,7 @@ exports[`generation v2 file(./test/result/v2/schemas/$SimpleFile.ts): ./test/res
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { SimpleFile } from '../models/SimpleFile';
-
-export const $SimpleFile: __Schema<SimpleFile> = {
+export const $SimpleFile = {
     type: 'File',
 };"
 `;
@@ -1807,10 +1663,7 @@ exports[`generation v2 file(./test/result/v2/schemas/$SimpleInteger.ts): ./test/
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { SimpleInteger } from '../models/SimpleInteger';
-
-export const $SimpleInteger: __Schema<SimpleInteger> = {
+export const $SimpleInteger = {
     type: 'number',
 };"
 `;
@@ -1821,10 +1674,7 @@ exports[`generation v2 file(./test/result/v2/schemas/$SimpleReference.ts): ./tes
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { SimpleReference } from '../models/SimpleReference';
-
-export const $SimpleReference: __Schema<SimpleReference> = {
+export const $SimpleReference = {
     type: 'ModelWithString',
 };"
 `;
@@ -1835,58 +1685,9 @@ exports[`generation v2 file(./test/result/v2/schemas/$SimpleString.ts): ./test/r
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { SimpleString } from '../models/SimpleString';
-
-export const $SimpleString: __Schema<SimpleString> = {
+export const $SimpleString = {
     type: 'string',
 };"
-`;
-
-exports[`generation v2 file(./test/result/v2/schemas/index.ts): ./test/result/v2/schemas/index.ts 1`] = `
-"/* istanbul ignore file */
-/* tslint:disable */
-/* eslint-disable */
-/* prettier-ignore */
-
-export { $ArrayWithArray as ArrayWithArray } from './$ArrayWithArray';
-export { $ArrayWithBooleans as ArrayWithBooleans } from './$ArrayWithBooleans';
-export { $ArrayWithNumbers as ArrayWithNumbers } from './$ArrayWithNumbers';
-export { $ArrayWithProperties as ArrayWithProperties } from './$ArrayWithProperties';
-export { $ArrayWithReferences as ArrayWithReferences } from './$ArrayWithReferences';
-export { $ArrayWithStrings as ArrayWithStrings } from './$ArrayWithStrings';
-export { $DictionaryWithArray as DictionaryWithArray } from './$DictionaryWithArray';
-export { $DictionaryWithDictionary as DictionaryWithDictionary } from './$DictionaryWithDictionary';
-export { $DictionaryWithProperties as DictionaryWithProperties } from './$DictionaryWithProperties';
-export { $DictionaryWithReference as DictionaryWithReference } from './$DictionaryWithReference';
-export { $DictionaryWithString as DictionaryWithString } from './$DictionaryWithString';
-export { $EnumFromDescription as EnumFromDescription } from './$EnumFromDescription';
-export { $EnumWithNumbers as EnumWithNumbers } from './$EnumWithNumbers';
-export { $EnumWithStrings as EnumWithStrings } from './$EnumWithStrings';
-export { $ModelLink as ModelLink } from './$ModelLink';
-export { $ModelThatExtends as ModelThatExtends } from './$ModelThatExtends';
-export { $ModelThatExtendsExtends as ModelThatExtendsExtends } from './$ModelThatExtendsExtends';
-export { $ModelWithArray as ModelWithArray } from './$ModelWithArray';
-export { $ModelWithBoolean as ModelWithBoolean } from './$ModelWithBoolean';
-export { $ModelWithCircularReference as ModelWithCircularReference } from './$ModelWithCircularReference';
-export { $ModelWithDictionary as ModelWithDictionary } from './$ModelWithDictionary';
-export { $ModelWithDuplicateImports as ModelWithDuplicateImports } from './$ModelWithDuplicateImports';
-export { $ModelWithDuplicateProperties as ModelWithDuplicateProperties } from './$ModelWithDuplicateProperties';
-export { $ModelWithEnum as ModelWithEnum } from './$ModelWithEnum';
-export { $ModelWithEnumFromDescription as ModelWithEnumFromDescription } from './$ModelWithEnumFromDescription';
-export { $ModelWithInteger as ModelWithInteger } from './$ModelWithInteger';
-export { $ModelWithLink as ModelWithLink } from './$ModelWithLink';
-export { $ModelWithNestedEnums as ModelWithNestedEnums } from './$ModelWithNestedEnums';
-export { $ModelWithNestedProperties as ModelWithNestedProperties } from './$ModelWithNestedProperties';
-export { $ModelWithProperties as ModelWithProperties } from './$ModelWithProperties';
-export { $ModelWithReference as ModelWithReference } from './$ModelWithReference';
-export { $ModelWithString as ModelWithString } from './$ModelWithString';
-export { $SimpleBoolean as SimpleBoolean } from './$SimpleBoolean';
-export { $SimpleFile as SimpleFile } from './$SimpleFile';
-export { $SimpleInteger as SimpleInteger } from './$SimpleInteger';
-export { $SimpleReference as SimpleReference } from './$SimpleReference';
-export { $SimpleString as SimpleString } from './$SimpleString';
-"
 `;
 
 exports[`generation v2 file(./test/result/v2/services/ComplexService.ts): ./test/result/v2/services/ComplexService.ts 1`] = `
@@ -2308,21 +2109,6 @@ export class TypesService {
 }"
 `;
 
-exports[`generation v2 file(./test/result/v2/services/index.ts): ./test/result/v2/services/index.ts 1`] = `
-"/* istanbul ignore file */
-/* tslint:disable */
-/* eslint-disable */
-/* prettier-ignore */
-
-export { ComplexService } from './ComplexService';
-export { DefaultsService } from './DefaultsService';
-export { ParametersService } from './ParametersService';
-export { ResponseService } from './ResponseService';
-export { SimpleService } from './SimpleService';
-export { TypesService } from './TypesService';
-"
-`;
-
 exports[`generation v3 file(./test/result/v3/core/ApiError.ts): ./test/result/v3/core/ApiError.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
@@ -2432,50 +2218,6 @@ export interface Result {
 "
 `;
 
-exports[`generation v3 file(./test/result/v3/core/Schema.ts): ./test/result/v3/core/Schema.ts 1`] = `
-"/* istanbul ignore file */
-/* tslint:disable */
-/* eslint-disable */
-/* prettier-ignore */
-
-export type FieldSchema = {
-    readonly type?: string;
-    readonly isReadOnly?: boolean;
-    readonly isRequired?: boolean;
-    readonly isNullable?: boolean;
-    readonly format?: string;
-    readonly maximum?: number;
-    readonly exclusiveMaximum?: boolean;
-    readonly minimum?: number;
-    readonly exclusiveMinimum?: boolean;
-    readonly multipleOf?: number;
-    readonly maxLength?: number;
-    readonly minLength?: number;
-    readonly pattern?: string;
-    readonly maxItems?: number;
-    readonly minItems?: number;
-    readonly uniqueItems?: boolean;
-    readonly maxProperties?: number;
-    readonly minProperties?: number;
-}
-
-export type ObjectSchema<T> = FieldSchema & {
-    properties?: {
-        readonly [K in keyof T]: Schema<T[K]>;
-    }
-}
-
-export type Schema<T> =
-    T extends string ? FieldSchema :
-    T extends number ? FieldSchema :
-    T extends boolean ? FieldSchema :
-    T extends File ? FieldSchema :
-    T extends Blob ? FieldSchema :
-    T extends Object ? ObjectSchema<T> :
-    FieldSchema
-"
-`;
-
 exports[`generation v3 file(./test/result/v3/core/getFormData.ts): ./test/result/v3/core/getFormData.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
@@ -2533,27 +2275,6 @@ export function getQueryString(params: { [key: string]: any }): string {
         return \`?\${qs.join('&')}\`;
     }
     return '';
-}
-"
-`;
-
-exports[`generation v3 file(./test/result/v3/core/getSchema.ts): ./test/result/v3/core/getSchema.ts 1`] = `
-"/* istanbul ignore file */
-/* tslint:disable */
-/* eslint-disable */
-/* prettier-ignore */
-
-import * as schemas from '../schemas';
-
-/**
- * Get a schema object for a given model name.
- * @param model The model name to return the schema from.
- */
-export function getSchema<K extends keyof typeof schemas, T>(model: K) {
-    if (schemas.hasOwnProperty(model)) {
-        return schemas[model];
-    }
-    return null;
 }
 "
 `;
@@ -2796,12 +2517,92 @@ exports[`generation v3 file(./test/result/v3/index.ts): ./test/result/v3/index.t
 /* prettier-ignore */
 
 export { ApiError } from './core/ApiError';
-export { getSchema } from './core/getSchema';
 export { isSuccess } from './core/isSuccess';
 export { OpenAPI } from './core/OpenAPI';
-export { FieldSchema, Schema, ObjectSchema } from './core/Schema';
-export * from './models/';
-export * from './services/';
+
+export { ArrayWithArray } from './models/ArrayWithArray';
+export { ArrayWithBooleans } from './models/ArrayWithBooleans';
+export { ArrayWithNumbers } from './models/ArrayWithNumbers';
+export { ArrayWithProperties } from './models/ArrayWithProperties';
+export { ArrayWithReferences } from './models/ArrayWithReferences';
+export { ArrayWithStrings } from './models/ArrayWithStrings';
+export { DictionaryWithArray } from './models/DictionaryWithArray';
+export { DictionaryWithDictionary } from './models/DictionaryWithDictionary';
+export { DictionaryWithProperties } from './models/DictionaryWithProperties';
+export { DictionaryWithReference } from './models/DictionaryWithReference';
+export { DictionaryWithString } from './models/DictionaryWithString';
+export { EnumFromDescription } from './models/EnumFromDescription';
+export { EnumWithNumbers } from './models/EnumWithNumbers';
+export { EnumWithStrings } from './models/EnumWithStrings';
+export { ModelLink } from './models/ModelLink';
+export { ModelThatExtends } from './models/ModelThatExtends';
+export { ModelThatExtendsExtends } from './models/ModelThatExtendsExtends';
+export { ModelWithArray } from './models/ModelWithArray';
+export { ModelWithBoolean } from './models/ModelWithBoolean';
+export { ModelWithCircularReference } from './models/ModelWithCircularReference';
+export { ModelWithDictionary } from './models/ModelWithDictionary';
+export { ModelWithDuplicateImports } from './models/ModelWithDuplicateImports';
+export { ModelWithDuplicateProperties } from './models/ModelWithDuplicateProperties';
+export { ModelWithEnum } from './models/ModelWithEnum';
+export { ModelWithEnumFromDescription } from './models/ModelWithEnumFromDescription';
+export { ModelWithInteger } from './models/ModelWithInteger';
+export { ModelWithLink } from './models/ModelWithLink';
+export { ModelWithNestedEnums } from './models/ModelWithNestedEnums';
+export { ModelWithNestedProperties } from './models/ModelWithNestedProperties';
+export { ModelWithProperties } from './models/ModelWithProperties';
+export { ModelWithReference } from './models/ModelWithReference';
+export { ModelWithString } from './models/ModelWithString';
+export { SimpleBoolean } from './models/SimpleBoolean';
+export { SimpleFile } from './models/SimpleFile';
+export { SimpleInteger } from './models/SimpleInteger';
+export { SimpleReference } from './models/SimpleReference';
+export { SimpleString } from './models/SimpleString';
+
+export { $ArrayWithArray } from './schemas/$ArrayWithArray';
+export { $ArrayWithBooleans } from './schemas/$ArrayWithBooleans';
+export { $ArrayWithNumbers } from './schemas/$ArrayWithNumbers';
+export { $ArrayWithProperties } from './schemas/$ArrayWithProperties';
+export { $ArrayWithReferences } from './schemas/$ArrayWithReferences';
+export { $ArrayWithStrings } from './schemas/$ArrayWithStrings';
+export { $DictionaryWithArray } from './schemas/$DictionaryWithArray';
+export { $DictionaryWithDictionary } from './schemas/$DictionaryWithDictionary';
+export { $DictionaryWithProperties } from './schemas/$DictionaryWithProperties';
+export { $DictionaryWithReference } from './schemas/$DictionaryWithReference';
+export { $DictionaryWithString } from './schemas/$DictionaryWithString';
+export { $EnumFromDescription } from './schemas/$EnumFromDescription';
+export { $EnumWithNumbers } from './schemas/$EnumWithNumbers';
+export { $EnumWithStrings } from './schemas/$EnumWithStrings';
+export { $ModelLink } from './schemas/$ModelLink';
+export { $ModelThatExtends } from './schemas/$ModelThatExtends';
+export { $ModelThatExtendsExtends } from './schemas/$ModelThatExtendsExtends';
+export { $ModelWithArray } from './schemas/$ModelWithArray';
+export { $ModelWithBoolean } from './schemas/$ModelWithBoolean';
+export { $ModelWithCircularReference } from './schemas/$ModelWithCircularReference';
+export { $ModelWithDictionary } from './schemas/$ModelWithDictionary';
+export { $ModelWithDuplicateImports } from './schemas/$ModelWithDuplicateImports';
+export { $ModelWithDuplicateProperties } from './schemas/$ModelWithDuplicateProperties';
+export { $ModelWithEnum } from './schemas/$ModelWithEnum';
+export { $ModelWithEnumFromDescription } from './schemas/$ModelWithEnumFromDescription';
+export { $ModelWithInteger } from './schemas/$ModelWithInteger';
+export { $ModelWithLink } from './schemas/$ModelWithLink';
+export { $ModelWithNestedEnums } from './schemas/$ModelWithNestedEnums';
+export { $ModelWithNestedProperties } from './schemas/$ModelWithNestedProperties';
+export { $ModelWithProperties } from './schemas/$ModelWithProperties';
+export { $ModelWithReference } from './schemas/$ModelWithReference';
+export { $ModelWithString } from './schemas/$ModelWithString';
+export { $SimpleBoolean } from './schemas/$SimpleBoolean';
+export { $SimpleFile } from './schemas/$SimpleFile';
+export { $SimpleInteger } from './schemas/$SimpleInteger';
+export { $SimpleReference } from './schemas/$SimpleReference';
+export { $SimpleString } from './schemas/$SimpleString';
+
+export { ComplexService } from './services/ComplexService';
+export { DefaultsService } from './services/DefaultsService';
+export { MultipartService } from './services/MultipartService';
+export { ParametersService } from './services/ParametersService';
+export { ResponseService } from './services/ResponseService';
+export { SimpleService } from './services/SimpleService';
+export { TypesService } from './services/TypesService';
 "
 `;
 
@@ -3454,62 +3255,13 @@ exports[`generation v3 file(./test/result/v3/models/SimpleString.ts): ./test/res
 export type SimpleString = string;"
 `;
 
-exports[`generation v3 file(./test/result/v3/models/index.ts): ./test/result/v3/models/index.ts 1`] = `
-"/* istanbul ignore file */
-/* tslint:disable */
-/* eslint-disable */
-/* prettier-ignore */
-
-export { ArrayWithArray } from './ArrayWithArray';
-export { ArrayWithBooleans } from './ArrayWithBooleans';
-export { ArrayWithNumbers } from './ArrayWithNumbers';
-export { ArrayWithProperties } from './ArrayWithProperties';
-export { ArrayWithReferences } from './ArrayWithReferences';
-export { ArrayWithStrings } from './ArrayWithStrings';
-export { DictionaryWithArray } from './DictionaryWithArray';
-export { DictionaryWithDictionary } from './DictionaryWithDictionary';
-export { DictionaryWithProperties } from './DictionaryWithProperties';
-export { DictionaryWithReference } from './DictionaryWithReference';
-export { DictionaryWithString } from './DictionaryWithString';
-export { EnumFromDescription } from './EnumFromDescription';
-export { EnumWithNumbers } from './EnumWithNumbers';
-export { EnumWithStrings } from './EnumWithStrings';
-export { ModelLink } from './ModelLink';
-export { ModelThatExtends } from './ModelThatExtends';
-export { ModelThatExtendsExtends } from './ModelThatExtendsExtends';
-export { ModelWithArray } from './ModelWithArray';
-export { ModelWithBoolean } from './ModelWithBoolean';
-export { ModelWithCircularReference } from './ModelWithCircularReference';
-export { ModelWithDictionary } from './ModelWithDictionary';
-export { ModelWithDuplicateImports } from './ModelWithDuplicateImports';
-export { ModelWithDuplicateProperties } from './ModelWithDuplicateProperties';
-export { ModelWithEnum } from './ModelWithEnum';
-export { ModelWithEnumFromDescription } from './ModelWithEnumFromDescription';
-export { ModelWithInteger } from './ModelWithInteger';
-export { ModelWithLink } from './ModelWithLink';
-export { ModelWithNestedEnums } from './ModelWithNestedEnums';
-export { ModelWithNestedProperties } from './ModelWithNestedProperties';
-export { ModelWithProperties } from './ModelWithProperties';
-export { ModelWithReference } from './ModelWithReference';
-export { ModelWithString } from './ModelWithString';
-export { SimpleBoolean } from './SimpleBoolean';
-export { SimpleFile } from './SimpleFile';
-export { SimpleInteger } from './SimpleInteger';
-export { SimpleReference } from './SimpleReference';
-export { SimpleString } from './SimpleString';
-"
-`;
-
 exports[`generation v3 file(./test/result/v3/schemas/$ArrayWithArray.ts): ./test/result/v3/schemas/$ArrayWithArray.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { ArrayWithArray } from '../models/ArrayWithArray';
-
-export const $ArrayWithArray: __Schema<ArrayWithArray> = {
+export const $ArrayWithArray = {
     type: 'Array',
 };"
 `;
@@ -3520,10 +3272,7 @@ exports[`generation v3 file(./test/result/v3/schemas/$ArrayWithBooleans.ts): ./t
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { ArrayWithBooleans } from '../models/ArrayWithBooleans';
-
-export const $ArrayWithBooleans: __Schema<ArrayWithBooleans> = {
+export const $ArrayWithBooleans = {
     type: 'Array',
 };"
 `;
@@ -3534,10 +3283,7 @@ exports[`generation v3 file(./test/result/v3/schemas/$ArrayWithNumbers.ts): ./te
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { ArrayWithNumbers } from '../models/ArrayWithNumbers';
-
-export const $ArrayWithNumbers: __Schema<ArrayWithNumbers> = {
+export const $ArrayWithNumbers = {
     type: 'Array',
 };"
 `;
@@ -3548,10 +3294,7 @@ exports[`generation v3 file(./test/result/v3/schemas/$ArrayWithProperties.ts): .
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { ArrayWithProperties } from '../models/ArrayWithProperties';
-
-export const $ArrayWithProperties: __Schema<ArrayWithProperties> = {
+export const $ArrayWithProperties = {
     type: 'Array',
 };"
 `;
@@ -3562,10 +3305,7 @@ exports[`generation v3 file(./test/result/v3/schemas/$ArrayWithReferences.ts): .
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { ArrayWithReferences } from '../models/ArrayWithReferences';
-
-export const $ArrayWithReferences: __Schema<ArrayWithReferences> = {
+export const $ArrayWithReferences = {
     type: 'Array',
 };"
 `;
@@ -3576,24 +3316,9 @@ exports[`generation v3 file(./test/result/v3/schemas/$ArrayWithStrings.ts): ./te
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { ArrayWithStrings } from '../models/ArrayWithStrings';
-
-export const $ArrayWithStrings: __Schema<ArrayWithStrings> = {
+export const $ArrayWithStrings = {
     type: 'Array',
 };"
-`;
-
-exports[`generation v3 file(./test/result/v3/schemas/$Dictionary.ts): ./test/result/v3/schemas/$Dictionary.ts 1`] = `
-"/* istanbul ignore file */
-/* tslint:disable */
-/* eslint-disable */
-/* prettier-ignore */
-
-export const $Dictionary = {
-    type: 'Dictionary'
-};
-"
 `;
 
 exports[`generation v3 file(./test/result/v3/schemas/$DictionaryWithArray.ts): ./test/result/v3/schemas/$DictionaryWithArray.ts 1`] = `
@@ -3602,10 +3327,7 @@ exports[`generation v3 file(./test/result/v3/schemas/$DictionaryWithArray.ts): .
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { DictionaryWithArray } from '../models/DictionaryWithArray';
-
-export const $DictionaryWithArray: __Schema<DictionaryWithArray> = {
+export const $DictionaryWithArray = {
     type: 'Dictionary',
 };"
 `;
@@ -3616,10 +3338,7 @@ exports[`generation v3 file(./test/result/v3/schemas/$DictionaryWithDictionary.t
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { DictionaryWithDictionary } from '../models/DictionaryWithDictionary';
-
-export const $DictionaryWithDictionary: __Schema<DictionaryWithDictionary> = {
+export const $DictionaryWithDictionary = {
     type: 'Dictionary',
 };"
 `;
@@ -3630,10 +3349,7 @@ exports[`generation v3 file(./test/result/v3/schemas/$DictionaryWithProperties.t
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { DictionaryWithProperties } from '../models/DictionaryWithProperties';
-
-export const $DictionaryWithProperties: __Schema<DictionaryWithProperties> = {
+export const $DictionaryWithProperties = {
     type: 'Dictionary',
 };"
 `;
@@ -3644,10 +3360,7 @@ exports[`generation v3 file(./test/result/v3/schemas/$DictionaryWithReference.ts
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { DictionaryWithReference } from '../models/DictionaryWithReference';
-
-export const $DictionaryWithReference: __Schema<DictionaryWithReference> = {
+export const $DictionaryWithReference = {
     type: 'Dictionary',
 };"
 `;
@@ -3658,10 +3371,7 @@ exports[`generation v3 file(./test/result/v3/schemas/$DictionaryWithString.ts): 
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { DictionaryWithString } from '../models/DictionaryWithString';
-
-export const $DictionaryWithString: __Schema<DictionaryWithString> = {
+export const $DictionaryWithString = {
     type: 'Dictionary',
 };"
 `;
@@ -3672,10 +3382,7 @@ exports[`generation v3 file(./test/result/v3/schemas/$EnumFromDescription.ts): .
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { EnumFromDescription } from '../models/EnumFromDescription';
-
-export const $EnumFromDescription: __Schema<EnumFromDescription> = {
+export const $EnumFromDescription = {
     type: 'Enum',
 };"
 `;
@@ -3686,10 +3393,7 @@ exports[`generation v3 file(./test/result/v3/schemas/$EnumWithNumbers.ts): ./tes
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { EnumWithNumbers } from '../models/EnumWithNumbers';
-
-export const $EnumWithNumbers: __Schema<EnumWithNumbers> = {
+export const $EnumWithNumbers = {
     type: 'Enum',
 };"
 `;
@@ -3700,10 +3404,7 @@ exports[`generation v3 file(./test/result/v3/schemas/$EnumWithStrings.ts): ./tes
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { EnumWithStrings } from '../models/EnumWithStrings';
-
-export const $EnumWithStrings: __Schema<EnumWithStrings> = {
+export const $EnumWithStrings = {
     type: 'Enum',
 };"
 `;
@@ -3714,10 +3415,7 @@ exports[`generation v3 file(./test/result/v3/schemas/$ModelLink.ts): ./test/resu
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { ModelLink } from '../models/ModelLink';
-
-export const $ModelLink: __Schema<ModelLink> = {
+export const $ModelLink = {
     properties: {
         id: {
             type: 'string',
@@ -3733,10 +3431,8 @@ exports[`generation v3 file(./test/result/v3/schemas/$ModelThatExtends.ts): ./te
 /* prettier-ignore */
 
 import { $ModelWithString } from './$ModelWithString';
-import { Schema as __Schema } from '../core/Schema';
-import { ModelThatExtends } from '../models/ModelThatExtends';
 
-export const $ModelThatExtends: __Schema<ModelThatExtends> = {
+export const $ModelThatExtends = {
     properties: {
         ...$ModelWithString.properties,
         propExtendsA: {
@@ -3757,10 +3453,8 @@ exports[`generation v3 file(./test/result/v3/schemas/$ModelThatExtendsExtends.ts
 
 import { $ModelWithString } from './$ModelWithString';
 import { $ModelThatExtends } from './$ModelThatExtends';
-import { Schema as __Schema } from '../core/Schema';
-import { ModelThatExtendsExtends } from '../models/ModelThatExtendsExtends';
 
-export const $ModelThatExtendsExtends: __Schema<ModelThatExtendsExtends> = {
+export const $ModelThatExtendsExtends = {
     properties: {
         ...$ModelWithString.properties,
         ...$ModelThatExtends.properties,
@@ -3780,10 +3474,7 @@ exports[`generation v3 file(./test/result/v3/schemas/$ModelWithArray.ts): ./test
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { ModelWithArray } from '../models/ModelWithArray';
-
-export const $ModelWithArray: __Schema<ModelWithArray> = {
+export const $ModelWithArray = {
     properties: {
         prop: {
             type: 'Array',
@@ -3804,10 +3495,7 @@ exports[`generation v3 file(./test/result/v3/schemas/$ModelWithBoolean.ts): ./te
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { ModelWithBoolean } from '../models/ModelWithBoolean';
-
-export const $ModelWithBoolean: __Schema<ModelWithBoolean> = {
+export const $ModelWithBoolean = {
     properties: {
         prop: {
             type: 'boolean',
@@ -3822,10 +3510,7 @@ exports[`generation v3 file(./test/result/v3/schemas/$ModelWithCircularReference
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { ModelWithCircularReference } from '../models/ModelWithCircularReference';
-
-export const $ModelWithCircularReference: __Schema<ModelWithCircularReference> = {
+export const $ModelWithCircularReference = {
     properties: {
         prop: {
             type: 'ModelWithCircularReference',
@@ -3840,10 +3525,7 @@ exports[`generation v3 file(./test/result/v3/schemas/$ModelWithDictionary.ts): .
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { ModelWithDictionary } from '../models/ModelWithDictionary';
-
-export const $ModelWithDictionary: __Schema<ModelWithDictionary> = {
+export const $ModelWithDictionary = {
     properties: {
         prop: {
             type: 'Dictionary',
@@ -3858,10 +3540,7 @@ exports[`generation v3 file(./test/result/v3/schemas/$ModelWithDuplicateImports.
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { ModelWithDuplicateImports } from '../models/ModelWithDuplicateImports';
-
-export const $ModelWithDuplicateImports: __Schema<ModelWithDuplicateImports> = {
+export const $ModelWithDuplicateImports = {
     properties: {
         propA: {
             type: 'ModelWithString',
@@ -3882,10 +3561,7 @@ exports[`generation v3 file(./test/result/v3/schemas/$ModelWithDuplicateProperti
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { ModelWithDuplicateProperties } from '../models/ModelWithDuplicateProperties';
-
-export const $ModelWithDuplicateProperties: __Schema<ModelWithDuplicateProperties> = {
+export const $ModelWithDuplicateProperties = {
     properties: {
         prop: {
             type: 'ModelWithString',
@@ -3900,10 +3576,7 @@ exports[`generation v3 file(./test/result/v3/schemas/$ModelWithEnum.ts): ./test/
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { ModelWithEnum } from '../models/ModelWithEnum';
-
-export const $ModelWithEnum: __Schema<ModelWithEnum> = {
+export const $ModelWithEnum = {
     properties: {
         Test: {
             type: 'Enum',
@@ -3918,10 +3591,7 @@ exports[`generation v3 file(./test/result/v3/schemas/$ModelWithEnumFromDescripti
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { ModelWithEnumFromDescription } from '../models/ModelWithEnumFromDescription';
-
-export const $ModelWithEnumFromDescription: __Schema<ModelWithEnumFromDescription> = {
+export const $ModelWithEnumFromDescription = {
     properties: {
         Test: {
             type: 'Enum',
@@ -3936,10 +3606,7 @@ exports[`generation v3 file(./test/result/v3/schemas/$ModelWithInteger.ts): ./te
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { ModelWithInteger } from '../models/ModelWithInteger';
-
-export const $ModelWithInteger: __Schema<ModelWithInteger> = {
+export const $ModelWithInteger = {
     properties: {
         prop: {
             type: 'number',
@@ -3954,10 +3621,7 @@ exports[`generation v3 file(./test/result/v3/schemas/$ModelWithLink.ts): ./test/
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { ModelWithLink } from '../models/ModelWithLink';
-
-export const $ModelWithLink: __Schema<ModelWithLink> = {
+export const $ModelWithLink = {
     properties: {
         prop: {
             type: 'ModelLink',
@@ -3972,10 +3636,7 @@ exports[`generation v3 file(./test/result/v3/schemas/$ModelWithNestedEnums.ts): 
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { ModelWithNestedEnums } from '../models/ModelWithNestedEnums';
-
-export const $ModelWithNestedEnums: __Schema<ModelWithNestedEnums> = {
+export const $ModelWithNestedEnums = {
     properties: {
         arrayWithDescription: {
             type: 'Array',
@@ -3999,10 +3660,7 @@ exports[`generation v3 file(./test/result/v3/schemas/$ModelWithNestedProperties.
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { ModelWithNestedProperties } from '../models/ModelWithNestedProperties';
-
-export const $ModelWithNestedProperties: __Schema<ModelWithNestedProperties> = {
+export const $ModelWithNestedProperties = {
     properties: {
         first: {
             properties: {
@@ -4034,10 +3692,7 @@ exports[`generation v3 file(./test/result/v3/schemas/$ModelWithProperties.ts): .
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { ModelWithProperties } from '../models/ModelWithProperties';
-
-export const $ModelWithProperties: __Schema<ModelWithProperties> = {
+export const $ModelWithProperties = {
     properties: {
         boolean: {
             type: 'boolean',
@@ -4075,10 +3730,7 @@ exports[`generation v3 file(./test/result/v3/schemas/$ModelWithReference.ts): ./
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { ModelWithReference } from '../models/ModelWithReference';
-
-export const $ModelWithReference: __Schema<ModelWithReference> = {
+export const $ModelWithReference = {
     properties: {
         prop: {
             type: 'ModelWithProperties',
@@ -4093,10 +3745,7 @@ exports[`generation v3 file(./test/result/v3/schemas/$ModelWithString.ts): ./tes
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { ModelWithString } from '../models/ModelWithString';
-
-export const $ModelWithString: __Schema<ModelWithString> = {
+export const $ModelWithString = {
     properties: {
         prop: {
             type: 'string',
@@ -4111,10 +3760,7 @@ exports[`generation v3 file(./test/result/v3/schemas/$SimpleBoolean.ts): ./test/
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { SimpleBoolean } from '../models/SimpleBoolean';
-
-export const $SimpleBoolean: __Schema<SimpleBoolean> = {
+export const $SimpleBoolean = {
     type: 'boolean',
 };"
 `;
@@ -4125,10 +3771,7 @@ exports[`generation v3 file(./test/result/v3/schemas/$SimpleFile.ts): ./test/res
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { SimpleFile } from '../models/SimpleFile';
-
-export const $SimpleFile: __Schema<SimpleFile> = {
+export const $SimpleFile = {
     type: 'File',
 };"
 `;
@@ -4139,10 +3782,7 @@ exports[`generation v3 file(./test/result/v3/schemas/$SimpleInteger.ts): ./test/
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { SimpleInteger } from '../models/SimpleInteger';
-
-export const $SimpleInteger: __Schema<SimpleInteger> = {
+export const $SimpleInteger = {
     type: 'number',
 };"
 `;
@@ -4153,10 +3793,7 @@ exports[`generation v3 file(./test/result/v3/schemas/$SimpleReference.ts): ./tes
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { SimpleReference } from '../models/SimpleReference';
-
-export const $SimpleReference: __Schema<SimpleReference> = {
+export const $SimpleReference = {
     type: 'ModelWithString',
 };"
 `;
@@ -4167,58 +3804,9 @@ exports[`generation v3 file(./test/result/v3/schemas/$SimpleString.ts): ./test/r
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Schema as __Schema } from '../core/Schema';
-import { SimpleString } from '../models/SimpleString';
-
-export const $SimpleString: __Schema<SimpleString> = {
+export const $SimpleString = {
     type: 'string',
 };"
-`;
-
-exports[`generation v3 file(./test/result/v3/schemas/index.ts): ./test/result/v3/schemas/index.ts 1`] = `
-"/* istanbul ignore file */
-/* tslint:disable */
-/* eslint-disable */
-/* prettier-ignore */
-
-export { $ArrayWithArray as ArrayWithArray } from './$ArrayWithArray';
-export { $ArrayWithBooleans as ArrayWithBooleans } from './$ArrayWithBooleans';
-export { $ArrayWithNumbers as ArrayWithNumbers } from './$ArrayWithNumbers';
-export { $ArrayWithProperties as ArrayWithProperties } from './$ArrayWithProperties';
-export { $ArrayWithReferences as ArrayWithReferences } from './$ArrayWithReferences';
-export { $ArrayWithStrings as ArrayWithStrings } from './$ArrayWithStrings';
-export { $DictionaryWithArray as DictionaryWithArray } from './$DictionaryWithArray';
-export { $DictionaryWithDictionary as DictionaryWithDictionary } from './$DictionaryWithDictionary';
-export { $DictionaryWithProperties as DictionaryWithProperties } from './$DictionaryWithProperties';
-export { $DictionaryWithReference as DictionaryWithReference } from './$DictionaryWithReference';
-export { $DictionaryWithString as DictionaryWithString } from './$DictionaryWithString';
-export { $EnumFromDescription as EnumFromDescription } from './$EnumFromDescription';
-export { $EnumWithNumbers as EnumWithNumbers } from './$EnumWithNumbers';
-export { $EnumWithStrings as EnumWithStrings } from './$EnumWithStrings';
-export { $ModelLink as ModelLink } from './$ModelLink';
-export { $ModelThatExtends as ModelThatExtends } from './$ModelThatExtends';
-export { $ModelThatExtendsExtends as ModelThatExtendsExtends } from './$ModelThatExtendsExtends';
-export { $ModelWithArray as ModelWithArray } from './$ModelWithArray';
-export { $ModelWithBoolean as ModelWithBoolean } from './$ModelWithBoolean';
-export { $ModelWithCircularReference as ModelWithCircularReference } from './$ModelWithCircularReference';
-export { $ModelWithDictionary as ModelWithDictionary } from './$ModelWithDictionary';
-export { $ModelWithDuplicateImports as ModelWithDuplicateImports } from './$ModelWithDuplicateImports';
-export { $ModelWithDuplicateProperties as ModelWithDuplicateProperties } from './$ModelWithDuplicateProperties';
-export { $ModelWithEnum as ModelWithEnum } from './$ModelWithEnum';
-export { $ModelWithEnumFromDescription as ModelWithEnumFromDescription } from './$ModelWithEnumFromDescription';
-export { $ModelWithInteger as ModelWithInteger } from './$ModelWithInteger';
-export { $ModelWithLink as ModelWithLink } from './$ModelWithLink';
-export { $ModelWithNestedEnums as ModelWithNestedEnums } from './$ModelWithNestedEnums';
-export { $ModelWithNestedProperties as ModelWithNestedProperties } from './$ModelWithNestedProperties';
-export { $ModelWithProperties as ModelWithProperties } from './$ModelWithProperties';
-export { $ModelWithReference as ModelWithReference } from './$ModelWithReference';
-export { $ModelWithString as ModelWithString } from './$ModelWithString';
-export { $SimpleBoolean as SimpleBoolean } from './$SimpleBoolean';
-export { $SimpleFile as SimpleFile } from './$SimpleFile';
-export { $SimpleInteger as SimpleInteger } from './$SimpleInteger';
-export { $SimpleReference as SimpleReference } from './$SimpleReference';
-export { $SimpleString as SimpleString } from './$SimpleString';
-"
 `;
 
 exports[`generation v3 file(./test/result/v3/services/ComplexService.ts): ./test/result/v3/services/ComplexService.ts 1`] = `
@@ -4680,20 +4268,4 @@ export class TypesService {
     }
 
 }"
-`;
-
-exports[`generation v3 file(./test/result/v3/services/index.ts): ./test/result/v3/services/index.ts 1`] = `
-"/* istanbul ignore file */
-/* tslint:disable */
-/* eslint-disable */
-/* prettier-ignore */
-
-export { ComplexService } from './ComplexService';
-export { DefaultsService } from './DefaultsService';
-export { MultipartService } from './MultipartService';
-export { ParametersService } from './ParametersService';
-export { ResponseService } from './ResponseService';
-export { SimpleService } from './SimpleService';
-export { TypesService } from './TypesService';
-"
 `;
