@@ -19,11 +19,7 @@
         "@typescript-eslint/no-non-null-assertion": 0,
         "@typescript-eslint/ban-ts-ignore": 0,
         "@typescript-eslint/explicit-function-return-type": 0,
-        "sort-imports-es6-autofix/sort-imports-es6": [2, {
-            "ignoreCase": false,
-            "ignoreMemberSort": false,
-            "memberSyntaxSortOrder": ["none", "all", "multiple", "single"]
-        }],
+        "sort-imports-es6-autofix/sort-imports-es6": "error",
         "prettier/prettier": ["error"]
     }
 }
