@@ -47,7 +47,7 @@
         "src/templates/**/*.ts"
     ],
     "scripts": {
-        "clean": "rimraf \"./dist\" \"./coverage\" \"./test/result\"",
+        "clean": "rimraf ./dist ./test/result ./coverage",
         "build": "tsc",
         "run": "tsc && node ./test/index.js",
         "test": "tsc && jest",
@@ -57,7 +57,8 @@
         "eslint": "eslint \"./src/**/*.ts\"",
         "eslint:fix": "eslint \"./src/**/*.ts\" --fix",
         "prettier": "prettier \"./src/**/*.ts\" --check",
-        "prettier:fix": "prettier \"./src/**/*.ts\" --write"
+        "prettier:fix": "prettier \"./src/**/*.ts\" --write",
+        "codecov": "codecov --token=66c30c23-8954-4892-bef9-fbaed0a2e42b"
     },
     "devDependencies": {
         "@babel/core": "7.7.7",
@@ -72,6 +73,7 @@
         "@typescript-eslint/parser": "2.15.0",
         "camelcase": "5.3.1",
         "chalk": "3.0.0",
+        "codecov": "3.6.1",
         "commander": "4.1.0",
         "eslint": "6.8.0",
         "eslint-config-prettier": "6.9.0",

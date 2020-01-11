@@ -19,7 +19,10 @@ jobs:
                     - node_modules
             - run:
                 name: build
-                command: yarn build
+                command: yarn run build
             - run:
                 name: test
-                command: yarn test:coverage
+                command: yarn run test:coverage
+            - run:
+                name: codecov
+                command: yarn run codecov
