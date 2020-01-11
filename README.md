@@ -3,6 +3,7 @@
 [![NPM](https://badgen.net/npm/v/openapi-typescript-codegen)](https://www.npmjs.com/package/openapi-typescript-codegen)
 [![License](https://badgen.net/npm/license/openapi-typescript-codegen)](https://www.npmjs.com/package/openapi-typescript-codegen)
 [![Build Status](https://badgen.net/travis/ferdikoomen/openapi-typescript-codegen/master)](https://travis-ci.org/ferdikoomen/openapi-typescript-codegen)
+[![Codecov](https://codecov.io/gh/ferdikoomen/openapi-typescript-codegen/branch/master/graph/badge.svg)](https://codecov.io/gh/ferdikoomen/openapi-typescript-codegen)
 [![Quality](https://badgen.net/lgtm/grade/javascript/g/ferdikoomen/openapi-typescript-codegen)](https://lgtm.com/projects/g/ferdikoomen/openapi-typescript-codegen)
 
 > NodeJS library that generates Typescript clients based on the OpenAPI specification.
