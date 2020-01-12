@@ -21,7 +21,7 @@ export enum HttpClient {
  * @param httpClient The selected httpClient (fetch or XHR).
  * @param write Write the files to disk (true or false)
  */
-export function generate(input: string, output: string, httpClient: HttpClient = HttpClient.FETCH, write: boolean = false): void {
+export function generate(input: string, output: string, httpClient: HttpClient = HttpClient.FETCH, write: boolean = true): void {
     const inputPath = path.resolve(process.cwd(), input);
     const outputPath = path.resolve(process.cwd(), output);
 
