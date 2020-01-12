@@ -13,10 +13,10 @@ program
     .option('--client [value]', 'HTTP client to generate [fetch, xhr]', 'fetch')
     .parse(process.argv);
 
-const SwaggerCodegen = require(path.resolve(__dirname, '../dist/index.js'));
+const OpenAPI = require(path.resolve(__dirname, '../dist/index.js'));
 
-if (SwaggerCodegen) {
-    SwaggerCodegen.generate(
+if (OpenAPI) {
+    OpenAPI.generate(
         program.input,
         program.output,
         program.client
