@@ -441,6 +441,7 @@ export { ModelWithInteger } from './models/ModelWithInteger';
 export { ModelWithLink } from './models/ModelWithLink';
 export { ModelWithNestedEnums } from './models/ModelWithNestedEnums';
 export { ModelWithNestedProperties } from './models/ModelWithNestedProperties';
+export { ModelWithOrderedProperties } from './models/ModelWithOrderedProperties';
 export { ModelWithProperties } from './models/ModelWithProperties';
 export { ModelWithReference } from './models/ModelWithReference';
 export { ModelWithString } from './models/ModelWithString';
@@ -479,6 +480,7 @@ export { $ModelWithInteger } from './schemas/$ModelWithInteger';
 export { $ModelWithLink } from './schemas/$ModelWithLink';
 export { $ModelWithNestedEnums } from './schemas/$ModelWithNestedEnums';
 export { $ModelWithNestedProperties } from './schemas/$ModelWithNestedProperties';
+export { $ModelWithOrderedProperties } from './schemas/$ModelWithOrderedProperties';
 export { $ModelWithProperties } from './schemas/$ModelWithProperties';
 export { $ModelWithReference } from './schemas/$ModelWithReference';
 export { $ModelWithString } from './schemas/$ModelWithString';
@@ -678,9 +680,9 @@ exports[`generation v2 file(./test/result/v2/models/EnumFromDescription.ts): ./t
  * Success=1,Warning=2,Error=3
  */
 export enum EnumFromDescription {
-    ERROR = 3,
     SUCCESS = 1,
     WARNING = 2,
+    ERROR = 3,
 }"
 `;
 
@@ -712,9 +714,9 @@ exports[`generation v2 file(./test/result/v2/models/EnumWithStrings.ts): ./test/
  * This is a simple enum with strings
  */
 export enum EnumWithStrings {
-    ERROR = 'Error',
     SUCCESS = 'Success',
     WARNING = 'Warning',
+    ERROR = 'Error',
 }"
 `;
 
@@ -993,10 +995,10 @@ import { Dictionary } from './Dictionary';
  * This is a model with nested enums
  */
 export interface ModelWithNestedEnums {
-    arrayWithDescription?: Array<(1 | 2 | 3)>;
-    arrayWithEnum?: Array<('Success' | 'Warning' | 'Error')>;
     dictionaryWithEnum?: Dictionary<('Success' | 'Warning' | 'Error')>;
     dictionaryWithEnumFromDescription?: Dictionary<(1 | 2 | 3)>;
+    arrayWithEnum?: Array<('Success' | 'Warning' | 'Error')>;
+    arrayWithDescription?: Array<(1 | 2 | 3)>;
 }
 "
 `;
@@ -1021,6 +1023,24 @@ export interface ModelWithNestedProperties {
 "
 `;
 
+exports[`generation v2 file(./test/result/v2/models/ModelWithOrderedProperties.ts): ./test/result/v2/models/ModelWithOrderedProperties.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+
+/**
+ * This is a model with ordered properties
+ */
+export interface ModelWithOrderedProperties {
+    zebra?: string;
+    apple?: string;
+    hawaii?: string;
+}
+"
+`;
+
 exports[`generation v2 file(./test/result/v2/models/ModelWithProperties.ts): ./test/result/v2/models/ModelWithProperties.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
@@ -1033,12 +1053,12 @@ import { ModelWithString } from './ModelWithString';
  * This is a model with one nested property
  */
 export interface ModelWithProperties {
-    boolean?: boolean;
-    number?: number;
-    reference?: ModelWithString;
     required: string;
     readonly requiredAndReadOnly: string;
     string?: string;
+    number?: number;
+    boolean?: boolean;
+    reference?: ModelWithString;
 }
 "
 `;
@@ -1528,17 +1548,17 @@ exports[`generation v2 file(./test/result/v2/schemas/$ModelWithNestedEnums.ts): 
 
 export const $ModelWithNestedEnums = {
     properties: {
-        arrayWithDescription: {
-            type: 'Array',
-        },
-        arrayWithEnum: {
-            type: 'Array',
-        },
         dictionaryWithEnum: {
             type: 'Dictionary',
         },
         dictionaryWithEnumFromDescription: {
             type: 'Dictionary',
+        },
+        arrayWithEnum: {
+            type: 'Array',
+        },
+        arrayWithDescription: {
+            type: 'Array',
         },
     },
 };"
@@ -1573,6 +1593,27 @@ export const $ModelWithNestedProperties = {
 };"
 `;
 
+exports[`generation v2 file(./test/result/v2/schemas/$ModelWithOrderedProperties.ts): ./test/result/v2/schemas/$ModelWithOrderedProperties.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+export const $ModelWithOrderedProperties = {
+    properties: {
+        zebra: {
+            type: 'string',
+        },
+        apple: {
+            type: 'string',
+        },
+        hawaii: {
+            type: 'string',
+        },
+    },
+};"
+`;
+
 exports[`generation v2 file(./test/result/v2/schemas/$ModelWithProperties.ts): ./test/result/v2/schemas/$ModelWithProperties.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
@@ -1581,15 +1622,6 @@ exports[`generation v2 file(./test/result/v2/schemas/$ModelWithProperties.ts): .
 
 export const $ModelWithProperties = {
     properties: {
-        boolean: {
-            type: 'boolean',
-        },
-        number: {
-            type: 'number',
-        },
-        reference: {
-            type: 'ModelWithString',
-        },
         required: {
             type: 'string',
             isRequired: true,
@@ -1601,6 +1633,15 @@ export const $ModelWithProperties = {
         },
         string: {
             type: 'string',
+        },
+        number: {
+            type: 'number',
+        },
+        boolean: {
+            type: 'boolean',
+        },
+        reference: {
+            type: 'ModelWithString',
         },
     },
 };"
@@ -1864,6 +1905,22 @@ export class ResponseService {
      * @result ModelWithString Message for default response
      * @throws ApiError
      */
+    public static async callWithResponse(): Promise<ModelWithString> {
+
+        const result = await __request({
+            method: 'get',
+            path: \`/api/v\${OpenAPI.VERSION}/response\`,
+        });
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @result ModelWithString Message for default response
+     * @throws ApiError
+     */
     public static async callWithDuplicateResponses(): Promise<ModelWithString> {
 
         const result = await __request({
@@ -1878,22 +1935,6 @@ export class ResponseService {
                 case 502: throw new ApiError(result, \`Message for 502 error\`);
             }
         }
-
-        catchGenericError(result);
-
-        return result.body;
-    }
-
-    /**
-     * @result ModelWithString Message for default response
-     * @throws ApiError
-     */
-    public static async callWithResponse(): Promise<ModelWithString> {
-
-        const result = await __request({
-            method: 'get',
-            path: \`/api/v\${OpenAPI.VERSION}/response\`,
-        });
 
         catchGenericError(result);
 
@@ -1944,21 +1985,6 @@ export class SimpleService {
     /**
      * @throws ApiError
      */
-    public static async deleteCallWithoutParametersAndResponse(): Promise<void> {
-
-        const result = await __request({
-            method: 'delete',
-            path: \`/api/v\${OpenAPI.VERSION}/simple\`,
-        });
-
-        catchGenericError(result);
-
-        return result.body;
-    }
-
-    /**
-     * @throws ApiError
-     */
     public static async getCallWithoutParametersAndResponse(): Promise<void> {
 
         const result = await __request({
@@ -1974,40 +2000,10 @@ export class SimpleService {
     /**
      * @throws ApiError
      */
-    public static async headCallWithoutParametersAndResponse(): Promise<void> {
+    public static async putCallWithoutParametersAndResponse(): Promise<void> {
 
         const result = await __request({
-            method: 'head',
-            path: \`/api/v\${OpenAPI.VERSION}/simple\`,
-        });
-
-        catchGenericError(result);
-
-        return result.body;
-    }
-
-    /**
-     * @throws ApiError
-     */
-    public static async optionsCallWithoutParametersAndResponse(): Promise<void> {
-
-        const result = await __request({
-            method: 'options',
-            path: \`/api/v\${OpenAPI.VERSION}/simple\`,
-        });
-
-        catchGenericError(result);
-
-        return result.body;
-    }
-
-    /**
-     * @throws ApiError
-     */
-    public static async patchCallWithoutParametersAndResponse(): Promise<void> {
-
-        const result = await __request({
-            method: 'patch',
+            method: 'put',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
 
@@ -2034,10 +2030,55 @@ export class SimpleService {
     /**
      * @throws ApiError
      */
-    public static async putCallWithoutParametersAndResponse(): Promise<void> {
+    public static async deleteCallWithoutParametersAndResponse(): Promise<void> {
 
         const result = await __request({
-            method: 'put',
+            method: 'delete',
+            path: \`/api/v\${OpenAPI.VERSION}/simple\`,
+        });
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @throws ApiError
+     */
+    public static async optionsCallWithoutParametersAndResponse(): Promise<void> {
+
+        const result = await __request({
+            method: 'options',
+            path: \`/api/v\${OpenAPI.VERSION}/simple\`,
+        });
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @throws ApiError
+     */
+    public static async headCallWithoutParametersAndResponse(): Promise<void> {
+
+        const result = await __request({
+            method: 'head',
+            path: \`/api/v\${OpenAPI.VERSION}/simple\`,
+        });
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @throws ApiError
+     */
+    public static async patchCallWithoutParametersAndResponse(): Promise<void> {
+
+        const result = await __request({
+            method: 'patch',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
 
@@ -2551,6 +2592,7 @@ export { ModelWithInteger } from './models/ModelWithInteger';
 export { ModelWithLink } from './models/ModelWithLink';
 export { ModelWithNestedEnums } from './models/ModelWithNestedEnums';
 export { ModelWithNestedProperties } from './models/ModelWithNestedProperties';
+export { ModelWithOrderedProperties } from './models/ModelWithOrderedProperties';
 export { ModelWithProperties } from './models/ModelWithProperties';
 export { ModelWithReference } from './models/ModelWithReference';
 export { ModelWithString } from './models/ModelWithString';
@@ -2589,6 +2631,7 @@ export { $ModelWithInteger } from './schemas/$ModelWithInteger';
 export { $ModelWithLink } from './schemas/$ModelWithLink';
 export { $ModelWithNestedEnums } from './schemas/$ModelWithNestedEnums';
 export { $ModelWithNestedProperties } from './schemas/$ModelWithNestedProperties';
+export { $ModelWithOrderedProperties } from './schemas/$ModelWithOrderedProperties';
 export { $ModelWithProperties } from './schemas/$ModelWithProperties';
 export { $ModelWithReference } from './schemas/$ModelWithReference';
 export { $ModelWithString } from './schemas/$ModelWithString';
@@ -2789,9 +2832,9 @@ exports[`generation v3 file(./test/result/v3/models/EnumFromDescription.ts): ./t
  * Success=1,Warning=2,Error=3
  */
 export enum EnumFromDescription {
-    ERROR = 3,
     SUCCESS = 1,
     WARNING = 2,
+    ERROR = 3,
 }"
 `;
 
@@ -2823,9 +2866,9 @@ exports[`generation v3 file(./test/result/v3/models/EnumWithStrings.ts): ./test/
  * This is a simple enum with strings
  */
 export enum EnumWithStrings {
-    ERROR = 'Error',
     SUCCESS = 'Success',
     WARNING = 'Warning',
+    ERROR = 'Error',
 }"
 `;
 
@@ -3104,10 +3147,10 @@ import { Dictionary } from './Dictionary';
  * This is a model with nested enums
  */
 export interface ModelWithNestedEnums {
-    arrayWithDescription?: Array<(1 | 2 | 3)>;
-    arrayWithEnum?: Array<('Success' | 'Warning' | 'Error')>;
     dictionaryWithEnum?: Dictionary<('Success' | 'Warning' | 'Error')>;
     dictionaryWithEnumFromDescription?: Dictionary<(1 | 2 | 3)>;
+    arrayWithEnum?: Array<('Success' | 'Warning' | 'Error')>;
+    arrayWithDescription?: Array<(1 | 2 | 3)>;
 }
 "
 `;
@@ -3132,6 +3175,24 @@ export interface ModelWithNestedProperties {
 "
 `;
 
+exports[`generation v3 file(./test/result/v3/models/ModelWithOrderedProperties.ts): ./test/result/v3/models/ModelWithOrderedProperties.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+
+/**
+ * This is a model with ordered properties
+ */
+export interface ModelWithOrderedProperties {
+    zebra?: string;
+    apple?: string;
+    hawaii?: string;
+}
+"
+`;
+
 exports[`generation v3 file(./test/result/v3/models/ModelWithProperties.ts): ./test/result/v3/models/ModelWithProperties.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
@@ -3144,13 +3205,13 @@ import { ModelWithString } from './ModelWithString';
  * This is a model with one nested property
  */
 export interface ModelWithProperties {
-    boolean?: boolean;
-    number?: number;
-    reference?: ModelWithString;
     required: string;
-    requiredAndNullable: string | null;
     readonly requiredAndReadOnly: string;
+    requiredAndNullable: string | null;
     string?: string;
+    number?: number;
+    boolean?: boolean;
+    reference?: ModelWithString;
 }
 "
 `;
@@ -3640,17 +3701,17 @@ exports[`generation v3 file(./test/result/v3/schemas/$ModelWithNestedEnums.ts): 
 
 export const $ModelWithNestedEnums = {
     properties: {
-        arrayWithDescription: {
-            type: 'Array',
-        },
-        arrayWithEnum: {
-            type: 'Array',
-        },
         dictionaryWithEnum: {
             type: 'Dictionary',
         },
         dictionaryWithEnumFromDescription: {
             type: 'Dictionary',
+        },
+        arrayWithEnum: {
+            type: 'Array',
+        },
+        arrayWithDescription: {
+            type: 'Array',
         },
     },
 };"
@@ -3688,6 +3749,27 @@ export const $ModelWithNestedProperties = {
 };"
 `;
 
+exports[`generation v3 file(./test/result/v3/schemas/$ModelWithOrderedProperties.ts): ./test/result/v3/schemas/$ModelWithOrderedProperties.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+export const $ModelWithOrderedProperties = {
+    properties: {
+        zebra: {
+            type: 'string',
+        },
+        apple: {
+            type: 'string',
+        },
+        hawaii: {
+            type: 'string',
+        },
+    },
+};"
+`;
+
 exports[`generation v3 file(./test/result/v3/schemas/$ModelWithProperties.ts): ./test/result/v3/schemas/$ModelWithProperties.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
@@ -3696,17 +3778,13 @@ exports[`generation v3 file(./test/result/v3/schemas/$ModelWithProperties.ts): .
 
 export const $ModelWithProperties = {
     properties: {
-        boolean: {
-            type: 'boolean',
-        },
-        number: {
-            type: 'number',
-        },
-        reference: {
-            type: 'ModelWithString',
-        },
         required: {
             type: 'string',
+            isRequired: true,
+        },
+        requiredAndReadOnly: {
+            type: 'string',
+            isReadOnly: true,
             isRequired: true,
         },
         requiredAndNullable: {
@@ -3714,13 +3792,17 @@ export const $ModelWithProperties = {
             isRequired: true,
             isNullable: true,
         },
-        requiredAndReadOnly: {
-            type: 'string',
-            isReadOnly: true,
-            isRequired: true,
-        },
         string: {
             type: 'string',
+        },
+        number: {
+            type: 'number',
+        },
+        boolean: {
+            type: 'boolean',
+        },
+        reference: {
+            type: 'ModelWithString',
         },
     },
 };"
@@ -4024,6 +4106,22 @@ import { OpenAPI } from '../core/OpenAPI';
 export class ResponseService {
 
     /**
+     * @result ModelWithString
+     * @throws ApiError
+     */
+    public static async callWithResponse(): Promise<ModelWithString> {
+
+        const result = await __request({
+            method: 'get',
+            path: \`/api/v\${OpenAPI.VERSION}/response\`,
+        });
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
      * @result ModelWithString Message for default response
      * @throws ApiError
      */
@@ -4041,22 +4139,6 @@ export class ResponseService {
                 case 502: throw new ApiError(result, \`Message for 502 error\`);
             }
         }
-
-        catchGenericError(result);
-
-        return result.body;
-    }
-
-    /**
-     * @result ModelWithString
-     * @throws ApiError
-     */
-    public static async callWithResponse(): Promise<ModelWithString> {
-
-        const result = await __request({
-            method: 'get',
-            path: \`/api/v\${OpenAPI.VERSION}/response\`,
-        });
 
         catchGenericError(result);
 
@@ -4107,21 +4189,6 @@ export class SimpleService {
     /**
      * @throws ApiError
      */
-    public static async deleteCallWithoutParametersAndResponse(): Promise<void> {
-
-        const result = await __request({
-            method: 'delete',
-            path: \`/api/v\${OpenAPI.VERSION}/simple\`,
-        });
-
-        catchGenericError(result);
-
-        return result.body;
-    }
-
-    /**
-     * @throws ApiError
-     */
     public static async getCallWithoutParametersAndResponse(): Promise<void> {
 
         const result = await __request({
@@ -4137,40 +4204,10 @@ export class SimpleService {
     /**
      * @throws ApiError
      */
-    public static async headCallWithoutParametersAndResponse(): Promise<void> {
+    public static async putCallWithoutParametersAndResponse(): Promise<void> {
 
         const result = await __request({
-            method: 'head',
-            path: \`/api/v\${OpenAPI.VERSION}/simple\`,
-        });
-
-        catchGenericError(result);
-
-        return result.body;
-    }
-
-    /**
-     * @throws ApiError
-     */
-    public static async optionsCallWithoutParametersAndResponse(): Promise<void> {
-
-        const result = await __request({
-            method: 'options',
-            path: \`/api/v\${OpenAPI.VERSION}/simple\`,
-        });
-
-        catchGenericError(result);
-
-        return result.body;
-    }
-
-    /**
-     * @throws ApiError
-     */
-    public static async patchCallWithoutParametersAndResponse(): Promise<void> {
-
-        const result = await __request({
-            method: 'patch',
+            method: 'put',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
 
@@ -4197,10 +4234,55 @@ export class SimpleService {
     /**
      * @throws ApiError
      */
-    public static async putCallWithoutParametersAndResponse(): Promise<void> {
+    public static async deleteCallWithoutParametersAndResponse(): Promise<void> {
 
         const result = await __request({
-            method: 'put',
+            method: 'delete',
+            path: \`/api/v\${OpenAPI.VERSION}/simple\`,
+        });
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @throws ApiError
+     */
+    public static async optionsCallWithoutParametersAndResponse(): Promise<void> {
+
+        const result = await __request({
+            method: 'options',
+            path: \`/api/v\${OpenAPI.VERSION}/simple\`,
+        });
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @throws ApiError
+     */
+    public static async headCallWithoutParametersAndResponse(): Promise<void> {
+
+        const result = await __request({
+            method: 'head',
+            path: \`/api/v\${OpenAPI.VERSION}/simple\`,
+        });
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @throws ApiError
+     */
+    public static async patchCallWithoutParametersAndResponse(): Promise<void> {
+
+        const result = await __request({
+            method: 'patch',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
 
