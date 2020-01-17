@@ -3,8 +3,34 @@
 /* eslint-disable */
 /* prettier-ignore */
 
-import { Result } from './Result';
 import { isSuccess } from './isSuccess';
+import { Result } from './Result';
+
+/**
+ * Try to parse the content for any response status code.
+ * We check the "Content-Type" header to see if we need to parse the
+ * content as json or as plain text.
+ * @param xhr XHR request object
+ */
+function parseBody(xhr: XMLHttpRequest): any {
+    try {
+        const contentType = xhr.getResponseHeader('Content-Type');
+        if (contentType) {
+            switch (contentType.toLowerCase()) {
+                case 'application/json':
+                case 'application/json; charset=utf-8':
+                    return JSON.parse(xhr.responseText);
+
+                default:
+                    return xhr.responseText;
+            }
+        }
+    } catch (e) {
+        console.error(e);
+    }
+
+    return null;
+}
 
 /**
  * Request content using the new legacy XMLHttpRequest API. This method is useful
@@ -38,28 +64,9 @@ export async function requestUsingXHR(url: string, request: Readonly<RequestInit
                     ok: isSuccess(xhr.status),
                     status: xhr.status,
                     statusText: xhr.statusText,
-                    body: null,
+                    body: parseBody(xhr),
                 };
 
-                // Try to parse the content for any response status code.
-                // We check the "Content-Type" header to see if we need to parse the
-                // content as json or as plain text.
-                const contentType = xhr.getResponseHeader('Content-Type');
-                if (contentType) {
-                    switch (contentType.toLowerCase()) {
-                        case 'application/json':
-                        case 'application/json; charset=utf-8':
-                            result.body = JSON.parse(xhr.responseText);
-                            break;
-
-                        case 'text/plain':
-                        case 'text/xml':
-                        case 'text/xml; charset=utf-8':
-                        case 'text/xml; charset=utf-16':
-                            result.body = xhr.responseText;
-                            break;
-                    }
-                }
 
                 // Done!
                 resolve(result);
