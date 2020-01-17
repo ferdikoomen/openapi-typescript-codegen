@@ -88,6 +88,6 @@
         "path": "0.12.7",
         "prettier": "1.19.1",
         "rimraf": "3.0.0",
-        "typescript": "3.7.4"
+        "typescript": "3.7.5"
     }
 }
