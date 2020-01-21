@@ -69,7 +69,7 @@
         "@types/mkdirp": "0.5.2",
         "@types/node": "13.1.8",
         "@types/rimraf": "2.0.3",
-        "@typescript-eslint/eslint-plugin": "2.16.0",
+        "@typescript-eslint/eslint-plugin": "2.17.0",
         "@typescript-eslint/parser": "2.17.0",
         "camelcase": "5.3.1",
         "chalk": "3.0.0",
