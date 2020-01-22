@@ -81,7 +81,7 @@
         "eslint-plugin-sort-imports-es6-autofix": "0.5.0",
         "glob": "7.1.6",
         "handlebars": "4.7.2",
-        "jest": "24.9.0",
+        "jest": "25.1.0",
         "jest-cli": "25.1.0",
         "js-yaml": "3.13.1",
         "mkdirp": "0.5.1",
