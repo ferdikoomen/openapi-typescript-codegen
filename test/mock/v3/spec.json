@@ -589,6 +589,134 @@
                     }
                 }
             }
+        },
+        "/api/v{api-version}/complex/{id}": {
+            "put": {
+                "tags": [
+                    "Complex"
+                ],
+                "operationId": "ComplexParams",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "api-version",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json-patch+json": {
+                            "schema": {
+                                "required": [
+                                    "key",
+                                    "name",
+                                    "parameters",
+                                    "type"
+                                ],
+                                "type": "object",
+                                "properties": {
+                                    "key": {
+                                        "maxLength": 64,
+                                        "pattern": "^[a-zA-Z0-9_]*$",
+                                        "type": "string",
+                                        "nullable": true,
+                                        "readOnly": true
+                                    },
+                                    "name": {
+                                        "maxLength": 255,
+                                        "type": "string",
+                                        "nullable": true
+                                    },
+                                    "enabled": {
+                                        "type": "boolean",
+                                        "default": true
+                                    },
+                                    "type": {
+                                        "enum": [
+                                            "Monkey",
+                                            "Horse",
+                                            "Bird"
+                                        ],
+                                        "type": "string",
+                                        "readOnly": true
+                                    },
+                                    "listOfModels": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/components/schemas/ModelWithString"
+                                        },
+                                        "nullable": true
+                                    },
+                                    "listOfStrings": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "nullable": true
+                                    },
+                                    "parameters": {
+                                        "type": "object",
+                                        "oneOf": [
+                                            {
+                                                "$ref": "#/components/schemas/ModelWithString"
+                                            },
+                                            {
+                                                "$ref": "#/components/schemas/ModelWithEnum"
+                                            },
+                                            {
+                                                "$ref": "#/components/schemas/ModelWithArray"
+                                            },
+                                            {
+                                                "$ref": "#/components/schemas/ModelWithDictionary"
+                                            }
+                                        ]
+                                    },
+                                    "user": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer",
+                                                "format": "int32",
+                                                "readOnly": true
+                                            },
+                                            "name": {
+                                                "type": "string",
+                                                "nullable": true,
+                                                "readOnly": true
+                                            }
+                                        },
+                                        "readOnly": true
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ModelWithString"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -898,6 +1026,52 @@
                 "properties": {
                     "prop": {
                         "$ref": "#/components/schemas/ModelWithCircularReference"
+                    }
+                }
+            },
+            "ModelWithOneOf": {
+                "description": "This is a model with one property with a 'one of' relationship",
+                "type": "object",
+                "properties": {
+                    "propA": {
+                        "type": "object",
+                        "oneOf": [
+                            {
+                                "$ref": "#/components/schemas/ModelWithString"
+                            },
+                            {
+                                "$ref": "#/components/schemas/ModelWithEnum"
+                            },
+                            {
+                                "$ref": "#/components/schemas/ModelWithArray"
+                            },
+                            {
+                                "$ref": "#/components/schemas/ModelWithDictionary"
+                            }
+                        ]
+                    }
+                }
+            },
+            "ModelWithAnyOf": {
+                "description": "This is a model with one property with a 'any of' relationship",
+                "type": "object",
+                "properties": {
+                    "propA": {
+                        "type": "object",
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/ModelWithString"
+                            },
+                            {
+                                "$ref": "#/components/schemas/ModelWithEnum"
+                            },
+                            {
+                                "$ref": "#/components/schemas/ModelWithArray"
+                            },
+                            {
+                                "$ref": "#/components/schemas/ModelWithDictionary"
+                            }
+                        ]
                     }
                 }
             },

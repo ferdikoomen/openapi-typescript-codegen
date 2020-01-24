@@ -2602,6 +2602,7 @@ export { EnumWithStrings } from './models/EnumWithStrings';
 export { ModelLink } from './models/ModelLink';
 export { ModelThatExtends } from './models/ModelThatExtends';
 export { ModelThatExtendsExtends } from './models/ModelThatExtendsExtends';
+export { ModelWithAnyOf } from './models/ModelWithAnyOf';
 export { ModelWithArray } from './models/ModelWithArray';
 export { ModelWithBoolean } from './models/ModelWithBoolean';
 export { ModelWithCircularReference } from './models/ModelWithCircularReference';
@@ -2614,6 +2615,7 @@ export { ModelWithInteger } from './models/ModelWithInteger';
 export { ModelWithLink } from './models/ModelWithLink';
 export { ModelWithNestedEnums } from './models/ModelWithNestedEnums';
 export { ModelWithNestedProperties } from './models/ModelWithNestedProperties';
+export { ModelWithOneOf } from './models/ModelWithOneOf';
 export { ModelWithOrderedProperties } from './models/ModelWithOrderedProperties';
 export { ModelWithProperties } from './models/ModelWithProperties';
 export { ModelWithReference } from './models/ModelWithReference';
@@ -2641,6 +2643,7 @@ export { $EnumWithStrings } from './schemas/$EnumWithStrings';
 export { $ModelLink } from './schemas/$ModelLink';
 export { $ModelThatExtends } from './schemas/$ModelThatExtends';
 export { $ModelThatExtendsExtends } from './schemas/$ModelThatExtendsExtends';
+export { $ModelWithAnyOf } from './schemas/$ModelWithAnyOf';
 export { $ModelWithArray } from './schemas/$ModelWithArray';
 export { $ModelWithBoolean } from './schemas/$ModelWithBoolean';
 export { $ModelWithCircularReference } from './schemas/$ModelWithCircularReference';
@@ -2653,6 +2656,7 @@ export { $ModelWithInteger } from './schemas/$ModelWithInteger';
 export { $ModelWithLink } from './schemas/$ModelWithLink';
 export { $ModelWithNestedEnums } from './schemas/$ModelWithNestedEnums';
 export { $ModelWithNestedProperties } from './schemas/$ModelWithNestedProperties';
+export { $ModelWithOneOf } from './schemas/$ModelWithOneOf';
 export { $ModelWithOrderedProperties } from './schemas/$ModelWithOrderedProperties';
 export { $ModelWithProperties } from './schemas/$ModelWithProperties';
 export { $ModelWithReference } from './schemas/$ModelWithReference';
@@ -2947,6 +2951,26 @@ export interface ModelThatExtendsExtends extends ModelWithString, ModelThatExten
 "
 `;
 
+exports[`generation v3 file(./test/result/v3/models/ModelWithAnyOf.ts): ./test/result/v3/models/ModelWithAnyOf.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ModelWithArray } from './ModelWithArray';
+import { ModelWithDictionary } from './ModelWithDictionary';
+import { ModelWithEnum } from './ModelWithEnum';
+import { ModelWithString } from './ModelWithString';
+
+/**
+ * This is a model with one property with a 'any of' relationship
+ */
+export interface ModelWithAnyOf {
+    propA?: ModelWithString | ModelWithEnum | ModelWithArray | ModelWithDictionary;
+}
+"
+`;
+
 exports[`generation v3 file(./test/result/v3/models/ModelWithArray.ts): ./test/result/v3/models/ModelWithArray.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
@@ -3193,6 +3217,26 @@ export interface ModelWithNestedProperties {
             readonly third: string | null,
         } | null,
     } | null;
+}
+"
+`;
+
+exports[`generation v3 file(./test/result/v3/models/ModelWithOneOf.ts): ./test/result/v3/models/ModelWithOneOf.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ModelWithArray } from './ModelWithArray';
+import { ModelWithDictionary } from './ModelWithDictionary';
+import { ModelWithEnum } from './ModelWithEnum';
+import { ModelWithString } from './ModelWithString';
+
+/**
+ * This is a model with one property with a 'one of' relationship
+ */
+export interface ModelWithOneOf {
+    propA?: ModelWithString | ModelWithEnum | ModelWithArray | ModelWithDictionary;
 }
 "
 `;
@@ -3553,6 +3597,21 @@ export const $ModelThatExtendsExtends = {
 };"
 `;
 
+exports[`generation v3 file(./test/result/v3/schemas/$ModelWithAnyOf.ts): ./test/result/v3/schemas/$ModelWithAnyOf.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+export const $ModelWithAnyOf = {
+    properties: {
+        propA: {
+            type: 'ModelWithString | ModelWithEnum | ModelWithArray | ModelWithDictionary',
+        },
+    },
+};"
+`;
+
 exports[`generation v3 file(./test/result/v3/schemas/$ModelWithArray.ts): ./test/result/v3/schemas/$ModelWithArray.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
@@ -3771,6 +3830,21 @@ export const $ModelWithNestedProperties = {
 };"
 `;
 
+exports[`generation v3 file(./test/result/v3/schemas/$ModelWithOneOf.ts): ./test/result/v3/schemas/$ModelWithOneOf.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+export const $ModelWithOneOf = {
+    properties: {
+        propA: {
+            type: 'ModelWithString | ModelWithEnum | ModelWithArray | ModelWithDictionary',
+        },
+    },
+};"
+`;
+
 exports[`generation v3 file(./test/result/v3/schemas/$ModelWithOrderedProperties.ts): ./test/result/v3/schemas/$ModelWithOrderedProperties.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
@@ -3921,6 +3995,9 @@ exports[`generation v3 file(./test/result/v3/services/ComplexService.ts): ./test
 /* eslint-disable */
 /* prettier-ignore */
 
+import { ModelWithArray } from '../models/ModelWithArray';
+import { ModelWithDictionary } from '../models/ModelWithDictionary';
+import { ModelWithEnum } from '../models/ModelWithEnum';
 import { ModelWithString } from '../models/ModelWithString';
 import { ApiError, catchGenericError } from '../core/ApiError';
 import { request as __request } from '../core/request';
@@ -3960,6 +4037,40 @@ export class ComplexService {
                 case 500: throw new ApiError(result, \`500 server error\`);
             }
         }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @param id
+     * @param requestBody
+     * @result ModelWithString Success
+     * @throws ApiError
+     */
+    public static async complexParams(
+        id?: number,
+        requestBody?: {
+            readonly key: string | null,
+            name: string | null,
+            enabled?: boolean,
+            readonly type: ('Monkey' | 'Horse' | 'Bird'),
+            listOfModels?: Array<ModelWithString> | null,
+            listOfStrings?: Array<string> | null,
+            parameters: ModelWithString | ModelWithEnum | ModelWithArray | ModelWithDictionary,
+            readonly user?: {
+                readonly id?: number,
+                readonly name?: string | null,
+            },
+        },
+    ): Promise<ModelWithString> {
+
+        const result = await __request({
+            method: 'put',
+            path: \`/api/v\${OpenAPI.VERSION}/complex/\${id}\`,
+            body: requestBody,
+        });
 
         catchGenericError(result);
 

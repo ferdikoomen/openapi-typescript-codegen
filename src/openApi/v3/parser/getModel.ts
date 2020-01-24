@@ -112,6 +112,26 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isProperty
         }
     }
 
+    if (definition.anyOf && definition.anyOf.length) {
+        model.export = 'generic';
+        const compositionTypes = definition.anyOf.filter(type => type.$ref).map(type => getType(type.$ref));
+        const composition = compositionTypes.map(type => type.type).join(' | ');
+        model.imports.push(...compositionTypes.map(type => type.base));
+        model.type = composition;
+        model.base = composition;
+        return model;
+    }
+
+    if (definition.oneOf && definition.oneOf.length) {
+        model.export = 'generic';
+        const compositionTypes = definition.oneOf.filter(type => type.$ref).map(type => getType(type.$ref));
+        const composition = compositionTypes.map(type => type.type).join(' | ');
+        model.imports.push(...compositionTypes.map(type => type.base));
+        model.type = composition;
+        model.base = composition;
+        return model;
+    }
+
     if (definition.type === 'object') {
         model.export = 'interface';
         model.type = PrimaryType.OBJECT;
