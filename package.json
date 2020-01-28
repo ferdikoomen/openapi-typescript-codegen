@@ -87,7 +87,7 @@
         "mkdirp": "1.0.3",
         "path": "0.12.7",
         "prettier": "1.19.1",
-        "rimraf": "3.0.0",
+        "rimraf": "3.0.1",
         "typescript": "3.7.5"
     }
 }
