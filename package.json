@@ -1,6 +1,6 @@
 {
     "name": "openapi-typescript-codegen",
-    "version": "0.1.13",
+    "version": "0.1.14",
     "description": "NodeJS library that generates Typescript or Javascript clients based on the OpenAPI specification.",
     "author": "Ferdi Koomen",
     "homepage": "https://github.com/ferdikoomen/openapi-typescript-codegen",
@@ -60,6 +60,16 @@
         "prettier:fix": "prettier \"./src/**/*.ts\" --write",
         "codecov": "codecov --token=66c30c23-8954-4892-bef9-fbaed0a2e42b"
     },
+    "dependencies": {
+        "camelcase": "5.3.1",
+        "commander": "4.1.0",
+        "glob": "7.1.6",
+        "handlebars": "4.7.2",
+        "js-yaml": "3.13.1",
+        "mkdirp": "1.0.3",
+        "path": "0.12.7",
+        "rimraf": "3.0.1"
+    },
     "devDependencies": {
         "@babel/core": "7.8.4",
         "@babel/preset-env": "7.8.4",
@@ -71,23 +81,14 @@
         "@types/rimraf": "2.0.3",
         "@typescript-eslint/eslint-plugin": "2.18.0",
         "@typescript-eslint/parser": "2.18.0",
-        "camelcase": "5.3.1",
-        "chalk": "3.0.0",
         "codecov": "3.6.2",
-        "commander": "4.1.0",
         "eslint": "6.8.0",
         "eslint-config-prettier": "6.10.0",
         "eslint-plugin-prettier": "3.1.2",
         "eslint-plugin-sort-imports-es6-autofix": "0.5.0",
-        "glob": "7.1.6",
-        "handlebars": "4.7.2",
         "jest": "25.1.0",
         "jest-cli": "25.1.0",
-        "js-yaml": "3.13.1",
-        "mkdirp": "1.0.3",
-        "path": "0.12.7",
         "prettier": "1.19.1",
-        "rimraf": "3.0.1",
         "typescript": "3.7.5"
     }
 }
