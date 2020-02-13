@@ -10,6 +10,7 @@ import { getOperationRequestBody } from './getOperationRequestBody';
 import { getOperationResponses } from './getOperationResponses';
 import { getOperationResults } from './getOperationResults';
 import { getServiceClassName } from './getServiceClassName';
+import { sortByRequired } from './sortByRequired';
 
 export function getOperation(openApi: OpenApi, url: string, method: string, op: OpenApiOperation): Operation {
     const serviceName = (op.tags && op.tags[0]) || 'Service';
@@ -56,6 +57,7 @@ export function getOperation(openApi: OpenApi, url: string, method: string, op: 
         const requestBody = getOperationRequestBody(openApi, op.requestBody);
         operation.imports.push(...requestBody.imports);
         operation.parameters.push(requestBody);
+        operation.parameters = operation.parameters.sort(sortByRequired);
         operation.parametersBody = requestBody;
     }
 

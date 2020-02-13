@@ -98,6 +98,71 @@
                 ]
             }
         },
+        "/api/v{api-version}/parameters/{parameter.path.1}/{parameter-path-2}/{PARAMETER-PATH-3}": {
+            "get": {
+                "tags": [
+                    "Parameters"
+                ],
+                "operationId": "CallWithWeirdParameterNames",
+                "parameters": [
+                    {
+                        "description": "This is the parameter that goes into the path",
+                        "name": "parameter.path.1",
+                        "in": "path",
+                        "type": "string",
+                        "required": false
+                    },
+                    {
+                        "description": "This is the parameter that goes into the path",
+                        "name": "parameter-path-2",
+                        "in": "path",
+                        "type": "string",
+                        "required": false
+                    },
+                    {
+                        "description": "This is the parameter that goes into the path",
+                        "name": "PARAMETER-PATH-3",
+                        "in": "path",
+                        "type": "string",
+                        "required": false
+                    },
+                    {
+                        "description": "This is the parameter that goes into the request header",
+                        "name": "parameter.header",
+                        "in": "header",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "description": "This is the parameter that goes into the request query params",
+                        "name": "parameter-query",
+                        "in": "query",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "description": "This is the parameter that goes into the request form data",
+                        "name": "parameter_form",
+                        "in": "formData",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "description": "This is the parameter that is send as request body",
+                        "name": "PARAMETER-BODY",
+                        "in": "body",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "name": "api-version",
+                        "in": "path",
+                        "type": "string",
+                        "required": true
+                    }
+                ]
+            }
+        },
         "/api/v{api-version}/defaults": {
             "get": {
                 "tags": [

@@ -9,4 +9,5 @@ export interface OpenApiRequestBody extends OpenApiReference {
     description?: string;
     content: Dictionary<OpenApiMediaType>;
     required?: boolean;
+    nullable?: boolean;
 }

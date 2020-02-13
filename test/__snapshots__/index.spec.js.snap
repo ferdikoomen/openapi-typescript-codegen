@@ -1894,6 +1894,46 @@ export class ParametersService {
         return result.body;
     }
 
+    /**
+     * @param parameterHeader This is the parameter that goes into the request header
+     * @param parameterQuery This is the parameter that goes into the request query params
+     * @param parameterForm This is the parameter that goes into the request form data
+     * @param parameterBody This is the parameter that is send as request body
+     * @param parameterPath1 This is the parameter that goes into the path
+     * @param parameterPath2 This is the parameter that goes into the path
+     * @param parameterPath3 This is the parameter that goes into the path
+     * @throws ApiError
+     */
+    public static async callWithWeirdParameterNames(
+        parameterHeader: string,
+        parameterQuery: string,
+        parameterForm: string,
+        parameterBody: string,
+        parameterPath1?: string,
+        parameterPath2?: string,
+        parameterPath3?: string,
+    ): Promise<void> {
+
+        const result = await __request({
+            method: 'get',
+            path: \`/api/v\${OpenAPI.VERSION}/parameters/\${parameterPath1}/\${parameterPath2}/\${parameterPath3}\`,
+            headers: {
+                'parameter.header': parameterHeader,
+            },
+            query: {
+                'parameter-query': parameterQuery,
+            },
+            formData: {
+                'parameter_form': parameterForm,
+            },
+            body: parameterBody,
+        });
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
 }"
 `;
 
@@ -4006,28 +4046,28 @@ import { OpenAPI } from '../core/OpenAPI';
 export class ComplexService {
 
     /**
-     * @param parameterReference Parameter containing reference
      * @param parameterObject Parameter containing object
+     * @param parameterReference Parameter containing reference
      * @result ModelWithString Successful response
      * @throws ApiError
      */
     public static async complexTypes(
-        parameterReference: ModelWithString,
-        parameterObject?: {
+        parameterObject: {
             first?: {
                 second?: {
                     third?: string,
                 },
             },
         },
+        parameterReference: ModelWithString,
     ): Promise<Array<ModelWithString>> {
 
         const result = await __request({
             method: 'get',
             path: \`/api/v\${OpenAPI.VERSION}/complex\`,
             query: {
-                'parameterReference': parameterReference,
                 'parameterObject': parameterObject,
+                'parameterReference': parameterReference,
             },
         });
 
@@ -4050,7 +4090,7 @@ export class ComplexService {
      * @throws ApiError
      */
     public static async complexParams(
-        id?: number,
+        id: number,
         requestBody?: {
             readonly key: string | null,
             name: string | null,
@@ -4102,9 +4142,9 @@ export class DefaultsService {
      * @throws ApiError
      */
     public static async callWithDefaultParameters(
-        parameterString: string = 'Hello World!',
-        parameterNumber: number = 123,
-        parameterBoolean: boolean = true,
+        parameterString: string | null = 'Hello World!',
+        parameterNumber: number | null = 123,
+        parameterBoolean: boolean | null = true,
         parameterEnum: ('Success' | 'Warning' | 'Error') = 'Success',
         parameterModel: ModelWithString | null = {
             \\"prop\\": \\"Hello World\\"
@@ -4190,11 +4230,11 @@ export class ParametersService {
      * @throws ApiError
      */
     public static async callWithParameters(
-        parameterHeader?: string,
-        parameterQuery?: string,
-        parameterForm?: string,
-        parameterCookie?: string,
-        requestBody?: ModelWithString,
+        parameterHeader: string | null,
+        parameterQuery: string | null,
+        parameterForm: string | null,
+        parameterCookie: string | null,
+        requestBody: ModelWithString | null,
     ): Promise<void> {
 
         const result = await __request({
@@ -4211,6 +4251,99 @@ export class ParametersService {
             },
             formData: {
                 'parameterForm': parameterForm,
+            },
+            body: requestBody,
+        });
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @param parameterHeader This is the parameter that goes into the request header
+     * @param parameterQuery This is the parameter that goes into the request query params
+     * @param parameterForm This is the parameter that goes into the request form data
+     * @param parameterCookie This is the parameter that goes into the cookie
+     * @param requestBody This is the parameter that goes into the body
+     * @param parameterPath1 This is the parameter that goes into the path
+     * @param parameterPath2 This is the parameter that goes into the path
+     * @param parameterPath3 This is the parameter that goes into the path
+     * @throws ApiError
+     */
+    public static async callWithWeirdParameterNames(
+        parameterHeader: string | null,
+        parameterQuery: string | null,
+        parameterForm: string | null,
+        parameterCookie: string | null,
+        requestBody: ModelWithString | null,
+        parameterPath1?: string,
+        parameterPath2?: string,
+        parameterPath3?: string,
+    ): Promise<void> {
+
+        const result = await __request({
+            method: 'get',
+            path: \`/api/v\${OpenAPI.VERSION}/parameters/\${parameterPath1}/\${parameterPath2}/\${parameterPath3}\`,
+            cookies: {
+                'PARAMETER-COOKIE': parameterCookie,
+            },
+            headers: {
+                'parameter.header': parameterHeader,
+            },
+            query: {
+                'parameter-query': parameterQuery,
+            },
+            formData: {
+                'parameter_form': parameterForm,
+            },
+            body: requestBody,
+        });
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @param requestBody This is a required parameter
+     * @param parameter This is an optional parameter
+     * @throws ApiError
+     */
+    public static async getCallWithOptionalParam(
+        requestBody: ModelWithString,
+        parameter?: string,
+    ): Promise<void> {
+
+        const result = await __request({
+            method: 'get',
+            path: \`/api/v\${OpenAPI.VERSION}/parameters/\`,
+            query: {
+                'parameter': parameter,
+            },
+            body: requestBody,
+        });
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @param parameter This is a required parameter
+     * @param requestBody This is an optional parameter
+     * @throws ApiError
+     */
+    public static async postCallWithOptionalParam(
+        parameter: string,
+        requestBody?: ModelWithString,
+    ): Promise<void> {
+
+        const result = await __request({
+            method: 'post',
+            path: \`/api/v\${OpenAPI.VERSION}/parameters/\`,
+            query: {
+                'parameter': parameter,
             },
             body: requestBody,
         });
@@ -4456,12 +4589,12 @@ export class TypesService {
      */
     public static async types(
         parameterNumber: number = 123,
-        parameterString: string = 'default',
-        parameterBoolean: boolean = true,
+        parameterString: string | null = 'default',
+        parameterBoolean: boolean | null = true,
         parameterObject: any = null,
-        parameterArray?: Array<string>,
-        parameterDictionary?: any,
-        parameterEnum?: ('Success' | 'Warning' | 'Error'),
+        parameterArray: Array<string> | null,
+        parameterDictionary: any,
+        parameterEnum: ('Success' | 'Warning' | 'Error') | null,
         id?: number,
     ): Promise<number | string | boolean | any> {
 

@@ -8,7 +8,7 @@ export function getOperationResponseCode(value: string | 'default'): number | nu
     if (/[0-9]+/g.test(value)) {
         const code = parseInt(value);
         if (Number.isInteger(code)) {
-            return code;
+            return Math.abs(code);
         }
     }
 

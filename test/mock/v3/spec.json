@@ -113,6 +113,170 @@
                 ],
                 "requestBody": {
                     "description": "This is the parameter that goes into the body",
+                    "required": true,
+                    "nullable": true,
+                    "content": {
+                        "application/json": {
+                            "description": "Message for default response",
+                            "schema": {
+                                "$ref": "#/components/schemas/ModelWithString"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v{api-version}/parameters/{parameter.path.1}/{parameter-path-2}/{PARAMETER-PATH-3}": {
+            "get": {
+                "tags": [
+                    "Parameters"
+                ],
+                "operationId": "CallWithWeirdParameterNames",
+                "parameters": [
+                    {
+                        "description": "This is the parameter that goes into the path",
+                        "name": "parameter.path.1",
+                        "in": "path",
+                        "required": false,
+                        "nullable": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "This is the parameter that goes into the path",
+                        "name": "parameter-path-2",
+                        "in": "path",
+                        "required": false,
+                        "nullable": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "This is the parameter that goes into the path",
+                        "name": "PARAMETER-PATH-3",
+                        "in": "path",
+                        "required": false,
+                        "nullable": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "This is the parameter that goes into the request header",
+                        "name": "parameter.header",
+                        "in": "header",
+                        "required": true,
+                        "nullable": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "This is the parameter that goes into the request query params",
+                        "name": "parameter-query",
+                        "in": "query",
+                        "required": true,
+                        "nullable": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "This is the parameter that goes into the request form data",
+                        "name": "parameter_form",
+                        "in": "formData",
+                        "required": true,
+                        "nullable": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "This is the parameter that goes into the cookie",
+                        "name": "PARAMETER-COOKIE",
+                        "in": "cookie",
+                        "required": true,
+                        "nullable": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "api-version",
+                        "in": "path",
+                        "required": true,
+                        "nullable": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "This is the parameter that goes into the body",
+                    "required": true,
+                    "nullable": true,
+                    "content": {
+                        "application/json": {
+                            "description": "Message for default response",
+                            "schema": {
+                                "$ref": "#/components/schemas/ModelWithString"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v{api-version}/parameters/": {
+            "get": {
+                "tags": [
+                    "Parameters"
+                ],
+                "operationId": "getCallWithOptionalParam",
+                "parameters": [
+                    {
+                        "description": "This is an optional parameter",
+                        "name": "parameter",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "This is a required parameter",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "description": "Message for default response",
+                            "schema": {
+                                "$ref": "#/components/schemas/ModelWithString"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Parameters"
+                ],
+                "operationId": "postCallWithOptionalParam",
+                "parameters": [
+                    {
+                        "description": "This is a required parameter",
+                        "name": "parameter",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "This is an optional parameter",
+                    "required": false,
                     "content": {
                         "application/json": {
                             "description": "Message for default response",

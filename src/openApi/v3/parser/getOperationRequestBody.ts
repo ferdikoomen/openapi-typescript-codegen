@@ -22,7 +22,7 @@ export function getOperationRequestBody(openApi: OpenApi, parameter: OpenApiRequ
         isProperty: false,
         isReadOnly: false,
         isRequired: parameter.required === true,
-        isNullable: false,
+        isNullable: parameter.nullable === true,
         imports: [],
         extends: [],
         enum: [],
@@ -48,8 +48,8 @@ export function getOperationRequestBody(openApi: OpenApi, parameter: OpenApiRequ
                 requestBody.template = model.template;
                 requestBody.link = model.link;
                 requestBody.isReadOnly = model.isReadOnly;
-                requestBody.isRequired = model.isRequired;
-                requestBody.isNullable = model.isNullable;
+                requestBody.isRequired = requestBody.isRequired || model.isRequired;
+                requestBody.isNullable = requestBody.isNullable || model.isNullable;
                 requestBody.format = model.format;
                 requestBody.maximum = model.maximum;
                 requestBody.exclusiveMaximum = model.exclusiveMaximum;
