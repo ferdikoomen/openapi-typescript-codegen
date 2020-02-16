@@ -2,11 +2,12 @@ import { Dictionary } from '../../../utils/types';
 import { OpenApiExternalDocs } from './OpenApiExternalDocs';
 import { OpenApiReference } from './OpenApiReference';
 import { OpenApiXml } from './OpenApiXml';
+import { WithEnumExtension } from './Extensions/WithEnumExtension';
 
 /**
  * https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#schemaObject
  */
-export interface OpenApiSchema extends OpenApiReference {
+export interface OpenApiSchema extends OpenApiReference, WithEnumExtension {
     title?: string;
     description?: string;
     default?: any;

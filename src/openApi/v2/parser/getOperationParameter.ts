@@ -2,6 +2,7 @@ import { OpenApi } from '../interfaces/OpenApi';
 import { OpenApiParameter } from '../interfaces/OpenApiParameter';
 import { OperationParameter } from '../../../client/interfaces/OperationParameter';
 import { PrimaryType } from './constants';
+import { extendEnum } from './extendEnum';
 import { getComment } from './getComment';
 import { getEnum } from './getEnum';
 import { getEnumFromDescription } from './getEnumFromDescription';
@@ -58,11 +59,12 @@ export function getOperationParameter(openApi: OpenApi, parameter: OpenApiParame
 
     if (parameter.enum) {
         const enumerators = getEnum(parameter.enum);
-        if (enumerators.length) {
+        const extendedEnumerators = extendEnum(enumerators, parameter);
+        if (extendedEnumerators.length) {
             operationParameter.export = 'enum';
             operationParameter.type = PrimaryType.STRING;
             operationParameter.base = PrimaryType.STRING;
-            operationParameter.enum.push(...enumerators);
+            operationParameter.enum.push(...extendedEnumerators);
             operationParameter.default = getOperationParameterDefault(parameter, operationParameter);
             operationParameter.isRequired = operationParameter.isRequired || operationParameter.default;
             return operationParameter;

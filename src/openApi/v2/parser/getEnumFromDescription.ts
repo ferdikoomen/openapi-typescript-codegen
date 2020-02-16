@@ -17,6 +17,7 @@ export function getEnumFromDescription(description: string): Enum[] {
                         name: name.replace(/([a-z])([A-Z]+)/g, '$1_$2').toUpperCase(),
                         value: String(value),
                         type: PrimaryType.NUMBER,
+                        description: null,
                     });
                 }
             });

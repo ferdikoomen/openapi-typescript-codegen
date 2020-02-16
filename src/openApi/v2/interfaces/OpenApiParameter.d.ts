@@ -1,11 +1,12 @@
 import { OpenApiItems } from './OpenApiItems';
 import { OpenApiReference } from './OpenApiReference';
 import { OpenApiSchema } from './OpenApiSchema';
+import { WithEnumExtension } from './Extensions/WithEnumExtension';
 
 /**
  * https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#parameterObject
  */
-export interface OpenApiParameter extends OpenApiReference {
+export interface OpenApiParameter extends OpenApiReference, WithEnumExtension {
     name: string;
     in: 'path' | 'query' | 'header' | 'formData' | 'body';
     description?: string;

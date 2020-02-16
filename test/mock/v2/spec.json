@@ -495,6 +495,10 @@
         }
     },
     "definitions": {
+        "MultilineComment": {
+            "description": "Testing multiline comments.\nThis must go to the next line.\n\nThis will contain a break.",
+            "type": "integer"
+        },
         "SimpleInteger": {
             "description": "This is a simple number",
             "type": "integer"
@@ -534,6 +538,24 @@
         "EnumFromDescription": {
             "description": "Success=1,Warning=2,Error=3",
             "type": "int"
+        },
+        "EnumWithExtensions": {
+            "description": "This is a simple enum with numbers",
+            "enum": [
+                200,
+                400,
+                500
+            ],
+            "x-enum-varnames": [
+                "CUSTOM_SUCCESS",
+                "CUSTOM_WARNING",
+                "CUSTOM_ERROR"
+            ],
+            "x-enum-descriptions": [
+                "Used when the status of something is successful",
+                "Used when the status of something has a warning",
+                "Used when the status of something has an error"
+            ]
         },
         "ArrayWithNumbers": {
             "description": "This is a simple array with numbers",

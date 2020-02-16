@@ -435,6 +435,7 @@ export { DictionaryWithProperties } from './models/DictionaryWithProperties';
 export { DictionaryWithReference } from './models/DictionaryWithReference';
 export { DictionaryWithString } from './models/DictionaryWithString';
 export { EnumFromDescription } from './models/EnumFromDescription';
+export { EnumWithExtensions } from './models/EnumWithExtensions';
 export { EnumWithNumbers } from './models/EnumWithNumbers';
 export { EnumWithStrings } from './models/EnumWithStrings';
 export { ModelLink } from './models/ModelLink';
@@ -456,6 +457,7 @@ export { ModelWithOrderedProperties } from './models/ModelWithOrderedProperties'
 export { ModelWithProperties } from './models/ModelWithProperties';
 export { ModelWithReference } from './models/ModelWithReference';
 export { ModelWithString } from './models/ModelWithString';
+export { MultilineComment } from './models/MultilineComment';
 export { SimpleBoolean } from './models/SimpleBoolean';
 export { SimpleFile } from './models/SimpleFile';
 export { SimpleInteger } from './models/SimpleInteger';
@@ -474,6 +476,7 @@ export { $DictionaryWithProperties } from './schemas/$DictionaryWithProperties';
 export { $DictionaryWithReference } from './schemas/$DictionaryWithReference';
 export { $DictionaryWithString } from './schemas/$DictionaryWithString';
 export { $EnumFromDescription } from './schemas/$EnumFromDescription';
+export { $EnumWithExtensions } from './schemas/$EnumWithExtensions';
 export { $EnumWithNumbers } from './schemas/$EnumWithNumbers';
 export { $EnumWithStrings } from './schemas/$EnumWithStrings';
 export { $ModelLink } from './schemas/$ModelLink';
@@ -495,6 +498,7 @@ export { $ModelWithOrderedProperties } from './schemas/$ModelWithOrderedProperti
 export { $ModelWithProperties } from './schemas/$ModelWithProperties';
 export { $ModelWithReference } from './schemas/$ModelWithReference';
 export { $ModelWithString } from './schemas/$ModelWithString';
+export { $MultilineComment } from './schemas/$MultilineComment';
 export { $SimpleBoolean } from './schemas/$SimpleBoolean';
 export { $SimpleFile } from './schemas/$SimpleFile';
 export { $SimpleInteger } from './schemas/$SimpleInteger';
@@ -694,6 +698,32 @@ export enum EnumFromDescription {
     SUCCESS = 1,
     WARNING = 2,
     ERROR = 3,
+}"
+`;
+
+exports[`generation v2 file(./test/result/v2/models/EnumWithExtensions.ts): ./test/result/v2/models/EnumWithExtensions.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+
+/**
+ * This is a simple enum with numbers
+ */
+export enum EnumWithExtensions {
+    /**
+     * Used when the status of something is successful
+     */
+    CUSTOM_SUCCESS = 200,
+    /**
+     * Used when the status of something has a warning
+     */
+    CUSTOM_WARNING = 400,
+    /**
+     * Used when the status of something has an error
+     */
+    CUSTOM_ERROR = 500,
 }"
 `;
 
@@ -1110,6 +1140,22 @@ export interface ModelWithString {
 "
 `;
 
+exports[`generation v2 file(./test/result/v2/models/MultilineComment.ts): ./test/result/v2/models/MultilineComment.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+
+/**
+ * Testing multiline comments.
+ * This must go to the next line.
+ *
+ * This will contain a break.
+ */
+export type MultilineComment = number;"
+`;
+
 exports[`generation v2 file(./test/result/v2/models/SimpleBoolean.ts): ./test/result/v2/models/SimpleBoolean.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
@@ -1304,6 +1350,17 @@ exports[`generation v2 file(./test/result/v2/schemas/$EnumFromDescription.ts): .
 /* prettier-ignore */
 
 export const $EnumFromDescription = {
+    type: 'Enum',
+};"
+`;
+
+exports[`generation v2 file(./test/result/v2/schemas/$EnumWithExtensions.ts): ./test/result/v2/schemas/$EnumWithExtensions.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+export const $EnumWithExtensions = {
     type: 'Enum',
 };"
 `;
@@ -1685,6 +1742,17 @@ export const $ModelWithString = {
             type: 'string',
         },
     },
+};"
+`;
+
+exports[`generation v2 file(./test/result/v2/schemas/$MultilineComment.ts): ./test/result/v2/schemas/$MultilineComment.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+export const $MultilineComment = {
+    type: 'number',
 };"
 `;
 
@@ -2637,6 +2705,7 @@ export { DictionaryWithProperties } from './models/DictionaryWithProperties';
 export { DictionaryWithReference } from './models/DictionaryWithReference';
 export { DictionaryWithString } from './models/DictionaryWithString';
 export { EnumFromDescription } from './models/EnumFromDescription';
+export { EnumWithExtensions } from './models/EnumWithExtensions';
 export { EnumWithNumbers } from './models/EnumWithNumbers';
 export { EnumWithStrings } from './models/EnumWithStrings';
 export { ModelLink } from './models/ModelLink';
@@ -2660,6 +2729,7 @@ export { ModelWithOrderedProperties } from './models/ModelWithOrderedProperties'
 export { ModelWithProperties } from './models/ModelWithProperties';
 export { ModelWithReference } from './models/ModelWithReference';
 export { ModelWithString } from './models/ModelWithString';
+export { MultilineComment } from './models/MultilineComment';
 export { SimpleBoolean } from './models/SimpleBoolean';
 export { SimpleFile } from './models/SimpleFile';
 export { SimpleInteger } from './models/SimpleInteger';
@@ -2678,6 +2748,7 @@ export { $DictionaryWithProperties } from './schemas/$DictionaryWithProperties';
 export { $DictionaryWithReference } from './schemas/$DictionaryWithReference';
 export { $DictionaryWithString } from './schemas/$DictionaryWithString';
 export { $EnumFromDescription } from './schemas/$EnumFromDescription';
+export { $EnumWithExtensions } from './schemas/$EnumWithExtensions';
 export { $EnumWithNumbers } from './schemas/$EnumWithNumbers';
 export { $EnumWithStrings } from './schemas/$EnumWithStrings';
 export { $ModelLink } from './schemas/$ModelLink';
@@ -2701,6 +2772,7 @@ export { $ModelWithOrderedProperties } from './schemas/$ModelWithOrderedProperti
 export { $ModelWithProperties } from './schemas/$ModelWithProperties';
 export { $ModelWithReference } from './schemas/$ModelWithReference';
 export { $ModelWithString } from './schemas/$ModelWithString';
+export { $MultilineComment } from './schemas/$MultilineComment';
 export { $SimpleBoolean } from './schemas/$SimpleBoolean';
 export { $SimpleFile } from './schemas/$SimpleFile';
 export { $SimpleInteger } from './schemas/$SimpleInteger';
@@ -2901,6 +2973,32 @@ export enum EnumFromDescription {
     SUCCESS = 1,
     WARNING = 2,
     ERROR = 3,
+}"
+`;
+
+exports[`generation v3 file(./test/result/v3/models/EnumWithExtensions.ts): ./test/result/v3/models/EnumWithExtensions.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+
+/**
+ * This is a simple enum with numbers
+ */
+export enum EnumWithExtensions {
+    /**
+     * Used when the status of something is successful
+     */
+    CUSTOM_SUCCESS = 200,
+    /**
+     * Used when the status of something has a warning
+     */
+    CUSTOM_WARNING = 400,
+    /**
+     * Used when the status of something has an error
+     */
+    CUSTOM_ERROR = 500,
 }"
 `;
 
@@ -3358,6 +3456,22 @@ export interface ModelWithString {
 "
 `;
 
+exports[`generation v3 file(./test/result/v3/models/MultilineComment.ts): ./test/result/v3/models/MultilineComment.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+
+/**
+ * Testing multiline comments.
+ * This must go to the next line.
+ *
+ * This will contain a break.
+ */
+export type MultilineComment = number;"
+`;
+
 exports[`generation v3 file(./test/result/v3/models/SimpleBoolean.ts): ./test/result/v3/models/SimpleBoolean.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
@@ -3552,6 +3666,17 @@ exports[`generation v3 file(./test/result/v3/schemas/$EnumFromDescription.ts): .
 /* prettier-ignore */
 
 export const $EnumFromDescription = {
+    type: 'Enum',
+};"
+`;
+
+exports[`generation v3 file(./test/result/v3/schemas/$EnumWithExtensions.ts): ./test/result/v3/schemas/$EnumWithExtensions.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+export const $EnumWithExtensions = {
     type: 'Enum',
 };"
 `;
@@ -3971,6 +4096,17 @@ export const $ModelWithString = {
             type: 'string',
         },
     },
+};"
+`;
+
+exports[`generation v3 file(./test/result/v3/schemas/$MultilineComment.ts): ./test/result/v3/schemas/$MultilineComment.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+export const $MultilineComment = {
+    type: 'number',
 };"
 `;
 

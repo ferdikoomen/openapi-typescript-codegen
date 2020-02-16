@@ -2,6 +2,7 @@ import { Model } from '../../../client/interfaces/Model';
 import { OpenApi } from '../interfaces/OpenApi';
 import { OpenApiSchema } from '../interfaces/OpenApiSchema';
 import { PrimaryType } from './constants';
+import { extendEnum } from './extendEnum';
 import { getComment } from './getComment';
 import { getEnum } from './getEnum';
 import { getEnumFromDescription } from './getEnumFromDescription';
@@ -42,11 +43,12 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isProperty
 
     if (definition.enum) {
         const enumerators = getEnum(definition.enum);
-        if (enumerators.length) {
+        const extendedEnumerators = extendEnum(enumerators, definition);
+        if (extendedEnumerators.length) {
             model.export = 'enum';
             model.type = PrimaryType.STRING;
             model.base = PrimaryType.STRING;
-            model.enum.push(...enumerators);
+            model.enum.push(...extendedEnumerators);
             model.default = getModelDefault(definition, model);
             return model;
         }
