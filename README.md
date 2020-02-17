@@ -36,7 +36,7 @@ npm install openapi-typescript-codegen --save-dev
 ```json
 {
     "scripts": {
-        "generate": "openapi ./api/openapi.json ./dist"
+        "generate": "openapi --input ./api/openapi.json --output ./dist"
     }
     ...
 }
@@ -59,4 +59,86 @@ OpenAPI.generate(
     './api/openapi.json',
     './dist'
 );
+```
+
+## Features
+
+### Argument-style vs. Object-style
+There's no [named parameter](https://en.wikipedia.org/wiki/Named_parameter) in JS/TS, because of that, we offer an option `--useOptions` to generate code in 2 different styles.
+
+Argument-style:
+``` ts
+function createUser(name: string, password: string, type?: string, address?: string) {
+    // ...
+}
+
+// usage
+createUser('Jack', '123456', undefined, 'NY US')
+```
+
+Object-style:
+``` ts
+interface CreateUserOptions {
+    type?: string
+    address?: string
+}
+function createUser(name: string, password: string, options: CreateUserOptions) {
+    // ...
+}
+
+// usage
+createUser('Jack', '123456', {address: 'NY US'})
+```
+
+### Enum with custom names and descriptions
+You can use `x-enum-varnames` and `x-enum-descriptions` in your spec to generate enum with custom names and descriptions.
+It's not in official [spec](https://github.com/OAI/OpenAPI-Specification/issues/681) yet.
+``` json
+{
+    "EnumWithStrings": {
+        "description": "This is a simple enum with strings",
+        "enum": [
+            0,
+            1,
+            2
+        ],
+        "x-enum-varnames": [
+            "Success",
+            "Warning"
+            "Error"
+        ],
+        "x-enum-descriptions": [
+            "Used when the status of something is successful",
+            "Used when the status of something has a warning"
+            "Used when the status of something has an error"
+        ]
+    }
+}
+```
+
+Generated code:
+``` ts
+enum EnumWithStrings {
+    /*
+    * Used when the status of something is successful
+    */
+    Success = 0
+    /*
+    * Used when the status of something has a warning
+    */
+    Waring = 1
+    /*
+    * Used when the status of something has an error
+    */
+    Error = 2
+}
+```
+### Authorization
+``` ts
+import { OpenAPI } from '.generated'
+OpenAPI.TOKEN = token
+```
+Then in every request:
+``` ts
+headers['Authorization'] = `Bearer ${token}`
 ```
