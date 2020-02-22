@@ -36,27 +36,117 @@ npm install openapi-typescript-codegen --save-dev
 ```json
 {
     "scripts": {
-        "generate": "openapi ./api/openapi.json ./dist"
+        "generate": "openapi --input ./api/openapi.json --output ./dist"
     }
-    ...
 }
 ```
 
-Command line
+**Command line**
 
 ```
 npm install openapi-typescript-codegen -g
 
-openapi ./api/openapi.json ./dist
+openapi --input ./api/openapi.json --output ./dist
 ```
 
-NodeJS API:
+**NodeJS API**
 
-```
+```javascript
 const OpenAPI = require('openapi-typescript-codegen');
 
 OpenAPI.generate(
     './api/openapi.json',
     './dist'
 );
+```
+
+## Features
+
+### Argument-style vs. Object-style
+There's no [named parameter](https://en.wikipedia.org/wiki/Named_parameter) in JS/TS, because of that,
+we offer an option `--useOptions` to generate code in two different styles.
+
+Argument-style:
+```typescript
+function createUser(name: string, password: string, type?: string, address?: string) {
+    // ...
+}
+
+// usage
+createUser('Jack', '123456', undefined, 'NY US');
+```
+
+Object-style:
+```typescript
+interface CreateUserOptions {
+    name: string,
+    password: string,
+    type?: string
+    address?: string
+}
+
+function createUser({ name, password, type, address }: CreateUserOptions) {
+    // ...
+}
+
+// usage
+createUser({
+    name: 'Jack',
+    password: '123456',
+    address: 'NY US'
+});
+```
+
+### Enum with custom names and descriptions
+You can use `x-enum-varnames` and `x-enum-descriptions` in your spec to generate enum with custom names and descriptions.
+It's not in official [spec](https://github.com/OAI/OpenAPI-Specification/issues/681) yet. But its a supported extension
+that can help developers use more meaningful enumerators.
+```json
+{
+    "EnumWithStrings": {
+        "description": "This is a simple enum with strings",
+        "enum": [
+            0,
+            1,
+            2
+        ],
+        "x-enum-varnames": [
+            "Success",
+            "Warning"
+            "Error"
+        ],
+        "x-enum-descriptions": [
+            "Used when the status of something is successful",
+            "Used when the status of something has a warning"
+            "Used when the status of something has an error"
+        ]
+    }
+}
+```
+
+Generated code:
+```typescript
+enum EnumWithStrings {
+    /*
+    * Used when the status of something is successful
+    */
+    Success = 0,
+    /*
+    * Used when the status of something has a warning
+    */
+    Waring = 1,
+    /*
+    * Used when the status of something has an error
+    */
+    Error = 2,
+}
+```
+
+### Authorization
+The OpenAPI generator supports Bearer Token authorization. In order to enable the sending
+of tokens in each request you can set the token using the global OpenAPI configuration:
+
+```typescript
+import { OpenAPI } from './'
+OpenAPI.TOKEN = 'some-bearer-token'
 ```

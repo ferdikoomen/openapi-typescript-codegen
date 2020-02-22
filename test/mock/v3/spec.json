@@ -233,7 +233,7 @@
                 "tags": [
                     "Parameters"
                 ],
-                "operationId": "getCallWithOptionalParam",
+                "operationId": "GetCallWithOptionalParam",
                 "parameters": [
                     {
                         "description": "This is an optional parameter",
@@ -262,7 +262,7 @@
                 "tags": [
                     "Parameters"
                 ],
-                "operationId": "postCallWithOptionalParam",
+                "operationId": "PostCallWithOptionalParam",
                 "parameters": [
                     {
                         "description": "This is a required parameter",
@@ -646,6 +646,45 @@
                             "application/json": {
                                 "schema": {
                                     "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v{api-version}/upload": {
+            "post": {
+                "tags": [
+                    "Upload"
+                ],
+                "operationId": "UploadFile",
+                "parameters": [
+                    {
+                        "description": "Supply a file reference for upload",
+                        "name": "file",
+                        "in": "formData",
+                        "required": true,
+                        "schema": {
+                            "type": "File"
+                        }
+                    },
+                    {
+                        "name": "api-version",
+                        "in": "path",
+                        "required": true,
+                        "nullable": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "boolean"
                                 }
                             }
                         }

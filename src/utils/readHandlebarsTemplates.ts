@@ -28,7 +28,7 @@ export function readHandlebarsTemplates(): Templates {
             settings: readHandlebarsTemplate(path.resolve(__dirname, `../../src/templates/core/OpenAPI.hbs`)),
         };
 
-        const partials = path.resolve(__dirname, `../../src/templates//partials`);
+        const partials = path.resolve(__dirname, `../../src/templates/partials`);
         const partialsFiles = glob.sync('*.hbs', { cwd: partials });
         partialsFiles.forEach(partial => {
             Handlebars.registerPartial(path.basename(partial, '.hbs'), readHandlebarsTemplate(path.resolve(partials, partial)));

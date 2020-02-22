@@ -11,7 +11,7 @@ import { getServiceNames } from './getServiceNames';
  * library. But yuo can also import individual models and services directly.
  * @param client Client object, containing, models, schemas and services.
  * @param templates The loaded handlebar templates.
- * @param outputPath
+ * @param outputPath Directory to write the generated files to.
  */
 export function writeClientIndex(client: Client, templates: Templates, outputPath: string): void {
     try {

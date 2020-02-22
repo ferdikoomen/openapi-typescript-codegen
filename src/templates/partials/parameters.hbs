@@ -1,0 +1,18 @@
+{{#if parameters}}
+{{#if @root.useOptions}}
+{
+{{#each parameters}}
+{{{name}}}{{#if default}} = {{{default}}}{{/if}},
+{{/each}}
+}: {
+{{#each parameters}}
+{{{name}}}{{>isRequired}}: {{>type}},
+{{/each}}
+}
+{{~else}}
+
+{{#each parameters}}
+{{{name}}}{{>isRequired}}: {{>type}}{{#if default}} = {{{default}}}{{/if}},
+{{/each}}
+{{/if}}
+{{/if}}

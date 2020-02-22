@@ -19,9 +19,10 @@ export enum HttpClient {
  * @param input The relative location of the OpenAPI spec.
  * @param output The relative location of the output directory.
  * @param httpClient The selected httpClient (fetch or XHR).
+ * @param useOptions Use options or arguments functions.
  * @param write Write the files to disk (true or false)
  */
-export function generate(input: string, output: string, httpClient: HttpClient = HttpClient.FETCH, write: boolean = true): void {
+export function generate(input: string, output: string, httpClient: HttpClient = HttpClient.FETCH, useOptions: boolean = false, write: boolean = true): void {
     const inputPath = path.resolve(process.cwd(), input);
     const outputPath = path.resolve(process.cwd(), output);
 
@@ -36,14 +37,14 @@ export function generate(input: string, output: string, httpClient: HttpClient =
             case OpenApiVersion.V2:
                 const clientV2 = parseV2(openApi);
                 if (write) {
-                    writeClient(clientV2, httpClient, templates, outputPath);
+                    writeClient(clientV2, httpClient, templates, outputPath, useOptions);
                 }
                 break;
 
             case OpenApiVersion.V3:
                 const clientV3 = parseV3(openApi);
                 if (write) {
-                    writeClient(clientV3, httpClient, templates, outputPath);
+                    writeClient(clientV3, httpClient, templates, outputPath, useOptions);
                 }
                 break;
         }

@@ -17,9 +17,10 @@ import { writeClientSettings } from './writeClientSettings';
  * @param client Client object with all the models, services, etc.
  * @param httpClient The selected httpClient (fetch or XHR).
  * @param templates Templates wrapper with all loaded Handlebars templates.
- * @param outputPath
+ * @param outputPath Directory to write the generated files to.
+ * @param useOptions Use options or arguments functions.
  */
-export function writeClient(client: Client, httpClient: HttpClient, templates: Templates, outputPath: string): void {
+export function writeClient(client: Client, httpClient: HttpClient, templates: Templates, outputPath: string, useOptions: boolean): void {
     const outputPathCore = path.resolve(outputPath, 'core');
     const outputPathModels = path.resolve(outputPath, 'models');
     const outputPathSchemas = path.resolve(outputPath, 'schemas');
@@ -56,7 +57,7 @@ export function writeClient(client: Client, httpClient: HttpClient, templates: T
     // Write the client files
     writeClientModels(client.models, templates, outputPathModels);
     writeClientSchemas(client.models, templates, outputPathSchemas);
-    writeClientServices(client.services, templates, outputPathServices);
+    writeClientServices(client.services, templates, outputPathServices, useOptions);
     writeClientSettings(client, httpClient, templates, outputPathCore);
     writeClientIndex(client, templates, outputPath);
 }

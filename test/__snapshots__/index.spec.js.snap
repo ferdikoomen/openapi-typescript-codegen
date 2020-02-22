@@ -2786,6 +2786,7 @@ export { ParametersService } from './services/ParametersService';
 export { ResponseService } from './services/ResponseService';
 export { SimpleService } from './services/SimpleService';
 export { TypesService } from './services/TypesService';
+export { UploadService } from './services/UploadService';
 "
 `;
 
@@ -4187,7 +4188,10 @@ export class ComplexService {
      * @result ModelWithString Successful response
      * @throws ApiError
      */
-    public static async complexTypes(
+    public static async complexTypes({
+        parameterObject,
+        parameterReference,
+    }: {
         parameterObject: {
             first?: {
                 second?: {
@@ -4196,7 +4200,7 @@ export class ComplexService {
             },
         },
         parameterReference: ModelWithString,
-    ): Promise<Array<ModelWithString>> {
+    }): Promise<Array<ModelWithString>> {
 
         const result = await __request({
             method: 'get',
@@ -4225,7 +4229,10 @@ export class ComplexService {
      * @result ModelWithString Success
      * @throws ApiError
      */
-    public static async complexParams(
+    public static async complexParams({
+        id,
+        requestBody,
+    }: {
         id: number,
         requestBody?: {
             readonly key: string | null,
@@ -4240,7 +4247,7 @@ export class ComplexService {
                 readonly name?: string | null,
             },
         },
-    ): Promise<ModelWithString> {
+    }): Promise<ModelWithString> {
 
         const result = await __request({
             method: 'put',
@@ -4277,15 +4284,21 @@ export class DefaultsService {
      * @param parameterModel This is a simple model
      * @throws ApiError
      */
-    public static async callWithDefaultParameters(
-        parameterString: string | null = 'Hello World!',
-        parameterNumber: number | null = 123,
-        parameterBoolean: boolean | null = true,
-        parameterEnum: ('Success' | 'Warning' | 'Error') = 'Success',
-        parameterModel: ModelWithString | null = {
+    public static async callWithDefaultParameters({
+        parameterString = 'Hello World!',
+        parameterNumber = 123,
+        parameterBoolean = true,
+        parameterEnum = 'Success',
+        parameterModel = {
             \\"prop\\": \\"Hello World\\"
         },
-    ): Promise<void> {
+    }: {
+        parameterString: string | null,
+        parameterNumber: number | null,
+        parameterBoolean: boolean | null,
+        parameterEnum: ('Success' | 'Warning' | 'Error'),
+        parameterModel: ModelWithString | null,
+    }): Promise<void> {
 
         const result = await __request({
             method: 'get',
@@ -4365,13 +4378,19 @@ export class ParametersService {
      * @param requestBody This is the parameter that goes into the body
      * @throws ApiError
      */
-    public static async callWithParameters(
+    public static async callWithParameters({
+        parameterHeader,
+        parameterQuery,
+        parameterForm,
+        parameterCookie,
+        requestBody,
+    }: {
         parameterHeader: string | null,
         parameterQuery: string | null,
         parameterForm: string | null,
         parameterCookie: string | null,
         requestBody: ModelWithString | null,
-    ): Promise<void> {
+    }): Promise<void> {
 
         const result = await __request({
             method: 'get',
@@ -4407,7 +4426,16 @@ export class ParametersService {
      * @param parameterPath3 This is the parameter that goes into the path
      * @throws ApiError
      */
-    public static async callWithWeirdParameterNames(
+    public static async callWithWeirdParameterNames({
+        parameterHeader,
+        parameterQuery,
+        parameterForm,
+        parameterCookie,
+        requestBody,
+        parameterPath1,
+        parameterPath2,
+        parameterPath3,
+    }: {
         parameterHeader: string | null,
         parameterQuery: string | null,
         parameterForm: string | null,
@@ -4416,7 +4444,7 @@ export class ParametersService {
         parameterPath1?: string,
         parameterPath2?: string,
         parameterPath3?: string,
-    ): Promise<void> {
+    }): Promise<void> {
 
         const result = await __request({
             method: 'get',
@@ -4446,10 +4474,13 @@ export class ParametersService {
      * @param parameter This is an optional parameter
      * @throws ApiError
      */
-    public static async getCallWithOptionalParam(
+    public static async getCallWithOptionalParam({
+        requestBody,
+        parameter,
+    }: {
         requestBody: ModelWithString,
         parameter?: string,
-    ): Promise<void> {
+    }): Promise<void> {
 
         const result = await __request({
             method: 'get',
@@ -4470,10 +4501,13 @@ export class ParametersService {
      * @param requestBody This is an optional parameter
      * @throws ApiError
      */
-    public static async postCallWithOptionalParam(
+    public static async postCallWithOptionalParam({
+        parameter,
+        requestBody,
+    }: {
         parameter: string,
         requestBody?: ModelWithString,
-    ): Promise<void> {
+    }): Promise<void> {
 
         const result = await __request({
             method: 'post',
@@ -4723,16 +4757,25 @@ export class TypesService {
      * @result any Response is a simple object
      * @throws ApiError
      */
-    public static async types(
-        parameterNumber: number = 123,
-        parameterString: string | null = 'default',
-        parameterBoolean: boolean | null = true,
-        parameterObject: any = null,
+    public static async types({
+        parameterNumber = 123,
+        parameterString = 'default',
+        parameterBoolean = true,
+        parameterObject = null,
+        parameterArray,
+        parameterDictionary,
+        parameterEnum,
+        id,
+    }: {
+        parameterNumber: number,
+        parameterString: string | null,
+        parameterBoolean: boolean | null,
+        parameterObject: any,
         parameterArray: Array<string> | null,
         parameterDictionary: any,
         parameterEnum: ('Success' | 'Warning' | 'Error') | null,
         id?: number,
-    ): Promise<number | string | boolean | any> {
+    }): Promise<number | string | boolean | any> {
 
         const result = await __request({
             method: 'get',
@@ -4745,6 +4788,45 @@ export class TypesService {
                 'parameterArray': parameterArray,
                 'parameterDictionary': parameterDictionary,
                 'parameterEnum': parameterEnum,
+            },
+        });
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+}"
+`;
+
+exports[`generation v3 file(./test/result/v3/services/UploadService.ts): ./test/result/v3/services/UploadService.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ApiError, catchGenericError } from '../core/ApiError';
+import { request as __request } from '../core/request';
+import { OpenAPI } from '../core/OpenAPI';
+
+export class UploadService {
+
+    /**
+     * @param file Supply a file reference for upload
+     * @result boolean
+     * @throws ApiError
+     */
+    public static async uploadFile({
+        file,
+    }: {
+        file: File,
+    }): Promise<boolean> {
+
+        const result = await __request({
+            method: 'post',
+            path: \`/api/v\${OpenAPI.VERSION}/upload\`,
+            formData: {
+                'file': file,
             },
         });
 

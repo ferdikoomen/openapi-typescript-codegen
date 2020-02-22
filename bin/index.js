@@ -11,6 +11,7 @@ program
     .option('--input [value]', 'Path to swagger specification', './spec.json')
     .option('--output [value]', 'Output directory', './generated')
     .option('--client [value]', 'HTTP client to generate [fetch, xhr]', 'fetch')
+    .option('--useOptions', 'Use options vs arguments style functions', false)
     .parse(process.argv);
 
 const OpenAPI = require(path.resolve(__dirname, '../dist/index.js'));
@@ -19,6 +20,7 @@ if (OpenAPI) {
     OpenAPI.generate(
         program.input,
         program.output,
-        program.client
+        program.client,
+        program.useOptions
     );
 }

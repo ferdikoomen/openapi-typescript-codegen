@@ -10,6 +10,7 @@ describe('generation', () => {
             './test/mock/v2/spec.json',
             './test/result/v2/',
             OpenAPI.HttpClient.FETCH,
+            false,
         );
 
         test.each(glob
@@ -27,6 +28,7 @@ describe('generation', () => {
             './test/mock/v3/spec.json',
             './test/result/v3/',
             OpenAPI.HttpClient.FETCH,
+            true,
         );
 
         test.each(glob

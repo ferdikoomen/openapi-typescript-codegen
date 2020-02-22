@@ -35,11 +35,7 @@ export class {{{name}}} {
     {{/each}}
      * @throws ApiError
      */
-    public static async {{{name}}}({{#if parameters}}
-        {{#each parameters}}
-        {{{name}}}{{>isRequired}}: {{>type}}{{#if default}} = {{{default}}}{{/if}},
-        {{/each}}
-    {{/if}}): Promise<{{>result}}> {
+    public static async {{{name}}}({{>parameters}}): Promise<{{>result}}> {
 
         const result = await __request({
             method: '{{{method}}}',

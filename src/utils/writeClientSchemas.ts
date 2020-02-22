@@ -9,7 +9,7 @@ import { format } from './format';
  * Generate Schemas using the Handlebar template and write to disk.
  * @param models Array of Models to write.
  * @param templates The loaded handlebar templates.
- * @param outputPath
+ * @param outputPath Directory to write the generated files to.
  */
 export function writeClientSchemas(models: Model[], templates: Templates, outputPath: string): void {
     models.forEach(model => {
