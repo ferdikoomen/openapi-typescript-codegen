@@ -67,11 +67,11 @@ exports[`generation v2 file(./test/result/v2/core/OpenAPI.ts): ./test/result/v2/
 /* eslint-disable */
 /* prettier-ignore */
 
-export namespace OpenAPI {
-    export let BASE = 'http://localhost:8080/api';
-    export let VERSION = '9.0';
-    export let CLIENT = 'fetch';
-    export let TOKEN = '';
+export const OpenAPI = {
+    BASE: 'http://localhost:8080/api';
+    VERSION: '9.0';
+    CLIENT: 'fetch';
+    TOKEN: '';
 }"
 `;
 
@@ -2337,11 +2337,11 @@ exports[`generation v3 file(./test/result/v3/core/OpenAPI.ts): ./test/result/v3/
 /* eslint-disable */
 /* prettier-ignore */
 
-export namespace OpenAPI {
-    export let BASE = '/api';
-    export let VERSION = '1';
-    export let CLIENT = 'fetch';
-    export let TOKEN = '';
+export const OpenAPI = {
+    BASE: '/api';
+    VERSION: '1';
+    CLIENT: 'fetch';
+    TOKEN: '';
 }"
 `;
 
