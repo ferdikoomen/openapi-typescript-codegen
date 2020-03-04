@@ -12,6 +12,7 @@ export function readHandlebarsTemplate(filePath: string): Handlebars.TemplateDel
                 .readFileSync(filePath, 'utf8')
                 .toString()
                 .trim();
+
             return Handlebars.compile(template, {
                 strict: true,
                 noEscape: true,

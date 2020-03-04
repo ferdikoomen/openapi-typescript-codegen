@@ -10,7 +10,7 @@ import { getModelDefault } from './getModelDefault';
 import { getModelProperties } from './getModelProperties';
 import { getType } from './getType';
 
-export function getModel(openApi: OpenApi, definition: OpenApiSchema, isProperty: boolean = false, name: string = ''): Model {
+export function getModel(openApi: OpenApi, definition: OpenApiSchema, isDefinition: boolean = false, name: string = ''): Model {
     const model: Model = {
         name: name,
         export: 'interface',
@@ -19,7 +19,7 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isProperty
         template: null,
         link: null,
         description: getComment(definition.description),
-        isProperty: isProperty,
+        isDefinition: isDefinition,
         isReadOnly: definition.readOnly === true,
         isNullable: definition.nullable === true,
         isRequired: false,
@@ -77,7 +77,7 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isProperty
             model.default = getModelDefault(definition, model);
             return model;
         } else {
-            const arrayItems = getModel(openApi, definition.items, true);
+            const arrayItems = getModel(openApi, definition.items);
             model.export = 'array';
             model.type = arrayItems.type;
             model.base = arrayItems.base;
@@ -117,7 +117,10 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isProperty
     if (definition.anyOf && definition.anyOf.length) {
         model.export = 'generic';
         const compositionTypes = definition.anyOf.filter(type => type.$ref).map(type => getType(type.$ref));
-        const composition = compositionTypes.map(type => type.type).join(' | ');
+        const composition = compositionTypes
+            .map(type => type.type)
+            .sort()
+            .join(' | ');
         model.imports.push(...compositionTypes.map(type => type.base));
         model.type = composition;
         model.base = composition;
@@ -127,7 +130,10 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isProperty
     if (definition.oneOf && definition.oneOf.length) {
         model.export = 'generic';
         const compositionTypes = definition.oneOf.filter(type => type.$ref).map(type => getType(type.$ref));
-        const composition = compositionTypes.map(type => type.type).join(' | ');
+        const composition = compositionTypes
+            .map(type => type.type)
+            .sort()
+            .join(' | ');
         model.imports.push(...compositionTypes.map(type => type.base));
         model.type = composition;
         model.base = composition;
@@ -144,7 +150,7 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isProperty
             definition.allOf.forEach(parent => {
                 if (parent.$ref) {
                     const parentRef = getType(parent.$ref);
-                    model.extends.push(parentRef.type);
+                    model.extends.push(parentRef.base);
                     model.imports.push(parentRef.base);
                 }
                 if (parent.type === 'object' && parent.properties) {

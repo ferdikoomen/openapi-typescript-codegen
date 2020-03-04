@@ -21,6 +21,7 @@ export function getOperationResults(operationResponses: OperationResponse[]): Op
 
     if (!operationResults.length) {
         operationResults.push({
+            in: 'response',
             name: '',
             code: 200,
             description: '',
@@ -29,7 +30,7 @@ export function getOperationResults(operationResponses: OperationResponse[]): Op
             base: PrimaryType.OBJECT,
             template: null,
             link: null,
-            isProperty: false,
+            isDefinition: false,
             isReadOnly: false,
             isRequired: false,
             isNullable: false,

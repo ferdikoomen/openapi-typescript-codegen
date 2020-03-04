@@ -1,5 +1,5 @@
 export interface Schema {
-    isProperty: boolean;
+    isDefinition: boolean;
     isReadOnly: boolean;
     isRequired: boolean;
     isNullable: boolean;

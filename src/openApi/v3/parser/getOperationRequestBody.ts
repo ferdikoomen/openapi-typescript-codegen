@@ -19,7 +19,7 @@ export function getOperationRequestBody(openApi: OpenApi, parameter: OpenApiRequ
         link: null,
         description: getComment(parameter.description),
         default: undefined,
-        isProperty: false,
+        isDefinition: false,
         isReadOnly: false,
         isRequired: parameter.required === true,
         isNullable: parameter.nullable === true,

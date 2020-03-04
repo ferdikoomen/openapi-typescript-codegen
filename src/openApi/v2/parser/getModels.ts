@@ -4,14 +4,14 @@ import { getModel } from './getModel';
 import { getType } from './getType';
 
 export function getModels(openApi: OpenApi): Model[] {
-    const models = new Map<string, Model>();
+    const models: Model[] = [];
     for (const definitionName in openApi.definitions) {
         if (openApi.definitions.hasOwnProperty(definitionName)) {
             const definition = openApi.definitions[definitionName];
             const definitionType = getType(definitionName);
-            const model = getModel(openApi, definition, false, definitionType.base);
-            models.set(definitionType.base, model);
+            const model = getModel(openApi, definition, true, definitionType.base);
+            models.push(model);
         }
     }
-    return Array.from(models.values());
+    return models;
 }

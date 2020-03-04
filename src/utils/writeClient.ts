@@ -15,12 +15,13 @@ import { writeClientSettings } from './writeClientSettings';
 /**
  * Write our OpenAPI client, using the given templates at the given output path.
  * @param client Client object with all the models, services, etc.
- * @param httpClient The selected httpClient (fetch or XHR).
  * @param templates Templates wrapper with all loaded Handlebars templates.
- * @param outputPath Directory to write the generated files to.
+ * @param output Directory to write the generated files to.
+ * @param httpClient The selected httpClient (fetch or XHR).
  * @param useOptions Use options or arguments functions.
  */
-export function writeClient(client: Client, httpClient: HttpClient, templates: Templates, outputPath: string, useOptions: boolean): void {
+export function writeClient(client: Client, templates: Templates, output: string, httpClient: HttpClient, useOptions: boolean): void {
+    const outputPath = path.resolve(process.cwd(), output);
     const outputPathCore = path.resolve(outputPath, 'core');
     const outputPathModels = path.resolve(outputPath, 'models');
     const outputPathSchemas = path.resolve(outputPath, 'schemas');
@@ -30,7 +31,7 @@ export function writeClient(client: Client, httpClient: HttpClient, templates: T
     try {
         rimraf.sync(outputPath);
     } catch (e) {
-        throw new Error(`Could not clean output directory`);
+        throw new Error('Could not clean output directory');
     }
 
     // Create new directories
@@ -41,11 +42,11 @@ export function writeClient(client: Client, httpClient: HttpClient, templates: T
         mkdirp.sync(outputPathSchemas);
         mkdirp.sync(outputPathServices);
     } catch (e) {
-        throw new Error(`Could not create output directories`);
+        throw new Error('Could not create output directories');
     }
 
     // Copy all support files
-    const supportFiles = path.resolve(__dirname, `../../src/templates/`);
+    const supportFiles = path.resolve(__dirname, '../../src/templates/');
     const supportFilesList = glob.sync('**/*.ts', { cwd: supportFiles });
     supportFilesList.forEach(file => {
         fs.copyFileSync(
@@ -58,6 +59,6 @@ export function writeClient(client: Client, httpClient: HttpClient, templates: T
     writeClientModels(client.models, templates, outputPathModels);
     writeClientSchemas(client.models, templates, outputPathSchemas);
     writeClientServices(client.services, templates, outputPathServices, useOptions);
-    writeClientSettings(client, httpClient, templates, outputPathCore);
+    writeClientSettings(client, templates, outputPathCore, httpClient);
     writeClientIndex(client, templates, outputPath);
 }

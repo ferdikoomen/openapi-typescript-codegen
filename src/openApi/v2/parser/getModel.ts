@@ -9,7 +9,7 @@ import { getEnumFromDescription } from './getEnumFromDescription';
 import { getModelProperties } from './getModelProperties';
 import { getType } from './getType';
 
-export function getModel(openApi: OpenApi, definition: OpenApiSchema, isProperty: boolean = false, name: string = ''): Model {
+export function getModel(openApi: OpenApi, definition: OpenApiSchema, isDefinition: boolean = false, name: string = ''): Model {
     const model: Model = {
         name: name,
         export: 'interface',
@@ -18,7 +18,7 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isProperty
         template: null,
         link: null,
         description: getComment(definition.description),
-        isProperty: isProperty,
+        isDefinition: isDefinition,
         isReadOnly: definition.readOnly === true,
         isNullable: false,
         isRequired: false,
@@ -86,7 +86,7 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isProperty
             model.imports.push(...arrayItems.imports);
             return model;
         } else {
-            const arrayItems = getModel(openApi, definition.items, true);
+            const arrayItems = getModel(openApi, definition.items);
             model.export = 'array';
             model.type = arrayItems.type;
             model.base = arrayItems.base;
@@ -129,7 +129,7 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isProperty
             definition.allOf.forEach(parent => {
                 if (parent.$ref) {
                     const parentRef = getType(parent.$ref);
-                    model.extends.push(parentRef.type);
+                    model.extends.push(parentRef.base);
                     model.imports.push(parentRef.base);
                 }
                 if (parent.type === 'object' && parent.properties) {

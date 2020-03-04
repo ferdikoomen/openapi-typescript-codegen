@@ -36,7 +36,7 @@ describe('writeClient', () => {
 
         globSync.mockReturnValue([]);
 
-        writeClient(client, HttpClient.FETCH, templates, '/');
+        writeClient(client, templates, '/', HttpClient.FETCH, false);
 
         expect(rimrafSync).toBeCalled();
         expect(mkdirpSync).toBeCalled();

@@ -1,18 +1,38 @@
+const path = require('path');
+const ts = require('typescript');
 const OpenAPI = require('../dist');
 
-OpenAPI.generate(
-    './test/mock/v2/spec.json',
-    './test/result/v2/',
-    OpenAPI.HttpClient.FETCH,
-    false,
-);
+function compile(dir) {
+    const config = {
+        compilerOptions: {
+            target: 'esnext',
+            module: 'commonjs',
+            moduleResolution: 'node',
+        },
+        include: ['./index.ts'],
+    };
+    const configFile = ts.parseConfigFileTextToJson('tsconfig.json', JSON.stringify(config));
+    const configFileResult = ts.parseJsonConfigFileContent(configFile.config, ts.sys, path.resolve(process.cwd(), dir), undefined, 'tsconfig.json');
+    const compilerHost = ts.createCompilerHost(configFileResult.options);
+    const compiler = ts.createProgram(configFileResult.fileNames, configFileResult.options, compilerHost);
+    compiler.emit();
+}
 
-OpenAPI.generate(
-    './test/mock/v3/spec.json',
-    './test/result/v3/',
-    OpenAPI.HttpClient.FETCH,
-    true,
-);
+OpenAPI.generate({
+    input: './test/mock/v2/spec.json',
+    output: './test/result/v2/',
+    httpClient: OpenAPI.HttpClient.FETCH,
+    useOptions: false,
+    useUnionTypes: false,
+});
 
-OpenAPI.compile('./test/result/v2/');
-OpenAPI.compile('./test/result/v3/');
+OpenAPI.generate({
+    input: './test/mock/v3/spec.json',
+    output: './test/result/v3/',
+    httpClient: OpenAPI.HttpClient.FETCH,
+    useOptions: false,
+    useUnionTypes: false,
+});
+
+compile('./test/result/v2/');
+compile('./test/result/v3/');

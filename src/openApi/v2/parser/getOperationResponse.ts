@@ -8,6 +8,7 @@ import { getType } from './getType';
 
 export function getOperationResponse(openApi: OpenApi, response: OpenApiResponse, responseCode: number): OperationResponse {
     const operationResponse: OperationResponse = {
+        in: 'response',
         name: '',
         code: responseCode,
         description: getComment(response.description)!,
@@ -16,7 +17,7 @@ export function getOperationResponse(openApi: OpenApi, response: OpenApiResponse
         base: PrimaryType.OBJECT,
         template: null,
         link: null,
-        isProperty: false,
+        isDefinition: false,
         isReadOnly: false,
         isRequired: false,
         isNullable: false,

@@ -3,9 +3,16 @@
 /* eslint-disable */
 /* prettier-ignore */
 
-export namespace OpenAPI {
-    export let BASE = '{{{server}}}';
-    export let VERSION = '{{{version}}}';
-    export let CLIENT = '{{{httpClient}}}';
-    export let TOKEN = '';
+interface Config {
+    BASE: string;
+    VERSION: string;
+    CLIENT: 'fetch' | 'xhr';
+    TOKEN: string;
 }
+
+export const OpenAPI: Config = {
+    BASE: '{{{server}}}',
+    VERSION: '{{{version}}}',
+    CLIENT: '{{{httpClient}}}',
+    TOKEN: '',
+};

@@ -22,7 +22,7 @@ export function getOperationParameter(openApi: OpenApi, parameter: OpenApiParame
         template: null,
         link: null,
         description: getComment(parameter.description),
-        isProperty: false,
+        isDefinition: false,
         isReadOnly: false,
         isRequired: parameter.required === true,
         isNullable: false,

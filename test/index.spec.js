@@ -6,12 +6,12 @@ describe('generation', () => {
 
     describe('v2', () => {
 
-        OpenAPI.generate(
-            './test/mock/v2/spec.json',
-            './test/result/v2/',
-            OpenAPI.HttpClient.FETCH,
-            false,
-        );
+        OpenAPI.generate({
+            input: './test/mock/v2/spec.json',
+            output: './test/result/v2/',
+            httpClient: OpenAPI.HttpClient.FETCH,
+            write: false,
+        });
 
         test.each(glob
             .sync('./test/result/v2/**/*.ts')
@@ -24,12 +24,12 @@ describe('generation', () => {
 
     describe('v3', () => {
 
-        OpenAPI.generate(
-            './test/mock/v3/spec.json',
-            './test/result/v3/',
-            OpenAPI.HttpClient.FETCH,
-            true,
-        );
+        OpenAPI.generate({
+            input: './test/mock/v3/spec.json',
+            output: './test/result/v3/',
+            httpClient: OpenAPI.HttpClient.FETCH,
+            write: false,
+        });
 
         test.each(glob
             .sync('./test/result/v3/**/*.ts')

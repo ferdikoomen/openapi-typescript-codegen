@@ -2,7 +2,6 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { Service } from '../client/interfaces/Service';
 import { Templates } from './readHandlebarsTemplates';
-import { exportService } from './exportService';
 import { format } from './format';
 
 /**
@@ -15,9 +14,8 @@ import { format } from './format';
 export function writeClientServices(services: Service[], templates: Templates, outputPath: string, useOptions: boolean): void {
     services.forEach(service => {
         const file = path.resolve(outputPath, `${service.name}.ts`);
-        const templateData = exportService(service);
         const templateResult = templates.service({
-            ...templateData,
+            ...service,
             useOptions,
         });
         fs.writeFileSync(file, format(templateResult));

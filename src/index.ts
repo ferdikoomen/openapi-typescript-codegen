@@ -1,15 +1,24 @@
-import * as path from 'path';
-import * as ts from 'typescript';
 import { OpenApiVersion, getOpenApiVersion } from './utils/getOpenApiVersion';
 import { getOpenApiSpec } from './utils/getOpenApiSpec';
+import { isString } from './utils/isString';
 import { parse as parseV2 } from './openApi/v2';
 import { parse as parseV3 } from './openApi/v3';
+import { postProcessClient } from './utils/postProcessClient';
 import { readHandlebarsTemplates } from './utils/readHandlebarsTemplates';
 import { writeClient } from './utils/writeClient';
 
 export enum HttpClient {
     FETCH = 'fetch',
     XHR = 'xhr',
+}
+
+export interface Options {
+    input: string | Record<string, any>;
+    output: string;
+    httpClient?: HttpClient;
+    useOptions?: boolean;
+    useUnionTypes?: boolean;
+    write?: boolean;
 }
 
 /**
@@ -20,52 +29,38 @@ export enum HttpClient {
  * @param output The relative location of the output directory.
  * @param httpClient The selected httpClient (fetch or XHR).
  * @param useOptions Use options or arguments functions.
- * @param write Write the files to disk (true or false)
+ * @param useUnionTypes Use inclusive union types.
+ * @param write Write the files to disk (true or false).
  */
-export function generate(input: string, output: string, httpClient: HttpClient = HttpClient.FETCH, useOptions: boolean = false, write: boolean = true): void {
-    const inputPath = path.resolve(process.cwd(), input);
-    const outputPath = path.resolve(process.cwd(), output);
-
+export function generate({ input, output, httpClient = HttpClient.FETCH, useOptions = false, useUnionTypes = false, write = true }: Options): void {
     try {
         // Load the specification, read the OpenAPI version and load the
         // handlebar templates for the given language
-        const openApi = getOpenApiSpec(inputPath);
+        const openApi = isString(input) ? getOpenApiSpec(input) : input;
         const openApiVersion = getOpenApiVersion(openApi);
         const templates = readHandlebarsTemplates();
 
         switch (openApiVersion) {
-            case OpenApiVersion.V2:
-                const clientV2 = parseV2(openApi);
+            case OpenApiVersion.V2: {
+                const client = parseV2(openApi);
+                const clientFinal = postProcessClient(client, useUnionTypes);
                 if (write) {
-                    writeClient(clientV2, httpClient, templates, outputPath, useOptions);
+                    writeClient(clientFinal, templates, output, httpClient, useOptions);
                 }
                 break;
+            }
 
-            case OpenApiVersion.V3:
-                const clientV3 = parseV3(openApi);
+            case OpenApiVersion.V3: {
+                const client = parseV3(openApi);
+                const clientFinal = postProcessClient(client, useUnionTypes);
                 if (write) {
-                    writeClient(clientV3, httpClient, templates, outputPath, useOptions);
+                    writeClient(clientFinal, templates, output, httpClient, useOptions);
                 }
                 break;
+            }
         }
     } catch (e) {
         console.error(e);
         process.exit(1);
     }
-}
-
-export function compile(dir: string): void {
-    const config = {
-        compilerOptions: {
-            target: 'esnext',
-            module: 'commonjs',
-            moduleResolution: 'node',
-        },
-        include: ['./index.ts'],
-    };
-    const configFile = ts.parseConfigFileTextToJson('tsconfig.json', JSON.stringify(config));
-    const configFileResult = ts.parseJsonConfigFileContent(configFile.config, ts.sys, path.resolve(process.cwd(), dir), undefined, 'tsconfig.json');
-    const compilerHost = ts.createCompilerHost(configFileResult.options);
-    const compiler = ts.createProgram(configFileResult.fileNames, configFileResult.options, compilerHost);
-    compiler.emit();
 }

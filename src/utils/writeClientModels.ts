@@ -2,7 +2,6 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { Model } from '../client/interfaces/Model';
 import { Templates } from './readHandlebarsTemplates';
-import { exportModel } from './exportModel';
 import { format } from './format';
 
 /**
@@ -14,8 +13,7 @@ import { format } from './format';
 export function writeClientModels(models: Model[], templates: Templates, outputPath: string): void {
     models.forEach(model => {
         const file = path.resolve(outputPath, `${model.name}.ts`);
-        const templateData = exportModel(model);
-        const templateResult = templates.model(templateData);
+        const templateResult = templates.model(model);
         fs.writeFileSync(file, format(templateResult));
     });
 }

@@ -54,10 +54,22 @@ openapi --input ./api/openapi.json --output ./dist
 ```javascript
 const OpenAPI = require('openapi-typescript-codegen');
 
-OpenAPI.generate(
-    './api/openapi.json',
-    './dist'
-);
+OpenAPI.generate({
+    input: './api/openapi.json',
+    output: './dist'
+});
+```
+
+Or by providing the JSON directly:
+
+```javascript
+const OpenAPI = require('openapi-typescript-codegen');
+const spec = require('./api/openapi.json');
+
+OpenAPI.generate({
+    input: spec,
+    output: './dist'
+});
 ```
 
 ## Features

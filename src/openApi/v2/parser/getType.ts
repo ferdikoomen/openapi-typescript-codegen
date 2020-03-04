@@ -26,7 +26,7 @@ export function getType(value?: string, template?: string): Type {
 
             if (match1.type === PrimaryType.ARRAY) {
                 result.type = `${match2.type}[]`;
-                result.base = `${match2.type}`;
+                result.base = match2.type;
                 match1.imports = [];
             } else if (match2.type) {
                 result.type = `${match1.type}<${match2.type}>`;

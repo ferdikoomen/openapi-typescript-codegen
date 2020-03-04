@@ -31,7 +31,9 @@ export function readHandlebarsTemplates(): Templates {
         const partials = path.resolve(__dirname, `../../src/templates/partials`);
         const partialsFiles = glob.sync('*.hbs', { cwd: partials });
         partialsFiles.forEach(partial => {
-            Handlebars.registerPartial(path.basename(partial, '.hbs'), readHandlebarsTemplate(path.resolve(partials, partial)));
+            const templateName = path.basename(partial, '.hbs');
+            const template = readHandlebarsTemplate(path.resolve(partials, partial));
+            Handlebars.registerPartial(templateName, template);
         });
 
         return templates;
