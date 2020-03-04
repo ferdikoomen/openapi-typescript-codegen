@@ -10,7 +10,8 @@ describe('generation', () => {
             input: './test/mock/v2/spec.json',
             output: './test/result/v2/',
             httpClient: OpenAPI.HttpClient.FETCH,
-            write: false,
+            useOptions: false,
+            useUnionTypes: false,
         });
 
         test.each(glob
@@ -28,7 +29,8 @@ describe('generation', () => {
             input: './test/mock/v3/spec.json',
             output: './test/result/v3/',
             httpClient: OpenAPI.HttpClient.FETCH,
-            write: false,
+            useOptions: false,
+            useUnionTypes: false,
         });
 
         test.each(glob
