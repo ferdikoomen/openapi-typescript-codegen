@@ -218,6 +218,32 @@
                 ]
             }
         },
+        "/api/v{api-version}/duplicate": {
+            "get": {
+                "tags": [
+                    "Duplicate"
+                ],
+                "operationId": "DuplicateName"
+            },
+            "post": {
+                "tags": [
+                    "Duplicate"
+                ],
+                "operationId": "DuplicateName"
+            },
+            "put": {
+                "tags": [
+                    "Duplicate"
+                ],
+                "operationId": "DuplicateName"
+            },
+            "delete": {
+                "tags": [
+                    "Duplicate"
+                ],
+                "operationId": "DuplicateName"
+            }
+        },
         "/api/v{api-version}/response": {
             "get": {
                 "tags": [

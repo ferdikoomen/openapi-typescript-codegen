@@ -17,11 +17,10 @@ export function postProcessServiceOperations(service: Service, client: Client, u
         clone.imports.push(...clone.results.flatMap(result => result.imports));
 
         // Check of the operation name
-        let name = clone.name;
+        const name = clone.name;
         const index = names.get(name) || 0;
         if (index > 0) {
             clone.name = `${name}${index}`;
-            name = `${name}${index}`;
         }
         names.set(name, index + 1);
 
