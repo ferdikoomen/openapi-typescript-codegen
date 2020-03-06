@@ -3,6 +3,7 @@ import * as glob from 'glob';
 import * as mkdirp from 'mkdirp';
 import * as path from 'path';
 import * as rimraf from 'rimraf';
+
 import { Client } from '../client/interfaces/Client';
 import { HttpClient } from '../index';
 import { Templates } from './readHandlebarsTemplates';

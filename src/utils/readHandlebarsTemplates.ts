@@ -1,6 +1,7 @@
-import * as Handlebars from 'handlebars';
 import * as glob from 'glob';
+import * as Handlebars from 'handlebars';
 import * as path from 'path';
+
 import { readHandlebarsTemplate } from './readHandlebarsTemplate';
 import { registerHandlebarHelpers } from './registerHandlebarHelpers';
 

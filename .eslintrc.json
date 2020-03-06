@@ -11,7 +11,7 @@
         "jest": true
     },
     "plugins": [
-        "sort-imports-es6-autofix"
+        "simple-import-sort"
     ],
     "rules": {
         "@typescript-eslint/no-explicit-any": 0,
@@ -19,7 +19,9 @@
         "@typescript-eslint/no-non-null-assertion": 0,
         "@typescript-eslint/ban-ts-ignore": 0,
         "@typescript-eslint/explicit-function-return-type": 0,
-        "sort-imports-es6-autofix/sort-imports-es6": "error",
+        "sort-imports": "off",
+        "import/order": "off",
+        "simple-import-sort/sort": "error",
         "prettier/prettier": ["error"]
     }
 }

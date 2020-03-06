@@ -1,8 +1,9 @@
 import * as fs from 'fs';
 import * as path from 'path';
+
 import { Model } from '../client/interfaces/Model';
-import { Templates } from './readHandlebarsTemplates';
 import { format } from './format';
+import { Templates } from './readHandlebarsTemplates';
 
 /**
  * Generate Schemas using the Handlebar template and write to disk.

@@ -1,6 +1,6 @@
+import { OperationResponse } from '../../../client/interfaces/OperationResponse';
 import { OpenApi } from '../interfaces/OpenApi';
 import { OpenApiResponse } from '../interfaces/OpenApiResponse';
-import { OperationResponse } from '../../../client/interfaces/OperationResponse';
 import { PrimaryType } from './constants';
 import { getComment } from './getComment';
 import { getContent } from './getContent';

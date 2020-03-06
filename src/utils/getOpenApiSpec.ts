@@ -1,6 +1,6 @@
 import * as fs from 'fs';
-import * as path from 'path';
 import * as yaml from 'js-yaml';
+import * as path from 'path';
 
 /**
  * Check if given file exists and try to read the content as string.

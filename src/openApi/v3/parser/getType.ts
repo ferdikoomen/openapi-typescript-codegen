@@ -1,5 +1,5 @@
-import { PrimaryType } from './constants';
 import { Type } from '../../../client/interfaces/Type';
+import { PrimaryType } from './constants';
 import { getMappedType, hasMappedType } from './getMappedType';
 import { stripNamespace } from './stripNamespace';
 

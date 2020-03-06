@@ -1,5 +1,6 @@
 import * as fs from 'fs';
 import * as glob from 'glob';
+
 import { Client } from '../client/interfaces/Client';
 import { Templates } from './readHandlebarsTemplates';
 import { writeClientIndex } from './writeClientIndex';

@@ -1,4 +1,5 @@
 import * as fs from 'fs';
+
 import { Model } from '../client/interfaces/Model';
 import { Templates } from './readHandlebarsTemplates';
 import { writeClientModels } from './writeClientModels';

@@ -1,5 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
+
 import { Client } from '../client/interfaces/Client';
 import { HttpClient } from '../index';
 import { Templates } from './readHandlebarsTemplates';

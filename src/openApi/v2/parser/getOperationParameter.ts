@@ -1,6 +1,6 @@
+import { OperationParameter } from '../../../client/interfaces/OperationParameter';
 import { OpenApi } from '../interfaces/OpenApi';
 import { OpenApiParameter } from '../interfaces/OpenApiParameter';
-import { OperationParameter } from '../../../client/interfaces/OperationParameter';
 import { PrimaryType } from './constants';
 import { extendEnum } from './extendEnum';
 import { getComment } from './getComment';

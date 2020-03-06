@@ -1,5 +1,6 @@
 import * as fs from 'fs';
 import * as glob from 'glob';
+
 import { readHandlebarsTemplates } from './readHandlebarsTemplates';
 
 jest.mock('fs');

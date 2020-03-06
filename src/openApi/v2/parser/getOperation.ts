@@ -1,6 +1,6 @@
+import { Operation } from '../../../client/interfaces/Operation';
 import { OpenApi } from '../interfaces/OpenApi';
 import { OpenApiOperation } from '../interfaces/OpenApiOperation';
-import { Operation } from '../../../client/interfaces/Operation';
 import { getComment } from './getComment';
 import { getOperationErrors } from './getOperationErrors';
 import { getOperationName } from './getOperationName';

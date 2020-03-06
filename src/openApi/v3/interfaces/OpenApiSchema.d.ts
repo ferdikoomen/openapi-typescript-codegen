@@ -1,9 +1,9 @@
 import { Dictionary } from '../../../utils/types';
+import { WithEnumExtension } from './Extensions/WithEnumExtension';
 import { OpenApiDiscriminator } from './OpenApiDiscriminator';
 import { OpenApiExternalDocs } from './OpenApiExternalDocs';
 import { OpenApiReference } from './OpenApiReference';
 import { OpenApiXml } from './OpenApiXml';
-import { WithEnumExtension } from './Extensions/WithEnumExtension';
 
 /**
  * https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#schemaObject

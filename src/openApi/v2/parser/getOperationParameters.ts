@@ -1,6 +1,6 @@
+import { OperationParameters } from '../../../client/interfaces/OperationParameters';
 import { OpenApi } from '../interfaces/OpenApi';
 import { OpenApiParameter } from '../interfaces/OpenApiParameter';
-import { OperationParameters } from '../../../client/interfaces/OperationParameters';
 import { getOperationParameter } from './getOperationParameter';
 import { getRef } from './getRef';
 import { sortByRequired } from './sortByRequired';

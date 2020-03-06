@@ -1,8 +1,8 @@
-import { OpenApiVersion, getOpenApiVersion } from './utils/getOpenApiVersion';
-import { getOpenApiSpec } from './utils/getOpenApiSpec';
-import { isString } from './utils/isString';
 import { parse as parseV2 } from './openApi/v2';
 import { parse as parseV3 } from './openApi/v3';
+import { getOpenApiSpec } from './utils/getOpenApiSpec';
+import { getOpenApiVersion, OpenApiVersion } from './utils/getOpenApiVersion';
+import { isString } from './utils/isString';
 import { postProcessClient } from './utils/postProcessClient';
 import { readHandlebarsTemplates } from './utils/readHandlebarsTemplates';
 import { writeClient } from './utils/writeClient';

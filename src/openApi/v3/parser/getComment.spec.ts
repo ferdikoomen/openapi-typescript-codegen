@@ -1,4 +1,5 @@
 import { EOL } from 'os';
+
 import { getComment } from './getComment';
 
 describe('getComment', () => {
