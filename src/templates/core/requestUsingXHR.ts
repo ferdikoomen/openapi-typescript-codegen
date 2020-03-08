@@ -28,7 +28,6 @@ function parseBody(xhr: XMLHttpRequest): any {
     } catch (e) {
         console.error(e);
     }
-
     return null;
 }
 

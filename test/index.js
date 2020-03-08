@@ -24,6 +24,8 @@ OpenAPI.generate({
     httpClient: OpenAPI.HttpClient.FETCH,
     useOptions: false,
     useUnionTypes: false,
+    exportSchemas: true,
+    exportServices: true,
 });
 
 OpenAPI.generate({
@@ -32,6 +34,8 @@ OpenAPI.generate({
     httpClient: OpenAPI.HttpClient.FETCH,
     useOptions: false,
     useUnionTypes: false,
+    exportSchemas: true,
+    exportServices: true,
 });
 
 compile('./test/result/v2/');

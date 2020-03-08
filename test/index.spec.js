@@ -12,6 +12,8 @@ describe('generation', () => {
             httpClient: OpenAPI.HttpClient.FETCH,
             useOptions: false,
             useUnionTypes: false,
+            exportSchemas: true,
+            exportServices: true,
         });
 
         test.each(glob
@@ -31,6 +33,8 @@ describe('generation', () => {
             httpClient: OpenAPI.HttpClient.FETCH,
             useOptions: false,
             useUnionTypes: false,
+            exportSchemas: true,
+            exportServices: true,
         });
 
         test.each(glob

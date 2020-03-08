@@ -13,19 +13,19 @@ import { Templates } from './readHandlebarsTemplates';
  * @param client Client object, containing, models, schemas and services.
  * @param templates The loaded handlebar templates.
  * @param outputPath Directory to write the generated files to.
+ * @param exportServices: Generate services.
+ * @param exportSchemas: Generate schemas.
  */
-export function writeClientIndex(client: Client, templates: Templates, outputPath: string): void {
-    try {
-        fs.writeFileSync(
-            path.resolve(outputPath, 'index.ts'),
-            templates.index({
-                server: client.server,
-                version: client.version,
-                models: getModelNames(client.models),
-                services: getServiceNames(client.services),
-            })
-        );
-    } catch (e) {
-        throw new Error(`Could not write index`);
-    }
+export function writeClientIndex(client: Client, templates: Templates, outputPath: string, exportServices: boolean, exportSchemas: boolean): void {
+    fs.writeFileSync(
+        path.resolve(outputPath, 'index.ts'),
+        templates.index({
+            exportServices,
+            exportSchemas,
+            server: client.server,
+            version: client.version,
+            models: getModelNames(client.models),
+            services: getServiceNames(client.services),
+        })
+    );
 }

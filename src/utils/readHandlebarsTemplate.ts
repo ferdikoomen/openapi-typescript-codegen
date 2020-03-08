@@ -6,26 +6,19 @@ import * as Handlebars from 'handlebars';
  * @param filePath
  */
 export function readHandlebarsTemplate(filePath: string): Handlebars.TemplateDelegate {
-    if (fs.existsSync(filePath)) {
-        try {
-            const template = fs
-                .readFileSync(filePath, 'utf8')
-                .toString()
-                .trim();
+    const template = fs
+        .readFileSync(filePath, 'utf8')
+        .toString()
+        .trim();
 
-            return Handlebars.compile(template, {
-                strict: true,
-                noEscape: true,
-                preventIndent: true,
-                knownHelpersOnly: true,
-                knownHelpers: {
-                    equals: true,
-                    notEquals: true,
-                },
-            });
-        } catch (e) {
-            throw new Error(`Could not compile Handlebar template: "${filePath}"`);
-        }
-    }
-    throw new Error(`Could not find Handlebar template: "${filePath}"`);
+    return Handlebars.compile(template, {
+        strict: true,
+        noEscape: true,
+        preventIndent: true,
+        knownHelpersOnly: true,
+        knownHelpers: {
+            equals: true,
+            notEquals: true,
+        },
+    });
 }

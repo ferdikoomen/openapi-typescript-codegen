@@ -294,7 +294,6 @@ import { Result } from './Result';
  * @param response Response object from fetch
  */
 async function parseBody(response: Response): Promise<any> {
-
     try {
         const contentType = response.headers.get('Content-Type');
         if (contentType) {
@@ -368,7 +367,6 @@ function parseBody(xhr: XMLHttpRequest): any {
     } catch (e) {
         console.error(e);
     }
-
     return null;
 }
 
@@ -461,6 +459,7 @@ export { ModelWithLink } from './models/ModelWithLink';
 export { ModelWithNestedEnums } from './models/ModelWithNestedEnums';
 export { ModelWithNestedProperties } from './models/ModelWithNestedProperties';
 export { ModelWithOrderedProperties } from './models/ModelWithOrderedProperties';
+export { ModelWithPattern } from './models/ModelWithPattern';
 export { ModelWithProperties } from './models/ModelWithProperties';
 export { ModelWithReference } from './models/ModelWithReference';
 export { ModelWithString } from './models/ModelWithString';
@@ -502,6 +501,7 @@ export { $ModelWithLink } from './schemas/$ModelWithLink';
 export { $ModelWithNestedEnums } from './schemas/$ModelWithNestedEnums';
 export { $ModelWithNestedProperties } from './schemas/$ModelWithNestedProperties';
 export { $ModelWithOrderedProperties } from './schemas/$ModelWithOrderedProperties';
+export { $ModelWithPattern } from './schemas/$ModelWithPattern';
 export { $ModelWithProperties } from './schemas/$ModelWithProperties';
 export { $ModelWithReference } from './schemas/$ModelWithReference';
 export { $ModelWithString } from './schemas/$ModelWithString';
@@ -1086,6 +1086,25 @@ export interface ModelWithOrderedProperties {
     zebra?: string;
     apple?: string;
     hawaii?: string;
+}
+"
+`;
+
+exports[`generation v2 file(./test/result/v2/models/ModelWithPattern.ts): ./test/result/v2/models/ModelWithPattern.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+
+/**
+ * This is a model that contains a some patterns
+ */
+export interface ModelWithPattern {
+    key: string;
+    name: string;
+    readonly enabled?: boolean;
+    readonly modified?: string;
 }
 "
 `;
@@ -1685,6 +1704,38 @@ export const $ModelWithOrderedProperties = {
         },
         hawaii: {
             type: 'string',
+        },
+    },
+};"
+`;
+
+exports[`generation v2 file(./test/result/v2/schemas/$ModelWithPattern.ts): ./test/result/v2/schemas/$ModelWithPattern.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+export const $ModelWithPattern = {
+    properties: {
+        key: {
+            type: 'string',
+            isRequired: true,
+            maxLength: 64,
+            pattern: '^[a-zA-Z0-9_]*$',
+        },
+        name: {
+            type: 'string',
+            isRequired: true,
+            maxLength: 255,
+        },
+        enabled: {
+            type: 'boolean',
+            isReadOnly: true,
+        },
+        modified: {
+            type: 'string',
+            isReadOnly: true,
+            format: 'date-time',
         },
     },
 };"
@@ -2647,7 +2698,6 @@ import { Result } from './Result';
  * @param response Response object from fetch
  */
 async function parseBody(response: Response): Promise<any> {
-
     try {
         const contentType = response.headers.get('Content-Type');
         if (contentType) {
@@ -2721,7 +2771,6 @@ function parseBody(xhr: XMLHttpRequest): any {
     } catch (e) {
         console.error(e);
     }
-
     return null;
 }
 
@@ -2816,6 +2865,7 @@ export { ModelWithNestedEnums } from './models/ModelWithNestedEnums';
 export { ModelWithNestedProperties } from './models/ModelWithNestedProperties';
 export { ModelWithOneOf } from './models/ModelWithOneOf';
 export { ModelWithOrderedProperties } from './models/ModelWithOrderedProperties';
+export { ModelWithPattern } from './models/ModelWithPattern';
 export { ModelWithProperties } from './models/ModelWithProperties';
 export { ModelWithReference } from './models/ModelWithReference';
 export { ModelWithString } from './models/ModelWithString';
@@ -2859,6 +2909,7 @@ export { $ModelWithNestedEnums } from './schemas/$ModelWithNestedEnums';
 export { $ModelWithNestedProperties } from './schemas/$ModelWithNestedProperties';
 export { $ModelWithOneOf } from './schemas/$ModelWithOneOf';
 export { $ModelWithOrderedProperties } from './schemas/$ModelWithOrderedProperties';
+export { $ModelWithPattern } from './schemas/$ModelWithPattern';
 export { $ModelWithProperties } from './schemas/$ModelWithProperties';
 export { $ModelWithReference } from './schemas/$ModelWithReference';
 export { $ModelWithString } from './schemas/$ModelWithString';
@@ -3485,6 +3536,25 @@ export interface ModelWithOrderedProperties {
     zebra?: string;
     apple?: string;
     hawaii?: string;
+}
+"
+`;
+
+exports[`generation v3 file(./test/result/v3/models/ModelWithPattern.ts): ./test/result/v3/models/ModelWithPattern.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+
+/**
+ * This is a model that contains a some patterns
+ */
+export interface ModelWithPattern {
+    key: string;
+    name: string;
+    readonly enabled?: boolean;
+    readonly modified?: string;
 }
 "
 `;
@@ -4118,6 +4188,38 @@ export const $ModelWithOrderedProperties = {
         },
         hawaii: {
             type: 'string',
+        },
+    },
+};"
+`;
+
+exports[`generation v3 file(./test/result/v3/schemas/$ModelWithPattern.ts): ./test/result/v3/schemas/$ModelWithPattern.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+export const $ModelWithPattern = {
+    properties: {
+        key: {
+            type: 'string',
+            isRequired: true,
+            maxLength: 64,
+            pattern: '^[a-zA-Z0-9_]*$',
+        },
+        name: {
+            type: 'string',
+            isRequired: true,
+            maxLength: 255,
+        },
+        enabled: {
+            type: 'boolean',
+            isReadOnly: true,
+        },
+        modified: {
+            type: 'string',
+            isReadOnly: true,
+            format: 'date-time',
         },
     },
 };"

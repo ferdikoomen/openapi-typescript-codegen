@@ -1482,6 +1482,34 @@
                         }
                     }
                 ]
+            },
+            "ModelWithPattern": {
+                "description": "This is a model that contains a some patterns",
+                "type": "object",
+                "required": [
+                    "key",
+                    "name"
+                ],
+                "properties": {
+                    "key": {
+                        "maxLength": 64,
+                        "pattern": "^[a-zA-Z0-9_]*$",
+                        "type": "string"
+                    },
+                    "name": {
+                        "maxLength": 255,
+                        "type": "string"
+                    },
+                    "enabled": {
+                        "type": "boolean",
+                        "readOnly": true
+                    },
+                    "modified": {
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true
+                    }
+                }
             }
         }
     }

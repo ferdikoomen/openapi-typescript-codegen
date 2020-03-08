@@ -13,6 +13,8 @@ program
     .option('--client [value]', 'HTTP client to generate [fetch, xhr]', 'fetch')
     .option('--useOptions', 'Use options vs arguments style functions', false)
     .option('--useUnionTypes', 'Use inclusive union types', false)
+    .option('--exportServices', 'Generate services', true)
+    .option('--exportSchemas', 'Generate schemas', false)
     .parse(process.argv);
 
 const OpenAPI = require(path.resolve(__dirname, '../dist/index.js'));
@@ -23,6 +25,8 @@ if (OpenAPI) {
         output: program.output,
         httpClient: program.client,
         useOptions: program.useOptions,
-        useUnionTypes: program.useUnionTypes
+        useUnionTypes: program.useUnionTypes,
+        exportServices: program.exportServices,
+        exportSchemas: program.exportSchemas,
     });
 }

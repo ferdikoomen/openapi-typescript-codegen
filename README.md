@@ -56,7 +56,7 @@ const OpenAPI = require('openapi-typescript-codegen');
 
 OpenAPI.generate({
     input: './api/openapi.json',
-    output: './dist'
+    output: './generated'
 });
 ```
 
@@ -64,19 +64,20 @@ Or by providing the JSON directly:
 
 ```javascript
 const OpenAPI = require('openapi-typescript-codegen');
+
 const spec = require('./api/openapi.json');
 
 OpenAPI.generate({
     input: spec,
-    output: './dist'
+    output: './generated'
 });
 ```
 
 ## Features
 
 ### Argument-style vs. Object-style
-There's no [named parameter](https://en.wikipedia.org/wiki/Named_parameter) in JS/TS, because of that,
-we offer an option `--useOptions` to generate code in two different styles.
+There's no [named parameter](https://en.wikipedia.org/wiki/Named_parameter) in Javascript or Typescript, because of
+that, we offer the flag `--useOptions` to generate code in two different styles.
 
 Argument-style:
 ```typescript
@@ -84,30 +85,140 @@ function createUser(name: string, password: string, type?: string, address?: str
     // ...
 }
 
-// usage
+// Usage
 createUser('Jack', '123456', undefined, 'NY US');
 ```
 
 Object-style:
 ```typescript
-interface CreateUserOptions {
+function createUser({ name, password, type, address }: {
     name: string,
     password: string,
     type?: string
     address?: string
-}
-
-function createUser({ name, password, type, address }: CreateUserOptions) {
+}) {
     // ...
 }
 
-// usage
+// Usage
 createUser({
     name: 'Jack',
     password: '123456',
     address: 'NY US'
 });
 ```
+
+
+### Runtime schemas
+By default the OpenAPI generator only exports interfaces for your models. These interfaces will help you during
+development, but will not be available in javascript during runtime. However Swagger allows you to define properties
+that can be useful during runtime, for instance: `maxLength` of a string or a `pattern` to match, etc. Let's say
+we have the following model:
+
+```json
+{
+    "MyModel": {
+        "required": [
+            "key",
+            "name"
+        ],
+        "type": "object",
+        "properties": {
+            "key": {
+                "maxLength": 64,
+                "pattern": "^[a-zA-Z0-9_]*$",
+                "type": "string"
+            },
+            "name": {
+                "maxLength": 255,
+                "type": "string"
+            },
+            "enabled": {
+                "type": "boolean",
+                "readOnly": true
+            },
+            "modified": {
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+            }
+        }
+    }
+}
+```
+
+This will generate the following interface:
+
+```typescript
+export interface ModelWithPattern {
+    key: string;
+    name: string;
+    readonly enabled?: boolean;
+    readonly modified?: string;
+}
+```
+
+The interface does not contain any properties like `maxLength` or `pattern`. However they could be useful
+if we wanted to create some form where a user could create such a model. In that form you would iterate
+over the properties to render form fields based on their type and validate the input based on the `maxLength`
+or `pattern` property. This requires us to have this information somewhere... For this we can use the
+flag `--exportSchemas` to generate a runtime model next to the normal interface:
+
+```typescript
+export const $ModelWithPattern = {
+    properties: {
+        key: {
+            type: 'string',
+            isRequired: true,
+            maxLength: 64,
+            pattern: '^[a-zA-Z0-9_]*$',
+        },
+        name: {
+            type: 'string',
+            isRequired: true,
+            maxLength: 255,
+        },
+        enabled: {
+            type: 'boolean',
+            isReadOnly: true,
+        },
+        modified: {
+            type: 'string',
+            isReadOnly: true,
+            format: 'date-time',
+        },
+    },
+};
+```
+
+These runtime object are prefixed with a `$` character and expose all the interesting attributes of a model
+and it's properties. We can now use this object to generate the form:
+
+```typescript jsx
+import { $ModelWithPattern } from './generated';
+
+// Some pseudo code to iterate over the properties and return a form field
+// the form field could be some abstract component that renders the correct
+// field type and validation rules based on the given input.
+const formFields = Object.entries($ModelWithPattern.properties).map(([key, value]) => (
+    <FormField
+        name={key}
+        type={value.type}
+        format={value.format}
+        maxLength={value.maxLength}
+        pattern={value.pattern}
+        isReadOnly={value.isReadOnly}
+    />
+));
+
+const MyForm = () => (
+    <form>
+        {formFields}
+    </form>
+);
+
+```
+
 
 ### Enum with custom names and descriptions
 You can use `x-enum-varnames` and `x-enum-descriptions` in your spec to generate enum with custom names and descriptions.
@@ -159,6 +270,7 @@ The OpenAPI generator supports Bearer Token authorization. In order to enable th
 of tokens in each request you can set the token using the global OpenAPI configuration:
 
 ```typescript
-import { OpenAPI } from './'
-OpenAPI.TOKEN = 'some-bearer-token'
+import { OpenAPI } from './generated';
+
+OpenAPI.TOKEN = 'some-bearer-token';
 ```

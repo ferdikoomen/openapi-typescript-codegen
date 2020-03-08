@@ -1,9 +1,12 @@
-import * as glob from 'glob';
 import * as Handlebars from 'handlebars';
 import * as path from 'path';
 
 import { readHandlebarsTemplate } from './readHandlebarsTemplate';
 import { registerHandlebarHelpers } from './registerHandlebarHelpers';
+
+function resolveTemplate(filePath: string): string {
+    return path.resolve(__dirname, `../../src/templates/${filePath}`);
+}
 
 export interface Templates {
     index: Handlebars.TemplateDelegate;
@@ -18,27 +21,47 @@ export interface Templates {
  * so we can easily access the templates in out generator / write functions.
  */
 export function readHandlebarsTemplates(): Templates {
-    try {
-        registerHandlebarHelpers();
+    registerHandlebarHelpers();
 
-        const templates: Templates = {
-            index: readHandlebarsTemplate(path.resolve(__dirname, `../../src/templates/index.hbs`)),
-            model: readHandlebarsTemplate(path.resolve(__dirname, `../../src/templates/model.hbs`)),
-            schema: readHandlebarsTemplate(path.resolve(__dirname, `../../src/templates/schema.hbs`)),
-            service: readHandlebarsTemplate(path.resolve(__dirname, `../../src/templates/service.hbs`)),
-            settings: readHandlebarsTemplate(path.resolve(__dirname, `../../src/templates/core/OpenAPI.hbs`)),
-        };
+    const templates: Templates = {
+        index: readHandlebarsTemplate(resolveTemplate('index.hbs')),
+        model: readHandlebarsTemplate(resolveTemplate('model.hbs')),
+        schema: readHandlebarsTemplate(resolveTemplate('schema.hbs')),
+        service: readHandlebarsTemplate(resolveTemplate('service.hbs')),
+        settings: readHandlebarsTemplate(resolveTemplate('core/OpenAPI.hbs')),
+    };
 
-        const partials = path.resolve(__dirname, `../../src/templates/partials`);
-        const partialsFiles = glob.sync('*.hbs', { cwd: partials });
-        partialsFiles.forEach(partial => {
-            const templateName = path.basename(partial, '.hbs');
-            const template = readHandlebarsTemplate(path.resolve(partials, partial));
-            Handlebars.registerPartial(templateName, template);
-        });
+    const partials = [
+        'exportEnum.hbs',
+        'exportInterface.hbs',
+        'exportType.hbs',
+        'extends.hbs',
+        'isNullable.hbs',
+        'isReadOnly.hbs',
+        'isRequired.hbs',
+        'parameters.hbs',
+        'result.hbs',
+        'schema.hbs',
+        'schemaArray.hbs',
+        'schemaDictionary.hbs',
+        'schemaEnum.hbs',
+        'schemaGeneric.hbs',
+        'schemaInterface.hbs',
+        'type.hbs',
+        'typeArray.hbs',
+        'typeDictionary.hbs',
+        'typeEnum.hbs',
+        'typeGeneric.hbs',
+        'typeInterface.hbs',
+        'typeReference.hbs',
+    ];
 
-        return templates;
-    } catch (e) {
-        throw new Error(`Could not read Handlebar templates`);
-    }
+    partials.forEach(partial => {
+        const templatePath = resolveTemplate(`partials/${partial}`);
+        const templateName = path.basename(partial, '.hbs');
+        const template = readHandlebarsTemplate(templatePath);
+        Handlebars.registerPartial(templateName, template);
+    });
+
+    return templates;
 }

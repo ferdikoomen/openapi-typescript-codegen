@@ -1,5 +1,4 @@
 import * as fs from 'fs';
-import * as glob from 'glob';
 import * as mkdirp from 'mkdirp';
 import * as path from 'path';
 import * as rimraf from 'rimraf';
@@ -13,6 +12,10 @@ import { writeClientSchemas } from './writeClientSchemas';
 import { writeClientServices } from './writeClientServices';
 import { writeClientSettings } from './writeClientSettings';
 
+function copySupportFile(filePath: string, outputPath: string): void {
+    fs.copyFileSync(path.resolve(__dirname, `../../src/templates/${filePath}`), path.resolve(outputPath, filePath));
+}
+
 /**
  * Write our OpenAPI client, using the given templates at the given output path.
  * @param client Client object with all the models, services, etc.
@@ -20,8 +23,10 @@ import { writeClientSettings } from './writeClientSettings';
  * @param output Directory to write the generated files to.
  * @param httpClient The selected httpClient (fetch or XHR).
  * @param useOptions Use options or arguments functions.
+ * @param exportServices: Generate services.
+ * @param exportSchemas: Generate schemas.
  */
-export function writeClient(client: Client, templates: Templates, output: string, httpClient: HttpClient, useOptions: boolean): void {
+export function writeClient(client: Client, templates: Templates, output: string, httpClient: HttpClient, useOptions: boolean, exportServices: boolean, exportSchemas: boolean): void {
     const outputPath = path.resolve(process.cwd(), output);
     const outputPathCore = path.resolve(outputPath, 'core');
     const outputPathModels = path.resolve(outputPath, 'models');
@@ -29,37 +34,35 @@ export function writeClient(client: Client, templates: Templates, output: string
     const outputPathServices = path.resolve(outputPath, 'services');
 
     // Clean output directory
-    try {
-        rimraf.sync(outputPath);
-    } catch (e) {
-        throw new Error('Could not clean output directory');
-    }
+    rimraf.sync(outputPath);
+    mkdirp.sync(outputPath);
 
-    // Create new directories
-    try {
-        mkdirp.sync(outputPath);
+    if (exportServices) {
         mkdirp.sync(outputPathCore);
-        mkdirp.sync(outputPathModels);
-        mkdirp.sync(outputPathSchemas);
         mkdirp.sync(outputPathServices);
-    } catch (e) {
-        throw new Error('Could not create output directories');
+
+        copySupportFile('core/ApiError.ts', outputPath);
+        copySupportFile('core/getFormData.ts', outputPath);
+        copySupportFile('core/getQueryString.ts', outputPath);
+        copySupportFile('core/isSuccess.ts', outputPath);
+        copySupportFile('core/OpenAPI.hbs', outputPath);
+        copySupportFile('core/request.ts', outputPath);
+        copySupportFile('core/RequestOptions.ts', outputPath);
+        copySupportFile('core/requestUsingFetch.ts', outputPath);
+        copySupportFile('core/requestUsingXHR.ts', outputPath);
+        copySupportFile('core/Result.ts', outputPath);
+
+        writeClientServices(client.services, templates, outputPathServices, useOptions);
+        writeClientSettings(client, templates, outputPathCore, httpClient);
     }
 
-    // Copy all support files
-    const supportFiles = path.resolve(__dirname, '../../src/templates/');
-    const supportFilesList = glob.sync('**/*.ts', { cwd: supportFiles });
-    supportFilesList.forEach(file => {
-        fs.copyFileSync(
-            path.resolve(supportFiles, file), // From input path
-            path.resolve(outputPath, file) // To output path
-        );
-    });
+    if (exportSchemas) {
+        mkdirp.sync(outputPathSchemas);
+        writeClientSchemas(client.models, templates, outputPathSchemas);
+    }
 
-    // Write the client files
+    mkdirp.sync(outputPathModels);
+    copySupportFile('models/Dictionary.ts', outputPath);
     writeClientModels(client.models, templates, outputPathModels);
-    writeClientSchemas(client.models, templates, outputPathSchemas);
-    writeClientServices(client.services, templates, outputPathServices, useOptions);
-    writeClientSettings(client, templates, outputPathCore, httpClient);
-    writeClientIndex(client, templates, outputPath);
+    writeClientIndex(client, templates, outputPath, exportServices, exportSchemas);
 }

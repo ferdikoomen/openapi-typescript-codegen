@@ -12,7 +12,6 @@ import { Result } from './Result';
  * @param response Response object from fetch
  */
 async function parseBody(response: Response): Promise<any> {
-
     try {
         const contentType = response.headers.get('Content-Type');
         if (contentType) {
