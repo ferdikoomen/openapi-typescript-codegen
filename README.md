@@ -150,7 +150,7 @@ we have the following model:
 This will generate the following interface:
 
 ```typescript
-export interface ModelWithPattern {
+export interface MyModel {
     key: string;
     name: string;
     readonly enabled?: boolean;
@@ -165,7 +165,7 @@ or `pattern` property. This requires us to have this information somewhere... Fo
 flag `--exportSchemas` to generate a runtime model next to the normal interface:
 
 ```typescript
-export const $ModelWithPattern = {
+export const $MyModel = {
     properties: {
         key: {
             type: 'string',
@@ -195,12 +195,12 @@ These runtime object are prefixed with a `$` character and expose all the intere
 and it's properties. We can now use this object to generate the form:
 
 ```typescript jsx
-import { $ModelWithPattern } from './generated';
+import { $MyModel } from './generated';
 
 // Some pseudo code to iterate over the properties and return a form field
 // the form field could be some abstract component that renders the correct
 // field type and validation rules based on the given input.
-const formFields = Object.entries($ModelWithPattern.properties).map(([key, value]) => (
+const formFields = Object.entries($MyModel.properties).map(([key, value]) => (
     <FormField
         name={key}
         type={value.type}
