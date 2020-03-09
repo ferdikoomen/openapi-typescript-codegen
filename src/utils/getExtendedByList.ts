@@ -1,6 +1,7 @@
 import { Client } from '../client/interfaces/Client';
 import { Model } from '../client/interfaces/Model';
 import { unique } from './unique';
+import { flatMap } from './flatMap';
 
 /**
  * Get the full list of models that are extended by the given model.
@@ -17,7 +18,7 @@ export function getExtendedByList(model: Model, client: Client): Model[] {
     });
 
     if (extendedBy.length) {
-        extendedBy.push(...extendedBy.flatMap(ref => getExtendedByList(ref, client)));
+        extendedBy.push(...flatMap(extendedBy, ref => getExtendedByList(ref, client)));
     }
     return extendedBy.filter(unique);
 }

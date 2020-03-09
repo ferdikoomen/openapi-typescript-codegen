@@ -528,12 +528,14 @@ exports[`generation v2 file(./test/result/v2/models/ArrayWithArray.ts): ./test/r
 /* eslint-disable */
 /* prettier-ignore */
 
+import { ModelThatExtends } from './ModelThatExtends';
+import { ModelThatExtendsExtends } from './ModelThatExtendsExtends';
 import { ModelWithString } from './ModelWithString';
 
 /**
  * This is a simple array containing an array
  */
-export type ArrayWithArray = Array<Array<ModelWithString>>;"
+export type ArrayWithArray = Array<Array<ModelThatExtends | ModelThatExtendsExtends | ModelWithString>>;"
 `;
 
 exports[`generation v2 file(./test/result/v2/models/ArrayWithBooleans.ts): ./test/result/v2/models/ArrayWithBooleans.ts 1`] = `
@@ -624,12 +626,14 @@ exports[`generation v2 file(./test/result/v2/models/DictionaryWithArray.ts): ./t
 /* prettier-ignore */
 
 import { Dictionary } from './Dictionary';
+import { ModelThatExtends } from './ModelThatExtends';
+import { ModelThatExtendsExtends } from './ModelThatExtendsExtends';
 import { ModelWithString } from './ModelWithString';
 
 /**
  * This is a complex dictionary
  */
-export type DictionaryWithArray = Dictionary<Array<ModelWithString>>;"
+export type DictionaryWithArray = Dictionary<Array<ModelThatExtends | ModelThatExtendsExtends | ModelWithString>>;"
 `;
 
 exports[`generation v2 file(./test/result/v2/models/DictionaryWithDictionary.ts): ./test/result/v2/models/DictionaryWithDictionary.ts 1`] = `
@@ -791,6 +795,7 @@ exports[`generation v2 file(./test/result/v2/models/ModelThatExtends.ts): ./test
 /* eslint-disable */
 /* prettier-ignore */
 
+import { ModelThatExtendsExtends } from './ModelThatExtendsExtends';
 import { ModelWithString } from './ModelWithString';
 
 /**
@@ -798,7 +803,7 @@ import { ModelWithString } from './ModelWithString';
  */
 export interface ModelThatExtends extends ModelWithString {
     propExtendsA?: string;
-    propExtendsB?: ModelWithString;
+    propExtendsB?: ModelThatExtends | ModelThatExtendsExtends | ModelWithString;
 }
 "
 `;
@@ -817,7 +822,7 @@ import { ModelWithString } from './ModelWithString';
  */
 export interface ModelThatExtendsExtends extends ModelWithString, ModelThatExtends {
     propExtendsC?: string;
-    propExtendsD?: ModelWithString;
+    propExtendsD?: ModelThatExtends | ModelThatExtendsExtends | ModelWithString;
 }
 "
 `;
@@ -828,13 +833,15 @@ exports[`generation v2 file(./test/result/v2/models/ModelWithArray.ts): ./test/r
 /* eslint-disable */
 /* prettier-ignore */
 
+import { ModelThatExtends } from './ModelThatExtends';
+import { ModelThatExtendsExtends } from './ModelThatExtendsExtends';
 import { ModelWithString } from './ModelWithString';
 
 /**
  * This is a model with one property containing an array
  */
 export interface ModelWithArray {
-    prop?: Array<ModelWithString>;
+    prop?: Array<ModelThatExtends | ModelThatExtendsExtends | ModelWithString>;
     propWithFile?: Array<File>;
     propWithNumber?: Array<number>;
 }
@@ -899,15 +906,17 @@ exports[`generation v2 file(./test/result/v2/models/ModelWithDuplicateImports.ts
 /* eslint-disable */
 /* prettier-ignore */
 
+import { ModelThatExtends } from './ModelThatExtends';
+import { ModelThatExtendsExtends } from './ModelThatExtendsExtends';
 import { ModelWithString } from './ModelWithString';
 
 /**
  * This is a model with duplicated imports
  */
 export interface ModelWithDuplicateImports {
-    propA?: ModelWithString;
-    propB?: ModelWithString;
-    propC?: ModelWithString;
+    propA?: ModelThatExtends | ModelThatExtendsExtends | ModelWithString;
+    propB?: ModelThatExtends | ModelThatExtendsExtends | ModelWithString;
+    propC?: ModelThatExtends | ModelThatExtendsExtends | ModelWithString;
 }
 "
 `;
@@ -918,13 +927,15 @@ exports[`generation v2 file(./test/result/v2/models/ModelWithDuplicateProperties
 /* eslint-disable */
 /* prettier-ignore */
 
+import { ModelThatExtends } from './ModelThatExtends';
+import { ModelThatExtendsExtends } from './ModelThatExtendsExtends';
 import { ModelWithString } from './ModelWithString';
 
 /**
  * This is a model with duplicated properties
  */
 export interface ModelWithDuplicateProperties {
-    prop?: ModelWithString;
+    prop?: ModelThatExtends | ModelThatExtendsExtends | ModelWithString;
 }
 "
 `;
@@ -1115,6 +1126,8 @@ exports[`generation v2 file(./test/result/v2/models/ModelWithProperties.ts): ./t
 /* eslint-disable */
 /* prettier-ignore */
 
+import { ModelThatExtends } from './ModelThatExtends';
+import { ModelThatExtendsExtends } from './ModelThatExtendsExtends';
 import { ModelWithString } from './ModelWithString';
 
 /**
@@ -1126,7 +1139,7 @@ export interface ModelWithProperties {
     string?: string;
     number?: number;
     boolean?: boolean;
-    reference?: ModelWithString;
+    reference?: ModelThatExtends | ModelThatExtendsExtends | ModelWithString;
 }
 "
 `;
@@ -1444,7 +1457,7 @@ export const $ModelThatExtends = {
             type: 'string',
         },
         propExtendsB: {
-            type: 'ModelWithString',
+            type: 'ModelThatExtends | ModelThatExtendsExtends | ModelWithString',
         },
     },
 };"
@@ -1467,7 +1480,7 @@ export const $ModelThatExtendsExtends = {
             type: 'string',
         },
         propExtendsD: {
-            type: 'ModelWithString',
+            type: 'ModelThatExtends | ModelThatExtendsExtends | ModelWithString',
         },
     },
 };"
@@ -1548,13 +1561,13 @@ exports[`generation v2 file(./test/result/v2/schemas/$ModelWithDuplicateImports.
 export const $ModelWithDuplicateImports = {
     properties: {
         propA: {
-            type: 'ModelWithString',
+            type: 'ModelThatExtends | ModelThatExtendsExtends | ModelWithString',
         },
         propB: {
-            type: 'ModelWithString',
+            type: 'ModelThatExtends | ModelThatExtendsExtends | ModelWithString',
         },
         propC: {
-            type: 'ModelWithString',
+            type: 'ModelThatExtends | ModelThatExtendsExtends | ModelWithString',
         },
     },
 };"
@@ -1569,7 +1582,7 @@ exports[`generation v2 file(./test/result/v2/schemas/$ModelWithDuplicateProperti
 export const $ModelWithDuplicateProperties = {
     properties: {
         prop: {
-            type: 'ModelWithString',
+            type: 'ModelThatExtends | ModelThatExtendsExtends | ModelWithString',
         },
     },
 };"
@@ -1768,7 +1781,7 @@ export const $ModelWithProperties = {
             type: 'boolean',
         },
         reference: {
-            type: 'ModelWithString',
+            type: 'ModelThatExtends | ModelThatExtendsExtends | ModelWithString',
         },
     },
 };"
@@ -1876,6 +1889,8 @@ exports[`generation v2 file(./test/result/v2/services/ComplexService.ts): ./test
 /* eslint-disable */
 /* prettier-ignore */
 
+import { ModelThatExtends } from '../models/ModelThatExtends';
+import { ModelThatExtendsExtends } from '../models/ModelThatExtendsExtends';
 import { ModelWithString } from '../models/ModelWithString';
 import { ApiError, catchGenericError } from '../core/ApiError';
 import { request as __request } from '../core/request';
@@ -1889,7 +1904,10 @@ export class ComplexService {
      * @result ModelWithString Successful response
      * @throws ApiError
      */
-    public static async complexTypes(
+    public static async complexTypes({
+        parameterObject,
+        parameterReference,
+    }: {
         parameterObject: {
             first?: {
                 second?: {
@@ -1897,8 +1915,8 @@ export class ComplexService {
                 },
             },
         },
-        parameterReference: ModelWithString,
-    ): Promise<Array<ModelWithString>> {
+        parameterReference: ModelThatExtends | ModelThatExtendsExtends | ModelWithString,
+    }): Promise<Array<ModelThatExtends | ModelThatExtendsExtends | ModelWithString>> {
 
         const result = await __request({
             method: 'get',
@@ -1930,6 +1948,8 @@ exports[`generation v2 file(./test/result/v2/services/DefaultsService.ts): ./tes
 /* eslint-disable */
 /* prettier-ignore */
 
+import { ModelThatExtends } from '../models/ModelThatExtends';
+import { ModelThatExtendsExtends } from '../models/ModelThatExtendsExtends';
 import { ModelWithString } from '../models/ModelWithString';
 import { ApiError, catchGenericError } from '../core/ApiError';
 import { request as __request } from '../core/request';
@@ -1945,15 +1965,21 @@ export class DefaultsService {
      * @param parameterModel This is a simple model
      * @throws ApiError
      */
-    public static async callWithDefaultParameters(
-        parameterString: string = 'Hello World!',
-        parameterNumber: number = 123,
-        parameterBoolean: boolean = true,
-        parameterEnum: ('Success' | 'Warning' | 'Error') = 'Success',
-        parameterModel: ModelWithString = {
+    public static async callWithDefaultParameters({
+        parameterString = 'Hello World!',
+        parameterNumber = 123,
+        parameterBoolean = true,
+        parameterEnum = 'Success',
+        parameterModel = {
             \\"prop\\": \\"Hello World\\"
         },
-    ): Promise<void> {
+    }: {
+        parameterString: string,
+        parameterNumber: number,
+        parameterBoolean: boolean,
+        parameterEnum: ('Success' | 'Warning' | 'Error'),
+        parameterModel: ModelThatExtends | ModelThatExtendsExtends | ModelWithString,
+    }): Promise<void> {
 
         const result = await __request({
             method: 'get',
@@ -2069,12 +2095,17 @@ export class ParametersService {
      * @param parameterBody This is the parameter that is send as request body
      * @throws ApiError
      */
-    public static async callWithParameters(
+    public static async callWithParameters({
+        parameterHeader,
+        parameterQuery,
+        parameterForm,
+        parameterBody,
+    }: {
         parameterHeader: string,
         parameterQuery: string,
         parameterForm: string,
         parameterBody: string,
-    ): Promise<void> {
+    }): Promise<void> {
 
         const result = await __request({
             method: 'get',
@@ -2106,7 +2137,15 @@ export class ParametersService {
      * @param parameterPath3 This is the parameter that goes into the path
      * @throws ApiError
      */
-    public static async callWithWeirdParameterNames(
+    public static async callWithWeirdParameterNames({
+        parameterHeader,
+        parameterQuery,
+        parameterForm,
+        parameterBody,
+        parameterPath1,
+        parameterPath2,
+        parameterPath3,
+    }: {
         parameterHeader: string,
         parameterQuery: string,
         parameterForm: string,
@@ -2114,7 +2153,7 @@ export class ParametersService {
         parameterPath1?: string,
         parameterPath2?: string,
         parameterPath3?: string,
-    ): Promise<void> {
+    }): Promise<void> {
 
         const result = await __request({
             method: 'get',
@@ -2158,7 +2197,7 @@ export class ResponseService {
      * @result ModelWithString Message for default response
      * @throws ApiError
      */
-    public static async callWithResponse(): Promise<ModelWithString> {
+    public static async callWithResponse(): Promise<ModelThatExtends | ModelThatExtendsExtends | ModelWithString> {
 
         const result = await __request({
             method: 'get',
@@ -2174,7 +2213,7 @@ export class ResponseService {
      * @result ModelWithString Message for default response
      * @throws ApiError
      */
-    public static async callWithDuplicateResponses(): Promise<ModelWithString> {
+    public static async callWithDuplicateResponses(): Promise<ModelThatExtends | ModelThatExtendsExtends | ModelWithString> {
 
         const result = await __request({
             method: 'post',
@@ -2200,7 +2239,7 @@ export class ResponseService {
      * @result ModelThatExtendsExtends Message for 202 response
      * @throws ApiError
      */
-    public static async callWithResponses(): Promise<ModelWithString | ModelThatExtends | ModelThatExtendsExtends> {
+    public static async callWithResponses(): Promise<ModelThatExtends | ModelThatExtendsExtends | ModelWithString | ModelThatExtends | ModelThatExtendsExtends | ModelThatExtendsExtends> {
 
         const result = await __request({
             method: 'put',
@@ -2371,16 +2410,25 @@ export class TypesService {
      * @result any Response is a simple object
      * @throws ApiError
      */
-    public static async types(
-        parameterNumber: number = 123,
-        parameterString: string = 'default',
-        parameterBoolean: boolean = true,
-        parameterObject: any = null,
+    public static async types({
+        parameterNumber = 123,
+        parameterString = 'default',
+        parameterBoolean = true,
+        parameterObject = null,
+        parameterArray,
+        parameterDictionary,
+        parameterEnum,
+        id,
+    }: {
+        parameterNumber: number,
+        parameterString: string,
+        parameterBoolean: boolean,
+        parameterObject: any,
         parameterArray: Array<string>,
         parameterDictionary: Dictionary<string>,
         parameterEnum: ('Success' | 'Warning' | 'Error'),
         id?: number,
-    ): Promise<number | string | boolean | any> {
+    }): Promise<number | string | boolean | any> {
 
         const result = await __request({
             method: 'get',
@@ -2938,12 +2986,14 @@ exports[`generation v3 file(./test/result/v3/models/ArrayWithArray.ts): ./test/r
 /* eslint-disable */
 /* prettier-ignore */
 
+import { ModelThatExtends } from './ModelThatExtends';
+import { ModelThatExtendsExtends } from './ModelThatExtendsExtends';
 import { ModelWithString } from './ModelWithString';
 
 /**
  * This is a simple array containing an array
  */
-export type ArrayWithArray = Array<Array<ModelWithString>>;"
+export type ArrayWithArray = Array<Array<ModelThatExtends | ModelThatExtendsExtends | ModelWithString>>;"
 `;
 
 exports[`generation v3 file(./test/result/v3/models/ArrayWithBooleans.ts): ./test/result/v3/models/ArrayWithBooleans.ts 1`] = `
@@ -3034,12 +3084,14 @@ exports[`generation v3 file(./test/result/v3/models/DictionaryWithArray.ts): ./t
 /* prettier-ignore */
 
 import { Dictionary } from './Dictionary';
+import { ModelThatExtends } from './ModelThatExtends';
+import { ModelThatExtendsExtends } from './ModelThatExtendsExtends';
 import { ModelWithString } from './ModelWithString';
 
 /**
  * This is a complex dictionary
  */
-export type DictionaryWithArray = Dictionary<Array<ModelWithString>>;"
+export type DictionaryWithArray = Dictionary<Array<ModelThatExtends | ModelThatExtendsExtends | ModelWithString>>;"
 `;
 
 exports[`generation v3 file(./test/result/v3/models/DictionaryWithDictionary.ts): ./test/result/v3/models/DictionaryWithDictionary.ts 1`] = `
@@ -3201,6 +3253,7 @@ exports[`generation v3 file(./test/result/v3/models/ModelThatExtends.ts): ./test
 /* eslint-disable */
 /* prettier-ignore */
 
+import { ModelThatExtendsExtends } from './ModelThatExtendsExtends';
 import { ModelWithString } from './ModelWithString';
 
 /**
@@ -3208,7 +3261,7 @@ import { ModelWithString } from './ModelWithString';
  */
 export interface ModelThatExtends extends ModelWithString {
     propExtendsA?: string;
-    propExtendsB?: ModelWithString;
+    propExtendsB?: ModelThatExtends | ModelThatExtendsExtends | ModelWithString;
 }
 "
 `;
@@ -3227,7 +3280,7 @@ import { ModelWithString } from './ModelWithString';
  */
 export interface ModelThatExtendsExtends extends ModelWithString, ModelThatExtends {
     propExtendsC?: string;
-    propExtendsD?: ModelWithString;
+    propExtendsD?: ModelThatExtends | ModelThatExtendsExtends | ModelWithString;
 }
 "
 `;
@@ -3238,6 +3291,8 @@ exports[`generation v3 file(./test/result/v3/models/ModelWithAnyOf.ts): ./test/r
 /* eslint-disable */
 /* prettier-ignore */
 
+import { ModelThatExtends } from './ModelThatExtends';
+import { ModelThatExtendsExtends } from './ModelThatExtendsExtends';
 import { ModelWithArray } from './ModelWithArray';
 import { ModelWithDictionary } from './ModelWithDictionary';
 import { ModelWithEnum } from './ModelWithEnum';
@@ -3247,7 +3302,7 @@ import { ModelWithString } from './ModelWithString';
  * This is a model with one property with a 'any of' relationship
  */
 export interface ModelWithAnyOf {
-    propA?: ModelWithArray | ModelWithDictionary | ModelWithEnum | ModelWithString;
+    propA?: ModelThatExtends | ModelThatExtendsExtends | ModelWithArray | ModelWithDictionary | ModelWithEnum | ModelWithString;
 }
 "
 `;
@@ -3258,13 +3313,15 @@ exports[`generation v3 file(./test/result/v3/models/ModelWithArray.ts): ./test/r
 /* eslint-disable */
 /* prettier-ignore */
 
+import { ModelThatExtends } from './ModelThatExtends';
+import { ModelThatExtendsExtends } from './ModelThatExtendsExtends';
 import { ModelWithString } from './ModelWithString';
 
 /**
  * This is a model with one property containing an array
  */
 export interface ModelWithArray {
-    prop?: Array<ModelWithString>;
+    prop?: Array<ModelThatExtends | ModelThatExtendsExtends | ModelWithString>;
     propWithFile?: Array<File>;
     propWithNumber?: Array<number>;
 }
@@ -3329,15 +3386,17 @@ exports[`generation v3 file(./test/result/v3/models/ModelWithDuplicateImports.ts
 /* eslint-disable */
 /* prettier-ignore */
 
+import { ModelThatExtends } from './ModelThatExtends';
+import { ModelThatExtendsExtends } from './ModelThatExtendsExtends';
 import { ModelWithString } from './ModelWithString';
 
 /**
  * This is a model with duplicated imports
  */
 export interface ModelWithDuplicateImports {
-    propA?: ModelWithString;
-    propB?: ModelWithString;
-    propC?: ModelWithString;
+    propA?: ModelThatExtends | ModelThatExtendsExtends | ModelWithString;
+    propB?: ModelThatExtends | ModelThatExtendsExtends | ModelWithString;
+    propC?: ModelThatExtends | ModelThatExtendsExtends | ModelWithString;
 }
 "
 `;
@@ -3348,13 +3407,15 @@ exports[`generation v3 file(./test/result/v3/models/ModelWithDuplicateProperties
 /* eslint-disable */
 /* prettier-ignore */
 
+import { ModelThatExtends } from './ModelThatExtends';
+import { ModelThatExtendsExtends } from './ModelThatExtendsExtends';
 import { ModelWithString } from './ModelWithString';
 
 /**
  * This is a model with duplicated properties
  */
 export interface ModelWithDuplicateProperties {
-    prop?: ModelWithString;
+    prop?: ModelThatExtends | ModelThatExtendsExtends | ModelWithString;
 }
 "
 `;
@@ -3508,6 +3569,8 @@ exports[`generation v3 file(./test/result/v3/models/ModelWithOneOf.ts): ./test/r
 /* eslint-disable */
 /* prettier-ignore */
 
+import { ModelThatExtends } from './ModelThatExtends';
+import { ModelThatExtendsExtends } from './ModelThatExtendsExtends';
 import { ModelWithArray } from './ModelWithArray';
 import { ModelWithDictionary } from './ModelWithDictionary';
 import { ModelWithEnum } from './ModelWithEnum';
@@ -3517,7 +3580,7 @@ import { ModelWithString } from './ModelWithString';
  * This is a model with one property with a 'one of' relationship
  */
 export interface ModelWithOneOf {
-    propA?: ModelWithArray | ModelWithDictionary | ModelWithEnum | ModelWithString;
+    propA?: ModelThatExtends | ModelThatExtendsExtends | ModelWithArray | ModelWithDictionary | ModelWithEnum | ModelWithString;
 }
 "
 `;
@@ -3565,6 +3628,8 @@ exports[`generation v3 file(./test/result/v3/models/ModelWithProperties.ts): ./t
 /* eslint-disable */
 /* prettier-ignore */
 
+import { ModelThatExtends } from './ModelThatExtends';
+import { ModelThatExtendsExtends } from './ModelThatExtendsExtends';
 import { ModelWithString } from './ModelWithString';
 
 /**
@@ -3577,7 +3642,7 @@ export interface ModelWithProperties {
     string?: string;
     number?: number;
     boolean?: boolean;
-    reference?: ModelWithString;
+    reference?: ModelThatExtends | ModelThatExtendsExtends | ModelWithString;
 }
 "
 `;
@@ -3895,7 +3960,7 @@ export const $ModelThatExtends = {
             type: 'string',
         },
         propExtendsB: {
-            type: 'ModelWithString',
+            type: 'ModelThatExtends | ModelThatExtendsExtends | ModelWithString',
         },
     },
 };"
@@ -3918,7 +3983,7 @@ export const $ModelThatExtendsExtends = {
             type: 'string',
         },
         propExtendsD: {
-            type: 'ModelWithString',
+            type: 'ModelThatExtends | ModelThatExtendsExtends | ModelWithString',
         },
     },
 };"
@@ -3933,7 +3998,7 @@ exports[`generation v3 file(./test/result/v3/schemas/$ModelWithAnyOf.ts): ./test
 export const $ModelWithAnyOf = {
     properties: {
         propA: {
-            type: 'ModelWithArray | ModelWithDictionary | ModelWithEnum | ModelWithString',
+            type: 'ModelThatExtends | ModelThatExtendsExtends | ModelWithArray | ModelWithDictionary | ModelWithEnum | ModelWithString',
         },
     },
 };"
@@ -4014,13 +4079,13 @@ exports[`generation v3 file(./test/result/v3/schemas/$ModelWithDuplicateImports.
 export const $ModelWithDuplicateImports = {
     properties: {
         propA: {
-            type: 'ModelWithString',
+            type: 'ModelThatExtends | ModelThatExtendsExtends | ModelWithString',
         },
         propB: {
-            type: 'ModelWithString',
+            type: 'ModelThatExtends | ModelThatExtendsExtends | ModelWithString',
         },
         propC: {
-            type: 'ModelWithString',
+            type: 'ModelThatExtends | ModelThatExtendsExtends | ModelWithString',
         },
     },
 };"
@@ -4035,7 +4100,7 @@ exports[`generation v3 file(./test/result/v3/schemas/$ModelWithDuplicateProperti
 export const $ModelWithDuplicateProperties = {
     properties: {
         prop: {
-            type: 'ModelWithString',
+            type: 'ModelThatExtends | ModelThatExtendsExtends | ModelWithString',
         },
     },
 };"
@@ -4166,7 +4231,7 @@ exports[`generation v3 file(./test/result/v3/schemas/$ModelWithOneOf.ts): ./test
 export const $ModelWithOneOf = {
     properties: {
         propA: {
-            type: 'ModelWithArray | ModelWithDictionary | ModelWithEnum | ModelWithString',
+            type: 'ModelThatExtends | ModelThatExtendsExtends | ModelWithArray | ModelWithDictionary | ModelWithEnum | ModelWithString',
         },
     },
 };"
@@ -4257,7 +4322,7 @@ export const $ModelWithProperties = {
             type: 'boolean',
         },
         reference: {
-            type: 'ModelWithString',
+            type: 'ModelThatExtends | ModelThatExtendsExtends | ModelWithString',
         },
     },
 };"
@@ -4365,6 +4430,8 @@ exports[`generation v3 file(./test/result/v3/services/ComplexService.ts): ./test
 /* eslint-disable */
 /* prettier-ignore */
 
+import { ModelThatExtends } from '../models/ModelThatExtends';
+import { ModelThatExtendsExtends } from '../models/ModelThatExtendsExtends';
 import { ModelWithArray } from '../models/ModelWithArray';
 import { ModelWithDictionary } from '../models/ModelWithDictionary';
 import { ModelWithEnum } from '../models/ModelWithEnum';
@@ -4381,7 +4448,10 @@ export class ComplexService {
      * @result ModelWithString Successful response
      * @throws ApiError
      */
-    public static async complexTypes(
+    public static async complexTypes({
+        parameterObject,
+        parameterReference,
+    }: {
         parameterObject: {
             first?: {
                 second?: {
@@ -4389,8 +4459,8 @@ export class ComplexService {
                 },
             },
         },
-        parameterReference: ModelWithString,
-    ): Promise<Array<ModelWithString>> {
+        parameterReference: ModelThatExtends | ModelThatExtendsExtends | ModelWithString,
+    }): Promise<Array<ModelThatExtends | ModelThatExtendsExtends | ModelWithString>> {
 
         const result = await __request({
             method: 'get',
@@ -4419,22 +4489,25 @@ export class ComplexService {
      * @result ModelWithString Success
      * @throws ApiError
      */
-    public static async complexParams(
+    public static async complexParams({
+        id,
+        requestBody,
+    }: {
         id: number,
         requestBody?: {
             readonly key: string | null,
             name: string | null,
             enabled?: boolean,
             readonly type: ('Monkey' | 'Horse' | 'Bird'),
-            listOfModels?: Array<ModelWithString> | null,
+            listOfModels?: Array<ModelThatExtends | ModelThatExtendsExtends | ModelWithString> | null,
             listOfStrings?: Array<string> | null,
-            parameters: ModelWithArray | ModelWithDictionary | ModelWithEnum | ModelWithString,
+            parameters: ModelThatExtends | ModelThatExtendsExtends | ModelWithArray | ModelWithDictionary | ModelWithEnum | ModelWithString,
             readonly user?: {
                 readonly id?: number,
                 readonly name?: string | null,
             },
         },
-    ): Promise<ModelWithString> {
+    }): Promise<ModelThatExtends | ModelThatExtendsExtends | ModelWithString> {
 
         const result = await __request({
             method: 'put',
@@ -4456,6 +4529,8 @@ exports[`generation v3 file(./test/result/v3/services/DefaultsService.ts): ./tes
 /* eslint-disable */
 /* prettier-ignore */
 
+import { ModelThatExtends } from '../models/ModelThatExtends';
+import { ModelThatExtendsExtends } from '../models/ModelThatExtendsExtends';
 import { ModelWithString } from '../models/ModelWithString';
 import { ApiError, catchGenericError } from '../core/ApiError';
 import { request as __request } from '../core/request';
@@ -4471,15 +4546,21 @@ export class DefaultsService {
      * @param parameterModel This is a simple model
      * @throws ApiError
      */
-    public static async callWithDefaultParameters(
-        parameterString: string | null = 'Hello World!',
-        parameterNumber: number | null = 123,
-        parameterBoolean: boolean | null = true,
-        parameterEnum: ('Success' | 'Warning' | 'Error') = 'Success',
-        parameterModel: ModelWithString | null = {
+    public static async callWithDefaultParameters({
+        parameterString = 'Hello World!',
+        parameterNumber = 123,
+        parameterBoolean = true,
+        parameterEnum = 'Success',
+        parameterModel = {
             \\"prop\\": \\"Hello World\\"
         },
-    ): Promise<void> {
+    }: {
+        parameterString: string | null,
+        parameterNumber: number | null,
+        parameterBoolean: boolean | null,
+        parameterEnum: ('Success' | 'Warning' | 'Error'),
+        parameterModel: ModelThatExtends | ModelThatExtendsExtends | ModelWithString | null,
+    }): Promise<void> {
 
         const result = await __request({
             method: 'get',
@@ -4619,6 +4700,8 @@ exports[`generation v3 file(./test/result/v3/services/ParametersService.ts): ./t
 /* eslint-disable */
 /* prettier-ignore */
 
+import { ModelThatExtends } from '../models/ModelThatExtends';
+import { ModelThatExtendsExtends } from '../models/ModelThatExtendsExtends';
 import { ModelWithString } from '../models/ModelWithString';
 import { ApiError, catchGenericError } from '../core/ApiError';
 import { request as __request } from '../core/request';
@@ -4634,13 +4717,19 @@ export class ParametersService {
      * @param requestBody This is the parameter that goes into the body
      * @throws ApiError
      */
-    public static async callWithParameters(
+    public static async callWithParameters({
+        parameterHeader,
+        parameterQuery,
+        parameterForm,
+        parameterCookie,
+        requestBody,
+    }: {
         parameterHeader: string | null,
         parameterQuery: string | null,
         parameterForm: string | null,
         parameterCookie: string | null,
-        requestBody: ModelWithString | null,
-    ): Promise<void> {
+        requestBody: ModelThatExtends | ModelThatExtendsExtends | ModelWithString | null,
+    }): Promise<void> {
 
         const result = await __request({
             method: 'get',
@@ -4676,16 +4765,25 @@ export class ParametersService {
      * @param parameterPath3 This is the parameter that goes into the path
      * @throws ApiError
      */
-    public static async callWithWeirdParameterNames(
+    public static async callWithWeirdParameterNames({
+        parameterHeader,
+        parameterQuery,
+        parameterForm,
+        parameterCookie,
+        requestBody,
+        parameterPath1,
+        parameterPath2,
+        parameterPath3,
+    }: {
         parameterHeader: string | null,
         parameterQuery: string | null,
         parameterForm: string | null,
         parameterCookie: string | null,
-        requestBody: ModelWithString | null,
+        requestBody: ModelThatExtends | ModelThatExtendsExtends | ModelWithString | null,
         parameterPath1?: string,
         parameterPath2?: string,
         parameterPath3?: string,
-    ): Promise<void> {
+    }): Promise<void> {
 
         const result = await __request({
             method: 'get',
@@ -4715,10 +4813,13 @@ export class ParametersService {
      * @param parameter This is an optional parameter
      * @throws ApiError
      */
-    public static async getCallWithOptionalParam(
-        requestBody: ModelWithString,
+    public static async getCallWithOptionalParam({
+        requestBody,
+        parameter,
+    }: {
+        requestBody: ModelThatExtends | ModelThatExtendsExtends | ModelWithString,
         parameter?: string,
-    ): Promise<void> {
+    }): Promise<void> {
 
         const result = await __request({
             method: 'get',
@@ -4739,10 +4840,13 @@ export class ParametersService {
      * @param requestBody This is an optional parameter
      * @throws ApiError
      */
-    public static async postCallWithOptionalParam(
+    public static async postCallWithOptionalParam({
+        parameter,
+        requestBody,
+    }: {
         parameter: string,
-        requestBody?: ModelWithString,
-    ): Promise<void> {
+        requestBody?: ModelThatExtends | ModelThatExtendsExtends | ModelWithString,
+    }): Promise<void> {
 
         const result = await __request({
             method: 'post',
@@ -4780,7 +4884,7 @@ export class ResponseService {
      * @result ModelWithString
      * @throws ApiError
      */
-    public static async callWithResponse(): Promise<ModelWithString> {
+    public static async callWithResponse(): Promise<ModelThatExtends | ModelThatExtendsExtends | ModelWithString> {
 
         const result = await __request({
             method: 'get',
@@ -4796,7 +4900,7 @@ export class ResponseService {
      * @result ModelWithString Message for default response
      * @throws ApiError
      */
-    public static async callWithDuplicateResponses(): Promise<ModelWithString> {
+    public static async callWithDuplicateResponses(): Promise<ModelThatExtends | ModelThatExtendsExtends | ModelWithString> {
 
         const result = await __request({
             method: 'post',
@@ -4822,7 +4926,7 @@ export class ResponseService {
      * @result ModelThatExtendsExtends Message for 202 response
      * @throws ApiError
      */
-    public static async callWithResponses(): Promise<ModelWithString | ModelThatExtends | ModelThatExtendsExtends> {
+    public static async callWithResponses(): Promise<ModelThatExtends | ModelThatExtendsExtends | ModelWithString | ModelThatExtends | ModelThatExtendsExtends | ModelThatExtendsExtends> {
 
         const result = await __request({
             method: 'put',
@@ -4992,16 +5096,25 @@ export class TypesService {
      * @result any Response is a simple object
      * @throws ApiError
      */
-    public static async types(
-        parameterNumber: number = 123,
-        parameterString: string | null = 'default',
-        parameterBoolean: boolean | null = true,
-        parameterObject: any = null,
+    public static async types({
+        parameterNumber = 123,
+        parameterString = 'default',
+        parameterBoolean = true,
+        parameterObject = null,
+        parameterArray,
+        parameterDictionary,
+        parameterEnum,
+        id,
+    }: {
+        parameterNumber: number,
+        parameterString: string | null,
+        parameterBoolean: boolean | null,
+        parameterObject: any,
         parameterArray: Array<string> | null,
         parameterDictionary: any,
         parameterEnum: ('Success' | 'Warning' | 'Error') | null,
         id?: number,
-    ): Promise<number | string | boolean | any> {
+    }): Promise<number | string | boolean | any> {
 
         const result = await __request({
             method: 'get',
@@ -5042,9 +5155,11 @@ export class UploadService {
      * @result boolean
      * @throws ApiError
      */
-    public static async uploadFile(
+    public static async uploadFile({
+        file,
+    }: {
         file: File,
-    ): Promise<boolean> {
+    }): Promise<boolean> {
 
         const result = await __request({
             method: 'post',

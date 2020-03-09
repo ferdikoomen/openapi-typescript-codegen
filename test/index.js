@@ -22,8 +22,8 @@ OpenAPI.generate({
     input: './test/mock/v2/spec.json',
     output: './test/result/v2/',
     httpClient: OpenAPI.HttpClient.FETCH,
-    useOptions: false,
-    useUnionTypes: false,
+    useOptions: true,
+    useUnionTypes: true,
     exportSchemas: true,
     exportServices: true,
 });
@@ -32,8 +32,8 @@ OpenAPI.generate({
     input: './test/mock/v3/spec.json',
     output: './test/result/v3/',
     httpClient: OpenAPI.HttpClient.FETCH,
-    useOptions: false,
-    useUnionTypes: false,
+    useOptions: true,
+    useUnionTypes: true,
     exportSchemas: true,
     exportServices: true,
 });

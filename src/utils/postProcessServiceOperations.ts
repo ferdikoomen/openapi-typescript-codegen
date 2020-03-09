@@ -2,6 +2,7 @@ import { Client } from '../client/interfaces/Client';
 import { Operation } from '../client/interfaces/Operation';
 import { Service } from '../client/interfaces/Service';
 import { postProcessUnionTypes } from './postProcessUnionTypes';
+import { flatMap } from './flatMap';
 
 export function postProcessServiceOperations(service: Service, client: Client, useUnionTypes: boolean = false): Operation[] {
     const names = new Map<string, number>();
@@ -13,8 +14,8 @@ export function postProcessServiceOperations(service: Service, client: Client, u
         // properties of models. These methods will extend the type if needed.
         clone.parameters = clone.parameters.map(parameter => postProcessUnionTypes(parameter, client, useUnionTypes));
         clone.results = clone.results.map(result => postProcessUnionTypes(result, client, useUnionTypes));
-        clone.imports.push(...clone.parameters.flatMap(parameter => parameter.imports));
-        clone.imports.push(...clone.results.flatMap(result => result.imports));
+        clone.imports.push(...flatMap(clone.parameters, parameter => parameter.imports));
+        clone.imports.push(...flatMap(clone.results, result => result.imports));
 
         // Check of the operation name
         const name = clone.name;
