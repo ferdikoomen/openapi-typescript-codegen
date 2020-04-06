@@ -64,7 +64,7 @@
     "dependencies": {
         "camelcase": "5.3.1",
         "commander": "5.0.0",
-        "handlebars": "4.7.3",
+        "handlebars": "4.7.6",
         "js-yaml": "3.13.1",
         "mkdirp": "1.0.3",
         "path": "0.12.7",
