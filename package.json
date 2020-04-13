@@ -89,7 +89,7 @@
         "glob": "7.1.6",
         "jest": "25.2.7",
         "jest-cli": "25.2.7",
-        "prettier": "2.0.3",
+        "prettier": "2.0.4",
         "typescript": "3.8.3"
     }
 }
