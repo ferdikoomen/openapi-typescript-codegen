@@ -88,7 +88,7 @@
         "eslint-plugin-simple-import-sort": "5.0.2",
         "glob": "7.1.6",
         "jest": "25.3.0",
-        "jest-cli": "25.3.0",
+        "jest-cli": "25.4.0",
         "prettier": "2.0.4",
         "typescript": "3.8.3"
     }
