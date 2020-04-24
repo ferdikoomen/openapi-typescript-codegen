@@ -6,10 +6,7 @@ import * as Handlebars from 'handlebars';
  * @param filePath
  */
 export function readHandlebarsTemplate(filePath: string): Handlebars.TemplateDelegate {
-    const template = fs
-        .readFileSync(filePath, 'utf8')
-        .toString()
-        .trim();
+    const template = fs.readFileSync(filePath, 'utf8').toString().trim();
 
     return Handlebars.compile(template, {
         strict: true,

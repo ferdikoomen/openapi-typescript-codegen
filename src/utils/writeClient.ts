@@ -23,10 +23,22 @@ function copySupportFile(filePath: string, outputPath: string): void {
  * @param output Directory to write the generated files to.
  * @param httpClient The selected httpClient (fetch or XHR).
  * @param useOptions Use options or arguments functions.
+ * @param exportCore: Generate core.
  * @param exportServices: Generate services.
+ * @param exportModels: Generate models.
  * @param exportSchemas: Generate schemas.
  */
-export function writeClient(client: Client, templates: Templates, output: string, httpClient: HttpClient, useOptions: boolean, exportServices: boolean, exportSchemas: boolean): void {
+export function writeClient(
+    client: Client,
+    templates: Templates,
+    output: string,
+    httpClient: HttpClient,
+    useOptions: boolean,
+    exportCore: boolean,
+    exportServices: boolean,
+    exportModels: boolean,
+    exportSchemas: boolean
+): void {
     const outputPath = path.resolve(process.cwd(), output);
     const outputPathCore = path.resolve(outputPath, 'core');
     const outputPathModels = path.resolve(outputPath, 'models');
@@ -37,10 +49,8 @@ export function writeClient(client: Client, templates: Templates, output: string
     rimraf.sync(outputPath);
     mkdirp.sync(outputPath);
 
-    if (exportServices) {
+    if (exportCore) {
         mkdirp.sync(outputPathCore);
-        mkdirp.sync(outputPathServices);
-
         copySupportFile('core/ApiError.ts', outputPath);
         copySupportFile('core/getFormData.ts', outputPath);
         copySupportFile('core/getQueryString.ts', outputPath);
@@ -51,9 +61,12 @@ export function writeClient(client: Client, templates: Templates, output: string
         copySupportFile('core/requestUsingFetch.ts', outputPath);
         copySupportFile('core/requestUsingXHR.ts', outputPath);
         copySupportFile('core/Result.ts', outputPath);
+    }
 
-        writeClientServices(client.services, templates, outputPathServices, useOptions);
+    if (exportServices) {
+        mkdirp.sync(outputPathServices);
         writeClientSettings(client, templates, outputPathCore, httpClient);
+        writeClientServices(client.services, templates, outputPathServices, useOptions);
     }
 
     if (exportSchemas) {
@@ -61,8 +74,11 @@ export function writeClient(client: Client, templates: Templates, output: string
         writeClientSchemas(client.models, templates, outputPathSchemas);
     }
 
-    mkdirp.sync(outputPathModels);
-    copySupportFile('models/Dictionary.ts', outputPath);
-    writeClientModels(client.models, templates, outputPathModels);
-    writeClientIndex(client, templates, outputPath, exportServices, exportSchemas);
+    if (exportModels) {
+        mkdirp.sync(outputPathModels);
+        copySupportFile('models/Dictionary.ts', outputPath);
+        writeClientModels(client.models, templates, outputPathModels);
+    }
+
+    writeClientIndex(client, templates, outputPath, exportCore, exportModels, exportServices, exportSchemas);
 }

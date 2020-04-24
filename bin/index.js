@@ -13,7 +13,9 @@ program
     .option('--client [value]', 'HTTP client to generate [fetch, xhr]', 'fetch')
     .option('--useOptions', 'Use options vs arguments style functions', false)
     .option('--useUnionTypes', 'Use inclusive union types', false)
+    .option('--exportCore', 'Generate core', true)
     .option('--exportServices', 'Generate services', true)
+    .option('--exportModels', 'Generate models', true)
     .option('--exportSchemas', 'Generate schemas', false)
     .parse(process.argv);
 
@@ -26,7 +28,9 @@ if (OpenAPI) {
         httpClient: program.client,
         useOptions: program.useOptions,
         useUnionTypes: program.useUnionTypes,
+        exportCore: program.exportCore,
         exportServices: program.exportServices,
+        exportModels: program.exportModels,
         exportSchemas: program.exportSchemas,
     });
 }

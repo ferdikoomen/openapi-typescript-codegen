@@ -946,6 +946,32 @@
                     }
                 }
             }
+        },
+        "/api/v{api-version}/header": {
+            "post": {
+                "tags": [
+                    "Header"
+                ],
+                "operationId": "CallWithResultFromHeader",
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "headers": {
+                            "operation-location": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "400 server error"
+                    },
+                    "500": {
+                        "description": "500 server error"
+                    }
+                }
+            }
         }
     },
     "components": {

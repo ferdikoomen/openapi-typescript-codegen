@@ -40,6 +40,7 @@ export function getOperationRequestBody(openApi: OpenApi, parameter: OpenApiRequ
                 requestBody.base = model.base;
                 requestBody.template = model.template;
                 requestBody.imports.push(...model.imports);
+                return requestBody;
             } else {
                 const model = getModel(openApi, schema);
                 requestBody.export = model.export;
@@ -69,6 +70,7 @@ export function getOperationRequestBody(openApi: OpenApi, parameter: OpenApiRequ
                 requestBody.enum.push(...model.enum);
                 requestBody.enums.push(...model.enums);
                 requestBody.properties.push(...model.properties);
+                return requestBody;
             }
         }
     }

@@ -13,14 +13,18 @@ import { Templates } from './readHandlebarsTemplates';
  * @param client Client object, containing, models, schemas and services.
  * @param templates The loaded handlebar templates.
  * @param outputPath Directory to write the generated files to.
+ * @param exportCore: Generate core.
  * @param exportServices: Generate services.
+ * @param exportModels: Generate models.
  * @param exportSchemas: Generate schemas.
  */
-export function writeClientIndex(client: Client, templates: Templates, outputPath: string, exportServices: boolean, exportSchemas: boolean): void {
+export function writeClientIndex(client: Client, templates: Templates, outputPath: string, exportCore: boolean, exportServices: boolean, exportModels: boolean, exportSchemas: boolean): void {
     fs.writeFileSync(
         path.resolve(outputPath, 'index.ts'),
         templates.index({
+            exportCore,
             exportServices,
+            exportModels,
             exportSchemas,
             server: client.server,
             version: client.version,

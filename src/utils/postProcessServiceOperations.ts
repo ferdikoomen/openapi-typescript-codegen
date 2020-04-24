@@ -1,8 +1,8 @@
 import { Client } from '../client/interfaces/Client';
 import { Operation } from '../client/interfaces/Operation';
 import { Service } from '../client/interfaces/Service';
-import { postProcessUnionTypes } from './postProcessUnionTypes';
 import { flatMap } from './flatMap';
+import { postProcessUnionTypes } from './postProcessUnionTypes';
 
 export function postProcessServiceOperations(service: Service, client: Client, useUnionTypes: boolean = false): Operation[] {
     const names = new Map<string, number>();

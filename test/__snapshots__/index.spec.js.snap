@@ -515,6 +515,7 @@ export { $SimpleString } from './schemas/$SimpleString';
 export { ComplexService } from './services/ComplexService';
 export { DefaultsService } from './services/DefaultsService';
 export { DuplicateService } from './services/DuplicateService';
+export { HeaderService } from './services/HeaderService';
 export { ParametersService } from './services/ParametersService';
 export { ResponseService } from './services/ResponseService';
 export { SimpleService } from './services/SimpleService';
@@ -2076,6 +2077,44 @@ export class DuplicateService {
 }"
 `;
 
+exports[`generation v2 file(./test/result/v2/services/HeaderService.ts): ./test/result/v2/services/HeaderService.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ApiError, catchGenericError } from '../core/ApiError';
+import { request as __request } from '../core/request';
+import { OpenAPI } from '../core/OpenAPI';
+
+export class HeaderService {
+
+    /**
+     * @result any Successful response
+     * @throws ApiError
+     */
+    public static async callWithResultFromHeader(): Promise<any> {
+
+        const result = await __request({
+            method: 'post',
+            path: \`/api/v\${OpenAPI.VERSION}/header\`,
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`400 server error\`);
+                case 500: throw new ApiError(result, \`500 server error\`);
+            }
+        }
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+}"
+`;
+
 exports[`generation v2 file(./test/result/v2/services/ParametersService.ts): ./test/result/v2/services/ParametersService.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
@@ -2971,6 +3010,7 @@ export { $SimpleString } from './schemas/$SimpleString';
 export { ComplexService } from './services/ComplexService';
 export { DefaultsService } from './services/DefaultsService';
 export { DuplicateService } from './services/DuplicateService';
+export { HeaderService } from './services/HeaderService';
 export { MultipartService } from './services/MultipartService';
 export { ParametersService } from './services/ParametersService';
 export { ResponseService } from './services/ResponseService';
@@ -4648,6 +4688,44 @@ export class DuplicateService {
             method: 'delete',
             path: \`/api/v\${OpenAPI.VERSION}/duplicate\`,
         });
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+}"
+`;
+
+exports[`generation v3 file(./test/result/v3/services/HeaderService.ts): ./test/result/v3/services/HeaderService.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+import { ApiError, catchGenericError } from '../core/ApiError';
+import { request as __request } from '../core/request';
+import { OpenAPI } from '../core/OpenAPI';
+
+export class HeaderService {
+
+    /**
+     * @result any Successful response
+     * @throws ApiError
+     */
+    public static async callWithResultFromHeader(): Promise<any> {
+
+        const result = await __request({
+            method: 'post',
+            path: \`/api/v\${OpenAPI.VERSION}/header\`,
+        });
+
+        if (!result.ok) {
+            switch (result.status) {
+                case 400: throw new ApiError(result, \`400 server error\`);
+                case 500: throw new ApiError(result, \`500 server error\`);
+            }
+        }
 
         catchGenericError(result);
 

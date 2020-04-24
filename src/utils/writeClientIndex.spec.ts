@@ -25,7 +25,7 @@ describe('writeClientIndex', () => {
             settings: () => 'dummy',
         };
 
-        writeClientIndex(client, templates, '/', true, true);
+        writeClientIndex(client, templates, '/', true, true, true, true);
 
         expect(fsWriteFileSync).toBeCalledWith('/index.ts', 'dummy');
     });

@@ -39,6 +39,7 @@ export function getOperationResponse(openApi: OpenApi, response: OpenApiResponse
                 operationResponse.base = model.base;
                 operationResponse.template = model.template;
                 operationResponse.imports.push(...model.imports);
+                return operationResponse;
             } else {
                 const model = getModel(openApi, schema);
                 operationResponse.export = model.export;
@@ -68,6 +69,16 @@ export function getOperationResponse(openApi: OpenApi, response: OpenApiResponse
                 operationResponse.enum.push(...model.enum);
                 operationResponse.enums.push(...model.enums);
                 operationResponse.properties.push(...model.properties);
+                return operationResponse;
+            }
+        }
+    }
+
+    if (response.headers) {
+        for (const name in response.headers) {
+            if (response.headers.hasOwnProperty(name)) {
+                // console.log(name, response.headers[name]);
+                // const header = response.headers[name];
             }
         }
     }

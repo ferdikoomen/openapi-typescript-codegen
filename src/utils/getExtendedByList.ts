@@ -1,7 +1,7 @@
 import { Client } from '../client/interfaces/Client';
 import { Model } from '../client/interfaces/Model';
-import { unique } from './unique';
 import { flatMap } from './flatMap';
+import { unique } from './unique';
 
 /**
  * Get the full list of models that are extended by the given model.

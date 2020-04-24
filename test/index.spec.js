@@ -12,7 +12,9 @@ describe('generation', () => {
             httpClient: OpenAPI.HttpClient.FETCH,
             useOptions: true,
             useUnionTypes: true,
+            exportCore: true,
             exportSchemas: true,
+            exportModels: true,
             exportServices: true,
         });
 
@@ -33,7 +35,9 @@ describe('generation', () => {
             httpClient: OpenAPI.HttpClient.FETCH,
             useOptions: true,
             useUnionTypes: true,
+            exportCore: true,
             exportSchemas: true,
+            exportModels: true,
             exportServices: true,
         });
 

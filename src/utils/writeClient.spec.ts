@@ -32,7 +32,7 @@ describe('writeClient', () => {
             settings: () => 'dummy',
         };
 
-        writeClient(client, templates, '/', HttpClient.FETCH, false, true, true);
+        writeClient(client, templates, '/', HttpClient.FETCH, false, true, true, true, true);
 
         expect(rimrafSync).toBeCalled();
         expect(mkdirpSync).toBeCalled();

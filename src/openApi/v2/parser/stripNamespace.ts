@@ -14,11 +14,7 @@ export function stripNamespace(value: string): string {
             // First we remove the namespace from template notation:
             // Example: namespace.Template[namespace.Model] -> namespace.Template[Model]
             .replace(/(\[.*\]$)/, (s: string): string => {
-                const v = s
-                    .replace('[', '')
-                    .replace(']', '')
-                    .split('.')
-                    .pop()!;
+                const v = s.replace('[', '').replace(']', '').split('.').pop()!;
                 return `[${v}]`;
             })
 

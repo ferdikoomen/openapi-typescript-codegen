@@ -18,7 +18,9 @@ export interface Options {
     httpClient?: HttpClient;
     useOptions?: boolean;
     useUnionTypes?: boolean;
+    exportCore?: boolean;
     exportServices?: boolean;
+    exportModels?: boolean;
     exportSchemas?: boolean;
     write?: boolean;
 }
@@ -32,11 +34,24 @@ export interface Options {
  * @param httpClient The selected httpClient (fetch or XHR).
  * @param useOptions Use options or arguments functions.
  * @param useUnionTypes Use inclusive union types.
+ * @param exportCore: Generate core client classes.
  * @param exportServices: Generate services.
+ * @param exportModels: Generate models.
  * @param exportSchemas: Generate schemas.
  * @param write Write the files to disk (true or false).
  */
-export function generate({ input, output, httpClient = HttpClient.FETCH, useOptions = false, useUnionTypes = false, exportServices = true, exportSchemas = false, write = true }: Options): void {
+export function generate({
+    input,
+    output,
+    httpClient = HttpClient.FETCH,
+    useOptions = false,
+    useUnionTypes = false,
+    exportCore = true,
+    exportServices = true,
+    exportModels = true,
+    exportSchemas = false,
+    write = true,
+}: Options): void {
     try {
         // Load the specification, read the OpenAPI version and load the
         // handlebar templates for the given language
@@ -49,7 +64,7 @@ export function generate({ input, output, httpClient = HttpClient.FETCH, useOpti
                 const client = parseV2(openApi);
                 const clientFinal = postProcessClient(client, useUnionTypes);
                 if (write) {
-                    writeClient(clientFinal, templates, output, httpClient, useOptions, exportServices, exportSchemas);
+                    writeClient(clientFinal, templates, output, httpClient, useOptions, exportCore, exportServices, exportModels, exportSchemas);
                 }
                 break;
             }
@@ -58,7 +73,7 @@ export function generate({ input, output, httpClient = HttpClient.FETCH, useOpti
                 const client = parseV3(openApi);
                 const clientFinal = postProcessClient(client, useUnionTypes);
                 if (write) {
-                    writeClient(clientFinal, templates, output, httpClient, useOptions, exportServices, exportSchemas);
+                    writeClient(clientFinal, templates, output, httpClient, useOptions, exportCore, exportServices, exportModels, exportSchemas);
                 }
                 break;
             }
