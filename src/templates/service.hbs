@@ -71,6 +71,9 @@ export class {{{name}}} {
             {{#if parametersBody~}}
             body: {{{parametersBody.name}}},
             {{/if}}
+            {{#if responseHeader~}}
+            responseHeader: '{{{responseHeader}}}',
+            {{/if}}
         });
         {{#if errors}}
 

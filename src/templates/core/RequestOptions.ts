@@ -11,4 +11,5 @@ export interface RequestOptions {
     query?: { [key: string]: any };
     formData?: { [key: string]: any };
     body?: any;
+    responseHeader?: string;
 }

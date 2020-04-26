@@ -28,6 +28,20 @@ export function getOperationResponse(openApi: OpenApi, response: OpenApiResponse
         properties: [],
     };
 
+    // We support basic properties from response headers, since both
+    // fetch and XHR client just support string types.
+    if (response.headers) {
+        for (const name in response.headers) {
+            if (response.headers.hasOwnProperty(name)) {
+                operationResponse.in = 'header';
+                operationResponse.name = name;
+                operationResponse.type = PrimaryType.STRING;
+                operationResponse.base = PrimaryType.STRING;
+                return operationResponse;
+            }
+        }
+    }
+
     // If this response has a schema, then we need to check two things:
     // if this is a reference then the parameter is just the 'name' of
     // this reference type. Otherwise it might be a complex schema and
@@ -71,15 +85,6 @@ export function getOperationResponse(openApi: OpenApi, response: OpenApiResponse
             operationResponse.enums.push(...model.enums);
             operationResponse.properties.push(...model.properties);
             return operationResponse;
-        }
-    }
-
-    if (response.headers) {
-        for (const name in response.headers) {
-            if (response.headers.hasOwnProperty(name)) {
-                // console.log(name, response.headers[name]);
-                // const header = response.headers[name];
-            }
         }
     }
 

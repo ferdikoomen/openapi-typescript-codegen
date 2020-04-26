@@ -7,6 +7,7 @@ import { getOperationName } from './getOperationName';
 import { getOperationParameters } from './getOperationParameters';
 import { getOperationPath } from './getOperationPath';
 import { getOperationRequestBody } from './getOperationRequestBody';
+import { getOperationResponseHeader } from './getOperationResponseHeader';
 import { getOperationResponses } from './getOperationResponses';
 import { getOperationResults } from './getOperationResults';
 import { getServiceClassName } from './getServiceClassName';
@@ -38,6 +39,7 @@ export function getOperation(openApi: OpenApi, url: string, method: string, op: 
         imports: [],
         errors: [],
         results: [],
+        responseHeader: null,
     };
 
     // Parse the operation parameters (path, query, body, etc).
@@ -66,6 +68,8 @@ export function getOperation(openApi: OpenApi, url: string, method: string, op: 
         const operationResponses = getOperationResponses(openApi, op.responses);
         const operationResults = getOperationResults(operationResponses);
         operation.errors = getOperationErrors(operationResponses);
+        operation.responseHeader = getOperationResponseHeader(operationResults);
+
         operationResults.forEach(operationResult => {
             operation.results.push(operationResult);
             operation.imports.push(...operationResult.imports);

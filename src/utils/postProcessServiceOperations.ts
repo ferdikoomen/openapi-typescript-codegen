@@ -17,7 +17,7 @@ export function postProcessServiceOperations(service: Service, client: Client, u
         clone.imports.push(...flatMap(clone.parameters, parameter => parameter.imports));
         clone.imports.push(...flatMap(clone.results, result => result.imports));
 
-        // Check of the operation name
+        // Check if the operation name is unique, if not then prefix this with a number
         const name = clone.name;
         const index = names.get(name) || 0;
         if (index > 0) {

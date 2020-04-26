@@ -66,9 +66,9 @@ export async function request(options: Readonly<RequestOptions>): Promise<Result
     try {
         switch (OpenAPI.CLIENT) {
             case 'xhr':
-                return await requestUsingXHR(url, request);
+                return await requestUsingXHR(url, request, options.responseHeader);
             default:
-                return await requestUsingFetch(url, request);
+                return await requestUsingFetch(url, request, options.responseHeader);
         }
     } catch (error) {
         return {
