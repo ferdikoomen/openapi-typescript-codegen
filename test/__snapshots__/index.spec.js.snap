@@ -96,6 +96,7 @@ export interface RequestOptions {
     query?: { [key: string]: any };
     formData?: { [key: string]: any };
     body?: any;
+    responseHeader?: string;
 }
 "
 `;
@@ -262,9 +263,9 @@ export async function request(options: Readonly<RequestOptions>): Promise<Result
     try {
         switch (OpenAPI.CLIENT) {
             case 'xhr':
-                return await requestUsingXHR(url, request);
+                return await requestUsingXHR(url, request, options.responseHeader);
             default:
-                return await requestUsingFetch(url, request);
+                return await requestUsingFetch(url, request, options.responseHeader);
         }
     } catch (error) {
         return {
@@ -313,16 +314,36 @@ async function parseBody(response: Response): Promise<any> {
 }
 
 /**
+ * Fetch the response header (if specified)
+ * @param response Response object from fetch
+ * @param responseHeader The name of the header to fetch
+ */
+function parseHeader(response: Response, responseHeader?: string): string | null {
+    if (responseHeader) {
+        const content = response.headers.get(responseHeader);
+        if (typeof content === 'string') {
+            return content;
+        }
+    }
+    return null;
+}
+
+/**
  * Request content using the new Fetch API. This is the default API that is used and
  * is create for all JSON, XML and text objects. However it is limited to UTF-8.
  * This is a problem for some of the Docs content, since that requires UTF-16!
  * @param url The url to request.
  * @param request The request object, containing method, headers, body, etc.
+ * @param responseHeader The header we want to parse.
  */
-export async function requestUsingFetch(url: string, request: Readonly<RequestInit>): Promise<Result> {
+export async function requestUsingFetch(url: string, request: Readonly<RequestInit>, responseHeader?: string): Promise<Result> {
 
     // Fetch response using fetch API.
     const response = await fetch(url, request);
+
+    // Get content of response header or response body
+    const contentHeader = parseHeader(response, responseHeader);
+    const contentBody = await parseBody(response);
 
     // Create result object.
     return {
@@ -330,7 +351,7 @@ export async function requestUsingFetch(url: string, request: Readonly<RequestIn
         ok: response.ok,
         status: response.status,
         statusText: response.statusText,
-        body: await parseBody(response),
+        body: contentHeader || contentBody,
     };
 }
 "
@@ -371,14 +392,30 @@ function parseBody(xhr: XMLHttpRequest): any {
 }
 
 /**
+ * Fetch the response header (if specified)
+ * @param xhr XHR request object
+ * @param responseHeader The name of the header to fetch
+ */
+function parseHeader(xhr: XMLHttpRequest, responseHeader?: string): string | null {
+    if (responseHeader) {
+        const content = xhr.getResponseHeader(responseHeader);
+        if (typeof content === 'string') {
+            return content;
+        }
+    }
+    return null;
+}
+
+/**
  * Request content using the new legacy XMLHttpRequest API. This method is useful
  * when we want to request UTF-16 content, since it natively supports loading UTF-16.
  * We could do the same with the Fetch API, but then we will need to convert the
  * content using JavaScript... And that is very very slow.
  * @param url The url to request.
  * @param request The request object, containing method, headers, body, etc.
+ * @param responseHeader The header we want to parse.
  */
-export async function requestUsingXHR(url: string, request: Readonly<RequestInit>): Promise<Result> {
+export async function requestUsingXHR(url: string, request: Readonly<RequestInit>, responseHeader?: string): Promise<Result> {
     return new Promise(resolve => {
         const xhr = new XMLHttpRequest();
 
@@ -396,15 +433,18 @@ export async function requestUsingXHR(url: string, request: Readonly<RequestInit
         xhr.onreadystatechange = () => {
             if (xhr.readyState === XMLHttpRequest.DONE) {
 
+                // Get content of response header or response body
+                const contentHeader = parseHeader(xhr, responseHeader);
+                const contentBody = parseBody(xhr);
+
                 // Create result object.
                 const result: Result = {
                     url,
                     ok: isSuccess(xhr.status),
                     status: xhr.status,
                     statusText: xhr.statusText,
-                    body: parseBody(xhr),
+                    body: contentHeader || contentBody,
                 };
-
 
                 // Done!
                 resolve(result);
@@ -2090,14 +2130,15 @@ import { OpenAPI } from '../core/OpenAPI';
 export class HeaderService {
 
     /**
-     * @result any Successful response
+     * @result string Successful response
      * @throws ApiError
      */
-    public static async callWithResultFromHeader(): Promise<any> {
+    public static async callWithResultFromHeader(): Promise<string> {
 
         const result = await __request({
             method: 'post',
             path: \`/api/v\${OpenAPI.VERSION}/header\`,
+            responseHeader: 'operation-location',
         });
 
         if (!result.ok) {
@@ -2587,6 +2628,7 @@ export interface RequestOptions {
     query?: { [key: string]: any };
     formData?: { [key: string]: any };
     body?: any;
+    responseHeader?: string;
 }
 "
 `;
@@ -2753,9 +2795,9 @@ export async function request(options: Readonly<RequestOptions>): Promise<Result
     try {
         switch (OpenAPI.CLIENT) {
             case 'xhr':
-                return await requestUsingXHR(url, request);
+                return await requestUsingXHR(url, request, options.responseHeader);
             default:
-                return await requestUsingFetch(url, request);
+                return await requestUsingFetch(url, request, options.responseHeader);
         }
     } catch (error) {
         return {
@@ -2804,16 +2846,36 @@ async function parseBody(response: Response): Promise<any> {
 }
 
 /**
+ * Fetch the response header (if specified)
+ * @param response Response object from fetch
+ * @param responseHeader The name of the header to fetch
+ */
+function parseHeader(response: Response, responseHeader?: string): string | null {
+    if (responseHeader) {
+        const content = response.headers.get(responseHeader);
+        if (typeof content === 'string') {
+            return content;
+        }
+    }
+    return null;
+}
+
+/**
  * Request content using the new Fetch API. This is the default API that is used and
  * is create for all JSON, XML and text objects. However it is limited to UTF-8.
  * This is a problem for some of the Docs content, since that requires UTF-16!
  * @param url The url to request.
  * @param request The request object, containing method, headers, body, etc.
+ * @param responseHeader The header we want to parse.
  */
-export async function requestUsingFetch(url: string, request: Readonly<RequestInit>): Promise<Result> {
+export async function requestUsingFetch(url: string, request: Readonly<RequestInit>, responseHeader?: string): Promise<Result> {
 
     // Fetch response using fetch API.
     const response = await fetch(url, request);
+
+    // Get content of response header or response body
+    const contentHeader = parseHeader(response, responseHeader);
+    const contentBody = await parseBody(response);
 
     // Create result object.
     return {
@@ -2821,7 +2883,7 @@ export async function requestUsingFetch(url: string, request: Readonly<RequestIn
         ok: response.ok,
         status: response.status,
         statusText: response.statusText,
-        body: await parseBody(response),
+        body: contentHeader || contentBody,
     };
 }
 "
@@ -2862,14 +2924,30 @@ function parseBody(xhr: XMLHttpRequest): any {
 }
 
 /**
+ * Fetch the response header (if specified)
+ * @param xhr XHR request object
+ * @param responseHeader The name of the header to fetch
+ */
+function parseHeader(xhr: XMLHttpRequest, responseHeader?: string): string | null {
+    if (responseHeader) {
+        const content = xhr.getResponseHeader(responseHeader);
+        if (typeof content === 'string') {
+            return content;
+        }
+    }
+    return null;
+}
+
+/**
  * Request content using the new legacy XMLHttpRequest API. This method is useful
  * when we want to request UTF-16 content, since it natively supports loading UTF-16.
  * We could do the same with the Fetch API, but then we will need to convert the
  * content using JavaScript... And that is very very slow.
  * @param url The url to request.
  * @param request The request object, containing method, headers, body, etc.
+ * @param responseHeader The header we want to parse.
  */
-export async function requestUsingXHR(url: string, request: Readonly<RequestInit>): Promise<Result> {
+export async function requestUsingXHR(url: string, request: Readonly<RequestInit>, responseHeader?: string): Promise<Result> {
     return new Promise(resolve => {
         const xhr = new XMLHttpRequest();
 
@@ -2887,15 +2965,18 @@ export async function requestUsingXHR(url: string, request: Readonly<RequestInit
         xhr.onreadystatechange = () => {
             if (xhr.readyState === XMLHttpRequest.DONE) {
 
+                // Get content of response header or response body
+                const contentHeader = parseHeader(xhr, responseHeader);
+                const contentBody = parseBody(xhr);
+
                 // Create result object.
                 const result: Result = {
                     url,
                     ok: isSuccess(xhr.status),
                     status: xhr.status,
                     statusText: xhr.statusText,
-                    body: parseBody(xhr),
+                    body: contentHeader || contentBody,
                 };
-
 
                 // Done!
                 resolve(result);
@@ -4710,14 +4791,15 @@ import { OpenAPI } from '../core/OpenAPI';
 export class HeaderService {
 
     /**
-     * @result any Successful response
+     * @result string Successful response
      * @throws ApiError
      */
-    public static async callWithResultFromHeader(): Promise<any> {
+    public static async callWithResultFromHeader(): Promise<string> {
 
         const result = await __request({
             method: 'post',
             path: \`/api/v\${OpenAPI.VERSION}/header\`,
+            responseHeader: 'operation-location',
         });
 
         if (!result.ok) {
