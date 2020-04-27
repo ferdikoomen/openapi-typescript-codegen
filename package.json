@@ -79,7 +79,7 @@
         "@types/mkdirp": "1.0.0",
         "@types/node": "13.13.0",
         "@types/rimraf": "3.0.0",
-        "@typescript-eslint/eslint-plugin": "2.28.0",
+        "@typescript-eslint/eslint-plugin": "2.29.0",
         "@typescript-eslint/parser": "2.28.0",
         "codecov": "3.6.5",
         "eslint": "6.8.0",
