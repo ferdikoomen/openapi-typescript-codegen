@@ -75,7 +75,7 @@
         "@babel/preset-env": "7.9.6",
         "@babel/preset-typescript": "7.9.0",
         "@types/jest": "25.2.1",
-        "@types/js-yaml": "3.12.3",
+        "@types/js-yaml": "3.12.4",
         "@types/mkdirp": "1.0.0",
         "@types/node": "13.13.5",
         "@types/rimraf": "3.0.0",
