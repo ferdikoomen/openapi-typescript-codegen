@@ -1,4 +1,4 @@
-import * as Handlebars from 'handlebars';
+import * as Handlebars from 'handlebars/runtime';
 import * as path from 'path';
 
 import { readHandlebarsTemplate } from './readHandlebarsTemplate';
@@ -24,41 +24,41 @@ export function readHandlebarsTemplates(): Templates {
     registerHandlebarHelpers();
 
     const templates: Templates = {
-        index: readHandlebarsTemplate(resolveTemplate('index.hbs')),
-        model: readHandlebarsTemplate(resolveTemplate('model.hbs')),
-        schema: readHandlebarsTemplate(resolveTemplate('schema.hbs')),
-        service: readHandlebarsTemplate(resolveTemplate('service.hbs')),
-        settings: readHandlebarsTemplate(resolveTemplate('core/OpenAPI.hbs')),
+        index: readHandlebarsTemplate(resolveTemplate('index.js')),
+        model: readHandlebarsTemplate(resolveTemplate('model.js')),
+        schema: readHandlebarsTemplate(resolveTemplate('schema.js')),
+        service: readHandlebarsTemplate(resolveTemplate('service.js')),
+        settings: readHandlebarsTemplate(resolveTemplate('core/OpenAPI.js')),
     };
 
     const partials = [
-        'exportEnum.hbs',
-        'exportInterface.hbs',
-        'exportType.hbs',
-        'extends.hbs',
-        'isNullable.hbs',
-        'isReadOnly.hbs',
-        'isRequired.hbs',
-        'parameters.hbs',
-        'result.hbs',
-        'schema.hbs',
-        'schemaArray.hbs',
-        'schemaDictionary.hbs',
-        'schemaEnum.hbs',
-        'schemaGeneric.hbs',
-        'schemaInterface.hbs',
-        'type.hbs',
-        'typeArray.hbs',
-        'typeDictionary.hbs',
-        'typeEnum.hbs',
-        'typeGeneric.hbs',
-        'typeInterface.hbs',
-        'typeReference.hbs',
+        'exportEnum.js',
+        'exportInterface.js',
+        'exportType.js',
+        'extends.js',
+        'isNullable.js',
+        'isReadOnly.js',
+        'isRequired.js',
+        'parameters.js',
+        'result.js',
+        'schema.js',
+        'schemaArray.js',
+        'schemaDictionary.js',
+        'schemaEnum.js',
+        'schemaGeneric.js',
+        'schemaInterface.js',
+        'type.js',
+        'typeArray.js',
+        'typeDictionary.js',
+        'typeEnum.js',
+        'typeGeneric.js',
+        'typeInterface.js',
+        'typeReference.js',
     ];
 
     partials.forEach(partial => {
         const templatePath = resolveTemplate(`partials/${partial}`);
-        const templateName = path.basename(partial, '.hbs');
+        const templateName = path.basename(partial, '.js');
         const template = readHandlebarsTemplate(templatePath);
         Handlebars.registerPartial(templateName, template);
     });

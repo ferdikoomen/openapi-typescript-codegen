@@ -1,4 +1,4 @@
-import * as Handlebars from 'handlebars';
+import * as Handlebars from 'handlebars/runtime';
 
 export function registerHandlebarHelpers(): void {
     Handlebars.registerHelper('equals', function (a: string, b: string, options: Handlebars.HelperOptions): string {
