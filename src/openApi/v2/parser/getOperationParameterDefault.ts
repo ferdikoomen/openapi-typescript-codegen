@@ -1,7 +1,7 @@
 import { OperationParameter } from '../../../client/interfaces/OperationParameter';
 import { OpenApiParameter } from '../interfaces/OpenApiParameter';
 
-export function getOperationParameterDefault(parameter: OpenApiParameter, operationParameter: OperationParameter): string | null {
+export function getOperationParameterDefault(parameter: OpenApiParameter, operationParameter: OperationParameter): string | undefined {
     if (parameter.default === null) {
         return 'null';
     }
@@ -27,5 +27,5 @@ export function getOperationParameterDefault(parameter: OpenApiParameter, operat
             }
     }
 
-    return null;
+    return;
 }

@@ -171,28 +171,86 @@
                 "operationId": "CallWithDefaultParameters",
                 "parameters": [
                     {
-                        "description": "This is a simple string",
+                        "description": "This is a simple string with default value",
+                        "name": "parameterString",
+                        "in": "query",
+                        "required": true,
+                        "default": "Hello World!",
+                        "type": "string"
+                    },
+                    {
+                        "description": "This is a simple number with default value",
+                        "name": "parameterNumber",
+                        "in": "query",
+                        "required": true,
+                        "default": 123,
+                        "type": "number"
+                    },
+                    {
+                        "description": "This is a simple boolean with default value",
+                        "name": "parameterBoolean",
+                        "in": "query",
+                        "required": true,
+                        "default": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "description": "This is a simple enum with default value",
+                        "name": "parameterEnum",
+                        "in": "query",
+                        "required": true,
+                        "default": 0,
+                        "schema": {
+                            "enum": [
+                                "Success",
+                                "Warning",
+                                "Error"
+                            ]
+                        }
+                    },
+                    {
+                        "description": "This is a simple model with default value",
+                        "name": "parameterModel",
+                        "in": "query",
+                        "required": true,
+                        "default": {
+                            "prop": "Hello World"
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/ModelWithString"
+                        }
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Defaults"
+                ],
+                "operationId": "CallWithDefaultOptionalParameters",
+                "parameters": [
+                    {
+                        "description": "This is a simple string that is optional with default value",
                         "name": "parameterString",
                         "in": "query",
                         "default": "Hello World!",
                         "type": "string"
                     },
                     {
-                        "description": "This is a simple number",
+                        "description": "This is a simple number that is optional with default value",
                         "name": "parameterNumber",
                         "in": "query",
                         "default": 123,
                         "type": "number"
                     },
                     {
-                        "description": "This is a simple boolean",
+                        "description": "This is a simple boolean that is optional with default value",
                         "name": "parameterBoolean",
                         "in": "query",
                         "default": true,
                         "type": "boolean"
                     },
                     {
-                        "description": "This is a simple enum",
+                        "description": "This is a simple enum that is optional with default value",
                         "name": "parameterEnum",
                         "in": "query",
                         "default": 0,
@@ -205,7 +263,7 @@
                         }
                     },
                     {
-                        "description": "This is a simple model",
+                        "description": "This is a simple model that is optional with default value",
                         "name": "parameterModel",
                         "in": "query",
                         "default": {
@@ -214,6 +272,60 @@
                         "schema": {
                             "$ref": "#/definitions/ModelWithString"
                         }
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Defaults"
+                ],
+                "operationId": "CallToTestOrderOfParams",
+                "parameters": [
+                    {
+                        "description": "This is a optional string with default",
+                        "name": "parameterOptionalStringWithDefault",
+                        "in": "query",
+                        "required": false,
+                        "default": "Hello World!",
+                        "type": "string"
+                    },
+                    {
+                        "description": "This is a optional string with empty default",
+                        "name": "parameterOptionalStringWithEmptyDefault",
+                        "in": "query",
+                        "required": false,
+                        "default": "",
+                        "type": "string"
+                    },
+                    {
+                        "description": "This is a optional string with no default",
+                        "name": "parameterOptionalStringWithNoDefault",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "description": "This is a string with default",
+                        "name": "parameterStringWithDefault",
+                        "in": "query",
+                        "required": true,
+                        "default": "hello",
+                        "type": "string"
+                    },
+                    {
+                        "description": "This is a string with empty default",
+                        "name": "parameterStringWithEmptyDefault",
+                        "in": "query",
+                        "required": true,
+                        "default": "",
+                        "type": "string"
+                    },
+                    {
+                        "description": "This is a string with no default",
+                        "name": "parameterStringWithNoDefault",
+                        "in": "query",
+                        "required": true,
+                        "type": "string"
                     }
                 ]
             }

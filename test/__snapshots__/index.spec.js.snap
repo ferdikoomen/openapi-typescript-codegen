@@ -1999,11 +1999,11 @@ import { OpenAPI } from '../core/OpenAPI';
 export class DefaultsService {
 
     /**
-     * @param parameterString This is a simple string
-     * @param parameterNumber This is a simple number
-     * @param parameterBoolean This is a simple boolean
-     * @param parameterEnum This is a simple enum
-     * @param parameterModel This is a simple model
+     * @param parameterString This is a simple string with default value
+     * @param parameterNumber This is a simple number with default value
+     * @param parameterBoolean This is a simple boolean with default value
+     * @param parameterEnum This is a simple enum with default value
+     * @param parameterModel This is a simple model with default value
      * @throws ApiError
      */
     public static async callWithDefaultParameters({
@@ -2015,11 +2015,11 @@ export class DefaultsService {
             \\"prop\\": \\"Hello World\\"
         },
     }: {
-        parameterString: string,
-        parameterNumber: number,
-        parameterBoolean: boolean,
-        parameterEnum: ('Success' | 'Warning' | 'Error'),
-        parameterModel: ModelThatExtends | ModelThatExtendsExtends | ModelWithString,
+        parameterString?: string,
+        parameterNumber?: number,
+        parameterBoolean?: boolean,
+        parameterEnum?: ('Success' | 'Warning' | 'Error'),
+        parameterModel?: ModelThatExtends | ModelThatExtendsExtends | ModelWithString,
     }): Promise<void> {
 
         const result = await __request({
@@ -2031,6 +2031,90 @@ export class DefaultsService {
                 'parameterBoolean': parameterBoolean,
                 'parameterEnum': parameterEnum,
                 'parameterModel': parameterModel,
+            },
+        });
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @param parameterString This is a simple string that is optional with default value
+     * @param parameterNumber This is a simple number that is optional with default value
+     * @param parameterBoolean This is a simple boolean that is optional with default value
+     * @param parameterEnum This is a simple enum that is optional with default value
+     * @param parameterModel This is a simple model that is optional with default value
+     * @throws ApiError
+     */
+    public static async callWithDefaultOptionalParameters({
+        parameterString = 'Hello World!',
+        parameterNumber = 123,
+        parameterBoolean = true,
+        parameterEnum = 'Success',
+        parameterModel = {
+            \\"prop\\": \\"Hello World\\"
+        },
+    }: {
+        parameterString?: string,
+        parameterNumber?: number,
+        parameterBoolean?: boolean,
+        parameterEnum?: ('Success' | 'Warning' | 'Error'),
+        parameterModel?: ModelThatExtends | ModelThatExtendsExtends | ModelWithString,
+    }): Promise<void> {
+
+        const result = await __request({
+            method: 'post',
+            path: \`/api/v\${OpenAPI.VERSION}/defaults\`,
+            query: {
+                'parameterString': parameterString,
+                'parameterNumber': parameterNumber,
+                'parameterBoolean': parameterBoolean,
+                'parameterEnum': parameterEnum,
+                'parameterModel': parameterModel,
+            },
+        });
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @param parameterStringWithNoDefault This is a string with no default
+     * @param parameterOptionalStringWithNoDefault This is a optional string with no default
+     * @param parameterStringWithDefault This is a string with default
+     * @param parameterStringWithEmptyDefault This is a string with empty default
+     * @param parameterOptionalStringWithDefault This is a optional string with default
+     * @param parameterOptionalStringWithEmptyDefault This is a optional string with empty default
+     * @throws ApiError
+     */
+    public static async callToTestOrderOfParams({
+        parameterStringWithNoDefault,
+        parameterOptionalStringWithNoDefault,
+        parameterStringWithDefault = 'hello',
+        parameterStringWithEmptyDefault = '',
+        parameterOptionalStringWithDefault = 'Hello World!',
+        parameterOptionalStringWithEmptyDefault = '',
+    }: {
+        parameterStringWithNoDefault: string,
+        parameterOptionalStringWithNoDefault?: string,
+        parameterStringWithDefault?: string,
+        parameterStringWithEmptyDefault?: string,
+        parameterOptionalStringWithDefault?: string,
+        parameterOptionalStringWithEmptyDefault?: string,
+    }): Promise<void> {
+
+        const result = await __request({
+            method: 'put',
+            path: \`/api/v\${OpenAPI.VERSION}/defaults\`,
+            query: {
+                'parameterStringWithNoDefault': parameterStringWithNoDefault,
+                'parameterOptionalStringWithNoDefault': parameterOptionalStringWithNoDefault,
+                'parameterStringWithDefault': parameterStringWithDefault,
+                'parameterStringWithEmptyDefault': parameterStringWithEmptyDefault,
+                'parameterOptionalStringWithDefault': parameterOptionalStringWithDefault,
+                'parameterOptionalStringWithEmptyDefault': parameterOptionalStringWithEmptyDefault,
             },
         });
 
@@ -2476,14 +2560,14 @@ import { OpenAPI } from '../core/OpenAPI';
 export class TypesService {
 
     /**
-     * @param parameterNumber This is a number parameter
-     * @param parameterString This is a string parameter
-     * @param parameterBoolean This is a boolean parameter
-     * @param parameterObject This is an object parameter
      * @param parameterArray This is an array parameter
      * @param parameterDictionary This is a dictionary parameter
      * @param parameterEnum This is an enum parameter
      * @param id This is a number parameter
+     * @param parameterNumber This is a number parameter
+     * @param parameterString This is a string parameter
+     * @param parameterBoolean This is a boolean parameter
+     * @param parameterObject This is an object parameter
      * @result number Response is a simple number
      * @result string Response is a simple string
      * @result boolean Response is a simple boolean
@@ -2491,36 +2575,36 @@ export class TypesService {
      * @throws ApiError
      */
     public static async types({
-        parameterNumber = 123,
-        parameterString = 'default',
-        parameterBoolean = true,
-        parameterObject = null,
         parameterArray,
         parameterDictionary,
         parameterEnum,
         id,
+        parameterNumber = 123,
+        parameterString = 'default',
+        parameterBoolean = true,
+        parameterObject = null,
     }: {
-        parameterNumber: number,
-        parameterString: string,
-        parameterBoolean: boolean,
-        parameterObject: any,
         parameterArray: Array<string>,
         parameterDictionary: Dictionary<string>,
         parameterEnum: ('Success' | 'Warning' | 'Error'),
         id?: number,
+        parameterNumber?: number,
+        parameterString?: string,
+        parameterBoolean?: boolean,
+        parameterObject?: any,
     }): Promise<number | string | boolean | any> {
 
         const result = await __request({
             method: 'get',
             path: \`/api/v\${OpenAPI.VERSION}/types\`,
             query: {
+                'parameterArray': parameterArray,
+                'parameterDictionary': parameterDictionary,
+                'parameterEnum': parameterEnum,
                 'parameterNumber': parameterNumber,
                 'parameterString': parameterString,
                 'parameterBoolean': parameterBoolean,
                 'parameterObject': parameterObject,
-                'parameterArray': parameterArray,
-                'parameterDictionary': parameterDictionary,
-                'parameterEnum': parameterEnum,
             },
         });
 
@@ -4660,11 +4744,11 @@ import { OpenAPI } from '../core/OpenAPI';
 export class DefaultsService {
 
     /**
-     * @param parameterString This is a simple string
-     * @param parameterNumber This is a simple number
-     * @param parameterBoolean This is a simple boolean
-     * @param parameterEnum This is a simple enum
-     * @param parameterModel This is a simple model
+     * @param parameterString This is a simple string with default value
+     * @param parameterNumber This is a simple number with default value
+     * @param parameterBoolean This is a simple boolean with default value
+     * @param parameterEnum This is a simple enum with default value
+     * @param parameterModel This is a simple model with default value
      * @throws ApiError
      */
     public static async callWithDefaultParameters({
@@ -4676,11 +4760,11 @@ export class DefaultsService {
             \\"prop\\": \\"Hello World\\"
         },
     }: {
-        parameterString: string | null,
-        parameterNumber: number | null,
-        parameterBoolean: boolean | null,
-        parameterEnum: ('Success' | 'Warning' | 'Error'),
-        parameterModel: ModelThatExtends | ModelThatExtendsExtends | ModelWithString | null,
+        parameterString?: string | null,
+        parameterNumber?: number | null,
+        parameterBoolean?: boolean | null,
+        parameterEnum?: ('Success' | 'Warning' | 'Error'),
+        parameterModel?: ModelThatExtends | ModelThatExtendsExtends | ModelWithString | null,
     }): Promise<void> {
 
         const result = await __request({
@@ -4692,6 +4776,90 @@ export class DefaultsService {
                 'parameterBoolean': parameterBoolean,
                 'parameterEnum': parameterEnum,
                 'parameterModel': parameterModel,
+            },
+        });
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @param parameterString This is a simple string that is optional with default value
+     * @param parameterNumber This is a simple number that is optional with default value
+     * @param parameterBoolean This is a simple boolean that is optional with default value
+     * @param parameterEnum This is a simple enum that is optional with default value
+     * @param parameterModel This is a simple model that is optional with default value
+     * @throws ApiError
+     */
+    public static async callWithDefaultOptionalParameters({
+        parameterString = 'Hello World!',
+        parameterNumber = 123,
+        parameterBoolean = true,
+        parameterEnum = 'Success',
+        parameterModel = {
+            \\"prop\\": \\"Hello World\\"
+        },
+    }: {
+        parameterString?: string,
+        parameterNumber?: number,
+        parameterBoolean?: boolean,
+        parameterEnum?: ('Success' | 'Warning' | 'Error'),
+        parameterModel?: ModelThatExtends | ModelThatExtendsExtends | ModelWithString,
+    }): Promise<void> {
+
+        const result = await __request({
+            method: 'post',
+            path: \`/api/v\${OpenAPI.VERSION}/defaults\`,
+            query: {
+                'parameterString': parameterString,
+                'parameterNumber': parameterNumber,
+                'parameterBoolean': parameterBoolean,
+                'parameterEnum': parameterEnum,
+                'parameterModel': parameterModel,
+            },
+        });
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+    /**
+     * @param parameterStringWithNoDefault This is a string with no default
+     * @param parameterOptionalStringWithNoDefault This is a optional string with no default
+     * @param parameterStringWithDefault This is a string with default
+     * @param parameterStringWithEmptyDefault This is a string with empty default
+     * @param parameterOptionalStringWithDefault This is a optional string with default
+     * @param parameterOptionalStringWithEmptyDefault This is a optional string with empty default
+     * @throws ApiError
+     */
+    public static async callToTestOrderOfParams({
+        parameterStringWithNoDefault,
+        parameterOptionalStringWithNoDefault,
+        parameterStringWithDefault = 'hello',
+        parameterStringWithEmptyDefault = '',
+        parameterOptionalStringWithDefault = 'hello',
+        parameterOptionalStringWithEmptyDefault = '',
+    }: {
+        parameterStringWithNoDefault: string,
+        parameterOptionalStringWithNoDefault?: string,
+        parameterStringWithDefault?: string,
+        parameterStringWithEmptyDefault?: string,
+        parameterOptionalStringWithDefault?: string,
+        parameterOptionalStringWithEmptyDefault?: string,
+    }): Promise<void> {
+
+        const result = await __request({
+            method: 'put',
+            path: \`/api/v\${OpenAPI.VERSION}/defaults\`,
+            query: {
+                'parameterStringWithNoDefault': parameterStringWithNoDefault,
+                'parameterOptionalStringWithNoDefault': parameterOptionalStringWithNoDefault,
+                'parameterStringWithDefault': parameterStringWithDefault,
+                'parameterStringWithEmptyDefault': parameterStringWithEmptyDefault,
+                'parameterOptionalStringWithDefault': parameterOptionalStringWithDefault,
+                'parameterOptionalStringWithEmptyDefault': parameterOptionalStringWithEmptyDefault,
             },
         });
 
@@ -5242,14 +5410,14 @@ import { OpenAPI } from '../core/OpenAPI';
 export class TypesService {
 
     /**
-     * @param parameterNumber This is a number parameter
-     * @param parameterString This is a string parameter
-     * @param parameterBoolean This is a boolean parameter
-     * @param parameterObject This is an object parameter
      * @param parameterArray This is an array parameter
      * @param parameterDictionary This is a dictionary parameter
      * @param parameterEnum This is an enum parameter
      * @param id This is a number parameter
+     * @param parameterNumber This is a number parameter
+     * @param parameterString This is a string parameter
+     * @param parameterBoolean This is a boolean parameter
+     * @param parameterObject This is an object parameter
      * @result number Response is a simple number
      * @result string Response is a simple string
      * @result boolean Response is a simple boolean
@@ -5257,36 +5425,36 @@ export class TypesService {
      * @throws ApiError
      */
     public static async types({
-        parameterNumber = 123,
-        parameterString = 'default',
-        parameterBoolean = true,
-        parameterObject = null,
         parameterArray,
         parameterDictionary,
         parameterEnum,
         id,
+        parameterNumber = 123,
+        parameterString = 'default',
+        parameterBoolean = true,
+        parameterObject = null,
     }: {
-        parameterNumber: number,
-        parameterString: string | null,
-        parameterBoolean: boolean | null,
-        parameterObject: any,
         parameterArray: Array<string> | null,
         parameterDictionary: any,
         parameterEnum: ('Success' | 'Warning' | 'Error') | null,
         id?: number,
+        parameterNumber?: number,
+        parameterString?: string | null,
+        parameterBoolean?: boolean | null,
+        parameterObject?: any,
     }): Promise<number | string | boolean | any> {
 
         const result = await __request({
             method: 'get',
             path: \`/api/v\${OpenAPI.VERSION}/types\`,
             query: {
+                'parameterArray': parameterArray,
+                'parameterDictionary': parameterDictionary,
+                'parameterEnum': parameterEnum,
                 'parameterNumber': parameterNumber,
                 'parameterString': parameterString,
                 'parameterBoolean': parameterBoolean,
                 'parameterObject': parameterObject,
-                'parameterArray': parameterArray,
-                'parameterDictionary': parameterDictionary,
-                'parameterEnum': parameterEnum,
             },
         });
 

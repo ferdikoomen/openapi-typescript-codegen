@@ -1,7 +1,7 @@
 import { Model } from '../../../client/interfaces/Model';
 import { OpenApiSchema } from '../interfaces/OpenApiSchema';
 
-export function getModelDefault(definition: OpenApiSchema, model?: Model): string | null {
+export function getModelDefault(definition: OpenApiSchema, model?: Model): string | undefined {
     if (definition.default === null) {
         return 'null';
     }
@@ -27,5 +27,5 @@ export function getModelDefault(definition: OpenApiSchema, model?: Model): strin
             }
     }
 
-    return null;
+    return;
 }

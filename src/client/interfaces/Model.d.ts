@@ -9,7 +9,7 @@ export interface Model extends Schema {
     template: string | null;
     link: Model | null;
     description: string | null;
-    default?: any;
+    default?: string;
     imports: string[];
     extends: string[];
     enum: Enum[];

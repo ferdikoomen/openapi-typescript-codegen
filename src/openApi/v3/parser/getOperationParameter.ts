@@ -49,7 +49,7 @@ export function getOperationParameter(openApi: OpenApi, parameter: OpenApiParame
             operationParameter.template = model.template;
             operationParameter.imports.push(...model.imports);
             operationParameter.default = getModelDefault(parameter.schema);
-            operationParameter.isRequired = operationParameter.isRequired || operationParameter.default;
+            operationParameter.isRequired = operationParameter.isRequired;
             return operationParameter;
         } else {
             const model = getModel(openApi, parameter.schema);
@@ -59,7 +59,7 @@ export function getOperationParameter(openApi: OpenApi, parameter: OpenApiParame
             operationParameter.template = model.template;
             operationParameter.link = model.link;
             operationParameter.isReadOnly = model.isReadOnly;
-            operationParameter.isRequired = operationParameter.isRequired || model.isRequired || model.default;
+            operationParameter.isRequired = operationParameter.isRequired || model.isRequired;
             operationParameter.isNullable = operationParameter.isNullable || model.isNullable;
             operationParameter.format = model.format;
             operationParameter.maximum = model.maximum;
