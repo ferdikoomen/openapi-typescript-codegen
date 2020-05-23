@@ -4,7 +4,7 @@
     "compilerOptions": {
         "outDir": "./dist",
         "target": "es6",
-        "module": "es6",
+        "module": "commonjs",
         "moduleResolution": "node",
         "lib": ["es6", "dom"],
         "types": ["node", "jest"],
