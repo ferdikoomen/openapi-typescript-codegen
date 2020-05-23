@@ -16,7 +16,7 @@ export function getEnumFromDescription(description: string): Enum[] {
                     symbols.push({
                         name: name
                             .replace(/\W+/g, '_')
-                            .replace(/^(\d+)/g, s => `$${s}`)
+                            .replace(/^(\d+)/g, '_$1')
                             .replace(/([a-z])([A-Z]+)/g, '$1_$2')
                             .toUpperCase(),
                         value: String(value),

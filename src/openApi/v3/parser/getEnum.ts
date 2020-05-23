@@ -10,7 +10,7 @@ export function getEnum(values?: (string | number)[]): Enum[] {
             .map(value => {
                 if (typeof value === 'number') {
                     return {
-                        name: `$${value}`,
+                        name: `_${value}`,
                         value: String(value),
                         type: PrimaryType.NUMBER,
                         description: null,
@@ -19,7 +19,7 @@ export function getEnum(values?: (string | number)[]): Enum[] {
                 return {
                     name: value
                         .replace(/\W+/g, '_')
-                        .replace(/^(\d+)/g, s => `$${s}`)
+                        .replace(/^(\d+)/g, '_$1')
                         .replace(/([a-z])([A-Z]+)/g, '$1_$2')
                         .toUpperCase(),
                     value: `'${value}'`,
