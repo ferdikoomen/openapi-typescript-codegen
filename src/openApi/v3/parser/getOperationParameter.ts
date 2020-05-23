@@ -49,7 +49,6 @@ export function getOperationParameter(openApi: OpenApi, parameter: OpenApiParame
             operationParameter.template = model.template;
             operationParameter.imports.push(...model.imports);
             operationParameter.default = getModelDefault(parameter.schema);
-            operationParameter.isRequired = operationParameter.isRequired;
             return operationParameter;
         } else {
             const model = getModel(openApi, parameter.schema);
