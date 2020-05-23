@@ -14,7 +14,11 @@ export function getEnumFromDescription(description: string): Enum[] {
                 const value = parseInt(match.split('=')[1].replace(/[^0-9]/g, ''));
                 if (name && Number.isInteger(value)) {
                     symbols.push({
-                        name: name.replace(/([a-z])([A-Z]+)/g, '$1_$2').toUpperCase(),
+                        name: name
+                            .replace(/\W+/g, '_')
+                            .replace(/^(\d+)/g, s => `$${s}`)
+                            .replace(/([a-z])([A-Z]+)/g, '$1_$2')
+                            .toUpperCase(),
                         value: String(value),
                         type: PrimaryType.NUMBER,
                         description: null,

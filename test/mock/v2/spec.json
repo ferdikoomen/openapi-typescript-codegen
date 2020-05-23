@@ -862,6 +862,17 @@
                         "Warning",
                         "Error"
                     ]
+                },
+                "statusCode": {
+                    "description": "These are the HTTP error code enums",
+                    "enum": [
+                        "100",
+                        "200 FOO",
+                        "300 FOO_BAR",
+                        "400 foo-bar",
+                        "500 foo.bar",
+                        "600 foo&bar"
+                    ]
                 }
             }
         },

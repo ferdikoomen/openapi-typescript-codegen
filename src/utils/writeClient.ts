@@ -55,7 +55,6 @@ export function writeClient(
         copySupportFile('core/getFormData.ts', outputPath);
         copySupportFile('core/getQueryString.ts', outputPath);
         copySupportFile('core/isSuccess.ts', outputPath);
-        copySupportFile('core/OpenAPI.hbs', outputPath);
         copySupportFile('core/request.ts', outputPath);
         copySupportFile('core/RequestOptions.ts', outputPath);
         copySupportFile('core/requestUsingFetch.ts', outputPath);

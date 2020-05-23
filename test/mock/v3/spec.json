@@ -1304,12 +1304,23 @@
                 "description": "This is a model with one enum",
                 "type": "object",
                 "properties": {
-                    "Test": {
+                    "test": {
                         "description": "This is a simple enum with strings",
                         "enum": [
                             "Success",
                             "Warning",
                             "Error"
+                        ]
+                    },
+                    "statusCode": {
+                        "description": "These are the HTTP error code enums",
+                        "enum": [
+                            "100",
+                            "200 FOO",
+                            "300 FOO_BAR",
+                            "400 foo-bar",
+                            "500 foo.bar",
+                            "600 foo&bar"
                         ]
                     }
                 }
@@ -1318,7 +1329,7 @@
                 "description": "This is a model with one enum",
                 "type": "object",
                 "properties": {
-                    "Test": {
+                    "test": {
                         "type": "integer",
                         "description": "Success=1,Warning=2,Error=3"
                     }

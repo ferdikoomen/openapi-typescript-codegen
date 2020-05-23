@@ -791,9 +791,9 @@ exports[`generation v2 file(./test/result/v2/models/EnumWithNumbers.ts): ./test/
  * This is a simple enum with numbers
  */
 export enum EnumWithNumbers {
-    NUM_1 = 1,
-    NUM_2 = 2,
-    NUM_3 = 3,
+    $1 = 1,
+    $2 = 2,
+    $3 = 3,
 }"
 `;
 
@@ -996,6 +996,10 @@ export interface ModelWithEnum {
      * This is a simple enum with strings
      */
     test?: ModelWithEnum.test;
+    /**
+     * These are the HTTP error code enums
+     */
+    statusCode?: ModelWithEnum.statusCode;
 }
 
 export namespace ModelWithEnum {
@@ -1007,6 +1011,18 @@ export namespace ModelWithEnum {
         SUCCESS = 'Success',
         WARNING = 'Warning',
         ERROR = 'Error',
+    }
+
+    /**
+     * These are the HTTP error code enums
+     */
+    export enum statusCode {
+        $100 = '100',
+        $200_FOO = '200 FOO',
+        $300_FOO_BAR = '300 FOO_BAR',
+        $400_FOO_BAR = '400 foo-bar',
+        $500_FOO_BAR = '500 foo.bar',
+        $600_FOO_BAR = '600 foo&bar',
     }
 
 
@@ -1638,6 +1654,9 @@ exports[`generation v2 file(./test/result/v2/schemas/$ModelWithEnum.ts): ./test/
 export const $ModelWithEnum = {
     properties: {
         test: {
+            type: 'Enum',
+        },
+        statusCode: {
             type: 'Enum',
         },
     },
@@ -3413,9 +3432,9 @@ exports[`generation v3 file(./test/result/v3/models/EnumWithNumbers.ts): ./test/
  * This is a simple enum with numbers
  */
 export enum EnumWithNumbers {
-    NUM_1 = 1,
-    NUM_2 = 2,
-    NUM_3 = 3,
+    $1 = 1,
+    $2 = 2,
+    $3 = 3,
 }"
 `;
 
@@ -3639,7 +3658,11 @@ export interface ModelWithEnum {
     /**
      * This is a simple enum with strings
      */
-    Test?: ModelWithEnum.Test;
+    test?: ModelWithEnum.test;
+    /**
+     * These are the HTTP error code enums
+     */
+    statusCode?: ModelWithEnum.statusCode;
 }
 
 export namespace ModelWithEnum {
@@ -3647,10 +3670,22 @@ export namespace ModelWithEnum {
     /**
      * This is a simple enum with strings
      */
-    export enum Test {
+    export enum test {
         SUCCESS = 'Success',
         WARNING = 'Warning',
         ERROR = 'Error',
+    }
+
+    /**
+     * These are the HTTP error code enums
+     */
+    export enum statusCode {
+        $100 = '100',
+        $200_FOO = '200 FOO',
+        $300_FOO_BAR = '300 FOO_BAR',
+        $400_FOO_BAR = '400 foo-bar',
+        $500_FOO_BAR = '500 foo.bar',
+        $600_FOO_BAR = '600 foo&bar',
     }
 
 
@@ -3672,7 +3707,7 @@ export interface ModelWithEnumFromDescription {
     /**
      * Success=1,Warning=2,Error=3
      */
-    Test?: ModelWithEnumFromDescription.Test;
+    test?: ModelWithEnumFromDescription.test;
 }
 
 export namespace ModelWithEnumFromDescription {
@@ -3680,7 +3715,7 @@ export namespace ModelWithEnumFromDescription {
     /**
      * Success=1,Warning=2,Error=3
      */
-    export enum Test {
+    export enum test {
         SUCCESS = 1,
         WARNING = 2,
         ERROR = 3,
@@ -4319,7 +4354,10 @@ exports[`generation v3 file(./test/result/v3/schemas/$ModelWithEnum.ts): ./test/
 
 export const $ModelWithEnum = {
     properties: {
-        Test: {
+        test: {
+            type: 'Enum',
+        },
+        statusCode: {
             type: 'Enum',
         },
     },
@@ -4334,7 +4372,7 @@ exports[`generation v3 file(./test/result/v3/schemas/$ModelWithEnumFromDescripti
 
 export const $ModelWithEnumFromDescription = {
     properties: {
-        Test: {
+        test: {
             type: 'Enum',
         },
     },

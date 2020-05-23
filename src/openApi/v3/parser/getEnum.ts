@@ -10,14 +10,18 @@ export function getEnum(values?: (string | number)[]): Enum[] {
             .map(value => {
                 if (typeof value === 'number') {
                     return {
-                        name: `NUM_${value}`,
+                        name: `$${value}`,
                         value: String(value),
                         type: PrimaryType.NUMBER,
                         description: null,
                     };
                 }
                 return {
-                    name: value.replace(/([a-z])([A-Z]+)/g, '$1_$2').toUpperCase(),
+                    name: value
+                        .replace(/\W+/g, '_')
+                        .replace(/^(\d+)/g, s => `$${s}`)
+                        .replace(/([a-z])([A-Z]+)/g, '$1_$2')
+                        .toUpperCase(),
                     value: `'${value}'`,
                     type: PrimaryType.STRING,
                     description: null,
