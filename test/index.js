@@ -1,3 +1,5 @@
+'use strict';
+
 const path = require('path');
 const ts = require('typescript');
 const OpenAPI = require('../dist');
@@ -18,6 +20,8 @@ function compile(dir) {
     compiler.emit();
 }
 
+console.time('generate');
+
 OpenAPI.generate({
     input: './test/mock/v2/spec.json',
     output: './test/result/v2/',
@@ -37,6 +41,8 @@ OpenAPI.generate({
     exportSchemas: true,
     exportServices: true,
 });
+
+console.timeEnd('generate');
 
 compile('./test/result/v2/');
 compile('./test/result/v3/');

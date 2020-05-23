@@ -3,13 +3,13 @@
 
     "compilerOptions": {
         "outDir": "./dist",
-        "target": "esnext",
-        "module": "commonjs",
+        "target": "es6",
+        "module": "es6",
         "moduleResolution": "node",
-        "lib": ["esnext", "dom"],
+        "lib": ["es6", "dom"],
         "types": ["node", "jest"],
         "typeRoots": ["node_modules/@types"],
-        "declaration": true,
+        "declaration": false,
         "declarationMap": false,
         "sourceMap": false,
         "noImplicitReturns": true,
@@ -20,7 +20,7 @@
         "strictNullChecks": true,
         "strictFunctionTypes": true,
         "importHelpers": false,
-        "removeComments": false,
+        "removeComments": true,
         "forceConsistentCasingInFileNames": true
     },
 

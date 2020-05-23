@@ -1,3 +1,5 @@
+'use strict';
+
 const OpenAPI = require('../dist');
 const glob = require('glob');
 const fs = require('fs');

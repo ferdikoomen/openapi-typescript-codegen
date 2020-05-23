@@ -34,16 +34,13 @@
     ],
     "main": "dist/index.js",
     "module": "dist/index.js",
-    "types": "dist/index.d.ts",
     "bin": {
         "openapi": "bin/index.js"
     },
     "files": [
         "bin/index.js",
         "dist/index.js",
-        "dist/index.d.ts",
         "dist/**/*.js",
-        "dist/**/*.d.ts",
         "src/templates/**/*.hbs",
         "src/templates/**/*.ts"
     ],
