@@ -9,7 +9,6 @@ junit.xml
 .vscode
 *.iml
 dist
-src/**/*.js
 archive
 coverage
 test/result
