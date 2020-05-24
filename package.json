@@ -1,6 +1,6 @@
 {
     "name": "openapi-typescript-codegen",
-    "version": "0.3.0",
+    "version": "0.3.1",
     "description": "NodeJS library that generates Typescript or Javascript clients based on the OpenAPI specification.",
     "author": "Ferdi Koomen",
     "homepage": "https://github.com/ferdikoomen/openapi-typescript-codegen",
@@ -40,18 +40,16 @@
     "files": [
         "bin/index.js",
         "dist/index.js",
-        "dist/**/*.js",
-        "src/templates/**/*.js",
         "src/templates/**/*.ts"
     ],
     "scripts": {
-        "clean": "rimraf ./dist ./src/**/*.js ./test/result ./coverage",
-        "build": "tsc && node ./precompile.js",
-        "run": "npm run build && node ./test/index.js",
-        "test": "npm run build && jest",
-        "test:update": "npm run build && jest --updateSnapshot",
-        "test:watch": "npm run build && jest --watch",
-        "test:coverage": "npm run builds && jest --coverage",
+        "clean": "rimraf ./dist ./test/result ./coverage",
+        "build": "rollup --config",
+        "run": "node ./test/index.js",
+        "test": "jest",
+        "test:update": "jest --updateSnapshot",
+        "test:watch": "jest --watch",
+        "test:coverage": "jest --coverage",
         "eslint": "eslint \"./src/**/*.ts\"",
         "eslint:fix": "eslint \"./src/**/*.ts\" --fix",
         "prettier": "prettier \"./src/**/*.ts\" --check",
@@ -71,6 +69,8 @@
         "@babel/core": "7.9.6",
         "@babel/preset-env": "7.9.6",
         "@babel/preset-typescript": "7.9.0",
+        "@rollup/plugin-commonjs": "12.0.0",
+        "@rollup/plugin-node-resolve": "8.0.0",
         "@types/jest": "25.2.2",
         "@types/js-yaml": "3.12.4",
         "@types/mkdirp": "1.0.0",
@@ -87,6 +87,9 @@
         "jest": "26.0.1",
         "jest-cli": "26.0.1",
         "prettier": "2.0.5",
+        "rollup": "2.10.9",
+        "rollup-plugin-terser": "6.0.1",
+        "rollup-plugin-typescript2": "0.27.1",
         "typescript": "3.9.2"
     }
 }

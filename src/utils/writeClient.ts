@@ -13,7 +13,7 @@ import { writeClientServices } from './writeClientServices';
 import { writeClientSettings } from './writeClientSettings';
 
 function copySupportFile(filePath: string, outputPath: string): void {
-    fs.copyFileSync(path.resolve(__dirname, `../../src/templates/${filePath}`), path.resolve(outputPath, filePath));
+    fs.copyFileSync(path.resolve(__dirname, `../src/templates/${filePath}`), path.resolve(outputPath, filePath));
 }
 
 /**

@@ -2100,40 +2100,40 @@ export class DefaultsService {
     }
 
     /**
+     * @param parameterStringWithNoDefault This is a string with no default
      * @param parameterOptionalStringWithDefault This is a optional string with default
      * @param parameterOptionalStringWithEmptyDefault This is a optional string with empty default
      * @param parameterOptionalStringWithNoDefault This is a optional string with no default
      * @param parameterStringWithDefault This is a string with default
      * @param parameterStringWithEmptyDefault This is a string with empty default
-     * @param parameterStringWithNoDefault This is a string with no default
      * @throws ApiError
      */
     public static async callToTestOrderOfParams({
+        parameterStringWithNoDefault,
         parameterOptionalStringWithDefault = 'Hello World!',
         parameterOptionalStringWithEmptyDefault = '',
         parameterOptionalStringWithNoDefault,
         parameterStringWithDefault = 'hello',
         parameterStringWithEmptyDefault = '',
-        parameterStringWithNoDefault,
     }: {
+        parameterStringWithNoDefault: string,
         parameterOptionalStringWithDefault?: string,
         parameterOptionalStringWithEmptyDefault?: string,
         parameterOptionalStringWithNoDefault?: string,
         parameterStringWithDefault?: string,
         parameterStringWithEmptyDefault?: string,
-        parameterStringWithNoDefault: string,
     }): Promise<void> {
 
         const result = await __request({
             method: 'put',
             path: \`/api/v\${OpenAPI.VERSION}/defaults\`,
             query: {
+                'parameterStringWithNoDefault': parameterStringWithNoDefault,
                 'parameterOptionalStringWithDefault': parameterOptionalStringWithDefault,
                 'parameterOptionalStringWithEmptyDefault': parameterOptionalStringWithEmptyDefault,
                 'parameterOptionalStringWithNoDefault': parameterOptionalStringWithNoDefault,
                 'parameterStringWithDefault': parameterStringWithDefault,
                 'parameterStringWithEmptyDefault': parameterStringWithEmptyDefault,
-                'parameterStringWithNoDefault': parameterStringWithNoDefault,
             },
         });
 
@@ -2311,31 +2311,31 @@ export class ParametersService {
     }
 
     /**
-     * @param parameterPath1 This is the parameter that goes into the path
-     * @param parameterPath2 This is the parameter that goes into the path
-     * @param parameterPath3 This is the parameter that goes into the path
      * @param parameterHeader This is the parameter that goes into the request header
      * @param parameterQuery This is the parameter that goes into the request query params
      * @param parameterForm This is the parameter that goes into the request form data
      * @param parameterBody This is the parameter that is send as request body
+     * @param parameterPath1 This is the parameter that goes into the path
+     * @param parameterPath2 This is the parameter that goes into the path
+     * @param parameterPath3 This is the parameter that goes into the path
      * @throws ApiError
      */
     public static async callWithWeirdParameterNames({
-        parameterPath1,
-        parameterPath2,
-        parameterPath3,
         parameterHeader,
         parameterQuery,
         parameterForm,
         parameterBody,
+        parameterPath1,
+        parameterPath2,
+        parameterPath3,
     }: {
-        parameterPath1?: string,
-        parameterPath2?: string,
-        parameterPath3?: string,
         parameterHeader: string,
         parameterQuery: string,
         parameterForm: string,
         parameterBody: string,
+        parameterPath1?: string,
+        parameterPath2?: string,
+        parameterPath3?: string,
     }): Promise<void> {
 
         const result = await __request({
@@ -2579,13 +2579,13 @@ import { OpenAPI } from '../core/OpenAPI';
 export class TypesService {
 
     /**
+     * @param parameterArray This is an array parameter
+     * @param parameterDictionary This is a dictionary parameter
+     * @param parameterEnum This is an enum parameter
      * @param parameterNumber This is a number parameter
      * @param parameterString This is a string parameter
      * @param parameterBoolean This is a boolean parameter
      * @param parameterObject This is an object parameter
-     * @param parameterArray This is an array parameter
-     * @param parameterDictionary This is a dictionary parameter
-     * @param parameterEnum This is an enum parameter
      * @param id This is a number parameter
      * @result number Response is a simple number
      * @result string Response is a simple string
@@ -2594,22 +2594,22 @@ export class TypesService {
      * @throws ApiError
      */
     public static async types({
+        parameterArray,
+        parameterDictionary,
+        parameterEnum,
         parameterNumber = 123,
         parameterString = 'default',
         parameterBoolean = true,
         parameterObject = null,
-        parameterArray,
-        parameterDictionary,
-        parameterEnum,
         id,
     }: {
+        parameterArray: Array<string>,
+        parameterDictionary: Dictionary<string>,
+        parameterEnum: ('Success' | 'Warning' | 'Error'),
         parameterNumber?: number,
         parameterString?: string,
         parameterBoolean?: boolean,
         parameterObject?: any,
-        parameterArray: Array<string>,
-        parameterDictionary: Dictionary<string>,
-        parameterEnum: ('Success' | 'Warning' | 'Error'),
         id?: number,
     }): Promise<number | string | boolean | any> {
 
@@ -2617,13 +2617,13 @@ export class TypesService {
             method: 'get',
             path: \`/api/v\${OpenAPI.VERSION}/types\`,
             query: {
+                'parameterArray': parameterArray,
+                'parameterDictionary': parameterDictionary,
+                'parameterEnum': parameterEnum,
                 'parameterNumber': parameterNumber,
                 'parameterString': parameterString,
                 'parameterBoolean': parameterBoolean,
                 'parameterObject': parameterObject,
-                'parameterArray': parameterArray,
-                'parameterDictionary': parameterDictionary,
-                'parameterEnum': parameterEnum,
             },
         });
 
@@ -4864,40 +4864,40 @@ export class DefaultsService {
     }
 
     /**
+     * @param parameterStringWithNoDefault This is a string with no default
      * @param parameterOptionalStringWithDefault This is a optional string with default
      * @param parameterOptionalStringWithEmptyDefault This is a optional string with empty default
      * @param parameterOptionalStringWithNoDefault This is a optional string with no default
      * @param parameterStringWithDefault This is a string with default
      * @param parameterStringWithEmptyDefault This is a string with empty default
-     * @param parameterStringWithNoDefault This is a string with no default
      * @throws ApiError
      */
     public static async callToTestOrderOfParams({
+        parameterStringWithNoDefault,
         parameterOptionalStringWithDefault = 'hello',
         parameterOptionalStringWithEmptyDefault = '',
         parameterOptionalStringWithNoDefault,
         parameterStringWithDefault = 'hello',
         parameterStringWithEmptyDefault = '',
-        parameterStringWithNoDefault,
     }: {
+        parameterStringWithNoDefault: string,
         parameterOptionalStringWithDefault?: string,
         parameterOptionalStringWithEmptyDefault?: string,
         parameterOptionalStringWithNoDefault?: string,
         parameterStringWithDefault?: string,
         parameterStringWithEmptyDefault?: string,
-        parameterStringWithNoDefault: string,
     }): Promise<void> {
 
         const result = await __request({
             method: 'put',
             path: \`/api/v\${OpenAPI.VERSION}/defaults\`,
             query: {
+                'parameterStringWithNoDefault': parameterStringWithNoDefault,
                 'parameterOptionalStringWithDefault': parameterOptionalStringWithDefault,
                 'parameterOptionalStringWithEmptyDefault': parameterOptionalStringWithEmptyDefault,
                 'parameterOptionalStringWithNoDefault': parameterOptionalStringWithNoDefault,
                 'parameterStringWithDefault': parameterStringWithDefault,
                 'parameterStringWithEmptyDefault': parameterStringWithEmptyDefault,
-                'parameterStringWithNoDefault': parameterStringWithNoDefault,
             },
         });
 
@@ -5121,34 +5121,34 @@ export class ParametersService {
     }
 
     /**
-     * @param parameterPath1 This is the parameter that goes into the path
-     * @param parameterPath2 This is the parameter that goes into the path
-     * @param parameterPath3 This is the parameter that goes into the path
      * @param parameterHeader This is the parameter that goes into the request header
      * @param parameterQuery This is the parameter that goes into the request query params
      * @param parameterForm This is the parameter that goes into the request form data
      * @param parameterCookie This is the parameter that goes into the cookie
      * @param requestBody This is the parameter that goes into the body
+     * @param parameterPath1 This is the parameter that goes into the path
+     * @param parameterPath2 This is the parameter that goes into the path
+     * @param parameterPath3 This is the parameter that goes into the path
      * @throws ApiError
      */
     public static async callWithWeirdParameterNames({
-        parameterPath1,
-        parameterPath2,
-        parameterPath3,
         parameterHeader,
         parameterQuery,
         parameterForm,
         parameterCookie,
         requestBody,
+        parameterPath1,
+        parameterPath2,
+        parameterPath3,
     }: {
-        parameterPath1?: string,
-        parameterPath2?: string,
-        parameterPath3?: string,
         parameterHeader: string | null,
         parameterQuery: string | null,
         parameterForm: string | null,
         parameterCookie: string | null,
         requestBody: ModelThatExtends | ModelThatExtendsExtends | ModelWithString | null,
+        parameterPath1?: string,
+        parameterPath2?: string,
+        parameterPath3?: string,
     }): Promise<void> {
 
         const result = await __request({
@@ -5175,16 +5175,16 @@ export class ParametersService {
     }
 
     /**
-     * @param parameter This is an optional parameter
      * @param requestBody This is a required parameter
+     * @param parameter This is an optional parameter
      * @throws ApiError
      */
     public static async getCallWithOptionalParam({
-        parameter,
         requestBody,
+        parameter,
     }: {
-        parameter?: string,
         requestBody: ModelThatExtends | ModelThatExtendsExtends | ModelWithString,
+        parameter?: string,
     }): Promise<void> {
 
         const result = await __request({
@@ -5448,13 +5448,13 @@ import { OpenAPI } from '../core/OpenAPI';
 export class TypesService {
 
     /**
+     * @param parameterArray This is an array parameter
+     * @param parameterDictionary This is a dictionary parameter
+     * @param parameterEnum This is an enum parameter
      * @param parameterNumber This is a number parameter
      * @param parameterString This is a string parameter
      * @param parameterBoolean This is a boolean parameter
      * @param parameterObject This is an object parameter
-     * @param parameterArray This is an array parameter
-     * @param parameterDictionary This is a dictionary parameter
-     * @param parameterEnum This is an enum parameter
      * @param id This is a number parameter
      * @result number Response is a simple number
      * @result string Response is a simple string
@@ -5463,22 +5463,22 @@ export class TypesService {
      * @throws ApiError
      */
     public static async types({
+        parameterArray,
+        parameterDictionary,
+        parameterEnum,
         parameterNumber = 123,
         parameterString = 'default',
         parameterBoolean = true,
         parameterObject = null,
-        parameterArray,
-        parameterDictionary,
-        parameterEnum,
         id,
     }: {
+        parameterArray: Array<string> | null,
+        parameterDictionary: any,
+        parameterEnum: ('Success' | 'Warning' | 'Error') | null,
         parameterNumber?: number,
         parameterString?: string | null,
         parameterBoolean?: boolean | null,
         parameterObject?: any,
-        parameterArray: Array<string> | null,
-        parameterDictionary: any,
-        parameterEnum: ('Success' | 'Warning' | 'Error') | null,
         id?: number,
     }): Promise<number | string | boolean | any> {
 
@@ -5486,13 +5486,13 @@ export class TypesService {
             method: 'get',
             path: \`/api/v\${OpenAPI.VERSION}/types\`,
             query: {
+                'parameterArray': parameterArray,
+                'parameterDictionary': parameterDictionary,
+                'parameterEnum': parameterEnum,
                 'parameterNumber': parameterNumber,
                 'parameterString': parameterString,
                 'parameterBoolean': parameterBoolean,
                 'parameterObject': parameterObject,
-                'parameterArray': parameterArray,
-                'parameterDictionary': parameterDictionary,
-                'parameterEnum': parameterEnum,
             },
         });
 

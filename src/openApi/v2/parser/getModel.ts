@@ -133,7 +133,7 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isDefiniti
                     model.imports.push(parentRef.base);
                 }
                 if (parent.type === 'object' && parent.properties) {
-                    const properties = getModelProperties(openApi, parent);
+                    const properties = getModelProperties(openApi, parent, getModel);
                     properties.forEach(property => {
                         model.properties.push(property);
                         model.imports.push(...property.imports);
@@ -146,7 +146,7 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isDefiniti
         }
 
         if (definition.properties) {
-            const properties = getModelProperties(openApi, definition);
+            const properties = getModelProperties(openApi, definition, getModel);
             properties.forEach(property => {
                 model.properties.push(property);
                 model.imports.push(...property.imports);

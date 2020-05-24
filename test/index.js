@@ -29,7 +29,7 @@ OpenAPI.generate({
     useOptions: true,
     useUnionTypes: true,
     exportSchemas: true,
-    exportServices: true,
+    exportServices: true
 });
 
 OpenAPI.generate({
@@ -39,7 +39,7 @@ OpenAPI.generate({
     useOptions: true,
     useUnionTypes: true,
     exportSchemas: true,
-    exportServices: true,
+    exportServices: true
 });
 
 console.timeEnd('generate');

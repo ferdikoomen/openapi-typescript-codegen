@@ -2,10 +2,12 @@ import { Model } from '../../../client/interfaces/Model';
 import { OpenApi } from '../interfaces/OpenApi';
 import { OpenApiSchema } from '../interfaces/OpenApiSchema';
 import { getComment } from './getComment';
-import { getModel } from './getModel';
 import { getType } from './getType';
 
-export function getModelProperties(openApi: OpenApi, definition: OpenApiSchema): Model[] {
+// Fix for circular dependency between getModel and getModelProperties
+export type GetModel = (openApi: OpenApi, definition: OpenApiSchema, isDefinition?: boolean, name?: string) => Model;
+
+export function getModelProperties(openApi: OpenApi, definition: OpenApiSchema, getModel: GetModel): Model[] {
     const models: Model[] = [];
     for (const propertyName in definition.properties) {
         if (definition.properties.hasOwnProperty(propertyName)) {

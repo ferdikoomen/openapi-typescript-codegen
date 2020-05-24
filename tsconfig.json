@@ -4,7 +4,7 @@
     "compilerOptions": {
         "outDir": "./dist",
         "target": "es6",
-        "module": "commonjs",
+        "module": "es6",
         "moduleResolution": "node",
         "lib": ["es6", "dom"],
         "types": ["node", "jest"],
@@ -23,6 +23,10 @@
         "removeComments": true,
         "forceConsistentCasingInFileNames": true
     },
+
+    "files": [
+        "./src/typings/hbs.d.ts"
+    ],
 
     "include": [
         "./src/index.ts"
