@@ -60,7 +60,7 @@
         "camelcase": "5.3.1",
         "commander": "5.1.0",
         "handlebars": "4.7.6",
-        "js-yaml": "3.13.1",
+        "js-yaml": "3.14.0",
         "mkdirp": "1.0.4",
         "path": "0.12.7",
         "rimraf": "3.0.2"
