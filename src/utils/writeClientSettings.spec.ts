@@ -1,16 +1,16 @@
 import { Client } from '../client/interfaces/Client';
 import { HttpClient } from '../index';
-import { mkdir, rmdir, writeFile } from './fileSystem';
+import { writeFile } from './fileSystem';
 import { Templates } from './registerHandlebarsTemplates';
-import { writeClient } from './writeClient';
+import { writeClientSettings } from './writeClientSettings';
 
 jest.mock('./fileSystem');
 
-describe('writeClient', () => {
+describe('writeClientSettings', () => {
     it('should write to filesystem', async () => {
         const client: Client = {
             server: 'http://localhost:8080',
-            version: 'v1',
+            version: '1.0',
             models: [],
             services: [],
         };
@@ -23,10 +23,8 @@ describe('writeClient', () => {
             settings: () => 'dummy',
         };
 
-        await writeClient(client, templates, '/', HttpClient.FETCH, false, true, true, true, true);
+        await writeClientSettings(client, templates, '/', HttpClient.FETCH);
 
-        expect(rmdir).toBeCalled();
-        expect(mkdir).toBeCalled();
-        expect(writeFile).toBeCalled();
+        expect(writeFile).toBeCalledWith('/OpenAPI.ts', 'dummy');
     });
 });

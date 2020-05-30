@@ -1,15 +1,18 @@
-import * as fs from 'fs';
 import * as yaml from 'js-yaml';
 import * as path from 'path';
+
+import { exists, readFile } from './fileSystem';
 
 /**
  * Check if given file exists and try to read the content as string.
  * @param filePath
  */
-function read(filePath: string): string {
-    if (fs.existsSync(filePath)) {
+async function read(filePath: string): Promise<string> {
+    const fileExists = await exists(filePath);
+    if (fileExists) {
         try {
-            return fs.readFileSync(filePath, 'utf8').toString();
+            const content = await readFile(filePath, 'utf8');
+            return content.toString();
         } catch (e) {
             throw new Error(`Could not read OpenApi spec: "${filePath}"`);
         }
@@ -23,10 +26,10 @@ function read(filePath: string): string {
  * on parsing the file as JSON.
  * @param input
  */
-export function getOpenApiSpec(input: string): any {
+export async function getOpenApiSpec(input: string): Promise<any> {
     const file = path.resolve(process.cwd(), input);
     const extname = path.extname(file).toLowerCase();
-    const content = read(file);
+    const content = await read(file);
     switch (extname) {
         case '.yml':
         case '.yaml':

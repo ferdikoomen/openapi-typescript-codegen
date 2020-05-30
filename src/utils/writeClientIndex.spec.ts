@@ -1,15 +1,12 @@
-import * as fs from 'fs';
-
 import { Client } from '../client/interfaces/Client';
-import { Templates } from './readHandlebarsTemplates';
+import { writeFile } from './fileSystem';
+import { Templates } from './registerHandlebarsTemplates';
 import { writeClientIndex } from './writeClientIndex';
 
-jest.mock('fs');
-
-const fsWriteFileSync = fs.writeFileSync as jest.MockedFunction<typeof fs.writeFileSync>;
+jest.mock('./fileSystem');
 
 describe('writeClientIndex', () => {
-    it('should write to filesystem', () => {
+    it('should write to filesystem', async () => {
         const client: Client = {
             server: 'http://localhost:8080',
             version: '1.0',
@@ -25,8 +22,8 @@ describe('writeClientIndex', () => {
             settings: () => 'dummy',
         };
 
-        writeClientIndex(client, templates, '/', true, true, true, true);
+        await writeClientIndex(client, templates, '/', true, true, true, true);
 
-        expect(fsWriteFileSync).toBeCalledWith('/index.ts', 'dummy');
+        expect(writeFile).toBeCalledWith('/index.ts', 'dummy');
     });
 });

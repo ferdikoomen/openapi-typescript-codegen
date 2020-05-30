@@ -1,15 +1,12 @@
-import * as fs from 'fs';
-
 import { Model } from '../client/interfaces/Model';
-import { Templates } from './readHandlebarsTemplates';
-import { writeClientModels } from './writeClientModels';
+import { writeFile } from './fileSystem';
+import { Templates } from './registerHandlebarsTemplates';
+import { writeClientSchemas } from './writeClientSchemas';
 
-jest.mock('fs');
+jest.mock('./fileSystem');
 
-const fsWriteFileSync = fs.writeFileSync as jest.MockedFunction<typeof fs.writeFileSync>;
-
-describe('writeClientModels', () => {
-    it('should write to filesystem', () => {
+describe('writeClientSchemas', () => {
+    it('should write to filesystem', async () => {
         const models: Model[] = [
             {
                 export: 'interface',
@@ -39,8 +36,8 @@ describe('writeClientModels', () => {
             settings: () => 'dummy',
         };
 
-        writeClientModels(models, templates, '/');
+        await writeClientSchemas(models, templates, '/');
 
-        expect(fsWriteFileSync).toBeCalledWith('/Item.ts', 'dummy');
+        expect(writeFile).toBeCalledWith('/$Item.ts', 'dummy');
     });
 });

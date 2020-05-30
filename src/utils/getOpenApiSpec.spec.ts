@@ -1,24 +1,27 @@
-import * as fs from 'fs';
-
+import { exists, readFile } from './fileSystem';
 import { getOpenApiSpec } from './getOpenApiSpec';
 
-jest.mock('fs');
+jest.mock('./fileSystem');
 
-const fsExistsSync = fs.existsSync as jest.MockedFunction<typeof fs.existsSync>;
-const fsReadFileSync = fs.readFileSync as jest.MockedFunction<typeof fs.readFileSync>;
+const existsMocked = exists as jest.MockedFunction<typeof exists>;
+const readFileMocked = readFile as jest.MockedFunction<typeof readFile>;
+
+function mockPromise<T>(value: T): Promise<T> {
+    return new Promise<T>(resolve => resolve(value));
+}
 
 describe('getOpenApiSpec', () => {
-    it('should read the json file', () => {
-        fsExistsSync.mockReturnValue(true);
-        fsReadFileSync.mockReturnValue('{"message": "Hello World!"}');
-        const spec = getOpenApiSpec('spec.json');
+    it('should read the json file', async () => {
+        existsMocked.mockReturnValue(mockPromise(true));
+        readFileMocked.mockReturnValue(mockPromise('{"message": "Hello World!"}'));
+        const spec = await getOpenApiSpec('spec.json');
         expect(spec.message).toEqual('Hello World!');
     });
 
-    it('should read the yaml file', () => {
-        fsExistsSync.mockReturnValue(true);
-        fsReadFileSync.mockReturnValue('message: "Hello World!"');
-        const spec = getOpenApiSpec('spec.yaml');
+    it('should read the yaml file', async () => {
+        existsMocked.mockReturnValue(mockPromise(true));
+        readFileMocked.mockReturnValue(mockPromise('message: "Hello World!"'));
+        const spec = await getOpenApiSpec('spec.yaml');
         expect(spec.message).toEqual('Hello World!');
     });
 });

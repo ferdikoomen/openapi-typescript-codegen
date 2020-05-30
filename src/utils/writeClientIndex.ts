@@ -1,10 +1,10 @@
-import * as fs from 'fs';
 import * as path from 'path';
 
 import { Client } from '../client/interfaces/Client';
+import { writeFile } from './fileSystem';
 import { getModelNames } from './getModelNames';
 import { getServiceNames } from './getServiceNames';
-import { Templates } from './readHandlebarsTemplates';
+import { Templates } from './registerHandlebarsTemplates';
 
 /**
  * Generate the OpenAPI client index file using the Handlebar template and write it to disk.
@@ -18,8 +18,16 @@ import { Templates } from './readHandlebarsTemplates';
  * @param exportModels: Generate models.
  * @param exportSchemas: Generate schemas.
  */
-export function writeClientIndex(client: Client, templates: Templates, outputPath: string, exportCore: boolean, exportServices: boolean, exportModels: boolean, exportSchemas: boolean): void {
-    fs.writeFileSync(
+export async function writeClientIndex(
+    client: Client,
+    templates: Templates,
+    outputPath: string,
+    exportCore: boolean,
+    exportServices: boolean,
+    exportModels: boolean,
+    exportSchemas: boolean
+): Promise<void> {
+    await writeFile(
         path.resolve(outputPath, 'index.ts'),
         templates.index({
             exportCore,
