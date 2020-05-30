@@ -19,7 +19,7 @@ export interface OpenApiComponents {
     examples?: Dictionary<OpenApiExample>;
     requestBodies?: Dictionary<OpenApiRequestBody>;
     headers?: Dictionary<OpenApiHeader>;
-    securitySchemes: Dictionary<OpenApiSecurityScheme>;
+    securitySchemes?: Dictionary<OpenApiSecurityScheme>;
     links?: Dictionary<OpenApiLink>;
     callbacks?: Dictionary<OpenApiCallback>;
 }

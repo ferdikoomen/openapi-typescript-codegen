@@ -4,6 +4,7 @@ import { Templates } from './registerHandlebarsTemplates';
 import { writeClientServices } from './writeClientServices';
 
 jest.mock('./fileSystem');
+
 describe('writeClientServices', () => {
     it('should write to filesystem', async () => {
         const services: Service[] = [

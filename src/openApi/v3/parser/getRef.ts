@@ -4,7 +4,7 @@ import { OpenApiReference } from '../interfaces/OpenApiReference';
 export function getRef<T>(openApi: OpenApi, item: T & OpenApiReference): T {
     if (item.$ref) {
         // Fetch the paths to the definitions, this converts:
-        // "#/definitions/Form" to ["definitions", "Form"]
+        // "#/components/schemas/Form" to ["components", "schemas", "Form"]
         const paths = item.$ref
             .replace(/^#/g, '')
             .split('/')

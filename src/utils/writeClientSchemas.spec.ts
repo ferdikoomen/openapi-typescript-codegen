@@ -1,10 +1,11 @@
 import { Model } from '../client/interfaces/Model';
 import { writeFile } from './fileSystem';
 import { Templates } from './registerHandlebarsTemplates';
-import { writeClientModels } from './writeClientModels';
+import { writeClientSchemas } from './writeClientSchemas';
 
 jest.mock('./fileSystem');
-describe('writeClientModels', () => {
+
+describe('writeClientSchemas', () => {
     it('should write to filesystem', async () => {
         const models: Model[] = [
             {
@@ -35,8 +36,8 @@ describe('writeClientModels', () => {
             settings: () => 'dummy',
         };
 
-        await writeClientModels(models, templates, '/');
+        await writeClientSchemas(models, templates, '/');
 
-        expect(writeFile).toBeCalledWith('/Item.ts', 'dummy');
+        expect(writeFile).toBeCalledWith('/$Item.ts', 'dummy');
     });
 });

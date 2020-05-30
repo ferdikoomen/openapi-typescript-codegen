@@ -4,7 +4,7 @@
  */
 export function flatMap<U, T>(array: T[], callback: (value: T, index: number, array: T[]) => U[]): U[] {
     const result: U[] = [];
-    array.map(callback).forEach(arr => {
+    array.map<U[]>(callback).forEach(arr => {
         result.push(...arr);
     });
     return result;
