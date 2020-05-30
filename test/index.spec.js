@@ -7,7 +7,7 @@ const fs = require('fs');
 describe('v2', () => {
     describe('generate', () => {
         it('should generate', async () => {
-            await OpenAPI.generate({
+            const result = await OpenAPI.generate({
                 input: './test/mock/v2/spec.json',
                 output: './test/result/v2/',
                 httpClient: OpenAPI.HttpClient.FETCH,
@@ -18,6 +18,7 @@ describe('v2', () => {
                 exportModels: true,
                 exportServices: true,
             });
+            expect(result).toBeUndefined();
         });
     });
     describe('snapshot', () => {
@@ -32,7 +33,7 @@ describe('v2', () => {
 describe('v3', () => {
     describe('generate', () => {
         it('should generate', async () => {
-            await OpenAPI.generate({
+            const result = await OpenAPI.generate({
                 input: './test/mock/v3/spec.json',
                 output: './test/result/v3/',
                 httpClient: OpenAPI.HttpClient.FETCH,
@@ -43,6 +44,7 @@ describe('v3', () => {
                 exportModels: true,
                 exportServices: true,
             });
+            expect(result).toBeUndefined();
         });
     });
     describe('snapshot', () => {
