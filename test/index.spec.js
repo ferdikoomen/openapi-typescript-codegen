@@ -5,25 +5,22 @@ const glob = require('glob');
 const fs = require('fs');
 
 describe('v2', () => {
-    describe('generate', () => {
-        it('should generate', async () => {
-            const result = await OpenAPI.generate({
-                input: './test/mock/v2/spec.json',
-                output: './test/result/v2/',
-                httpClient: OpenAPI.HttpClient.FETCH,
-                useOptions: true,
-                useUnionTypes: true,
-                exportCore: true,
-                exportSchemas: true,
-                exportModels: true,
-                exportServices: true,
-            });
-            expect(result).toBeUndefined();
+    it('should generate', async () => {
+        await OpenAPI.generate({
+            input: './test/mock/v2/spec.json',
+            output: './test/result/v2/',
+            httpClient: OpenAPI.HttpClient.FETCH,
+            useOptions: true,
+            useUnionTypes: true,
+            exportCore: true,
+            exportSchemas: true,
+            exportModels: true,
+            exportServices: true,
         });
-    });
-    describe('snapshot', () => {
+
         const files = glob.sync('./test/result/v2/**/*.ts');
-        test.each(files.map(file => [file]))('file(%s)', file => {
+
+        files.forEach(file => {
             const content = fs.readFileSync(file, 'utf8').toString();
             expect(content).toMatchSnapshot(file);
         });
@@ -31,25 +28,22 @@ describe('v2', () => {
 });
 
 describe('v3', () => {
-    describe('generate', () => {
-        it('should generate', async () => {
-            const result = await OpenAPI.generate({
-                input: './test/mock/v3/spec.json',
-                output: './test/result/v3/',
-                httpClient: OpenAPI.HttpClient.FETCH,
-                useOptions: true,
-                useUnionTypes: true,
-                exportCore: true,
-                exportSchemas: true,
-                exportModels: true,
-                exportServices: true,
-            });
-            expect(result).toBeUndefined();
+    it('should generate', async () => {
+        await OpenAPI.generate({
+            input: './test/mock/v3/spec.json',
+            output: './test/result/v3/',
+            httpClient: OpenAPI.HttpClient.FETCH,
+            useOptions: true,
+            useUnionTypes: true,
+            exportCore: true,
+            exportSchemas: true,
+            exportModels: true,
+            exportServices: true,
         });
-    });
-    describe('snapshot', () => {
+
         const files = glob.sync('./test/result/v3/**/*.ts');
-        test.each(files.map(file => [file]))('file(%s)', file => {
+
+        files.forEach(file => {
             const content = fs.readFileSync(file, 'utf8').toString();
             expect(content).toMatchSnapshot(file);
         });
