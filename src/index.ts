@@ -4,7 +4,7 @@ import { getOpenApiSpec } from './utils/getOpenApiSpec';
 import { getOpenApiVersion, OpenApiVersion } from './utils/getOpenApiVersion';
 import { isString } from './utils/isString';
 import { postProcessClient } from './utils/postProcessClient';
-import { readHandlebarsTemplates } from './utils/readHandlebarsTemplates';
+import { registerHandlebarsTemplates } from './utils/registerHandlebarsTemplates';
 import { writeClient } from './utils/writeClient';
 
 export enum HttpClient {
@@ -40,7 +40,7 @@ export interface Options {
  * @param exportSchemas: Generate schemas.
  * @param write Write the files to disk (true or false).
  */
-export function generate({
+export async function generate({
     input,
     output,
     httpClient = HttpClient.FETCH,
@@ -51,35 +51,30 @@ export function generate({
     exportModels = true,
     exportSchemas = false,
     write = true,
-}: Options): void {
-    try {
-        // Load the specification, read the OpenAPI version and load the
-        // handlebar templates for the given language
-        const openApi = isString(input) ? getOpenApiSpec(input) : input;
-        const openApiVersion = getOpenApiVersion(openApi);
-        const templates = readHandlebarsTemplates();
+}: Options): Promise<void> {
+    // Load the specification, read the OpenAPI version and load the
+    // handlebar templates for the given language
+    const openApi = isString(input) ? await getOpenApiSpec(input) : input;
+    const openApiVersion = getOpenApiVersion(openApi);
+    const templates = registerHandlebarsTemplates();
 
-        switch (openApiVersion) {
-            case OpenApiVersion.V2: {
-                const client = parseV2(openApi);
-                const clientFinal = postProcessClient(client, useUnionTypes);
-                if (write) {
-                    writeClient(clientFinal, templates, output, httpClient, useOptions, exportCore, exportServices, exportModels, exportSchemas);
-                }
-                break;
+    switch (openApiVersion) {
+        case OpenApiVersion.V2: {
+            const client = parseV2(openApi);
+            const clientFinal = postProcessClient(client, useUnionTypes);
+            if (write) {
+                await writeClient(clientFinal, templates, output, httpClient, useOptions, exportCore, exportServices, exportModels, exportSchemas);
             }
-
-            case OpenApiVersion.V3: {
-                const client = parseV3(openApi);
-                const clientFinal = postProcessClient(client, useUnionTypes);
-                if (write) {
-                    writeClient(clientFinal, templates, output, httpClient, useOptions, exportCore, exportServices, exportModels, exportSchemas);
-                }
-                break;
-            }
+            break;
         }
-    } catch (e) {
-        console.error(e);
-        process.exit(1);
+
+        case OpenApiVersion.V3: {
+            const client = parseV3(openApi);
+            const clientFinal = postProcessClient(client, useUnionTypes);
+            if (write) {
+                await writeClient(clientFinal, templates, output, httpClient, useOptions, exportCore, exportServices, exportModels, exportSchemas);
+            }
+            break;
+        }
     }
 }

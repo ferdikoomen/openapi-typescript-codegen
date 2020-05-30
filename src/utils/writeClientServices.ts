@@ -1,9 +1,9 @@
-import * as fs from 'fs';
 import * as path from 'path';
 
 import { Service } from '../client/interfaces/Service';
+import { writeFile } from './fileSystem';
 import { format } from './format';
-import { Templates } from './readHandlebarsTemplates';
+import { Templates } from './registerHandlebarsTemplates';
 
 /**
  * Generate Services using the Handlebar template and write to disk.
@@ -12,13 +12,13 @@ import { Templates } from './readHandlebarsTemplates';
  * @param outputPath Directory to write the generated files to.
  * @param useOptions Use options or arguments functions.
  */
-export function writeClientServices(services: Service[], templates: Templates, outputPath: string, useOptions: boolean): void {
-    services.forEach(service => {
+export async function writeClientServices(services: Service[], templates: Templates, outputPath: string, useOptions: boolean): Promise<void> {
+    for (const service of services) {
         const file = path.resolve(outputPath, `${service.name}.ts`);
         const templateResult = templates.service({
             ...service,
             useOptions,
         });
-        fs.writeFileSync(file, format(templateResult));
-    });
+        await writeFile(file, format(templateResult));
+    }
 }

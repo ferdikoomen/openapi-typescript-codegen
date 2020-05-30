@@ -1,22 +1,13 @@
-import * as fs from 'fs';
-import * as mkdirp from 'mkdirp';
-import * as rimraf from 'rimraf';
-
 import { Client } from '../client/interfaces/Client';
 import { HttpClient } from '../index';
-import { Templates } from './readHandlebarsTemplates';
+import { mkdir, rmdir, writeFile } from './fileSystem';
+import { Templates } from './registerHandlebarsTemplates';
 import { writeClient } from './writeClient';
 
-jest.mock('rimraf');
-jest.mock('mkdirp');
-jest.mock('fs');
-
-const rimrafSync = mkdirp.sync as jest.MockedFunction<typeof mkdirp.sync>;
-const mkdirpSync = rimraf.sync as jest.MockedFunction<typeof rimraf.sync>;
-const fsWriteFileSync = fs.writeFileSync as jest.MockedFunction<typeof fs.writeFileSync>;
+jest.mock('./fileSystem');
 
 describe('writeClient', () => {
-    it('should write to filesystem', () => {
+    it('should write to filesystem', async () => {
         const client: Client = {
             server: 'http://localhost:8080',
             version: 'v1',
@@ -32,10 +23,10 @@ describe('writeClient', () => {
             settings: () => 'dummy',
         };
 
-        writeClient(client, templates, '/', HttpClient.FETCH, false, true, true, true, true);
+        await writeClient(client, templates, '/', HttpClient.FETCH, false, true, true, true, true);
 
-        expect(rimrafSync).toBeCalled();
-        expect(mkdirpSync).toBeCalled();
-        expect(fsWriteFileSync).toBeCalled();
+        expect(rmdir).toBeCalled();
+        expect(mkdir).toBeCalled();
+        expect(writeFile).toBeCalled();
     });
 });

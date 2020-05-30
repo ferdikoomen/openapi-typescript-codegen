@@ -3,10 +3,10 @@
 
     "compilerOptions": {
         "outDir": "./dist",
-        "target": "es6",
-        "module": "es6",
+        "target": "ES2017",
+        "module": "ES6",
         "moduleResolution": "node",
-        "lib": ["es6", "dom"],
+        "lib": ["ES2017"],
         "types": ["node", "jest"],
         "typeRoots": ["node_modules/@types"],
         "declaration": false,
@@ -19,9 +19,9 @@
         "strict": true,
         "strictNullChecks": true,
         "strictFunctionTypes": true,
-        "importHelpers": false,
         "removeComments": true,
-        "forceConsistentCasingInFileNames": true
+        "forceConsistentCasingInFileNames": true,
+        "allowSyntheticDefaultImports": true
     },
 
     "files": [

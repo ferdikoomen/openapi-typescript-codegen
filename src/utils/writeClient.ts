@@ -1,19 +1,17 @@
-import * as fs from 'fs';
-import * as mkdirp from 'mkdirp';
 import * as path from 'path';
-import * as rimraf from 'rimraf';
 
 import { Client } from '../client/interfaces/Client';
 import { HttpClient } from '../index';
-import { Templates } from './readHandlebarsTemplates';
+import { copyFile, mkdir, rmdir } from './fileSystem';
+import { Templates } from './registerHandlebarsTemplates';
 import { writeClientIndex } from './writeClientIndex';
 import { writeClientModels } from './writeClientModels';
 import { writeClientSchemas } from './writeClientSchemas';
 import { writeClientServices } from './writeClientServices';
 import { writeClientSettings } from './writeClientSettings';
 
-function copySupportFile(filePath: string, outputPath: string): void {
-    fs.copyFileSync(path.resolve(__dirname, `../src/templates/${filePath}`), path.resolve(outputPath, filePath));
+async function copySupportFile(filePath: string, outputPath: string): Promise<void> {
+    await copyFile(path.resolve(__dirname, `../src/templates/${filePath}`), path.resolve(outputPath, filePath));
 }
 
 /**
@@ -28,7 +26,7 @@ function copySupportFile(filePath: string, outputPath: string): void {
  * @param exportModels: Generate models.
  * @param exportSchemas: Generate schemas.
  */
-export function writeClient(
+export async function writeClient(
     client: Client,
     templates: Templates,
     output: string,
@@ -38,7 +36,7 @@ export function writeClient(
     exportServices: boolean,
     exportModels: boolean,
     exportSchemas: boolean
-): void {
+): Promise<void> {
     const outputPath = path.resolve(process.cwd(), output);
     const outputPathCore = path.resolve(outputPath, 'core');
     const outputPathModels = path.resolve(outputPath, 'models');
@@ -46,38 +44,38 @@ export function writeClient(
     const outputPathServices = path.resolve(outputPath, 'services');
 
     // Clean output directory
-    rimraf.sync(outputPath);
-    mkdirp.sync(outputPath);
+    await rmdir(outputPath);
+    await mkdir(outputPath);
 
     if (exportCore) {
-        mkdirp.sync(outputPathCore);
-        copySupportFile('core/ApiError.ts', outputPath);
-        copySupportFile('core/getFormData.ts', outputPath);
-        copySupportFile('core/getQueryString.ts', outputPath);
-        copySupportFile('core/isSuccess.ts', outputPath);
-        copySupportFile('core/request.ts', outputPath);
-        copySupportFile('core/RequestOptions.ts', outputPath);
-        copySupportFile('core/requestUsingFetch.ts', outputPath);
-        copySupportFile('core/requestUsingXHR.ts', outputPath);
-        copySupportFile('core/Result.ts', outputPath);
+        await mkdir(outputPathCore);
+        await copySupportFile('core/ApiError.ts', outputPath);
+        await copySupportFile('core/getFormData.ts', outputPath);
+        await copySupportFile('core/getQueryString.ts', outputPath);
+        await copySupportFile('core/isSuccess.ts', outputPath);
+        await copySupportFile('core/request.ts', outputPath);
+        await copySupportFile('core/RequestOptions.ts', outputPath);
+        await copySupportFile('core/requestUsingFetch.ts', outputPath);
+        await copySupportFile('core/requestUsingXHR.ts', outputPath);
+        await copySupportFile('core/Result.ts', outputPath);
     }
 
     if (exportServices) {
-        mkdirp.sync(outputPathServices);
-        writeClientSettings(client, templates, outputPathCore, httpClient);
-        writeClientServices(client.services, templates, outputPathServices, useOptions);
+        await mkdir(outputPathServices);
+        await writeClientSettings(client, templates, outputPathCore, httpClient);
+        await writeClientServices(client.services, templates, outputPathServices, useOptions);
     }
 
     if (exportSchemas) {
-        mkdirp.sync(outputPathSchemas);
-        writeClientSchemas(client.models, templates, outputPathSchemas);
+        await mkdir(outputPathSchemas);
+        await writeClientSchemas(client.models, templates, outputPathSchemas);
     }
 
     if (exportModels) {
-        mkdirp.sync(outputPathModels);
-        copySupportFile('models/Dictionary.ts', outputPath);
-        writeClientModels(client.models, templates, outputPathModels);
+        await mkdir(outputPathModels);
+        await copySupportFile('models/Dictionary.ts', outputPath);
+        await writeClientModels(client.models, templates, outputPathModels);
     }
 
-    writeClientIndex(client, templates, outputPath, exportCore, exportModels, exportServices, exportSchemas);
+    await writeClientIndex(client, templates, outputPath, exportCore, exportModels, exportServices, exportSchemas);
 }
