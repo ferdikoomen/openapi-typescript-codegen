@@ -3,7 +3,7 @@ import * as path from 'path';
 import { Client } from '../client/interfaces/Client';
 import { HttpClient } from '../index';
 import { copyFile, mkdir, rmdir } from './fileSystem';
-import { Templates } from './registerHandlebarsTemplates';
+import { Templates } from './registerHandlebarTemplates';
 import { writeClientIndex } from './writeClientIndex';
 import { writeClientModels } from './writeClientModels';
 import { writeClientSchemas } from './writeClientSchemas';

@@ -3,7 +3,7 @@ import * as path from 'path';
 import { Service } from '../client/interfaces/Service';
 import { writeFile } from './fileSystem';
 import { format } from './format';
-import { Templates } from './registerHandlebarsTemplates';
+import { Templates } from './registerHandlebarTemplates';
 
 /**
  * Generate Services using the Handlebar template and write to disk.

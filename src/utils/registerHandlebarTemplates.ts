@@ -41,7 +41,7 @@ export interface Templates {
  * Read all the Handlebar templates that we need and return on wrapper object
  * so we can easily access the templates in out generator / write functions.
  */
-export function registerHandlebarsTemplates(): Templates {
+export function registerHandlebarTemplates(): Templates {
     registerHandlebarHelpers();
 
     const templates: Templates = {

@@ -3,7 +3,7 @@ import * as path from 'path';
 import { Model } from '../client/interfaces/Model';
 import { writeFile } from './fileSystem';
 import { format } from './format';
-import { Templates } from './registerHandlebarsTemplates';
+import { Templates } from './registerHandlebarTemplates';
 
 /**
  * Generate Schemas using the Handlebar template and write to disk.

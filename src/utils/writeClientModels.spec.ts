@@ -1,6 +1,6 @@
 import { Model } from '../client/interfaces/Model';
 import { writeFile } from './fileSystem';
-import { Templates } from './registerHandlebarsTemplates';
+import { Templates } from './registerHandlebarTemplates';
 import { writeClientModels } from './writeClientModels';
 
 jest.mock('./fileSystem');

@@ -4,7 +4,7 @@ import { getOpenApiSpec } from './utils/getOpenApiSpec';
 import { getOpenApiVersion, OpenApiVersion } from './utils/getOpenApiVersion';
 import { isString } from './utils/isString';
 import { postProcessClient } from './utils/postProcessClient';
-import { registerHandlebarsTemplates } from './utils/registerHandlebarsTemplates';
+import { registerHandlebarTemplates } from './utils/registerHandlebarTemplates';
 import { writeClient } from './utils/writeClient';
 
 export enum HttpClient {
@@ -56,7 +56,7 @@ export async function generate({
     // handlebar templates for the given language
     const openApi = isString(input) ? await getOpenApiSpec(input) : input;
     const openApiVersion = getOpenApiVersion(openApi);
-    const templates = registerHandlebarsTemplates();
+    const templates = registerHandlebarTemplates();
 
     switch (openApiVersion) {
         case OpenApiVersion.V2: {

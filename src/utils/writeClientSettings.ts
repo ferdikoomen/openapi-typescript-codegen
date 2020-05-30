@@ -3,7 +3,7 @@ import * as path from 'path';
 import { Client } from '../client/interfaces/Client';
 import { HttpClient } from '../index';
 import { writeFile } from './fileSystem';
-import { Templates } from './registerHandlebarsTemplates';
+import { Templates } from './registerHandlebarTemplates';
 
 /**
  * Generate OpenAPI configuration file "OpenAPI.ts"
