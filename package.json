@@ -66,7 +66,7 @@
         "rimraf": "3.0.2"
     },
     "devDependencies": {
-        "@babel/core": "7.9.6",
+        "@babel/core": "7.10.2",
         "@babel/preset-env": "7.10.2",
         "@babel/preset-typescript": "7.10.1",
         "@rollup/plugin-commonjs": "12.0.0",
