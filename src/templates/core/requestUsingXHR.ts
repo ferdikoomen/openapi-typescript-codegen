@@ -63,6 +63,11 @@ export async function requestUsingXHR(url: string, request: Readonly<RequestInit
         // because the request needs to be initialized!
         xhr.open(request.method!, url, true);
 
+        // When request credentials are set to include then this is
+        // the same behaviour as withCredentials = true in XHR:
+        // https://developer.mozilla.org/en-US/docs/Web/API/Request/credentials
+        xhr.withCredentials = request.credentials === 'include';
+
         // Add the headers (required when dealing with JSON)
         const headers = request.headers as Headers;
         headers.forEach((value: string, key: string): void => {
