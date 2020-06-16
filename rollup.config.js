@@ -50,7 +50,15 @@ export default {
         file: './dist/index.js',
         format: 'cjs',
     },
-    external: ['fs', 'os', 'util', 'handlebars/runtime', ...external],
+    external: [
+        'fs',
+        'os',
+        'util',
+        'http',
+        'https',
+        'handlebars/runtime',
+        ...external,
+    ],
     plugins: [
         handlebarsPlugin(),
         typescript({

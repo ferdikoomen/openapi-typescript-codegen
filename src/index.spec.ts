@@ -20,4 +20,20 @@ describe('index', () => {
             write: false,
         });
     });
+
+    it('downloads and parses v2 without issues', async () => {
+        await OpenAPI.generate({
+            input: 'https://raw.githubusercontent.com/ferdikoomen/openapi-typescript-codegen/master/test/mock/v2/spec.json',
+            output: './test/result/v22/',
+            write: false,
+        });
+    });
+
+    it('downloads and parses v3 without issues', async () => {
+        await OpenAPI.generate({
+            input: 'https://raw.githubusercontent.com/ferdikoomen/openapi-typescript-codegen/master/test/mock/v3/spec.json',
+            output: './test/result/v33/',
+            write: false,
+        });
+    });
 });
