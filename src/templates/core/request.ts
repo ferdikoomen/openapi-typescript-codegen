@@ -32,8 +32,14 @@ export async function request(options: Readonly<RequestOptions>): Promise<Result
     const request: RequestInit = {
         headers,
         method: options.method,
-        credentials: 'same-origin',
     };
+
+    // If we specified to send requests with credentials, then we
+    // set the request credentials options to include. This is only
+    // needed if you make cross-origin calls.
+    if (OpenAPI.WITH_CREDENTIALS) {
+        request.credentials = 'include';
+    }
 
     // If we have a bearer token then we set the authentication header.
     if (OpenAPI.TOKEN !== null && OpenAPI.TOKEN !== '') {
