@@ -2024,7 +2024,7 @@ exports[`v2 should generate: ./test/result/v2/services/DefaultsService.ts 1`] = 
 import { ModelThatExtends } from '../models/ModelThatExtends';
 import { ModelThatExtendsExtends } from '../models/ModelThatExtendsExtends';
 import { ModelWithString } from '../models/ModelWithString';
-import { ApiError, catchGenericError } from '../core/ApiError';
+import { catchGenericError } from '../core/ApiError';
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
@@ -2164,7 +2164,7 @@ exports[`v2 should generate: ./test/result/v2/services/DuplicateService.ts 1`] =
 /* eslint-disable */
 /* prettier-ignore */
 
-import { ApiError, catchGenericError } from '../core/ApiError';
+import { catchGenericError } from '../core/ApiError';
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
@@ -2278,7 +2278,7 @@ exports[`v2 should generate: ./test/result/v2/services/ParametersService.ts 1`] 
 /* eslint-disable */
 /* prettier-ignore */
 
-import { ApiError, catchGenericError } from '../core/ApiError';
+import { catchGenericError } from '../core/ApiError';
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
@@ -2464,7 +2464,7 @@ exports[`v2 should generate: ./test/result/v2/services/SimpleService.ts 1`] = `
 /* eslint-disable */
 /* prettier-ignore */
 
-import { ApiError, catchGenericError } from '../core/ApiError';
+import { catchGenericError } from '../core/ApiError';
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
@@ -2585,7 +2585,7 @@ exports[`v2 should generate: ./test/result/v2/services/TypesService.ts 1`] = `
 /* prettier-ignore */
 
 import { Dictionary } from '../models/Dictionary';
-import { ApiError, catchGenericError } from '../core/ApiError';
+import { catchGenericError } from '../core/ApiError';
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
@@ -4801,7 +4801,7 @@ exports[`v3 should generate: ./test/result/v3/services/DefaultsService.ts 1`] = 
 import { ModelThatExtends } from '../models/ModelThatExtends';
 import { ModelThatExtendsExtends } from '../models/ModelThatExtendsExtends';
 import { ModelWithString } from '../models/ModelWithString';
-import { ApiError, catchGenericError } from '../core/ApiError';
+import { catchGenericError } from '../core/ApiError';
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
@@ -4941,7 +4941,7 @@ exports[`v3 should generate: ./test/result/v3/services/DuplicateService.ts 1`] =
 /* eslint-disable */
 /* prettier-ignore */
 
-import { ApiError, catchGenericError } from '../core/ApiError';
+import { catchGenericError } from '../core/ApiError';
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
@@ -5055,7 +5055,7 @@ exports[`v3 should generate: ./test/result/v3/services/MultipartService.ts 1`] =
 /* eslint-disable */
 /* prettier-ignore */
 
-import { ApiError, catchGenericError } from '../core/ApiError';
+import { catchGenericError } from '../core/ApiError';
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
@@ -5095,7 +5095,7 @@ exports[`v3 should generate: ./test/result/v3/services/ParametersService.ts 1`] 
 import { ModelThatExtends } from '../models/ModelThatExtends';
 import { ModelThatExtendsExtends } from '../models/ModelThatExtendsExtends';
 import { ModelWithString } from '../models/ModelWithString';
-import { ApiError, catchGenericError } from '../core/ApiError';
+import { catchGenericError } from '../core/ApiError';
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
@@ -5347,7 +5347,7 @@ exports[`v3 should generate: ./test/result/v3/services/SimpleService.ts 1`] = `
 /* eslint-disable */
 /* prettier-ignore */
 
-import { ApiError, catchGenericError } from '../core/ApiError';
+import { catchGenericError } from '../core/ApiError';
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
@@ -5467,7 +5467,7 @@ exports[`v3 should generate: ./test/result/v3/services/TypesService.ts 1`] = `
 /* eslint-disable */
 /* prettier-ignore */
 
-import { ApiError, catchGenericError } from '../core/ApiError';
+import { catchGenericError } from '../core/ApiError';
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
@@ -5536,7 +5536,7 @@ exports[`v3 should generate: ./test/result/v3/services/UploadService.ts 1`] = `
 /* eslint-disable */
 /* prettier-ignore */
 
-import { ApiError, catchGenericError } from '../core/ApiError';
+import { catchGenericError } from '../core/ApiError';
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 

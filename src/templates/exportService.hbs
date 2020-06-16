@@ -8,9 +8,15 @@
 import { {{{this}}} } from '../models/{{{this}}}';
 {{/each}}
 {{/if}}
+{{#if hasApiErrors}}
 import { ApiError, catchGenericError } from '../core/ApiError';
+{{else}}
+import { catchGenericError } from '../core/ApiError';
+{{/if}}
 import { request as __request } from '../core/request';
+{{#if hasApiVersion}}
 import { OpenAPI } from '../core/OpenAPI';
+{{/if}}
 
 export class {{{name}}} {
 
