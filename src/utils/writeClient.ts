@@ -77,5 +77,5 @@ export async function writeClient(
         await writeClientModels(client.models, templates, outputPathModels);
     }
 
-    await writeClientIndex(client, templates, outputPath, exportCore, exportModels, exportServices, exportSchemas);
+    await writeClientIndex(client, templates, outputPath, exportCore, exportServices, exportModels, exportSchemas);
 }
