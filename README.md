@@ -20,7 +20,7 @@
 ## Known issues:
 - If you use enums inside your models / definitions then those enums are now
   inside a namespace with the same name as your model. This is called declaration
-  merging. However Babel 7 now support compiling of Typescript and right now they
+  merging. However, Babel 7 now support compiling of Typescript and right now they
   do not support namespaces.
 
 
@@ -111,7 +111,7 @@ createUser({
 
 ### Runtime schemas
 By default the OpenAPI generator only exports interfaces for your models. These interfaces will help you during
-development, but will not be available in javascript during runtime. However Swagger allows you to define properties
+development, but will not be available in javascript during runtime. However, Swagger allows you to define properties
 that can be useful during runtime, for instance: `maxLength` of a string or a `pattern` to match, etc. Let's say
 we have the following model:
 
@@ -158,7 +158,7 @@ export interface MyModel {
 }
 ```
 
-The interface does not contain any properties like `maxLength` or `pattern`. However they could be useful
+The interface does not contain any properties like `maxLength` or `pattern`. However, they could be useful
 if we wanted to create some form where a user could create such a model. In that form you would iterate
 over the properties to render form fields based on their type and validate the input based on the `maxLength`
 or `pattern` property. This requires us to have this information somewhere... For this we can use the
@@ -222,7 +222,7 @@ const MyForm = () => (
 
 ### Enum with custom names and descriptions
 You can use `x-enum-varnames` and `x-enum-descriptions` in your spec to generate enum with custom names and descriptions.
-It's not in official [spec](https://github.com/OAI/OpenAPI-Specification/issues/681) yet. But its a supported extension
+It's not in official [spec](https://github.com/OAI/OpenAPI-Specification/issues/681) yet. But it's a supported extension
 that can help developers use more meaningful enumerators.
 ```json
 {
@@ -274,3 +274,7 @@ import { OpenAPI } from './generated';
 
 OpenAPI.TOKEN = 'some-bearer-token';
 ```
+
+
+### Compare to other libraries
+LINK
