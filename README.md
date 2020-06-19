@@ -277,4 +277,4 @@ OpenAPI.TOKEN = 'some-bearer-token';
 
 
 ### Compare to other libraries
-LINK
+https://htmlpreview.github.io/?https://github.com/ferdikoomen/openapi-typescript-codegen/blob/master/samples/README.html
