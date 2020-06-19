@@ -43,7 +43,7 @@
         "src/templates/**/*.ts"
     ],
     "scripts": {
-        "clean": "rimraf ./dist ./test/result ./coverage",
+        "clean": "rimraf ./dist ./test/result ./coverage ./samples/examples",
         "build": "rollup --config",
         "run": "node ./test/index.js",
         "test": "jest",

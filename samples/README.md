@@ -21,9 +21,9 @@ And used the following generators with their default options:
 
 #Results
 
-<table>
+<table style="font-size: 12px; vertical-align: top; text-align: left;">
     <thead>
-        <tr>
+        <tr style="font-size: 12px; vertical-align: top; text-align: left;">
             <th></th>
             <th>openapi-typscript-codegen</th>
             <th>aurelia</th>
@@ -35,7 +35,7 @@ And used the following generators with their default options:
         </tr>
     </thead>
     <tbody>
-        <tr>
+        <tr style="font-size: 12px; vertical-align: top; text-align: left;">
             <th>Supports OpenApi v2 specification</th>
             <td>✅</td>
             <td>✅</td>
@@ -45,7 +45,7 @@ And used the following generators with their default options:
             <td>✅</td>
             <td>✅</td>
         </tr>
-        <tr>
+        <tr style="font-size: 12px; vertical-align: top; text-align: left;">
             <th>Supports OpenApi v3 specification</th>
             <td>✅</td>
             <td>❌</td>
@@ -55,17 +55,17 @@ And used the following generators with their default options:
             <td>❌</td>
             <td>❌</td>
         </tr>
-        <tr>
+        <tr style="font-size: 12px; vertical-align: top; text-align: left;">
             <th>Supports authentication</th>
-            <td>✅ Bearer token</td>
+            <td>✅<div>Bearer token</div></td>
             <td>❌</td>
-            <td>✅ Bearer token</td>
-            <td>✅ Bearer token</td>
-            <td>✅ Bearer token</td>
-            <td>✅ Bearer token</td>
-            <td>✅ Bearer token</td>
+            <td>✅<div>Bearer token</div></td>
+            <td>✅<div>Bearer token</div></td>
+            <td>✅<div>Bearer token</div></td>
+            <td>✅<div>Bearer token</div></td>
+            <td>✅<div>Bearer token</div></td>
         </tr>
-        <tr>
+        <tr style="font-size: 12px; vertical-align: top; text-align: left;">
             <th>Strongly typed models</th>
             <td>✅</td>
             <td>✅</td>
@@ -73,29 +73,29 @@ And used the following generators with their default options:
             <td>✅</td>
             <td>✅</td>
             <td>✅</td>
-            <td>✅ Using classes instead of simple interfaces</td>
+            <td>✅<div>Using classes instead of simple interfaces</td>
         </tr>
-        <tr>
+        <tr style="font-size: 12px; vertical-align: top; text-align: left;">
             <th>Strongly typed enums</th>
             <td>✅</td>
-            <td>✅ No enum is exported</td>
+            <td>✅<div>No enum is exported</div></td>
             <td>✅</td>
-            <td>✅ Odd cast to <code>&lt;any&gt</code></td>
-            <td>✅ Odd cast to <code>&lt;any&gt</code></td>
-            <td>✅ Odd cast to <code>&lt;any&gt</code></td>
-            <td>✅ Odd cast to <code>&lt;any&gt</code></td>
+            <td>✅<div>Odd cast to <code>&lt;any&gt</code></div></td>
+            <td>✅<div>Odd cast to <code>&lt;any&gt</code></div></td>
+            <td>✅<div>Odd cast to <code>&lt;any&gt</code></div></td>
+            <td>✅<div>Odd cast to <code>&lt;any&gt</code></div></td>
         </tr>
-        <tr>
+        <tr style="font-size: 12px; vertical-align: top; text-align: left;">
             <th>Models and services exported as individual files</th>
             <td>✅</td>
-            <td>❌ All models inside one file</td>
+            <td>❌<div>All models inside one file</div></td>
             <td>✅</td>
             <td>✅</td>
-            <td>❌ All models and services inside one file</td>
+            <td>❌<div>All models and services inside one file</div></td>
             <td>✅</td>
-            <td>❌ All models and services inside one file</td>
+            <td>❌<div>All models and services inside one file</div></td>
         </tr>
-        <tr>
+        <tr style="font-size: 12px; vertical-align: top; text-align: left;">
             <th>Index file that exports all services and models</th>
             <td>✅</td>
             <td>✅</td>
@@ -105,7 +105,7 @@ And used the following generators with their default options:
             <td>✅</td>
             <td>❌</td>
         </tr>
-        <tr>
+        <tr style="font-size: 12px; vertical-align: top; text-align: left;">
             <th>Service returns typed result</th>
             <td>✅</td>
             <td>✅</td>
@@ -115,17 +115,17 @@ And used the following generators with their default options:
             <td>✅</td>
             <td>✅</td>
         </tr>
-        <tr>
+        <tr style="font-size: 12px; vertical-align: top; text-align: left;">
             <th>Service supports sending and receiving binary content</th>
             <td>✅</td>
             <td>✅</td>
             <td>✅</td>
-            <td>❌ Passing file as application/octet-stream</td>
-            <td>❌ Passing file as application/octet-stream</td>
+            <td>❌<div>Passing file as <code>application/octet-stream</code></div></td>
+            <td>❌<div>Passing file as <code>application/octet-stream</code></div></td>
             <td>✅</td>
             <td>✅</td>
         </tr>
-        <tr>
+        <tr style="font-size: 12px; vertical-align: top; text-align: left;">
             <th>Models and services contain inline documentation</th>
             <td>✅</td>
             <td>❌</td>
@@ -135,15 +135,15 @@ And used the following generators with their default options:
             <td>❌</td>
             <td>❌</td>
         </tr>
-        <tr>
+        <tr style="font-size: 12px; vertical-align: top; text-align: left;">
             <th>Framework agnostic</th>
             <td>✅</td>
-            <td>❌ No, using <code>aurelia</code></td>
-            <td>❌ No, using <code>inversify</code> and <code>rxjs</code></td>
-            <td>❌ No, using <code>angular</code></td>
-            <td>✅ But depends on <code>portable-fetch</code></td>
-            <td>❌ No, using <code>jquery</code></td>
-            <td>❌ No, can only be used with NodeJS <code>http</code></td>
+            <td>❌<div>No, using <code>aurelia</code></div></td>
+            <td>❌<div>No, using <code>inversify</code> and <code>rxjs</code></div></td>
+            <td>❌<div> No, using <code>angular</code></div></td>
+            <td>✅<div>But depends on <code>portable-fetch</code></div></td>
+            <td>❌<div>No, using <code>jquery</code></div></td>
+            <td>❌<div>No, can only be used with NodeJS <code>http</code></div></td>
         </tr>
     </tbody>
 </table>
