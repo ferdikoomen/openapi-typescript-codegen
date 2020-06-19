@@ -15,3 +15,5 @@ java -jar ./swagger-codegen-cli-v3.jar generate -i v3/spec.json -l typescript-fe
 
 node ../bin/index.js --input v2/spec.json --output examples/v2/openapi-typescript-codegen/
 node ../bin/index.js --input v3/spec.json --output examples/v3/openapi-typescript-codegen/
+
+cd examples && find . -type f ! -iname "*.ts" -delete

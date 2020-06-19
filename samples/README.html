@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="google" value="notranslate">
+        <meta http-equiv="Content-Language" content="en_EN">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" crossorigin="anonymous">
+        <title>Compared to other libraries</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="page-header">
+                <h1>Compared to other libraries</h1>
+                <p class="lead">
+                    Depending on which generator you use, you will see different output. For instance:
+                    Different ways of generating models, services, level of quality, HTTP client, etc.
+                    I've compiled a list below with the results per area and how they compare
+                    against the openapi-typescript-codegen.
+                </p>
+            </div>
+            <h5>I've used the standard petshop examples from OpenAPI:</h5>
+            <ul>
+                <li><a href="https://petstore3.swagger.io/api/v3/openapi.json" target="_blank">https://petstore3.swagger.io/api/v3/openapi.json</a></li>
+                <li><a href="https://petstore.swagger.io/v2/swagger.json" target="_blank">https://petstore.swagger.io/v2/swagger.json</a></li>
+            </ul>
+            <hr/>
+            <h5>And used the following generators with their default options:</h5>
+            <ul>
+                <li>typescript-aurelia</li>
+                <li>typescript-angular</li>
+                <li>typescript-inversify</li>
+                <li>typescript-angular</li>
+                <li>typescript-fetch</li>
+                <li>typescript-jquery</li>
+                <li>typescript-node</li>
+            </ul>
+            <hr/>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th width="30%"></th>
+                        <th width="10%">openapi-typscript-codegen</th>
+                        <th width="10%">aurelia</th>
+                        <th width="10%">inversify</th>
+                        <th width="10%">angular</th>
+                        <th width="10%">fetch</th>
+                        <th width="10%">jquery</th>
+                        <th width="10%">node</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>Supports OpenApi v2 specification</th>
+                        <td class="success">✅</td>
+                        <td class="success">✅</td>
+                        <td class="success">✅</td>
+                        <td class="success">✅</td>
+                        <td class="success">✅</td>
+                        <td class="success">✅</td>
+                        <td class="success">✅</td>
+                    </tr>
+                    <tr>
+                        <th>Supports OpenApi v3 specification</th>
+                        <td class="success">✅</td>
+                        <td class="danger">❌</td>
+                        <td class="danger">❌</td>
+                        <td class="success">✅</td>
+                        <td class="success">✅</td>
+                        <td class="danger">❌</td>
+                        <td class="danger">❌</td>
+                    </tr>
+                    <tr>
+                        <th>Supports authentication</th>
+                        <td class="success">✅</td>
+                        <td class="danger">❌</td>
+                        <td class="success">✅</td>
+                        <td class="success">✅</td>
+                        <td class="success">✅</td>
+                        <td class="success">✅</td>
+                        <td class="success">✅</td>
+                    </tr>
+                    <tr>
+                        <th>Strongly typed models</th>
+                        <td class="success">✅</td>
+                        <td class="success">✅</td>
+                        <td class="success">✅</td>
+                        <td class="success">✅</td>
+                        <td class="success">✅</td>
+                        <td class="success">✅</td>
+                        <td class="success">✅</td>
+                    </tr>
+                    <tr>
+                        <th>Strongly typed enums</th>
+                        <td class="success">✅</td>
+                        <td class="success">✅</td>
+                        <td class="success">✅</td>
+                        <td class="success">✅</td>
+                        <td class="success">✅</td>
+                        <td class="success">✅</td>
+                        <td class="success">✅</td>
+                    </tr>
+                    <tr>
+                        <th>Models and services exported as individual files</th>
+                        <td class="success">✅</td>
+                        <td class="danger">❌</td>
+                        <td class="success">✅</td>
+                        <td class="success">✅</td>
+                        <td class="danger">❌</td>
+                        <td class="success">✅</td>
+                        <td class="danger">❌</td>
+                    </tr>
+                    <tr>
+                        <th>Index file that exports all services and models</th>
+                        <td class="success">✅</td>
+                        <td class="success">✅</td>
+                        <td class="danger">❌</td>
+                        <td class="success">✅</td>
+                        <td class="success">✅</td>
+                        <td class="success">✅</td>
+                        <td class="danger">❌</td>
+                    </tr>
+                    <tr>
+                        <th>Service returns typed result</th>
+                        <td class="success">✅</td>
+                        <td class="success">✅</td>
+                        <td class="success">✅</td>
+                        <td class="success">✅</td>
+                        <td class="danger">❌</td>
+                        <td class="success">✅</td>
+                        <td class="success">✅</td>
+                    </tr>
+                    <tr>
+                        <th>Service supports sending and receiving binary content</th>
+                        <td class="success">✅</td>
+                        <td class="success">✅</td>
+                        <td class="success">✅</td>
+                        <td class="danger">❌</td>
+                        <td class="danger">❌</td>
+                        <td class="success">✅</td>
+                        <td class="success">✅</td>
+                    </tr>
+                    <tr>
+                        <th>Models and services contain inline documentation</th>
+                        <td class="success">✅</td>
+                        <td class="success">✅</td>
+                        <td class="success">✅</td>
+                        <td class="success">✅</td>
+                        <td class="success">✅</td>
+                        <td class="success">✅</td>
+                        <td class="success">✅</td>
+                    </tr>
+                    <tr>
+                        <th>Framework agnostic</th>
+                        <td class="success">✅</td>
+                        <td class="danger">❌</td>
+                        <td class="danger">❌</td>
+                        <td class="danger">❌</td>
+                        <td class="success">✅</td>
+                        <td class="danger">❌</td>
+                        <td class="danger">❌</td>
+                    </tr>
+                    <tr>
+                        <th>Generated size (typescript)</th>
+                        <td><span class="badge">30Kb</span></td>
+                        <td><span class="badge">30Kb</span></td>
+                        <td><span class="badge">30Kb</span></td>
+                        <td><span class="badge">30Kb</span></td>
+                        <td><span class="badge">30Kb</span></td>
+                        <td><span class="badge">30Kb</span></td>
+                        <td><span class="badge">30Kb</span></td>
+                    </tr>
+                    <tr>
+                        <th>Build size (javascript)</th>
+                        <td><span class="badge">30Kb</span></td>
+                        <td><span class="badge">30Kb</span></td>
+                        <td><span class="badge">30Kb</span></td>
+                        <td><span class="badge">30Kb</span></td>
+                        <td><span class="badge">30Kb</span></td>
+                        <td><span class="badge">30Kb</span></td>
+                        <td><span class="badge">30Kb</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>
