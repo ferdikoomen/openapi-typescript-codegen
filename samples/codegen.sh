@@ -20,7 +20,3 @@ echo v3/openapi-typescript-codegen && time node ../bin/index.js --input v3/spec.
 
 yarn install
 yarn run build
-
-cd examples
-find . -type f ! -iname "*.ts" -delete
-cd ../

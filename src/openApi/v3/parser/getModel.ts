@@ -114,7 +114,10 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isDefiniti
         }
     }
 
-    if (definition.anyOf && definition.anyOf.length) {
+    // TODO: Add correct support for oneOf, anyOf, allOf
+    // TODO: https://swagger.io/docs/specification/data-models/oneof-anyof-allof-not/
+
+    if (definition.anyOf && definition.anyOf.length && !definition.properties) {
         model.export = 'generic';
         const compositionTypes = definition.anyOf.filter(type => type.$ref).map(type => getType(type.$ref));
         const composition = compositionTypes
@@ -127,7 +130,7 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isDefiniti
         return model;
     }
 
-    if (definition.oneOf && definition.oneOf.length) {
+    if (definition.oneOf && definition.oneOf.length && !definition.properties) {
         model.export = 'generic';
         const compositionTypes = definition.oneOf.filter(type => type.$ref).map(type => getType(type.$ref));
         const composition = compositionTypes

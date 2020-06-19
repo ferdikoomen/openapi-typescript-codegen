@@ -8,6 +8,11 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" crossorigin="anonymous">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" crossorigin="anonymous">
         <title>Compared to other generators</title>
+        <style>
+            details summary {
+                outline: none;
+            }
+        </style>
     </head>
     <body>
         <div class="container">
@@ -137,14 +142,16 @@
                         <td class="success" data-type="aurelia">✅</td>
                         <td class="success" data-type="inversify">✅</td>
                         <td class="warning" data-type="angular">
+                            <span>⚠️</span>
                             <details>
-                                <summary>⚠️</summary>
+                                <summary>Details</summary>
                                 <p>V3 version sends data as <code>application/octet-stream</code> instead of <code>application/x-www-form-urlencoded</code></p>
                             </details>
                         </td>
                         <td class="warning" data-type="fetch">
+                            <span>⚠️</span>
                             <details>
-                                <summary>⚠️</summary>
+                                <summary>Details</summary>
                                 <p>V3 version sends data as <code>application/octet-stream</code> instead of <code>application/x-www-form-urlencoded</code></p>
                             </details>
                         </td>
@@ -168,15 +175,17 @@
                         <td class="danger" data-type="inversify">❌</td>
                         <td class="danger" data-type="angular">❌</td>
                         <td class="warning" data-type="node">
+                            <span>⚠️</span>
                             <details>
-                                <summary>⚠️</summary>
+                                <summary>Details</summary>
                                 <p>Requires portable-fetch</p>
                             </details>
                         </td>
                         <td class="danger" data-type="jquery">❌</td>
                         <td class="warning" data-type="node">
+                            <span>⚠️</span>
                             <details>
-                                <summary>⚠️</summary>
+                                <summary>Details</summary>
                                 <p>Requires bluebird</p>
                             </details>
                         </td>
@@ -185,38 +194,44 @@
                         <th>Compiles in strict mode without issues</th>
                         <td class="success" data-type="openapi-typescript-codegen">✅</td>
                         <td class="danger" data-type="aurelia">
+                            <span>❌</span>
                             <details>
-                                <summary>❌</summary>
+                                <summary>Details</summary>
                                 <p>Errors when compiling: <code>PetApi.ts:147:30 - error TS2345: Argument of type 'string | undefined' is not assignable to parameter of type 'string'</code></p>
                             </details>
                         </td>
                         <td class="danger" data-type="inversify">
+                            <span>❌</span>
                             <details>
-                                <summary>❌</summary>
+                                <summary>Details</summary>
                                 <p>Errors when compiling: <code>pet.service.ts:312:159 - error TS2304: Cannot find name 'body'</code></p>
                             </details>
                         </td>
                         <td class="danger" data-type="angular">
+                            <span>❌</span>
                             <details>
-                                <summary>❌</summary>
+                                <summary>Details</summary>
                                 <p>Errors when compiling: <code>pet.service.ts:528:26 - error TS1345: An expression of type 'void' cannot be tested for truthiness</code></p>
                             </details>
                         </td>
                         <td class="danger" data-type="fetch">
+                            <span>❌</span>
                             <details>
-                                <summary>❌</summary>
+                                <summary>Details</summary>
                                 <p>Errors when compiling: <code>api.ts:2276:67 - error TS2300: Duplicate identifier 'username'</code></p>
                             </details>
                         </td>
                         <td class="danger" data-type="jquery">
+                            <span>❌</span>
                             <details>
-                                <summary>❌</summary>
+                                <summary>Details</summary>
                                 <p>Errors when compiling: <code>PetApi.ts:25:12 - error TS2322: Type 'null' is not assignable to type 'JQueryAjaxSettings | undefined'</code></p>
                             </details>
                         </td>
                         <td class="danger" data-type="node">
+                            <span>❌</span>
                             <details>
-                                <summary>❌</summary>
+                                <summary>Details</summary>
                                 <p>Errors when compiling: <code>api.ts:1631:45 - error TS2694: Namespace '"http"' has no exported member 'ClientResponse'</code></p>
                             </details>
                         </td>
