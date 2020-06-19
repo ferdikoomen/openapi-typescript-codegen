@@ -1,3 +1,5 @@
+examples
+node_modules
 swagger-codegen-cli-v2.jar
 swagger-codegen-cli-v3.jar
-examples
+yarn.lock
