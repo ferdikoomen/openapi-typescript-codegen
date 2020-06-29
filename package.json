@@ -87,7 +87,7 @@
         "jest": "26.1.0",
         "jest-cli": "26.1.0",
         "prettier": "2.0.5",
-        "rollup": "2.18.0",
+        "rollup": "2.18.1",
         "rollup-plugin-terser": "6.1.0",
         "rollup-plugin-typescript2": "0.27.1",
         "typescript": "3.9.5"
