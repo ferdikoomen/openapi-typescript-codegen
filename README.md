@@ -276,5 +276,11 @@ OpenAPI.TOKEN = 'some-bearer-token';
 ```
 
 
-### Compare to other libraries
-[samples/README.html](https://htmlpreview.github.io/?https://github.com/ferdikoomen/openapi-typescript-codegen/blob/master/samples/README.html)
+### Compare to other generators
+
+Depending on which swagger generator you use, you will see different output.
+For instance: Different ways of generating models, services, level of quality,
+HTTP client, etc. I've compiled a list with the results per area and how they
+compare against the openapi-typescript-codegen.
+
+[Click here to see the comparison](https://htmlpreview.github.io/?https://github.com/ferdikoomen/openapi-typescript-codegen/blob/master/samples/index.html)
