@@ -69,7 +69,7 @@
         "@babel/core": "7.10.4",
         "@babel/preset-env": "7.10.4",
         "@babel/preset-typescript": "7.10.4",
-        "@rollup/plugin-commonjs": "13.0.0",
+        "@rollup/plugin-commonjs": "13.0.1",
         "@rollup/plugin-node-resolve": "8.1.0",
         "@types/jest": "26.0.3",
         "@types/js-yaml": "3.12.5",
