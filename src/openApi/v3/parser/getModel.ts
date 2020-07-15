@@ -143,13 +143,13 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isDefiniti
         return model;
     }
 
-    if (definition.type === 'object') {
+    if (definition.type === 'object' || definition.allOf) {
         model.export = 'interface';
         model.type = PrimaryType.OBJECT;
         model.base = PrimaryType.OBJECT;
         model.default = getModelDefault(definition, model);
 
-        if (definition.allOf) {
+        if (definition.allOf && definition.allOf.length) {
             definition.allOf.forEach(parent => {
                 if (parent.$ref) {
                     const parentRef = getType(parent.$ref);
