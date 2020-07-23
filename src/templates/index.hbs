@@ -12,7 +12,7 @@ export { OpenAPI } from './core/OpenAPI';
 {{#if models}}
 
 {{#each models}}
-export { {{{this}}} } from './models/{{{this}}}';
+export type { {{{this}}} } from './models/{{{this}}}';
 {{/each}}
 {{/if}}
 {{/if}}
