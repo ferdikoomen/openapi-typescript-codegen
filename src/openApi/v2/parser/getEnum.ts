@@ -1,5 +1,6 @@
 import { Enum } from '../../../client/interfaces/Enum';
 import { PrimaryType } from './constants';
+import { isDefined } from './isDefined';
 
 export function getEnum(values?: (string | number)[]): Enum[] {
     if (Array.isArray(values)) {
@@ -7,6 +8,7 @@ export function getEnum(values?: (string | number)[]): Enum[] {
             .filter((value, index, arr) => {
                 return arr.indexOf(value) === index;
             })
+            .filter(isDefined)
             .map(value => {
                 if (typeof value === 'number') {
                     return {
