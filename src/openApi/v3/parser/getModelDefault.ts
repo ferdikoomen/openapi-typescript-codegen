@@ -2,16 +2,24 @@ import { Model } from '../../../client/interfaces/Model';
 import { OpenApiSchema } from '../interfaces/OpenApiSchema';
 
 export function getModelDefault(definition: OpenApiSchema, model?: Model): string | undefined {
+    if (definition.default === undefined) {
+        return;
+    }
+
     if (definition.default === null) {
         return 'null';
     }
 
-    switch (typeof definition.default) {
+    const type = definition.type || typeof definition.default;
+
+    switch (type) {
+        case 'int':
+        case 'integer':
         case 'number':
             if (model && model.export == 'enum' && model.enum.length && model.enum[definition.default]) {
                 return model.enum[definition.default].value;
             }
-            return JSON.stringify(definition.default);
+            return definition.default;
 
         case 'boolean':
             return JSON.stringify(definition.default);

@@ -2,16 +2,24 @@ import { OperationParameter } from '../../../client/interfaces/OperationParamete
 import { OpenApiParameter } from '../interfaces/OpenApiParameter';
 
 export function getOperationParameterDefault(parameter: OpenApiParameter, operationParameter: OperationParameter): string | undefined {
+    if (parameter.default === undefined) {
+        return;
+    }
+
     if (parameter.default === null) {
         return 'null';
     }
 
-    switch (typeof parameter.default) {
+    const type = parameter.type || typeof parameter.default;
+
+    switch (type) {
+        case 'int':
+        case 'integer':
         case 'number':
             if (operationParameter.export == 'enum' && operationParameter.enum.length && operationParameter.enum[parameter.default]) {
                 return operationParameter.enum[parameter.default].value;
             }
-            return JSON.stringify(parameter.default);
+            return parameter.default;
 
         case 'boolean':
             return JSON.stringify(parameter.default);
