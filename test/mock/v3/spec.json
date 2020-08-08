@@ -54,7 +54,7 @@
                 "operationId": "PatchCallWithoutParametersAndResponse"
             }
         },
-        "/api/v{api-version}/parameters": {
+        "/api/v{api-version}/parameters/{parameterPath}": {
             "get": {
                 "tags": [
                     "Parameters"
@@ -62,7 +62,7 @@
                 "operationId": "CallWithParameters",
                 "parameters": [
                     {
-                        "description": "This is the parameter that goes into the request header",
+                        "description": "This is the parameter that goes into the header",
                         "name": "parameterHeader",
                         "in": "header",
                         "required": true,
@@ -72,7 +72,7 @@
                         }
                     },
                     {
-                        "description": "This is the parameter that goes into the request query params",
+                        "description": "This is the parameter that goes into the query params",
                         "name": "parameterQuery",
                         "in": "query",
                         "required": true,
@@ -82,7 +82,7 @@
                         }
                     },
                     {
-                        "description": "This is the parameter that goes into the request form data",
+                        "description": "This is the parameter that goes into the form data",
                         "name": "parameterForm",
                         "in": "formData",
                         "required": true,
@@ -95,6 +95,16 @@
                         "description": "This is the parameter that goes into the cookie",
                         "name": "parameterCookie",
                         "in": "cookie",
+                        "required": true,
+                        "nullable": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "This is the parameter that goes into the path",
+                        "name": "parameterPath",
+                        "in": "path",
                         "required": true,
                         "nullable": true,
                         "schema": {

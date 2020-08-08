@@ -1,4 +1,5 @@
 import { Operation } from '../../../client/interfaces/Operation';
+import { OperationParameters } from '../../../client/interfaces/OperationParameters';
 import { OpenApi } from '../interfaces/OpenApi';
 import { OpenApiOperation } from '../interfaces/OpenApiOperation';
 import { getComment } from './getComment';
@@ -13,7 +14,7 @@ import { getOperationResults } from './getOperationResults';
 import { getServiceClassName } from './getServiceClassName';
 import { sortByRequired } from './sortByRequired';
 
-export function getOperation(openApi: OpenApi, url: string, method: string, op: OpenApiOperation): Operation {
+export function getOperation(openApi: OpenApi, url: string, method: string, op: OpenApiOperation, pathParams: OperationParameters): Operation {
     const serviceName = (op.tags && op.tags[0]) || 'Service';
     const serviceClassName = getServiceClassName(serviceName);
     const operationNameFallback = `${method}${serviceClassName}`;
@@ -29,13 +30,13 @@ export function getOperation(openApi: OpenApi, url: string, method: string, op: 
         deprecated: op.deprecated === true,
         method: method,
         path: operationPath,
-        parameters: [],
-        parametersPath: [],
-        parametersQuery: [],
-        parametersForm: [],
-        parametersHeader: [],
-        parametersCookie: [],
-        parametersBody: null,
+        parameters: [...pathParams.parameters],
+        parametersPath: [...pathParams.parametersPath],
+        parametersQuery: [...pathParams.parametersQuery],
+        parametersForm: [...pathParams.parametersForm],
+        parametersHeader: [...pathParams.parametersHeader],
+        parametersCookie: [...pathParams.parametersCookie],
+        parametersBody: pathParams.parametersBody,
         imports: [],
         errors: [],
         results: [],

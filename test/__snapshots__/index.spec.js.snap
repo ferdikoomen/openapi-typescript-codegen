@@ -2246,10 +2246,11 @@ import { OpenAPI } from '../core/OpenAPI';
 export class ParametersService {
 
     /**
-     * @param parameterHeader This is the parameter that goes into the request header
-     * @param parameterQuery This is the parameter that goes into the request query params
-     * @param parameterForm This is the parameter that goes into the request form data
+     * @param parameterHeader This is the parameter that goes into the header
+     * @param parameterQuery This is the parameter that goes into the query params
+     * @param parameterForm This is the parameter that goes into the form data
      * @param parameterBody This is the parameter that is send as request body
+     * @param parameterPath This is the parameter that goes into the path
      * @throws ApiError
      */
     public static async callWithParameters(
@@ -2257,11 +2258,12 @@ export class ParametersService {
         parameterQuery: string,
         parameterForm: string,
         parameterBody: string,
+        parameterPath: string,
     ): Promise<void> {
 
         const result = await __request({
             method: 'get',
-            path: \`/api/v\${OpenAPI.VERSION}/parameters\`,
+            path: \`/api/v\${OpenAPI.VERSION}/parameters/\${parameterPath}\`,
             headers: {
                 'parameterHeader': parameterHeader,
             },
@@ -4993,10 +4995,11 @@ import { OpenAPI } from '../core/OpenAPI';
 export class ParametersService {
 
     /**
-     * @param parameterHeader This is the parameter that goes into the request header
-     * @param parameterQuery This is the parameter that goes into the request query params
-     * @param parameterForm This is the parameter that goes into the request form data
+     * @param parameterHeader This is the parameter that goes into the header
+     * @param parameterQuery This is the parameter that goes into the query params
+     * @param parameterForm This is the parameter that goes into the form data
      * @param parameterCookie This is the parameter that goes into the cookie
+     * @param parameterPath This is the parameter that goes into the path
      * @param requestBody This is the parameter that goes into the body
      * @throws ApiError
      */
@@ -5005,12 +5008,13 @@ export class ParametersService {
         parameterQuery: string | null,
         parameterForm: string | null,
         parameterCookie: string | null,
+        parameterPath: string | null,
         requestBody: ModelWithString | null,
     ): Promise<void> {
 
         const result = await __request({
             method: 'get',
-            path: \`/api/v\${OpenAPI.VERSION}/parameters\`,
+            path: \`/api/v\${OpenAPI.VERSION}/parameters/\${parameterPath}\`,
             cookies: {
                 'parameterCookie': parameterCookie,
             },

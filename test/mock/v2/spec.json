@@ -54,7 +54,7 @@
                 "operationId": "PatchCallWithoutParametersAndResponse"
             }
         },
-        "/api/v{api-version}/parameters": {
+        "/api/v{api-version}/parameters/{parameterPath}": {
             "get": {
                 "tags": [
                     "Parameters"
@@ -62,21 +62,21 @@
                 "operationId": "CallWithParameters",
                 "parameters": [
                     {
-                        "description": "This is the parameter that goes into the request header",
+                        "description": "This is the parameter that goes into the header",
                         "name": "parameterHeader",
                         "in": "header",
                         "type": "string",
                         "required": true
                     },
                     {
-                        "description": "This is the parameter that goes into the request query params",
+                        "description": "This is the parameter that goes into the query params",
                         "name": "parameterQuery",
                         "in": "query",
                         "type": "string",
                         "required": true
                     },
                     {
-                        "description": "This is the parameter that goes into the request form data",
+                        "description": "This is the parameter that goes into the form data",
                         "name": "parameterForm",
                         "in": "formData",
                         "type": "string",
@@ -86,6 +86,13 @@
                         "description": "This is the parameter that is send as request body",
                         "name": "parameterBody",
                         "in": "body",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "description": "This is the parameter that goes into the path",
+                        "name": "parameterPath",
+                        "in": "path",
                         "type": "string",
                         "required": true
                     },
