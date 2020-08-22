@@ -1,7 +1,6 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-/* prettier-ignore */
 
 export interface RequestOptions {
     method: 'get' | 'put' | 'post' | 'delete' | 'options' | 'head' | 'patch';
