@@ -11,7 +11,13 @@ export { OpenAPI } from './core/OpenAPI';
 {{#if models}}
 
 {{#each models}}
-export { {{{this}}} } from './models/{{{this}}}';
+{{#if enum}}
+export { {{{name}}} } from './models/{{{name}}}';
+{{else if enums}}
+export { {{{name}}} } from './models/{{{name}}}';
+{{else}}
+export type { {{{name}}} } from './models/{{{name}}}';
+{{/if}}
 {{/each}}
 {{/if}}
 {{/if}}
@@ -19,7 +25,7 @@ export { {{{this}}} } from './models/{{{this}}}';
 {{#if models}}
 
 {{#each models}}
-export { ${{{this}}} } from './schemas/${{{this}}}';
+export { ${{{name}}} } from './schemas/${{{name}}}';
 {{/each}}
 {{/if}}
 {{/if}}
@@ -27,7 +33,7 @@ export { ${{{this}}} } from './schemas/${{{this}}}';
 {{#if services}}
 
 {{#each services}}
-export { {{{this}}} } from './services/{{{this}}}';
+export { {{{name}}} } from './services/{{{name}}}';
 {{/each}}
 {{/if}}
 {{/if}}

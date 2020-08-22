@@ -2,9 +2,9 @@ import * as path from 'path';
 
 import { Client } from '../client/interfaces/Client';
 import { writeFile } from './fileSystem';
-import { getModelNames } from './getModelNames';
-import { getServiceNames } from './getServiceNames';
 import { Templates } from './registerHandlebarTemplates';
+import { sortModelsByName } from './sortModelsByName';
+import { sortServicesByName } from './sortServicesByName';
 
 /**
  * Generate the OpenAPI client index file using the Handlebar template and write it to disk.
@@ -36,8 +36,8 @@ export async function writeClientIndex(
             exportSchemas,
             server: client.server,
             version: client.version,
-            models: getModelNames(client.models),
-            services: getServiceNames(client.services),
+            models: sortModelsByName(client.models),
+            services: sortServicesByName(client.services),
         })
     );
 }
