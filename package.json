@@ -90,6 +90,6 @@
         "rollup": "2.23.1",
         "rollup-plugin-terser": "7.0.0",
         "rollup-plugin-typescript2": "0.27.2",
-        "typescript": "3.9.7"
+        "typescript": "4.0.2"
     }
 }
