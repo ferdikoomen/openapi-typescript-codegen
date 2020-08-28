@@ -1,5 +1,5 @@
 import * as fs from 'fs';
-import * as mkdirp from 'mkdirp';
+import mkdirp from 'mkdirp';
 import rimraf from 'rimraf';
 import * as util from 'util';
 
