@@ -66,10 +66,10 @@ export default {
         }),
         nodeResolve(),
         commonjs(),
-        // terser({
-        //     output: {
-        //         comments: false,
-        //     },
-        // }),
+        terser({
+            output: {
+                comments: false,
+            },
+        }),
     ],
 };
