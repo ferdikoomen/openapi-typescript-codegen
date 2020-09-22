@@ -8,4 +8,5 @@ export interface Result {
     status: number;
     statusText: string;
     body: any;
+    response?: Response|XMLHttpRequest;
 }

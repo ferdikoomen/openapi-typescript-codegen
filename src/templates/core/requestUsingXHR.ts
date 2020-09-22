@@ -54,7 +54,7 @@ function parseHeader(xhr: XMLHttpRequest, responseHeader?: string): string | nul
  * @param request The request object, containing method, headers, body, etc.
  * @param responseHeader The header we want to parse.
  */
-export async function requestUsingXHR(url: string, request: Readonly<RequestInit>, responseHeader?: string): Promise<Result> {
+export async function requestUsingXHR(url: string, request: Readonly<RequestInit>, responseHeader?: string, includeResponse?: boolean): Promise<Result> {
     return new Promise(resolve => {
         const xhr = new XMLHttpRequest();
 
@@ -88,6 +88,7 @@ export async function requestUsingXHR(url: string, request: Readonly<RequestInit
                     status: xhr.status,
                     statusText: xhr.statusText,
                     body: contentHeader || contentBody,
+                    response: includeResponse ? xhr : undefined
                 };
 
                 // Done!

@@ -4,7 +4,7 @@
 
 import { getFormData } from './getFormData';
 import { getQueryString } from './getQueryString';
-import { OpenAPI } from './OpenAPI';
+import { OpenAPI, RequestHookParams, ResponseHookParams } from './OpenAPI';
 import { RequestOptions } from './RequestOptions';
 import { requestUsingFetch } from './requestUsingFetch';
 import { requestUsingXHR } from './requestUsingXHR';
@@ -73,18 +73,16 @@ export async function request(options: Readonly<RequestOptions>): Promise<Result
 
     
     // Pre-hook on request if a function is provided.
-    const requestToSend = OpenAPI.REQUEST_HOOK ? (await OpenAPI.REQUEST_HOOK(request)) : request;
-
+    const requestHookResult = OpenAPI.REQUEST_HOOK ? (await OpenAPI.REQUEST_HOOK({ url, request, responseHeader: options.responseHeader})) : { url, request, responseHeader: options.responseHeader};
     try {
-        let response: Result;
+        let result: Result;
         switch (OpenAPI.CLIENT) {
             case 'xhr':
-                response = await requestUsingXHR(url, request, options.responseHeader);
+                result = await requestUsingXHR(requestHookResult.url, requestHookResult.request, requestHookResult.responseHeader, !!OpenAPI.RESPONSE_HOOK);
             default:
-                response = await requestUsingFetch(url, request, options.responseHeader);
+                result = await requestUsingFetch(requestHookResult.url, requestHookResult.request, requestHookResult.responseHeader, !!OpenAPI.RESPONSE_HOOK);
         }
-        // If there is a response hook, call it
-        return OpenAPI.RESPONSE_HOOK ? OpenAPI.RESPONSE_HOOK(response) : response;
+        return OpenAPI.RESPONSE_HOOK ? OpenAPI.RESPONSE_HOOK({url, result}) : result;
     } catch (error) {
         return {
             url,

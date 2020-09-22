@@ -4,14 +4,25 @@
 
 import { Result } from './Result';
 
+export interface RequestHookParams {
+    url: string;
+    request: RequestInit;
+    responseHeader: string|undefined;
+}
+
+export interface ResponseHookParams {
+    url: string;
+    result: Result;
+}
+
 interface Config {
     BASE: string;
     VERSION: string;
     CLIENT: 'fetch' | 'xhr';
     WITH_CREDENTIALS: boolean;
     TOKEN: string;
-    REQUEST_HOOK?(request: RequestInit): Promise<RequestInit>;
-    RESPONSE_HOOK?(result: Result): Promise<Result>
+    REQUEST_HOOK?(params: RequestHookParams): Promise<RequestHookParams>;
+    RESPONSE_HOOK?(result: ResponseHookParams): Promise<Result>
 }
 
 export const OpenAPI: Config = {

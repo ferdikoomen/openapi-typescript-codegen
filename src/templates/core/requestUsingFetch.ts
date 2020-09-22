@@ -52,7 +52,7 @@ function parseHeader(response: Response, responseHeader?: string): string | null
  * @param request The request object, containing method, headers, body, etc.
  * @param responseHeader The header we want to parse.
  */
-export async function requestUsingFetch(url: string, request: Readonly<RequestInit>, responseHeader?: string): Promise<Result> {
+export async function requestUsingFetch(url: string, request: Readonly<RequestInit>, responseHeader?: string, includeResponse?: boolean): Promise<Result> {
 
     // Fetch response using fetch API.
     const response = await fetch(url, request);
@@ -68,5 +68,6 @@ export async function requestUsingFetch(url: string, request: Readonly<RequestIn
         status: response.status,
         statusText: response.statusText,
         body: contentHeader || contentBody,
+        response: includeResponse ? response : undefined
     };
 }
