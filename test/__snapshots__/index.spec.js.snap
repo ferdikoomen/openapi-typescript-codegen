@@ -65,12 +65,16 @@ exports[`v2 should generate: ./test/result/v2/core/OpenAPI.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 
+import { Result } from './Result';
+
 interface Config {
     BASE: string;
     VERSION: string;
     CLIENT: 'fetch' | 'xhr';
     WITH_CREDENTIALS: boolean;
     TOKEN: string;
+    REQUEST_HOOK?(request: RequestInit): Promise<RequestInit>;
+    RESPONSE_HOOK?(result: Result): Promise<Result>
 }
 
 export const OpenAPI: Config = {
@@ -78,7 +82,7 @@ export const OpenAPI: Config = {
     VERSION: '9.0',
     CLIENT: 'fetch',
     WITH_CREDENTIALS: false,
-    TOKEN: '',
+    TOKEN: ''
 };"
 `;
 
@@ -263,13 +267,20 @@ export async function request(options: Readonly<RequestOptions>): Promise<Result
         }
     }
 
+    
+    // Pre-hook on request if a function is provided.
+    const requestToSend = OpenAPI.REQUEST_HOOK ? (await OpenAPI.REQUEST_HOOK(request)) : request;
+
     try {
+        let response: Result;
         switch (OpenAPI.CLIENT) {
             case 'xhr':
-                return await requestUsingXHR(url, request, options.responseHeader);
+                response = await requestUsingXHR(url, request, options.responseHeader);
             default:
-                return await requestUsingFetch(url, request, options.responseHeader);
+                response = await requestUsingFetch(url, request, options.responseHeader);
         }
+        // If there is a response hook, call it
+        return OpenAPI.RESPONSE_HOOK ? OpenAPI.RESPONSE_HOOK(response) : response;
     } catch (error) {
         return {
             url,
@@ -2555,12 +2566,16 @@ exports[`v3 should generate: ./test/result/v3/core/OpenAPI.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 
+import { Result } from './Result';
+
 interface Config {
     BASE: string;
     VERSION: string;
     CLIENT: 'fetch' | 'xhr';
     WITH_CREDENTIALS: boolean;
     TOKEN: string;
+    REQUEST_HOOK?(request: RequestInit): Promise<RequestInit>;
+    RESPONSE_HOOK?(result: Result): Promise<Result>
 }
 
 export const OpenAPI: Config = {
@@ -2568,7 +2583,7 @@ export const OpenAPI: Config = {
     VERSION: '1',
     CLIENT: 'fetch',
     WITH_CREDENTIALS: false,
-    TOKEN: '',
+    TOKEN: ''
 };"
 `;
 
@@ -2753,13 +2768,20 @@ export async function request(options: Readonly<RequestOptions>): Promise<Result
         }
     }
 
+    
+    // Pre-hook on request if a function is provided.
+    const requestToSend = OpenAPI.REQUEST_HOOK ? (await OpenAPI.REQUEST_HOOK(request)) : request;
+
     try {
+        let response: Result;
         switch (OpenAPI.CLIENT) {
             case 'xhr':
-                return await requestUsingXHR(url, request, options.responseHeader);
+                response = await requestUsingXHR(url, request, options.responseHeader);
             default:
-                return await requestUsingFetch(url, request, options.responseHeader);
+                response = await requestUsingFetch(url, request, options.responseHeader);
         }
+        // If there is a response hook, call it
+        return OpenAPI.RESPONSE_HOOK ? OpenAPI.RESPONSE_HOOK(response) : response;
     } catch (error) {
         return {
             url,

@@ -71,13 +71,20 @@ export async function request(options: Readonly<RequestOptions>): Promise<Result
         }
     }
 
+    
+    // Pre-hook on request if a function is provided.
+    const requestToSend = OpenAPI.REQUEST_HOOK ? (await OpenAPI.REQUEST_HOOK(request)) : request;
+
     try {
+        let response: Result;
         switch (OpenAPI.CLIENT) {
             case 'xhr':
-                return await requestUsingXHR(url, request, options.responseHeader);
+                response = await requestUsingXHR(url, request, options.responseHeader);
             default:
-                return await requestUsingFetch(url, request, options.responseHeader);
+                response = await requestUsingFetch(url, request, options.responseHeader);
         }
+        // If there is a response hook, call it
+        return OpenAPI.RESPONSE_HOOK ? OpenAPI.RESPONSE_HOOK(response) : response;
     } catch (error) {
         return {
             url,

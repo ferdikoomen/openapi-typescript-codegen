@@ -2,12 +2,16 @@
 /* tslint:disable */
 /* eslint-disable */
 
+import { Result } from './Result';
+
 interface Config {
     BASE: string;
     VERSION: string;
     CLIENT: 'fetch' | 'xhr';
     WITH_CREDENTIALS: boolean;
     TOKEN: string;
+    REQUEST_HOOK?(request: RequestInit): Promise<RequestInit>;
+    RESPONSE_HOOK?(result: Result): Promise<Result>
 }
 
 export const OpenAPI: Config = {
@@ -15,5 +19,5 @@ export const OpenAPI: Config = {
     VERSION: '{{{version}}}',
     CLIENT: '{{{httpClient}}}',
     WITH_CREDENTIALS: false,
-    TOKEN: '',
+    TOKEN: ''
 };
