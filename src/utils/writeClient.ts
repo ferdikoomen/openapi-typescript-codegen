@@ -21,6 +21,7 @@ async function copySupportFile(filePath: string, outputPath: string): Promise<vo
  * @param output Directory to write the generated files to.
  * @param httpClient The selected httpClient (fetch or XHR).
  * @param useOptions Use options or arguments functions.
+ * @param useUnionTypes Use union types or enums.
  * @param exportCore: Generate core.
  * @param exportServices: Generate services.
  * @param exportModels: Generate models.
@@ -32,6 +33,7 @@ export async function writeClient(
     output: string,
     httpClient: HttpClient,
     useOptions: boolean,
+    useUnionTypes: boolean,
     exportCore: boolean,
     exportServices: boolean,
     exportModels: boolean,

@@ -298,6 +298,16 @@
                 }
             }
         },
+        "/api/v{api-version}/requestBody/": {
+            "post": {
+                "tags": [
+                    "RequestBody"
+                ],
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/SimpleRequestBody"
+                }
+            }
+        },
         "/api/v{api-version}/defaults": {
             "get": {
                 "tags": [
@@ -1115,6 +1125,20 @@
         }
     },
     "components": {
+        "requestBodies": {
+            "SimpleRequestBody": {
+                "description": "A reusable request body",
+                "required": false,
+                "content": {
+                    "application/json": {
+                        "description": "Message for default response",
+                        "schema": {
+                            "$ref": "#/components/schemas/ModelWithString"
+                        }
+                    }
+                }
+            }
+        },
         "schemas": {
             "MultilineComment": {
                 "description": "Testing multiline comments.\nThis must go to the next line.\n\nThis will contain a break.",

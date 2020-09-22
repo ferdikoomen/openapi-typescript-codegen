@@ -12,7 +12,7 @@ program
     .option('-o, --output <value>', 'Output directory', './generated')
     .option('-c, --client <value>', 'HTTP client to generate [fetch, xhr]', 'fetch')
     .option('--useOptions', 'Use options vs arguments style functions')
-    .option('--useUnionTypes', 'Use inclusive union types')
+    .option('--useUnionTypes', 'Use union types instead of enums')
     .option('--exportCore <value>', 'Generate core', true)
     .option('--exportServices <value>', 'Generate services', true)
     .option('--exportModels <value>', 'Generate models', true)

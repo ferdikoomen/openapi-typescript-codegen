@@ -6,7 +6,6 @@ describe('index', () => {
             input: './test/mock/v2/spec.json',
             output: './test/result/v2/',
             useOptions: true,
-            useUnionTypes: true,
             write: false,
         });
     });
@@ -16,7 +15,6 @@ describe('index', () => {
             input: './test/mock/v3/spec.json',
             output: './test/result/v3/',
             useOptions: true,
-            useUnionTypes: true,
             write: false,
         });
     });

@@ -2,13 +2,13 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import {getFormData} from './getFormData';
-import {getQueryString} from './getQueryString';
-import {OpenAPI} from './OpenAPI';
-import {RequestOptions} from './RequestOptions';
-import {requestUsingFetch} from './requestUsingFetch';
-import {requestUsingXHR} from './requestUsingXHR';
-import {Result} from './Result';
+import { getFormData } from './getFormData';
+import { getQueryString } from './getQueryString';
+import { OpenAPI } from './OpenAPI';
+import { RequestOptions } from './RequestOptions';
+import { requestUsingFetch } from './requestUsingFetch';
+import { requestUsingXHR } from './requestUsingXHR';
+import { Result } from './Result';
 
 /**
  * Create the request.

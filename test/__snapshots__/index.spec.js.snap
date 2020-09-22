@@ -194,13 +194,13 @@ exports[`v2 should generate: ./test/result/v2/core/request.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 
-import {getFormData} from './getFormData';
-import {getQueryString} from './getQueryString';
-import {OpenAPI} from './OpenAPI';
-import {RequestOptions} from './RequestOptions';
-import {requestUsingFetch} from './requestUsingFetch';
-import {requestUsingXHR} from './requestUsingXHR';
-import {Result} from './Result';
+import { getFormData } from './getFormData';
+import { getQueryString } from './getQueryString';
+import { OpenAPI } from './OpenAPI';
+import { RequestOptions } from './RequestOptions';
+import { requestUsingFetch } from './requestUsingFetch';
+import { requestUsingXHR } from './requestUsingXHR';
+import { Result } from './Result';
 
 /**
  * Create the request.
@@ -2684,13 +2684,13 @@ exports[`v3 should generate: ./test/result/v3/core/request.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 
-import {getFormData} from './getFormData';
-import {getQueryString} from './getQueryString';
-import {OpenAPI} from './OpenAPI';
-import {RequestOptions} from './RequestOptions';
-import {requestUsingFetch} from './requestUsingFetch';
-import {requestUsingXHR} from './requestUsingXHR';
-import {Result} from './Result';
+import { getFormData } from './getFormData';
+import { getQueryString } from './getQueryString';
+import { OpenAPI } from './OpenAPI';
+import { RequestOptions } from './RequestOptions';
+import { requestUsingFetch } from './requestUsingFetch';
+import { requestUsingXHR } from './requestUsingXHR';
+import { Result } from './Result';
 
 /**
  * Create the request.
@@ -3057,6 +3057,7 @@ export { DuplicateService } from './services/DuplicateService';
 export { HeaderService } from './services/HeaderService';
 export { MultipartService } from './services/MultipartService';
 export { ParametersService } from './services/ParametersService';
+export { RequestBodyService } from './services/RequestBodyService';
 export { ResponseService } from './services/ResponseService';
 export { SimpleService } from './services/SimpleService';
 export { TypesService } from './services/TypesService';
@@ -4920,6 +4921,39 @@ export class ParametersService {
             query: {
                 'parameter': parameter,
             },
+            body: requestBody,
+        });
+
+        catchGenericError(result);
+
+        return result.body;
+    }
+
+}"
+`;
+
+exports[`v3 should generate: ./test/result/v3/services/RequestBodyService.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+
+import { catchGenericError } from '../core/ApiError';
+import { request as __request } from '../core/request';
+import { OpenAPI } from '../core/OpenAPI';
+
+export class RequestBodyService {
+
+    /**
+     * @param requestBody
+     * @throws ApiError
+     */
+    public static async postRequestBodyService(
+        requestBody?: any,
+    ): Promise<void> {
+
+        const result = await __request({
+            method: 'post',
+            path: \`/api/v\${OpenAPI.VERSION}/requestBody/\`,
             body: requestBody,
         });
 

@@ -5,7 +5,6 @@ import { unique } from './unique';
 
 /**
  * Get the full list of models that are extended by the given model.
- * This list is used when we have the flag "useUnionTypes" enabled.
  * @param model
  * @param client
  */
