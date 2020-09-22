@@ -4937,6 +4937,7 @@ exports[`v3 should generate: ./test/result/v3/services/RequestBodyService.ts 1`]
 /* tslint:disable */
 /* eslint-disable */
 
+import { ModelWithString } from '../models/ModelWithString';
 import { catchGenericError } from '../core/ApiError';
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
@@ -4944,11 +4945,11 @@ import { OpenAPI } from '../core/OpenAPI';
 export class RequestBodyService {
 
     /**
-     * @param requestBody
+     * @param requestBody A reusable request body
      * @throws ApiError
      */
     public static async postRequestBodyService(
-        requestBody?: any,
+        requestBody?: ModelWithString,
     ): Promise<void> {
 
         const result = await __request({

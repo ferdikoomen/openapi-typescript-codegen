@@ -2,6 +2,7 @@ import { Operation } from '../../../client/interfaces/Operation';
 import { OperationParameters } from '../../../client/interfaces/OperationParameters';
 import { OpenApi } from '../interfaces/OpenApi';
 import { OpenApiOperation } from '../interfaces/OpenApiOperation';
+import { OpenApiRequestBody } from '../interfaces/OpenApiRequestBody';
 import { getComment } from './getComment';
 import { getOperationErrors } from './getOperationErrors';
 import { getOperationName } from './getOperationName';
@@ -11,6 +12,7 @@ import { getOperationRequestBody } from './getOperationRequestBody';
 import { getOperationResponseHeader } from './getOperationResponseHeader';
 import { getOperationResponses } from './getOperationResponses';
 import { getOperationResults } from './getOperationResults';
+import { getRef } from './getRef';
 import { getServiceClassName } from './getServiceClassName';
 import { sortByRequired } from './sortByRequired';
 
@@ -57,7 +59,8 @@ export function getOperation(openApi: OpenApi, url: string, method: string, op: 
     }
 
     if (op.requestBody) {
-        const requestBody = getOperationRequestBody(openApi, op.requestBody);
+        const requestBodyDef = getRef<OpenApiRequestBody>(openApi, op.requestBody);
+        const requestBody = getOperationRequestBody(openApi, requestBodyDef);
         operation.imports.push(...requestBody.imports);
         operation.parameters.push(requestBody);
         operation.parameters = operation.parameters.sort(sortByRequired);

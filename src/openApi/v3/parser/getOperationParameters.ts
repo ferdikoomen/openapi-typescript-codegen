@@ -14,46 +14,46 @@ export function getOperationParameters(openApi: OpenApi, parameters: OpenApiPara
         parametersForm: [],
         parametersCookie: [],
         parametersHeader: [],
-        parametersBody: null,
+        parametersBody: null, // Not used in V3 -> @see requestBody
     };
 
     // Iterate over the parameters
     parameters.forEach(parameterOrReference => {
-        const parameter = getRef<OpenApiParameter>(openApi, parameterOrReference);
-        const param = getOperationParameter(openApi, parameter);
+        const parameterDef = getRef<OpenApiParameter>(openApi, parameterOrReference);
+        const parameter = getOperationParameter(openApi, parameterDef);
 
         // We ignore the "api-version" param, since we do not want to add this
         // as the first / default parameter for each of the service calls.
-        if (param.prop !== 'api-version') {
-            switch (parameter.in) {
+        if (parameter.prop !== 'api-version') {
+            switch (parameterDef.in) {
                 case 'path':
-                    operationParameters.parametersPath.push(param);
-                    operationParameters.parameters.push(param);
-                    operationParameters.imports.push(...param.imports);
+                    operationParameters.parametersPath.push(parameter);
+                    operationParameters.parameters.push(parameter);
+                    operationParameters.imports.push(...parameter.imports);
                     break;
 
                 case 'query':
-                    operationParameters.parametersQuery.push(param);
-                    operationParameters.parameters.push(param);
-                    operationParameters.imports.push(...param.imports);
+                    operationParameters.parametersQuery.push(parameter);
+                    operationParameters.parameters.push(parameter);
+                    operationParameters.imports.push(...parameter.imports);
                     break;
 
                 case 'formData':
-                    operationParameters.parametersForm.push(param);
-                    operationParameters.parameters.push(param);
-                    operationParameters.imports.push(...param.imports);
+                    operationParameters.parametersForm.push(parameter);
+                    operationParameters.parameters.push(parameter);
+                    operationParameters.imports.push(...parameter.imports);
                     break;
 
                 case 'cookie':
-                    operationParameters.parametersCookie.push(param);
-                    operationParameters.parameters.push(param);
-                    operationParameters.imports.push(...param.imports);
+                    operationParameters.parametersCookie.push(parameter);
+                    operationParameters.parameters.push(parameter);
+                    operationParameters.imports.push(...parameter.imports);
                     break;
 
                 case 'header':
-                    operationParameters.parametersHeader.push(param);
-                    operationParameters.parameters.push(param);
-                    operationParameters.imports.push(...param.imports);
+                    operationParameters.parametersHeader.push(parameter);
+                    operationParameters.parameters.push(parameter);
+                    operationParameters.imports.push(...parameter.imports);
                     break;
             }
         }
