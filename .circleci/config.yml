@@ -19,7 +19,7 @@ jobs:
                     - node_modules
             - run:
                 name: build
-                command: yarn run build
+                command: yarn run release
             - run:
                 name: test
                 command: yarn run test:coverage

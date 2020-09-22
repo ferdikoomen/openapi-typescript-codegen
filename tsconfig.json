@@ -21,8 +21,7 @@
         "strictFunctionTypes": true,
         "removeComments": true,
         "forceConsistentCasingInFileNames": true,
-        "allowSyntheticDefaultImports": true,
-        "isolatedModules": true
+        "allowSyntheticDefaultImports": true
     },
 
     "files": [

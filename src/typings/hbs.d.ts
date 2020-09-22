@@ -10,7 +10,7 @@ declare module '*.hbs' {
     export default {
         compiler: [8, '>= 4.3.0'],
         useData: true,
-        main: function (container, depth0, helpers, partials, data) {
+        main: function () {
             return '';
         },
     };
