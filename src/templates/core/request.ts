@@ -2,13 +2,13 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import { getFormData } from './getFormData';
-import { getQueryString } from './getQueryString';
-import { OpenAPI } from './OpenAPI';
-import { RequestOptions } from './RequestOptions';
-import { requestUsingFetch } from './requestUsingFetch';
-import { requestUsingXHR } from './requestUsingXHR';
-import { Result } from './Result';
+import {getFormData} from './getFormData';
+import {getQueryString} from './getQueryString';
+import {OpenAPI} from './OpenAPI';
+import {RequestOptions} from './RequestOptions';
+import {requestUsingFetch} from './requestUsingFetch';
+import {requestUsingXHR} from './requestUsingXHR';
+import {Result} from './Result';
 
 /**
  * Create the request.
@@ -62,6 +62,9 @@ export async function request(options: Readonly<RequestOptions>): Promise<Result
             if (options.body.type) {
                 headers.append('Content-Type', options.body.type);
             }
+        } else if (typeof options.body === 'string') {
+            request.body = options.body;
+            headers.append('Content-Type', 'text/plain');
         } else {
             request.body = JSON.stringify(options.body);
             headers.append('Content-Type', 'application/json');
