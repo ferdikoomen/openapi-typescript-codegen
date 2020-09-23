@@ -25,36 +25,23 @@ export class ApiError extends Error {
     }
 }
 
-export namespace ApiError {
-    export enum Message {
-        BAD_REQUEST = 'Bad Request',
-        UNAUTHORIZED = 'Unauthorized',
-        FORBIDDEN = 'Forbidden',
-        NOT_FOUND = 'Not Found',
-        INTERNAL_SERVER_ERROR = 'Internal Server Error',
-        BAD_GATEWAY = 'Bad Gateway',
-        SERVICE_UNAVAILABLE = 'Service Unavailable',
-        GENERIC_ERROR = 'Generic Error',
-    }
-}
-
 /**
  * Catch common errors (based on status code).
  * @param result
  */
 export function catchGenericError(result: Result): void {
     switch (result.status) {
-        case 400: throw new ApiError(result, ApiError.Message.BAD_REQUEST);
-        case 401: throw new ApiError(result, ApiError.Message.UNAUTHORIZED);
-        case 403: throw new ApiError(result, ApiError.Message.FORBIDDEN);
-        case 404: throw new ApiError(result, ApiError.Message.NOT_FOUND);
-        case 500: throw new ApiError(result, ApiError.Message.INTERNAL_SERVER_ERROR);
-        case 502: throw new ApiError(result, ApiError.Message.BAD_GATEWAY);
-        case 503: throw new ApiError(result, ApiError.Message.SERVICE_UNAVAILABLE);
+        case 400: throw new ApiError(result, 'Bad Request');
+        case 401: throw new ApiError(result, 'Unauthorized');
+        case 403: throw new ApiError(result, 'Forbidden');
+        case 404: throw new ApiError(result, 'Not Found');
+        case 500: throw new ApiError(result, 'Internal Server Error');
+        case 502: throw new ApiError(result, 'Bad Gateway');
+        case 503: throw new ApiError(result, 'Service Unavailable');
     }
 
     if (!isSuccess(result.status)) {
-        throw new ApiError(result, ApiError.Message.GENERIC_ERROR);
+        throw new ApiError(result, 'Generic Error');
     }
 }
 "
@@ -242,9 +229,11 @@ export async function request(options: Readonly<RequestOptions>): Promise<Result
         url += getQueryString(options.query);
     }
 
-    // Append formData as body
+    // Append formData as body, this needs to be parsed to key=value pairs
+    // so the backend can parse this just like a regular HTML form.
     if (options.formData) {
         request.body = getFormData(options.formData);
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
     } else if (options.body) {
 
         // If this is blob data, then pass it directly to the body and set content type.
@@ -2515,36 +2504,23 @@ export class ApiError extends Error {
     }
 }
 
-export namespace ApiError {
-    export enum Message {
-        BAD_REQUEST = 'Bad Request',
-        UNAUTHORIZED = 'Unauthorized',
-        FORBIDDEN = 'Forbidden',
-        NOT_FOUND = 'Not Found',
-        INTERNAL_SERVER_ERROR = 'Internal Server Error',
-        BAD_GATEWAY = 'Bad Gateway',
-        SERVICE_UNAVAILABLE = 'Service Unavailable',
-        GENERIC_ERROR = 'Generic Error',
-    }
-}
-
 /**
  * Catch common errors (based on status code).
  * @param result
  */
 export function catchGenericError(result: Result): void {
     switch (result.status) {
-        case 400: throw new ApiError(result, ApiError.Message.BAD_REQUEST);
-        case 401: throw new ApiError(result, ApiError.Message.UNAUTHORIZED);
-        case 403: throw new ApiError(result, ApiError.Message.FORBIDDEN);
-        case 404: throw new ApiError(result, ApiError.Message.NOT_FOUND);
-        case 500: throw new ApiError(result, ApiError.Message.INTERNAL_SERVER_ERROR);
-        case 502: throw new ApiError(result, ApiError.Message.BAD_GATEWAY);
-        case 503: throw new ApiError(result, ApiError.Message.SERVICE_UNAVAILABLE);
+        case 400: throw new ApiError(result, 'Bad Request');
+        case 401: throw new ApiError(result, 'Unauthorized');
+        case 403: throw new ApiError(result, 'Forbidden');
+        case 404: throw new ApiError(result, 'Not Found');
+        case 500: throw new ApiError(result, 'Internal Server Error');
+        case 502: throw new ApiError(result, 'Bad Gateway');
+        case 503: throw new ApiError(result, 'Service Unavailable');
     }
 
     if (!isSuccess(result.status)) {
-        throw new ApiError(result, ApiError.Message.GENERIC_ERROR);
+        throw new ApiError(result, 'Generic Error');
     }
 }
 "
@@ -2732,9 +2708,11 @@ export async function request(options: Readonly<RequestOptions>): Promise<Result
         url += getQueryString(options.query);
     }
 
-    // Append formData as body
+    // Append formData as body, this needs to be parsed to key=value pairs
+    // so the backend can parse this just like a regular HTML form.
     if (options.formData) {
         request.body = getFormData(options.formData);
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
     } else if (options.body) {
 
         // If this is blob data, then pass it directly to the body and set content type.

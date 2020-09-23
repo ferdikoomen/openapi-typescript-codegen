@@ -22,35 +22,22 @@ export class ApiError extends Error {
     }
 }
 
-export namespace ApiError {
-    export enum Message {
-        BAD_REQUEST = 'Bad Request',
-        UNAUTHORIZED = 'Unauthorized',
-        FORBIDDEN = 'Forbidden',
-        NOT_FOUND = 'Not Found',
-        INTERNAL_SERVER_ERROR = 'Internal Server Error',
-        BAD_GATEWAY = 'Bad Gateway',
-        SERVICE_UNAVAILABLE = 'Service Unavailable',
-        GENERIC_ERROR = 'Generic Error',
-    }
-}
-
 /**
  * Catch common errors (based on status code).
  * @param result
  */
 export function catchGenericError(result: Result): void {
     switch (result.status) {
-        case 400: throw new ApiError(result, ApiError.Message.BAD_REQUEST);
-        case 401: throw new ApiError(result, ApiError.Message.UNAUTHORIZED);
-        case 403: throw new ApiError(result, ApiError.Message.FORBIDDEN);
-        case 404: throw new ApiError(result, ApiError.Message.NOT_FOUND);
-        case 500: throw new ApiError(result, ApiError.Message.INTERNAL_SERVER_ERROR);
-        case 502: throw new ApiError(result, ApiError.Message.BAD_GATEWAY);
-        case 503: throw new ApiError(result, ApiError.Message.SERVICE_UNAVAILABLE);
+        case 400: throw new ApiError(result, 'Bad Request');
+        case 401: throw new ApiError(result, 'Unauthorized');
+        case 403: throw new ApiError(result, 'Forbidden');
+        case 404: throw new ApiError(result, 'Not Found');
+        case 500: throw new ApiError(result, 'Internal Server Error');
+        case 502: throw new ApiError(result, 'Bad Gateway');
+        case 503: throw new ApiError(result, 'Service Unavailable');
     }
 
     if (!isSuccess(result.status)) {
-        throw new ApiError(result, ApiError.Message.GENERIC_ERROR);
+        throw new ApiError(result, 'Generic Error');
     }
 }

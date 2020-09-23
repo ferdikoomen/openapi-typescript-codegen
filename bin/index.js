@@ -7,16 +7,18 @@ const program = require('commander');
 const pkg = require('../package.json');
 
 program
+    .name('openapi')
+    .usage('[options]')
     .version(pkg.version)
-    .option('-i, --input <value>', 'Path to swagger specification', './spec.json')
-    .option('-o, --output <value>', 'Output directory', './generated')
+    .requiredOption('-i, --input <value>', 'OpenAPI specification, can be a path, url or string content (required)')
+    .requiredOption('-o, --output <value>', 'Output directory (required)')
     .option('-c, --client <value>', 'HTTP client to generate [fetch, xhr]', 'fetch')
-    .option('--useOptions', 'Use options vs arguments style functions')
+    .option('--useOptions', 'Use options instead of arguments')
     .option('--useUnionTypes', 'Use union types instead of enums')
-    .option('--exportCore <value>', 'Generate core', true)
-    .option('--exportServices <value>', 'Generate services', true)
-    .option('--exportModels <value>', 'Generate models', true)
-    .option('--exportSchemas <value>', 'Generate schemas', false)
+    .option('--exportCore <value>', 'Write core files to disk', true)
+    .option('--exportServices <value>', 'Write services to disk', true)
+    .option('--exportModels <value>', 'Write models to disk', true)
+    .option('--exportSchemas <value>', 'Write schemas to disk', false)
     .parse(process.argv);
 
 const OpenAPI = require(path.resolve(__dirname, '../dist/index.js'));

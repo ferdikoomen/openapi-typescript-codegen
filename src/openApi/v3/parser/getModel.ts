@@ -114,8 +114,9 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isDefiniti
         }
     }
 
-    // TODO: Add correct support for oneOf, anyOf, allOf
-    // TODO: https://swagger.io/docs/specification/data-models/oneof-anyof-allof-not/
+    // TODO:
+    //  Add correct support for oneOf, anyOf, allOf
+    //  https://swagger.io/docs/specification/data-models/oneof-anyof-allof-not/
 
     if (definition.anyOf && definition.anyOf.length && !definition.properties) {
         model.export = 'generic';

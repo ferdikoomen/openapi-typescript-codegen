@@ -50,9 +50,11 @@ export async function request(options: Readonly<RequestOptions>): Promise<Result
         url += getQueryString(options.query);
     }
 
-    // Append formData as body
+    // Append formData as body, this needs to be parsed to key=value pairs
+    // so the backend can parse this just like a regular HTML form.
     if (options.formData) {
         request.body = getFormData(options.formData);
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
     } else if (options.body) {
 
         // If this is blob data, then pass it directly to the body and set content type.
