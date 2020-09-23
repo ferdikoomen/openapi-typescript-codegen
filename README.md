@@ -10,7 +10,7 @@
 
 ## Why?
 - Frontend ❤️ OpenAPI, but we do not want to use JAVA codegen in our builds
-- Quick, lightweight, robust and framework agnostic
+- Quick, lightweight, robust and framework agnostic 🚀
 - Supports generation of TypeScript clients
 - Supports generations of fetch and XHR http clients
 - Supports OpenAPI specification v2.0 and v3.0
@@ -20,12 +20,10 @@
 
 
 ## Babel support:
-- If you use enums inside your models / definitions then those enums are by default
-  inside a namespace with the same name as your model. This is called declaration
-  merging. However, the @babel/plugin-transform-typescript does not support these
-  namespaces, so if you are using babel in your project please use the `--useUnionTypes`
-  flag to generate union types instead of traditional enums. More info can be found
-  here: [Enums vs. Union Types](#enums-vs-union-types).
+If you use enums inside your models / definitions then those enums are by default inside a namespace with the same name
+as your model. This is called declaration merging. However, the [@babel/plugin-transform-typescript](https://babeljs.io/docs/en/babel-plugin-transform-typescript)
+does not support these namespaces, so if you are using babel in your project please use the `--useUnionTypes` flag
+to generate union types instead of traditional enums. More info can be found here: [Enums vs. Union Types](#enums-vs-union-types---useuniontypes).
 
 
 ## Install
@@ -72,7 +70,7 @@ $ openapi --help
 }
 ```
 
-**Command line**
+**NPX**
 
 ```
 npx openapi-typescript-codegen --input ./spec.json --output ./dist
@@ -87,17 +85,10 @@ OpenAPI.generate({
     input: './spec.json',
     output: './dist'
 });
-```
 
-Or by providing the JSON directly:
-
-```javascript
-const OpenAPI = require('openapi-typescript-codegen');
-
-const spec = require('./spec.json');
-
+// Or by providing the content of the spec directly 🚀
 OpenAPI.generate({
-    input: spec,
+    input: require('./spec.json'),
     output: './dist'
 });
 ```
@@ -142,10 +133,9 @@ createUser({
 The OpenAPI spec allows you to define [enums](https://swagger.io/docs/specification/data-models/enums/) inside the
 data model. By default, we convert these enums definitions to [TypeScript enums](https://www.typescriptlang.org/docs/handbook/enums.html).
 However, these enums are merged inside the namespace of the model, this is unsupported by Babel, [see docs](https://babeljs.io/docs/en/babel-plugin-transform-typescript#impartial-namespace-support).
-
-Because we also want to support projects that use Babel [@babel/plugin-transform-typescript](https://babeljs.io/docs/en/babel-plugin-transform-typescript), we offer the flag `--useOptions` to generate
-[union types](https://www.typescriptlang.org/docs/handbook/unions-and-intersections.html#union-types) instead of
-the traditional enums. The difference can be seen below:
+Because we also want to support projects that use Babel [@babel/plugin-transform-typescript](https://babeljs.io/docs/en/babel-plugin-transform-typescript),
+we offer the flag `--useOptions` to generate [union types](https://www.typescriptlang.org/docs/handbook/unions-and-intersections.html#union-types)
+instead of the traditional enums. The difference can be seen below:
 
 **Enums:**
 ```typescript
