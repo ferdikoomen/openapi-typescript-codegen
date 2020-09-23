@@ -18,6 +18,7 @@ export interface Options {
     httpClient?: HttpClient;
     useOptions?: boolean;
     useUnionTypes?: boolean;
+    useUnionTypesForEnums?: boolean;
     exportCore?: boolean;
     exportServices?: boolean;
     exportModels?: boolean;
@@ -34,6 +35,7 @@ export interface Options {
  * @param httpClient The selected httpClient (fetch or XHR).
  * @param useOptions Use options or arguments functions.
  * @param useUnionTypes Use inclusive union types.
+ * @param useUnionTypesForEnums Use union types instead of enums.
  * @param exportCore: Generate core client classes.
  * @param exportServices: Generate services.
  * @param exportModels: Generate models.
@@ -46,6 +48,7 @@ export async function generate({
     httpClient = HttpClient.FETCH,
     useOptions = false,
     useUnionTypes = false,
+    useUnionTypesForEnums = false,
     exportCore = true,
     exportServices = true,
     exportModels = true,
@@ -61,7 +64,7 @@ export async function generate({
     switch (openApiVersion) {
         case OpenApiVersion.V2: {
             const client = parseV2(openApi);
-            const clientFinal = postProcessClient(client, useUnionTypes);
+            const clientFinal = postProcessClient(client, useUnionTypes, useUnionTypesForEnums);
             if (write) {
                 await writeClient(clientFinal, templates, output, httpClient, useOptions, exportCore, exportServices, exportModels, exportSchemas);
             }
@@ -70,7 +73,7 @@ export async function generate({
 
         case OpenApiVersion.V3: {
             const client = parseV3(openApi);
-            const clientFinal = postProcessClient(client, useUnionTypes);
+            const clientFinal = postProcessClient(client, useUnionTypes, useUnionTypesForEnums);
             if (write) {
                 await writeClient(clientFinal, templates, output, httpClient, useOptions, exportCore, exportServices, exportModels, exportSchemas);
             }
