@@ -3,6 +3,7 @@ import { resolve } from 'path';
 import { Client } from '../client/interfaces/Client';
 import { HttpClient } from '../index';
 import { mkdir, rmdir } from './fileSystem';
+import { isSubDirectory } from './isSubdirectory';
 import { Templates } from './registerHandlebarTemplates';
 import { writeClientCore } from './writeClientCore';
 import { writeClientIndex } from './writeClientIndex';
@@ -40,6 +41,10 @@ export async function writeClient(
     const outputPathModels = resolve(outputPath, 'models');
     const outputPathSchemas = resolve(outputPath, 'schemas');
     const outputPathServices = resolve(outputPath, 'services');
+
+    if (!isSubDirectory(process.cwd(), output)) {
+        throw new Error(`Output folder is not a subdirectory of the current working directory`);
+    }
 
     await rmdir(outputPath);
     await mkdir(outputPath);

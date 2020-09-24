@@ -1,6 +1,6 @@
 #!/bin/sh
 
-rm -rf examples
+rm -rf dist
 rm swagger-codegen-cli-v2.jar
 rm swagger-codegen-cli-v3.jar
 
