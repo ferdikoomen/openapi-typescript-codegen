@@ -9,7 +9,9 @@ junit.xml
 .vscode
 *.iml
 dist
-archive
 coverage
 samples/dist
-test/result
+samples/swagger-codegen-cli-v2.jar
+samples/swagger-codegen-cli-v3.jar
+test/generator/dist
+test/server/dist
