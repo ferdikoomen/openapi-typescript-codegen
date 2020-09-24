@@ -1,6 +1,12 @@
 import { ApiProperty } from '@nestjs/swagger';
 
-export class ModelThatExtendsExtends {
+import { ModelThatExtends } from './ModelThatExtends';
+import { ModelWithString } from './ModelWithString';
+
+export class ModelThatExtendsExtends extends ModelThatExtends {
     @ApiProperty()
-    prop?: number;
+    public readonly propertyC?: string;
+
+    @ApiProperty()
+    public readonly propertyD?: ModelWithString;
 }

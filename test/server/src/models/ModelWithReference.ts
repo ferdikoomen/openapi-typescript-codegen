@@ -1,6 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
 
+import { ModelWithString } from './ModelWithString';
+
 export class ModelWithReference {
     @ApiProperty()
-    prop?: number;
+    public readonly prop?: ModelWithString;
 }

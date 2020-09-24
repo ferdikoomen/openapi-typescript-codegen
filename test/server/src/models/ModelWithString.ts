@@ -2,5 +2,5 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export class ModelWithString {
     @ApiProperty()
-    prop?: string;
+    public readonly prop?: string;
 }
