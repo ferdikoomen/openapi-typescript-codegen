@@ -1,4 +1,4 @@
-import { resolve } from 'path';
+import * as path from 'path';
 
 import { Model } from '../client/interfaces/Model';
 import { writeFile } from './fileSystem';
@@ -13,7 +13,7 @@ import { Templates } from './registerHandlebarTemplates';
  */
 export async function writeClientSchemas(models: Model[], templates: Templates, outputPath: string): Promise<void> {
     for (const model of models) {
-        const file = resolve(outputPath, `$${model.name}.ts`);
+        const file = path.resolve(outputPath, `$${model.name}.ts`);
         const templateResult = templates.exports.schema({
             ...model,
         });

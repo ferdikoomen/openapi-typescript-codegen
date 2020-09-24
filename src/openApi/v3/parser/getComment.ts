@@ -1,4 +1,4 @@
-import { EOL } from 'os';
+import * as os from 'os';
 
 /**
  * Cleanup comment and prefix multiline comments with "*",
@@ -7,7 +7,7 @@ import { EOL } from 'os';
  */
 export function getComment(comment?: string): string | null {
     if (comment) {
-        return comment.replace(/\r?\n(.*)/g, (_, w) => `${EOL} * ${w.trim()}`);
+        return comment.replace(/\r?\n(.*)/g, (_, w) => `${os.EOL} * ${w.trim()}`);
     }
     return null;
 }

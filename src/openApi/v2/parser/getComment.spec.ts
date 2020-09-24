@@ -1,10 +1,10 @@
-import { EOL } from 'os';
+import * as os from 'os';
 
 import { getComment } from './getComment';
 
 describe('getComment', () => {
     it('should parse comments', () => {
-        const multiline = 'Testing multiline comments.' + EOL + ' * This must go to the next line.' + EOL + ' * ' + EOL + ' * This will contain a break.';
+        const multiline = 'Testing multiline comments.' + os.EOL + ' * This must go to the next line.' + os.EOL + ' * ' + os.EOL + ' * This will contain a break.';
         expect(getComment('')).toEqual(null);
         expect(getComment('Hello')).toEqual('Hello');
         expect(getComment('Hello World!')).toEqual('Hello World!');

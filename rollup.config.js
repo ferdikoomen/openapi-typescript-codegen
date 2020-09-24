@@ -1,8 +1,8 @@
 'use strict';
 
 const commonjs = require('@rollup/plugin-commonjs');
-const {nodeResolve} = require('@rollup/plugin-node-resolve');
-const {terser} = require('rollup-plugin-terser');
+const { nodeResolve } = require('@rollup/plugin-node-resolve');
+const { terser } = require('rollup-plugin-terser');
 const typescript = require('rollup-plugin-typescript2');
 const handlebars = require('handlebars');
 const path = require('path');

@@ -1,5 +1,10 @@
 module.exports = {
-    testRegex: '\\.spec\\.(ts|js)$',
+    testRegex: '.*\\.spec\\.(ts|js)$',
+    testPathIgnorePatterns: [
+        '/node_modules/',
+        '<rootDir>/dist/',
+        '<rootDir>/samples/',
+    ],
     testEnvironment: 'node',
     moduleNameMapper: {
         '\\.hbs$': '<rootDir>/src/templates/__mocks__/index.js',
@@ -7,7 +12,6 @@ module.exports = {
     collectCoverageFrom: [
         'src/**/*.ts',
         '!src/**/*.d.ts',
-        '!src/templates/**',
         '!**/node_modules/**',
     ],
 };

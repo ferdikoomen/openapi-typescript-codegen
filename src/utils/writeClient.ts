@@ -1,4 +1,4 @@
-import { resolve } from 'path';
+import * as path from 'path';
 
 import { Client } from '../client/interfaces/Client';
 import { HttpClient } from '../index';
@@ -36,11 +36,11 @@ export async function writeClient(
     exportModels: boolean,
     exportSchemas: boolean
 ): Promise<void> {
-    const outputPath = resolve(process.cwd(), output);
-    const outputPathCore = resolve(outputPath, 'core');
-    const outputPathModels = resolve(outputPath, 'models');
-    const outputPathSchemas = resolve(outputPath, 'schemas');
-    const outputPathServices = resolve(outputPath, 'services');
+    const outputPath = path.resolve(process.cwd(), output);
+    const outputPathCore = path.resolve(outputPath, 'core');
+    const outputPathModels = path.resolve(outputPath, 'models');
+    const outputPathSchemas = path.resolve(outputPath, 'schemas');
+    const outputPathServices = path.resolve(outputPath, 'services');
 
     if (!isSubDirectory(process.cwd(), output)) {
         throw new Error(`Output folder is not a subdirectory of the current working directory`);

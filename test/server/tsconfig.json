@@ -1,34 +1,13 @@
 {
+    "extends": "../../tsconfig.json",
+
     "compilerOptions": {
         "outDir": "./dist",
-        "target": "es2017",
-        "module": "commonjs",
-        "moduleResolution": "node",
-        "lib": ["es2017", "dom"],
-        "types": ["jest", "node"],
-        "typeRoots": ["node_modules/@types"],
-        "declaration": false,
-        "declarationMap": false,
-        "sourceMap": false,
-        "noImplicitReturns": true,
-        "noImplicitThis": true,
-        "noImplicitAny": true,
-        "skipLibCheck": true,
-        "strict": true,
-        "strictNullChecks": true,
-        "strictFunctionTypes": true,
-        "removeComments": true,
-        "emitDecoratorMetadata": true,
-        "experimentalDecorators": true,
-        "allowSyntheticDefaultImports": true
+        "module": "commonjs"
     },
 
     "include": [
         "./src/**/*.ts"
-    ],
-
-    "exclude": [
-        "node_modules"
     ]
 }
 

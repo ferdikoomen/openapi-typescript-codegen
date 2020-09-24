@@ -6,7 +6,6 @@
         "moduleResolution": "node",
         "lib": ["es2017", "dom"],
         "types": ["jest", "node"],
-        "typeRoots": ["node_modules/@types"],
         "declaration": false,
         "declarationMap": false,
         "sourceMap": false,
@@ -18,6 +17,8 @@
         "strictNullChecks": true,
         "strictFunctionTypes": true,
         "removeComments": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
         "allowSyntheticDefaultImports": true
     },
 
