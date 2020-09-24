@@ -1,8 +1,8 @@
 {
     "swagger": "2.0",
     "info": {
-        "version": "v9.0",
-        "title": "swagger"
+        "title": "swagger",
+        "version": "v1.0"
     },
     "host": "localhost:8080",
     "basePath": "/api",
@@ -221,7 +221,7 @@
                         "in": "query",
                         "required": true,
                         "default": {
-                            "prop": "Hello World"
+                            "prop": "Hello World!"
                         },
                         "schema": {
                             "$ref": "#/definitions/ModelWithString"
@@ -274,7 +274,7 @@
                         "name": "parameterModel",
                         "in": "query",
                         "default": {
-                            "prop": "Hello World"
+                            "prop": "Hello World!"
                         },
                         "schema": {
                             "$ref": "#/definitions/ModelWithString"
@@ -316,7 +316,7 @@
                         "name": "parameterStringWithDefault",
                         "in": "query",
                         "required": true,
-                        "default": "hello",
+                        "default": "Hello World!",
                         "type": "string"
                     },
                     {

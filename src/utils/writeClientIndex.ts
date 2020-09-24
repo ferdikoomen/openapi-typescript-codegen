@@ -1,4 +1,4 @@
-import * as path from 'path';
+import { resolve } from 'path';
 
 import { Client } from '../client/interfaces/Client';
 import { writeFile } from './fileSystem';
@@ -28,7 +28,7 @@ export async function writeClientIndex(
     exportSchemas: boolean
 ): Promise<void> {
     await writeFile(
-        path.resolve(outputPath, 'index.ts'),
+        resolve(outputPath, 'index.ts'),
         templates.index({
             exportCore,
             exportServices,

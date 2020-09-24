@@ -2,7 +2,7 @@
     "compilerOptions": {
         "outDir": "./dist",
         "target": "es2017",
-        "module": "es6",
+        "module": "commonjs",
         "moduleResolution": "node",
         "lib": ["es2017", "dom"],
         "types": ["jest", "node"],
@@ -18,15 +18,13 @@
         "strictNullChecks": true,
         "strictFunctionTypes": true,
         "removeComments": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
         "allowSyntheticDefaultImports": true
     },
 
-    "files": [
-        "./src/typings/hbs.d.ts"
-    ],
-
     "include": [
-        "./src/index.ts"
+        "./src/main.ts"
     ],
 
     "exclude": [

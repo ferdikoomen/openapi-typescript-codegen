@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`v2 should generate: ./test/result/v2/core/ApiError.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/core/ApiError.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -43,11 +43,10 @@ export function catchGenericError(result: Result): void {
     if (!isSuccess(result.status)) {
         throw new ApiError(result, 'Generic Error');
     }
-}
-"
+}"
 `;
 
-exports[`v2 should generate: ./test/result/v2/core/OpenAPI.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/core/OpenAPI.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -62,14 +61,14 @@ interface Config {
 
 export const OpenAPI: Config = {
     BASE: 'http://localhost:8080/api',
-    VERSION: '9.0',
+    VERSION: '1.0',
     CLIENT: 'fetch',
     WITH_CREDENTIALS: false,
     TOKEN: '',
 };"
 `;
 
-exports[`v2 should generate: ./test/result/v2/core/RequestOptions.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/core/RequestOptions.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -83,11 +82,10 @@ export interface RequestOptions {
     formData?: { [key: string]: any };
     body?: any;
     responseHeader?: string;
-}
-"
+}"
 `;
 
-exports[`v2 should generate: ./test/result/v2/core/Result.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/core/Result.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -98,11 +96,10 @@ export interface Result {
     status: number;
     statusText: string;
     body: any;
-}
-"
+}"
 `;
 
-exports[`v2 should generate: ./test/result/v2/core/getFormData.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/core/getFormData.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -123,11 +120,10 @@ export function getFormData(params: { [key: string]: any }): FormData {
         }
     }
     return formData;
-}
-"
+}"
 `;
 
-exports[`v2 should generate: ./test/result/v2/core/getQueryString.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/core/getQueryString.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -157,11 +153,10 @@ export function getQueryString(params: { [key: string]: any }): string {
         return \`?\${qs.join('&')}\`;
     }
     return '';
-}
-"
+}"
 `;
 
-exports[`v2 should generate: ./test/result/v2/core/isSuccess.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/core/isSuccess.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -172,11 +167,10 @@ exports[`v2 should generate: ./test/result/v2/core/isSuccess.ts 1`] = `
  */
 export function isSuccess(status: number): boolean {
     return status >= 200 && status < 300;
-}
-"
+}"
 `;
 
-exports[`v2 should generate: ./test/result/v2/core/request.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/core/request.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -268,11 +262,10 @@ export async function request(options: Readonly<RequestOptions>): Promise<Result
             body: error,
         };
     }
-}
-"
+}"
 `;
 
-exports[`v2 should generate: ./test/result/v2/core/requestUsingFetch.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/core/requestUsingFetch.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -344,11 +337,10 @@ export async function requestUsingFetch(url: string, request: Readonly<RequestIn
         statusText: response.statusText,
         body: contentHeader || contentBody,
     };
-}
-"
+}"
 `;
 
-exports[`v2 should generate: ./test/result/v2/core/requestUsingXHR.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/core/requestUsingXHR.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -449,11 +441,10 @@ export async function requestUsingXHR(url: string, request: Readonly<RequestInit
         // Start the request!
         xhr.send(request.body);
     });
-}
-"
+}"
 `;
 
-exports[`v2 should generate: ./test/result/v2/index.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/index.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -557,7 +548,7 @@ export { TypesService } from './services/TypesService';
 "
 `;
 
-exports[`v2 should generate: ./test/result/v2/models/ArrayWithArray.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/models/ArrayWithArray.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -570,7 +561,7 @@ import { ModelWithString } from './ModelWithString';
 export type ArrayWithArray = Array<Array<ModelWithString>>;"
 `;
 
-exports[`v2 should generate: ./test/result/v2/models/ArrayWithBooleans.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/models/ArrayWithBooleans.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -582,7 +573,7 @@ exports[`v2 should generate: ./test/result/v2/models/ArrayWithBooleans.ts 1`] = 
 export type ArrayWithBooleans = Array<boolean>;"
 `;
 
-exports[`v2 should generate: ./test/result/v2/models/ArrayWithNumbers.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/models/ArrayWithNumbers.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -594,7 +585,7 @@ exports[`v2 should generate: ./test/result/v2/models/ArrayWithNumbers.ts 1`] = `
 export type ArrayWithNumbers = Array<number>;"
 `;
 
-exports[`v2 should generate: ./test/result/v2/models/ArrayWithProperties.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/models/ArrayWithProperties.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -609,7 +600,7 @@ export type ArrayWithProperties = Array<{
 }>;"
 `;
 
-exports[`v2 should generate: ./test/result/v2/models/ArrayWithReferences.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/models/ArrayWithReferences.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -622,7 +613,7 @@ import { ModelWithString } from './ModelWithString';
 export type ArrayWithReferences = Array<ModelWithString>;"
 `;
 
-exports[`v2 should generate: ./test/result/v2/models/ArrayWithStrings.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/models/ArrayWithStrings.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -634,88 +625,72 @@ exports[`v2 should generate: ./test/result/v2/models/ArrayWithStrings.ts 1`] = `
 export type ArrayWithStrings = Array<string>;"
 `;
 
-exports[`v2 should generate: ./test/result/v2/models/Dictionary.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/models/DictionaryWithArray.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
 
-export type Dictionary<T> = {
-    [key: string]: T;
-}
-"
-`;
-
-exports[`v2 should generate: ./test/result/v2/models/DictionaryWithArray.ts 1`] = `
-"/* istanbul ignore file */
-/* tslint:disable */
-/* eslint-disable */
-
-import { Dictionary } from './Dictionary';
 import { ModelWithString } from './ModelWithString';
 
 /**
  * This is a complex dictionary
  */
-export type DictionaryWithArray = Dictionary<Array<ModelWithString>>;"
+export type DictionaryWithArray = Record<string, Array<ModelWithString>>;"
 `;
 
-exports[`v2 should generate: ./test/result/v2/models/DictionaryWithDictionary.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/models/DictionaryWithDictionary.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
 
-import { Dictionary } from './Dictionary';
 
 /**
  * This is a string dictionary
  */
-export type DictionaryWithDictionary = Dictionary<Dictionary<string>>;"
+export type DictionaryWithDictionary = Record<string, Record<string, string>>;"
 `;
 
-exports[`v2 should generate: ./test/result/v2/models/DictionaryWithProperties.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/models/DictionaryWithProperties.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
 
-import { Dictionary } from './Dictionary';
 
 /**
  * This is a complex dictionary
  */
-export type DictionaryWithProperties = Dictionary<{
+export type DictionaryWithProperties = Record<string, {
     foo?: string,
     bar?: string,
 }>;"
 `;
 
-exports[`v2 should generate: ./test/result/v2/models/DictionaryWithReference.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/models/DictionaryWithReference.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
 
-import { Dictionary } from './Dictionary';
 import { ModelWithString } from './ModelWithString';
 
 /**
  * This is a string reference
  */
-export type DictionaryWithReference = Dictionary<ModelWithString>;"
+export type DictionaryWithReference = Record<string, ModelWithString>;"
 `;
 
-exports[`v2 should generate: ./test/result/v2/models/DictionaryWithString.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/models/DictionaryWithString.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
 
-import { Dictionary } from './Dictionary';
 
 /**
  * This is a string dictionary
  */
-export type DictionaryWithString = Dictionary<string>;"
+export type DictionaryWithString = Record<string, string>;"
 `;
 
-exports[`v2 should generate: ./test/result/v2/models/EnumFromDescription.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/models/EnumFromDescription.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -731,7 +706,7 @@ export enum EnumFromDescription {
 }"
 `;
 
-exports[`v2 should generate: ./test/result/v2/models/EnumWithExtensions.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/models/EnumWithExtensions.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -756,7 +731,7 @@ export enum EnumWithExtensions {
 }"
 `;
 
-exports[`v2 should generate: ./test/result/v2/models/EnumWithNumbers.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/models/EnumWithNumbers.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -772,7 +747,7 @@ export enum EnumWithNumbers {
 }"
 `;
 
-exports[`v2 should generate: ./test/result/v2/models/EnumWithStrings.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/models/EnumWithStrings.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -788,7 +763,7 @@ export enum EnumWithStrings {
 }"
 `;
 
-exports[`v2 should generate: ./test/result/v2/models/ModelLink.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/models/ModelLink.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -803,7 +778,7 @@ export interface ModelLink {
 "
 `;
 
-exports[`v2 should generate: ./test/result/v2/models/ModelThatExtends.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/models/ModelThatExtends.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -820,7 +795,7 @@ export interface ModelThatExtends extends ModelWithString {
 "
 `;
 
-exports[`v2 should generate: ./test/result/v2/models/ModelThatExtendsExtends.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/models/ModelThatExtendsExtends.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -838,7 +813,7 @@ export interface ModelThatExtendsExtends extends ModelWithString, ModelThatExten
 "
 `;
 
-exports[`v2 should generate: ./test/result/v2/models/ModelWithArray.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/models/ModelWithArray.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -856,7 +831,7 @@ export interface ModelWithArray {
 "
 `;
 
-exports[`v2 should generate: ./test/result/v2/models/ModelWithBoolean.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/models/ModelWithBoolean.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -874,7 +849,7 @@ export interface ModelWithBoolean {
 "
 `;
 
-exports[`v2 should generate: ./test/result/v2/models/ModelWithCircularReference.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/models/ModelWithCircularReference.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -889,23 +864,22 @@ export interface ModelWithCircularReference {
 "
 `;
 
-exports[`v2 should generate: ./test/result/v2/models/ModelWithDictionary.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/models/ModelWithDictionary.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
 
-import { Dictionary } from './Dictionary';
 
 /**
  * This is a model with one property containing a dictionary
  */
 export interface ModelWithDictionary {
-    prop?: Dictionary<string>;
+    prop?: Record<string, string>;
 }
 "
 `;
 
-exports[`v2 should generate: ./test/result/v2/models/ModelWithDuplicateImports.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/models/ModelWithDuplicateImports.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -923,7 +897,7 @@ export interface ModelWithDuplicateImports {
 "
 `;
 
-exports[`v2 should generate: ./test/result/v2/models/ModelWithDuplicateProperties.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/models/ModelWithDuplicateProperties.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -939,7 +913,7 @@ export interface ModelWithDuplicateProperties {
 "
 `;
 
-exports[`v2 should generate: ./test/result/v2/models/ModelWithEnum.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/models/ModelWithEnum.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -987,7 +961,7 @@ export namespace ModelWithEnum {
 "
 `;
 
-exports[`v2 should generate: ./test/result/v2/models/ModelWithEnumFromDescription.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/models/ModelWithEnumFromDescription.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1019,7 +993,7 @@ export namespace ModelWithEnumFromDescription {
 "
 `;
 
-exports[`v2 should generate: ./test/result/v2/models/ModelWithInteger.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/models/ModelWithInteger.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1037,7 +1011,7 @@ export interface ModelWithInteger {
 "
 `;
 
-exports[`v2 should generate: ./test/result/v2/models/ModelWithLink.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/models/ModelWithLink.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1054,26 +1028,25 @@ export interface ModelWithLink {
 "
 `;
 
-exports[`v2 should generate: ./test/result/v2/models/ModelWithNestedEnums.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/models/ModelWithNestedEnums.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
 
-import { Dictionary } from './Dictionary';
 
 /**
  * This is a model with nested enums
  */
 export interface ModelWithNestedEnums {
-    dictionaryWithEnum?: Dictionary<('Success' | 'Warning' | 'Error')>;
-    dictionaryWithEnumFromDescription?: Dictionary<(1 | 2 | 3)>;
+    dictionaryWithEnum?: Record<string, ('Success' | 'Warning' | 'Error')>;
+    dictionaryWithEnumFromDescription?: Record<string, (1 | 2 | 3)>;
     arrayWithEnum?: Array<('Success' | 'Warning' | 'Error')>;
     arrayWithDescription?: Array<(1 | 2 | 3)>;
 }
 "
 `;
 
-exports[`v2 should generate: ./test/result/v2/models/ModelWithNestedProperties.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/models/ModelWithNestedProperties.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1092,7 +1065,7 @@ export interface ModelWithNestedProperties {
 "
 `;
 
-exports[`v2 should generate: ./test/result/v2/models/ModelWithOrderedProperties.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/models/ModelWithOrderedProperties.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1109,7 +1082,7 @@ export interface ModelWithOrderedProperties {
 "
 `;
 
-exports[`v2 should generate: ./test/result/v2/models/ModelWithPattern.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/models/ModelWithPattern.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1127,7 +1100,7 @@ export interface ModelWithPattern {
 "
 `;
 
-exports[`v2 should generate: ./test/result/v2/models/ModelWithProperties.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/models/ModelWithProperties.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1148,7 +1121,7 @@ export interface ModelWithProperties {
 "
 `;
 
-exports[`v2 should generate: ./test/result/v2/models/ModelWithReference.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/models/ModelWithReference.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1164,7 +1137,7 @@ export interface ModelWithReference {
 "
 `;
 
-exports[`v2 should generate: ./test/result/v2/models/ModelWithString.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/models/ModelWithString.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1182,7 +1155,7 @@ export interface ModelWithString {
 "
 `;
 
-exports[`v2 should generate: ./test/result/v2/models/MultilineComment.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/models/MultilineComment.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1197,7 +1170,7 @@ exports[`v2 should generate: ./test/result/v2/models/MultilineComment.ts 1`] = `
 export type MultilineComment = number;"
 `;
 
-exports[`v2 should generate: ./test/result/v2/models/SimpleBoolean.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/models/SimpleBoolean.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1209,7 +1182,7 @@ exports[`v2 should generate: ./test/result/v2/models/SimpleBoolean.ts 1`] = `
 export type SimpleBoolean = boolean;"
 `;
 
-exports[`v2 should generate: ./test/result/v2/models/SimpleFile.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/models/SimpleFile.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1221,7 +1194,7 @@ exports[`v2 should generate: ./test/result/v2/models/SimpleFile.ts 1`] = `
 export type SimpleFile = File;"
 `;
 
-exports[`v2 should generate: ./test/result/v2/models/SimpleInteger.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/models/SimpleInteger.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1233,7 +1206,7 @@ exports[`v2 should generate: ./test/result/v2/models/SimpleInteger.ts 1`] = `
 export type SimpleInteger = number;"
 `;
 
-exports[`v2 should generate: ./test/result/v2/models/SimpleReference.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/models/SimpleReference.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1246,7 +1219,7 @@ import { ModelWithString } from './ModelWithString';
 export type SimpleReference = ModelWithString;"
 `;
 
-exports[`v2 should generate: ./test/result/v2/models/SimpleString.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/models/SimpleString.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1258,7 +1231,7 @@ exports[`v2 should generate: ./test/result/v2/models/SimpleString.ts 1`] = `
 export type SimpleString = string;"
 `;
 
-exports[`v2 should generate: ./test/result/v2/schemas/$ArrayWithArray.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/schemas/$ArrayWithArray.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1268,7 +1241,7 @@ export const $ArrayWithArray = {
 };"
 `;
 
-exports[`v2 should generate: ./test/result/v2/schemas/$ArrayWithBooleans.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/schemas/$ArrayWithBooleans.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1278,7 +1251,7 @@ export const $ArrayWithBooleans = {
 };"
 `;
 
-exports[`v2 should generate: ./test/result/v2/schemas/$ArrayWithNumbers.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/schemas/$ArrayWithNumbers.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1288,7 +1261,7 @@ export const $ArrayWithNumbers = {
 };"
 `;
 
-exports[`v2 should generate: ./test/result/v2/schemas/$ArrayWithProperties.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/schemas/$ArrayWithProperties.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1298,7 +1271,7 @@ export const $ArrayWithProperties = {
 };"
 `;
 
-exports[`v2 should generate: ./test/result/v2/schemas/$ArrayWithReferences.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/schemas/$ArrayWithReferences.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1308,7 +1281,7 @@ export const $ArrayWithReferences = {
 };"
 `;
 
-exports[`v2 should generate: ./test/result/v2/schemas/$ArrayWithStrings.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/schemas/$ArrayWithStrings.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1318,7 +1291,7 @@ export const $ArrayWithStrings = {
 };"
 `;
 
-exports[`v2 should generate: ./test/result/v2/schemas/$DictionaryWithArray.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/schemas/$DictionaryWithArray.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1328,7 +1301,7 @@ export const $DictionaryWithArray = {
 };"
 `;
 
-exports[`v2 should generate: ./test/result/v2/schemas/$DictionaryWithDictionary.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/schemas/$DictionaryWithDictionary.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1338,7 +1311,7 @@ export const $DictionaryWithDictionary = {
 };"
 `;
 
-exports[`v2 should generate: ./test/result/v2/schemas/$DictionaryWithProperties.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/schemas/$DictionaryWithProperties.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1348,7 +1321,7 @@ export const $DictionaryWithProperties = {
 };"
 `;
 
-exports[`v2 should generate: ./test/result/v2/schemas/$DictionaryWithReference.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/schemas/$DictionaryWithReference.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1358,7 +1331,7 @@ export const $DictionaryWithReference = {
 };"
 `;
 
-exports[`v2 should generate: ./test/result/v2/schemas/$DictionaryWithString.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/schemas/$DictionaryWithString.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1368,7 +1341,7 @@ export const $DictionaryWithString = {
 };"
 `;
 
-exports[`v2 should generate: ./test/result/v2/schemas/$EnumFromDescription.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/schemas/$EnumFromDescription.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1378,7 +1351,7 @@ export const $EnumFromDescription = {
 };"
 `;
 
-exports[`v2 should generate: ./test/result/v2/schemas/$EnumWithExtensions.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/schemas/$EnumWithExtensions.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1388,7 +1361,7 @@ export const $EnumWithExtensions = {
 };"
 `;
 
-exports[`v2 should generate: ./test/result/v2/schemas/$EnumWithNumbers.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/schemas/$EnumWithNumbers.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1398,7 +1371,7 @@ export const $EnumWithNumbers = {
 };"
 `;
 
-exports[`v2 should generate: ./test/result/v2/schemas/$EnumWithStrings.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/schemas/$EnumWithStrings.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1408,7 +1381,7 @@ export const $EnumWithStrings = {
 };"
 `;
 
-exports[`v2 should generate: ./test/result/v2/schemas/$ModelLink.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/schemas/$ModelLink.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1422,7 +1395,7 @@ export const $ModelLink = {
 };"
 `;
 
-exports[`v2 should generate: ./test/result/v2/schemas/$ModelThatExtends.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/schemas/$ModelThatExtends.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1442,7 +1415,7 @@ export const $ModelThatExtends = {
 };"
 `;
 
-exports[`v2 should generate: ./test/result/v2/schemas/$ModelThatExtendsExtends.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/schemas/$ModelThatExtendsExtends.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1464,7 +1437,7 @@ export const $ModelThatExtendsExtends = {
 };"
 `;
 
-exports[`v2 should generate: ./test/result/v2/schemas/$ModelWithArray.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/schemas/$ModelWithArray.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1484,7 +1457,7 @@ export const $ModelWithArray = {
 };"
 `;
 
-exports[`v2 should generate: ./test/result/v2/schemas/$ModelWithBoolean.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/schemas/$ModelWithBoolean.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1498,7 +1471,7 @@ export const $ModelWithBoolean = {
 };"
 `;
 
-exports[`v2 should generate: ./test/result/v2/schemas/$ModelWithCircularReference.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/schemas/$ModelWithCircularReference.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1512,7 +1485,7 @@ export const $ModelWithCircularReference = {
 };"
 `;
 
-exports[`v2 should generate: ./test/result/v2/schemas/$ModelWithDictionary.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/schemas/$ModelWithDictionary.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1526,7 +1499,7 @@ export const $ModelWithDictionary = {
 };"
 `;
 
-exports[`v2 should generate: ./test/result/v2/schemas/$ModelWithDuplicateImports.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/schemas/$ModelWithDuplicateImports.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1546,7 +1519,7 @@ export const $ModelWithDuplicateImports = {
 };"
 `;
 
-exports[`v2 should generate: ./test/result/v2/schemas/$ModelWithDuplicateProperties.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/schemas/$ModelWithDuplicateProperties.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1560,7 +1533,7 @@ export const $ModelWithDuplicateProperties = {
 };"
 `;
 
-exports[`v2 should generate: ./test/result/v2/schemas/$ModelWithEnum.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/schemas/$ModelWithEnum.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1577,7 +1550,7 @@ export const $ModelWithEnum = {
 };"
 `;
 
-exports[`v2 should generate: ./test/result/v2/schemas/$ModelWithEnumFromDescription.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/schemas/$ModelWithEnumFromDescription.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1591,7 +1564,7 @@ export const $ModelWithEnumFromDescription = {
 };"
 `;
 
-exports[`v2 should generate: ./test/result/v2/schemas/$ModelWithInteger.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/schemas/$ModelWithInteger.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1605,7 +1578,7 @@ export const $ModelWithInteger = {
 };"
 `;
 
-exports[`v2 should generate: ./test/result/v2/schemas/$ModelWithLink.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/schemas/$ModelWithLink.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1619,7 +1592,7 @@ export const $ModelWithLink = {
 };"
 `;
 
-exports[`v2 should generate: ./test/result/v2/schemas/$ModelWithNestedEnums.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/schemas/$ModelWithNestedEnums.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1642,7 +1615,7 @@ export const $ModelWithNestedEnums = {
 };"
 `;
 
-exports[`v2 should generate: ./test/result/v2/schemas/$ModelWithNestedProperties.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/schemas/$ModelWithNestedProperties.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1670,7 +1643,7 @@ export const $ModelWithNestedProperties = {
 };"
 `;
 
-exports[`v2 should generate: ./test/result/v2/schemas/$ModelWithOrderedProperties.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/schemas/$ModelWithOrderedProperties.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1690,7 +1663,7 @@ export const $ModelWithOrderedProperties = {
 };"
 `;
 
-exports[`v2 should generate: ./test/result/v2/schemas/$ModelWithPattern.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/schemas/$ModelWithPattern.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1721,7 +1694,7 @@ export const $ModelWithPattern = {
 };"
 `;
 
-exports[`v2 should generate: ./test/result/v2/schemas/$ModelWithProperties.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/schemas/$ModelWithProperties.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1753,7 +1726,7 @@ export const $ModelWithProperties = {
 };"
 `;
 
-exports[`v2 should generate: ./test/result/v2/schemas/$ModelWithReference.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/schemas/$ModelWithReference.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1767,7 +1740,7 @@ export const $ModelWithReference = {
 };"
 `;
 
-exports[`v2 should generate: ./test/result/v2/schemas/$ModelWithString.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/schemas/$ModelWithString.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1781,7 +1754,7 @@ export const $ModelWithString = {
 };"
 `;
 
-exports[`v2 should generate: ./test/result/v2/schemas/$MultilineComment.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/schemas/$MultilineComment.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1791,7 +1764,7 @@ export const $MultilineComment = {
 };"
 `;
 
-exports[`v2 should generate: ./test/result/v2/schemas/$SimpleBoolean.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/schemas/$SimpleBoolean.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1801,7 +1774,7 @@ export const $SimpleBoolean = {
 };"
 `;
 
-exports[`v2 should generate: ./test/result/v2/schemas/$SimpleFile.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/schemas/$SimpleFile.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1811,7 +1784,7 @@ export const $SimpleFile = {
 };"
 `;
 
-exports[`v2 should generate: ./test/result/v2/schemas/$SimpleInteger.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/schemas/$SimpleInteger.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1821,7 +1794,7 @@ export const $SimpleInteger = {
 };"
 `;
 
-exports[`v2 should generate: ./test/result/v2/schemas/$SimpleReference.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/schemas/$SimpleReference.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1831,7 +1804,7 @@ export const $SimpleReference = {
 };"
 `;
 
-exports[`v2 should generate: ./test/result/v2/schemas/$SimpleString.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/schemas/$SimpleString.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1841,7 +1814,7 @@ export const $SimpleString = {
 };"
 `;
 
-exports[`v2 should generate: ./test/result/v2/services/ComplexService.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/services/ComplexService.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1894,7 +1867,7 @@ export class ComplexService {
 }"
 `;
 
-exports[`v2 should generate: ./test/result/v2/services/DefaultsService.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/services/DefaultsService.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -1920,7 +1893,7 @@ export class DefaultsService {
         parameterBoolean: boolean = true,
         parameterEnum: ('Success' | 'Warning' | 'Error') = 'Success',
         parameterModel: ModelWithString = {
-            \\"prop\\": \\"Hello World\\"
+            \\"prop\\": \\"Hello World!\\"
         },
     ): Promise<void> {
 
@@ -1955,7 +1928,7 @@ export class DefaultsService {
         parameterBoolean: boolean = true,
         parameterEnum: ('Success' | 'Warning' | 'Error') = 'Success',
         parameterModel: ModelWithString = {
-            \\"prop\\": \\"Hello World\\"
+            \\"prop\\": \\"Hello World!\\"
         },
     ): Promise<void> {
 
@@ -1990,7 +1963,7 @@ export class DefaultsService {
         parameterOptionalStringWithDefault: string = 'Hello World!',
         parameterOptionalStringWithEmptyDefault: string = '',
         parameterOptionalStringWithNoDefault?: string,
-        parameterStringWithDefault: string = 'hello',
+        parameterStringWithDefault: string = 'Hello World!',
         parameterStringWithEmptyDefault: string = '',
     ): Promise<void> {
 
@@ -2015,7 +1988,7 @@ export class DefaultsService {
 }"
 `;
 
-exports[`v2 should generate: ./test/result/v2/services/DuplicateService.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/services/DuplicateService.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -2089,7 +2062,7 @@ export class DuplicateService {
 }"
 `;
 
-exports[`v2 should generate: ./test/result/v2/services/HeaderService.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/services/HeaderService.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -2127,7 +2100,7 @@ export class HeaderService {
 }"
 `;
 
-exports[`v2 should generate: ./test/result/v2/services/ParametersService.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/services/ParametersService.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -2217,7 +2190,7 @@ export class ParametersService {
 }"
 `;
 
-exports[`v2 should generate: ./test/result/v2/services/ResponseService.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/services/ResponseService.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -2300,7 +2273,7 @@ export class ResponseService {
 }"
 `;
 
-exports[`v2 should generate: ./test/result/v2/services/SimpleService.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/services/SimpleService.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -2419,12 +2392,11 @@ export class SimpleService {
 }"
 `;
 
-exports[`v2 should generate: ./test/result/v2/services/TypesService.ts 1`] = `
+exports[`v2 should generate: ./test/generator/dist/v2/services/TypesService.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
 
-import { Dictionary } from '../models/Dictionary';
 import { catchGenericError } from '../core/ApiError';
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
@@ -2448,7 +2420,7 @@ export class TypesService {
      */
     public static async types(
         parameterArray: Array<string>,
-        parameterDictionary: Dictionary<string>,
+        parameterDictionary: Record<string, string>,
         parameterEnum: ('Success' | 'Warning' | 'Error'),
         parameterNumber: number = 123,
         parameterString: string = 'default',
@@ -2479,7 +2451,7 @@ export class TypesService {
 }"
 `;
 
-exports[`v3 should generate: ./test/result/v3/core/ApiError.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/core/ApiError.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -2522,11 +2494,10 @@ export function catchGenericError(result: Result): void {
     if (!isSuccess(result.status)) {
         throw new ApiError(result, 'Generic Error');
     }
-}
-"
+}"
 `;
 
-exports[`v3 should generate: ./test/result/v3/core/OpenAPI.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/core/OpenAPI.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -2541,14 +2512,14 @@ interface Config {
 
 export const OpenAPI: Config = {
     BASE: '/api',
-    VERSION: '1',
+    VERSION: '1.0',
     CLIENT: 'fetch',
     WITH_CREDENTIALS: false,
     TOKEN: '',
 };"
 `;
 
-exports[`v3 should generate: ./test/result/v3/core/RequestOptions.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/core/RequestOptions.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -2562,11 +2533,10 @@ export interface RequestOptions {
     formData?: { [key: string]: any };
     body?: any;
     responseHeader?: string;
-}
-"
+}"
 `;
 
-exports[`v3 should generate: ./test/result/v3/core/Result.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/core/Result.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -2577,11 +2547,10 @@ export interface Result {
     status: number;
     statusText: string;
     body: any;
-}
-"
+}"
 `;
 
-exports[`v3 should generate: ./test/result/v3/core/getFormData.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/core/getFormData.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -2602,11 +2571,10 @@ export function getFormData(params: { [key: string]: any }): FormData {
         }
     }
     return formData;
-}
-"
+}"
 `;
 
-exports[`v3 should generate: ./test/result/v3/core/getQueryString.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/core/getQueryString.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -2636,11 +2604,10 @@ export function getQueryString(params: { [key: string]: any }): string {
         return \`?\${qs.join('&')}\`;
     }
     return '';
-}
-"
+}"
 `;
 
-exports[`v3 should generate: ./test/result/v3/core/isSuccess.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/core/isSuccess.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -2651,11 +2618,10 @@ exports[`v3 should generate: ./test/result/v3/core/isSuccess.ts 1`] = `
  */
 export function isSuccess(status: number): boolean {
     return status >= 200 && status < 300;
-}
-"
+}"
 `;
 
-exports[`v3 should generate: ./test/result/v3/core/request.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/core/request.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -2747,11 +2713,10 @@ export async function request(options: Readonly<RequestOptions>): Promise<Result
             body: error,
         };
     }
-}
-"
+}"
 `;
 
-exports[`v3 should generate: ./test/result/v3/core/requestUsingFetch.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/core/requestUsingFetch.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -2823,11 +2788,10 @@ export async function requestUsingFetch(url: string, request: Readonly<RequestIn
         statusText: response.statusText,
         body: contentHeader || contentBody,
     };
-}
-"
+}"
 `;
 
-exports[`v3 should generate: ./test/result/v3/core/requestUsingXHR.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/core/requestUsingXHR.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -2928,11 +2892,10 @@ export async function requestUsingXHR(url: string, request: Readonly<RequestInit
         // Start the request!
         xhr.send(request.body);
     });
-}
-"
+}"
 `;
 
-exports[`v3 should generate: ./test/result/v3/index.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/index.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3043,7 +3006,7 @@ export { UploadService } from './services/UploadService';
 "
 `;
 
-exports[`v3 should generate: ./test/result/v3/models/ArrayWithArray.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/models/ArrayWithArray.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3056,7 +3019,7 @@ import { ModelWithString } from './ModelWithString';
 export type ArrayWithArray = Array<Array<ModelWithString>>;"
 `;
 
-exports[`v3 should generate: ./test/result/v3/models/ArrayWithBooleans.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/models/ArrayWithBooleans.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3068,7 +3031,7 @@ exports[`v3 should generate: ./test/result/v3/models/ArrayWithBooleans.ts 1`] = 
 export type ArrayWithBooleans = Array<boolean>;"
 `;
 
-exports[`v3 should generate: ./test/result/v3/models/ArrayWithNumbers.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/models/ArrayWithNumbers.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3080,7 +3043,7 @@ exports[`v3 should generate: ./test/result/v3/models/ArrayWithNumbers.ts 1`] = `
 export type ArrayWithNumbers = Array<number>;"
 `;
 
-exports[`v3 should generate: ./test/result/v3/models/ArrayWithProperties.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/models/ArrayWithProperties.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3095,7 +3058,7 @@ export type ArrayWithProperties = Array<{
 }>;"
 `;
 
-exports[`v3 should generate: ./test/result/v3/models/ArrayWithReferences.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/models/ArrayWithReferences.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3108,7 +3071,7 @@ import { ModelWithString } from './ModelWithString';
 export type ArrayWithReferences = Array<ModelWithString>;"
 `;
 
-exports[`v3 should generate: ./test/result/v3/models/ArrayWithStrings.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/models/ArrayWithStrings.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3120,88 +3083,72 @@ exports[`v3 should generate: ./test/result/v3/models/ArrayWithStrings.ts 1`] = `
 export type ArrayWithStrings = Array<string>;"
 `;
 
-exports[`v3 should generate: ./test/result/v3/models/Dictionary.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/models/DictionaryWithArray.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
 
-export type Dictionary<T> = {
-    [key: string]: T;
-}
-"
-`;
-
-exports[`v3 should generate: ./test/result/v3/models/DictionaryWithArray.ts 1`] = `
-"/* istanbul ignore file */
-/* tslint:disable */
-/* eslint-disable */
-
-import { Dictionary } from './Dictionary';
 import { ModelWithString } from './ModelWithString';
 
 /**
  * This is a complex dictionary
  */
-export type DictionaryWithArray = Dictionary<Array<ModelWithString>>;"
+export type DictionaryWithArray = Record<string, Array<ModelWithString>>;"
 `;
 
-exports[`v3 should generate: ./test/result/v3/models/DictionaryWithDictionary.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/models/DictionaryWithDictionary.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
 
-import { Dictionary } from './Dictionary';
 
 /**
  * This is a string dictionary
  */
-export type DictionaryWithDictionary = Dictionary<Dictionary<string>>;"
+export type DictionaryWithDictionary = Record<string, Record<string, string>>;"
 `;
 
-exports[`v3 should generate: ./test/result/v3/models/DictionaryWithProperties.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/models/DictionaryWithProperties.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
 
-import { Dictionary } from './Dictionary';
 
 /**
  * This is a complex dictionary
  */
-export type DictionaryWithProperties = Dictionary<{
+export type DictionaryWithProperties = Record<string, {
     foo?: string,
     bar?: string,
 }>;"
 `;
 
-exports[`v3 should generate: ./test/result/v3/models/DictionaryWithReference.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/models/DictionaryWithReference.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
 
-import { Dictionary } from './Dictionary';
 import { ModelWithString } from './ModelWithString';
 
 /**
  * This is a string reference
  */
-export type DictionaryWithReference = Dictionary<ModelWithString>;"
+export type DictionaryWithReference = Record<string, ModelWithString>;"
 `;
 
-exports[`v3 should generate: ./test/result/v3/models/DictionaryWithString.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/models/DictionaryWithString.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
 
-import { Dictionary } from './Dictionary';
 
 /**
  * This is a string dictionary
  */
-export type DictionaryWithString = Dictionary<string>;"
+export type DictionaryWithString = Record<string, string>;"
 `;
 
-exports[`v3 should generate: ./test/result/v3/models/EnumFromDescription.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/models/EnumFromDescription.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3217,7 +3164,7 @@ export enum EnumFromDescription {
 }"
 `;
 
-exports[`v3 should generate: ./test/result/v3/models/EnumWithExtensions.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/models/EnumWithExtensions.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3242,7 +3189,7 @@ export enum EnumWithExtensions {
 }"
 `;
 
-exports[`v3 should generate: ./test/result/v3/models/EnumWithNumbers.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/models/EnumWithNumbers.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3258,7 +3205,7 @@ export enum EnumWithNumbers {
 }"
 `;
 
-exports[`v3 should generate: ./test/result/v3/models/EnumWithStrings.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/models/EnumWithStrings.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3274,7 +3221,7 @@ export enum EnumWithStrings {
 }"
 `;
 
-exports[`v3 should generate: ./test/result/v3/models/ModelLink.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/models/ModelLink.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3289,7 +3236,7 @@ export interface ModelLink {
 "
 `;
 
-exports[`v3 should generate: ./test/result/v3/models/ModelThatExtends.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/models/ModelThatExtends.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3306,7 +3253,7 @@ export interface ModelThatExtends extends ModelWithString {
 "
 `;
 
-exports[`v3 should generate: ./test/result/v3/models/ModelThatExtendsExtends.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/models/ModelThatExtendsExtends.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3324,7 +3271,7 @@ export interface ModelThatExtendsExtends extends ModelWithString, ModelThatExten
 "
 `;
 
-exports[`v3 should generate: ./test/result/v3/models/ModelWithAnyOf.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/models/ModelWithAnyOf.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3343,7 +3290,7 @@ export interface ModelWithAnyOf {
 "
 `;
 
-exports[`v3 should generate: ./test/result/v3/models/ModelWithArray.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/models/ModelWithArray.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3361,7 +3308,7 @@ export interface ModelWithArray {
 "
 `;
 
-exports[`v3 should generate: ./test/result/v3/models/ModelWithBoolean.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/models/ModelWithBoolean.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3379,7 +3326,7 @@ export interface ModelWithBoolean {
 "
 `;
 
-exports[`v3 should generate: ./test/result/v3/models/ModelWithCircularReference.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/models/ModelWithCircularReference.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3394,23 +3341,22 @@ export interface ModelWithCircularReference {
 "
 `;
 
-exports[`v3 should generate: ./test/result/v3/models/ModelWithDictionary.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/models/ModelWithDictionary.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
 
-import { Dictionary } from './Dictionary';
 
 /**
  * This is a model with one property containing a dictionary
  */
 export interface ModelWithDictionary {
-    prop?: Dictionary<string>;
+    prop?: Record<string, string>;
 }
 "
 `;
 
-exports[`v3 should generate: ./test/result/v3/models/ModelWithDuplicateImports.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/models/ModelWithDuplicateImports.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3428,7 +3374,7 @@ export interface ModelWithDuplicateImports {
 "
 `;
 
-exports[`v3 should generate: ./test/result/v3/models/ModelWithDuplicateProperties.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/models/ModelWithDuplicateProperties.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3444,7 +3390,7 @@ export interface ModelWithDuplicateProperties {
 "
 `;
 
-exports[`v3 should generate: ./test/result/v3/models/ModelWithEnum.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/models/ModelWithEnum.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3492,7 +3438,7 @@ export namespace ModelWithEnum {
 "
 `;
 
-exports[`v3 should generate: ./test/result/v3/models/ModelWithEnumFromDescription.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/models/ModelWithEnumFromDescription.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3524,7 +3470,7 @@ export namespace ModelWithEnumFromDescription {
 "
 `;
 
-exports[`v3 should generate: ./test/result/v3/models/ModelWithInteger.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/models/ModelWithInteger.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3542,7 +3488,7 @@ export interface ModelWithInteger {
 "
 `;
 
-exports[`v3 should generate: ./test/result/v3/models/ModelWithLink.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/models/ModelWithLink.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3559,26 +3505,25 @@ export interface ModelWithLink {
 "
 `;
 
-exports[`v3 should generate: ./test/result/v3/models/ModelWithNestedEnums.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/models/ModelWithNestedEnums.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
 
-import { Dictionary } from './Dictionary';
 
 /**
  * This is a model with nested enums
  */
 export interface ModelWithNestedEnums {
-    dictionaryWithEnum?: Dictionary<('Success' | 'Warning' | 'Error')>;
-    dictionaryWithEnumFromDescription?: Dictionary<(1 | 2 | 3)>;
+    dictionaryWithEnum?: Record<string, ('Success' | 'Warning' | 'Error')>;
+    dictionaryWithEnumFromDescription?: Record<string, (1 | 2 | 3)>;
     arrayWithEnum?: Array<('Success' | 'Warning' | 'Error')>;
     arrayWithDescription?: Array<(1 | 2 | 3)>;
 }
 "
 `;
 
-exports[`v3 should generate: ./test/result/v3/models/ModelWithNestedProperties.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/models/ModelWithNestedProperties.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3597,7 +3542,7 @@ export interface ModelWithNestedProperties {
 "
 `;
 
-exports[`v3 should generate: ./test/result/v3/models/ModelWithOneOf.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/models/ModelWithOneOf.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3616,7 +3561,7 @@ export interface ModelWithOneOf {
 "
 `;
 
-exports[`v3 should generate: ./test/result/v3/models/ModelWithOrderedProperties.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/models/ModelWithOrderedProperties.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3633,7 +3578,7 @@ export interface ModelWithOrderedProperties {
 "
 `;
 
-exports[`v3 should generate: ./test/result/v3/models/ModelWithPattern.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/models/ModelWithPattern.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3651,7 +3596,7 @@ export interface ModelWithPattern {
 "
 `;
 
-exports[`v3 should generate: ./test/result/v3/models/ModelWithProperties.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/models/ModelWithProperties.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3673,7 +3618,7 @@ export interface ModelWithProperties {
 "
 `;
 
-exports[`v3 should generate: ./test/result/v3/models/ModelWithReference.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/models/ModelWithReference.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3689,7 +3634,7 @@ export interface ModelWithReference {
 "
 `;
 
-exports[`v3 should generate: ./test/result/v3/models/ModelWithString.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/models/ModelWithString.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3707,7 +3652,7 @@ export interface ModelWithString {
 "
 `;
 
-exports[`v3 should generate: ./test/result/v3/models/MultilineComment.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/models/MultilineComment.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3722,7 +3667,7 @@ exports[`v3 should generate: ./test/result/v3/models/MultilineComment.ts 1`] = `
 export type MultilineComment = number;"
 `;
 
-exports[`v3 should generate: ./test/result/v3/models/SimpleBoolean.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/models/SimpleBoolean.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3734,7 +3679,7 @@ exports[`v3 should generate: ./test/result/v3/models/SimpleBoolean.ts 1`] = `
 export type SimpleBoolean = boolean;"
 `;
 
-exports[`v3 should generate: ./test/result/v3/models/SimpleFile.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/models/SimpleFile.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3746,7 +3691,7 @@ exports[`v3 should generate: ./test/result/v3/models/SimpleFile.ts 1`] = `
 export type SimpleFile = File;"
 `;
 
-exports[`v3 should generate: ./test/result/v3/models/SimpleInteger.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/models/SimpleInteger.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3758,7 +3703,7 @@ exports[`v3 should generate: ./test/result/v3/models/SimpleInteger.ts 1`] = `
 export type SimpleInteger = number;"
 `;
 
-exports[`v3 should generate: ./test/result/v3/models/SimpleReference.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/models/SimpleReference.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3771,7 +3716,7 @@ import { ModelWithString } from './ModelWithString';
 export type SimpleReference = ModelWithString;"
 `;
 
-exports[`v3 should generate: ./test/result/v3/models/SimpleString.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/models/SimpleString.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3783,7 +3728,7 @@ exports[`v3 should generate: ./test/result/v3/models/SimpleString.ts 1`] = `
 export type SimpleString = string;"
 `;
 
-exports[`v3 should generate: ./test/result/v3/schemas/$ArrayWithArray.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/schemas/$ArrayWithArray.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3793,7 +3738,7 @@ export const $ArrayWithArray = {
 };"
 `;
 
-exports[`v3 should generate: ./test/result/v3/schemas/$ArrayWithBooleans.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/schemas/$ArrayWithBooleans.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3803,7 +3748,7 @@ export const $ArrayWithBooleans = {
 };"
 `;
 
-exports[`v3 should generate: ./test/result/v3/schemas/$ArrayWithNumbers.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/schemas/$ArrayWithNumbers.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3813,7 +3758,7 @@ export const $ArrayWithNumbers = {
 };"
 `;
 
-exports[`v3 should generate: ./test/result/v3/schemas/$ArrayWithProperties.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/schemas/$ArrayWithProperties.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3823,7 +3768,7 @@ export const $ArrayWithProperties = {
 };"
 `;
 
-exports[`v3 should generate: ./test/result/v3/schemas/$ArrayWithReferences.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/schemas/$ArrayWithReferences.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3833,7 +3778,7 @@ export const $ArrayWithReferences = {
 };"
 `;
 
-exports[`v3 should generate: ./test/result/v3/schemas/$ArrayWithStrings.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/schemas/$ArrayWithStrings.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3843,7 +3788,7 @@ export const $ArrayWithStrings = {
 };"
 `;
 
-exports[`v3 should generate: ./test/result/v3/schemas/$DictionaryWithArray.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/schemas/$DictionaryWithArray.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3853,7 +3798,7 @@ export const $DictionaryWithArray = {
 };"
 `;
 
-exports[`v3 should generate: ./test/result/v3/schemas/$DictionaryWithDictionary.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/schemas/$DictionaryWithDictionary.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3863,7 +3808,7 @@ export const $DictionaryWithDictionary = {
 };"
 `;
 
-exports[`v3 should generate: ./test/result/v3/schemas/$DictionaryWithProperties.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/schemas/$DictionaryWithProperties.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3873,7 +3818,7 @@ export const $DictionaryWithProperties = {
 };"
 `;
 
-exports[`v3 should generate: ./test/result/v3/schemas/$DictionaryWithReference.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/schemas/$DictionaryWithReference.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3883,7 +3828,7 @@ export const $DictionaryWithReference = {
 };"
 `;
 
-exports[`v3 should generate: ./test/result/v3/schemas/$DictionaryWithString.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/schemas/$DictionaryWithString.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3893,7 +3838,7 @@ export const $DictionaryWithString = {
 };"
 `;
 
-exports[`v3 should generate: ./test/result/v3/schemas/$EnumFromDescription.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/schemas/$EnumFromDescription.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3903,7 +3848,7 @@ export const $EnumFromDescription = {
 };"
 `;
 
-exports[`v3 should generate: ./test/result/v3/schemas/$EnumWithExtensions.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/schemas/$EnumWithExtensions.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3913,7 +3858,7 @@ export const $EnumWithExtensions = {
 };"
 `;
 
-exports[`v3 should generate: ./test/result/v3/schemas/$EnumWithNumbers.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/schemas/$EnumWithNumbers.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3923,7 +3868,7 @@ export const $EnumWithNumbers = {
 };"
 `;
 
-exports[`v3 should generate: ./test/result/v3/schemas/$EnumWithStrings.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/schemas/$EnumWithStrings.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3933,7 +3878,7 @@ export const $EnumWithStrings = {
 };"
 `;
 
-exports[`v3 should generate: ./test/result/v3/schemas/$ModelLink.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/schemas/$ModelLink.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3947,7 +3892,7 @@ export const $ModelLink = {
 };"
 `;
 
-exports[`v3 should generate: ./test/result/v3/schemas/$ModelThatExtends.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/schemas/$ModelThatExtends.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3967,7 +3912,7 @@ export const $ModelThatExtends = {
 };"
 `;
 
-exports[`v3 should generate: ./test/result/v3/schemas/$ModelThatExtendsExtends.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/schemas/$ModelThatExtendsExtends.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -3989,7 +3934,7 @@ export const $ModelThatExtendsExtends = {
 };"
 `;
 
-exports[`v3 should generate: ./test/result/v3/schemas/$ModelWithAnyOf.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/schemas/$ModelWithAnyOf.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -4003,7 +3948,7 @@ export const $ModelWithAnyOf = {
 };"
 `;
 
-exports[`v3 should generate: ./test/result/v3/schemas/$ModelWithArray.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/schemas/$ModelWithArray.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -4023,7 +3968,7 @@ export const $ModelWithArray = {
 };"
 `;
 
-exports[`v3 should generate: ./test/result/v3/schemas/$ModelWithBoolean.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/schemas/$ModelWithBoolean.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -4037,7 +3982,7 @@ export const $ModelWithBoolean = {
 };"
 `;
 
-exports[`v3 should generate: ./test/result/v3/schemas/$ModelWithCircularReference.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/schemas/$ModelWithCircularReference.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -4051,7 +3996,7 @@ export const $ModelWithCircularReference = {
 };"
 `;
 
-exports[`v3 should generate: ./test/result/v3/schemas/$ModelWithDictionary.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/schemas/$ModelWithDictionary.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -4065,7 +4010,7 @@ export const $ModelWithDictionary = {
 };"
 `;
 
-exports[`v3 should generate: ./test/result/v3/schemas/$ModelWithDuplicateImports.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/schemas/$ModelWithDuplicateImports.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -4085,7 +4030,7 @@ export const $ModelWithDuplicateImports = {
 };"
 `;
 
-exports[`v3 should generate: ./test/result/v3/schemas/$ModelWithDuplicateProperties.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/schemas/$ModelWithDuplicateProperties.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -4099,7 +4044,7 @@ export const $ModelWithDuplicateProperties = {
 };"
 `;
 
-exports[`v3 should generate: ./test/result/v3/schemas/$ModelWithEnum.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/schemas/$ModelWithEnum.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -4116,7 +4061,7 @@ export const $ModelWithEnum = {
 };"
 `;
 
-exports[`v3 should generate: ./test/result/v3/schemas/$ModelWithEnumFromDescription.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/schemas/$ModelWithEnumFromDescription.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -4130,7 +4075,7 @@ export const $ModelWithEnumFromDescription = {
 };"
 `;
 
-exports[`v3 should generate: ./test/result/v3/schemas/$ModelWithInteger.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/schemas/$ModelWithInteger.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -4144,7 +4089,7 @@ export const $ModelWithInteger = {
 };"
 `;
 
-exports[`v3 should generate: ./test/result/v3/schemas/$ModelWithLink.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/schemas/$ModelWithLink.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -4158,7 +4103,7 @@ export const $ModelWithLink = {
 };"
 `;
 
-exports[`v3 should generate: ./test/result/v3/schemas/$ModelWithNestedEnums.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/schemas/$ModelWithNestedEnums.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -4181,7 +4126,7 @@ export const $ModelWithNestedEnums = {
 };"
 `;
 
-exports[`v3 should generate: ./test/result/v3/schemas/$ModelWithNestedProperties.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/schemas/$ModelWithNestedProperties.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -4212,7 +4157,7 @@ export const $ModelWithNestedProperties = {
 };"
 `;
 
-exports[`v3 should generate: ./test/result/v3/schemas/$ModelWithOneOf.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/schemas/$ModelWithOneOf.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -4226,7 +4171,7 @@ export const $ModelWithOneOf = {
 };"
 `;
 
-exports[`v3 should generate: ./test/result/v3/schemas/$ModelWithOrderedProperties.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/schemas/$ModelWithOrderedProperties.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -4246,7 +4191,7 @@ export const $ModelWithOrderedProperties = {
 };"
 `;
 
-exports[`v3 should generate: ./test/result/v3/schemas/$ModelWithPattern.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/schemas/$ModelWithPattern.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -4277,7 +4222,7 @@ export const $ModelWithPattern = {
 };"
 `;
 
-exports[`v3 should generate: ./test/result/v3/schemas/$ModelWithProperties.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/schemas/$ModelWithProperties.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -4314,7 +4259,7 @@ export const $ModelWithProperties = {
 };"
 `;
 
-exports[`v3 should generate: ./test/result/v3/schemas/$ModelWithReference.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/schemas/$ModelWithReference.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -4328,7 +4273,7 @@ export const $ModelWithReference = {
 };"
 `;
 
-exports[`v3 should generate: ./test/result/v3/schemas/$ModelWithString.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/schemas/$ModelWithString.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -4342,7 +4287,7 @@ export const $ModelWithString = {
 };"
 `;
 
-exports[`v3 should generate: ./test/result/v3/schemas/$MultilineComment.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/schemas/$MultilineComment.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -4352,7 +4297,7 @@ export const $MultilineComment = {
 };"
 `;
 
-exports[`v3 should generate: ./test/result/v3/schemas/$SimpleBoolean.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/schemas/$SimpleBoolean.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -4362,7 +4307,7 @@ export const $SimpleBoolean = {
 };"
 `;
 
-exports[`v3 should generate: ./test/result/v3/schemas/$SimpleFile.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/schemas/$SimpleFile.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -4372,7 +4317,7 @@ export const $SimpleFile = {
 };"
 `;
 
-exports[`v3 should generate: ./test/result/v3/schemas/$SimpleInteger.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/schemas/$SimpleInteger.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -4382,7 +4327,7 @@ export const $SimpleInteger = {
 };"
 `;
 
-exports[`v3 should generate: ./test/result/v3/schemas/$SimpleReference.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/schemas/$SimpleReference.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -4392,7 +4337,7 @@ export const $SimpleReference = {
 };"
 `;
 
-exports[`v3 should generate: ./test/result/v3/schemas/$SimpleString.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/schemas/$SimpleString.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -4402,7 +4347,7 @@ export const $SimpleString = {
 };"
 `;
 
-exports[`v3 should generate: ./test/result/v3/services/ComplexService.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/services/ComplexService.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -4492,7 +4437,7 @@ export class ComplexService {
 }"
 `;
 
-exports[`v3 should generate: ./test/result/v3/services/DefaultsService.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/services/DefaultsService.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -4518,7 +4463,7 @@ export class DefaultsService {
         parameterBoolean: boolean | null = true,
         parameterEnum: ('Success' | 'Warning' | 'Error') = 'Success',
         parameterModel: ModelWithString | null = {
-            \\"prop\\": \\"Hello World\\"
+            \\"prop\\": \\"Hello World!\\"
         },
     ): Promise<void> {
 
@@ -4553,7 +4498,7 @@ export class DefaultsService {
         parameterBoolean: boolean = true,
         parameterEnum: ('Success' | 'Warning' | 'Error') = 'Success',
         parameterModel: ModelWithString = {
-            \\"prop\\": \\"Hello World\\"
+            \\"prop\\": \\"Hello World!\\"
         },
     ): Promise<void> {
 
@@ -4585,10 +4530,10 @@ export class DefaultsService {
      */
     public static async callToTestOrderOfParams(
         parameterStringWithNoDefault: string,
-        parameterOptionalStringWithDefault: string = 'hello',
+        parameterOptionalStringWithDefault: string = 'Hello World!',
         parameterOptionalStringWithEmptyDefault: string = '',
         parameterOptionalStringWithNoDefault?: string,
-        parameterStringWithDefault: string = 'hello',
+        parameterStringWithDefault: string = 'Hello World!',
         parameterStringWithEmptyDefault: string = '',
     ): Promise<void> {
 
@@ -4613,7 +4558,7 @@ export class DefaultsService {
 }"
 `;
 
-exports[`v3 should generate: ./test/result/v3/services/DuplicateService.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/services/DuplicateService.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -4687,7 +4632,7 @@ export class DuplicateService {
 }"
 `;
 
-exports[`v3 should generate: ./test/result/v3/services/HeaderService.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/services/HeaderService.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -4725,7 +4670,7 @@ export class HeaderService {
 }"
 `;
 
-exports[`v3 should generate: ./test/result/v3/services/MultipartService.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/services/MultipartService.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -4761,7 +4706,7 @@ export class MultipartService {
 }"
 `;
 
-exports[`v3 should generate: ./test/result/v3/services/ParametersService.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/services/ParametersService.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -4910,7 +4855,7 @@ export class ParametersService {
 }"
 `;
 
-exports[`v3 should generate: ./test/result/v3/services/RequestBodyService.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/services/RequestBodyService.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -4944,7 +4889,7 @@ export class RequestBodyService {
 }"
 `;
 
-exports[`v3 should generate: ./test/result/v3/services/ResponseService.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/services/ResponseService.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -5027,7 +4972,7 @@ export class ResponseService {
 }"
 `;
 
-exports[`v3 should generate: ./test/result/v3/services/SimpleService.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/services/SimpleService.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -5146,7 +5091,7 @@ export class SimpleService {
 }"
 `;
 
-exports[`v3 should generate: ./test/result/v3/services/TypesService.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/services/TypesService.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -5205,7 +5150,7 @@ export class TypesService {
 }"
 `;
 
-exports[`v3 should generate: ./test/result/v3/services/UploadService.ts 1`] = `
+exports[`v3 should generate: ./test/generator/dist/v3/services/UploadService.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */

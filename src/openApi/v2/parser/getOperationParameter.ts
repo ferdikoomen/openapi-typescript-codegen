@@ -99,7 +99,6 @@ export function getOperationParameter(openApi: OpenApi, parameter: OpenApiParame
         operationParameter.base = items.base;
         operationParameter.template = items.template;
         operationParameter.imports.push(...items.imports);
-        operationParameter.imports.push('Dictionary');
         operationParameter.default = getOperationParameterDefault(parameter, operationParameter);
         return operationParameter;
     }

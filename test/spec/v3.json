@@ -1,8 +1,8 @@
 {
-    "openapi": "3.0.1",
+    "openapi": "3.0.0",
     "info": {
         "title": "swagger",
-        "version": "v1"
+        "version": "v1.0"
     },
     "servers": [
         {
@@ -366,7 +366,7 @@
                         "schema": {
                             "$ref": "#/components/schemas/ModelWithString",
                             "default": {
-                                "prop": "Hello World"
+                                "prop": "Hello World!"
                             }
                         }
                     }
@@ -430,7 +430,7 @@
                         "schema": {
                             "$ref": "#/components/schemas/ModelWithString",
                             "default": {
-                                "prop": "Hello World"
+                                "prop": "Hello World!"
                             }
                         }
                     }
@@ -449,7 +449,7 @@
                         "required": false,
                         "schema": {
                             "type": "string",
-                            "default": "hello"
+                            "default": "Hello World!"
                         }
                     },
                     {
@@ -478,7 +478,7 @@
                         "required": true,
                         "schema": {
                             "type": "string",
-                            "default": "hello"
+                            "default": "Hello World!"
                         }
                     },
                     {

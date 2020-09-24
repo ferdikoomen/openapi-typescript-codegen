@@ -11,4 +11,5 @@ junit.xml
 dist
 archive
 coverage
+samples/dist
 test/result

@@ -2,7 +2,7 @@
 
 const path = require('path');
 const ts = require('typescript');
-const OpenAPI = require('../dist');
+const OpenAPI = require('../../dist');
 
 function compile(dir) {
     const config = {
@@ -20,35 +20,43 @@ function compile(dir) {
     compiler.emit();
 }
 
-async function run() {
-    console.time('generate');
-
+async function generateV2() {
+    console.time('generate v2');
     await OpenAPI.generate({
-        input: './test/mock/v2/spec.json',
-        output: './test/result/v2/',
+        input: './test/spec/v2.json',
+        output: './test/generator/dist/v2/',
         httpClient: OpenAPI.HttpClient.FETCH,
         useOptions: false,
+        useUnionTypes: false,
         exportCore: true,
         exportSchemas: true,
         exportModels: true,
         exportServices: true,
     });
-
-    await OpenAPI.generate({
-        input: './test/mock/v3/spec.json',
-        output: './test/result/v3/',
-        httpClient: OpenAPI.HttpClient.FETCH,
-        useOptions: false,
-        exportCore: true,
-        exportSchemas: true,
-        exportModels: true,
-        exportServices: true,
-    });
-
-    console.timeEnd('generate');
-
-    compile('./test/result/v2/');
-    compile('./test/result/v3/');
+    console.timeEnd('generate v2');
+    compile('test/generator/dist/v2/');
 }
 
-run();
+async function generateV3() {
+    console.time('generate v3');
+    await OpenAPI.generate({
+        input: './test/spec/v3.json',
+        output: './test/generator/dist/v3/',
+        httpClient: OpenAPI.HttpClient.FETCH,
+        useOptions: false,
+        useUnionTypes: false,
+        exportCore: true,
+        exportSchemas: true,
+        exportModels: true,
+        exportServices: true,
+    });
+    console.timeEnd('generate v3');
+    compile('test/generator/dist/v3/');
+}
+
+async function generate() {
+    await generateV2();
+    await generateV3();
+}
+
+generate();

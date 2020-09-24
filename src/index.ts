@@ -10,6 +10,7 @@ import { writeClient } from './utils/writeClient';
 export enum HttpClient {
     FETCH = 'fetch',
     XHR = 'xhr',
+    NODE = 'node',
 }
 
 export interface Options {
@@ -22,7 +23,6 @@ export interface Options {
     exportServices?: boolean;
     exportModels?: boolean;
     exportSchemas?: boolean;
-    write?: boolean;
 }
 
 /**
@@ -50,7 +50,6 @@ export async function generate({
     exportServices = true,
     exportModels = true,
     exportSchemas = false,
-    write = true,
 }: Options): Promise<void> {
     // Load the specification, read the OpenAPI version and load the
     // handlebar templates for the given language
@@ -62,18 +61,14 @@ export async function generate({
         case OpenApiVersion.V2: {
             const client = parseV2(openApi);
             const clientFinal = postProcessClient(client);
-            if (write) {
-                await writeClient(clientFinal, templates, output, httpClient, useOptions, useUnionTypes, exportCore, exportServices, exportModels, exportSchemas);
-            }
+            await writeClient(clientFinal, templates, output, httpClient, useOptions, useUnionTypes, exportCore, exportServices, exportModels, exportSchemas);
             break;
         }
 
         case OpenApiVersion.V3: {
             const client = parseV3(openApi);
             const clientFinal = postProcessClient(client);
-            if (write) {
-                await writeClient(clientFinal, templates, output, httpClient, useOptions, useUnionTypes, exportCore, exportServices, exportModels, exportSchemas);
-            }
+            await writeClient(clientFinal, templates, output, httpClient, useOptions, useUnionTypes, exportCore, exportServices, exportModels, exportSchemas);
             break;
         }
     }

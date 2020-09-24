@@ -9,22 +9,35 @@ describe('writeClientServices', () => {
     it('should write to filesystem', async () => {
         const services: Service[] = [
             {
-                name: 'Item',
+                name: 'MyService',
                 operations: [],
                 imports: [],
             },
         ];
 
         const templates: Templates = {
-            index: () => 'dummy',
-            model: () => 'dummy',
-            schema: () => 'dummy',
-            service: () => 'dummy',
-            settings: () => 'dummy',
+            index: () => 'index',
+            exports: {
+                model: () => 'model',
+                schema: () => 'schema',
+                service: () => 'service',
+            },
+            core: {
+                settings: () => 'settings',
+                apiError: () => 'apiError',
+                getFormData: () => 'getFormData',
+                getQueryString: () => 'getQueryString',
+                isSuccess: () => 'isSuccess',
+                request: () => 'request',
+                requestOptions: () => 'requestOptions',
+                requestUsingFetch: () => 'requestUsingFetch',
+                requestUsingXHR: () => 'requestUsingXHR',
+                result: () => 'result',
+            },
         };
 
         await writeClientServices(services, templates, '/', false);
 
-        expect(writeFile).toBeCalledWith('/Item.ts', 'dummy');
+        expect(writeFile).toBeCalledWith('/MyService.ts', 'service');
     });
 });

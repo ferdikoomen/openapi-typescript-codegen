@@ -15,15 +15,28 @@ describe('writeClientIndex', () => {
         };
 
         const templates: Templates = {
-            index: () => 'dummy',
-            model: () => 'dummy',
-            schema: () => 'dummy',
-            service: () => 'dummy',
-            settings: () => 'dummy',
+            index: () => 'index',
+            exports: {
+                model: () => 'model',
+                schema: () => 'schema',
+                service: () => 'service',
+            },
+            core: {
+                settings: () => 'settings',
+                apiError: () => 'apiError',
+                getFormData: () => 'getFormData',
+                getQueryString: () => 'getQueryString',
+                isSuccess: () => 'isSuccess',
+                request: () => 'request',
+                requestOptions: () => 'requestOptions',
+                requestUsingFetch: () => 'requestUsingFetch',
+                requestUsingXHR: () => 'requestUsingXHR',
+                result: () => 'result',
+            },
         };
 
         await writeClientIndex(client, templates, '/', true, true, true, true);
 
-        expect(writeFile).toBeCalledWith('/index.ts', 'dummy');
+        expect(writeFile).toBeCalledWith('/index.ts', 'index');
     });
 });
