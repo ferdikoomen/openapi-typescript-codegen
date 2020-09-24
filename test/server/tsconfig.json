@@ -24,7 +24,7 @@
     },
 
     "include": [
-        "./src/main.ts"
+        "./src/**/*.ts"
     ],
 
     "exclude": [
