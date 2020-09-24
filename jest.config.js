@@ -1,5 +1,5 @@
 module.exports = {
-    testRegex: '.*\\.spec\\.(ts|js)$',
+    testRegex: '.*\\.spec\\.(js|js)$',
     testPathIgnorePatterns: [
         '/node_modules/',
         '<rootDir>/dist/',
