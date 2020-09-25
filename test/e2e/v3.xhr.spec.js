@@ -21,7 +21,16 @@ describe('v3.xhr', () => {
         await browser.stop();
     });
 
-    it('runs', async () => {
-        expect(true).toBeTruthy();
+    it('complexService', async () => {
+        const result = await browser.evaluate(async () => {
+            return await window.api.ComplexService.complexTypes({
+                first: {
+                    second: {
+                        third: 'Hello World!'
+                    }
+                }
+            });
+        });
+        expect(result).toBeDefined();
     });
 });

@@ -5,7 +5,7 @@ const path = require('path');
 const os = require('os');
 
 function compile(version, client) {
-    const baseDir = `./test/e2e/generated/${version}/${client}/js/api/`;
+    const baseDir = `./test/e2e/generated/${version}/${client}/`;
     const tsconfig = {
         compilerOptions: {
             target: 'es6',
@@ -14,11 +14,15 @@ function compile(version, client) {
         },
         include: ['./index.ts'],
     };
+
+    // Compile files to JavaScript (ES6 modules)
     const configFile = ts.parseConfigFileTextToJson('tsconfig.json', JSON.stringify(tsconfig));
     const configFileResult = ts.parseJsonConfigFileContent(configFile.config, ts.sys, path.resolve(process.cwd(), baseDir), undefined, 'tsconfig.json');
     const compilerHost = ts.createCompilerHost(configFileResult.options);
     const compiler = ts.createProgram(configFileResult.fileNames, configFileResult.options, compilerHost);
     const result = compiler.emit();
+
+    // Show errors or warnings (if any)
     const diagnostics = ts.getPreEmitDiagnostics(compiler).concat(result.diagnostics);
     if (diagnostics.length) {
         console.log(ts.formatDiagnosticsWithColorAndContext(diagnostics, {

@@ -22,7 +22,15 @@ describe('v2.fetch', () => {
     });
 
     it('complexService', async () => {
-        const result = await browser.evaluate(async () => await window.test.complexService.complexTypes());
-        expect(result).toBe('');
+        const result = await browser.evaluate(async () => {
+            return await window.api.ComplexService.complexTypes({
+                first: {
+                    second: {
+                        third: 'Hello World!'
+                    }
+                }
+            });
+        });
+        expect(result.url).toBeDefined();
     });
 });

@@ -1,3 +1,3 @@
 import('./index.js').then(module => {
-    window.test = module;
+    window.api = module;
 });
