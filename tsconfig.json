@@ -17,8 +17,6 @@
         "strictNullChecks": true,
         "strictFunctionTypes": true,
         "removeComments": true,
-        "emitDecoratorMetadata": true,
-        "experimentalDecorators": true,
         "allowSyntheticDefaultImports": true
     },
 

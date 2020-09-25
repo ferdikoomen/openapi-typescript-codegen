@@ -1,66 +1,47 @@
 'use strict';
 
-const express = require('express');
-const puppeteer = require('puppeteer');
+const OpenAPI = require('../dist');
+const glob = require('glob');
 const fs = require('fs');
-const path = require('path');
-const http = require('http');
 
-describe('e2e', () => {
-
-    let app;
-    let browser;
-    let page;
-    let server;
-
-    beforeAll(async () => {
-        app = express();
-        app.all('/api/*', (req, res) => {
-            res.send({
-                method: req.method,
-                protocol: req.protocol,
-                hostname: req.hostname,
-                path: req.path,
-                url: req.url,
-                query: req.query,
-                body: req.body,
-                headers: req.headers,
-            });
+describe('v2', () => {
+    it('should generate', async () => {
+        await OpenAPI.generate({
+            input: './test/spec/v2.json',
+            output: './test/generated/v2/',
+            httpClient: OpenAPI.HttpClient.FETCH,
+            useOptions: false,
+            useUnionTypes: false,
+            exportCore: true,
+            exportSchemas: true,
+            exportModels: true,
+            exportServices: true,
         });
-        server = app.listen(3000);
-        browser = await puppeteer.launch();
-        page = await browser.newPage();
-    });
 
-    afterAll(async () => {
-        await page.close();
-        await browser.close();
-        await server.close();
-    });
-
-    it('runs in chrome', async () => {
-        await page.goto('http://localhost:3000/api/test', {
-            waitUntil: 'networkidle0',
-        });
-        const content = await page.content();
-        expect(content).toBeDefined();
-    });
-
-    it('runs in node', async () => {
-        return new Promise((resolve) => {
-            http.get('http://localhost:3000/api/test', (res) => {
-                const chunks = [];
-                res.on('data', (chunk) => {
-                    chunks.push(chunk);
-                });
-                res.on('end', () => {
-                    const content = Buffer.concat(chunks).toString();
-                    console.log(content);
-                    expect(content).toBeDefined();
-                    resolve();
-                });
-            })
+        glob.sync('./test/generated/v2/**/*.ts').forEach(file => {
+            const content = fs.readFileSync(file, 'utf8').toString();
+            expect(content).toMatchSnapshot(file);
         });
     });
+});
 
-})
+describe('v3', () => {
+    it('should generate', async () => {
+        await OpenAPI.generate({
+            input: './test/spec/v3.json',
+            output: './test/generated/v3/',
+            httpClient: OpenAPI.HttpClient.FETCH,
+            useOptions: false,
+            useUnionTypes: false,
+            exportCore: true,
+            exportSchemas: true,
+            exportModels: true,
+            exportServices: true,
+        });
+
+        glob.sync('./test/generated/v3/**/*.ts').forEach(file => {
+            const content = fs.readFileSync(file, 'utf8').toString();
+            expect(content).toMatchSnapshot(file);
+        });
+    });
+});

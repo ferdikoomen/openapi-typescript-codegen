@@ -11,7 +11,6 @@ const fs = require('fs');
 const pkg = require('./package.json');
 const external = Object.keys(pkg.dependencies);
 
-
 /**
  * Custom plugin to parse handlebar imports and precompile
  * the template on the fly. This reduces runtime by about
@@ -56,7 +55,7 @@ const getPlugins = () => {
     return [...plugins, terser()];
 }
 
-export default {
+module.exports = {
     input: './src/index.ts',
     output: {
         file: './dist/index.js',
