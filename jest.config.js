@@ -5,25 +5,29 @@ module.exports = {
             testEnvironment: 'node',
             testMatch: [
                 '<rootDir>/src/**/*.spec.ts',
-                '<rootDir>/test/**/*.spec.js',
+                '<rootDir>/test/index.spec.js',
             ],
             moduleNameMapper: {
                 '\\.hbs$': '<rootDir>/src/templates/__mocks__/index.js',
             },
-            collectCoverageFrom: [
-                'src/**/*.ts',
-                '!src/**/*.d.ts',
-            ],
         },
         {
             displayName: 'E2E',
             testEnvironment: 'node',
             testMatch: [
-                '<rootDir>/test/e2e/index.js',
+                '<rootDir>/test/e2e/v2.fetch.spec.js',
+                // '<rootDir>/test/e2e/v2.xhr.spec.js',
+                // '<rootDir>/test/e2e/v2.node.spec.js',
+                // '<rootDir>/test/e2e/v3.fetch.spec.js',
+                // '<rootDir>/test/e2e/v3.xhr.spec.js',
+                // '<rootDir>/test/e2e/v3.node.spec.js',
             ],
-            globals: {
-                URL: 'http://localhost:3000',
-            },
         },
+    ],
+    collectCoverageFrom: [
+        '<rootDir>/src/**/*.ts',
+        '!<rootDir>/src/**/*.d.ts',
+        '!<rootDir>/bin',
+        '!<rootDir>/dist',
     ],
 };

@@ -5,11 +5,11 @@ const path = require('path');
 const os = require('os');
 
 function compile(version, client) {
-    const baseDir = `./test/e2e/generated/src/${version}/${client}`;
+    const baseDir = `./test/e2e/generated/${version}/${client}/js/api/`;
     const tsconfig = {
         compilerOptions: {
             target: 'es6',
-            module: 'commonjs',
+            module: 'es6',
             moduleResolution: 'node',
         },
         include: ['./index.ts'],

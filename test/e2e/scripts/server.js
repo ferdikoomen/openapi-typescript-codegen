@@ -5,10 +5,20 @@ const express = require('express');
 let app;
 let server
 
-async function start() {
+async function start(version, client) {
     return new Promise(resolve => {
         app = express();
-        app.all('/api/*', (req, res) => {
+
+        app.use(express.static(`./test/e2e/generated/${version}/${client}`, {
+            extensions: ['', 'js'],
+            index: 'index.js'
+        }));
+
+        app.get('/', (req, res) => {
+            res.send('<script src="public/script.js"></script>');
+        });
+
+        app.all('/base/api/*', (req, res) => {
             res.send({
                 method: req.method,
                 protocol: req.protocol,
@@ -20,6 +30,7 @@ async function start() {
                 headers: req.headers,
             });
         });
+
         server = app.listen(3000, resolve);
     });
 }

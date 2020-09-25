@@ -4,8 +4,8 @@
         "title": "swagger",
         "version": "v1.0"
     },
-    "host": "localhost:8080",
-    "basePath": "/api",
+    "host": "localhost:3000",
+    "basePath": "/base",
     "schemes": [
         "http"
     ],
