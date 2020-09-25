@@ -3,7 +3,7 @@ jobs:
     build:
         working_directory: ~/repo
         docker:
-            - image: circleci/node:lts
+            - image: circleci/node:latest-browsers
         steps:
             - checkout
             - restore_cache:
@@ -23,6 +23,9 @@ jobs:
             - run:
                 name: test
                 command: yarn run test:coverage
+            - run:
+                name: e2e
+                command: yarn run test:e2e
             - run:
                 name: codecov
                 command: yarn run codecov

@@ -17,10 +17,10 @@ module.exports = {
             testMatch: [
                 '<rootDir>/test/e2e/v2.fetch.spec.js',
                 '<rootDir>/test/e2e/v2.xhr.spec.js',
-                '<rootDir>/test/e2e/v2.node.spec.js',
+                // '<rootDir>/test/e2e/v2.node.spec.js',
                 '<rootDir>/test/e2e/v3.fetch.spec.js',
                 '<rootDir>/test/e2e/v3.xhr.spec.js',
-                '<rootDir>/test/e2e/v3.node.spec.js',
+                // '<rootDir>/test/e2e/v3.node.spec.js',
             ],
         },
     ],
