@@ -54,7 +54,7 @@ exports[`v2 should generate: ./test/generated/v2/core/OpenAPI.ts 1`] = `
 interface Config {
     BASE: string;
     VERSION: string;
-    CLIENT: 'fetch' | 'xhr';
+    CLIENT: 'fetch' | 'xhr' | 'node';
     WITH_CREDENTIALS: boolean;
     TOKEN: string;
 }
@@ -2505,7 +2505,7 @@ exports[`v3 should generate: ./test/generated/v3/core/OpenAPI.ts 1`] = `
 interface Config {
     BASE: string;
     VERSION: string;
-    CLIENT: 'fetch' | 'xhr';
+    CLIENT: 'fetch' | 'xhr' | 'node';
     WITH_CREDENTIALS: boolean;
     TOKEN: string;
 }

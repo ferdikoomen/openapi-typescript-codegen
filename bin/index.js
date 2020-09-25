@@ -33,7 +33,7 @@ if (OpenAPI) {
         exportCore: JSON.parse(program.exportCore) === true,
         exportServices: JSON.parse(program.exportServices) === true,
         exportModels: JSON.parse(program.exportModels) === true,
-        exportSchemas: JSON.parse(program.exportSchemas) === true
+        exportSchemas: JSON.parse(program.exportSchemas) === true,
     })
         .then(() => {
             process.exit(0);
