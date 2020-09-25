@@ -11,21 +11,21 @@ jobs:
                     - v1-dependencies-{{ checksum "package.json" }}
                     - v1-dependencies-
             - run:
-                  name: install
+                  name: Install dependencies
                   command: yarn install
             - save_cache:
                 key: v1-dependencies-{{ checksum "package.json" }}
                 paths:
                     - node_modules
             - run:
-                name: build
+                name: Build library
                 command: yarn run release
             - run:
-                name: test
+                name: Run unit tests
                 command: yarn run test:coverage
             - run:
-                name: e2e
+                name: Run e2e tests
                 command: yarn run test:e2e
             - run:
-                name: codecov
+                name: Submit to Codecov
                 command: yarn run codecov
