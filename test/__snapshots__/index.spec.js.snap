@@ -60,7 +60,7 @@ interface Config {
 }
 
 export const OpenAPI: Config = {
-    BASE: 'http://localhost:8080/api',
+    BASE: 'http://localhost:3000/base',
     VERSION: '1.0',
     CLIENT: 'fetch',
     WITH_CREDENTIALS: false,
@@ -2511,7 +2511,7 @@ interface Config {
 }
 
 export const OpenAPI: Config = {
-    BASE: '/api',
+    BASE: 'http://localhost:3000/base',
     VERSION: '1.0',
     CLIENT: 'fetch',
     WITH_CREDENTIALS: false,
