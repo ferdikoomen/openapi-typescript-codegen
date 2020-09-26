@@ -1,3 +1,5 @@
+{{>header}}
+
 import { ApiError } from './ApiError';
 import { ApiRequestOptions } from './ApiRequestOptions';
 import { ApiResult } from './ApiResult';
@@ -5,28 +7,37 @@ import { OpenAPI } from './OpenAPI';
 
 {{>functions/isDefined}}
 
+
 {{>functions/getQueryString}}
+
 
 {{>functions/getUrl}}
 
+
 {{>functions/getFormData}}
+
 
 {{>functions/getHeaders}}
 
+
 {{>fetch/getRequestBody}}
+
 
 {{>fetch/sendRequest}}
 
+
 {{>fetch/getResponseHeader}}
 
+
 {{>fetch/getResponseBody}}
+
 
 {{>functions/catchErrors}}
 
 
 /**
- * Request using fetch
- * @param options Request options
+ * Request using fetch client
+ * @param options The request options from the the service
  * @result ApiResult
  * @throws ApiError
  */

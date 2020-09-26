@@ -86,6 +86,7 @@ import { OpenAPI } from './OpenAPI';
 function isDefined<T>(value: T | null | undefined): value is Exclude<T, null | undefined> {
     return value !== undefined && value !== null;
 }
+
 function getQueryString(params: Record<string, any>): string {
     const qs: string[] = [];
     Object.keys(params).forEach(key => {
@@ -105,15 +106,17 @@ function getQueryString(params: Record<string, any>): string {
     }
     return '';
 }
+
 function getUrl(options: ApiRequestOptions): string {
     const path = options.path.replace(/[:]/g, '_');
     const url = \`\${OpenAPI.BASE}\${path}\`;
 
     if (options.query) {
-        return url + getQueryString(options.query);
+        return \`\${url}\${getQueryString(options.query)}\`;
     }
     return url;
 }
+
 function getFormData(params: Record<string, any>): FormData {
     const formData = new FormData();
     Object.keys(params).forEach(key => {
@@ -124,6 +127,7 @@ function getFormData(params: Record<string, any>): FormData {
     });
     return formData;
 }
+
 function getHeaders(options: ApiRequestOptions): Headers {
     const headers = new Headers({
         Accept: 'application/json',
@@ -147,6 +151,7 @@ function getHeaders(options: ApiRequestOptions): Headers {
     }
     return headers;
 }
+
 function getRequestBody(options: ApiRequestOptions): BodyInit | undefined {
     if (options.formData) {
         return getFormData(options.formData);
@@ -162,6 +167,7 @@ function getRequestBody(options: ApiRequestOptions): BodyInit | undefined {
     }
     return undefined;
 }
+
 async function sendRequest(options: ApiRequestOptions, url: string): Promise<Response> {
     const request: RequestInit = {
         method: options.method,
@@ -170,6 +176,7 @@ async function sendRequest(options: ApiRequestOptions, url: string): Promise<Res
     };
     return await fetch(url, request);
 }
+
 function getResponseHeader(response: Response, responseHeader?: string): string | null {
     if (responseHeader) {
         const content = response.headers.get(responseHeader);
@@ -179,6 +186,7 @@ function getResponseHeader(response: Response, responseHeader?: string): string 
     }
     return null;
 }
+
 async function getResponseBody(response: Response): Promise<any> {
     try {
         const contentType = response.headers.get('Content-Type');
@@ -196,6 +204,7 @@ async function getResponseBody(response: Response): Promise<any> {
     }
     return null;
 }
+
 function catchErrors(options: ApiRequestOptions, result: ApiResult): void {
     const errors: Record<number, string> = {
         400: 'Bad Request',
@@ -219,8 +228,8 @@ function catchErrors(options: ApiRequestOptions, result: ApiResult): void {
 }
 
 /**
- * Request using fetch
- * @param options Request options
+ * Request using fetch client
+ * @param options The request options from the the service
  * @result ApiResult
  * @throws ApiError
  */
@@ -2108,6 +2117,7 @@ import { OpenAPI } from './OpenAPI';
 function isDefined<T>(value: T | null | undefined): value is Exclude<T, null | undefined> {
     return value !== undefined && value !== null;
 }
+
 function getQueryString(params: Record<string, any>): string {
     const qs: string[] = [];
     Object.keys(params).forEach(key => {
@@ -2127,15 +2137,17 @@ function getQueryString(params: Record<string, any>): string {
     }
     return '';
 }
+
 function getUrl(options: ApiRequestOptions): string {
     const path = options.path.replace(/[:]/g, '_');
     const url = \`\${OpenAPI.BASE}\${path}\`;
 
     if (options.query) {
-        return url + getQueryString(options.query);
+        return \`\${url}\${getQueryString(options.query)}\`;
     }
     return url;
 }
+
 function getFormData(params: Record<string, any>): FormData {
     const formData = new FormData();
     Object.keys(params).forEach(key => {
@@ -2146,6 +2158,7 @@ function getFormData(params: Record<string, any>): FormData {
     });
     return formData;
 }
+
 function getHeaders(options: ApiRequestOptions): Headers {
     const headers = new Headers({
         Accept: 'application/json',
@@ -2169,6 +2182,7 @@ function getHeaders(options: ApiRequestOptions): Headers {
     }
     return headers;
 }
+
 function getRequestBody(options: ApiRequestOptions): BodyInit | undefined {
     if (options.formData) {
         return getFormData(options.formData);
@@ -2184,6 +2198,7 @@ function getRequestBody(options: ApiRequestOptions): BodyInit | undefined {
     }
     return undefined;
 }
+
 async function sendRequest(options: ApiRequestOptions, url: string): Promise<Response> {
     const request: RequestInit = {
         method: options.method,
@@ -2192,6 +2207,7 @@ async function sendRequest(options: ApiRequestOptions, url: string): Promise<Res
     };
     return await fetch(url, request);
 }
+
 function getResponseHeader(response: Response, responseHeader?: string): string | null {
     if (responseHeader) {
         const content = response.headers.get(responseHeader);
@@ -2201,6 +2217,7 @@ function getResponseHeader(response: Response, responseHeader?: string): string 
     }
     return null;
 }
+
 async function getResponseBody(response: Response): Promise<any> {
     try {
         const contentType = response.headers.get('Content-Type');
@@ -2218,6 +2235,7 @@ async function getResponseBody(response: Response): Promise<any> {
     }
     return null;
 }
+
 function catchErrors(options: ApiRequestOptions, result: ApiResult): void {
     const errors: Record<number, string> = {
         400: 'Bad Request',
@@ -2241,8 +2259,8 @@ function catchErrors(options: ApiRequestOptions, result: ApiResult): void {
 }
 
 /**
- * Request using fetch
- * @param options Request options
+ * Request using fetch client
+ * @param options The request options from the the service
  * @result ApiResult
  * @throws ApiError
  */

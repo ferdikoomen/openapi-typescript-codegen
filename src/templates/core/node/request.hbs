@@ -1,3 +1,5 @@
+{{>header}}
+
 import { ApiError } from './ApiError';
 import { ApiRequestOptions } from './ApiRequestOptions';
 import { ApiResult } from './ApiResult';
@@ -7,31 +9,40 @@ import * as FormData from 'form-data';
 
 {{>functions/isDefined}}
 
+
 {{>functions/getQueryString}}
+
 
 {{>functions/getUrl}}
 
+
 {{>functions/getFormData}}
+
 
 {{>functions/getHeaders}}
 
+
 {{>node/getRequestBody}}
+
 
 {{>node/sendRequest}}
 
+
 {{>node/getResponseHeader}}
 
+
 {{>node/getResponseBody}}
+
 
 {{>functions/catchErrors}}
 
 
 /**
- * Request using node-fetch
- * @param options Request options
- * @result ApiResult
- * @throws ApiError
- */
+* Request using node-fetch client
+* @param options The request options from the the service
+* @result ApiResult
+* @throws ApiError
+*/
 export async function request(options: ApiRequestOptions): Promise<ApiResult> {
     const url = getUrl(options);
     const response = await sendRequest(options, url);
