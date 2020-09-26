@@ -6,14 +6,12 @@ async function getResponseBody(response: Response): Promise<any> {
                 case 'application/json':
                 case 'application/json; charset=utf-8':
                     return await response.json();
-
                 default:
                     return await response.text();
             }
         }
-    } catch (e) {
-        console.error(e);
+    } catch (error) {
+        console.error(error);
     }
-
     return null;
 }

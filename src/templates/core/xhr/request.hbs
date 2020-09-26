@@ -1,0 +1,50 @@
+import { ApiError } from './ApiError';
+import { ApiRequestOptions } from './ApiRequestOptions';
+import { ApiResult } from './ApiResult';
+import { OpenAPI } from './OpenAPI';
+
+{{>functions/isDefined}}
+
+{{>functions/isSuccess}}
+
+{{>functions/getQueryString}}
+
+{{>functions/getUrl}}
+
+{{>functions/getFormData}}
+
+{{>functions/getHeaders}}
+
+{{>xhr/getRequestBody}}
+
+{{>xhr/sendRequest}}
+
+{{>xhr/getResponseHeader}}
+
+{{>xhr/getResponseBody}}
+
+{{>functions/catchErrors}}
+
+/**
+ * Request using XHR
+ * @param options Request options
+ * @result ApiResult
+ * @throws ApiError
+ */
+export async function request(options: ApiRequestOptions): Promise<ApiResult> {
+    const url = getUrl(options);
+    const response = await sendRequest(options, url);
+    const responseBody = getResponseBody(response);
+    const responseHeader = getResponseHeader(response, options.responseHeader);
+
+    const result: ApiResult = {
+        url,
+        ok: isSuccess(response.status),
+        status: response.status,
+        statusText: response.statusText,
+        body: responseHeader || responseBody,
+    };
+
+    catchErrors(options, result);
+    return result;
+}

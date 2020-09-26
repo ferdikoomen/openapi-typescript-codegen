@@ -1,5 +1,3 @@
-{{>header}}
-
 export interface ApiRequestOptions {
     readonly method: 'GET' | 'PUT' | 'POST' | 'DELETE' | 'OPTIONS' | 'HEAD' | 'PATCH';
     readonly path: string;

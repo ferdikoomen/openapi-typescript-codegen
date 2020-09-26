@@ -1,5 +1,5 @@
-function catchErrors(options: ApiRequestOptions, response: ApiResponse): void {
-    const errors = {
+function catchErrors(options: ApiRequestOptions, result: ApiResult): void {
+    const errors: Record<number, string> = {
         400: 'Bad Request',
         401: 'Unauthorized',
         403: 'Forbidden',
@@ -10,12 +10,12 @@ function catchErrors(options: ApiRequestOptions, response: ApiResponse): void {
         ...options.errors,
     }
 
-    const error = errors[response.status];
+    const error = errors[result.status];
     if (error) {
-        throw new ApiError(response, error);
+        throw new ApiError(result, error);
     }
 
     if (!result.ok) {
-        throw new ApiError(response, 'Generic Error');
+        throw new ApiError(result, 'Generic Error');
     }
 }

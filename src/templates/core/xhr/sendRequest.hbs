@@ -1,5 +1,5 @@
-function getRequest(options: ApiRequestOptions, url: string, listener: (xhr: XMLHttpRequest) => ApiResponse): Promise<ApiResponse> {
-    return new Promise<ApiResponse>((resolve, reject) => {
+function sendRequest(options: ApiRequestOptions, url: string): Promise<XMLHttpRequest> {
+    return new Promise<XMLHttpRequest>((resolve, reject) => {
         try {
             const xhr = new XMLHttpRequest();
             xhr.open(options.method, url, true);
@@ -12,14 +12,13 @@ function getRequest(options: ApiRequestOptions, url: string, listener: (xhr: XML
 
             xhr.onreadystatechange = () => {
                 if (xhr.readyState === XMLHttpRequest.DONE) {
-                    const response = listener(xhr);
-                    resolve(response);
+                    resolve(xhr);
                 }
             };
 
-            xhr.send(getRequestBody());
+            xhr.send(getRequestBody(options));
         } catch (error) {
             reject(error);
         }
-    );
+    });
 }

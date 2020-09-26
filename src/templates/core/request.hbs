@@ -1,2 +1,11 @@
 {{>header}}
-{{>requestUsingFetch}}
+
+{{#equals httpClient 'fetch'}}
+{{>fetch/request}}
+{{/equals}}
+{{#equals httpClient 'xhr'}}
+{{>xhr/request}}
+{{/equals}}
+{{#equals httpClient 'node'}}
+{{>node/request}}
+{{/equals}}

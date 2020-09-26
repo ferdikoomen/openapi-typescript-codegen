@@ -1,4 +1,4 @@
-function getResponseBody(xhr: XMLHttpRequest): Promise<any> {
+function getResponseBody(xhr: XMLHttpRequest): any {
     try {
         const contentType = xhr.getResponseHeader('Content-Type');
         if (contentType) {
@@ -11,9 +11,8 @@ function getResponseBody(xhr: XMLHttpRequest): Promise<any> {
                     return xhr.responseText;
             }
         }
-    } catch (e) {
-        console.error(e);
+    } catch (error) {
+        console.error(error);
     }
-
     return null;
 }

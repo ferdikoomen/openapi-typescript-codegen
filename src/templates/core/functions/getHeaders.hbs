@@ -1,10 +1,10 @@
 function getHeaders(options: ApiRequestOptions): Headers {
     const headers = new Headers({
-        ...options.headers,
         Accept: 'application/json',
+        ...options.headers,
     });
 
-    if (OpenAPI.TOKEN !== null && OpenAPI.TOKEN !== '') {
+    if (isDefined(OpenAPI.TOKEN) && OpenAPI.TOKEN !== '') {
         headers.append('Authorization', `Bearer ${OpenAPI.TOKEN}`);
     }
 
@@ -19,6 +19,5 @@ function getHeaders(options: ApiRequestOptions): Headers {
             headers.append('Content-Type', 'application/json');
         }
     }
-
     return headers;
 }

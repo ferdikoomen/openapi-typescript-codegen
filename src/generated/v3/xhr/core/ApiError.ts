@@ -1,5 +1,3 @@
-{{>header}}
-
 import { ApiResult } from './ApiResult';
 
 export class ApiError extends Error {

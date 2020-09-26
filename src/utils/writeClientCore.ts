@@ -19,16 +19,8 @@ export async function writeClientCore(client: Client, templates: Templates, outp
         version: client.version,
     };
     await writeFile(path.resolve(outputPath, 'OpenAPI.ts'), templates.core.settings(context));
-    await writeFile(path.resolve(outputPath, 'getFormData.ts'), templates.core.getFormData(context));
-    await writeFile(path.resolve(outputPath, 'getQueryString.ts'), templates.core.getQueryString(context));
-    await writeFile(path.resolve(outputPath, 'getUrl.ts'), templates.core.getUrl(context));
-    await writeFile(path.resolve(outputPath, 'isSuccess.ts'), templates.core.isSuccess(context));
-    await writeFile(path.resolve(outputPath, 'catchGenericError.ts'), templates.core.catchGenericError(context));
+    await writeFile(path.resolve(outputPath, 'ApiError.ts'), templates.core.apiError({}));
+    await writeFile(path.resolve(outputPath, 'ApiRequestOptions.ts'), templates.core.apiRequestOptions({}));
+    await writeFile(path.resolve(outputPath, 'ApiResult.ts'), templates.core.apiResult({}));
     await writeFile(path.resolve(outputPath, 'request.ts'), templates.core.request(context));
-    await writeFile(path.resolve(outputPath, 'RequestOptions.ts'), templates.core.requestOptions(context));
-    await writeFile(path.resolve(outputPath, 'requestUsingFetch.ts'), templates.core.requestUsingFetch(context));
-    await writeFile(path.resolve(outputPath, 'requestUsingXHR.ts'), templates.core.requestUsingXHR(context));
-    await writeFile(path.resolve(outputPath, 'requestUsingNode.ts'), templates.core.requestUsingNode(context));
-    await writeFile(path.resolve(outputPath, 'Response.ts'), templates.core.response(context));
-    await writeFile(path.resolve(outputPath, 'ResponseError.ts'), templates.core.responseError(context));
 }

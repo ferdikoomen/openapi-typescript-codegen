@@ -5,6 +5,5 @@ function getUrl(options: ApiRequestOptions): string {
     if (options.query) {
         return url + getQueryString(options.query);
     }
-
     return url;
 }

@@ -31,6 +31,6 @@ describe('v2.fetch', () => {
                 }
             });
         });
-        expect(result.url).toBeDefined();
+        expect(result).toBeDefined();
     });
 });

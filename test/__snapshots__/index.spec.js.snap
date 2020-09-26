@@ -4,45 +4,52 @@ exports[`v2 should generate: ./test/generated/v2/core/ApiError.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-import { isSuccess } from './isSuccess';
-import { Result } from './Result';
+import { ApiResult } from './ApiResult';
 
 export class ApiError extends Error {
-
     public readonly url: string;
     public readonly status: number;
     public readonly statusText: string;
     public readonly body: any;
 
-    constructor(result: Readonly<Result>, message: string) {
+    constructor(response: ApiResult, message: string) {
         super(message);
 
-        this.url = result.url;
-        this.status = result.status;
-        this.statusText = result.statusText;
-        this.body = result.body;
+        this.url = response.url;
+        this.status = response.status;
+        this.statusText = response.statusText;
+        this.body = response.body;
     }
-}
+}"
+`;
 
-/**
- * Catch common errors (based on status code).
- * @param result
- */
-export function catchGenericError(result: Result): void {
-    switch (result.status) {
-        case 400: throw new ApiError(result, 'Bad Request');
-        case 401: throw new ApiError(result, 'Unauthorized');
-        case 403: throw new ApiError(result, 'Forbidden');
-        case 404: throw new ApiError(result, 'Not Found');
-        case 500: throw new ApiError(result, 'Internal Server Error');
-        case 502: throw new ApiError(result, 'Bad Gateway');
-        case 503: throw new ApiError(result, 'Service Unavailable');
-    }
+exports[`v2 should generate: ./test/generated/v2/core/ApiRequestOptions.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+export interface ApiRequestOptions {
+    readonly method: 'GET' | 'PUT' | 'POST' | 'DELETE' | 'OPTIONS' | 'HEAD' | 'PATCH';
+    readonly path: string;
+    readonly cookies?: Record<string, any>;
+    readonly headers?: Record<string, any>;
+    readonly query?: Record<string, any>;
+    readonly formData?: Record<string, any>;
+    readonly body?: any;
+    readonly responseHeader?: string;
+    readonly errors?: Record<number, string>;
+}"
+`;
 
-    if (!isSuccess(result.status)) {
-        throw new ApiError(result, 'Generic Error');
-    }
+exports[`v2 should generate: ./test/generated/v2/core/ApiResult.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+export interface ApiResult {
+    readonly url: string;
+    readonly ok: boolean;
+    readonly status: number;
+    readonly statusText: string;
+    readonly body: any;
 }"
 `;
 
@@ -50,7 +57,6 @@ exports[`v2 should generate: ./test/generated/v2/core/OpenAPI.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 interface Config {
     BASE: string;
     VERSION: string;
@@ -68,241 +74,103 @@ export const OpenAPI: Config = {
 };"
 `;
 
-exports[`v2 should generate: ./test/generated/v2/core/RequestOptions.ts 1`] = `
-"/* istanbul ignore file */
-/* tslint:disable */
-/* eslint-disable */
-
-export interface RequestOptions {
-    method: 'get' | 'put' | 'post' | 'delete' | 'options' | 'head' | 'patch';
-    path: string;
-    cookies?: { [key: string]: any };
-    headers?: { [key: string]: any };
-    query?: { [key: string]: any };
-    formData?: { [key: string]: any };
-    body?: any;
-    responseHeader?: string;
-}"
-`;
-
-exports[`v2 should generate: ./test/generated/v2/core/Result.ts 1`] = `
-"/* istanbul ignore file */
-/* tslint:disable */
-/* eslint-disable */
-
-export interface Result {
-    url: string;
-    ok: boolean;
-    status: number;
-    statusText: string;
-    body: any;
-}"
-`;
-
-exports[`v2 should generate: ./test/generated/v2/core/getFormData.ts 1`] = `
-"/* istanbul ignore file */
-/* tslint:disable */
-/* eslint-disable */
-
-/**
- * Get FormData from object. This method is needed to upload
- * multipart form data to the REST API.
- * @param params Key value based object.
- */
-export function getFormData(params: { [key: string]: any }): FormData {
-    const formData = new FormData();
-    for (const key in params) {
-        if (typeof params[key] !== 'undefined') {
-            const value: any = params[key];
-            if (value !== undefined && value !== null) {
-                formData.append(key, value);
-            }
-        }
-    }
-    return formData;
-}"
-`;
-
-exports[`v2 should generate: ./test/generated/v2/core/getQueryString.ts 1`] = `
-"/* istanbul ignore file */
-/* tslint:disable */
-/* eslint-disable */
-
-/**
- * Get query string from query parameters object. This method also
- * supports multi-value items by creating a key for each item.
- * @param params Key value based object.
- */
-export function getQueryString(params: { [key: string]: any }): string {
-    const qs: string[] = [];
-    for (const key in params) {
-        if (typeof params[key] !== 'undefined') {
-            const value: any = params[key];
-            if (value !== undefined && value !== null) {
-                if (Array.isArray(value)) {
-                    value.forEach(value => {
-                        qs.push(\`\${encodeURIComponent(key)}=\${encodeURIComponent(String(value))}\`);
-                    });
-                } else {
-                    qs.push(\`\${encodeURIComponent(key)}=\${encodeURIComponent(String(value))}\`);
-                }
-            }
-        }
-    }
-    if (qs.length > 0) {
-        return \`?\${qs.join('&')}\`;
-    }
-    return '';
-}"
-`;
-
-exports[`v2 should generate: ./test/generated/v2/core/isSuccess.ts 1`] = `
-"/* istanbul ignore file */
-/* tslint:disable */
-/* eslint-disable */
-
-/**
- * Check success response code.
- * @param status Status code
- */
-export function isSuccess(status: number): boolean {
-    return status >= 200 && status < 300;
-}"
-`;
-
 exports[`v2 should generate: ./test/generated/v2/core/request.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-import { getFormData } from './getFormData';
-import { getQueryString } from './getQueryString';
+import { ApiError } from './ApiError';
+import { ApiRequestOptions } from './ApiRequestOptions';
+import { ApiResult } from './ApiResult';
 import { OpenAPI } from './OpenAPI';
-import { RequestOptions } from './RequestOptions';
-import { requestUsingFetch } from './requestUsingFetch';
-import { requestUsingXHR } from './requestUsingXHR';
-import { Result } from './Result';
 
-/**
- * Create the request.
- * @param options Request method options.
- * @returns Result object (see above)
- */
-export async function request(options: Readonly<RequestOptions>): Promise<Result> {
+function isDefined<T>(value: T | null | undefined): value is Exclude<T, null | undefined> {
+    return value !== undefined && value !== null;
+}
+function getQueryString(params: Record<string, any>): string {
+    const qs: string[] = [];
+    Object.keys(params).forEach(key => {
+        const value = params[key];
+        if (isDefined(value)) {
+            if (Array.isArray(value)) {
+                value.forEach(value => {
+                    qs.push(\`\${encodeURIComponent(key)}=\${encodeURIComponent(String(value))}\`);
+                });
+            } else {
+                qs.push(\`\${encodeURIComponent(key)}=\${encodeURIComponent(String(value))}\`);
+            }
+        }
+    });
+    if (qs.length > 0) {
+        return \`?\${qs.join('&')}\`;
+    }
+    return '';
+}
+function getUrl(options: ApiRequestOptions): string {
+    const path = options.path.replace(/[:]/g, '_');
+    const url = \`\${OpenAPI.BASE}\${path}\`;
 
-    // Escape path (RFC3986) and create the request URL
-    let path = options.path.replace(/[:]/g, '_');
-    let url = \`\${OpenAPI.BASE}\${path}\`;
-
-    // Create request headers
+    if (options.query) {
+        return url + getQueryString(options.query);
+    }
+    return url;
+}
+function getFormData(params: Record<string, any>): FormData {
+    const formData = new FormData();
+    Object.keys(params).forEach(key => {
+        const value = params[key];
+        if (isDefined(value)) {
+            formData.append(key, value);
+        }
+    });
+    return formData;
+}
+function getHeaders(options: ApiRequestOptions): Headers {
     const headers = new Headers({
-        ...options.headers,
         Accept: 'application/json',
+        ...options.headers,
     });
 
-    // Create request settings
-    const request: RequestInit = {
-        headers,
-        method: options.method,
-    };
-
-    // If we specified to send requests with credentials, then we
-    // set the request credentials options to include. This is only
-    // needed if you make cross-origin calls.
-    if (OpenAPI.WITH_CREDENTIALS) {
-        request.credentials = 'include';
-    }
-
-    // If we have a bearer token then we set the authentication header.
-    if (OpenAPI.TOKEN !== null && OpenAPI.TOKEN !== '') {
+    if (isDefined(OpenAPI.TOKEN) && OpenAPI.TOKEN !== '') {
         headers.append('Authorization', \`Bearer \${OpenAPI.TOKEN}\`);
     }
 
-    // Add the query parameters (if defined).
-    if (options.query) {
-        url += getQueryString(options.query);
-    }
-
-    // Append formData as body, this needs to be parsed to key=value pairs
-    // so the backend can parse this just like a regular HTML form.
-    if (options.formData) {
-        request.body = getFormData(options.formData);
-        headers.append('Content-Type', 'application/x-www-form-urlencoded');
-    } else if (options.body) {
-
-        // If this is blob data, then pass it directly to the body and set content type.
-        // Otherwise we just convert request data to JSON string (needed for fetch api)
+    if (options.body) {
         if (options.body instanceof Blob) {
-            request.body = options.body;
             if (options.body.type) {
                 headers.append('Content-Type', options.body.type);
             }
         } else if (typeof options.body === 'string') {
-            request.body = options.body;
             headers.append('Content-Type', 'text/plain');
         } else {
-            request.body = JSON.stringify(options.body);
             headers.append('Content-Type', 'application/json');
         }
     }
-
-    try {
-        switch (OpenAPI.CLIENT) {
-            case 'xhr':
-                return await requestUsingXHR(url, request, options.responseHeader);
-            default:
-                return await requestUsingFetch(url, request, options.responseHeader);
-        }
-    } catch (error) {
-        return {
-            url,
-            ok: false,
-            status: 0,
-            statusText: '',
-            body: error,
-        };
-    }
-}"
-`;
-
-exports[`v2 should generate: ./test/generated/v2/core/requestUsingFetch.ts 1`] = `
-"/* istanbul ignore file */
-/* tslint:disable */
-/* eslint-disable */
-
-import { Result } from './Result';
-
-/**
- * Try to parse the content for any response status code.
- * We check the \\"Content-Type\\" header to see if we need to parse the
- * content as json or as plain text.
- * @param response Response object from fetch
- */
-async function parseBody(response: Response): Promise<any> {
-    try {
-        const contentType = response.headers.get('Content-Type');
-        if (contentType) {
-            switch (contentType.toLowerCase()) {
-                case 'application/json':
-                case 'application/json; charset=utf-8':
-                    return await response.json();
-
-                default:
-                    return await response.text();
-            }
-        }
-    } catch (e) {
-        console.error(e);
-    }
-    return null;
+    return headers;
 }
-
-/**
- * Fetch the response header (if specified)
- * @param response Response object from fetch
- * @param responseHeader The name of the header to fetch
- */
-function parseHeader(response: Response, responseHeader?: string): string | null {
+function getRequestBody(options: ApiRequestOptions): BodyInit | undefined {
+    if (options.formData) {
+        return getFormData(options.formData);
+    }
+    if (options.body) {
+        if (options.body instanceof Blob) {
+            return options.body;
+        } else if (typeof options.body === 'string') {
+            return options.body;
+        } else {
+            return JSON.stringify(options.body);
+        }
+    }
+    return undefined;
+}
+async function sendRequest(options: ApiRequestOptions, url: string): Promise<Response> {
+    const request: RequestInit = {
+        method: options.method,
+        headers: getHeaders(options),
+        body: getRequestBody(options),
+    };
+    return await fetch(url, request);
+}
+function getResponseHeader(response: Response, responseHeader?: string): string | null {
     if (responseHeader) {
         const content = response.headers.get(responseHeader);
         if (typeof content === 'string') {
@@ -311,136 +179,67 @@ function parseHeader(response: Response, responseHeader?: string): string | null
     }
     return null;
 }
-
-/**
- * Request content using the new Fetch API. This is the default API that is used and
- * is create for all JSON, XML and text objects. However it is limited to UTF-8.
- * This is a problem for some of the Docs content, since that requires UTF-16!
- * @param url The url to request.
- * @param request The request object, containing method, headers, body, etc.
- * @param responseHeader The header we want to parse.
- */
-export async function requestUsingFetch(url: string, request: Readonly<RequestInit>, responseHeader?: string): Promise<Result> {
-
-    // Fetch response using fetch API.
-    const response = await fetch(url, request);
-
-    // Get content of response header or response body
-    const contentHeader = parseHeader(response, responseHeader);
-    const contentBody = await parseBody(response);
-
-    // Create result object.
-    return {
-        url,
-        ok: response.ok,
-        status: response.status,
-        statusText: response.statusText,
-        body: contentHeader || contentBody,
-    };
-}"
-`;
-
-exports[`v2 should generate: ./test/generated/v2/core/requestUsingXHR.ts 1`] = `
-"/* istanbul ignore file */
-/* tslint:disable */
-/* eslint-disable */
-
-import { isSuccess } from './isSuccess';
-import { Result } from './Result';
-
-/**
- * Try to parse the content for any response status code.
- * We check the \\"Content-Type\\" header to see if we need to parse the
- * content as json or as plain text.
- * @param xhr XHR request object
- */
-function parseBody(xhr: XMLHttpRequest): any {
+async function getResponseBody(response: Response): Promise<any> {
     try {
-        const contentType = xhr.getResponseHeader('Content-Type');
+        const contentType = response.headers.get('Content-Type');
         if (contentType) {
             switch (contentType.toLowerCase()) {
                 case 'application/json':
                 case 'application/json; charset=utf-8':
-                    return JSON.parse(xhr.responseText);
-
+                    return await response.json();
                 default:
-                    return xhr.responseText;
+                    return await response.text();
             }
         }
-    } catch (e) {
-        console.error(e);
+    } catch (error) {
+        console.error(error);
     }
     return null;
 }
-
-/**
- * Fetch the response header (if specified)
- * @param xhr XHR request object
- * @param responseHeader The name of the header to fetch
- */
-function parseHeader(xhr: XMLHttpRequest, responseHeader?: string): string | null {
-    if (responseHeader) {
-        const content = xhr.getResponseHeader(responseHeader);
-        if (typeof content === 'string') {
-            return content;
-        }
+function catchErrors(options: ApiRequestOptions, result: ApiResult): void {
+    const errors: Record<number, string> = {
+        400: 'Bad Request',
+        401: 'Unauthorized',
+        403: 'Forbidden',
+        404: 'Not Found',
+        500: 'Internal Server Error',
+        502: 'Bad Gateway',
+        503: 'Service Unavailable',
+        ...options.errors,
     }
-    return null;
+
+    const error = errors[result.status];
+    if (error) {
+        throw new ApiError(result, error);
+    }
+
+    if (!result.ok) {
+        throw new ApiError(result, 'Generic Error');
+    }
 }
 
 /**
- * Request content using the new legacy XMLHttpRequest API. This method is useful
- * when we want to request UTF-16 content, since it natively supports loading UTF-16.
- * We could do the same with the Fetch API, but then we will need to convert the
- * content using JavaScript... And that is very very slow.
- * @param url The url to request.
- * @param request The request object, containing method, headers, body, etc.
- * @param responseHeader The header we want to parse.
+ * Request using fetch
+ * @param options Request options
+ * @result ApiResult
+ * @throws ApiError
  */
-export async function requestUsingXHR(url: string, request: Readonly<RequestInit>, responseHeader?: string): Promise<Result> {
-    return new Promise(resolve => {
-        const xhr = new XMLHttpRequest();
+export async function request(options: ApiRequestOptions): Promise<ApiResult> {
+    const url = getUrl(options);
+    const response = await sendRequest(options, url);
+    const responseBody = await getResponseBody(response);
+    const responseHeader = getResponseHeader(response, options.responseHeader);
 
-        // Open the request, remember to do this before adding any headers,
-        // because the request needs to be initialized!
-        xhr.open(request.method!, url, true);
+    const result: ApiResult = {
+        url,
+        ok: response.ok,
+        status: response.status,
+        statusText: response.statusText,
+        body: responseHeader || responseBody,
+    };
 
-        // When request credentials are set to include then this is
-        // the same behaviour as withCredentials = true in XHR:
-        // https://developer.mozilla.org/en-US/docs/Web/API/Request/credentials
-        xhr.withCredentials = request.credentials === 'include';
-
-        // Add the headers (required when dealing with JSON)
-        const headers = request.headers as Headers;
-        headers.forEach((value: string, key: string): void => {
-            xhr.setRequestHeader(key, value);
-        });
-
-        // Register the readystate handler, this will fire when the request is done.
-        xhr.onreadystatechange = () => {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-
-                // Get content of response header or response body
-                const contentHeader = parseHeader(xhr, responseHeader);
-                const contentBody = parseBody(xhr);
-
-                // Create result object.
-                const result: Result = {
-                    url,
-                    ok: isSuccess(xhr.status),
-                    status: xhr.status,
-                    statusText: xhr.statusText,
-                    body: contentHeader || contentBody,
-                };
-
-                // Done!
-                resolve(result);
-            }
-        };
-
-        // Start the request!
-        xhr.send(request.body);
-    });
+    catchErrors(options, result);
+    return result;
 }"
 `;
 
@@ -448,9 +247,7 @@ exports[`v2 should generate: ./test/generated/v2/index.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export { ApiError } from './core/ApiError';
-export { isSuccess } from './core/isSuccess';
 export { OpenAPI } from './core/OpenAPI';
 
 export type { ArrayWithArray } from './models/ArrayWithArray';
@@ -552,7 +349,6 @@ exports[`v2 should generate: ./test/generated/v2/models/ArrayWithArray.ts 1`] = 
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 import { ModelWithString } from './ModelWithString';
 
 /**
@@ -565,8 +361,6 @@ exports[`v2 should generate: ./test/generated/v2/models/ArrayWithBooleans.ts 1`]
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-
 /**
  * This is a simple array with booleans
  */
@@ -577,8 +371,6 @@ exports[`v2 should generate: ./test/generated/v2/models/ArrayWithNumbers.ts 1`] 
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-
 /**
  * This is a simple array with numbers
  */
@@ -589,8 +381,6 @@ exports[`v2 should generate: ./test/generated/v2/models/ArrayWithProperties.ts 1
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-
 /**
  * This is a simple array with properties
  */
@@ -604,7 +394,6 @@ exports[`v2 should generate: ./test/generated/v2/models/ArrayWithReferences.ts 1
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 import { ModelWithString } from './ModelWithString';
 
 /**
@@ -617,8 +406,6 @@ exports[`v2 should generate: ./test/generated/v2/models/ArrayWithStrings.ts 1`] 
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-
 /**
  * This is a simple array with strings
  */
@@ -629,7 +416,6 @@ exports[`v2 should generate: ./test/generated/v2/models/DictionaryWithArray.ts 1
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 import { ModelWithString } from './ModelWithString';
 
 /**
@@ -642,8 +428,6 @@ exports[`v2 should generate: ./test/generated/v2/models/DictionaryWithDictionary
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-
 /**
  * This is a string dictionary
  */
@@ -654,8 +438,6 @@ exports[`v2 should generate: ./test/generated/v2/models/DictionaryWithProperties
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-
 /**
  * This is a complex dictionary
  */
@@ -669,7 +451,6 @@ exports[`v2 should generate: ./test/generated/v2/models/DictionaryWithReference.
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 import { ModelWithString } from './ModelWithString';
 
 /**
@@ -682,8 +463,6 @@ exports[`v2 should generate: ./test/generated/v2/models/DictionaryWithString.ts 
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-
 /**
  * This is a string dictionary
  */
@@ -694,8 +473,6 @@ exports[`v2 should generate: ./test/generated/v2/models/EnumFromDescription.ts 1
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-
 /**
  * Success=1,Warning=2,Error=3
  */
@@ -710,8 +487,6 @@ exports[`v2 should generate: ./test/generated/v2/models/EnumWithExtensions.ts 1`
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-
 /**
  * This is a simple enum with numbers
  */
@@ -735,8 +510,6 @@ exports[`v2 should generate: ./test/generated/v2/models/EnumWithNumbers.ts 1`] =
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-
 /**
  * This is a simple enum with numbers
  */
@@ -751,8 +524,6 @@ exports[`v2 should generate: ./test/generated/v2/models/EnumWithStrings.ts 1`] =
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-
 /**
  * This is a simple enum with strings
  */
@@ -767,8 +538,6 @@ exports[`v2 should generate: ./test/generated/v2/models/ModelLink.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-
 /**
  * This is a model that can have a template??
  */
@@ -782,7 +551,6 @@ exports[`v2 should generate: ./test/generated/v2/models/ModelThatExtends.ts 1`] 
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 import { ModelWithString } from './ModelWithString';
 
 /**
@@ -799,7 +567,6 @@ exports[`v2 should generate: ./test/generated/v2/models/ModelThatExtendsExtends.
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 import { ModelThatExtends } from './ModelThatExtends';
 import { ModelWithString } from './ModelWithString';
 
@@ -817,7 +584,6 @@ exports[`v2 should generate: ./test/generated/v2/models/ModelWithArray.ts 1`] = 
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 import { ModelWithString } from './ModelWithString';
 
 /**
@@ -835,8 +601,6 @@ exports[`v2 should generate: ./test/generated/v2/models/ModelWithBoolean.ts 1`] 
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-
 /**
  * This is a model with one boolean property
  */
@@ -853,8 +617,6 @@ exports[`v2 should generate: ./test/generated/v2/models/ModelWithCircularReferen
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-
 /**
  * This is a model with one property containing a circular reference
  */
@@ -868,8 +630,6 @@ exports[`v2 should generate: ./test/generated/v2/models/ModelWithDictionary.ts 1
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-
 /**
  * This is a model with one property containing a dictionary
  */
@@ -883,7 +643,6 @@ exports[`v2 should generate: ./test/generated/v2/models/ModelWithDuplicateImport
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 import { ModelWithString } from './ModelWithString';
 
 /**
@@ -901,7 +660,6 @@ exports[`v2 should generate: ./test/generated/v2/models/ModelWithDuplicateProper
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 import { ModelWithString } from './ModelWithString';
 
 /**
@@ -917,8 +675,6 @@ exports[`v2 should generate: ./test/generated/v2/models/ModelWithEnum.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-
 /**
  * This is a model with one enum
  */
@@ -965,8 +721,6 @@ exports[`v2 should generate: ./test/generated/v2/models/ModelWithEnumFromDescrip
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-
 /**
  * This is a model with one enum
  */
@@ -997,8 +751,6 @@ exports[`v2 should generate: ./test/generated/v2/models/ModelWithInteger.ts 1`] 
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-
 /**
  * This is a model with one number property
  */
@@ -1015,7 +767,6 @@ exports[`v2 should generate: ./test/generated/v2/models/ModelWithLink.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 import { ModelLink } from './ModelLink';
 import { ModelWithString } from './ModelWithString';
 
@@ -1032,8 +783,6 @@ exports[`v2 should generate: ./test/generated/v2/models/ModelWithNestedEnums.ts 
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-
 /**
  * This is a model with nested enums
  */
@@ -1050,8 +799,6 @@ exports[`v2 should generate: ./test/generated/v2/models/ModelWithNestedPropertie
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-
 /**
  * This is a model with one nested property
  */
@@ -1069,8 +816,6 @@ exports[`v2 should generate: ./test/generated/v2/models/ModelWithOrderedProperti
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-
 /**
  * This is a model with ordered properties
  */
@@ -1086,8 +831,6 @@ exports[`v2 should generate: ./test/generated/v2/models/ModelWithPattern.ts 1`] 
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-
 /**
  * This is a model that contains a some patterns
  */
@@ -1104,7 +847,6 @@ exports[`v2 should generate: ./test/generated/v2/models/ModelWithProperties.ts 1
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 import { ModelWithString } from './ModelWithString';
 
 /**
@@ -1125,7 +867,6 @@ exports[`v2 should generate: ./test/generated/v2/models/ModelWithReference.ts 1`
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 import { ModelWithProperties } from './ModelWithProperties';
 
 /**
@@ -1141,8 +882,6 @@ exports[`v2 should generate: ./test/generated/v2/models/ModelWithString.ts 1`] =
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-
 /**
  * This is a model with one string property
  */
@@ -1159,8 +898,6 @@ exports[`v2 should generate: ./test/generated/v2/models/MultilineComment.ts 1`] 
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-
 /**
  * Testing multiline comments.
  * This must go to the next line.
@@ -1174,8 +911,6 @@ exports[`v2 should generate: ./test/generated/v2/models/SimpleBoolean.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-
 /**
  * This is a simple boolean
  */
@@ -1186,8 +921,6 @@ exports[`v2 should generate: ./test/generated/v2/models/SimpleFile.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-
 /**
  * This is a simple file
  */
@@ -1198,8 +931,6 @@ exports[`v2 should generate: ./test/generated/v2/models/SimpleInteger.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-
 /**
  * This is a simple number
  */
@@ -1210,7 +941,6 @@ exports[`v2 should generate: ./test/generated/v2/models/SimpleReference.ts 1`] =
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 import { ModelWithString } from './ModelWithString';
 
 /**
@@ -1223,8 +953,6 @@ exports[`v2 should generate: ./test/generated/v2/models/SimpleString.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-
 /**
  * This is a simple string
  */
@@ -1235,7 +963,6 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$ArrayWithArray.ts 1`] 
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $ArrayWithArray = {
     type: 'Array',
 };"
@@ -1245,7 +972,6 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$ArrayWithBooleans.ts 1
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $ArrayWithBooleans = {
     type: 'Array',
 };"
@@ -1255,7 +981,6 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$ArrayWithNumbers.ts 1`
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $ArrayWithNumbers = {
     type: 'Array',
 };"
@@ -1265,7 +990,6 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$ArrayWithProperties.ts
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $ArrayWithProperties = {
     type: 'Array',
 };"
@@ -1275,7 +999,6 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$ArrayWithReferences.ts
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $ArrayWithReferences = {
     type: 'Array',
 };"
@@ -1285,7 +1008,6 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$ArrayWithStrings.ts 1`
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $ArrayWithStrings = {
     type: 'Array',
 };"
@@ -1295,7 +1017,6 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$DictionaryWithArray.ts
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $DictionaryWithArray = {
     type: 'Dictionary',
 };"
@@ -1305,7 +1026,6 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$DictionaryWithDictiona
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $DictionaryWithDictionary = {
     type: 'Dictionary',
 };"
@@ -1315,7 +1035,6 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$DictionaryWithProperti
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $DictionaryWithProperties = {
     type: 'Dictionary',
 };"
@@ -1325,7 +1044,6 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$DictionaryWithReferenc
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $DictionaryWithReference = {
     type: 'Dictionary',
 };"
@@ -1335,7 +1053,6 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$DictionaryWithString.t
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $DictionaryWithString = {
     type: 'Dictionary',
 };"
@@ -1345,7 +1062,6 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$EnumFromDescription.ts
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $EnumFromDescription = {
     type: 'Enum',
 };"
@@ -1355,7 +1071,6 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$EnumWithExtensions.ts 
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $EnumWithExtensions = {
     type: 'Enum',
 };"
@@ -1365,7 +1080,6 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$EnumWithNumbers.ts 1`]
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $EnumWithNumbers = {
     type: 'Enum',
 };"
@@ -1375,7 +1089,6 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$EnumWithStrings.ts 1`]
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $EnumWithStrings = {
     type: 'Enum',
 };"
@@ -1385,7 +1098,6 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$ModelLink.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $ModelLink = {
     properties: {
         id: {
@@ -1399,7 +1111,6 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$ModelThatExtends.ts 1`
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 import { $ModelWithString } from './$ModelWithString';
 
 export const $ModelThatExtends = {
@@ -1419,7 +1130,6 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$ModelThatExtendsExtend
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 import { $ModelWithString } from './$ModelWithString';
 import { $ModelThatExtends } from './$ModelThatExtends';
 
@@ -1441,7 +1151,6 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$ModelWithArray.ts 1`] 
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $ModelWithArray = {
     properties: {
         prop: {
@@ -1461,7 +1170,6 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$ModelWithBoolean.ts 1`
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $ModelWithBoolean = {
     properties: {
         prop: {
@@ -1475,7 +1183,6 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$ModelWithCircularRefer
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $ModelWithCircularReference = {
     properties: {
         prop: {
@@ -1489,7 +1196,6 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$ModelWithDictionary.ts
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $ModelWithDictionary = {
     properties: {
         prop: {
@@ -1503,7 +1209,6 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$ModelWithDuplicateImpo
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $ModelWithDuplicateImports = {
     properties: {
         propA: {
@@ -1523,7 +1228,6 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$ModelWithDuplicateProp
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $ModelWithDuplicateProperties = {
     properties: {
         prop: {
@@ -1537,7 +1241,6 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$ModelWithEnum.ts 1`] =
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $ModelWithEnum = {
     properties: {
         test: {
@@ -1554,7 +1257,6 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$ModelWithEnumFromDescr
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $ModelWithEnumFromDescription = {
     properties: {
         test: {
@@ -1568,7 +1270,6 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$ModelWithInteger.ts 1`
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $ModelWithInteger = {
     properties: {
         prop: {
@@ -1582,7 +1283,6 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$ModelWithLink.ts 1`] =
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $ModelWithLink = {
     properties: {
         prop: {
@@ -1596,7 +1296,6 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$ModelWithNestedEnums.t
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $ModelWithNestedEnums = {
     properties: {
         dictionaryWithEnum: {
@@ -1619,7 +1318,6 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$ModelWithNestedPropert
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $ModelWithNestedProperties = {
     properties: {
         first: {
@@ -1647,7 +1345,6 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$ModelWithOrderedProper
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $ModelWithOrderedProperties = {
     properties: {
         zebra: {
@@ -1667,7 +1364,6 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$ModelWithPattern.ts 1`
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $ModelWithPattern = {
     properties: {
         key: {
@@ -1698,7 +1394,6 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$ModelWithProperties.ts
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $ModelWithProperties = {
     properties: {
         required: {
@@ -1730,7 +1425,6 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$ModelWithReference.ts 
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $ModelWithReference = {
     properties: {
         prop: {
@@ -1744,7 +1438,6 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$ModelWithString.ts 1`]
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $ModelWithString = {
     properties: {
         prop: {
@@ -1758,7 +1451,6 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$MultilineComment.ts 1`
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $MultilineComment = {
     type: 'number',
 };"
@@ -1768,7 +1460,6 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$SimpleBoolean.ts 1`] =
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $SimpleBoolean = {
     type: 'boolean',
 };"
@@ -1778,7 +1469,6 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$SimpleFile.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $SimpleFile = {
     type: 'File',
 };"
@@ -1788,7 +1478,6 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$SimpleInteger.ts 1`] =
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $SimpleInteger = {
     type: 'number',
 };"
@@ -1798,7 +1487,6 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$SimpleReference.ts 1`]
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $SimpleReference = {
     type: 'ModelWithString',
 };"
@@ -1808,7 +1496,6 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$SimpleString.ts 1`] = 
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $SimpleString = {
     type: 'string',
 };"
@@ -1818,9 +1505,7 @@ exports[`v2 should generate: ./test/generated/v2/services/ComplexService.ts 1`] 
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 import { ModelWithString } from '../models/ModelWithString';
-import { ApiError, catchGenericError } from '../core/ApiError';
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
@@ -1842,25 +1527,18 @@ export class ComplexService {
         },
         parameterReference: ModelWithString,
     ): Promise<Array<ModelWithString>> {
-
         const result = await __request({
-            method: 'get',
+            method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/complex\`,
             query: {
                 'parameterObject': parameterObject,
                 'parameterReference': parameterReference,
             },
+            errors: {
+                400: \`400 server error\`,
+                500: \`500 server error\`,
+            },
         });
-
-        if (!result.ok) {
-            switch (result.status) {
-                case 400: throw new ApiError(result, \`400 server error\`);
-                case 500: throw new ApiError(result, \`500 server error\`);
-            }
-        }
-
-        catchGenericError(result);
-
         return result.body;
     }
 
@@ -1871,9 +1549,7 @@ exports[`v2 should generate: ./test/generated/v2/services/DefaultsService.ts 1`]
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 import { ModelWithString } from '../models/ModelWithString';
-import { catchGenericError } from '../core/ApiError';
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
@@ -1896,9 +1572,8 @@ export class DefaultsService {
             \\"prop\\": \\"Hello World!\\"
         },
     ): Promise<void> {
-
         const result = await __request({
-            method: 'get',
+            method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/defaults\`,
             query: {
                 'parameterString': parameterString,
@@ -1908,9 +1583,6 @@ export class DefaultsService {
                 'parameterModel': parameterModel,
             },
         });
-
-        catchGenericError(result);
-
         return result.body;
     }
 
@@ -1931,9 +1603,8 @@ export class DefaultsService {
             \\"prop\\": \\"Hello World!\\"
         },
     ): Promise<void> {
-
         const result = await __request({
-            method: 'post',
+            method: 'POST',
             path: \`/api/v\${OpenAPI.VERSION}/defaults\`,
             query: {
                 'parameterString': parameterString,
@@ -1943,9 +1614,6 @@ export class DefaultsService {
                 'parameterModel': parameterModel,
             },
         });
-
-        catchGenericError(result);
-
         return result.body;
     }
 
@@ -1966,9 +1634,8 @@ export class DefaultsService {
         parameterStringWithDefault: string = 'Hello World!',
         parameterStringWithEmptyDefault: string = '',
     ): Promise<void> {
-
         const result = await __request({
-            method: 'put',
+            method: 'PUT',
             path: \`/api/v\${OpenAPI.VERSION}/defaults\`,
             query: {
                 'parameterStringWithNoDefault': parameterStringWithNoDefault,
@@ -1979,9 +1646,6 @@ export class DefaultsService {
                 'parameterStringWithEmptyDefault': parameterStringWithEmptyDefault,
             },
         });
-
-        catchGenericError(result);
-
         return result.body;
     }
 
@@ -1992,8 +1656,6 @@ exports[`v2 should generate: ./test/generated/v2/services/DuplicateService.ts 1`
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-import { catchGenericError } from '../core/ApiError';
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
@@ -2003,14 +1665,10 @@ export class DuplicateService {
      * @throws ApiError
      */
     public static async duplicateName(): Promise<void> {
-
         const result = await __request({
-            method: 'get',
+            method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/duplicate\`,
         });
-
-        catchGenericError(result);
-
         return result.body;
     }
 
@@ -2018,14 +1676,10 @@ export class DuplicateService {
      * @throws ApiError
      */
     public static async duplicateName1(): Promise<void> {
-
         const result = await __request({
-            method: 'post',
+            method: 'POST',
             path: \`/api/v\${OpenAPI.VERSION}/duplicate\`,
         });
-
-        catchGenericError(result);
-
         return result.body;
     }
 
@@ -2033,14 +1687,10 @@ export class DuplicateService {
      * @throws ApiError
      */
     public static async duplicateName2(): Promise<void> {
-
         const result = await __request({
-            method: 'put',
+            method: 'PUT',
             path: \`/api/v\${OpenAPI.VERSION}/duplicate\`,
         });
-
-        catchGenericError(result);
-
         return result.body;
     }
 
@@ -2048,14 +1698,10 @@ export class DuplicateService {
      * @throws ApiError
      */
     public static async duplicateName3(): Promise<void> {
-
         const result = await __request({
-            method: 'delete',
+            method: 'DELETE',
             path: \`/api/v\${OpenAPI.VERSION}/duplicate\`,
         });
-
-        catchGenericError(result);
-
         return result.body;
     }
 
@@ -2066,8 +1712,6 @@ exports[`v2 should generate: ./test/generated/v2/services/HeaderService.ts 1`] =
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-import { ApiError, catchGenericError } from '../core/ApiError';
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
@@ -2078,22 +1722,15 @@ export class HeaderService {
      * @throws ApiError
      */
     public static async callWithResultFromHeader(): Promise<string> {
-
         const result = await __request({
-            method: 'post',
+            method: 'POST',
             path: \`/api/v\${OpenAPI.VERSION}/header\`,
             responseHeader: 'operation-location',
+            errors: {
+                400: \`400 server error\`,
+                500: \`500 server error\`,
+            },
         });
-
-        if (!result.ok) {
-            switch (result.status) {
-                case 400: throw new ApiError(result, \`400 server error\`);
-                case 500: throw new ApiError(result, \`500 server error\`);
-            }
-        }
-
-        catchGenericError(result);
-
         return result.body;
     }
 
@@ -2104,8 +1741,6 @@ exports[`v2 should generate: ./test/generated/v2/services/ParametersService.ts 1
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-import { catchGenericError } from '../core/ApiError';
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
@@ -2126,9 +1761,8 @@ export class ParametersService {
         parameterBody: string,
         parameterPath: string,
     ): Promise<void> {
-
         const result = await __request({
-            method: 'get',
+            method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/parameters/\${parameterPath}\`,
             headers: {
                 'parameterHeader': parameterHeader,
@@ -2141,9 +1775,6 @@ export class ParametersService {
             },
             body: parameterBody,
         });
-
-        catchGenericError(result);
-
         return result.body;
     }
 
@@ -2166,9 +1797,8 @@ export class ParametersService {
         parameterPath2?: string,
         parameterPath3?: string,
     ): Promise<void> {
-
         const result = await __request({
-            method: 'get',
+            method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/parameters/\${parameterPath1}/\${parameterPath2}/\${parameterPath3}\`,
             headers: {
                 'parameter.header': parameterHeader,
@@ -2181,9 +1811,6 @@ export class ParametersService {
             },
             body: parameterBody,
         });
-
-        catchGenericError(result);
-
         return result.body;
     }
 
@@ -2194,11 +1821,9 @@ exports[`v2 should generate: ./test/generated/v2/services/ResponseService.ts 1`]
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 import { ModelThatExtends } from '../models/ModelThatExtends';
 import { ModelThatExtendsExtends } from '../models/ModelThatExtendsExtends';
 import { ModelWithString } from '../models/ModelWithString';
-import { ApiError, catchGenericError } from '../core/ApiError';
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
@@ -2209,14 +1834,10 @@ export class ResponseService {
      * @throws ApiError
      */
     public static async callWithResponse(): Promise<ModelWithString> {
-
         const result = await __request({
-            method: 'get',
+            method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/response\`,
         });
-
-        catchGenericError(result);
-
         return result.body;
     }
 
@@ -2225,22 +1846,15 @@ export class ResponseService {
      * @throws ApiError
      */
     public static async callWithDuplicateResponses(): Promise<ModelWithString> {
-
         const result = await __request({
-            method: 'post',
+            method: 'POST',
             path: \`/api/v\${OpenAPI.VERSION}/response\`,
+            errors: {
+                500: \`Message for 500 error\`,
+                501: \`Message for 501 error\`,
+                502: \`Message for 502 error\`,
+            },
         });
-
-        if (!result.ok) {
-            switch (result.status) {
-                case 500: throw new ApiError(result, \`Message for 500 error\`);
-                case 501: throw new ApiError(result, \`Message for 501 error\`);
-                case 502: throw new ApiError(result, \`Message for 502 error\`);
-            }
-        }
-
-        catchGenericError(result);
-
         return result.body;
     }
 
@@ -2251,22 +1865,15 @@ export class ResponseService {
      * @throws ApiError
      */
     public static async callWithResponses(): Promise<ModelWithString | ModelThatExtends | ModelThatExtendsExtends> {
-
         const result = await __request({
-            method: 'put',
+            method: 'PUT',
             path: \`/api/v\${OpenAPI.VERSION}/response\`,
+            errors: {
+                500: \`Message for 500 error\`,
+                501: \`Message for 501 error\`,
+                502: \`Message for 502 error\`,
+            },
         });
-
-        if (!result.ok) {
-            switch (result.status) {
-                case 500: throw new ApiError(result, \`Message for 500 error\`);
-                case 501: throw new ApiError(result, \`Message for 501 error\`);
-                case 502: throw new ApiError(result, \`Message for 502 error\`);
-            }
-        }
-
-        catchGenericError(result);
-
         return result.body;
     }
 
@@ -2277,8 +1884,6 @@ exports[`v2 should generate: ./test/generated/v2/services/SimpleService.ts 1`] =
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-import { catchGenericError } from '../core/ApiError';
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
@@ -2288,14 +1893,10 @@ export class SimpleService {
      * @throws ApiError
      */
     public static async getCallWithoutParametersAndResponse(): Promise<void> {
-
         const result = await __request({
-            method: 'get',
+            method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
-
-        catchGenericError(result);
-
         return result.body;
     }
 
@@ -2303,14 +1904,10 @@ export class SimpleService {
      * @throws ApiError
      */
     public static async putCallWithoutParametersAndResponse(): Promise<void> {
-
         const result = await __request({
-            method: 'put',
+            method: 'PUT',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
-
-        catchGenericError(result);
-
         return result.body;
     }
 
@@ -2318,14 +1915,10 @@ export class SimpleService {
      * @throws ApiError
      */
     public static async postCallWithoutParametersAndResponse(): Promise<void> {
-
         const result = await __request({
-            method: 'post',
+            method: 'POST',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
-
-        catchGenericError(result);
-
         return result.body;
     }
 
@@ -2333,14 +1926,10 @@ export class SimpleService {
      * @throws ApiError
      */
     public static async deleteCallWithoutParametersAndResponse(): Promise<void> {
-
         const result = await __request({
-            method: 'delete',
+            method: 'DELETE',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
-
-        catchGenericError(result);
-
         return result.body;
     }
 
@@ -2348,14 +1937,10 @@ export class SimpleService {
      * @throws ApiError
      */
     public static async optionsCallWithoutParametersAndResponse(): Promise<void> {
-
         const result = await __request({
-            method: 'options',
+            method: 'OPTIONS',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
-
-        catchGenericError(result);
-
         return result.body;
     }
 
@@ -2363,14 +1948,10 @@ export class SimpleService {
      * @throws ApiError
      */
     public static async headCallWithoutParametersAndResponse(): Promise<void> {
-
         const result = await __request({
-            method: 'head',
+            method: 'HEAD',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
-
-        catchGenericError(result);
-
         return result.body;
     }
 
@@ -2378,14 +1959,10 @@ export class SimpleService {
      * @throws ApiError
      */
     public static async patchCallWithoutParametersAndResponse(): Promise<void> {
-
         const result = await __request({
-            method: 'patch',
+            method: 'PATCH',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
-
-        catchGenericError(result);
-
         return result.body;
     }
 
@@ -2396,8 +1973,6 @@ exports[`v2 should generate: ./test/generated/v2/services/TypesService.ts 1`] = 
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-import { catchGenericError } from '../core/ApiError';
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
@@ -2428,9 +2003,8 @@ export class TypesService {
         parameterObject: any = null,
         id?: number,
     ): Promise<number | string | boolean | any> {
-
         const result = await __request({
-            method: 'get',
+            method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/types\`,
             query: {
                 'parameterArray': parameterArray,
@@ -2442,9 +2016,6 @@ export class TypesService {
                 'parameterObject': parameterObject,
             },
         });
-
-        catchGenericError(result);
-
         return result.body;
     }
 
@@ -2455,45 +2026,52 @@ exports[`v3 should generate: ./test/generated/v3/core/ApiError.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-import { isSuccess } from './isSuccess';
-import { Result } from './Result';
+import { ApiResult } from './ApiResult';
 
 export class ApiError extends Error {
-
     public readonly url: string;
     public readonly status: number;
     public readonly statusText: string;
     public readonly body: any;
 
-    constructor(result: Readonly<Result>, message: string) {
+    constructor(response: ApiResult, message: string) {
         super(message);
 
-        this.url = result.url;
-        this.status = result.status;
-        this.statusText = result.statusText;
-        this.body = result.body;
+        this.url = response.url;
+        this.status = response.status;
+        this.statusText = response.statusText;
+        this.body = response.body;
     }
-}
+}"
+`;
 
-/**
- * Catch common errors (based on status code).
- * @param result
- */
-export function catchGenericError(result: Result): void {
-    switch (result.status) {
-        case 400: throw new ApiError(result, 'Bad Request');
-        case 401: throw new ApiError(result, 'Unauthorized');
-        case 403: throw new ApiError(result, 'Forbidden');
-        case 404: throw new ApiError(result, 'Not Found');
-        case 500: throw new ApiError(result, 'Internal Server Error');
-        case 502: throw new ApiError(result, 'Bad Gateway');
-        case 503: throw new ApiError(result, 'Service Unavailable');
-    }
+exports[`v3 should generate: ./test/generated/v3/core/ApiRequestOptions.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+export interface ApiRequestOptions {
+    readonly method: 'GET' | 'PUT' | 'POST' | 'DELETE' | 'OPTIONS' | 'HEAD' | 'PATCH';
+    readonly path: string;
+    readonly cookies?: Record<string, any>;
+    readonly headers?: Record<string, any>;
+    readonly query?: Record<string, any>;
+    readonly formData?: Record<string, any>;
+    readonly body?: any;
+    readonly responseHeader?: string;
+    readonly errors?: Record<number, string>;
+}"
+`;
 
-    if (!isSuccess(result.status)) {
-        throw new ApiError(result, 'Generic Error');
-    }
+exports[`v3 should generate: ./test/generated/v3/core/ApiResult.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+export interface ApiResult {
+    readonly url: string;
+    readonly ok: boolean;
+    readonly status: number;
+    readonly statusText: string;
+    readonly body: any;
 }"
 `;
 
@@ -2501,7 +2079,6 @@ exports[`v3 should generate: ./test/generated/v3/core/OpenAPI.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 interface Config {
     BASE: string;
     VERSION: string;
@@ -2519,241 +2096,103 @@ export const OpenAPI: Config = {
 };"
 `;
 
-exports[`v3 should generate: ./test/generated/v3/core/RequestOptions.ts 1`] = `
-"/* istanbul ignore file */
-/* tslint:disable */
-/* eslint-disable */
-
-export interface RequestOptions {
-    method: 'get' | 'put' | 'post' | 'delete' | 'options' | 'head' | 'patch';
-    path: string;
-    cookies?: { [key: string]: any };
-    headers?: { [key: string]: any };
-    query?: { [key: string]: any };
-    formData?: { [key: string]: any };
-    body?: any;
-    responseHeader?: string;
-}"
-`;
-
-exports[`v3 should generate: ./test/generated/v3/core/Result.ts 1`] = `
-"/* istanbul ignore file */
-/* tslint:disable */
-/* eslint-disable */
-
-export interface Result {
-    url: string;
-    ok: boolean;
-    status: number;
-    statusText: string;
-    body: any;
-}"
-`;
-
-exports[`v3 should generate: ./test/generated/v3/core/getFormData.ts 1`] = `
-"/* istanbul ignore file */
-/* tslint:disable */
-/* eslint-disable */
-
-/**
- * Get FormData from object. This method is needed to upload
- * multipart form data to the REST API.
- * @param params Key value based object.
- */
-export function getFormData(params: { [key: string]: any }): FormData {
-    const formData = new FormData();
-    for (const key in params) {
-        if (typeof params[key] !== 'undefined') {
-            const value: any = params[key];
-            if (value !== undefined && value !== null) {
-                formData.append(key, value);
-            }
-        }
-    }
-    return formData;
-}"
-`;
-
-exports[`v3 should generate: ./test/generated/v3/core/getQueryString.ts 1`] = `
-"/* istanbul ignore file */
-/* tslint:disable */
-/* eslint-disable */
-
-/**
- * Get query string from query parameters object. This method also
- * supports multi-value items by creating a key for each item.
- * @param params Key value based object.
- */
-export function getQueryString(params: { [key: string]: any }): string {
-    const qs: string[] = [];
-    for (const key in params) {
-        if (typeof params[key] !== 'undefined') {
-            const value: any = params[key];
-            if (value !== undefined && value !== null) {
-                if (Array.isArray(value)) {
-                    value.forEach(value => {
-                        qs.push(\`\${encodeURIComponent(key)}=\${encodeURIComponent(String(value))}\`);
-                    });
-                } else {
-                    qs.push(\`\${encodeURIComponent(key)}=\${encodeURIComponent(String(value))}\`);
-                }
-            }
-        }
-    }
-    if (qs.length > 0) {
-        return \`?\${qs.join('&')}\`;
-    }
-    return '';
-}"
-`;
-
-exports[`v3 should generate: ./test/generated/v3/core/isSuccess.ts 1`] = `
-"/* istanbul ignore file */
-/* tslint:disable */
-/* eslint-disable */
-
-/**
- * Check success response code.
- * @param status Status code
- */
-export function isSuccess(status: number): boolean {
-    return status >= 200 && status < 300;
-}"
-`;
-
 exports[`v3 should generate: ./test/generated/v3/core/request.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-import { getFormData } from './getFormData';
-import { getQueryString } from './getQueryString';
+import { ApiError } from './ApiError';
+import { ApiRequestOptions } from './ApiRequestOptions';
+import { ApiResult } from './ApiResult';
 import { OpenAPI } from './OpenAPI';
-import { RequestOptions } from './RequestOptions';
-import { requestUsingFetch } from './requestUsingFetch';
-import { requestUsingXHR } from './requestUsingXHR';
-import { Result } from './Result';
 
-/**
- * Create the request.
- * @param options Request method options.
- * @returns Result object (see above)
- */
-export async function request(options: Readonly<RequestOptions>): Promise<Result> {
+function isDefined<T>(value: T | null | undefined): value is Exclude<T, null | undefined> {
+    return value !== undefined && value !== null;
+}
+function getQueryString(params: Record<string, any>): string {
+    const qs: string[] = [];
+    Object.keys(params).forEach(key => {
+        const value = params[key];
+        if (isDefined(value)) {
+            if (Array.isArray(value)) {
+                value.forEach(value => {
+                    qs.push(\`\${encodeURIComponent(key)}=\${encodeURIComponent(String(value))}\`);
+                });
+            } else {
+                qs.push(\`\${encodeURIComponent(key)}=\${encodeURIComponent(String(value))}\`);
+            }
+        }
+    });
+    if (qs.length > 0) {
+        return \`?\${qs.join('&')}\`;
+    }
+    return '';
+}
+function getUrl(options: ApiRequestOptions): string {
+    const path = options.path.replace(/[:]/g, '_');
+    const url = \`\${OpenAPI.BASE}\${path}\`;
 
-    // Escape path (RFC3986) and create the request URL
-    let path = options.path.replace(/[:]/g, '_');
-    let url = \`\${OpenAPI.BASE}\${path}\`;
-
-    // Create request headers
+    if (options.query) {
+        return url + getQueryString(options.query);
+    }
+    return url;
+}
+function getFormData(params: Record<string, any>): FormData {
+    const formData = new FormData();
+    Object.keys(params).forEach(key => {
+        const value = params[key];
+        if (isDefined(value)) {
+            formData.append(key, value);
+        }
+    });
+    return formData;
+}
+function getHeaders(options: ApiRequestOptions): Headers {
     const headers = new Headers({
-        ...options.headers,
         Accept: 'application/json',
+        ...options.headers,
     });
 
-    // Create request settings
-    const request: RequestInit = {
-        headers,
-        method: options.method,
-    };
-
-    // If we specified to send requests with credentials, then we
-    // set the request credentials options to include. This is only
-    // needed if you make cross-origin calls.
-    if (OpenAPI.WITH_CREDENTIALS) {
-        request.credentials = 'include';
-    }
-
-    // If we have a bearer token then we set the authentication header.
-    if (OpenAPI.TOKEN !== null && OpenAPI.TOKEN !== '') {
+    if (isDefined(OpenAPI.TOKEN) && OpenAPI.TOKEN !== '') {
         headers.append('Authorization', \`Bearer \${OpenAPI.TOKEN}\`);
     }
 
-    // Add the query parameters (if defined).
-    if (options.query) {
-        url += getQueryString(options.query);
-    }
-
-    // Append formData as body, this needs to be parsed to key=value pairs
-    // so the backend can parse this just like a regular HTML form.
-    if (options.formData) {
-        request.body = getFormData(options.formData);
-        headers.append('Content-Type', 'application/x-www-form-urlencoded');
-    } else if (options.body) {
-
-        // If this is blob data, then pass it directly to the body and set content type.
-        // Otherwise we just convert request data to JSON string (needed for fetch api)
+    if (options.body) {
         if (options.body instanceof Blob) {
-            request.body = options.body;
             if (options.body.type) {
                 headers.append('Content-Type', options.body.type);
             }
         } else if (typeof options.body === 'string') {
-            request.body = options.body;
             headers.append('Content-Type', 'text/plain');
         } else {
-            request.body = JSON.stringify(options.body);
             headers.append('Content-Type', 'application/json');
         }
     }
-
-    try {
-        switch (OpenAPI.CLIENT) {
-            case 'xhr':
-                return await requestUsingXHR(url, request, options.responseHeader);
-            default:
-                return await requestUsingFetch(url, request, options.responseHeader);
-        }
-    } catch (error) {
-        return {
-            url,
-            ok: false,
-            status: 0,
-            statusText: '',
-            body: error,
-        };
-    }
-}"
-`;
-
-exports[`v3 should generate: ./test/generated/v3/core/requestUsingFetch.ts 1`] = `
-"/* istanbul ignore file */
-/* tslint:disable */
-/* eslint-disable */
-
-import { Result } from './Result';
-
-/**
- * Try to parse the content for any response status code.
- * We check the \\"Content-Type\\" header to see if we need to parse the
- * content as json or as plain text.
- * @param response Response object from fetch
- */
-async function parseBody(response: Response): Promise<any> {
-    try {
-        const contentType = response.headers.get('Content-Type');
-        if (contentType) {
-            switch (contentType.toLowerCase()) {
-                case 'application/json':
-                case 'application/json; charset=utf-8':
-                    return await response.json();
-
-                default:
-                    return await response.text();
-            }
-        }
-    } catch (e) {
-        console.error(e);
-    }
-    return null;
+    return headers;
 }
-
-/**
- * Fetch the response header (if specified)
- * @param response Response object from fetch
- * @param responseHeader The name of the header to fetch
- */
-function parseHeader(response: Response, responseHeader?: string): string | null {
+function getRequestBody(options: ApiRequestOptions): BodyInit | undefined {
+    if (options.formData) {
+        return getFormData(options.formData);
+    }
+    if (options.body) {
+        if (options.body instanceof Blob) {
+            return options.body;
+        } else if (typeof options.body === 'string') {
+            return options.body;
+        } else {
+            return JSON.stringify(options.body);
+        }
+    }
+    return undefined;
+}
+async function sendRequest(options: ApiRequestOptions, url: string): Promise<Response> {
+    const request: RequestInit = {
+        method: options.method,
+        headers: getHeaders(options),
+        body: getRequestBody(options),
+    };
+    return await fetch(url, request);
+}
+function getResponseHeader(response: Response, responseHeader?: string): string | null {
     if (responseHeader) {
         const content = response.headers.get(responseHeader);
         if (typeof content === 'string') {
@@ -2762,136 +2201,67 @@ function parseHeader(response: Response, responseHeader?: string): string | null
     }
     return null;
 }
-
-/**
- * Request content using the new Fetch API. This is the default API that is used and
- * is create for all JSON, XML and text objects. However it is limited to UTF-8.
- * This is a problem for some of the Docs content, since that requires UTF-16!
- * @param url The url to request.
- * @param request The request object, containing method, headers, body, etc.
- * @param responseHeader The header we want to parse.
- */
-export async function requestUsingFetch(url: string, request: Readonly<RequestInit>, responseHeader?: string): Promise<Result> {
-
-    // Fetch response using fetch API.
-    const response = await fetch(url, request);
-
-    // Get content of response header or response body
-    const contentHeader = parseHeader(response, responseHeader);
-    const contentBody = await parseBody(response);
-
-    // Create result object.
-    return {
-        url,
-        ok: response.ok,
-        status: response.status,
-        statusText: response.statusText,
-        body: contentHeader || contentBody,
-    };
-}"
-`;
-
-exports[`v3 should generate: ./test/generated/v3/core/requestUsingXHR.ts 1`] = `
-"/* istanbul ignore file */
-/* tslint:disable */
-/* eslint-disable */
-
-import { isSuccess } from './isSuccess';
-import { Result } from './Result';
-
-/**
- * Try to parse the content for any response status code.
- * We check the \\"Content-Type\\" header to see if we need to parse the
- * content as json or as plain text.
- * @param xhr XHR request object
- */
-function parseBody(xhr: XMLHttpRequest): any {
+async function getResponseBody(response: Response): Promise<any> {
     try {
-        const contentType = xhr.getResponseHeader('Content-Type');
+        const contentType = response.headers.get('Content-Type');
         if (contentType) {
             switch (contentType.toLowerCase()) {
                 case 'application/json':
                 case 'application/json; charset=utf-8':
-                    return JSON.parse(xhr.responseText);
-
+                    return await response.json();
                 default:
-                    return xhr.responseText;
+                    return await response.text();
             }
         }
-    } catch (e) {
-        console.error(e);
+    } catch (error) {
+        console.error(error);
     }
     return null;
 }
-
-/**
- * Fetch the response header (if specified)
- * @param xhr XHR request object
- * @param responseHeader The name of the header to fetch
- */
-function parseHeader(xhr: XMLHttpRequest, responseHeader?: string): string | null {
-    if (responseHeader) {
-        const content = xhr.getResponseHeader(responseHeader);
-        if (typeof content === 'string') {
-            return content;
-        }
+function catchErrors(options: ApiRequestOptions, result: ApiResult): void {
+    const errors: Record<number, string> = {
+        400: 'Bad Request',
+        401: 'Unauthorized',
+        403: 'Forbidden',
+        404: 'Not Found',
+        500: 'Internal Server Error',
+        502: 'Bad Gateway',
+        503: 'Service Unavailable',
+        ...options.errors,
     }
-    return null;
+
+    const error = errors[result.status];
+    if (error) {
+        throw new ApiError(result, error);
+    }
+
+    if (!result.ok) {
+        throw new ApiError(result, 'Generic Error');
+    }
 }
 
 /**
- * Request content using the new legacy XMLHttpRequest API. This method is useful
- * when we want to request UTF-16 content, since it natively supports loading UTF-16.
- * We could do the same with the Fetch API, but then we will need to convert the
- * content using JavaScript... And that is very very slow.
- * @param url The url to request.
- * @param request The request object, containing method, headers, body, etc.
- * @param responseHeader The header we want to parse.
+ * Request using fetch
+ * @param options Request options
+ * @result ApiResult
+ * @throws ApiError
  */
-export async function requestUsingXHR(url: string, request: Readonly<RequestInit>, responseHeader?: string): Promise<Result> {
-    return new Promise(resolve => {
-        const xhr = new XMLHttpRequest();
+export async function request(options: ApiRequestOptions): Promise<ApiResult> {
+    const url = getUrl(options);
+    const response = await sendRequest(options, url);
+    const responseBody = await getResponseBody(response);
+    const responseHeader = getResponseHeader(response, options.responseHeader);
 
-        // Open the request, remember to do this before adding any headers,
-        // because the request needs to be initialized!
-        xhr.open(request.method!, url, true);
+    const result: ApiResult = {
+        url,
+        ok: response.ok,
+        status: response.status,
+        statusText: response.statusText,
+        body: responseHeader || responseBody,
+    };
 
-        // When request credentials are set to include then this is
-        // the same behaviour as withCredentials = true in XHR:
-        // https://developer.mozilla.org/en-US/docs/Web/API/Request/credentials
-        xhr.withCredentials = request.credentials === 'include';
-
-        // Add the headers (required when dealing with JSON)
-        const headers = request.headers as Headers;
-        headers.forEach((value: string, key: string): void => {
-            xhr.setRequestHeader(key, value);
-        });
-
-        // Register the readystate handler, this will fire when the request is done.
-        xhr.onreadystatechange = () => {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-
-                // Get content of response header or response body
-                const contentHeader = parseHeader(xhr, responseHeader);
-                const contentBody = parseBody(xhr);
-
-                // Create result object.
-                const result: Result = {
-                    url,
-                    ok: isSuccess(xhr.status),
-                    status: xhr.status,
-                    statusText: xhr.statusText,
-                    body: contentHeader || contentBody,
-                };
-
-                // Done!
-                resolve(result);
-            }
-        };
-
-        // Start the request!
-        xhr.send(request.body);
-    });
+    catchErrors(options, result);
+    return result;
 }"
 `;
 
@@ -2899,9 +2269,7 @@ exports[`v3 should generate: ./test/generated/v3/index.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export { ApiError } from './core/ApiError';
-export { isSuccess } from './core/isSuccess';
 export { OpenAPI } from './core/OpenAPI';
 
 export type { ArrayWithArray } from './models/ArrayWithArray';
@@ -3010,7 +2378,6 @@ exports[`v3 should generate: ./test/generated/v3/models/ArrayWithArray.ts 1`] = 
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 import { ModelWithString } from './ModelWithString';
 
 /**
@@ -3023,8 +2390,6 @@ exports[`v3 should generate: ./test/generated/v3/models/ArrayWithBooleans.ts 1`]
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-
 /**
  * This is a simple array with booleans
  */
@@ -3035,8 +2400,6 @@ exports[`v3 should generate: ./test/generated/v3/models/ArrayWithNumbers.ts 1`] 
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-
 /**
  * This is a simple array with numbers
  */
@@ -3047,8 +2410,6 @@ exports[`v3 should generate: ./test/generated/v3/models/ArrayWithProperties.ts 1
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-
 /**
  * This is a simple array with properties
  */
@@ -3062,7 +2423,6 @@ exports[`v3 should generate: ./test/generated/v3/models/ArrayWithReferences.ts 1
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 import { ModelWithString } from './ModelWithString';
 
 /**
@@ -3075,8 +2435,6 @@ exports[`v3 should generate: ./test/generated/v3/models/ArrayWithStrings.ts 1`] 
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-
 /**
  * This is a simple array with strings
  */
@@ -3087,7 +2445,6 @@ exports[`v3 should generate: ./test/generated/v3/models/DictionaryWithArray.ts 1
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 import { ModelWithString } from './ModelWithString';
 
 /**
@@ -3100,8 +2457,6 @@ exports[`v3 should generate: ./test/generated/v3/models/DictionaryWithDictionary
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-
 /**
  * This is a string dictionary
  */
@@ -3112,8 +2467,6 @@ exports[`v3 should generate: ./test/generated/v3/models/DictionaryWithProperties
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-
 /**
  * This is a complex dictionary
  */
@@ -3127,7 +2480,6 @@ exports[`v3 should generate: ./test/generated/v3/models/DictionaryWithReference.
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 import { ModelWithString } from './ModelWithString';
 
 /**
@@ -3140,8 +2492,6 @@ exports[`v3 should generate: ./test/generated/v3/models/DictionaryWithString.ts 
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-
 /**
  * This is a string dictionary
  */
@@ -3152,8 +2502,6 @@ exports[`v3 should generate: ./test/generated/v3/models/EnumFromDescription.ts 1
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-
 /**
  * Success=1,Warning=2,Error=3
  */
@@ -3168,8 +2516,6 @@ exports[`v3 should generate: ./test/generated/v3/models/EnumWithExtensions.ts 1`
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-
 /**
  * This is a simple enum with numbers
  */
@@ -3193,8 +2539,6 @@ exports[`v3 should generate: ./test/generated/v3/models/EnumWithNumbers.ts 1`] =
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-
 /**
  * This is a simple enum with numbers
  */
@@ -3209,8 +2553,6 @@ exports[`v3 should generate: ./test/generated/v3/models/EnumWithStrings.ts 1`] =
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-
 /**
  * This is a simple enum with strings
  */
@@ -3225,8 +2567,6 @@ exports[`v3 should generate: ./test/generated/v3/models/ModelLink.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-
 /**
  * This is a model that can have a template??
  */
@@ -3240,7 +2580,6 @@ exports[`v3 should generate: ./test/generated/v3/models/ModelThatExtends.ts 1`] 
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 import { ModelWithString } from './ModelWithString';
 
 /**
@@ -3257,7 +2596,6 @@ exports[`v3 should generate: ./test/generated/v3/models/ModelThatExtendsExtends.
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 import { ModelThatExtends } from './ModelThatExtends';
 import { ModelWithString } from './ModelWithString';
 
@@ -3275,7 +2613,6 @@ exports[`v3 should generate: ./test/generated/v3/models/ModelWithAnyOf.ts 1`] = 
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 import { ModelWithArray } from './ModelWithArray';
 import { ModelWithDictionary } from './ModelWithDictionary';
 import { ModelWithEnum } from './ModelWithEnum';
@@ -3294,7 +2631,6 @@ exports[`v3 should generate: ./test/generated/v3/models/ModelWithArray.ts 1`] = 
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 import { ModelWithString } from './ModelWithString';
 
 /**
@@ -3312,8 +2648,6 @@ exports[`v3 should generate: ./test/generated/v3/models/ModelWithBoolean.ts 1`] 
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-
 /**
  * This is a model with one boolean property
  */
@@ -3330,8 +2664,6 @@ exports[`v3 should generate: ./test/generated/v3/models/ModelWithCircularReferen
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-
 /**
  * This is a model with one property containing a circular reference
  */
@@ -3345,8 +2677,6 @@ exports[`v3 should generate: ./test/generated/v3/models/ModelWithDictionary.ts 1
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-
 /**
  * This is a model with one property containing a dictionary
  */
@@ -3360,7 +2690,6 @@ exports[`v3 should generate: ./test/generated/v3/models/ModelWithDuplicateImport
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 import { ModelWithString } from './ModelWithString';
 
 /**
@@ -3378,7 +2707,6 @@ exports[`v3 should generate: ./test/generated/v3/models/ModelWithDuplicateProper
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 import { ModelWithString } from './ModelWithString';
 
 /**
@@ -3394,8 +2722,6 @@ exports[`v3 should generate: ./test/generated/v3/models/ModelWithEnum.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-
 /**
  * This is a model with one enum
  */
@@ -3442,8 +2768,6 @@ exports[`v3 should generate: ./test/generated/v3/models/ModelWithEnumFromDescrip
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-
 /**
  * This is a model with one enum
  */
@@ -3474,8 +2798,6 @@ exports[`v3 should generate: ./test/generated/v3/models/ModelWithInteger.ts 1`] 
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-
 /**
  * This is a model with one number property
  */
@@ -3492,7 +2814,6 @@ exports[`v3 should generate: ./test/generated/v3/models/ModelWithLink.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 import { ModelLink } from './ModelLink';
 import { ModelWithString } from './ModelWithString';
 
@@ -3509,8 +2830,6 @@ exports[`v3 should generate: ./test/generated/v3/models/ModelWithNestedEnums.ts 
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-
 /**
  * This is a model with nested enums
  */
@@ -3527,8 +2846,6 @@ exports[`v3 should generate: ./test/generated/v3/models/ModelWithNestedPropertie
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-
 /**
  * This is a model with one nested property
  */
@@ -3546,7 +2863,6 @@ exports[`v3 should generate: ./test/generated/v3/models/ModelWithOneOf.ts 1`] = 
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 import { ModelWithArray } from './ModelWithArray';
 import { ModelWithDictionary } from './ModelWithDictionary';
 import { ModelWithEnum } from './ModelWithEnum';
@@ -3565,8 +2881,6 @@ exports[`v3 should generate: ./test/generated/v3/models/ModelWithOrderedProperti
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-
 /**
  * This is a model with ordered properties
  */
@@ -3582,8 +2896,6 @@ exports[`v3 should generate: ./test/generated/v3/models/ModelWithPattern.ts 1`] 
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-
 /**
  * This is a model that contains a some patterns
  */
@@ -3600,7 +2912,6 @@ exports[`v3 should generate: ./test/generated/v3/models/ModelWithProperties.ts 1
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 import { ModelWithString } from './ModelWithString';
 
 /**
@@ -3622,7 +2933,6 @@ exports[`v3 should generate: ./test/generated/v3/models/ModelWithReference.ts 1`
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 import { ModelWithProperties } from './ModelWithProperties';
 
 /**
@@ -3638,8 +2948,6 @@ exports[`v3 should generate: ./test/generated/v3/models/ModelWithString.ts 1`] =
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-
 /**
  * This is a model with one string property
  */
@@ -3656,8 +2964,6 @@ exports[`v3 should generate: ./test/generated/v3/models/MultilineComment.ts 1`] 
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-
 /**
  * Testing multiline comments.
  * This must go to the next line.
@@ -3671,8 +2977,6 @@ exports[`v3 should generate: ./test/generated/v3/models/SimpleBoolean.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-
 /**
  * This is a simple boolean
  */
@@ -3683,8 +2987,6 @@ exports[`v3 should generate: ./test/generated/v3/models/SimpleFile.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-
 /**
  * This is a simple file
  */
@@ -3695,8 +2997,6 @@ exports[`v3 should generate: ./test/generated/v3/models/SimpleInteger.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-
 /**
  * This is a simple number
  */
@@ -3707,7 +3007,6 @@ exports[`v3 should generate: ./test/generated/v3/models/SimpleReference.ts 1`] =
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 import { ModelWithString } from './ModelWithString';
 
 /**
@@ -3720,8 +3019,6 @@ exports[`v3 should generate: ./test/generated/v3/models/SimpleString.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-
 /**
  * This is a simple string
  */
@@ -3732,7 +3029,6 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$ArrayWithArray.ts 1`] 
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $ArrayWithArray = {
     type: 'Array',
 };"
@@ -3742,7 +3038,6 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$ArrayWithBooleans.ts 1
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $ArrayWithBooleans = {
     type: 'Array',
 };"
@@ -3752,7 +3047,6 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$ArrayWithNumbers.ts 1`
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $ArrayWithNumbers = {
     type: 'Array',
 };"
@@ -3762,7 +3056,6 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$ArrayWithProperties.ts
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $ArrayWithProperties = {
     type: 'Array',
 };"
@@ -3772,7 +3065,6 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$ArrayWithReferences.ts
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $ArrayWithReferences = {
     type: 'Array',
 };"
@@ -3782,7 +3074,6 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$ArrayWithStrings.ts 1`
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $ArrayWithStrings = {
     type: 'Array',
 };"
@@ -3792,7 +3083,6 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$DictionaryWithArray.ts
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $DictionaryWithArray = {
     type: 'Dictionary',
 };"
@@ -3802,7 +3092,6 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$DictionaryWithDictiona
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $DictionaryWithDictionary = {
     type: 'Dictionary',
 };"
@@ -3812,7 +3101,6 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$DictionaryWithProperti
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $DictionaryWithProperties = {
     type: 'Dictionary',
 };"
@@ -3822,7 +3110,6 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$DictionaryWithReferenc
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $DictionaryWithReference = {
     type: 'Dictionary',
 };"
@@ -3832,7 +3119,6 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$DictionaryWithString.t
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $DictionaryWithString = {
     type: 'Dictionary',
 };"
@@ -3842,7 +3128,6 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$EnumFromDescription.ts
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $EnumFromDescription = {
     type: 'Enum',
 };"
@@ -3852,7 +3137,6 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$EnumWithExtensions.ts 
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $EnumWithExtensions = {
     type: 'Enum',
 };"
@@ -3862,7 +3146,6 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$EnumWithNumbers.ts 1`]
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $EnumWithNumbers = {
     type: 'Enum',
 };"
@@ -3872,7 +3155,6 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$EnumWithStrings.ts 1`]
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $EnumWithStrings = {
     type: 'Enum',
 };"
@@ -3882,7 +3164,6 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$ModelLink.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $ModelLink = {
     properties: {
         id: {
@@ -3896,7 +3177,6 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$ModelThatExtends.ts 1`
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 import { $ModelWithString } from './$ModelWithString';
 
 export const $ModelThatExtends = {
@@ -3916,7 +3196,6 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$ModelThatExtendsExtend
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 import { $ModelWithString } from './$ModelWithString';
 import { $ModelThatExtends } from './$ModelThatExtends';
 
@@ -3938,7 +3217,6 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$ModelWithAnyOf.ts 1`] 
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $ModelWithAnyOf = {
     properties: {
         propA: {
@@ -3952,7 +3230,6 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$ModelWithArray.ts 1`] 
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $ModelWithArray = {
     properties: {
         prop: {
@@ -3972,7 +3249,6 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$ModelWithBoolean.ts 1`
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $ModelWithBoolean = {
     properties: {
         prop: {
@@ -3986,7 +3262,6 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$ModelWithCircularRefer
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $ModelWithCircularReference = {
     properties: {
         prop: {
@@ -4000,7 +3275,6 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$ModelWithDictionary.ts
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $ModelWithDictionary = {
     properties: {
         prop: {
@@ -4014,7 +3288,6 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$ModelWithDuplicateImpo
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $ModelWithDuplicateImports = {
     properties: {
         propA: {
@@ -4034,7 +3307,6 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$ModelWithDuplicateProp
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $ModelWithDuplicateProperties = {
     properties: {
         prop: {
@@ -4048,7 +3320,6 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$ModelWithEnum.ts 1`] =
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $ModelWithEnum = {
     properties: {
         test: {
@@ -4065,7 +3336,6 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$ModelWithEnumFromDescr
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $ModelWithEnumFromDescription = {
     properties: {
         test: {
@@ -4079,7 +3349,6 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$ModelWithInteger.ts 1`
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $ModelWithInteger = {
     properties: {
         prop: {
@@ -4093,7 +3362,6 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$ModelWithLink.ts 1`] =
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $ModelWithLink = {
     properties: {
         prop: {
@@ -4107,7 +3375,6 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$ModelWithNestedEnums.t
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $ModelWithNestedEnums = {
     properties: {
         dictionaryWithEnum: {
@@ -4130,7 +3397,6 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$ModelWithNestedPropert
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $ModelWithNestedProperties = {
     properties: {
         first: {
@@ -4161,7 +3427,6 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$ModelWithOneOf.ts 1`] 
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $ModelWithOneOf = {
     properties: {
         propA: {
@@ -4175,7 +3440,6 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$ModelWithOrderedProper
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $ModelWithOrderedProperties = {
     properties: {
         zebra: {
@@ -4195,7 +3459,6 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$ModelWithPattern.ts 1`
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $ModelWithPattern = {
     properties: {
         key: {
@@ -4226,7 +3489,6 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$ModelWithProperties.ts
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $ModelWithProperties = {
     properties: {
         required: {
@@ -4263,7 +3525,6 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$ModelWithReference.ts 
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $ModelWithReference = {
     properties: {
         prop: {
@@ -4277,7 +3538,6 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$ModelWithString.ts 1`]
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $ModelWithString = {
     properties: {
         prop: {
@@ -4291,7 +3551,6 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$MultilineComment.ts 1`
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $MultilineComment = {
     type: 'number',
 };"
@@ -4301,7 +3560,6 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$SimpleBoolean.ts 1`] =
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $SimpleBoolean = {
     type: 'boolean',
 };"
@@ -4311,7 +3569,6 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$SimpleFile.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $SimpleFile = {
     type: 'File',
 };"
@@ -4321,7 +3578,6 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$SimpleInteger.ts 1`] =
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $SimpleInteger = {
     type: 'number',
 };"
@@ -4331,7 +3587,6 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$SimpleReference.ts 1`]
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $SimpleReference = {
     type: 'ModelWithString',
 };"
@@ -4341,7 +3596,6 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$SimpleString.ts 1`] = 
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export const $SimpleString = {
     type: 'string',
 };"
@@ -4351,12 +3605,10 @@ exports[`v3 should generate: ./test/generated/v3/services/ComplexService.ts 1`] 
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 import { ModelWithArray } from '../models/ModelWithArray';
 import { ModelWithDictionary } from '../models/ModelWithDictionary';
 import { ModelWithEnum } from '../models/ModelWithEnum';
 import { ModelWithString } from '../models/ModelWithString';
-import { ApiError, catchGenericError } from '../core/ApiError';
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
@@ -4378,25 +3630,18 @@ export class ComplexService {
         },
         parameterReference: ModelWithString,
     ): Promise<Array<ModelWithString>> {
-
         const result = await __request({
-            method: 'get',
+            method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/complex\`,
             query: {
                 'parameterObject': parameterObject,
                 'parameterReference': parameterReference,
             },
+            errors: {
+                400: \`400 server error\`,
+                500: \`500 server error\`,
+            },
         });
-
-        if (!result.ok) {
-            switch (result.status) {
-                case 400: throw new ApiError(result, \`400 server error\`);
-                case 500: throw new ApiError(result, \`500 server error\`);
-            }
-        }
-
-        catchGenericError(result);
-
         return result.body;
     }
 
@@ -4422,15 +3667,11 @@ export class ComplexService {
             },
         },
     ): Promise<ModelWithString> {
-
         const result = await __request({
-            method: 'put',
+            method: 'PUT',
             path: \`/api/v\${OpenAPI.VERSION}/complex/\${id}\`,
             body: requestBody,
         });
-
-        catchGenericError(result);
-
         return result.body;
     }
 
@@ -4441,9 +3682,7 @@ exports[`v3 should generate: ./test/generated/v3/services/DefaultsService.ts 1`]
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 import { ModelWithString } from '../models/ModelWithString';
-import { catchGenericError } from '../core/ApiError';
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
@@ -4466,9 +3705,8 @@ export class DefaultsService {
             \\"prop\\": \\"Hello World!\\"
         },
     ): Promise<void> {
-
         const result = await __request({
-            method: 'get',
+            method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/defaults\`,
             query: {
                 'parameterString': parameterString,
@@ -4478,9 +3716,6 @@ export class DefaultsService {
                 'parameterModel': parameterModel,
             },
         });
-
-        catchGenericError(result);
-
         return result.body;
     }
 
@@ -4501,9 +3736,8 @@ export class DefaultsService {
             \\"prop\\": \\"Hello World!\\"
         },
     ): Promise<void> {
-
         const result = await __request({
-            method: 'post',
+            method: 'POST',
             path: \`/api/v\${OpenAPI.VERSION}/defaults\`,
             query: {
                 'parameterString': parameterString,
@@ -4513,9 +3747,6 @@ export class DefaultsService {
                 'parameterModel': parameterModel,
             },
         });
-
-        catchGenericError(result);
-
         return result.body;
     }
 
@@ -4536,9 +3767,8 @@ export class DefaultsService {
         parameterStringWithDefault: string = 'Hello World!',
         parameterStringWithEmptyDefault: string = '',
     ): Promise<void> {
-
         const result = await __request({
-            method: 'put',
+            method: 'PUT',
             path: \`/api/v\${OpenAPI.VERSION}/defaults\`,
             query: {
                 'parameterStringWithNoDefault': parameterStringWithNoDefault,
@@ -4549,9 +3779,6 @@ export class DefaultsService {
                 'parameterStringWithEmptyDefault': parameterStringWithEmptyDefault,
             },
         });
-
-        catchGenericError(result);
-
         return result.body;
     }
 
@@ -4562,8 +3789,6 @@ exports[`v3 should generate: ./test/generated/v3/services/DuplicateService.ts 1`
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-import { catchGenericError } from '../core/ApiError';
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
@@ -4573,14 +3798,10 @@ export class DuplicateService {
      * @throws ApiError
      */
     public static async duplicateName(): Promise<void> {
-
         const result = await __request({
-            method: 'get',
+            method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/duplicate\`,
         });
-
-        catchGenericError(result);
-
         return result.body;
     }
 
@@ -4588,14 +3809,10 @@ export class DuplicateService {
      * @throws ApiError
      */
     public static async duplicateName1(): Promise<void> {
-
         const result = await __request({
-            method: 'post',
+            method: 'POST',
             path: \`/api/v\${OpenAPI.VERSION}/duplicate\`,
         });
-
-        catchGenericError(result);
-
         return result.body;
     }
 
@@ -4603,14 +3820,10 @@ export class DuplicateService {
      * @throws ApiError
      */
     public static async duplicateName2(): Promise<void> {
-
         const result = await __request({
-            method: 'put',
+            method: 'PUT',
             path: \`/api/v\${OpenAPI.VERSION}/duplicate\`,
         });
-
-        catchGenericError(result);
-
         return result.body;
     }
 
@@ -4618,14 +3831,10 @@ export class DuplicateService {
      * @throws ApiError
      */
     public static async duplicateName3(): Promise<void> {
-
         const result = await __request({
-            method: 'delete',
+            method: 'DELETE',
             path: \`/api/v\${OpenAPI.VERSION}/duplicate\`,
         });
-
-        catchGenericError(result);
-
         return result.body;
     }
 
@@ -4636,8 +3845,6 @@ exports[`v3 should generate: ./test/generated/v3/services/HeaderService.ts 1`] =
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-import { ApiError, catchGenericError } from '../core/ApiError';
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
@@ -4648,22 +3855,15 @@ export class HeaderService {
      * @throws ApiError
      */
     public static async callWithResultFromHeader(): Promise<string> {
-
         const result = await __request({
-            method: 'post',
+            method: 'POST',
             path: \`/api/v\${OpenAPI.VERSION}/header\`,
             responseHeader: 'operation-location',
+            errors: {
+                400: \`400 server error\`,
+                500: \`500 server error\`,
+            },
         });
-
-        if (!result.ok) {
-            switch (result.status) {
-                case 400: throw new ApiError(result, \`400 server error\`);
-                case 500: throw new ApiError(result, \`500 server error\`);
-            }
-        }
-
-        catchGenericError(result);
-
         return result.body;
     }
 
@@ -4674,8 +3874,6 @@ exports[`v3 should generate: ./test/generated/v3/services/MultipartService.ts 1`
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-import { catchGenericError } from '../core/ApiError';
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
@@ -4692,14 +3890,10 @@ export class MultipartService {
             bar?: string,
         },
     }> {
-
         const result = await __request({
-            method: 'get',
+            method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/multipart\`,
         });
-
-        catchGenericError(result);
-
         return result.body;
     }
 
@@ -4710,9 +3904,7 @@ exports[`v3 should generate: ./test/generated/v3/services/ParametersService.ts 1
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 import { ModelWithString } from '../models/ModelWithString';
-import { catchGenericError } from '../core/ApiError';
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
@@ -4735,9 +3927,8 @@ export class ParametersService {
         parameterPath: string | null,
         requestBody: ModelWithString | null,
     ): Promise<void> {
-
         const result = await __request({
-            method: 'get',
+            method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/parameters/\${parameterPath}\`,
             cookies: {
                 'parameterCookie': parameterCookie,
@@ -4753,9 +3944,6 @@ export class ParametersService {
             },
             body: requestBody,
         });
-
-        catchGenericError(result);
-
         return result.body;
     }
 
@@ -4780,9 +3968,8 @@ export class ParametersService {
         parameterPath2?: string,
         parameterPath3?: string,
     ): Promise<void> {
-
         const result = await __request({
-            method: 'get',
+            method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/parameters/\${parameterPath1}/\${parameterPath2}/\${parameterPath3}\`,
             cookies: {
                 'PARAMETER-COOKIE': parameterCookie,
@@ -4798,9 +3985,6 @@ export class ParametersService {
             },
             body: requestBody,
         });
-
-        catchGenericError(result);
-
         return result.body;
     }
 
@@ -4813,18 +3997,14 @@ export class ParametersService {
         requestBody: ModelWithString,
         parameter?: string,
     ): Promise<void> {
-
         const result = await __request({
-            method: 'get',
+            method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/parameters/\`,
             query: {
                 'parameter': parameter,
             },
             body: requestBody,
         });
-
-        catchGenericError(result);
-
         return result.body;
     }
 
@@ -4837,18 +4017,14 @@ export class ParametersService {
         parameter: string,
         requestBody?: ModelWithString,
     ): Promise<void> {
-
         const result = await __request({
-            method: 'post',
+            method: 'POST',
             path: \`/api/v\${OpenAPI.VERSION}/parameters/\`,
             query: {
                 'parameter': parameter,
             },
             body: requestBody,
         });
-
-        catchGenericError(result);
-
         return result.body;
     }
 
@@ -4859,9 +4035,7 @@ exports[`v3 should generate: ./test/generated/v3/services/RequestBodyService.ts 
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 import { ModelWithString } from '../models/ModelWithString';
-import { catchGenericError } from '../core/ApiError';
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
@@ -4874,15 +4048,11 @@ export class RequestBodyService {
     public static async postRequestBodyService(
         requestBody?: ModelWithString,
     ): Promise<void> {
-
         const result = await __request({
-            method: 'post',
+            method: 'POST',
             path: \`/api/v\${OpenAPI.VERSION}/requestBody/\`,
             body: requestBody,
         });
-
-        catchGenericError(result);
-
         return result.body;
     }
 
@@ -4893,11 +4063,9 @@ exports[`v3 should generate: ./test/generated/v3/services/ResponseService.ts 1`]
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 import { ModelThatExtends } from '../models/ModelThatExtends';
 import { ModelThatExtendsExtends } from '../models/ModelThatExtendsExtends';
 import { ModelWithString } from '../models/ModelWithString';
-import { ApiError, catchGenericError } from '../core/ApiError';
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
@@ -4908,14 +4076,10 @@ export class ResponseService {
      * @throws ApiError
      */
     public static async callWithResponse(): Promise<ModelWithString> {
-
         const result = await __request({
-            method: 'get',
+            method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/response\`,
         });
-
-        catchGenericError(result);
-
         return result.body;
     }
 
@@ -4924,22 +4088,15 @@ export class ResponseService {
      * @throws ApiError
      */
     public static async callWithDuplicateResponses(): Promise<ModelWithString> {
-
         const result = await __request({
-            method: 'post',
+            method: 'POST',
             path: \`/api/v\${OpenAPI.VERSION}/response\`,
+            errors: {
+                500: \`Message for 500 error\`,
+                501: \`Message for 501 error\`,
+                502: \`Message for 502 error\`,
+            },
         });
-
-        if (!result.ok) {
-            switch (result.status) {
-                case 500: throw new ApiError(result, \`Message for 500 error\`);
-                case 501: throw new ApiError(result, \`Message for 501 error\`);
-                case 502: throw new ApiError(result, \`Message for 502 error\`);
-            }
-        }
-
-        catchGenericError(result);
-
         return result.body;
     }
 
@@ -4950,22 +4107,15 @@ export class ResponseService {
      * @throws ApiError
      */
     public static async callWithResponses(): Promise<ModelWithString | ModelThatExtends | ModelThatExtendsExtends> {
-
         const result = await __request({
-            method: 'put',
+            method: 'PUT',
             path: \`/api/v\${OpenAPI.VERSION}/response\`,
+            errors: {
+                500: \`Message for 500 error\`,
+                501: \`Message for 501 error\`,
+                502: \`Message for 502 error\`,
+            },
         });
-
-        if (!result.ok) {
-            switch (result.status) {
-                case 500: throw new ApiError(result, \`Message for 500 error\`);
-                case 501: throw new ApiError(result, \`Message for 501 error\`);
-                case 502: throw new ApiError(result, \`Message for 502 error\`);
-            }
-        }
-
-        catchGenericError(result);
-
         return result.body;
     }
 
@@ -4976,8 +4126,6 @@ exports[`v3 should generate: ./test/generated/v3/services/SimpleService.ts 1`] =
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-import { catchGenericError } from '../core/ApiError';
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
@@ -4987,14 +4135,10 @@ export class SimpleService {
      * @throws ApiError
      */
     public static async getCallWithoutParametersAndResponse(): Promise<void> {
-
         const result = await __request({
-            method: 'get',
+            method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
-
-        catchGenericError(result);
-
         return result.body;
     }
 
@@ -5002,14 +4146,10 @@ export class SimpleService {
      * @throws ApiError
      */
     public static async putCallWithoutParametersAndResponse(): Promise<void> {
-
         const result = await __request({
-            method: 'put',
+            method: 'PUT',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
-
-        catchGenericError(result);
-
         return result.body;
     }
 
@@ -5017,14 +4157,10 @@ export class SimpleService {
      * @throws ApiError
      */
     public static async postCallWithoutParametersAndResponse(): Promise<void> {
-
         const result = await __request({
-            method: 'post',
+            method: 'POST',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
-
-        catchGenericError(result);
-
         return result.body;
     }
 
@@ -5032,14 +4168,10 @@ export class SimpleService {
      * @throws ApiError
      */
     public static async deleteCallWithoutParametersAndResponse(): Promise<void> {
-
         const result = await __request({
-            method: 'delete',
+            method: 'DELETE',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
-
-        catchGenericError(result);
-
         return result.body;
     }
 
@@ -5047,14 +4179,10 @@ export class SimpleService {
      * @throws ApiError
      */
     public static async optionsCallWithoutParametersAndResponse(): Promise<void> {
-
         const result = await __request({
-            method: 'options',
+            method: 'OPTIONS',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
-
-        catchGenericError(result);
-
         return result.body;
     }
 
@@ -5062,14 +4190,10 @@ export class SimpleService {
      * @throws ApiError
      */
     public static async headCallWithoutParametersAndResponse(): Promise<void> {
-
         const result = await __request({
-            method: 'head',
+            method: 'HEAD',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
-
-        catchGenericError(result);
-
         return result.body;
     }
 
@@ -5077,14 +4201,10 @@ export class SimpleService {
      * @throws ApiError
      */
     public static async patchCallWithoutParametersAndResponse(): Promise<void> {
-
         const result = await __request({
-            method: 'patch',
+            method: 'PATCH',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
-
-        catchGenericError(result);
-
         return result.body;
     }
 
@@ -5095,8 +4215,6 @@ exports[`v3 should generate: ./test/generated/v3/services/TypesService.ts 1`] = 
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-import { catchGenericError } from '../core/ApiError';
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
@@ -5127,9 +4245,8 @@ export class TypesService {
         parameterObject: any = null,
         id?: number,
     ): Promise<number | string | boolean | any> {
-
         const result = await __request({
-            method: 'get',
+            method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/types\`,
             query: {
                 'parameterArray': parameterArray,
@@ -5141,9 +4258,6 @@ export class TypesService {
                 'parameterObject': parameterObject,
             },
         });
-
-        catchGenericError(result);
-
         return result.body;
     }
 
@@ -5154,8 +4268,6 @@ exports[`v3 should generate: ./test/generated/v3/services/UploadService.ts 1`] =
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
-import { catchGenericError } from '../core/ApiError';
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
@@ -5169,17 +4281,13 @@ export class UploadService {
     public static async uploadFile(
         file: File,
     ): Promise<boolean> {
-
         const result = await __request({
-            method: 'post',
+            method: 'POST',
             path: \`/api/v\${OpenAPI.VERSION}/upload\`,
             formData: {
                 'file': file,
             },
         });
-
-        catchGenericError(result);
-
         return result.body;
     }
 
