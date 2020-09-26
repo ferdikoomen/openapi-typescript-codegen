@@ -1,0 +1,25 @@
+function getRequest(options: ApiRequestOptions, url: string, listener: (xhr: XMLHttpRequest) => ApiResponse): Promise<ApiResponse> {
+    return new Promise<ApiResponse>((resolve, reject) => {
+        try {
+            const xhr = new XMLHttpRequest();
+            xhr.open(options.method, url, true);
+            xhr.withCredentials = OpenAPI.WITH_CREDENTIALS;
+
+            const headers = getHeaders(options);
+            headers.forEach((value, key) => {
+                xhr.setRequestHeader(key, value);
+            });
+
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    const response = listener(xhr);
+                    resolve(response);
+                }
+            };
+
+            xhr.send(getRequestBody());
+        } catch (error) {
+            reject(error);
+        }
+    );
+}

@@ -26,7 +26,7 @@ export function getOperation(openApi: OpenApi, url: string, method: string, op: 
         summary: getComment(op.summary),
         description: getComment(op.description),
         deprecated: op.deprecated === true,
-        method: method,
+        method: method.toUpperCase(),
         path: operationPath,
         parameters: [...pathParams.parameters],
         parametersPath: [...pathParams.parametersPath],

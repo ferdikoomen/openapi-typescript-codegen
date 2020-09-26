@@ -1,0 +1,10 @@
+function getResponseHeader(response: Response, responseHeader?: string): string | null {
+    if (responseHeader) {
+        const content = response.headers.get(responseHeader);
+        if (typeof content === 'string') {
+            return content;
+        }
+    }
+
+    return null;
+}

@@ -1,0 +1,24 @@
+function getHeaders(options: ApiRequestOptions): Headers {
+    const headers = new Headers({
+        ...options.headers,
+        Accept: 'application/json',
+    });
+
+    if (OpenAPI.TOKEN !== null && OpenAPI.TOKEN !== '') {
+        headers.append('Authorization', `Bearer ${OpenAPI.TOKEN}`);
+    }
+
+    if (options.body) {
+        if (options.body instanceof Blob) {
+            if (options.body.type) {
+                headers.append('Content-Type', options.body.type);
+            }
+        } else if (typeof options.body === 'string') {
+            headers.append('Content-Type', 'text/plain');
+        } else {
+            headers.append('Content-Type', 'application/json');
+        }
+    }
+
+    return headers;
+}

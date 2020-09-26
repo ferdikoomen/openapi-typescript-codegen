@@ -17,12 +17,10 @@ const VERSION_TEMPLATE_STRING = 'OpenAPI.VERSION';
 export async function writeClientServices(services: Service[], templates: Templates, outputPath: string, useOptions: boolean): Promise<void> {
     for (const service of services) {
         const file = path.resolve(outputPath, `${service.name}.ts`);
-        const hasApiErrors = service.operations.some(operation => operation.errors.length);
-        const hasApiVersion = service.operations.some(operation => operation.path.includes(VERSION_TEMPLATE_STRING));
+        const useVersion = service.operations.some(operation => operation.path.includes(VERSION_TEMPLATE_STRING));
         const templateResult = templates.exports.service({
             ...service,
-            hasApiErrors,
-            hasApiVersion,
+            useVersion,
             useOptions,
         });
         await writeFile(file, format(templateResult));

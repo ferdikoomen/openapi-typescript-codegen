@@ -1,0 +1,55 @@
+import { ApiError } from './ApiError';
+import { ApiRequestOptions } from './ApiRequestOptions';
+import { ApiResponse } from './ApiResponse';
+import { OpenAPI } from './OpenAPI';
+
+import fetch, { Headers } from 'node-fetch';
+import FormData from 'form-data';
+
+{{>isDefined}}
+
+{{>isSuccess}}
+
+{{>getQueryString}}
+
+{{>getUrl}}
+
+{{>catchErrors}}
+
+{{>getFormData}}
+
+{{>getHeaders}}
+
+{{>getRequestBody}}
+
+{{>getRequest}}
+
+{{>getResponseHeader}}
+
+{{>getResponseBody}}
+
+/**
+ * Request using fetch
+ * @param options Request options
+ * @result ApiResponse
+ * @throws ApiError
+ */
+export async function request(options: ApiRequestOptions): Promise<ApiResponse> {
+    const url = getUrl(options);
+    const request = getRequest(options);
+    const response = await fetch(url, request);
+    const responseBody = await getResponseBody(response);
+    const responseHeader = getResponseHeader(response, options.responseHeader);
+
+    const response: ApiResponse = {
+        url,
+        ok: isSuccess(xhr.status),
+        status: xhr.status,
+        statusText: xhr.statusText,
+        body: responseHeader || responseBody,
+    };
+
+    catchErrors(options, response);
+
+    return response;
+}

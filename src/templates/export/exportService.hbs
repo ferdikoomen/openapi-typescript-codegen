@@ -1,19 +1,12 @@
-/* istanbul ignore file */
-/* tslint:disable */
-/* eslint-disable */
+{{>header}}
 
 {{#if imports}}
 {{#each imports}}
 import { {{{this}}} } from '../models/{{{this}}}';
 {{/each}}
 {{/if}}
-{{#if hasApiErrors}}
-import { ApiError, catchGenericError } from '../core/ApiError';
-{{else}}
-import { catchGenericError } from '../core/ApiError';
-{{/if}}
 import { request as __request } from '../core/request';
-{{#if hasApiVersion}}
+{{#if useVersion}}
 import { OpenAPI } from '../core/OpenAPI';
 {{/if}}
 
@@ -42,7 +35,7 @@ export class {{{name}}} {
      */
     public static async {{{name}}}({{>parameters}}): Promise<{{>result}}> {
 
-        const result = await __request({
+        const response = await __request({
             method: '{{{method}}}',
             path: `{{{path}}}`,
             {{#if parametersCookie~}}
@@ -79,21 +72,16 @@ export class {{{name}}} {
             {{#if responseHeader~}}
             responseHeader: '{{{responseHeader}}}',
             {{/if}}
-        });
-        {{#if errors}}
-
-        if (!result.ok) {
-            switch (result.status) {
+            {{#if errors~}}
+            errors: {
             {{#each errors}}
-                case {{{code}}}: throw new ApiError(result, `{{{description}}}`);
+                {{{code}}}: `{{{description}}}`,
             {{/each}}
-            }
-        }
-        {{/if}}
+            },
+            {{/if}}
+        });
 
-        catchGenericError(result);
-
-        return result.body;
+        return response.body;
     }
 
     {{/each}}

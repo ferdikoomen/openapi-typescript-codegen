@@ -1,0 +1,26 @@
+function getRequest(options: ApiRequestOptions): RequestInit {
+    const request: RequestInit = {
+        headers: getHeaders(options),
+        method: options.method,
+    };
+
+    if (OpenAPI.WITH_CREDENTIALS) {
+        request.credentials = 'include';
+    }
+
+    if (options.formData) {
+        request.body = getFormData(options.formData);
+    }
+
+    if (options.body) {
+        if (options.body instanceof Blob) {
+            request.body = options.body;
+        } else if (typeof options.body === 'string') {
+            request.body = options.body;
+        } else {
+            request.body = JSON.stringify(options.body);
+        }
+    }
+
+    return request;
+}

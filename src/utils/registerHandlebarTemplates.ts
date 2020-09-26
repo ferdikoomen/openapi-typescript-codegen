@@ -1,15 +1,18 @@
 import * as Handlebars from 'handlebars/runtime';
 
-import templateCoreApiError from '../templates/core/ApiError.hbs';
-import templateCoreGetFormData from '../templates/core/getFormData.hbs';
-import templateCoreGetQueryString from '../templates/core/getQueryString.hbs';
-import templateCoreIsSuccess from '../templates/core/isSuccess.hbs';
+import templateCoreCatchGenericError from '../templates/core/catchGenericError.hbs';
+import templateCoreGetFormData from '../templates/core/functions/getFormData.hbs';
+import templateCoreGetQueryString from '../templates/core/functions/getQueryString.hbs';
+import templateCoreGetUrl from '../templates/core/functions/getUrl.hbs';
+import templateCoreIsSuccess from '../templates/core/functions/isSuccess.hbs';
 import templateCoreSettings from '../templates/core/OpenAPI.hbs';
 import templateCoreRequest from '../templates/core/request.hbs';
 import templateCoreRequestOptions from '../templates/core/RequestOptions.hbs';
-import templateCoreRequestUsingFetch from '../templates/core/requestUsingFetch.hbs';
-import templateCoreRequestUsingXHR from '../templates/core/requestUsingXHR.hbs';
-import templateCoreResult from '../templates/core/Result.hbs';
+import templateCoreRequestUsingFetch from '../templates/core/functions/requestUsingFetch.hbs';
+import templateCoreRequestUsingNode from '../templates/core/functions/requestUsingNode.hbs';
+import templateCoreRequestUsingXHR from '../templates/core/functions/requestUsingXHR.hbs';
+import templateCoreResponse from '../templates/core/Response.hbs';
+import templateCoreResponseError from '../templates/core/ResponseError.hbs';
 import templateExportModel from '../templates/exportModel.hbs';
 import templateExportSchema from '../templates/exportSchema.hbs';
 import templateExportService from '../templates/exportService.hbs';
@@ -47,15 +50,18 @@ export interface Templates {
     };
     core: {
         settings: Handlebars.TemplateDelegate;
-        apiError: Handlebars.TemplateDelegate;
         getFormData: Handlebars.TemplateDelegate;
         getQueryString: Handlebars.TemplateDelegate;
+        getUrl: Handlebars.TemplateDelegate;
         isSuccess: Handlebars.TemplateDelegate;
+        catchGenericError: Handlebars.TemplateDelegate;
         request: Handlebars.TemplateDelegate;
         requestOptions: Handlebars.TemplateDelegate;
         requestUsingFetch: Handlebars.TemplateDelegate;
         requestUsingXHR: Handlebars.TemplateDelegate;
-        result: Handlebars.TemplateDelegate;
+        requestUsingNode: Handlebars.TemplateDelegate;
+        response: Handlebars.TemplateDelegate;
+        responseError: Handlebars.TemplateDelegate;
     };
 }
 
@@ -75,15 +81,18 @@ export function registerHandlebarTemplates(): Templates {
         },
         core: {
             settings: Handlebars.template(templateCoreSettings),
-            apiError: Handlebars.template(templateCoreApiError),
             getFormData: Handlebars.template(templateCoreGetFormData),
             getQueryString: Handlebars.template(templateCoreGetQueryString),
+            getUrl: Handlebars.template(templateCoreGetUrl),
             isSuccess: Handlebars.template(templateCoreIsSuccess),
+            catchGenericError: Handlebars.template(templateCoreCatchGenericError),
             request: Handlebars.template(templateCoreRequest),
             requestOptions: Handlebars.template(templateCoreRequestOptions),
             requestUsingFetch: Handlebars.template(templateCoreRequestUsingFetch),
             requestUsingXHR: Handlebars.template(templateCoreRequestUsingXHR),
-            result: Handlebars.template(templateCoreResult),
+            requestUsingNode: Handlebars.template(templateCoreRequestUsingNode),
+            response: Handlebars.template(templateCoreResponse),
+            responseError: Handlebars.template(templateCoreResponseError),
         },
     };
 

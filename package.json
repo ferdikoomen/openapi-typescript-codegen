@@ -63,11 +63,14 @@
         "aap": "node test/e2e/index.js"
     },
     "dependencies": {
+        "@types/node-fetch": "2.5.7",
         "camelcase": "6.0.0",
         "commander": "6.1.0",
+        "form-data": "3.0.0",
         "handlebars": "4.7.6",
         "js-yaml": "3.14.0",
         "mkdirp": "1.0.4",
+        "node-fetch": "2.6.1",
         "path": "0.12.7",
         "rimraf": "3.0.2"
     },

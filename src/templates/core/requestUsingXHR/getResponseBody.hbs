@@ -1,0 +1,19 @@
+function getResponseBody(xhr: XMLHttpRequest): Promise<any> {
+    try {
+        const contentType = xhr.getResponseHeader('Content-Type');
+        if (contentType) {
+            switch (contentType.toLowerCase()) {
+                case 'application/json':
+                case 'application/json; charset=utf-8':
+                    return JSON.parse(xhr.responseText);
+
+                default:
+                    return xhr.responseText;
+            }
+        }
+    } catch (e) {
+        console.error(e);
+    }
+
+    return null;
+}

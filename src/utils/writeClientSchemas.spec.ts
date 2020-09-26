@@ -37,15 +37,18 @@ describe('writeClientSchemas', () => {
             },
             core: {
                 settings: () => 'settings',
-                apiError: () => 'apiError',
                 getFormData: () => 'getFormData',
                 getQueryString: () => 'getQueryString',
+                getUrl: () => 'getUrl',
                 isSuccess: () => 'isSuccess',
+                catchGenericError: () => 'catchGenericError',
                 request: () => 'request',
                 requestOptions: () => 'requestOptions',
                 requestUsingFetch: () => 'requestUsingFetch',
                 requestUsingXHR: () => 'requestUsingXHR',
-                result: () => 'result',
+                requestUsingNode: () => 'requestUsingNode',
+                response: () => 'response',
+                responseError: () => 'responseError',
             },
         };
 

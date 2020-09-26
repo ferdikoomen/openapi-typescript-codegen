@@ -1,0 +1,9 @@
+{{>header}}
+
+export interface Response {
+    readonly url: string;
+    readonly ok: boolean;
+    readonly status: number;
+    readonly statusText: string;
+    readonly body: any;
+}
