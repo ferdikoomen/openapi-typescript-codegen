@@ -1,6 +1,11 @@
-version: 2
-updates:
-  - package-ecosystem: "yarn"
-    directory: "/"
-    schedule:
-      interval: "weekly"
+update_configs:
+    - automerged_updates:
+          - match:
+                update_type: all
+                dependency_type: production
+          - match:
+                update_type: all
+                dependency_type: development
+      directory: "/"
+      package_manager: javascript
+      update_schedule: weekly
