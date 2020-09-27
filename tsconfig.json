@@ -17,6 +17,7 @@
         "strictNullChecks": true,
         "strictFunctionTypes": true,
         "removeComments": true,
+        "isolatedModules": true,
         "allowSyntheticDefaultImports": true
     },
 

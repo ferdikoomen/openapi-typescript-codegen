@@ -13,6 +13,9 @@ function transpile(dir) {
                 presets: [
                     ['@babel/preset-env', {
                         modules: false,
+                        targets: {
+                            node: true,
+                        },
                     }],
                     ['@babel/preset-typescript', {
                         onlyRemoveTypeImports: true,
