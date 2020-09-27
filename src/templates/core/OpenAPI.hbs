@@ -3,7 +3,6 @@
 interface Config {
     BASE: string;
     VERSION: string;
-    CLIENT: 'fetch' | 'xhr' | 'node';
     WITH_CREDENTIALS: boolean;
     TOKEN: string;
 }
@@ -11,7 +10,6 @@ interface Config {
 export const OpenAPI: Config = {
     BASE: '{{{server}}}',
     VERSION: '{{{version}}}',
-    CLIENT: '{{{httpClient}}}',
     WITH_CREDENTIALS: false,
     TOKEN: '',
 };

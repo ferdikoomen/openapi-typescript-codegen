@@ -1,4 +1,4 @@
-import { Type } from '../../../client/interfaces/Type';
+import type { Type } from '../../../client/interfaces/Type';
 
 /**
  * If our model has a template type, then we want to generalize that!

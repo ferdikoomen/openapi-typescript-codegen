@@ -14,7 +14,7 @@ async function start(dir) {
         // and all other relative paths are resolved from that file.
         app.use('/js', express.static(`./test/e2e/generated/${dir}/`, {
             extensions: ['', 'js'],
-            index: 'index.js'
+            index: 'index.js',
         }));
 
         // When we request the index then we can just return the script loader.

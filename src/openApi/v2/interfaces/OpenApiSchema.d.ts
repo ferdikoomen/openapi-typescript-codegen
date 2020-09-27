@@ -1,8 +1,8 @@
-import { Dictionary } from '../../../utils/types';
-import { WithEnumExtension } from './Extensions/WithEnumExtension';
-import { OpenApiExternalDocs } from './OpenApiExternalDocs';
-import { OpenApiReference } from './OpenApiReference';
-import { OpenApiXml } from './OpenApiXml';
+import type { Dictionary } from '../../../utils/types';
+import type { WithEnumExtension } from './Extensions/WithEnumExtension';
+import type { OpenApiExternalDocs } from './OpenApiExternalDocs';
+import type { OpenApiReference } from './OpenApiReference';
+import type { OpenApiXml } from './OpenApiXml';
 
 /**
  * https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#schemaObject

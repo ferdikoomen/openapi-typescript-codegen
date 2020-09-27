@@ -1,4 +1,4 @@
-import { Service } from '../client/interfaces/Service';
+import type { Service } from '../client/interfaces/Service';
 
 export function sortServicesByName(services: Service[]): Service[] {
     return services.sort((a, b) => {

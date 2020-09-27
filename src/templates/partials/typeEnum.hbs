@@ -1,9 +1,13 @@
-{{~#if parent~}}
-{{{parent}}}.{{{name}}}{{>isNullable}}
-{{~else~}}
-(
+{{~#if @root.useUnionTypes~}}
 {{~#each enum~}}
 {{{value}}}{{#unless @last}} | {{/unless}}
 {{~/each~}}
-){{>isNullable}}
+{{>isNullable}}
+{{~else if parent~}}
+{{{parent}}}.{{{name}}}{{>isNullable}}
+{{~else~}}
+{{~#each enum~}}
+{{{value}}}{{#unless @last}} | {{/unless}}
+{{~/each~}}
+{{>isNullable}}
 {{~/if~}}

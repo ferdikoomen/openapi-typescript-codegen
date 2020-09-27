@@ -1,4 +1,4 @@
-import { Model } from '../client/interfaces/Model';
+import type { Model } from '../client/interfaces/Model';
 
 /**
  * Set unique enum values for the model

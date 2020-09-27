@@ -1,6 +1,6 @@
-import { Model } from '../../../client/interfaces/Model';
-import { OpenApi } from '../interfaces/OpenApi';
-import { OpenApiSchema } from '../interfaces/OpenApiSchema';
+import type { Model } from '../../../client/interfaces/Model';
+import type { OpenApi } from '../interfaces/OpenApi';
+import type { OpenApiSchema } from '../interfaces/OpenApiSchema';
 import { getComment } from './getComment';
 import { getType } from './getType';
 

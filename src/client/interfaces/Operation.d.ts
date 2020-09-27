@@ -1,6 +1,6 @@
-import { OperationError } from './OperationError';
-import { OperationParameters } from './OperationParameters';
-import { OperationResponse } from './OperationResponse';
+import type { OperationError } from './OperationError';
+import type { OperationParameters } from './OperationParameters';
+import type { OperationResponse } from './OperationResponse';
 
 export interface Operation extends OperationParameters {
     service: string;

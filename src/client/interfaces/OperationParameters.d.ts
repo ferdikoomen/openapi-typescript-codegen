@@ -1,4 +1,4 @@
-import { OperationParameter } from './OperationParameter';
+import type { OperationParameter } from './OperationParameter';
 
 export interface OperationParameters {
     imports: string[];

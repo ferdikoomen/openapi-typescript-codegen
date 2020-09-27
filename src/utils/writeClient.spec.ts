@@ -1,4 +1,4 @@
-import { Client } from '../client/interfaces/Client';
+import type { Client } from '../client/interfaces/Client';
 import { HttpClient } from '../index';
 import { mkdir, rmdir, writeFile } from './fileSystem';
 import { Templates } from './registerHandlebarTemplates';

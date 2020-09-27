@@ -1,4 +1,4 @@
-import { OperationParameter } from '../../../client/interfaces/OperationParameter';
+import type { OperationParameter } from '../../../client/interfaces/OperationParameter';
 
 export function sortByRequired(a: OperationParameter, b: OperationParameter): number {
     const aNeedsValue = a.isRequired && a.default === undefined;

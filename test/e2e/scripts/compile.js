@@ -25,11 +25,12 @@ function compile(dir) {
     // Show errors or warnings (if any)
     const diagnostics = ts.getPreEmitDiagnostics(compiler).concat(result.diagnostics);
     if (diagnostics.length) {
-        console.log(ts.formatDiagnosticsWithColorAndContext(diagnostics, {
+        const message = ts.formatDiagnosticsWithColorAndContext(diagnostics, {
             getCurrentDirectory: () => ts.sys.getCurrentDirectory(),
             getCanonicalFileName: f => f,
-            getNewLine: () => os.EOL
-        }));
+            getNewLine: () => os.EOL,
+        });
+        console.log(message);
     }
 }
 

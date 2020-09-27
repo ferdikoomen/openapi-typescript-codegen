@@ -1,6 +1,6 @@
 import * as path from 'path';
 
-import { Client } from '../client/interfaces/Client';
+import type { Client } from '../client/interfaces/Client';
 import { HttpClient } from '../index';
 import { mkdir, rmdir } from './fileSystem';
 import { isSubDirectory } from './isSubdirectory';
@@ -14,15 +14,15 @@ import { writeClientServices } from './writeClientServices';
 /**
  * Write our OpenAPI client, using the given templates at the given output path.
  * @param client Client object with all the models, services, etc.
- * @param templates Templates wrapper with all loaded Handlebars templates.
- * @param output Directory to write the generated files to.
- * @param httpClient The selected httpClient (fetch or XHR).
- * @param useOptions Use options or arguments functions.
- * @param useUnionTypes Use union types or enums.
- * @param exportCore: Generate core.
- * @param exportServices: Generate services.
- * @param exportModels: Generate models.
- * @param exportSchemas: Generate schemas.
+ * @param templates Templates wrapper with all loaded Handlebars templates
+ * @param output The relative location of the output directory
+ * @param httpClient The selected httpClient (fetch or XHR)
+ * @param useOptions Use options or arguments functions
+ * @param useUnionTypes Use union types instead of enums
+ * @param exportCore: Generate core client classes
+ * @param exportServices: Generate services
+ * @param exportModels: Generate models
+ * @param exportSchemas: Generate schemas
  */
 export async function writeClient(
     client: Client,
@@ -56,18 +56,18 @@ export async function writeClient(
 
     if (exportServices) {
         await mkdir(outputPathServices);
-        await writeClientServices(client.services, templates, outputPathServices, useOptions);
+        await writeClientServices(client.services, templates, outputPathServices, useUnionTypes, useOptions);
     }
 
     if (exportSchemas) {
         await mkdir(outputPathSchemas);
-        await writeClientSchemas(client.models, templates, outputPathSchemas);
+        await writeClientSchemas(client.models, templates, outputPathSchemas, useUnionTypes);
     }
 
     if (exportModels) {
         await mkdir(outputPathModels);
-        await writeClientModels(client.models, templates, outputPathModels);
+        await writeClientModels(client.models, templates, outputPathModels, useUnionTypes);
     }
 
-    await writeClientIndex(client, templates, outputPath, exportCore, exportServices, exportModels, exportSchemas);
+    await writeClientIndex(client, templates, outputPath, useUnionTypes, exportCore, exportServices, exportModels, exportSchemas);
 }

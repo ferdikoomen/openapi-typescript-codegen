@@ -1,5 +1,5 @@
-import { Enum } from './Enum';
-import { Schema } from './Schema';
+import type { Enum } from './Enum';
+import type { Schema } from './Schema';
 
 export interface Model extends Schema {
     name: string;

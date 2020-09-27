@@ -1,15 +1,17 @@
 {{>header}}
-{{#if exportCore}}
+{{#if @root.exportCore}}
 
 export { ApiError } from './core/ApiError';
 export { OpenAPI } from './core/OpenAPI';
 {{/if}}
-{{#if exportModels}}
+{{#if @root.exportModels}}
 {{#if models}}
 
 {{#each models}}
 {{#if enum}}
 export { {{{name}}} } from './models/{{{name}}}';
+{{else if @root.useUnionTypes}}
+export type { {{{name}}} } from './models/{{{name}}}';
 {{else if enums}}
 export { {{{name}}} } from './models/{{{name}}}';
 {{else}}
@@ -18,7 +20,7 @@ export type { {{{name}}} } from './models/{{{name}}}';
 {{/each}}
 {{/if}}
 {{/if}}
-{{#if exportSchemas}}
+{{#if @root.exportSchemas}}
 {{#if models}}
 
 {{#each models}}
@@ -26,7 +28,7 @@ export { ${{{name}}} } from './schemas/${{{name}}}';
 {{/each}}
 {{/if}}
 {{/if}}
-{{#if exportServices}}
+{{#if @root.exportServices}}
 {{#if services}}
 
 {{#each services}}

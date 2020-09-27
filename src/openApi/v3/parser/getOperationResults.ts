@@ -1,5 +1,5 @@
-import { Model } from '../../../client/interfaces/Model';
-import { OperationResponse } from '../../../client/interfaces/OperationResponse';
+import type { Model } from '../../../client/interfaces/Model';
+import type { OperationResponse } from '../../../client/interfaces/OperationResponse';
 import { PrimaryType } from './constants';
 
 function areEqual(a: Model, b: Model): boolean {

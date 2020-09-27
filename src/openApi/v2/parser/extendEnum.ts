@@ -1,5 +1,5 @@
-import { Enum } from '../../../client/interfaces/Enum';
-import { WithEnumExtension } from '../interfaces/Extensions/WithEnumExtension';
+import type { Enum } from '../../../client/interfaces/Enum';
+import type { WithEnumExtension } from '../interfaces/Extensions/WithEnumExtension';
 
 const KEY_ENUM_NAMES = 'x-enum-varnames';
 const KEY_ENUM_DESCRIPTIONS = 'x-enum-descriptions';

@@ -1,4 +1,4 @@
-import { Model } from '../client/interfaces/Model';
+import type { Model } from '../client/interfaces/Model';
 import { writeFile } from './fileSystem';
 import { Templates } from './registerHandlebarTemplates';
 import { writeClientSchemas } from './writeClientSchemas';

@@ -1,4 +1,4 @@
-import { OpenApiOAuthFlow } from './OpenApiOAuthFlow';
+import type { OpenApiOAuthFlow } from './OpenApiOAuthFlow';
 
 /**
  * https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#oauthFlowsObject

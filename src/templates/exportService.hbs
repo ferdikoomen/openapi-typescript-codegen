@@ -2,11 +2,11 @@
 
 {{#if imports}}
 {{#each imports}}
-import { {{{this}}} } from '../models/{{{this}}}';
+import type { {{{this}}} } from '../models/{{{this}}}';
 {{/each}}
 {{/if}}
 import { request as __request } from '../core/request';
-{{#if useVersion}}
+{{#if @root.useVersion}}
 import { OpenAPI } from '../core/OpenAPI';
 {{/if}}
 

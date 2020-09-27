@@ -1,7 +1,7 @@
-import { OperationResponse } from '../../../client/interfaces/OperationResponse';
-import { OpenApi } from '../interfaces/OpenApi';
-import { OpenApiResponse } from '../interfaces/OpenApiResponse';
-import { OpenApiResponses } from '../interfaces/OpenApiResponses';
+import type { OperationResponse } from '../../../client/interfaces/OperationResponse';
+import type { OpenApi } from '../interfaces/OpenApi';
+import type { OpenApiResponse } from '../interfaces/OpenApiResponse';
+import type { OpenApiResponses } from '../interfaces/OpenApiResponses';
 import { getOperationResponse } from './getOperationResponse';
 import { getOperationResponseCode } from './getOperationResponseCode';
 import { getRef } from './getRef';

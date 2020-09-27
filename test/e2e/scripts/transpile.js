@@ -8,9 +8,19 @@ function transpile(dir) {
     glob.sync(`./test/e2e/generated/${dir}/**/*.ts`).forEach(file => {
         try {
             const content = fs.readFileSync(file, 'utf8').toString();
-            const result = babel.transformSync(content, {filename: file});
-            const filename = file.replace(/\.ts$/, '.js');
-            fs.writeFileSync(filename, result.code);
+            const result = babel.transformSync(content, {
+                filename: file,
+                presets: [
+                    ['@babel/preset-env', {
+                        modules: false,
+                    }],
+                    ['@babel/preset-typescript', {
+                        onlyRemoveTypeImports: true,
+                    }],
+                ],
+            });
+            const out = file.replace(/\.ts$/, '.js');
+            fs.writeFileSync(out, result.code);
         } catch (error) {
             console.error(error);
         }

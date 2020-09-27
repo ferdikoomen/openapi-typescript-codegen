@@ -1,4 +1,4 @@
-import { Service } from '../client/interfaces/Service';
+import type { Service } from '../client/interfaces/Service';
 import { writeFile } from './fileSystem';
 import { Templates } from './registerHandlebarTemplates';
 import { writeClientServices } from './writeClientServices';

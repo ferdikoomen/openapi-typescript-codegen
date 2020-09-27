@@ -2,7 +2,7 @@
 {{#if extends}}
 
 {{#each extends}}
-import { ${{{this}}} } from './${{{this}}}';
+import type { ${{{this}}} } from './${{{this}}}';
 {{/each}}
 {{/if}}
 

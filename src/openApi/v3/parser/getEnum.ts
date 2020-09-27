@@ -1,4 +1,4 @@
-import { Enum } from '../../../client/interfaces/Enum';
+import type { Enum } from '../../../client/interfaces/Enum';
 import { PrimaryType } from './constants';
 import { isDefined } from './isDefined';
 

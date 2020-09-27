@@ -1,5 +1,5 @@
-import { Model } from '../../../client/interfaces/Model';
-import { OpenApi } from '../interfaces/OpenApi';
+import type { Model } from '../../../client/interfaces/Model';
+import type { OpenApi } from '../interfaces/OpenApi';
 import { getModel } from './getModel';
 import { getType } from './getType';
 

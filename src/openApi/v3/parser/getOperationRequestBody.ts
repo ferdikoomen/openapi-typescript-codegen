@@ -1,6 +1,6 @@
-import { OperationParameter } from '../../../client/interfaces/OperationParameter';
-import { OpenApi } from '../interfaces/OpenApi';
-import { OpenApiRequestBody } from '../interfaces/OpenApiRequestBody';
+import type { OperationParameter } from '../../../client/interfaces/OperationParameter';
+import type { OpenApi } from '../interfaces/OpenApi';
+import type { OpenApiRequestBody } from '../interfaces/OpenApiRequestBody';
 import { PrimaryType } from './constants';
 import { getComment } from './getComment';
 import { getContent } from './getContent';

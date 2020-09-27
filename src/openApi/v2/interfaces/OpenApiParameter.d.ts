@@ -1,7 +1,7 @@
-import { WithEnumExtension } from './Extensions/WithEnumExtension';
-import { OpenApiItems } from './OpenApiItems';
-import { OpenApiReference } from './OpenApiReference';
-import { OpenApiSchema } from './OpenApiSchema';
+import type { WithEnumExtension } from './Extensions/WithEnumExtension';
+import type { OpenApiItems } from './OpenApiItems';
+import type { OpenApiReference } from './OpenApiReference';
+import type { OpenApiSchema } from './OpenApiSchema';
 
 /**
  * https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#parameterObject
