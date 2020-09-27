@@ -11,7 +11,7 @@ describe('v3.fetch', () => {
     beforeAll(async () => {
         await generate('v3/fetch', 'v3', 'fetch');
         await copy('v3/fetch');
-        compile('v3/fetch');
+        compile('v3/fetch', true);
         await server.start('v3/fetch');
         await browser.start();
     }, 30000);

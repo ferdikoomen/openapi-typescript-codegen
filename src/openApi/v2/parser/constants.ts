@@ -1,5 +1,5 @@
 export enum PrimaryType {
-    FILE = 'File',
+    FILE = 'any', // File or Buffer?
     OBJECT = 'any',
     ARRAY = 'any',
     BOOLEAN = 'boolean',

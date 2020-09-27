@@ -85,6 +85,14 @@ function isDefined<T>(value: T | null | undefined): value is Exclude<T, null | u
     return value !== undefined && value !== null;
 }
 
+function isString(value: any): value is string {
+    return typeof value === 'string';
+}
+
+function isBlob(value: any): value is Blob {
+    return value instanceof Blob;
+}
+
 function getQueryString(params: Record<string, any>): string {
     const qs: string[] = [];
     Object.keys(params).forEach(key => {
@@ -137,11 +145,9 @@ function getHeaders(options: ApiRequestOptions): Headers {
     }
 
     if (options.body) {
-        if (options.body instanceof Blob) {
-            if (options.body.type) {
-                headers.append('Content-Type', options.body.type);
-            }
-        } else if (typeof options.body === 'string') {
+        if (isBlob(options.body)) {
+            headers.append('Content-Type', options.body.type || 'application/octet-stream');
+        } else if (isString(options.body)) {
             headers.append('Content-Type', 'text/plain');
         } else {
             headers.append('Content-Type', 'application/json');
@@ -155,9 +161,7 @@ function getRequestBody(options: ApiRequestOptions): BodyInit | undefined {
         return getFormData(options.formData);
     }
     if (options.body) {
-        if (options.body instanceof Blob) {
-            return options.body;
-        } else if (typeof options.body === 'string') {
+        if (isString(options.body) || isBlob(options.body)) {
             return options.body;
         } else {
             return JSON.stringify(options.body);
@@ -178,7 +182,7 @@ async function sendRequest(options: ApiRequestOptions, url: string): Promise<Res
 function getResponseHeader(response: Response, responseHeader?: string): string | null {
     if (responseHeader) {
         const content = response.headers.get(responseHeader);
-        if (typeof content === 'string') {
+        if (isString(content)) {
             return content;
         }
     }
@@ -598,7 +602,7 @@ import type { ModelWithString } from './ModelWithString';
  */
 export interface ModelWithArray {
     prop?: Array<ModelWithString>;
-    propWithFile?: Array<File>;
+    propWithFile?: Array<any>;
     propWithNumber?: Array<number>;
 }
 "
@@ -931,7 +935,7 @@ exports[`v2 should generate: ./test/generated/v2/models/SimpleFile.ts 1`] = `
 /**
  * This is a simple file
  */
-export type SimpleFile = File;"
+export type SimpleFile = any;"
 `;
 
 exports[`v2 should generate: ./test/generated/v2/models/SimpleInteger.ts 1`] = `
@@ -1477,7 +1481,7 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$SimpleFile.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 export const $SimpleFile = {
-    type: 'File',
+    type: 'any',
 };"
 `;
 
@@ -2114,6 +2118,14 @@ function isDefined<T>(value: T | null | undefined): value is Exclude<T, null | u
     return value !== undefined && value !== null;
 }
 
+function isString(value: any): value is string {
+    return typeof value === 'string';
+}
+
+function isBlob(value: any): value is Blob {
+    return value instanceof Blob;
+}
+
 function getQueryString(params: Record<string, any>): string {
     const qs: string[] = [];
     Object.keys(params).forEach(key => {
@@ -2166,11 +2178,9 @@ function getHeaders(options: ApiRequestOptions): Headers {
     }
 
     if (options.body) {
-        if (options.body instanceof Blob) {
-            if (options.body.type) {
-                headers.append('Content-Type', options.body.type);
-            }
-        } else if (typeof options.body === 'string') {
+        if (isBlob(options.body)) {
+            headers.append('Content-Type', options.body.type || 'application/octet-stream');
+        } else if (isString(options.body)) {
             headers.append('Content-Type', 'text/plain');
         } else {
             headers.append('Content-Type', 'application/json');
@@ -2184,9 +2194,7 @@ function getRequestBody(options: ApiRequestOptions): BodyInit | undefined {
         return getFormData(options.formData);
     }
     if (options.body) {
-        if (options.body instanceof Blob) {
-            return options.body;
-        } else if (typeof options.body === 'string') {
+        if (isString(options.body) || isBlob(options.body)) {
             return options.body;
         } else {
             return JSON.stringify(options.body);
@@ -2207,7 +2215,7 @@ async function sendRequest(options: ApiRequestOptions, url: string): Promise<Res
 function getResponseHeader(response: Response, responseHeader?: string): string | null {
     if (responseHeader) {
         const content = response.headers.get(responseHeader);
-        if (typeof content === 'string') {
+        if (isString(content)) {
             return content;
         }
     }
@@ -2652,7 +2660,7 @@ import type { ModelWithString } from './ModelWithString';
  */
 export interface ModelWithArray {
     prop?: Array<ModelWithString>;
-    propWithFile?: Array<File>;
+    propWithFile?: Array<any>;
     propWithNumber?: Array<number>;
 }
 "
@@ -3004,7 +3012,7 @@ exports[`v3 should generate: ./test/generated/v3/models/SimpleFile.ts 1`] = `
 /**
  * This is a simple file
  */
-export type SimpleFile = File;"
+export type SimpleFile = any;"
 `;
 
 exports[`v3 should generate: ./test/generated/v3/models/SimpleInteger.ts 1`] = `
@@ -3584,7 +3592,7 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$SimpleFile.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 export const $SimpleFile = {
-    type: 'File',
+    type: 'any',
 };"
 `;
 
@@ -4293,7 +4301,7 @@ export class UploadService {
      * @throws ApiError
      */
     public static async uploadFile(
-        file: File,
+        file: any,
     ): Promise<boolean> {
         const result = await __request({
             method: 'POST',

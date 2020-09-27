@@ -1,10 +1,10 @@
 {
     "compilerOptions": {
         "outDir": "./dist",
-        "target": "es2017",
+        "target": "es6",
         "module": "es6",
         "moduleResolution": "node",
-        "lib": ["es2017", "dom"],
+        "lib": ["es6"],
         "types": ["jest", "node"],
         "declaration": false,
         "declarationMap": false,

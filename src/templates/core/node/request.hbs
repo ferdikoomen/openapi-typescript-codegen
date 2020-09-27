@@ -1,13 +1,21 @@
 {{>header}}
 
+import * as FormData from 'form-data';
+import fetch, { BodyInit, Headers, RequestInit, Response } from 'node-fetch';
+import { types } from 'util';
+
 import { ApiError } from './ApiError';
 import type { ApiRequestOptions } from './ApiRequestOptions';
 import type { ApiResult } from './ApiResult';
 import { OpenAPI } from './OpenAPI';
-import fetch, { Headers, RequestInit, Response, BodyInit } from 'node-fetch';
-import * as FormData from 'form-data';
 
 {{>functions/isDefined}}
+
+
+{{>functions/isString}}
+
+
+{{>functions/isBinary}}
 
 
 {{>functions/getQueryString}}
@@ -19,7 +27,7 @@ import * as FormData from 'form-data';
 {{>functions/getFormData}}
 
 
-{{>functions/getHeaders}}
+{{>node/getHeaders}}
 
 
 {{>node/getRequestBody}}

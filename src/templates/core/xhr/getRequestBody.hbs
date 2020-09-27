@@ -3,9 +3,7 @@ function getRequestBody(options: ApiRequestOptions): any {
         return getFormData(options.formData);
     }
     if (options.body) {
-        if (options.body instanceof Blob) {
-            return options.body;
-        } else if (typeof options.body === 'string') {
+        if (isString(options.body) || isBlob(options.body)) {
             return options.body;
         } else {
             return JSON.stringify(options.body);

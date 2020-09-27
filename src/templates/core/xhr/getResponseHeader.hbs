@@ -1,7 +1,7 @@
 function getResponseHeader(xhr: XMLHttpRequest, responseHeader?: string): string | null {
     if (responseHeader) {
         const content = xhr.getResponseHeader(responseHeader);
-        if (typeof content === 'string') {
+        if (isString(content)) {
             return content;
         }
     }
