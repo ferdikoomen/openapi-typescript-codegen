@@ -6,7 +6,7 @@ function sendRequest(options: ApiRequestOptions, url: string): Promise<XMLHttpRe
             xhr.withCredentials = OpenAPI.WITH_CREDENTIALS;
 
             const headers = getHeaders(options);
-            headers.forEach((value, key) => {
+            headers.forEach((value: string, key: string) => {
                 xhr.setRequestHeader(key, value);
             });
 

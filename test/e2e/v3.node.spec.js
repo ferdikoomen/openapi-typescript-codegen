@@ -9,7 +9,6 @@ describe('v3.node', () => {
 
     beforeAll(async () => {
         await generate('v3/node', 'v3', 'node');
-        await copy('v3/node');
         compile('v3/node');
         await server.start('v3/node');
     }, 30000);

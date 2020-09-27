@@ -19,13 +19,6 @@
 - Supports tsc and @babel/plugin-transform-typescript
 
 
-## Babel support:
-If you use enums inside your models / definitions then those enums are by default inside a namespace with the same name
-as your model. This is called declaration merging. However, the [@babel/plugin-transform-typescript](https://babeljs.io/docs/en/babel-plugin-transform-typescript)
-does not support these namespaces, so if you are using babel in your project please use the `--useUnionTypes` flag
-to generate union types instead of traditional enums. More info can be found here: [Enums vs. Union Types](#enums-vs-union-types---useuniontypes).
-
-
 ## Install
 
 ```
@@ -44,7 +37,7 @@ $ openapi --help
     -V, --version             output the version number
     -i, --input <value>       OpenAPI specification, can be a path, url or string content (required)
     -o, --output <value>      Output directory (required)
-    -c, --client <value>      HTTP client to generate [fetch, xhr] (default: "fetch")
+    -c, --client <value>      HTTP client to generate [fetch, xhr, node] (default: "fetch")
     --useOptions              Use options instead of arguments
     --useUnionTypes           Use union types instead of enums
     --exportCore <value>      Write core files to disk (default: true)
@@ -354,3 +347,43 @@ HTTP client, etc. I've compiled a list with the results per area and how they
 compare against the openapi-typescript-codegen.
 
 [Click here to see the comparison](https://htmlpreview.github.io/?https://github.com/ferdikoomen/openapi-typescript-codegen/blob/master/samples/index.html)
+
+
+FAQ
+===
+
+### Babel support
+If you use enums inside your models / definitions then those enums are by default inside a namespace with the same name
+as your model. This is called declaration merging. However, the [@babel/plugin-transform-typescript](https://babeljs.io/docs/en/babel-plugin-transform-typescript)
+does not support these namespaces, so if you are using babel in your project please use the `--useUnionTypes` flag
+to generate union types instead of traditional enums. More info can be found here: [Enums vs. Union Types](#enums-vs-union-types---useuniontypes).
+
+**Note:** If you are using Babel 7 and Typescript 3.8 (or higher) then you should enable the `onlyRemoveTypeImports` to
+ignore any 'type only' imports, see https://babeljs.io/docs/en/babel-preset-typescript#onlyremovetypeimports for more info
+
+```javascript
+module.exports = {
+    presets: [
+        ['@babel/preset-typescript', {
+            onlyRemoveTypeImports: true,
+        }],
+    ],
+};
+```
+
+
+### Node.js support
+By default, this library will generate a client that is compatible with the (browser based) [fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API),
+however this client will not work inside the Node.js environment. If you want to generate a Node.js compatible client then
+you can specify `--client node` in the openapi call:
+
+`openapi --input ./spec.json --output ./dist --client node`
+
+This will generate a client that uses [`node-fetch`](https://www.npmjs.com/package/node-fetch) internally. However,
+in order to compile and run this client, you will need to install the `node-fetch` dependencies:
+
+```
+npm install @types/node-fetch --save-dev
+npm install node-fetch --save-dev
+npm install form-data --save-dev
+```
