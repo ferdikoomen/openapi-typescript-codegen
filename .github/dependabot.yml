@@ -2,10 +2,10 @@ update_configs:
     directory: "/"
     package_manager: javascript
     update_schedule: weekly
-    - automerged_updates:
-        - match:
-            update_type: all
-            dependency_type: production
-        - match:
-            update_type: all
-            dependency_type: development
+- automerged_updates:
+    - match:
+        update_type: all
+        dependency_type: production
+    - match:
+        update_type: all
+        dependency_type: development
