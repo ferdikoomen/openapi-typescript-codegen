@@ -1,7 +1,7 @@
 language: node_js
 node_js:
-  - node
+    - node
 script:
-  - npm run release
-  - npm run test:coverage
-  - npm run codecov
+    - npm run release
+    - npm run test:coverage
+    - npm run codecov
