@@ -5,14 +5,14 @@ const express = require('express');
 let app;
 let server
 
-async function start(version, client) {
+async function start(dir) {
     return new Promise(resolve => {
         app = express();
 
         // Serve the JavaScript files from the specific folder, since we are using browser
         // based ES6 modules, this also means that we can just request the js/index.js file
         // and all other relative paths are resolved from that file.
-        app.use('/js', express.static(`./test/e2e/generated/${version}/${client}/`, {
+        app.use('/js', express.static(`./test/e2e/generated/${dir}/`, {
             extensions: ['', 'js'],
             index: 'index.js'
         }));
@@ -23,14 +23,6 @@ async function start(version, client) {
         app.get('/', (req, res) => {
             res.send('<script src="js/script.js"></script>');
         });
-
-        const aap = (obj) => {
-            const a = {};
-            for (const key in obj) {
-                a[key] = obj[key];
-            }
-            return a;
-        }
 
         // Register an 'echo' server that just returns all data from the API calls.
         // Although this might not be a 'correct' response, we can use this to test

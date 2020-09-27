@@ -9,10 +9,10 @@ const browser = require('./scripts/browser');
 describe('v2.fetch', () => {
 
     beforeAll(async () => {
-        await generate('v2', 'fetch');
-        await copy('v2', 'fetch');
-        await compile('v2', 'fetch');
-        await server.start('v2', 'fetch');
+        await generate('v2/fetch', 'v2', 'fetch');
+        await copy('v2/fetch');
+        compile('v2/fetch');
+        await server.start('v2/fetch');
         await browser.start();
     }, 30000);
 

@@ -8,10 +8,10 @@ const server = require('./scripts/server');
 describe('v2.node', () => {
 
     beforeAll(async () => {
-        await generate('v2', 'node');
-        await copy('v2', 'node');
-        await compile('v2', 'node');
-        await server.start('v2', 'node');
+        await generate('v2/node', 'v2', 'node');
+        await copy('v2/node');
+        compile('v2/node');
+        await server.start('v2/node');
     }, 30000);
 
     afterAll(async () => {
@@ -19,7 +19,7 @@ describe('v2.node', () => {
     });
 
     it('complexService', async () => {
-        const { ComplexService } = require('./generated/v2/node/index.js');
+        const {ComplexService} = require('./generated/v2/node/index.js');
         const result = await ComplexService.complexTypes({
             first: {
                 second: {

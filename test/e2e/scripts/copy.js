@@ -2,10 +2,10 @@
 
 const fs = require('fs');
 
-async function copy(version, client) {
+function copy(dir) {
     fs.copyFileSync(
         './test/e2e/assets/script.js',
-        `./test/e2e/generated/${version}/${client}/script.js`,
+        `./test/e2e/generated/${dir}/script.js`,
     );
 }
 

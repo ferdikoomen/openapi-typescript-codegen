@@ -4,8 +4,8 @@ const ts = require('typescript');
 const path = require('path');
 const os = require('os');
 
-function compile(version, client) {
-    const baseDir = `./test/e2e/generated/${version}/${client}/`;
+function compile(dir) {
+    const baseDir = `./test/e2e/generated/${dir}/`;
     const tsconfig = {
         compilerOptions: {
             target: 'es6',

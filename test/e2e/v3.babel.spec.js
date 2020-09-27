@@ -2,17 +2,17 @@
 
 const generate = require('./scripts/generate');
 const copy = require('./scripts/copy');
-const compile = require('./scripts/compile');
+const transpile = require('./scripts/transpile');
 const server = require('./scripts/server');
 const browser = require('./scripts/browser');
 
-describe('v3.xhr', () => {
+describe('v3.fetch', () => {
 
     beforeAll(async () => {
-        await generate('v3/xhr', 'v3', 'xhr');
-        await copy('v3/xhr');
-        compile('v3/xhr');
-        await server.start('v3/xhr');
+        await generate('v3/babel', 'v3', 'fetch', true, true);
+        await copy('v3/babel');
+        transpile('v3/babel');
+        await server.start('v3/babel');
         await browser.start();
     }, 30000);
 
@@ -21,12 +21,18 @@ describe('v3.xhr', () => {
         await browser.stop();
     });
 
+    it('runs', async () => {
+        expect(true).toBeTruthy();
+    });
+
     it('complexService', async () => {
         const result = await browser.evaluate(async () => {
             return await window.api.ComplexService.complexTypes({
-                first: {
-                    second: {
-                        third: 'Hello World!'
+                parameterObject: {
+                    first: {
+                        second: {
+                            third: 'Hello World!'
+                        }
                     }
                 }
             });
