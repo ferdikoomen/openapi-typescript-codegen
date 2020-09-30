@@ -16,7 +16,7 @@ import { writeClientServices } from './writeClientServices';
  * @param client Client object with all the models, services, etc.
  * @param templates Templates wrapper with all loaded Handlebars templates
  * @param output The relative location of the output directory
- * @param httpClient The selected httpClient (fetch or XHR)
+ * @param httpClient The selected httpClient (fetch, xhr or node)
  * @param useOptions Use options or arguments functions
  * @param useUnionTypes Use union types instead of enums
  * @param exportCore: Generate core client classes
@@ -56,17 +56,17 @@ export async function writeClient(
 
     if (exportServices) {
         await mkdir(outputPathServices);
-        await writeClientServices(client.services, templates, outputPathServices, useUnionTypes, useOptions);
+        await writeClientServices(client.services, templates, outputPathServices, httpClient, useUnionTypes, useOptions);
     }
 
     if (exportSchemas) {
         await mkdir(outputPathSchemas);
-        await writeClientSchemas(client.models, templates, outputPathSchemas, useUnionTypes);
+        await writeClientSchemas(client.models, templates, outputPathSchemas, httpClient, useUnionTypes);
     }
 
     if (exportModels) {
         await mkdir(outputPathModels);
-        await writeClientModels(client.models, templates, outputPathModels, useUnionTypes);
+        await writeClientModels(client.models, templates, outputPathModels, httpClient, useUnionTypes);
     }
 
     await writeClientIndex(client, templates, outputPath, useUnionTypes, exportCore, exportServices, exportModels, exportSchemas);

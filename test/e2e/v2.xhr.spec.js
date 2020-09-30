@@ -11,7 +11,7 @@ describe('v2.xhr', () => {
     beforeAll(async () => {
         await generate('v2/xhr', 'v2', 'xhr');
         await copy('v2/xhr');
-        compile('v2/xhr', true);
+        compile('v2/xhr');
         await server.start('v2/xhr');
         await browser.start();
     }, 30000);

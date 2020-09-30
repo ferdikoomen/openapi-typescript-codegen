@@ -1,6 +1,6 @@
 {
     "name": "openapi-typescript-codegen",
-    "version": "0.5.0-beta",
+    "version": "0.5.0-rc",
     "description": "NodeJS library that generates Typescript or Javascript clients based on the OpenAPI specification.",
     "author": "Ferdi Koomen",
     "homepage": "https://github.com/ferdikoomen/openapi-typescript-codegen",
@@ -46,8 +46,6 @@
         "build": "rollup --config --environment NODE_ENV:development",
         "build:watch": "rollup --config --environment NODE_ENV:development --watch",
         "release": "rollup --config --environment NODE_ENV:production",
-        "start": "nest start --path ./test/server/tsconfig.json",
-        "start:watch": "nest start --path ./test/server/tsconfig.json --watch",
         "run": "node ./test/index.js",
         "test": "jest --selectProjects UNIT",
         "test:update": "jest --selectProjects UNIT --updateSnapshot",

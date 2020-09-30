@@ -1,7 +1,7 @@
 export enum PrimaryType {
-    FILE = 'any', // File or Buffer?
+    FILE = 'File',
     OBJECT = 'any',
-    ARRAY = 'any',
+    ARRAY = 'any[]',
     BOOLEAN = 'boolean',
     NUMBER = 'number',
     STRING = 'string',

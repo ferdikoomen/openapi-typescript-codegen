@@ -251,7 +251,9 @@ export async function request(options: ApiRequestOptions): Promise<ApiResult> {
 
     catchErrors(options, result);
     return result;
-}"
+}
+
+"
 `;
 
 exports[`v2 should generate: ./test/generated/v2/index.ts 1`] = `
@@ -602,7 +604,7 @@ import type { ModelWithString } from './ModelWithString';
  */
 export interface ModelWithArray {
     prop?: Array<ModelWithString>;
-    propWithFile?: Array<any>;
+    propWithFile?: Array<Blob>;
     propWithNumber?: Array<number>;
 }
 "
@@ -935,7 +937,7 @@ exports[`v2 should generate: ./test/generated/v2/models/SimpleFile.ts 1`] = `
 /**
  * This is a simple file
  */
-export type SimpleFile = any;"
+export type SimpleFile = Blob;"
 `;
 
 exports[`v2 should generate: ./test/generated/v2/models/SimpleInteger.ts 1`] = `
@@ -1122,7 +1124,7 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$ModelThatExtends.ts 1`
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { $ModelWithString } from './$ModelWithString';
+import { $ModelWithString } from './$ModelWithString';
 
 export const $ModelThatExtends = {
     properties: {
@@ -1141,8 +1143,8 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$ModelThatExtendsExtend
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { $ModelWithString } from './$ModelWithString';
-import type { $ModelThatExtends } from './$ModelThatExtends';
+import { $ModelWithString } from './$ModelWithString';
+import { $ModelThatExtends } from './$ModelThatExtends';
 
 export const $ModelThatExtendsExtends = {
     properties: {
@@ -1481,7 +1483,7 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$SimpleFile.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 export const $SimpleFile = {
-    type: 'any',
+    type: 'File',
 };"
 `;
 
@@ -2284,7 +2286,9 @@ export async function request(options: ApiRequestOptions): Promise<ApiResult> {
 
     catchErrors(options, result);
     return result;
-}"
+}
+
+"
 `;
 
 exports[`v3 should generate: ./test/generated/v3/index.ts 1`] = `
@@ -2660,7 +2664,7 @@ import type { ModelWithString } from './ModelWithString';
  */
 export interface ModelWithArray {
     prop?: Array<ModelWithString>;
-    propWithFile?: Array<any>;
+    propWithFile?: Array<Blob>;
     propWithNumber?: Array<number>;
 }
 "
@@ -3012,7 +3016,7 @@ exports[`v3 should generate: ./test/generated/v3/models/SimpleFile.ts 1`] = `
 /**
  * This is a simple file
  */
-export type SimpleFile = any;"
+export type SimpleFile = Blob;"
 `;
 
 exports[`v3 should generate: ./test/generated/v3/models/SimpleInteger.ts 1`] = `
@@ -3199,7 +3203,7 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$ModelThatExtends.ts 1`
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { $ModelWithString } from './$ModelWithString';
+import { $ModelWithString } from './$ModelWithString';
 
 export const $ModelThatExtends = {
     properties: {
@@ -3218,8 +3222,8 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$ModelThatExtendsExtend
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { $ModelWithString } from './$ModelWithString';
-import type { $ModelThatExtends } from './$ModelThatExtends';
+import { $ModelWithString } from './$ModelWithString';
+import { $ModelThatExtends } from './$ModelThatExtends';
 
 export const $ModelThatExtendsExtends = {
     properties: {
@@ -3592,7 +3596,7 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$SimpleFile.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 export const $SimpleFile = {
-    type: 'any',
+    type: 'File',
 };"
 `;
 
@@ -4301,7 +4305,7 @@ export class UploadService {
      * @throws ApiError
      */
     public static async uploadFile(
-        file: any,
+        file: Blob,
     ): Promise<boolean> {
         const result = await __request({
             method: 'POST',

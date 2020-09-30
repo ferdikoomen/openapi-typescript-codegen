@@ -37,45 +37,45 @@ export class {{{name}}} {
         const result = await __request({
             method: '{{{method}}}',
             path: `{{{path}}}`,
-            {{#if parametersCookie~}}
+            {{#if parametersCookie}}
             cookies: {
                 {{#each parametersCookie}}
                 '{{{prop}}}': {{{name}}},
                 {{/each}}
             },
             {{/if}}
-            {{#if parametersHeader~}}
+            {{#if parametersHeader}}
             headers: {
                 {{#each parametersHeader}}
                 '{{{prop}}}': {{{name}}},
                 {{/each}}
             },
             {{/if}}
-            {{#if parametersQuery~}}
+            {{#if parametersQuery}}
             query: {
                 {{#each parametersQuery}}
                 '{{{prop}}}': {{{name}}},
                 {{/each}}
             },
             {{/if}}
-            {{#if parametersForm~}}
+            {{#if parametersForm}}
             formData: {
                 {{#each parametersForm}}
                 '{{{prop}}}': {{{name}}},
                 {{/each}}
             },
             {{/if}}
-            {{#if parametersBody~}}
+            {{#if parametersBody}}
             body: {{{parametersBody.name}}},
             {{/if}}
-            {{#if responseHeader~}}
+            {{#if responseHeader}}
             responseHeader: '{{{responseHeader}}}',
             {{/if}}
-            {{#if errors~}}
+            {{#if errors}}
             errors: {
-            {{#each errors}}
+                {{#each errors}}
                 {{{code}}}: `{{{description}}}`,
-            {{/each}}
+                {{/each}}
             },
             {{/if}}
         });

@@ -9,7 +9,7 @@
 {{{name}}}{{>isRequired}}: {{>type}},
 {{/each}}
 }
-{{~else}}
+{{else}}
 
 {{#each parameters}}
 {{{name}}}{{>isRequired}}: {{>type}}{{#if default}} = {{{default}}}{{/if}},

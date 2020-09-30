@@ -4,14 +4,14 @@ const ts = require('typescript');
 const path = require('path');
 const os = require('os');
 
-function compile(dir, isBrowser) {
+function compile(dir) {
     const baseDir = `./test/e2e/generated/${dir}/`;
     const tsconfig = {
         compilerOptions: {
             target: 'es6',
             module: 'es6',
             moduleResolution: 'node',
-            lib: isBrowser ? ['es6', 'dom'] : ['es6']
+            lib: ['es6', 'dom'],
         },
         include: ['./index.ts'],
     };

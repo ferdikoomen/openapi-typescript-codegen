@@ -36,6 +36,7 @@ import templateExportModel from '../templates/exportModel.hbs';
 import templateExportSchema from '../templates/exportSchema.hbs';
 import templateExportService from '../templates/exportService.hbs';
 import templateIndex from '../templates/index.hbs';
+import partialBase from '../templates/partials/base.hbs';
 import partialExportEnum from '../templates/partials/exportEnum.hbs';
 import partialExportInterface from '../templates/partials/exportInterface.hbs';
 import partialExportType from '../templates/partials/exportType.hbs';
@@ -125,6 +126,7 @@ export function registerHandlebarTemplates(): Templates {
     Handlebars.registerPartial('typeGeneric', Handlebars.template(partialTypeGeneric));
     Handlebars.registerPartial('typeInterface', Handlebars.template(partialTypeInterface));
     Handlebars.registerPartial('typeReference', Handlebars.template(partialTypeReference));
+    Handlebars.registerPartial('base', Handlebars.template(partialBase));
 
     // Generic functions used in 'request' file @see src/templates/core/request.hbs for more info
     Handlebars.registerPartial('functions/catchErrors', Handlebars.template(functionCatchErrors));
