@@ -1,4 +1,4 @@
-async function getHeaders(options: ApiRequestOptions): Headers {
+async function getHeaders(options: ApiRequestOptions): Promise<Headers> {
     const headers = new Headers({
         Accept: 'application/json',
         ...options.headers,
