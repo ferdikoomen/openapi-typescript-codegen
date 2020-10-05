@@ -4,7 +4,7 @@ interface Config {
     BASE: string;
     VERSION: string;
     WITH_CREDENTIALS: boolean;
-    TOKEN: string | () => Promise<string>;
+    TOKEN: string | (() => Promise<string>);
 }
 
 export const OpenAPI: Config = {
