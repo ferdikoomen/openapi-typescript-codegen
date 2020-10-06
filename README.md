@@ -328,6 +328,39 @@ enum EnumWithStrings {
 }
 ```
 
+### Nullable in OpenApi v2
+You can use the unofficial `x-nullable` backport in your specification to generate nullable properties in OpenApi v2.
+
+```json
+{
+    "ModelWithNullableString": {
+        "required": ["requiredProp"],
+        "description": "This is a model with one string property",
+        "type": "object",
+        "properties": {
+            "prop": {
+                "description": "This is a simple string property",
+                "type": "string",
+                "x-nullable": true
+            },
+            "requiredProp": {
+                "description": "This is a simple string property",
+                "type": "string",
+                "x-nullable": true,
+            }
+        }
+    }
+}
+```
+
+Generated code:
+```typescript
+enum ModelWithNullableString {
+    prop?: string | null,
+    requiredProp: string | null
+}
+```
+
 
 ### Authorization
 The OpenAPI generator supports Bearer Token authorization. In order to enable the sending

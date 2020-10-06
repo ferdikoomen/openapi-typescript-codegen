@@ -293,6 +293,7 @@ export type { ModelWithInteger } from './models/ModelWithInteger';
 export type { ModelWithLink } from './models/ModelWithLink';
 export type { ModelWithNestedEnums } from './models/ModelWithNestedEnums';
 export type { ModelWithNestedProperties } from './models/ModelWithNestedProperties';
+export type { ModelWithNullableString } from './models/ModelWithNullableString';
 export type { ModelWithOrderedProperties } from './models/ModelWithOrderedProperties';
 export type { ModelWithPattern } from './models/ModelWithPattern';
 export type { ModelWithProperties } from './models/ModelWithProperties';
@@ -335,6 +336,7 @@ export { $ModelWithInteger } from './schemas/$ModelWithInteger';
 export { $ModelWithLink } from './schemas/$ModelWithLink';
 export { $ModelWithNestedEnums } from './schemas/$ModelWithNestedEnums';
 export { $ModelWithNestedProperties } from './schemas/$ModelWithNestedProperties';
+export { $ModelWithNullableString } from './schemas/$ModelWithNullableString';
 export { $ModelWithOrderedProperties } from './schemas/$ModelWithOrderedProperties';
 export { $ModelWithPattern } from './schemas/$ModelWithPattern';
 export { $ModelWithProperties } from './schemas/$ModelWithProperties';
@@ -821,6 +823,26 @@ export interface ModelWithNestedProperties {
             readonly third: string,
         },
     };
+}
+"
+`;
+
+exports[`v2 should generate: ./test/generated/v2/models/ModelWithNullableString.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/**
+ * This is a model with one string property
+ */
+export interface ModelWithNullableString {
+    /**
+     * This is a simple string property
+     */
+    nullableProp?: string | null;
+    /**
+     * This is a simple string property
+     */
+    nullableRequiredProp: string | null;
 }
 "
 `;
@@ -1349,6 +1371,25 @@ export const $ModelWithNestedProperties = {
             },
             isReadOnly: true,
             isRequired: true,
+        },
+    },
+};"
+`;
+
+exports[`v2 should generate: ./test/generated/v2/schemas/$ModelWithNullableString.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+export const $ModelWithNullableString = {
+    properties: {
+        nullableProp: {
+            type: 'string',
+            isNullable: true,
+        },
+        nullableRequiredProp: {
+            type: 'string',
+            isRequired: true,
+            isNullable: true,
         },
     },
 };"

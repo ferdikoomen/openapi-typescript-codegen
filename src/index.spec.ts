@@ -3,8 +3,8 @@ import * as OpenAPI from './index';
 describe('index', () => {
     it('parses v2 without issues', async () => {
         await OpenAPI.generate({
-            input: './test/spec/v3.json',
-            output: './generated/v3/',
+            input: './test/spec/v2.json',
+            output: './generated/v2/',
             write: false,
         });
     });

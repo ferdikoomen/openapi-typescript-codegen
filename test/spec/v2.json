@@ -858,6 +858,23 @@
                 }
             }
         },
+        "ModelWithNullableString": {
+            "description": "This is a model with one string property",
+            "type": "object",
+            "required": ["nullableRequiredProp"],
+            "properties": {
+                "nullableProp": {
+                    "description": "This is a simple string property",
+                    "type": "string",
+                    "x-nullable": true
+                },
+                "nullableRequiredProp": {
+                    "description": "This is a simple string property",
+                    "type": "string",
+                    "x-nullable": true
+                }
+            }
+        },
         "ModelWithEnum": {
             "description": "This is a model with one enum",
             "type": "object",
