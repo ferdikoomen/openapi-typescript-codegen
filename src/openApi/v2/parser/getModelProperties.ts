@@ -26,7 +26,7 @@ export function getModelProperties(openApi: OpenApi, definition: OpenApiSchema, 
                     isDefinition: false,
                     isReadOnly: property.readOnly === true,
                     isRequired: propertyRequired === true,
-                    isNullable: false,
+                    isNullable: property['x-nullable'] === true,
                     format: property.format,
                     maximum: property.maximum,
                     exclusiveMaximum: property.exclusiveMaximum,
@@ -60,7 +60,7 @@ export function getModelProperties(openApi: OpenApi, definition: OpenApiSchema, 
                     isDefinition: false,
                     isReadOnly: property.readOnly === true,
                     isRequired: propertyRequired === true,
-                    isNullable: false,
+                    isNullable: property['x-nullable'] === true,
                     format: property.format,
                     maximum: property.maximum,
                     exclusiveMaximum: property.exclusiveMaximum,
@@ -84,6 +84,5 @@ export function getModelProperties(openApi: OpenApi, definition: OpenApiSchema, 
             }
         }
     }
-
     return models;
 }
