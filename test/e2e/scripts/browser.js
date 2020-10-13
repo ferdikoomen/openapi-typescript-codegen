@@ -27,8 +27,8 @@ async function stop() {
     await browser.close();
 }
 
-async function evaluate(fn) {
-    return await page.evaluate(fn);
+async function evaluate(fn, ...args) {
+    return await page.evaluate(fn, args);
 }
 
 module.exports = {

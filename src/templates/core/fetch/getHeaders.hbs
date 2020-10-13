@@ -3,9 +3,8 @@ async function getHeaders(options: ApiRequestOptions): Promise<Headers> {
         Accept: 'application/json',
         ...options.headers,
     });
-        
-    const token = typeof OpenAPI.TOKEN === 'function' ? await OpenAPI.TOKEN() : OpenAPI.TOKEN;
 
+    const token = await getToken();
     if (isDefined(token) && token !== '') {
         headers.append('Authorization', `Bearer ${token}`);
     }
