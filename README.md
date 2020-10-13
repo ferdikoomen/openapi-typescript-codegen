@@ -328,8 +328,11 @@ enum EnumWithStrings {
 }
 ```
 
-### Nullable in OpenApi v2
-You can use the unofficial `x-nullable` backport in your specification to generate nullable properties in OpenApi v2.
+
+### Nullable in OpenAPI v2
+In the OpenAPI v3 spec you can create properties that can be NULL, by providing a `nullable: true` in your schema.
+However, the v2 spec does not allow you to do this. You can use the unofficial `x-nullable` in your specification
+to generate nullable properties in OpenApi v2.
 
 ```json
 {
@@ -346,7 +349,7 @@ You can use the unofficial `x-nullable` backport in your specification to genera
             "requiredProp": {
                 "description": "This is a simple string property",
                 "type": "string",
-                "x-nullable": true,
+                "x-nullable": true
             }
         }
     }
@@ -355,9 +358,9 @@ You can use the unofficial `x-nullable` backport in your specification to genera
 
 Generated code:
 ```typescript
-enum ModelWithNullableString {
+interface ModelWithNullableString {
     prop?: string | null,
-    requiredProp: string | null
+    requiredProp: string | null,
 }
 ```
 

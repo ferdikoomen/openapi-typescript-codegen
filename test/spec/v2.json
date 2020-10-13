@@ -861,7 +861,9 @@
         "ModelWithNullableString": {
             "description": "This is a model with one string property",
             "type": "object",
-            "required": ["nullableRequiredProp"],
+            "required": [
+                "nullableRequiredProp"
+            ],
             "properties": {
                 "nullableProp": {
                     "description": "This is a simple string property",
