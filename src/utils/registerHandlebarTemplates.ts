@@ -12,6 +12,7 @@ import fetchSendRequest from '../templates/core/fetch/sendRequest.hbs';
 import functionCatchErrors from '../templates/core/functions/catchErrors.hbs';
 import functionGetFormData from '../templates/core/functions/getFormData.hbs';
 import functionGetQueryString from '../templates/core/functions/getQueryString.hbs';
+import functionGetToken from '../templates/core/functions/getToken.hbs';
 import functionGetUrl from '../templates/core/functions/getUrl.hbs';
 import functionIsBinary from '../templates/core/functions/isBinary.hbs';
 import functionIsBlob from '../templates/core/functions/isBlob.hbs';
@@ -131,6 +132,7 @@ export function registerHandlebarTemplates(): Templates {
     // Generic functions used in 'request' file @see src/templates/core/request.hbs for more info
     Handlebars.registerPartial('functions/catchErrors', Handlebars.template(functionCatchErrors));
     Handlebars.registerPartial('functions/getFormData', Handlebars.template(functionGetFormData));
+    Handlebars.registerPartial('functions/getToken', Handlebars.template(functionGetToken));
     Handlebars.registerPartial('functions/getQueryString', Handlebars.template(functionGetQueryString));
     Handlebars.registerPartial('functions/getUrl', Handlebars.template(functionGetUrl));
     Handlebars.registerPartial('functions/isBinary', Handlebars.template(functionIsBinary));

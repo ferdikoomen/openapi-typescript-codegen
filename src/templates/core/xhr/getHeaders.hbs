@@ -1,11 +1,12 @@
-function getHeaders(options: ApiRequestOptions): Headers {
+async function getHeaders(options: ApiRequestOptions): Promise<Headers> {
     const headers = new Headers({
         Accept: 'application/json',
         ...options.headers,
     });
 
-    if (isDefined(OpenAPI.TOKEN) && OpenAPI.TOKEN !== '') {
-        headers.append('Authorization', `Bearer ${OpenAPI.TOKEN}`);
+    const token = await getToken();
+    if (isDefined(token) && token !== '') {
+        headers.append('Authorization', `Bearer ${token}`);
     }
 
     if (options.body) {

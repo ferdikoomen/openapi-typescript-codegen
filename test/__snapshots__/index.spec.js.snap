@@ -61,7 +61,7 @@ interface Config {
     BASE: string;
     VERSION: string;
     WITH_CREDENTIALS: boolean;
-    TOKEN: string;
+    TOKEN: string | (() => Promise<string>);
 }
 
 export const OpenAPI: Config = {
@@ -134,14 +134,22 @@ function getFormData(params: Record<string, any>): FormData {
     return formData;
 }
 
-function getHeaders(options: ApiRequestOptions): Headers {
+async function getToken(): Promise<string> {
+    if (typeof OpenAPI.TOKEN === 'function') {
+        return OpenAPI.TOKEN();
+    }
+    return OpenAPI.TOKEN;
+}
+
+async function getHeaders(options: ApiRequestOptions): Promise<Headers> {
     const headers = new Headers({
         Accept: 'application/json',
         ...options.headers,
     });
 
-    if (isDefined(OpenAPI.TOKEN) && OpenAPI.TOKEN !== '') {
-        headers.append('Authorization', \`Bearer \${OpenAPI.TOKEN}\`);
+    const token = await getToken();
+    if (isDefined(token) && token !== '') {
+        headers.append('Authorization', \`Bearer \${token}\`);
     }
 
     if (options.body) {
@@ -173,7 +181,7 @@ function getRequestBody(options: ApiRequestOptions): BodyInit | undefined {
 async function sendRequest(options: ApiRequestOptions, url: string): Promise<Response> {
     const request: RequestInit = {
         method: options.method,
-        headers: getHeaders(options),
+        headers: await getHeaders(options),
         body: getRequestBody(options),
     };
     return await fetch(url, request);
@@ -2096,7 +2104,7 @@ interface Config {
     BASE: string;
     VERSION: string;
     WITH_CREDENTIALS: boolean;
-    TOKEN: string;
+    TOKEN: string | (() => Promise<string>);
 }
 
 export const OpenAPI: Config = {
@@ -2169,14 +2177,22 @@ function getFormData(params: Record<string, any>): FormData {
     return formData;
 }
 
-function getHeaders(options: ApiRequestOptions): Headers {
+async function getToken(): Promise<string> {
+    if (typeof OpenAPI.TOKEN === 'function') {
+        return OpenAPI.TOKEN();
+    }
+    return OpenAPI.TOKEN;
+}
+
+async function getHeaders(options: ApiRequestOptions): Promise<Headers> {
     const headers = new Headers({
         Accept: 'application/json',
         ...options.headers,
     });
 
-    if (isDefined(OpenAPI.TOKEN) && OpenAPI.TOKEN !== '') {
-        headers.append('Authorization', \`Bearer \${OpenAPI.TOKEN}\`);
+    const token = await getToken();
+    if (isDefined(token) && token !== '') {
+        headers.append('Authorization', \`Bearer \${token}\`);
     }
 
     if (options.body) {
@@ -2208,7 +2224,7 @@ function getRequestBody(options: ApiRequestOptions): BodyInit | undefined {
 async function sendRequest(options: ApiRequestOptions, url: string): Promise<Response> {
     const request: RequestInit = {
         method: options.method,
-        headers: getHeaders(options),
+        headers: await getHeaders(options),
         body: getRequestBody(options),
     };
     return await fetch(url, request);

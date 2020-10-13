@@ -21,8 +21,16 @@ describe('v3.fetch', () => {
         await browser.stop();
     });
 
-    it('runs', async () => {
-        expect(true).toBeTruthy();
+    it('requests token', async () => {
+        const result = await browser.evaluate(async () => {
+            window.api.OpenAPI.TOKEN = new Promise(resolve => {
+                setTimeout(() => {
+                    resolve('MY_TOKEN');
+                }, 500);
+            });
+            return await window.api.SimpleService.getCallWithoutParametersAndResponse();
+        });
+        expect(result.headers.authorization).toBe('Bearer MY_TOKEN');
     });
 
     it('complexService', async () => {
