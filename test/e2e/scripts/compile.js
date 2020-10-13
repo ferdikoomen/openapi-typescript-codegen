@@ -8,10 +8,10 @@ function compile(dir) {
     const baseDir = `./test/e2e/generated/${dir}/`;
     const tsconfig = {
         compilerOptions: {
-            target: 'es6',
+            target: 'es2017',
             module: 'es6',
             moduleResolution: 'node',
-            lib: ['es6', 'dom'],
+            lib: ['es6', 'es2017', 'dom'],
         },
         include: ['./index.ts'],
     };
