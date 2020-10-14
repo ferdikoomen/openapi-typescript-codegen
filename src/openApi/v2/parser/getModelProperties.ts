@@ -1,6 +1,7 @@
 import type { Model } from '../../../client/interfaces/Model';
 import type { OpenApi } from '../interfaces/OpenApi';
 import type { OpenApiSchema } from '../interfaces/OpenApiSchema';
+import { escapeName } from './escapeName';
 import { getComment } from './getComment';
 import { getType } from './getType';
 
@@ -16,7 +17,7 @@ export function getModelProperties(openApi: OpenApi, definition: OpenApiSchema, 
             if (property.$ref) {
                 const model = getType(property.$ref);
                 models.push({
-                    name: propertyName,
+                    name: escapeName(propertyName),
                     export: 'reference',
                     type: model.type,
                     base: model.base,
@@ -50,7 +51,7 @@ export function getModelProperties(openApi: OpenApi, definition: OpenApiSchema, 
             } else {
                 const model = getModel(openApi, property);
                 models.push({
-                    name: propertyName,
+                    name: escapeName(propertyName),
                     export: model.export,
                     type: model.type,
                     base: model.base,
