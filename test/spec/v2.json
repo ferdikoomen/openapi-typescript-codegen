@@ -434,6 +434,29 @@
                             "$ref": "#/definitions/ModelWithString"
                         }
                     },
+                    "200": {
+                        "description": "Message for 200 response",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "@namespace.string": {
+                                    "type": "string",
+                                    "readOnly": true
+                                },
+                                "@namespace.integer": {
+                                    "type": "integer",
+                                    "readOnly": true
+                                },
+                                "value": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/ModelWithString"
+                                    },
+                                    "readOnly": true
+                                }
+                            }
+                        }
+                    },
                     "201": {
                         "description": "Message for 201 response",
                         "schema": {
@@ -1050,6 +1073,14 @@
                 },
                 "reference": {
                     "$ref": "#/definitions/ModelWithString"
+                },
+                "@namespace.string": {
+                    "type": "string",
+                    "readOnly": true
+                },
+                "@namespace.integer": {
+                    "type": "integer",
+                    "readOnly": true
                 }
             }
         },

@@ -632,6 +632,33 @@
                             }
                         }
                     },
+                    "200": {
+                        "description": "Message for 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "@namespace.string": {
+                                            "type": "string",
+                                            "readOnly": true
+                                        },
+                                        "@namespace.integer": {
+                                            "type": "integer",
+                                            "readOnly": true
+                                        },
+                                        "value": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/ModelWithString"
+                                            },
+                                            "readOnly": true
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
                     "201": {
                         "description": "Message for 201 response",
                         "content": {
@@ -1558,6 +1585,14 @@
                     },
                     "reference": {
                         "$ref": "#/components/schemas/ModelWithString"
+                    },
+                    "@namespace.string": {
+                        "type": "string",
+                        "readOnly": true
+                    },
+                    "@namespace.integer": {
+                        "type": "integer",
+                        "readOnly": true
                     }
                 }
             },
