@@ -312,6 +312,7 @@ export type { SimpleFile } from './models/SimpleFile';
 export type { SimpleInteger } from './models/SimpleInteger';
 export type { SimpleReference } from './models/SimpleReference';
 export type { SimpleString } from './models/SimpleString';
+export type { SimpleStringWithPattern } from './models/SimpleStringWithPattern';
 
 export { $ArrayWithArray } from './schemas/$ArrayWithArray';
 export { $ArrayWithBooleans } from './schemas/$ArrayWithBooleans';
@@ -355,6 +356,7 @@ export { $SimpleFile } from './schemas/$SimpleFile';
 export { $SimpleInteger } from './schemas/$SimpleInteger';
 export { $SimpleReference } from './schemas/$SimpleReference';
 export { $SimpleString } from './schemas/$SimpleString';
+export { $SimpleStringWithPattern } from './schemas/$SimpleStringWithPattern';
 
 export { ComplexService } from './services/ComplexService';
 export { DefaultsService } from './services/DefaultsService';
@@ -1003,12 +1005,24 @@ exports[`v2 should generate: ./test/generated/v2/models/SimpleString.ts 1`] = `
 export type SimpleString = string;"
 `;
 
+exports[`v2 should generate: ./test/generated/v2/models/SimpleStringWithPattern.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/**
+ * This is a simple string
+ */
+export type SimpleStringWithPattern = string;"
+`;
+
 exports[`v2 should generate: ./test/generated/v2/schemas/$ArrayWithArray.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
 export const $ArrayWithArray = {
-    type: 'Array',
+    array: {
+        type: 'ModelWithString',
+    },
 };"
 `;
 
@@ -1017,7 +1031,9 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$ArrayWithBooleans.ts 1
 /* tslint:disable */
 /* eslint-disable */
 export const $ArrayWithBooleans = {
-    type: 'Array',
+    array: {
+        type: 'boolean',
+    },
 };"
 `;
 
@@ -1026,7 +1042,9 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$ArrayWithNumbers.ts 1`
 /* tslint:disable */
 /* eslint-disable */
 export const $ArrayWithNumbers = {
-    type: 'Array',
+    array: {
+        type: 'number',
+    },
 };"
 `;
 
@@ -1035,7 +1053,9 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$ArrayWithProperties.ts
 /* tslint:disable */
 /* eslint-disable */
 export const $ArrayWithProperties = {
-    type: 'Array',
+    array: {
+        type: 'any',
+    },
 };"
 `;
 
@@ -1044,7 +1064,9 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$ArrayWithReferences.ts
 /* tslint:disable */
 /* eslint-disable */
 export const $ArrayWithReferences = {
-    type: 'Array',
+    array: {
+        type: 'ModelWithString',
+    },
 };"
 `;
 
@@ -1053,7 +1075,9 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$ArrayWithStrings.ts 1`
 /* tslint:disable */
 /* eslint-disable */
 export const $ArrayWithStrings = {
-    type: 'Array',
+    array: {
+        type: 'string',
+    },
 };"
 `;
 
@@ -1062,7 +1086,9 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$DictionaryWithArray.ts
 /* tslint:disable */
 /* eslint-disable */
 export const $DictionaryWithArray = {
-    type: 'Dictionary',
+    dictionary: {
+        type: 'ModelWithString',
+    },
 };"
 `;
 
@@ -1071,7 +1097,9 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$DictionaryWithDictiona
 /* tslint:disable */
 /* eslint-disable */
 export const $DictionaryWithDictionary = {
-    type: 'Dictionary',
+    dictionary: {
+        type: 'string',
+    },
 };"
 `;
 
@@ -1080,7 +1108,9 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$DictionaryWithProperti
 /* tslint:disable */
 /* eslint-disable */
 export const $DictionaryWithProperties = {
-    type: 'Dictionary',
+    dictionary: {
+        type: 'any',
+    },
 };"
 `;
 
@@ -1089,7 +1119,9 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$DictionaryWithReferenc
 /* tslint:disable */
 /* eslint-disable */
 export const $DictionaryWithReference = {
-    type: 'Dictionary',
+    dictionary: {
+        type: 'ModelWithString',
+    },
 };"
 `;
 
@@ -1098,7 +1130,9 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$DictionaryWithString.t
 /* tslint:disable */
 /* eslint-disable */
 export const $DictionaryWithString = {
-    type: 'Dictionary',
+    dictionary: {
+        type: 'string',
+    },
 };"
 `;
 
@@ -1198,13 +1232,19 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$ModelWithArray.ts 1`] 
 export const $ModelWithArray = {
     properties: {
         prop: {
-            type: 'Array',
+            array: {
+                type: 'ModelWithString',
+            },
         },
         propWithFile: {
-            type: 'Array',
+            array: {
+                type: 'Blob',
+            },
         },
         propWithNumber: {
-            type: 'Array',
+            array: {
+                type: 'number',
+            },
         },
     },
 };"
@@ -1243,7 +1283,9 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$ModelWithDictionary.ts
 export const $ModelWithDictionary = {
     properties: {
         prop: {
-            type: 'Dictionary',
+            dictionary: {
+                type: 'string',
+            },
         },
     },
 };"
@@ -1343,16 +1385,24 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$ModelWithNestedEnums.t
 export const $ModelWithNestedEnums = {
     properties: {
         dictionaryWithEnum: {
-            type: 'Dictionary',
+            dictionary: {
+                type: 'string',
+            },
         },
         dictionaryWithEnumFromDescription: {
-            type: 'Dictionary',
+            dictionary: {
+                type: 'number',
+            },
         },
         arrayWithEnum: {
-            type: 'Array',
+            array: {
+                type: 'string',
+            },
         },
         arrayWithDescription: {
-            type: 'Array',
+            array: {
+                type: 'number',
+            },
         },
     },
 };"
@@ -1433,7 +1483,7 @@ export const $ModelWithPattern = {
             type: 'string',
             isRequired: true,
             maxLength: 64,
-            pattern: '^[a-zA-Z0-9_]*$',
+            pattern: /^[a-zA-Z0-9_]*$/,
         },
         name: {
             type: 'string',
@@ -1541,7 +1591,7 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$SimpleFile.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 export const $SimpleFile = {
-    type: 'File',
+    type: 'Blob',
 };"
 `;
 
@@ -1569,6 +1619,17 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$SimpleString.ts 1`] = 
 /* eslint-disable */
 export const $SimpleString = {
     type: 'string',
+};"
+`;
+
+exports[`v2 should generate: ./test/generated/v2/schemas/$SimpleStringWithPattern.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+export const $SimpleStringWithPattern = {
+    type: 'string',
+    maxLength: 64,
+    pattern: /^[a-zA-Z0-9_]*$/,
 };"
 `;
 
@@ -2411,6 +2472,7 @@ export type { SimpleFile } from './models/SimpleFile';
 export type { SimpleInteger } from './models/SimpleInteger';
 export type { SimpleReference } from './models/SimpleReference';
 export type { SimpleString } from './models/SimpleString';
+export type { SimpleStringWithPattern } from './models/SimpleStringWithPattern';
 
 export { $ArrayWithArray } from './schemas/$ArrayWithArray';
 export { $ArrayWithBooleans } from './schemas/$ArrayWithBooleans';
@@ -2455,6 +2517,7 @@ export { $SimpleFile } from './schemas/$SimpleFile';
 export { $SimpleInteger } from './schemas/$SimpleInteger';
 export { $SimpleReference } from './schemas/$SimpleReference';
 export { $SimpleString } from './schemas/$SimpleString';
+export { $SimpleStringWithPattern } from './schemas/$SimpleStringWithPattern';
 
 export { ComplexService } from './services/ComplexService';
 export { DefaultsService } from './services/DefaultsService';
@@ -3123,12 +3186,24 @@ exports[`v3 should generate: ./test/generated/v3/models/SimpleString.ts 1`] = `
 export type SimpleString = string;"
 `;
 
+exports[`v3 should generate: ./test/generated/v3/models/SimpleStringWithPattern.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/**
+ * This is a simple string
+ */
+export type SimpleStringWithPattern = string | null;"
+`;
+
 exports[`v3 should generate: ./test/generated/v3/schemas/$ArrayWithArray.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
 export const $ArrayWithArray = {
-    type: 'Array',
+    array: {
+        type: 'ModelWithString',
+    },
 };"
 `;
 
@@ -3137,7 +3212,9 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$ArrayWithBooleans.ts 1
 /* tslint:disable */
 /* eslint-disable */
 export const $ArrayWithBooleans = {
-    type: 'Array',
+    array: {
+        type: 'boolean',
+    },
 };"
 `;
 
@@ -3146,7 +3223,9 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$ArrayWithNumbers.ts 1`
 /* tslint:disable */
 /* eslint-disable */
 export const $ArrayWithNumbers = {
-    type: 'Array',
+    array: {
+        type: 'number',
+    },
 };"
 `;
 
@@ -3155,7 +3234,9 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$ArrayWithProperties.ts
 /* tslint:disable */
 /* eslint-disable */
 export const $ArrayWithProperties = {
-    type: 'Array',
+    array: {
+        type: 'any',
+    },
 };"
 `;
 
@@ -3164,7 +3245,9 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$ArrayWithReferences.ts
 /* tslint:disable */
 /* eslint-disable */
 export const $ArrayWithReferences = {
-    type: 'Array',
+    array: {
+        type: 'ModelWithString',
+    },
 };"
 `;
 
@@ -3173,7 +3256,9 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$ArrayWithStrings.ts 1`
 /* tslint:disable */
 /* eslint-disable */
 export const $ArrayWithStrings = {
-    type: 'Array',
+    array: {
+        type: 'string',
+    },
 };"
 `;
 
@@ -3182,7 +3267,9 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$DictionaryWithArray.ts
 /* tslint:disable */
 /* eslint-disable */
 export const $DictionaryWithArray = {
-    type: 'Dictionary',
+    dictionary: {
+        type: 'ModelWithString',
+    },
 };"
 `;
 
@@ -3191,7 +3278,9 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$DictionaryWithDictiona
 /* tslint:disable */
 /* eslint-disable */
 export const $DictionaryWithDictionary = {
-    type: 'Dictionary',
+    dictionary: {
+        type: 'string',
+    },
 };"
 `;
 
@@ -3200,7 +3289,9 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$DictionaryWithProperti
 /* tslint:disable */
 /* eslint-disable */
 export const $DictionaryWithProperties = {
-    type: 'Dictionary',
+    dictionary: {
+        type: 'any',
+    },
 };"
 `;
 
@@ -3209,7 +3300,9 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$DictionaryWithReferenc
 /* tslint:disable */
 /* eslint-disable */
 export const $DictionaryWithReference = {
-    type: 'Dictionary',
+    dictionary: {
+        type: 'ModelWithString',
+    },
 };"
 `;
 
@@ -3218,7 +3311,9 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$DictionaryWithString.t
 /* tslint:disable */
 /* eslint-disable */
 export const $DictionaryWithString = {
-    type: 'Dictionary',
+    dictionary: {
+        type: 'string',
+    },
 };"
 `;
 
@@ -3331,13 +3426,19 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$ModelWithArray.ts 1`] 
 export const $ModelWithArray = {
     properties: {
         prop: {
-            type: 'Array',
+            array: {
+                type: 'ModelWithString',
+            },
         },
         propWithFile: {
-            type: 'Array',
+            array: {
+                type: 'Blob',
+            },
         },
         propWithNumber: {
-            type: 'Array',
+            array: {
+                type: 'number',
+            },
         },
     },
 };"
@@ -3376,7 +3477,9 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$ModelWithDictionary.ts
 export const $ModelWithDictionary = {
     properties: {
         prop: {
-            type: 'Dictionary',
+            dictionary: {
+                type: 'string',
+            },
         },
     },
 };"
@@ -3476,16 +3579,24 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$ModelWithNestedEnums.t
 export const $ModelWithNestedEnums = {
     properties: {
         dictionaryWithEnum: {
-            type: 'Dictionary',
+            dictionary: {
+                type: 'string',
+            },
         },
         dictionaryWithEnumFromDescription: {
-            type: 'Dictionary',
+            dictionary: {
+                type: 'number',
+            },
         },
         arrayWithEnum: {
-            type: 'Array',
+            array: {
+                type: 'string',
+            },
         },
         arrayWithDescription: {
-            type: 'Array',
+            array: {
+                type: 'number',
+            },
         },
     },
 };"
@@ -3563,7 +3674,7 @@ export const $ModelWithPattern = {
             type: 'string',
             isRequired: true,
             maxLength: 64,
-            pattern: '^[a-zA-Z0-9_]*$',
+            pattern: /^[a-zA-Z0-9_]*$/,
         },
         name: {
             type: 'string',
@@ -3676,7 +3787,7 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$SimpleFile.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 export const $SimpleFile = {
-    type: 'File',
+    type: 'Blob',
 };"
 `;
 
@@ -3704,6 +3815,18 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$SimpleString.ts 1`] = 
 /* eslint-disable */
 export const $SimpleString = {
     type: 'string',
+};"
+`;
+
+exports[`v3 should generate: ./test/generated/v3/schemas/$SimpleStringWithPattern.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+export const $SimpleStringWithPattern = {
+    type: 'string',
+    isNullable: true,
+    maxLength: 64,
+    pattern: /^[a-zA-Z0-9_]*$/,
 };"
 `;
 

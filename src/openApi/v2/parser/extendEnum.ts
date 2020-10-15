@@ -1,9 +1,6 @@
 import type { Enum } from '../../../client/interfaces/Enum';
 import type { WithEnumExtension } from '../interfaces/Extensions/WithEnumExtension';
 
-const KEY_ENUM_NAMES = 'x-enum-varnames';
-const KEY_ENUM_DESCRIPTIONS = 'x-enum-descriptions';
-
 /**
  * Extend the enum with the x-enum properties. This adds the capability
  * to use names and descriptions inside the generated enums.
@@ -11,8 +8,8 @@ const KEY_ENUM_DESCRIPTIONS = 'x-enum-descriptions';
  * @param definition
  */
 export function extendEnum(enumerators: Enum[], definition: WithEnumExtension): Enum[] {
-    const names = definition[KEY_ENUM_NAMES];
-    const descriptions = definition[KEY_ENUM_DESCRIPTIONS];
+    const names = definition['x-enum-varnames'];
+    const descriptions = definition['x-enum-descriptions'];
 
     return enumerators.map((enumerator, index) => ({
         name: (names && names[index]) || enumerator.name,

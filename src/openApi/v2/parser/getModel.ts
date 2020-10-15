@@ -20,7 +20,7 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isDefiniti
         description: getComment(definition.description),
         isDefinition: isDefinition,
         isReadOnly: definition.readOnly === true,
-        isNullable: false,
+        isNullable: definition['x-nullable'] === true,
         isRequired: false,
         format: definition.format,
         maximum: definition.maximum,

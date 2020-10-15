@@ -25,7 +25,7 @@ export function getOperationParameter(openApi: OpenApi, parameter: OpenApiParame
         isDefinition: false,
         isReadOnly: false,
         isRequired: parameter.required === true,
-        isNullable: false,
+        isNullable: parameter['x-nullable'] === true,
         format: parameter.format,
         maximum: parameter.maximum,
         exclusiveMaximum: parameter.exclusiveMaximum,

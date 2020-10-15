@@ -1,6 +1,6 @@
 {
 {{#if type}}
-    type: '{{{base}}}',
+    type: '{{>base}}',
 {{/if}}
 {{#if isReadOnly}}
     isReadOnly: {{{isReadOnly}}},
@@ -36,7 +36,7 @@
     minLength: {{{minLength}}},
 {{/if}}
 {{#if pattern}}
-    pattern: '{{{pattern}}}',
+    pattern: /{{{pattern}}}/,
 {{/if}}
 {{#if maxItems}}
     maxItems: {{{maxItems}}},

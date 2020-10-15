@@ -711,6 +711,12 @@
             "description": "This is a simple reference",
             "$ref": "#/definitions/ModelWithString"
         },
+        "SimpleStringWithPattern": {
+            "description": "This is a simple string",
+            "type": "string",
+            "maxLength": 64,
+            "pattern": "^[a-zA-Z0-9_]*$"
+        },
         "EnumWithStrings": {
             "description": "This is a simple enum with strings",
             "enum": [
