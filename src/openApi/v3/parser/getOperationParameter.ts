@@ -6,6 +6,7 @@ import { getComment } from './getComment';
 import { getModel } from './getModel';
 import { getModelDefault } from './getModelDefault';
 import { getOperationParameterName } from './getOperationParameterName';
+import { getPattern } from './getPattern';
 import { getType } from './getType';
 
 export function getOperationParameter(openApi: OpenApi, parameter: OpenApiParameter): OperationParameter {
@@ -68,12 +69,12 @@ export function getOperationParameter(openApi: OpenApi, parameter: OpenApiParame
             operationParameter.multipleOf = model.multipleOf;
             operationParameter.maxLength = model.maxLength;
             operationParameter.minLength = model.minLength;
-            operationParameter.pattern = model.pattern;
             operationParameter.maxItems = model.maxItems;
             operationParameter.minItems = model.minItems;
             operationParameter.uniqueItems = model.uniqueItems;
             operationParameter.maxProperties = model.maxProperties;
             operationParameter.minProperties = model.minProperties;
+            operationParameter.pattern = getPattern(model.pattern);
             operationParameter.default = model.default;
             operationParameter.imports.push(...model.imports);
             operationParameter.extends.push(...model.extends);

@@ -3,6 +3,7 @@ import type { OpenApi } from '../interfaces/OpenApi';
 import type { OpenApiSchema } from '../interfaces/OpenApiSchema';
 import { escapeName } from './escapeName';
 import { getComment } from './getComment';
+import { getPattern } from './getPattern';
 import { getType } from './getType';
 
 // Fix for circular dependency between getModel and getModelProperties
@@ -36,12 +37,12 @@ export function getModelProperties(openApi: OpenApi, definition: OpenApiSchema, 
                     multipleOf: property.multipleOf,
                     maxLength: property.maxLength,
                     minLength: property.minLength,
-                    pattern: property.pattern,
                     maxItems: property.maxItems,
                     minItems: property.minItems,
                     uniqueItems: property.uniqueItems,
                     maxProperties: property.maxProperties,
                     minProperties: property.minProperties,
+                    pattern: getPattern(property.pattern),
                     imports: model.imports,
                     extends: [],
                     enum: [],
@@ -70,12 +71,12 @@ export function getModelProperties(openApi: OpenApi, definition: OpenApiSchema, 
                     multipleOf: property.multipleOf,
                     maxLength: property.maxLength,
                     minLength: property.minLength,
-                    pattern: property.pattern,
                     maxItems: property.maxItems,
                     minItems: property.minItems,
                     uniqueItems: property.uniqueItems,
                     maxProperties: property.maxProperties,
                     minProperties: property.minProperties,
+                    pattern: getPattern(property.pattern),
                     imports: model.imports,
                     extends: model.extends,
                     enum: model.enum,

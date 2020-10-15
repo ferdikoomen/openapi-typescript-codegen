@@ -9,6 +9,7 @@ import { getEnumFromDescription } from './getEnumFromDescription';
 import { getModel } from './getModel';
 import { getOperationParameterDefault } from './getOperationParameterDefault';
 import { getOperationParameterName } from './getOperationParameterName';
+import { getPattern } from './getPattern';
 import { getType } from './getType';
 
 export function getOperationParameter(openApi: OpenApi, parameter: OpenApiParameter): OperationParameter {
@@ -34,10 +35,10 @@ export function getOperationParameter(openApi: OpenApi, parameter: OpenApiParame
         multipleOf: parameter.multipleOf,
         maxLength: parameter.maxLength,
         minLength: parameter.minLength,
-        pattern: parameter.pattern,
         maxItems: parameter.maxItems,
         minItems: parameter.minItems,
         uniqueItems: parameter.uniqueItems,
+        pattern: getPattern(parameter.pattern),
         imports: [],
         extends: [],
         enum: [],

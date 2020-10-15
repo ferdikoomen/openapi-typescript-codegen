@@ -7,6 +7,7 @@ import { getComment } from './getComment';
 import { getEnum } from './getEnum';
 import { getEnumFromDescription } from './getEnumFromDescription';
 import { getModelProperties } from './getModelProperties';
+import { getPattern } from './getPattern';
 import { getType } from './getType';
 
 export function getModel(openApi: OpenApi, definition: OpenApiSchema, isDefinition: boolean = false, name: string = ''): Model {
@@ -30,12 +31,12 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isDefiniti
         multipleOf: definition.multipleOf,
         maxLength: definition.maxLength,
         minLength: definition.minLength,
-        pattern: definition.pattern,
         maxItems: definition.maxItems,
         minItems: definition.minItems,
         uniqueItems: definition.uniqueItems,
         maxProperties: definition.maxProperties,
         minProperties: definition.minProperties,
+        pattern: getPattern(definition.pattern),
         imports: [],
         extends: [],
         enum: [],

@@ -4,6 +4,7 @@ import type { OpenApiResponse } from '../interfaces/OpenApiResponse';
 import { PrimaryType } from './constants';
 import { getComment } from './getComment';
 import { getModel } from './getModel';
+import { getPattern } from './getPattern';
 import { getType } from './getType';
 
 export function getOperationResponse(openApi: OpenApi, response: OpenApiResponse, responseCode: number): OperationResponse {
@@ -73,12 +74,12 @@ export function getOperationResponse(openApi: OpenApi, response: OpenApiResponse
             operationResponse.multipleOf = model.multipleOf;
             operationResponse.maxLength = model.maxLength;
             operationResponse.minLength = model.minLength;
-            operationResponse.pattern = model.pattern;
             operationResponse.maxItems = model.maxItems;
             operationResponse.minItems = model.minItems;
             operationResponse.uniqueItems = model.uniqueItems;
             operationResponse.maxProperties = model.maxProperties;
             operationResponse.minProperties = model.minProperties;
+            operationResponse.pattern = getPattern(model.pattern);
             operationResponse.imports.push(...model.imports);
             operationResponse.extends.push(...model.extends);
             operationResponse.enum.push(...model.enum);

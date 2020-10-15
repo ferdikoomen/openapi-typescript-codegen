@@ -883,6 +883,8 @@ export interface ModelWithPattern {
     name: string;
     readonly enabled?: boolean;
     readonly modified?: string;
+    id?: string;
+    text?: string;
 }
 "
 `;
@@ -1525,7 +1527,7 @@ export const $ModelWithPattern = {
             type: 'string',
             isRequired: true,
             maxLength: 64,
-            pattern: /^[a-zA-Z0-9_]*$/,
+            pattern: '^[a-zA-Z0-9_]*$',
         },
         name: {
             type: 'string',
@@ -1540,6 +1542,14 @@ export const $ModelWithPattern = {
             type: 'string',
             isReadOnly: true,
             format: 'date-time',
+        },
+        id: {
+            type: 'string',
+            pattern: '^\\\\\\\\d{2}-\\\\\\\\d{3}-\\\\\\\\d{4}$',
+        },
+        text: {
+            type: 'string',
+            pattern: '^\\\\\\\\w+$',
         },
     },
 };"
@@ -1671,7 +1681,7 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$SimpleStringWithPatter
 export const $SimpleStringWithPattern = {
     type: 'string',
     maxLength: 64,
-    pattern: /^[a-zA-Z0-9_]*$/,
+    pattern: '^[a-zA-Z0-9_]*$',
 };"
 `;
 
@@ -3105,6 +3115,8 @@ export interface ModelWithPattern {
     name: string;
     readonly enabled?: boolean;
     readonly modified?: string;
+    id?: string;
+    text?: string;
 }
 "
 `;
@@ -3758,7 +3770,7 @@ export const $ModelWithPattern = {
             type: 'string',
             isRequired: true,
             maxLength: 64,
-            pattern: /^[a-zA-Z0-9_]*$/,
+            pattern: '^[a-zA-Z0-9_]*$',
         },
         name: {
             type: 'string',
@@ -3773,6 +3785,14 @@ export const $ModelWithPattern = {
             type: 'string',
             isReadOnly: true,
             format: 'date-time',
+        },
+        id: {
+            type: 'string',
+            pattern: '^\\\\\\\\d{2}-\\\\\\\\d{3}-\\\\\\\\d{4}$',
+        },
+        text: {
+            type: 'string',
+            pattern: '^\\\\\\\\w+$',
         },
     },
 };"
@@ -3910,7 +3930,7 @@ export const $SimpleStringWithPattern = {
     type: 'string',
     isNullable: true,
     maxLength: 64,
-    pattern: /^[a-zA-Z0-9_]*$/,
+    pattern: '^[a-zA-Z0-9_]*$',
 };"
 `;
 
