@@ -4,7 +4,7 @@ const ts = require('typescript');
 const path = require('path');
 const os = require('os');
 
-function compile(dir) {
+function compileWithTypescript(dir) {
     const baseDir = `./test/e2e/generated/${dir}/`;
     const tsconfig = {
         compilerOptions: {
@@ -35,4 +35,4 @@ function compile(dir) {
     }
 }
 
-module.exports = compile;
+module.exports = compileWithTypescript;

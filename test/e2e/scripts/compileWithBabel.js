@@ -4,7 +4,7 @@ const glob = require('glob');
 const fs = require('fs');
 const babel = require('@babel/core');
 
-function transpile(dir) {
+function compileWithBabel(dir) {
     glob.sync(`./test/e2e/generated/${dir}/**/*.ts`).forEach(file => {
         try {
             const content = fs.readFileSync(file, 'utf8').toString();
@@ -30,4 +30,4 @@ function transpile(dir) {
     });
 }
 
-module.exports = transpile;
+module.exports = compileWithBabel;

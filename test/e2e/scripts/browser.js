@@ -31,8 +31,13 @@ async function evaluate(fn, ...args) {
     return await page.evaluate(fn, args);
 }
 
+async function exposeFunction(name, fn) {
+    return await page.exposeFunction(name, fn);
+}
+
 module.exports = {
     start,
     stop,
     evaluate,
+    exposeFunction,
 };

@@ -1,15 +1,14 @@
 'use strict';
 
 const generate = require('./scripts/generate');
-const copy = require('./scripts/copy');
-const compile = require('./scripts/compile');
+const compileWithTypescript = require('./scripts/compileWithTypescript');
 const server = require('./scripts/server');
 
 describe('v3.node', () => {
 
     beforeAll(async () => {
         await generate('v3/node', 'v3', 'node');
-        compile('v3/node');
+        compileWithTypescript('v3/node');
         await server.start('v3/node');
     }, 30000);
 

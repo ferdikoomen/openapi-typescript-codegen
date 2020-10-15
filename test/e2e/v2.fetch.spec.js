@@ -2,7 +2,7 @@
 
 const generate = require('./scripts/generate');
 const copy = require('./scripts/copy');
-const compile = require('./scripts/compile');
+const compileWithTypescript = require('./scripts/compileWithTypescript');
 const server = require('./scripts/server');
 const browser = require('./scripts/browser');
 
@@ -11,7 +11,7 @@ describe('v2.fetch', () => {
     beforeAll(async () => {
         await generate('v2/fetch', 'v2', 'fetch');
         await copy('v2/fetch');
-        compile('v2/fetch');
+        compileWithTypescript('v2/fetch');
         await server.start('v2/fetch');
         await browser.start();
     }, 30000);
@@ -22,20 +22,19 @@ describe('v2.fetch', () => {
     });
 
     it('requests token', async () => {
+        await browser.exposeFunction('tokenRequest', jest.fn().mockResolvedValue('MY_TOKEN'));
         const result = await browser.evaluate(async () => {
-            window.api.OpenAPI.TOKEN = new Promise(resolve => {
-                setTimeout(() => {
-                    resolve('MY_TOKEN');
-                }, 500);
-            });
-            return await window.api.SimpleService.getCallWithoutParametersAndResponse();
+            const { OpenAPI, SimpleService } = window.api;
+            OpenAPI.TOKEN = window.tokenRequest;
+            return await SimpleService.getCallWithoutParametersAndResponse();
         });
         expect(result.headers.authorization).toBe('Bearer MY_TOKEN');
     });
 
     it('complexService', async () => {
         const result = await browser.evaluate(async () => {
-            return await window.api.ComplexService.complexTypes({
+            const { ComplexService } = window.api;
+            return await ComplexService.complexTypes({
                 first: {
                     second: {
                         third: 'Hello World!'
