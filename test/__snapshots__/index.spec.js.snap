@@ -1020,8 +1020,12 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$ArrayWithArray.ts 1`] 
 /* tslint:disable */
 /* eslint-disable */
 export const $ArrayWithArray = {
-    array: {
-        type: 'ModelWithString',
+    type: 'array',
+    contains: {
+        type: 'array',
+        contains: {
+            type: 'ModelWithString',
+        },
     },
 };"
 `;
@@ -1031,7 +1035,8 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$ArrayWithBooleans.ts 1
 /* tslint:disable */
 /* eslint-disable */
 export const $ArrayWithBooleans = {
-    array: {
+    type: 'array',
+    contains: {
         type: 'boolean',
     },
 };"
@@ -1042,7 +1047,8 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$ArrayWithNumbers.ts 1`
 /* tslint:disable */
 /* eslint-disable */
 export const $ArrayWithNumbers = {
-    array: {
+    type: 'array',
+    contains: {
         type: 'number',
     },
 };"
@@ -1053,8 +1059,16 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$ArrayWithProperties.ts
 /* tslint:disable */
 /* eslint-disable */
 export const $ArrayWithProperties = {
-    array: {
-        type: 'any',
+    type: 'array',
+    contains: {
+        properties: {
+            foo: {
+                type: 'string',
+            },
+            bar: {
+                type: 'string',
+            },
+        },
     },
 };"
 `;
@@ -1064,7 +1078,8 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$ArrayWithReferences.ts
 /* tslint:disable */
 /* eslint-disable */
 export const $ArrayWithReferences = {
-    array: {
+    type: 'array',
+    contains: {
         type: 'ModelWithString',
     },
 };"
@@ -1075,7 +1090,8 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$ArrayWithStrings.ts 1`
 /* tslint:disable */
 /* eslint-disable */
 export const $ArrayWithStrings = {
-    array: {
+    type: 'array',
+    contains: {
         type: 'string',
     },
 };"
@@ -1086,8 +1102,12 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$DictionaryWithArray.ts
 /* tslint:disable */
 /* eslint-disable */
 export const $DictionaryWithArray = {
-    dictionary: {
-        type: 'ModelWithString',
+    type: 'dictionary',
+    contains: {
+        type: 'array',
+        contains: {
+            type: 'ModelWithString',
+        },
     },
 };"
 `;
@@ -1097,8 +1117,12 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$DictionaryWithDictiona
 /* tslint:disable */
 /* eslint-disable */
 export const $DictionaryWithDictionary = {
-    dictionary: {
-        type: 'string',
+    type: 'dictionary',
+    contains: {
+        type: 'dictionary',
+        contains: {
+            type: 'string',
+        },
     },
 };"
 `;
@@ -1108,8 +1132,16 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$DictionaryWithProperti
 /* tslint:disable */
 /* eslint-disable */
 export const $DictionaryWithProperties = {
-    dictionary: {
-        type: 'any',
+    type: 'dictionary',
+    contains: {
+        properties: {
+            foo: {
+                type: 'string',
+            },
+            bar: {
+                type: 'string',
+            },
+        },
     },
 };"
 `;
@@ -1119,7 +1151,8 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$DictionaryWithReferenc
 /* tslint:disable */
 /* eslint-disable */
 export const $DictionaryWithReference = {
-    dictionary: {
+    type: 'dictionary',
+    contains: {
         type: 'ModelWithString',
     },
 };"
@@ -1130,7 +1163,8 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$DictionaryWithString.t
 /* tslint:disable */
 /* eslint-disable */
 export const $DictionaryWithString = {
-    dictionary: {
+    type: 'dictionary',
+    contains: {
         type: 'string',
     },
 };"
@@ -1232,17 +1266,20 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$ModelWithArray.ts 1`] 
 export const $ModelWithArray = {
     properties: {
         prop: {
-            array: {
+            type: 'array',
+            contains: {
                 type: 'ModelWithString',
             },
         },
         propWithFile: {
-            array: {
-                type: 'Blob',
+            type: 'array',
+            contains: {
+                type: 'File',
             },
         },
         propWithNumber: {
-            array: {
+            type: 'array',
+            contains: {
                 type: 'number',
             },
         },
@@ -1283,7 +1320,8 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$ModelWithDictionary.ts
 export const $ModelWithDictionary = {
     properties: {
         prop: {
-            dictionary: {
+            type: 'dictionary',
+            contains: {
                 type: 'string',
             },
         },
@@ -1385,23 +1423,27 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$ModelWithNestedEnums.t
 export const $ModelWithNestedEnums = {
     properties: {
         dictionaryWithEnum: {
-            dictionary: {
-                type: 'string',
+            type: 'dictionary',
+            contains: {
+                type: 'Enum',
             },
         },
         dictionaryWithEnumFromDescription: {
-            dictionary: {
-                type: 'number',
+            type: 'dictionary',
+            contains: {
+                type: 'Enum',
             },
         },
         arrayWithEnum: {
-            array: {
-                type: 'string',
+            type: 'array',
+            contains: {
+                type: 'Enum',
             },
         },
         arrayWithDescription: {
-            array: {
-                type: 'number',
+            type: 'array',
+            contains: {
+                type: 'Enum',
             },
         },
     },
@@ -1591,7 +1633,7 @@ exports[`v2 should generate: ./test/generated/v2/schemas/$SimpleFile.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 export const $SimpleFile = {
-    type: 'Blob',
+    type: 'File',
 };"
 `;
 
@@ -3201,8 +3243,12 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$ArrayWithArray.ts 1`] 
 /* tslint:disable */
 /* eslint-disable */
 export const $ArrayWithArray = {
-    array: {
-        type: 'ModelWithString',
+    type: 'array',
+    contains: {
+        type: 'array',
+        contains: {
+            type: 'ModelWithString',
+        },
     },
 };"
 `;
@@ -3212,7 +3258,8 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$ArrayWithBooleans.ts 1
 /* tslint:disable */
 /* eslint-disable */
 export const $ArrayWithBooleans = {
-    array: {
+    type: 'array',
+    contains: {
         type: 'boolean',
     },
 };"
@@ -3223,7 +3270,8 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$ArrayWithNumbers.ts 1`
 /* tslint:disable */
 /* eslint-disable */
 export const $ArrayWithNumbers = {
-    array: {
+    type: 'array',
+    contains: {
         type: 'number',
     },
 };"
@@ -3234,8 +3282,16 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$ArrayWithProperties.ts
 /* tslint:disable */
 /* eslint-disable */
 export const $ArrayWithProperties = {
-    array: {
-        type: 'any',
+    type: 'array',
+    contains: {
+        properties: {
+            foo: {
+                type: 'string',
+            },
+            bar: {
+                type: 'string',
+            },
+        },
     },
 };"
 `;
@@ -3245,7 +3301,8 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$ArrayWithReferences.ts
 /* tslint:disable */
 /* eslint-disable */
 export const $ArrayWithReferences = {
-    array: {
+    type: 'array',
+    contains: {
         type: 'ModelWithString',
     },
 };"
@@ -3256,7 +3313,8 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$ArrayWithStrings.ts 1`
 /* tslint:disable */
 /* eslint-disable */
 export const $ArrayWithStrings = {
-    array: {
+    type: 'array',
+    contains: {
         type: 'string',
     },
 };"
@@ -3267,8 +3325,12 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$DictionaryWithArray.ts
 /* tslint:disable */
 /* eslint-disable */
 export const $DictionaryWithArray = {
-    dictionary: {
-        type: 'ModelWithString',
+    type: 'dictionary',
+    contains: {
+        type: 'array',
+        contains: {
+            type: 'ModelWithString',
+        },
     },
 };"
 `;
@@ -3278,8 +3340,12 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$DictionaryWithDictiona
 /* tslint:disable */
 /* eslint-disable */
 export const $DictionaryWithDictionary = {
-    dictionary: {
-        type: 'string',
+    type: 'dictionary',
+    contains: {
+        type: 'dictionary',
+        contains: {
+            type: 'string',
+        },
     },
 };"
 `;
@@ -3289,8 +3355,16 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$DictionaryWithProperti
 /* tslint:disable */
 /* eslint-disable */
 export const $DictionaryWithProperties = {
-    dictionary: {
-        type: 'any',
+    type: 'dictionary',
+    contains: {
+        properties: {
+            foo: {
+                type: 'string',
+            },
+            bar: {
+                type: 'string',
+            },
+        },
     },
 };"
 `;
@@ -3300,7 +3374,8 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$DictionaryWithReferenc
 /* tslint:disable */
 /* eslint-disable */
 export const $DictionaryWithReference = {
-    dictionary: {
+    type: 'dictionary',
+    contains: {
         type: 'ModelWithString',
     },
 };"
@@ -3311,7 +3386,8 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$DictionaryWithString.t
 /* tslint:disable */
 /* eslint-disable */
 export const $DictionaryWithString = {
-    dictionary: {
+    type: 'dictionary',
+    contains: {
         type: 'string',
     },
 };"
@@ -3426,17 +3502,20 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$ModelWithArray.ts 1`] 
 export const $ModelWithArray = {
     properties: {
         prop: {
-            array: {
+            type: 'array',
+            contains: {
                 type: 'ModelWithString',
             },
         },
         propWithFile: {
-            array: {
-                type: 'Blob',
+            type: 'array',
+            contains: {
+                type: 'File',
             },
         },
         propWithNumber: {
-            array: {
+            type: 'array',
+            contains: {
                 type: 'number',
             },
         },
@@ -3477,7 +3556,8 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$ModelWithDictionary.ts
 export const $ModelWithDictionary = {
     properties: {
         prop: {
-            dictionary: {
+            type: 'dictionary',
+            contains: {
                 type: 'string',
             },
         },
@@ -3579,23 +3659,27 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$ModelWithNestedEnums.t
 export const $ModelWithNestedEnums = {
     properties: {
         dictionaryWithEnum: {
-            dictionary: {
-                type: 'string',
+            type: 'dictionary',
+            contains: {
+                type: 'Enum',
             },
         },
         dictionaryWithEnumFromDescription: {
-            dictionary: {
-                type: 'number',
+            type: 'dictionary',
+            contains: {
+                type: 'Enum',
             },
         },
         arrayWithEnum: {
-            array: {
-                type: 'string',
+            type: 'array',
+            contains: {
+                type: 'Enum',
             },
         },
         arrayWithDescription: {
-            array: {
-                type: 'number',
+            type: 'array',
+            contains: {
+                type: 'Enum',
             },
         },
     },
@@ -3787,7 +3871,7 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$SimpleFile.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 export const $SimpleFile = {
-    type: 'Blob',
+    type: 'File',
 };"
 `;
 

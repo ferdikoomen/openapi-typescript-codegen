@@ -1,8 +1,9 @@
 {
+    type: 'array',
 {{#if link}}
-    arrayOf: {{>schema link}},
+    contains: {{>schema link}},
 {{else}}
-    arrayOf: {
+    contains: {
         type: '{{{base}}}',
     },
 {{/if}}

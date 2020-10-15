@@ -1,8 +1,9 @@
 {
+    type: 'dictionary',
 {{#if link}}
-    dictionaryOf: {{>schema link}},
+    contains: {{>schema link}},
 {{else}}
-    dictionaryOf: {
+    contains: {
         type: '{{{base}}}',
     },
 {{/if}}
