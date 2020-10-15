@@ -1,7 +1,11 @@
 {
-    array: {
-        type: '{{>base}}',
+{{#if link}}
+    arrayOf: {{>schema link}},
+{{else}}
+    arrayOf: {
+        type: '{{{base}}}',
     },
+{{/if}}
 {{#if isReadOnly}}
     isReadOnly: {{{isReadOnly}}},
 {{/if}}
