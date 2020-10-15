@@ -201,12 +201,11 @@ async function getResponseBody(response: Response): Promise<any> {
     try {
         const contentType = response.headers.get('Content-Type');
         if (contentType) {
-            switch (contentType.toLowerCase()) {
-                case 'application/json':
-                case 'application/json; charset=utf-8':
-                    return await response.json();
-                default:
-                    return await response.text();
+            const isJSON = contentType.toLowerCase().startsWith('application/json');
+            if (isJSON) {
+                return await response.json();
+            } else {
+                return await response.text();
             }
         }
     } catch (error) {
@@ -2300,12 +2299,11 @@ async function getResponseBody(response: Response): Promise<any> {
     try {
         const contentType = response.headers.get('Content-Type');
         if (contentType) {
-            switch (contentType.toLowerCase()) {
-                case 'application/json':
-                case 'application/json; charset=utf-8':
-                    return await response.json();
-                default:
-                    return await response.text();
+            const isJSON = contentType.toLowerCase().startsWith('application/json');
+            if (isJSON) {
+                return await response.json();
+            } else {
+                return await response.text();
             }
         }
     } catch (error) {
