@@ -443,8 +443,8 @@ npm install form-data --save-dev
 
 [npm-url]: https://npmjs.org/package/openapi-typescript-codegen
 [npm-image]: https://img.shields.io/npm/v/openapi-typescript-codegen.svg
-[license-image]: http://img.shields.io/npm/l/openapi-typescript-codegen.svg
 [license-url]: LICENSE
+[license-image]: http://img.shields.io/npm/l/openapi-typescript-codegen.svg
 [travis-url]: https://travis-ci.org/ferdikoomen/openapi-typescript-codegen
 [travis-image]: https://img.shields.io/travis/ferdikoomen/openapi-typescript-codegen.svg
 [deps-url]: https://david-dm.org/ferdikoomen/openapi-typescript-codegen
@@ -455,5 +455,5 @@ npm install form-data --save-dev
 [quality-image]: https://img.shields.io/lgtm/grade/javascript/g/ferdikoomen/openapi-typescript-codegen.svg
 [climate-url]: https://codeclimate.com/github/ferdikoomen/openapi-typescript-codegen
 [climate-image]: https://img.shields.io/codeclimate/maintainability/ferdikoomen/openapi-typescript-codegen.svg
+[downloads-url]: http://npm-stat.com/charts.html?package=openapi-typescript-codegen
 [downloads-image]: http://img.shields.io/npm/dm/openapi-typescript-codegen.svg
-[downloads-url]: http://npm-stat.com/charts.html?package=openapi-typescript-codegen.svg
