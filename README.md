@@ -1,10 +1,13 @@
 # OpenAPI Typescript Codegen
 
-[![NPM](https://badgen.net/npm/v/openapi-typescript-codegen)](https://www.npmjs.com/package/openapi-typescript-codegen)
-[![License](https://badgen.net/npm/license/openapi-typescript-codegen)](https://www.npmjs.com/package/openapi-typescript-codegen)
-[![Build Status](https://badgen.net/travis/ferdikoomen/openapi-typescript-codegen/master)](https://travis-ci.org/ferdikoomen/openapi-typescript-codegen)
-[![Codecov](https://codecov.io/gh/ferdikoomen/openapi-typescript-codegen/branch/master/graph/badge.svg)](https://codecov.io/gh/ferdikoomen/openapi-typescript-codegen)
-[![Quality](https://badgen.net/lgtm/grade/javascript/g/ferdikoomen/openapi-typescript-codegen)](https://lgtm.com/projects/g/ferdikoomen/openapi-typescript-codegen)
+[![NPM][npm-image]][npm-url]
+[![License][license-image]][license-url]
+[![Build Status][travis-image]][travis-url]
+[![Dependency Status][deps-image]][deps-url]
+[![Coverage][coverage-image]][coverage-url]
+[![Quality][quality-image]][quality-url]
+[![Code Climate][climate-image]][climate-url]
+[![Downloads][downloads-image]][downloads-url]
 
 > Node.js library that generates Typescript clients based on the OpenAPI specification.
 
@@ -437,3 +440,20 @@ npm install @types/node-fetch --save-dev
 npm install node-fetch --save-dev
 npm install form-data --save-dev
 ```
+
+[npm-url]: https://npmjs.org/package/openapi-typescript-codegen
+[npm-image]: https://img.shields.io/npm/v/openapi-typescript-codegen.svg
+[license-image]: http://img.shields.io/npm/l/openapi-typescript-codegen.svg
+[license-url]: LICENSE
+[travis-url]: https://travis-ci.org/ferdikoomen/openapi-typescript-codegen
+[travis-image]: https://img.shields.io/travis/ferdikoomen/openapi-typescript-codegen.svg
+[deps-url]: https://david-dm.org/ferdikoomen/openapi-typescript-codegen
+[deps-image]: https://img.shields.io/david/ferdikoomen/openapi-typescript-codegen.svg
+[coverage-url]: https://codecov.io/gh/ferdikoomen/openapi-typescript-codegen
+[coverage-image]: https://img.shields.io/codecov/c/github/ferdikoomen/openapi-typescript-codegen.svg
+[quality-url]: https://lgtm.com/projects/g/ferdikoomen/openapi-typescript-codegen
+[quality-image]: https://img.shields.io/lgtm/grade/javascript/g/ferdikoomen/openapi-typescript-codegen.svg
+[climate-url]: https://codeclimate.com/github/ferdikoomen/openapi-typescript-codegen
+[climate-image]: https://img.shields.io/codeclimate/maintainability/ferdikoomen/openapi-typescript-codegen.svg
+[downloads-image]: http://img.shields.io/npm/dm/openapi-typescript-codegen.svg
+[downloads-url]: http://npm-stat.com/charts.html?package=openapi-typescript-codegen.svg
