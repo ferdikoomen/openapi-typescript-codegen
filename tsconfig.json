@@ -16,13 +16,14 @@
         "strict": true,
         "strictNullChecks": true,
         "strictFunctionTypes": true,
-        "removeComments": true,
-        "isolatedModules": true,
-        "allowSyntheticDefaultImports": true
+        "removeComments": true
     },
 
     "files": [
-        "./src/typings/hbs.d.ts"
+        "./src/typings/hbs.d.ts",
+        "./src/typings/camelcase.d.ts",
+        "./src/typings/mkdirp.d.ts",
+        "./src/typings/rimraf.d.ts"
     ],
 
     "include": [
