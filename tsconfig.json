@@ -12,11 +12,9 @@
         "noImplicitReturns": true,
         "noImplicitThis": true,
         "noImplicitAny": true,
-        "skipLibCheck": true,
         "strict": true,
         "strictNullChecks": true,
-        "strictFunctionTypes": true,
-        "removeComments": true
+        "strictFunctionTypes": true
     },
 
     "files": [
