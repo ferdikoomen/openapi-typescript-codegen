@@ -127,35 +127,79 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isDefiniti
         }
     }
 
-    // TODO:
-    //  Add correct support for oneOf, anyOf, allOf
-    //  https://swagger.io/docs/specification/data-models/oneof-anyof-allof-not/
-
-    if (definition.anyOf && definition.anyOf.length && !definition.properties) {
+    if (definition.anyOf && definition.anyOf.length) {
         model.export = 'generic';
-        const compositionTypes = definition.anyOf.filter(type => type.$ref).map(type => getType(type.$ref));
-        const composition = compositionTypes
-            .map(type => type.type)
+        const compositionItems = definition.anyOf
+            .map(d => getModel(openApi, d));
+        const composition = compositionItems
+            .map(t => {
+                if (t.enum.length > 0) {
+                    return t.enum.map(e => e.value).join(' | ');
+                }
+                if (t.properties.length > 0) {
+                    return t.properties.length === 1 ? t.properties.map(p => `{ ${p.name}: ${getType(p.type).type} }`) : `{ ${t.properties.map(p => `${p.name}: ${getType(p.type).type} `)} }`;
+                }
+                return t.type;
+            })
             .sort()
             .join(' | ');
-        model.imports.push(...compositionTypes.map(type => type.base));
         model.type = composition;
         model.base = composition;
+        const iter = compositionItems.reduce((prev, cur) => {
+            return {
+                imports: [...(prev.imports || []), ...cur.imports],
+                extends: [...(prev.extends || []), ...cur.extends],
+                enum: [...(prev.enum || []), ...cur.enum],
+                enums: [...(prev.enums || []), ...cur.enums],
+                properties: [...(prev.properties || []), ...cur.properties],
+            };
+        }, {} as any) as Model;
+        model.imports = iter.imports;
+        model.extends = iter.extends;
+        model.enum = iter.enum;
+        model.enums = iter.enums;
+        model.properties = iter.properties;
+
         return model;
     }
 
-    if (definition.oneOf && definition.oneOf.length && !definition.properties) {
+
+    if (definition.oneOf && definition.oneOf.length) {
         model.export = 'generic';
-        const compositionTypes = definition.oneOf.filter(type => type.$ref).map(type => getType(type.$ref));
-        const composition = compositionTypes
-            .map(type => type.type)
+        const compositionItems = definition.oneOf
+            .map(d => getModel(openApi, d));
+        const composition = compositionItems
+            .map(t => {
+                if (t.enum.length > 0) {
+                    return t.enum.map(e => e.value).join(' | ');
+                }
+                if (t.properties.length > 0) {
+                    return t.properties.length === 1 ? t.properties.map(p => `{ ${p.name}: ${getType(p.type).type} }`) : `{ ${t.properties.map(p => `${p.name}: ${getType(p.type).type} `)} }`;
+                }
+                return t.type;
+            })
             .sort()
             .join(' | ');
-        model.imports.push(...compositionTypes.map(type => type.base));
         model.type = composition;
         model.base = composition;
+        const iter = compositionItems.reduce((prev, cur) => {
+            return {
+                imports: [...(prev.imports || []), ...cur.imports],
+                extends: [...(prev.extends || []), ...cur.extends],
+                enum: [...(prev.enum || []), ...cur.enum],
+                enums: [...(prev.enums || []), ...cur.enums],
+                properties: [...(prev.properties || []), ...cur.properties],
+            };
+        }, {} as any) as Model;
+        model.imports = iter.imports;
+        model.extends = iter.extends;
+        model.enum = iter.enum;
+        model.enums = iter.enums;
+        model.properties = iter.properties;
+
         return model;
     }
+
 
     if (definition.type === 'object' || definition.allOf) {
         model.export = 'interface';

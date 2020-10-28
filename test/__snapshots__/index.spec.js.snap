@@ -2499,6 +2499,8 @@ export { EnumWithStrings } from './models/EnumWithStrings';
 export type { ModelLink } from './models/ModelLink';
 export type { ModelThatExtends } from './models/ModelThatExtends';
 export type { ModelThatExtendsExtends } from './models/ModelThatExtendsExtends';
+export type { ModelWithAnonymousAnyOf } from './models/ModelWithAnonymousAnyOf';
+export type { ModelWithAnonymousOneOf } from './models/ModelWithAnonymousOneOf';
 export type { ModelWithAnyOf } from './models/ModelWithAnyOf';
 export type { ModelWithArray } from './models/ModelWithArray';
 export type { ModelWithBoolean } from './models/ModelWithBoolean';
@@ -2544,6 +2546,8 @@ export { $EnumWithStrings } from './schemas/$EnumWithStrings';
 export { $ModelLink } from './schemas/$ModelLink';
 export { $ModelThatExtends } from './schemas/$ModelThatExtends';
 export { $ModelThatExtendsExtends } from './schemas/$ModelThatExtendsExtends';
+export { $ModelWithAnonymousAnyOf } from './schemas/$ModelWithAnonymousAnyOf';
+export { $ModelWithAnonymousOneOf } from './schemas/$ModelWithAnonymousOneOf';
 export { $ModelWithAnyOf } from './schemas/$ModelWithAnyOf';
 export { $ModelWithArray } from './schemas/$ModelWithArray';
 export { $ModelWithBoolean } from './schemas/$ModelWithBoolean';
@@ -2816,6 +2820,32 @@ import type { ModelWithString } from './ModelWithString';
 export interface ModelThatExtendsExtends extends ModelWithString, ModelThatExtends {
     propExtendsC?: string;
     propExtendsD?: ModelWithString;
+}
+"
+`;
+
+exports[`v3 should generate: ./test/generated/v3/models/ModelWithAnonymousAnyOf.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/**
+ * This is a model with one property with a 'any of' relationship where the options are not $ref
+ */
+export interface ModelWithAnonymousAnyOf {
+    propA?: number | string | { propA: any };
+}
+"
+`;
+
+exports[`v3 should generate: ./test/generated/v3/models/ModelWithAnonymousOneOf.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/**
+ * This is a model with one property with a 'one of' relationship where the options are not $ref
+ */
+export interface ModelWithAnonymousOneOf {
+    propA?: number | string | { propA: any };
 }
 "
 `;
@@ -3489,6 +3519,32 @@ export const $ModelThatExtendsExtends = {
         },
         propExtendsD: {
             type: 'ModelWithString',
+        },
+    },
+};"
+`;
+
+exports[`v3 should generate: ./test/generated/v3/schemas/$ModelWithAnonymousAnyOf.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+export const $ModelWithAnonymousAnyOf = {
+    properties: {
+        propA: {
+            type: 'number | string | { propA: any }',
+        },
+    },
+};"
+`;
+
+exports[`v3 should generate: ./test/generated/v3/schemas/$ModelWithAnonymousOneOf.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+export const $ModelWithAnonymousOneOf = {
+    properties: {
+        propA: {
+            type: 'number | string | { propA: any }',
         },
     },
 };"

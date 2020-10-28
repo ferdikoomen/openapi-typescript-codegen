@@ -1538,6 +1538,32 @@
                     }
                 }
             },
+            "ModelWithAnonymousOneOf": {
+                "description": "This is a model with one property with a 'one of' relationship where the options are not $ref",
+                "type": "object",
+                "properties": {
+                    "propA": {
+                        "type": "object",
+                        "oneOf": [
+                            {
+                                "description": "anonymous object type",
+                                "type": "object",
+                                "properties": {
+                                    "propA": "string"
+                                }
+                            },
+                            {
+                                "description": "anonymous string type",
+                                "type": "string"
+                            },
+                            {
+                                "description": "anonymous integer type",
+                                "type": "integer"
+                            }
+                        ]
+                    }
+                }
+            },
             "ModelWithAnyOf": {
                 "description": "This is a model with one property with a 'any of' relationship",
                 "type": "object",
@@ -1556,6 +1582,32 @@
                             },
                             {
                                 "$ref": "#/components/schemas/ModelWithDictionary"
+                            }
+                        ]
+                    }
+                }
+            },
+            "ModelWithAnonymousAnyOf": {
+                "description": "This is a model with one property with a 'any of' relationship where the options are not $ref",
+                "type": "object",
+                "properties": {
+                    "propA": {
+                        "type": "object",
+                        "anyOf": [
+                            {
+                                "description": "anonymous object type",
+                                "type": "object",
+                                "properties": {
+                                    "propA": "string"
+                                }
+                            },
+                            {
+                                "description": "anonymous string type",
+                                "type": "string"
+                            },
+                            {
+                                "description": "anonymous integer type",
+                                "type": "integer"
                             }
                         ]
                     }
