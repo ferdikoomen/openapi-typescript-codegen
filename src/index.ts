@@ -1,3 +1,5 @@
+import * as path from 'path';
+import * as pkgdir from 'pkg-dir';
 import { parse as parseV2 } from './openApi/v2';
 import { parse as parseV3 } from './openApi/v3';
 import { getOpenApiSpec } from './utils/getOpenApiSpec';
@@ -54,6 +56,11 @@ export async function generate({
     write = true,
 }: Options): Promise<void> {
     const openApi = isString(input) ? await getOpenApiSpec(input) : input;
+    const basePath = isString(input) ? path.resolve(path.dirname(input)) : process.cwd();
+    openApi.$meta = {
+        baseUri: `file://${basePath}/`, // use the baseURI of the openapi.yml file
+        projectPath: `${pkgdir.sync()}/`, // find the current project's base path
+    };
     const openApiVersion = getOpenApiVersion(openApi);
     const templates = registerHandlebarTemplates();
 
@@ -67,7 +74,7 @@ export async function generate({
         }
 
         case OpenApiVersion.V3: {
-            const client = parseV3(openApi);
+            const client = await parseV3(openApi);
             const clientFinal = postProcessClient(client);
             if (!write) break;
             await writeClient(clientFinal, templates, output, httpClient, useOptions, useUnionTypes, exportCore, exportServices, exportModels, exportSchemas);

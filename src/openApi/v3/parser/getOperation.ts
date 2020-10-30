@@ -16,7 +16,7 @@ import { getRef } from './getRef';
 import { getServiceClassName } from './getServiceClassName';
 import { sortByRequired } from './sortByRequired';
 
-export function getOperation(openApi: OpenApi, url: string, method: string, op: OpenApiOperation, pathParams: OperationParameters): Operation {
+export async function getOperation(openApi: OpenApi, url: string, method: string, op: OpenApiOperation, pathParams: OperationParameters): Promise<Operation> {
     const serviceName = (op.tags && op.tags[0]) || 'Service';
     const serviceClassName = getServiceClassName(serviceName);
     const operationNameFallback = `${method}${serviceClassName}`;
@@ -47,7 +47,7 @@ export function getOperation(openApi: OpenApi, url: string, method: string, op: 
 
     // Parse the operation parameters (path, query, body, etc).
     if (op.parameters) {
-        const parameters = getOperationParameters(openApi, op.parameters);
+        const parameters = await getOperationParameters(openApi, op.parameters);
         operation.imports.push(...parameters.imports);
         operation.parameters.push(...parameters.parameters);
         operation.parametersPath.push(...parameters.parametersPath);
@@ -60,7 +60,7 @@ export function getOperation(openApi: OpenApi, url: string, method: string, op: 
 
     // TODO: form data goes wrong here: https://github.com/ferdikoomen/openapi-typescript-codegen/issues/257§
     if (op.requestBody) {
-        const requestBodyDef = getRef<OpenApiRequestBody>(openApi, op.requestBody);
+        const requestBodyDef = await getRef<OpenApiRequestBody>(openApi, op.requestBody);
         const requestBody = getOperationRequestBody(openApi, requestBodyDef);
         operation.imports.push(...requestBody.imports);
         operation.parameters.push(requestBody);
@@ -70,7 +70,7 @@ export function getOperation(openApi: OpenApi, url: string, method: string, op: 
 
     // Parse the operation responses.
     if (op.responses) {
-        const operationResponses = getOperationResponses(openApi, op.responses);
+        const operationResponses = await getOperationResponses(openApi, op.responses);
         const operationResults = getOperationResults(operationResponses);
         operation.errors = getOperationErrors(operationResponses);
         operation.responseHeader = getOperationResponseHeader(operationResults);

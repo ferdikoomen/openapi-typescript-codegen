@@ -10,11 +10,11 @@ import { getServiceVersion } from './parser/getServiceVersion';
  * all the models, services and schema's we should output.
  * @param openApi The OpenAPI spec  that we have loaded from disk.
  */
-export function parse(openApi: OpenApi): Client {
+export async function parse(openApi: OpenApi): Promise<Client> {
     const version = getServiceVersion(openApi.info.version);
     const server = getServer(openApi);
-    const models = getModels(openApi);
-    const services = getServices(openApi);
+    const models = await getModels(openApi);
+    const services = await getServices(openApi);
 
     return { version, server, models, services };
 }

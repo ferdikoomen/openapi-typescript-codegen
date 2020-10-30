@@ -1,9 +1,9 @@
 import { getRef } from './getRef';
 
 describe('getRef', () => {
-    it('should produce correct result', () => {
+    it('should produce correct result', async () => {
         expect(
-            getRef(
+            await getRef(
                 {
                     openapi: '3.0',
                     info: {

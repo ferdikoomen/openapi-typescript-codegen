@@ -7,13 +7,13 @@ import { getOperationParameters } from './getOperationParameters';
 /**
  * Get the OpenAPI services
  */
-export function getServices(openApi: OpenApi): Service[] {
+export async function getServices(openApi: OpenApi): Promise<Service[]> {
     const services = new Map<string, Service>();
     for (const url in openApi.paths) {
         if (openApi.paths.hasOwnProperty(url)) {
             // Grab path and parse any global path parameters
             const path = openApi.paths[url];
-            const pathParams = getOperationParameters(openApi, path.parameters || []);
+            const pathParams = await getOperationParameters(openApi, path.parameters || []);
 
             // Parse all the methods for this path
             for (const method in path) {
@@ -28,7 +28,7 @@ export function getServices(openApi: OpenApi): Service[] {
                         case Method.PATCH:
                             // Each method contains an OpenAPI operation, we parse the operation
                             const op = path[method]!;
-                            const operation = getOperation(openApi, url, method, op, pathParams);
+                            const operation = await getOperation(openApi, url, method, op, pathParams);
 
                             // If we have already declared a service, then we should fetch that and
                             // append the new method to it. Otherwise we should create a new service object.

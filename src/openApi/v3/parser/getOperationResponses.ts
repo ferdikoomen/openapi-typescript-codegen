@@ -6,7 +6,7 @@ import { getOperationResponse } from './getOperationResponse';
 import { getOperationResponseCode } from './getOperationResponseCode';
 import { getRef } from './getRef';
 
-export function getOperationResponses(openApi: OpenApi, responses: OpenApiResponses): OperationResponse[] {
+export async function getOperationResponses(openApi: OpenApi, responses: OpenApiResponses): Promise<OperationResponse[]> {
     const operationResponses: OperationResponse[] = [];
 
     // Iterate over each response code and get the
@@ -14,7 +14,7 @@ export function getOperationResponses(openApi: OpenApi, responses: OpenApiRespon
     for (const code in responses) {
         if (responses.hasOwnProperty(code)) {
             const responseOrReference = responses[code];
-            const response = getRef<OpenApiResponse>(openApi, responseOrReference);
+            const response = await getRef<OpenApiResponse>(openApi, responseOrReference);
             const responseCode = getOperationResponseCode(code);
 
             if (responseCode) {

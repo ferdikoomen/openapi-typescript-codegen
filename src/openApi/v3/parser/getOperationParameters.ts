@@ -5,7 +5,7 @@ import { getOperationParameter } from './getOperationParameter';
 import { getRef } from './getRef';
 import { sortByRequired } from './sortByRequired';
 
-export function getOperationParameters(openApi: OpenApi, parameters: OpenApiParameter[]): OperationParameters {
+export async function getOperationParameters(openApi: OpenApi, parameters: OpenApiParameter[]): Promise<OperationParameters> {
     const operationParameters: OperationParameters = {
         imports: [],
         parameters: [],
@@ -18,8 +18,8 @@ export function getOperationParameters(openApi: OpenApi, parameters: OpenApiPara
     };
 
     // Iterate over the parameters
-    parameters.forEach(parameterOrReference => {
-        const parameterDef = getRef<OpenApiParameter>(openApi, parameterOrReference);
+    await Promise.all(parameters.map(async parameterOrReference => {
+        const parameterDef = await getRef<OpenApiParameter>(openApi, parameterOrReference);
         const parameter = getOperationParameter(openApi, parameterDef);
 
         // We ignore the "api-version" param, since we do not want to add this
@@ -57,7 +57,7 @@ export function getOperationParameters(openApi: OpenApi, parameters: OpenApiPara
                     break;
             }
         }
-    });
+    }));
 
     operationParameters.parameters = operationParameters.parameters.sort(sortByRequired);
     operationParameters.parametersPath = operationParameters.parametersPath.sort(sortByRequired);

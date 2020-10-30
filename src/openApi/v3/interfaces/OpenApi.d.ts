@@ -5,6 +5,7 @@ import type { OpenApiPaths } from './OpenApiPaths';
 import type { OpenApiSecurityRequirement } from './OpenApiSecurityRequirement';
 import type { OpenApiServer } from './OpenApiServer';
 import type { OpenApiTag } from './OpenApiTag';
+import type { ParserMeta } from './ParserMeta';
 
 /**
  * https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md
@@ -18,4 +19,4 @@ export interface OpenApi {
     security?: OpenApiSecurityRequirement[];
     tags?: OpenApiTag[];
     externalDocs?: OpenApiExternalDocs;
-}
+    $meta: ParserMeta;
