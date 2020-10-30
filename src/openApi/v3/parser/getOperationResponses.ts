@@ -18,7 +18,7 @@ export async function getOperationResponses(openApi: OpenApi, responses: OpenApi
             const responseCode = getOperationResponseCode(code);
 
             if (responseCode) {
-                operationResponses.push(getOperationResponse(openApi, response, responseCode));
+                operationResponses.push(await getOperationResponse(openApi, response, responseCode));
             }
         }
     }

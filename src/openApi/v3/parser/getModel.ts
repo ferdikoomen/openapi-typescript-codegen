@@ -10,8 +10,10 @@ import { getModelDefault } from './getModelDefault';
 import { getModelProperties } from './getModelProperties';
 import { getPattern } from './getPattern';
 import { getType } from './getType';
+import { getRef } from './getRef';
+import { getExternalReference, isLocalRef } from '../../../utils/refs';
 
-export function getModel(openApi: OpenApi, definition: OpenApiSchema, isDefinition: boolean = false, name: string = ''): Model {
+export async function getModel(openApi: OpenApi, definition: OpenApiSchema, isDefinition: boolean = false, name: string = ''): Promise<Model> {
     const model: Model = {
         name: name,
         export: 'interface',
@@ -46,14 +48,19 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isDefiniti
     };
 
     if (definition.$ref) {
-        const definitionRef = getType(definition.$ref);
-        model.export = 'reference';
-        model.type = definitionRef.type;
-        model.base = definitionRef.base;
-        model.template = definitionRef.template;
-        model.imports.push(...definitionRef.imports);
-        model.default = getModelDefault(definition, model);
-        return model;
+        if (isLocalRef(definition.$ref)) {
+            const definitionRef = getType(definition.$ref);
+            model.export = 'reference';
+            model.type = definitionRef.type;
+            model.base = definitionRef.base;
+            model.template = definitionRef.template;
+            model.imports.push(...definitionRef.imports);
+            model.default = getModelDefault(definition, model);
+            return model;
+        } else {
+            const resolvedDefinition = await getExternalReference<OpenApiSchema>(openApi.$meta, definition.$ref);
+            return getModel(openApi, resolvedDefinition, isDefinition, name);
+        }
     }
 
     if (definition.enum) {
@@ -92,7 +99,7 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isDefiniti
             model.default = getModelDefault(definition, model);
             return model;
         } else {
-            const arrayItems = getModel(openApi, definition.items);
+            const arrayItems = await getModel(openApi, definition.items);
             model.export = 'array';
             model.type = arrayItems.type;
             model.base = arrayItems.base;
@@ -115,7 +122,7 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isDefiniti
             model.default = getModelDefault(definition, model);
             return model;
         } else {
-            const additionalProperties = getModel(openApi, definition.additionalProperties);
+            const additionalProperties = await getModel(openApi, definition.additionalProperties);
             model.export = 'dictionary';
             model.type = additionalProperties.type;
             model.base = additionalProperties.base;
@@ -164,14 +171,14 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isDefiniti
         model.default = getModelDefault(definition, model);
 
         if (definition.allOf && definition.allOf.length) {
-            definition.allOf.forEach(parent => {
+            for (const parent of definition.allOf) {
                 if (parent.$ref) {
                     const parentRef = getType(parent.$ref);
                     model.extends.push(parentRef.base);
                     model.imports.push(parentRef.base);
                 }
                 if (parent.type === 'object' && parent.properties) {
-                    const properties = getModelProperties(openApi, parent, getModel);
+                    const properties = await getModelProperties(openApi, parent, getModel);
                     properties.forEach(property => {
                         model.properties.push(property);
                         model.imports.push(...property.imports);
@@ -180,11 +187,11 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isDefiniti
                         }
                     });
                 }
-            });
+            }
         }
 
         if (definition.properties) {
-            const properties = getModelProperties(openApi, definition, getModel);
+            const properties = await getModelProperties(openApi, definition, getModel);
             properties.forEach(property => {
                 model.properties.push(property);
                 model.imports.push(...property.imports);

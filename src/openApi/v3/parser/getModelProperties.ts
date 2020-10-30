@@ -7,9 +7,9 @@ import { getPattern } from './getPattern';
 import { getType } from './getType';
 
 // Fix for circular dependency between getModel and getModelProperties
-export type GetModel = (openApi: OpenApi, definition: OpenApiSchema, isDefinition?: boolean, name?: string) => Model;
+export type GetModel = (openApi: OpenApi, definition: OpenApiSchema, isDefinition?: boolean, name?: string) => Promise<Model>;
 
-export function getModelProperties(openApi: OpenApi, definition: OpenApiSchema, getModel: GetModel): Model[] {
+export async function getModelProperties(openApi: OpenApi, definition: OpenApiSchema, getModel: GetModel): Promise<Model[]> {
     const models: Model[] = [];
     for (const propertyName in definition.properties) {
         if (definition.properties.hasOwnProperty(propertyName)) {
@@ -50,7 +50,7 @@ export function getModelProperties(openApi: OpenApi, definition: OpenApiSchema, 
                     properties: [],
                 });
             } else {
-                const model = getModel(openApi, property);
+                const model = await getModel(openApi, property);
                 models.push({
                     name: escapeName(propertyName),
                     export: model.export,

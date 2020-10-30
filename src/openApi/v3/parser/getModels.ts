@@ -9,9 +9,9 @@ export async function getModels(openApi: OpenApi): Promise<Model[]> {
     if (openApi.components) {
         for (const definitionName in openApi.components.schemas) {
             if (openApi.components.schemas.hasOwnProperty(definitionName)) {
-                const definition = await getRef(openApi, openApi.components.schemas[definitionName]);
+                const definition = openApi.components.schemas[definitionName];
                 const definitionType = getType(definitionName);
-                const model = getModel(openApi, definition, true, definitionType.base);
+                const model = await getModel(openApi, definition, true, definitionType.base);
                 models.push(model);
             }
         }

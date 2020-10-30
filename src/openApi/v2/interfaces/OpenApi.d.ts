@@ -8,6 +8,7 @@ import type { OpenApiSchema } from './OpenApiSchema';
 import type { OpenApiSecurityRequirement } from './OpenApiSecurityRequirement';
 import type { OpenApiSecurityScheme } from './OpenApiSecurityScheme';
 import type { OpenApiTag } from './OpenApiTag';
+import { ParserMeta } from '../../../interfaces/ParserMeta';
 
 /**
  * https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md
@@ -28,4 +29,5 @@ export interface OpenApi {
     security?: OpenApiSecurityRequirement[];
     tags?: OpenApiTag[];
     externalDocs?: OpenApiExternalDocs;
+    $meta: ParserMeta;
 }

@@ -18,9 +18,9 @@ export async function getOperationParameters(openApi: OpenApi, parameters: OpenA
     };
 
     // Iterate over the parameters
-    await Promise.all(parameters.map(async parameterOrReference => {
+    for (const parameterOrReference of parameters) {
         const parameterDef = await getRef<OpenApiParameter>(openApi, parameterOrReference);
-        const parameter = getOperationParameter(openApi, parameterDef);
+        const parameter = await getOperationParameter(openApi, parameterDef);
 
         // We ignore the "api-version" param, since we do not want to add this
         // as the first / default parameter for each of the service calls.
@@ -57,7 +57,7 @@ export async function getOperationParameters(openApi: OpenApi, parameters: OpenA
                     break;
             }
         }
-    }));
+    }
 
     operationParameters.parameters = operationParameters.parameters.sort(sortByRequired);
     operationParameters.parametersPath = operationParameters.parametersPath.sort(sortByRequired);

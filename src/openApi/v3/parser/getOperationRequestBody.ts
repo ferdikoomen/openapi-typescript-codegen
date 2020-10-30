@@ -8,7 +8,7 @@ import { getModel } from './getModel';
 import { getPattern } from './getPattern';
 import { getType } from './getType';
 
-export function getOperationRequestBody(openApi: OpenApi, parameter: OpenApiRequestBody): OperationParameter {
+export async function getOperationRequestBody(openApi: OpenApi, parameter: OpenApiRequestBody): Promise<OperationParameter> {
     const requestBody: OperationParameter = {
         in: 'body',
         prop: 'body',
@@ -43,7 +43,7 @@ export function getOperationRequestBody(openApi: OpenApi, parameter: OpenApiRequ
                 requestBody.imports.push(...model.imports);
                 return requestBody;
             } else {
-                const model = getModel(openApi, schema);
+                const model = await getModel(openApi, schema);
                 requestBody.export = model.export;
                 requestBody.type = model.type;
                 requestBody.base = model.base;

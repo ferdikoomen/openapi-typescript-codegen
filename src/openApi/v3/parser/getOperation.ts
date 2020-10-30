@@ -61,7 +61,7 @@ export async function getOperation(openApi: OpenApi, url: string, method: string
     // TODO: form data goes wrong here: https://github.com/ferdikoomen/openapi-typescript-codegen/issues/257§
     if (op.requestBody) {
         const requestBodyDef = await getRef<OpenApiRequestBody>(openApi, op.requestBody);
-        const requestBody = getOperationRequestBody(openApi, requestBodyDef);
+        const requestBody = await getOperationRequestBody(openApi, requestBodyDef);
         operation.imports.push(...requestBody.imports);
         operation.parameters.push(requestBody);
         operation.parameters = operation.parameters.sort(sortByRequired);

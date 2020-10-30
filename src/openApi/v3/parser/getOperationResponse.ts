@@ -8,7 +8,7 @@ import { getModel } from './getModel';
 import { getPattern } from './getPattern';
 import { getType } from './getType';
 
-export function getOperationResponse(openApi: OpenApi, response: OpenApiResponse, responseCode: number): OperationResponse {
+export async function getOperationResponse(openApi: OpenApi, response: OpenApiResponse, responseCode: number): Promise<OperationResponse> {
     const operationResponse: OperationResponse = {
         in: 'response',
         name: '',
@@ -56,7 +56,7 @@ export function getOperationResponse(openApi: OpenApi, response: OpenApiResponse
                 operationResponse.imports.push(...model.imports);
                 return operationResponse;
             } else {
-                const model = getModel(openApi, schema);
+                const model = await getModel(openApi, schema);
                 operationResponse.export = model.export;
                 operationResponse.type = model.type;
                 operationResponse.base = model.base;

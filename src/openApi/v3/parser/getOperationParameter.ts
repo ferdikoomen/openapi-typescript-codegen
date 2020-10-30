@@ -9,7 +9,7 @@ import { getOperationParameterName } from './getOperationParameterName';
 import { getPattern } from './getPattern';
 import { getType } from './getType';
 
-export function getOperationParameter(openApi: OpenApi, parameter: OpenApiParameter): OperationParameter {
+export async function getOperationParameter(openApi: OpenApi, parameter: OpenApiParameter): Promise<OperationParameter> {
     const operationParameter: OperationParameter = {
         in: parameter.in,
         prop: parameter.name,
@@ -49,10 +49,10 @@ export function getOperationParameter(openApi: OpenApi, parameter: OpenApiParame
             operationParameter.base = model.base;
             operationParameter.template = model.template;
             operationParameter.imports.push(...model.imports);
-            operationParameter.default = getModelDefault(parameter.schema);
+            operationParameter.default = await getModelDefault(parameter.schema);
             return operationParameter;
         } else {
-            const model = getModel(openApi, parameter.schema);
+            const model = await getModel(openApi, parameter.schema);
             operationParameter.export = model.export;
             operationParameter.type = model.type;
             operationParameter.base = model.base;
