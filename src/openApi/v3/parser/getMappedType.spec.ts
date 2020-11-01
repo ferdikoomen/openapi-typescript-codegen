@@ -15,7 +15,7 @@ describe('getMappedType', () => {
         expect(getMappedType('object')).toEqual('any');
         expect(getMappedType('void')).toEqual('void');
         expect(getMappedType('null')).toEqual('null');
-        expect(getMappedType('unknown')).toEqual('unknown');
-        expect(getMappedType('')).toEqual('');
+        expect(getMappedType('unknown')).toEqual(undefined);
+        expect(getMappedType('')).toEqual(undefined);
     });
 });
