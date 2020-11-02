@@ -40,7 +40,7 @@ $ openapi --help
     -V, --version             output the version number
     -i, --input <value>       OpenAPI specification, can be a path, url or string content (required)
     -o, --output <value>      Output directory (required)
-    -c, --client <value>      HTTP client to generate [fetch, xhr, node] (default: "fetch")
+    -c, --client <value>      HTTP client to generate [fetch, xhr, node, custom] (default: "fetch")
     --useOptions              Use options instead of arguments
     --useUnionTypes           Use union types instead of enums
     --exportCore <value>      Write core files to disk (default: true)
@@ -440,6 +440,14 @@ npm install @types/node-fetch --save-dev
 npm install node-fetch --save-dev
 npm install form-data --save-dev
 ```
+
+### Support for a custom http-client
+
+If you have more sophisticated requirements that are not provided by the generated http-clients, you can specify
+`--client custom` and provide your own request-function.
+
+`openapi --input ./spec.json --output ./dist --client custom`
+
 
 [npm-url]: https://npmjs.org/package/openapi-typescript-codegen
 [npm-image]: https://img.shields.io/npm/v/openapi-typescript-codegen.svg

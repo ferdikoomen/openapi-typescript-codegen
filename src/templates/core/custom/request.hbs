@@ -1,0 +1,28 @@
+{{>header}}
+import { ApiError } from './ApiError';
+import type { ApiRequestOptions } from './ApiRequestOptions';
+import type { ApiResult } from './ApiResult';
+
+{{>functions/catchErrors}}
+
+export type ExecuteRequest = (options: ApiRequestOptions) => Promise<ApiResult>;
+
+type CustomHttpClient = {
+    executeRequest?: ExecuteRequest;
+};
+export const CustomHttpClient: CustomHttpClient = {};
+
+/**
+ * Request using fetch client
+ * @param options The request options from the the service
+ * @result ApiResult
+ * @throws ApiError
+ */
+export async function request(options: ApiRequestOptions): Promise<ApiResult> {
+    if (CustomHttpClient.executeRequest == null) {
+        throw new Error("No custom request-function has been registered. Use `CustomRequest.requestFunction = async (options) => {...} to implement one.")
+    }
+    const result = await CustomHttpClient.executeRequest(options);
+    catchErrors(options, result);
+    return result;
+}

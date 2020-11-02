@@ -33,6 +33,7 @@ import xhrGetResponseBody from '../templates/core/xhr/getResponseBody.hbs';
 import xhrGetResponseHeader from '../templates/core/xhr/getResponseHeader.hbs';
 import xhrRequest from '../templates/core/xhr/request.hbs';
 import xhrSendRequest from '../templates/core/xhr/sendRequest.hbs';
+import customRequest from '../templates/core/custom/request.hbs';
 import templateExportModel from '../templates/exportModel.hbs';
 import templateExportSchema from '../templates/exportSchema.hbs';
 import templateExportService from '../templates/exportService.hbs';
@@ -164,6 +165,9 @@ export function registerHandlebarTemplates(): Templates {
     Handlebars.registerPartial('node/getResponseHeader', Handlebars.template(nodeGetResponseHeader));
     Handlebars.registerPartial('node/sendRequest', Handlebars.template(nodeSendRequest));
     Handlebars.registerPartial('node/request', Handlebars.template(nodeRequest));
+
+    // Specific files for the custom client implementation
+    Handlebars.registerPartial('custom/request', Handlebars.template(customRequest));
 
     return templates;
 }
