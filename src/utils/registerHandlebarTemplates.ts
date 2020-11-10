@@ -50,6 +50,7 @@ import partialParameters from '../templates/partials/parameters.hbs';
 import partialResult from '../templates/partials/result.hbs';
 import partialSchema from '../templates/partials/schema.hbs';
 import partialSchemaArray from '../templates/partials/schemaArray.hbs';
+import partialSchemaComposition from '../templates/partials/schemaComposition.hbs';
 import partialSchemaDictionary from '../templates/partials/schemaDictionary.hbs';
 import partialSchemaEnum from '../templates/partials/schemaEnum.hbs';
 import partialSchemaGeneric from '../templates/partials/schemaGeneric.hbs';
@@ -60,7 +61,9 @@ import partialTypeDictionary from '../templates/partials/typeDictionary.hbs';
 import partialTypeEnum from '../templates/partials/typeEnum.hbs';
 import partialTypeGeneric from '../templates/partials/typeGeneric.hbs';
 import partialTypeInterface from '../templates/partials/typeInterface.hbs';
+import partialTypeIntersection from '../templates/partials/typeIntersection.hbs';
 import partialTypeReference from '../templates/partials/typeReference.hbs';
+import partialTypeUnion from '../templates/partials/typeUnion.hbs';
 import { registerHandlebarHelpers } from './registerHandlebarHelpers';
 
 export interface Templates {
@@ -120,6 +123,7 @@ export function registerHandlebarTemplates(): Templates {
     Handlebars.registerPartial('schemaEnum', Handlebars.template(partialSchemaEnum));
     Handlebars.registerPartial('schemaGeneric', Handlebars.template(partialSchemaGeneric));
     Handlebars.registerPartial('schemaInterface', Handlebars.template(partialSchemaInterface));
+    Handlebars.registerPartial('schemaComposition', Handlebars.template(partialSchemaComposition));
     Handlebars.registerPartial('type', Handlebars.template(partialType));
     Handlebars.registerPartial('typeArray', Handlebars.template(partialTypeArray));
     Handlebars.registerPartial('typeDictionary', Handlebars.template(partialTypeDictionary));
@@ -127,6 +131,8 @@ export function registerHandlebarTemplates(): Templates {
     Handlebars.registerPartial('typeGeneric', Handlebars.template(partialTypeGeneric));
     Handlebars.registerPartial('typeInterface', Handlebars.template(partialTypeInterface));
     Handlebars.registerPartial('typeReference', Handlebars.template(partialTypeReference));
+    Handlebars.registerPartial('typeUnion', Handlebars.template(partialTypeUnion));
+    Handlebars.registerPartial('typeIntersection', Handlebars.template(partialTypeIntersection));
     Handlebars.registerPartial('base', Handlebars.template(partialBase));
 
     // Generic functions used in 'request' file @see src/templates/core/request.hbs for more info

@@ -1561,6 +1561,93 @@
                     }
                 }
             },
+            "ModelWithOneOfAndNullable": {
+                "description": "This is a model with one property with a 'one of' relationship",
+                "type": "object",
+                "properties": {
+                    "propA": {
+                        "nullable": true,
+                        "type": "object",
+                        "oneOf": [
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "boolean": {
+                                        "type": "boolean"
+                                    }
+                                }
+                            },
+                            {
+                                "$ref": "#/components/schemas/ModelWithEnum"
+                            },
+                            {
+                                "$ref": "#/components/schemas/ModelWithArray"
+                            },
+                            {
+                                "$ref": "#/components/schemas/ModelWithDictionary"
+                            }
+                        ]
+                    }
+                }
+            },
+            "ModelWithAllOfAndNullable": {
+                "description": "This is a model with one property with a 'all of' relationship",
+                "type": "object",
+                "properties": {
+                    "propA": {
+                        "nullable": true,
+                        "type": "object",
+                        "allOf": [
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "boolean": {
+                                        "type": "boolean"
+                                    }
+                                }
+                            },
+                            {
+                                "$ref": "#/components/schemas/ModelWithEnum"
+                            },
+                            {
+                                "$ref": "#/components/schemas/ModelWithArray"
+                            },
+                            {
+                                "$ref": "#/components/schemas/ModelWithDictionary"
+                            }
+                        ]
+                    }
+                }
+            },
+            "ModelWithAnyOfAndNullable": {
+                "description": "This is a model with one property with a 'any of' relationship",
+                "type": "object",
+                "properties": {
+                    "propA": {
+                        "nullable": true,
+                        "type": "object",
+                        "anyOf": [
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "boolean": {
+                                        "type": "boolean"
+                                    }
+                                }
+                            },
+                            {
+                                "$ref": "#/components/schemas/ModelWithEnum"
+                            },
+                            {
+                                "$ref": "#/components/schemas/ModelWithArray"
+                            },
+                            {
+                                "$ref": "#/components/schemas/ModelWithDictionary"
+                            }
+                        ]
+                    }
+                }
+            },
             "ModelWithProperties": {
                 "description": "This is a model with one nested property",
                 "type": "object",

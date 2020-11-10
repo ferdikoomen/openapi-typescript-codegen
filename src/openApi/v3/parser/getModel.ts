@@ -126,74 +126,42 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isDefiniti
             return model;
         }
     }
-
     // TODO:
-    //  Add correct support for oneOf, anyOf, allOf
+    //  Add correct support for oneOf
     //  https://swagger.io/docs/specification/data-models/oneof-anyof-allof-not/
 
-    if (definition.anyOf && definition.anyOf.length && !definition.properties) {
-        model.export = 'generic';
-        const compositionTypes = definition.anyOf.filter(type => type.$ref).map(type => getType(type.$ref));
-        const composition = compositionTypes
-            .map(type => type.type)
-            .sort()
-            .join(' | ');
-        model.imports.push(...compositionTypes.map(type => type.base));
-        model.type = composition;
-        model.base = composition;
+    if (definition.oneOf?.length || definition.anyOf?.length || definition.allOf?.length) {
+        let types: OpenApiSchema[] = [];
+        if (definition.oneOf?.length) {
+            model.export = 'one-of';
+            types = definition.oneOf;
+        } else if (definition.anyOf?.length) {
+            model.export = 'any-of';
+            types = definition.anyOf;
+        } else if (definition.allOf?.length) {
+            model.export = 'all-of';
+            types = definition.allOf;
+        }
+        const compositionTypes = types.map(model => getModel(openApi, model));
+        model.properties = compositionTypes;
+        model.imports.push(...compositionTypes.reduce((acc: string[], type) => acc.concat(type.imports), []));
+        model.enums.push(...compositionTypes.reduce((acc: Model[], type) => acc.concat(type.enums), []));
         return model;
     }
 
-    if (definition.oneOf && definition.oneOf.length && !definition.properties) {
-        model.export = 'generic';
-        const compositionTypes = definition.oneOf.filter(type => type.$ref).map(type => getType(type.$ref));
-        const composition = compositionTypes
-            .map(type => type.type)
-            .sort()
-            .join(' | ');
-        model.imports.push(...compositionTypes.map(type => type.base));
-        model.type = composition;
-        model.base = composition;
-        return model;
-    }
-
-    if (definition.type === 'object' || definition.allOf) {
+    if (definition.type === 'object') {
         model.export = 'interface';
         model.type = PrimaryType.OBJECT;
         model.base = PrimaryType.OBJECT;
         model.default = getModelDefault(definition, model);
-
-        if (definition.allOf && definition.allOf.length) {
-            definition.allOf.forEach(parent => {
-                if (parent.$ref) {
-                    const parentRef = getType(parent.$ref);
-                    model.extends.push(parentRef.base);
-                    model.imports.push(parentRef.base);
-                }
-                if (parent.type === 'object' && parent.properties) {
-                    const properties = getModelProperties(openApi, parent, getModel);
-                    properties.forEach(property => {
-                        model.properties.push(property);
-                        model.imports.push(...property.imports);
-                        if (property.export === 'enum') {
-                            model.enums.push(property);
-                        }
-                    });
-                }
-            });
-        }
-
-        if (definition.properties) {
-            const properties = getModelProperties(openApi, definition, getModel);
-            properties.forEach(property => {
-                model.properties.push(property);
-                model.imports.push(...property.imports);
-                if (property.export === 'enum') {
-                    model.enums.push(property);
-                }
-            });
-        }
-
+        const properties = getModelProperties(openApi, definition, getModel);
+        properties.forEach(property => {
+            model.properties.push(property);
+            model.imports.push(...property.imports);
+            if (property.export === 'enum') {
+                model.enums.push(property);
+            }
+        });
         return model;
     }
 

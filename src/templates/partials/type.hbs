@@ -8,6 +8,12 @@
 {{>typeArray}}
 {{else equals export 'dictionary'}}
 {{>typeDictionary}}
+{{else equals export 'one-of'}}
+{{>typeUnion}}
+{{else equals export 'any-of'}}
+{{>typeUnion}}
+{{else equals export 'all-of'}}
+{{>typeIntersection}}
 {{else}}
 {{>typeGeneric}}
 {{/equals}}
