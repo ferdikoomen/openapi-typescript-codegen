@@ -70,7 +70,7 @@ export async function writeClient(
         await writeClientModels(client.models, templates, outputPathModels, httpClient, useUnionTypes);
     }
 
-    if (exportCore || exportServices || exportSchemas  || exportModels) {
+    if (exportCore || exportServices || exportSchemas || exportModels) {
         await mkdir(outputPath);
         await writeClientIndex(client, templates, outputPath, useUnionTypes, exportCore, exportServices, exportModels, exportSchemas);
     }
