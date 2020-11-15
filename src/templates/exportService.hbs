@@ -24,11 +24,11 @@ export class {{{name}}} {
      * {{{description}}}
     {{/if}}
     {{#unless @root.useOptions}}
-      {{#if parameters}}
-        {{#each parameters}}
-          * @param {{{name}}} {{{description}}}
-        {{/each}}
-      {{/if}}
+    {{#if parameters}}
+    {{#each parameters}}
+     * @param {{{name}}} {{{description}}}
+    {{/each}}
+    {{/if}}
     {{/unless}}
     {{#each results}}
      * @result {{{type}}} {{{description}}}
