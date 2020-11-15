@@ -441,6 +441,16 @@ npm install node-fetch --save-dev
 npm install form-data --save-dev
 ```
 
+In order to compile the project and resolve the imports, you will need to enable the `allowSyntheticDefaultImports`
+in your `tsconfig.json` file.
+
+```json
+{
+    "allowSyntheticDefaultImports": true
+}
+```
+
+
 [npm-url]: https://npmjs.org/package/openapi-typescript-codegen
 [npm-image]: https://img.shields.io/npm/v/openapi-typescript-codegen.svg
 [license-url]: LICENSE
