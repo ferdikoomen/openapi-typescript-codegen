@@ -10,6 +10,7 @@ export enum PrimaryType {
 }
 
 export const TYPE_MAPPINGS = new Map<string, PrimaryType>([
+    ['File', PrimaryType.FILE],
     ['file', PrimaryType.FILE],
     ['any', PrimaryType.OBJECT],
     ['object', PrimaryType.OBJECT],
