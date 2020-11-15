@@ -300,6 +300,7 @@ export type { ArrayWithNumbers } from './models/ArrayWithNumbers';
 export type { ArrayWithProperties } from './models/ArrayWithProperties';
 export type { ArrayWithReferences } from './models/ArrayWithReferences';
 export type { ArrayWithStrings } from './models/ArrayWithStrings';
+export type { Date } from './models/Date';
 export type { DictionaryWithArray } from './models/DictionaryWithArray';
 export type { DictionaryWithDictionary } from './models/DictionaryWithDictionary';
 export type { DictionaryWithProperties } from './models/DictionaryWithProperties';
@@ -344,6 +345,7 @@ export { $ArrayWithNumbers } from './schemas/$ArrayWithNumbers';
 export { $ArrayWithProperties } from './schemas/$ArrayWithProperties';
 export { $ArrayWithReferences } from './schemas/$ArrayWithReferences';
 export { $ArrayWithStrings } from './schemas/$ArrayWithStrings';
+export { $Date } from './schemas/$Date';
 export { $DictionaryWithArray } from './schemas/$DictionaryWithArray';
 export { $DictionaryWithDictionary } from './schemas/$DictionaryWithDictionary';
 export { $DictionaryWithProperties } from './schemas/$DictionaryWithProperties';
@@ -464,6 +466,17 @@ exports[`v2 should generate: ./test/generated/v2/models/ArrayWithStrings.ts 1`] 
  * This is a simple array with strings
  */
 export type ArrayWithStrings = Array<string>;"
+`;
+
+exports[`v2 should generate: ./test/generated/v2/models/Date.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+
+/**
+ * This is a type-only model that defines Date as a string
+ */
+export type Date = string;"
 `;
 
 exports[`v2 should generate: ./test/generated/v2/models/DictionaryWithArray.ts 1`] = `
@@ -1169,6 +1182,16 @@ export const $ArrayWithStrings = {
     contains: {
         type: 'string',
     },
+};"
+`;
+
+exports[`v2 should generate: ./test/generated/v2/schemas/$Date.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+
+export const $Date = {
+    type: 'string',
 };"
 `;
 
@@ -2621,6 +2644,7 @@ export type { ArrayWithNumbers } from './models/ArrayWithNumbers';
 export type { ArrayWithProperties } from './models/ArrayWithProperties';
 export type { ArrayWithReferences } from './models/ArrayWithReferences';
 export type { ArrayWithStrings } from './models/ArrayWithStrings';
+export type { Date } from './models/Date';
 export type { DictionaryWithArray } from './models/DictionaryWithArray';
 export type { DictionaryWithDictionary } from './models/DictionaryWithDictionary';
 export type { DictionaryWithProperties } from './models/DictionaryWithProperties';
@@ -2666,6 +2690,7 @@ export { $ArrayWithNumbers } from './schemas/$ArrayWithNumbers';
 export { $ArrayWithProperties } from './schemas/$ArrayWithProperties';
 export { $ArrayWithReferences } from './schemas/$ArrayWithReferences';
 export { $ArrayWithStrings } from './schemas/$ArrayWithStrings';
+export { $Date } from './schemas/$Date';
 export { $DictionaryWithArray } from './schemas/$DictionaryWithArray';
 export { $DictionaryWithDictionary } from './schemas/$DictionaryWithDictionary';
 export { $DictionaryWithProperties } from './schemas/$DictionaryWithProperties';
@@ -2790,6 +2815,17 @@ exports[`v3 should generate: ./test/generated/v3/models/ArrayWithStrings.ts 1`] 
  * This is a simple array with strings
  */
 export type ArrayWithStrings = Array<string>;"
+`;
+
+exports[`v3 should generate: ./test/generated/v3/models/Date.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+
+/**
+ * This is a type-only model that defines Date as a string
+ */
+export type Date = string;"
 `;
 
 exports[`v3 should generate: ./test/generated/v3/models/DictionaryWithArray.ts 1`] = `
@@ -3513,6 +3549,16 @@ export const $ArrayWithStrings = {
     contains: {
         type: 'string',
     },
+};"
+`;
+
+exports[`v3 should generate: ./test/generated/v3/schemas/$Date.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+
+export const $Date = {
+    type: 'string',
 };"
 `;
 

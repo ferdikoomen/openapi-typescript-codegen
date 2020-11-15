@@ -17,8 +17,6 @@ export const TYPE_MAPPINGS = new Map<string, PrimaryType>([
     ['boolean', PrimaryType.BOOLEAN],
     ['byte', PrimaryType.NUMBER],
     ['int', PrimaryType.NUMBER],
-    ['int32', PrimaryType.NUMBER],
-    ['int64', PrimaryType.NUMBER],
     ['integer', PrimaryType.NUMBER],
     ['float', PrimaryType.NUMBER],
     ['double', PrimaryType.NUMBER],

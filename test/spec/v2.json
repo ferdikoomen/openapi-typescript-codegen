@@ -705,7 +705,7 @@
         },
         "SimpleFile": {
             "description": "This is a simple file",
-            "type": "File"
+            "type": "file"
         },
         "SimpleReference": {
             "description": "This is a simple reference",
@@ -857,6 +857,10 @@
                 }
             }
         },
+        "Date": {
+            "description": "This is a type-only model that defines Date as a string",
+            "type": "string"
+        },
         "ModelWithInteger": {
             "description": "This is a model with one number property",
             "type": "object",
@@ -1003,7 +1007,7 @@
                 "propWithFile": {
                     "type": "array",
                     "items": {
-                        "type": "File"
+                        "type": "file"
                     }
                 },
                 "propWithNumber": {
