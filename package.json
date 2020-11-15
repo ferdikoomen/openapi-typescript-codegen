@@ -1,6 +1,6 @@
 {
     "name": "openapi-typescript-codegen",
-    "version": "0.5.4",
+    "version": "0.6.0",
     "description": "NodeJS library that generates Typescript or Javascript clients based on the OpenAPI specification.",
     "author": "Ferdi Koomen",
     "homepage": "https://github.com/ferdikoomen/openapi-typescript-codegen",
