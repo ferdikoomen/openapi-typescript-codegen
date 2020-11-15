@@ -57,18 +57,27 @@ exports[`v2 should generate: ./test/generated/v2/core/OpenAPI.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+type Resolver<T> = () => Promise<T>;
+type Headers = Record<string, string>;
+
 interface Config {
     BASE: string;
     VERSION: string;
     WITH_CREDENTIALS: boolean;
-    TOKEN: string | (() => Promise<string>);
+    TOKEN?: string | Resolver<string>;
+    USERNAME?: string | Resolver<string>;
+    PASSWORD?: string | Resolver<string>;
+    HEADERS?: Headers | Resolver<Headers>;
 }
 
 export const OpenAPI: Config = {
     BASE: 'http://localhost:3000/base',
     VERSION: '1.0',
     WITH_CREDENTIALS: false,
-    TOKEN: '',
+    TOKEN: undefined,
+    USERNAME: undefined,
+    PASSWORD: undefined,
+    HEADERS: undefined,
 };"
 `;
 
@@ -87,6 +96,10 @@ function isDefined<T>(value: T | null | undefined): value is Exclude<T, null | u
 
 function isString(value: any): value is string {
     return typeof value === 'string';
+}
+
+function isStringWithValue(value: any): value is string {
+    return isString(value) && value !== '';
 }
 
 function isBlob(value: any): value is Blob {
@@ -134,22 +147,33 @@ function getFormData(params: Record<string, any>): FormData {
     return formData;
 }
 
-async function getToken(): Promise<string> {
-    if (typeof OpenAPI.TOKEN === 'function') {
-        return OpenAPI.TOKEN();
+type Resolver<T> = () => Promise<T>;
+
+async function resolve<T>(resolver?: T | Resolver<T>): Promise<T | undefined> {
+    if (typeof resolver === 'function') {
+        return (resolver as Resolver<T>)();
     }
-    return OpenAPI.TOKEN;
+    return resolver;
 }
 
 async function getHeaders(options: ApiRequestOptions): Promise<Headers> {
     const headers = new Headers({
         Accept: 'application/json',
+        ...OpenAPI.HEADERS,
         ...options.headers,
     });
 
-    const token = await getToken();
-    if (isDefined(token) && token !== '') {
+    const token = await resolve(OpenAPI.TOKEN);
+    const username = await resolve(OpenAPI.USERNAME);
+    const password = await resolve(OpenAPI.PASSWORD);
+
+    if (isStringWithValue(token)) {
         headers.append('Authorization', \`Bearer \${token}\`);
+    }
+
+    if (isStringWithValue(username) && isStringWithValue(password)) {
+        const credentials = btoa(\`\${username}:\${password}\`);
+        headers.append('Authorization', \`Basic \${credentials}\`);
     }
 
     if (options.body) {
@@ -2354,18 +2378,27 @@ exports[`v3 should generate: ./test/generated/v3/core/OpenAPI.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+type Resolver<T> = () => Promise<T>;
+type Headers = Record<string, string>;
+
 interface Config {
     BASE: string;
     VERSION: string;
     WITH_CREDENTIALS: boolean;
-    TOKEN: string | (() => Promise<string>);
+    TOKEN?: string | Resolver<string>;
+    USERNAME?: string | Resolver<string>;
+    PASSWORD?: string | Resolver<string>;
+    HEADERS?: Headers | Resolver<Headers>;
 }
 
 export const OpenAPI: Config = {
     BASE: 'http://localhost:3000/base',
     VERSION: '1.0',
     WITH_CREDENTIALS: false,
-    TOKEN: '',
+    TOKEN: undefined,
+    USERNAME: undefined,
+    PASSWORD: undefined,
+    HEADERS: undefined,
 };"
 `;
 
@@ -2384,6 +2417,10 @@ function isDefined<T>(value: T | null | undefined): value is Exclude<T, null | u
 
 function isString(value: any): value is string {
     return typeof value === 'string';
+}
+
+function isStringWithValue(value: any): value is string {
+    return isString(value) && value !== '';
 }
 
 function isBlob(value: any): value is Blob {
@@ -2431,22 +2468,33 @@ function getFormData(params: Record<string, any>): FormData {
     return formData;
 }
 
-async function getToken(): Promise<string> {
-    if (typeof OpenAPI.TOKEN === 'function') {
-        return OpenAPI.TOKEN();
+type Resolver<T> = () => Promise<T>;
+
+async function resolve<T>(resolver?: T | Resolver<T>): Promise<T | undefined> {
+    if (typeof resolver === 'function') {
+        return (resolver as Resolver<T>)();
     }
-    return OpenAPI.TOKEN;
+    return resolver;
 }
 
 async function getHeaders(options: ApiRequestOptions): Promise<Headers> {
     const headers = new Headers({
         Accept: 'application/json',
+        ...OpenAPI.HEADERS,
         ...options.headers,
     });
 
-    const token = await getToken();
-    if (isDefined(token) && token !== '') {
+    const token = await resolve(OpenAPI.TOKEN);
+    const username = await resolve(OpenAPI.USERNAME);
+    const password = await resolve(OpenAPI.PASSWORD);
+
+    if (isStringWithValue(token)) {
         headers.append('Authorization', \`Bearer \${token}\`);
+    }
+
+    if (isStringWithValue(username) && isStringWithValue(password)) {
+        const credentials = btoa(\`\${username}:\${password}\`);
+        headers.append('Authorization', \`Basic \${credentials}\`);
     }
 
     if (options.body) {
