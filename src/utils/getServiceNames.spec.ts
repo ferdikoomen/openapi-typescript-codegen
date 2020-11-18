@@ -19,7 +19,7 @@ describe('getServiceNames', () => {
             imports: [],
         };
 
-        const services: Service[] = [john, jane, doe];
+        const services = [john, jane, doe];
 
         expect(getServiceNames([])).toEqual([]);
         expect(getServiceNames(services)).toEqual(['Doe', 'Jane', 'John']);

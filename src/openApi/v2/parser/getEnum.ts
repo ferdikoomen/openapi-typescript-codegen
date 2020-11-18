@@ -1,5 +1,4 @@
 import type { Enum } from '../../../client/interfaces/Enum';
-import { PrimaryType } from './constants';
 import { isDefined } from './isDefined';
 
 export function getEnum(values?: (string | number)[]): Enum[] {
@@ -14,7 +13,7 @@ export function getEnum(values?: (string | number)[]): Enum[] {
                     return {
                         name: `_${value}`,
                         value: String(value),
-                        type: PrimaryType.NUMBER,
+                        type: 'number',
                         description: null,
                     };
                 }
@@ -25,7 +24,7 @@ export function getEnum(values?: (string | number)[]): Enum[] {
                         .replace(/([a-z])([A-Z]+)/g, '$1_$2')
                         .toUpperCase(),
                     value: `'${value}'`,
-                    type: PrimaryType.STRING,
+                    type: 'string',
                     description: null,
                 };
             });

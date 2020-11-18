@@ -1,7 +1,6 @@
 import type { OperationResponse } from '../../../client/interfaces/OperationResponse';
 import type { OpenApi } from '../interfaces/OpenApi';
 import type { OpenApiResponse } from '../interfaces/OpenApiResponse';
-import { PrimaryType } from './constants';
 import { getComment } from './getComment';
 import { getContent } from './getContent';
 import { getModel } from './getModel';
@@ -15,8 +14,8 @@ export function getOperationResponse(openApi: OpenApi, response: OpenApiResponse
         code: responseCode,
         description: getComment(response.description)!,
         export: 'generic',
-        type: PrimaryType.OBJECT,
-        base: PrimaryType.OBJECT,
+        type: 'any',
+        base: 'any',
         template: null,
         link: null,
         isDefinition: false,
@@ -37,8 +36,8 @@ export function getOperationResponse(openApi: OpenApi, response: OpenApiResponse
             if (response.headers.hasOwnProperty(name)) {
                 operationResponse.in = 'header';
                 operationResponse.name = name;
-                operationResponse.type = PrimaryType.STRING;
-                operationResponse.base = PrimaryType.STRING;
+                operationResponse.type = 'string';
+                operationResponse.base = 'string';
                 return operationResponse;
             }
         }
@@ -47,7 +46,7 @@ export function getOperationResponse(openApi: OpenApi, response: OpenApiResponse
     if (response.content) {
         const schema = getContent(openApi, response.content);
         if (schema) {
-            if (schema && schema.$ref) {
+            if (schema?.$ref) {
                 const model = getType(schema.$ref);
                 operationResponse.export = 'reference';
                 operationResponse.type = model.type;

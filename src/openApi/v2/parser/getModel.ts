@@ -1,7 +1,6 @@
 import type { Model } from '../../../client/interfaces/Model';
 import type { OpenApi } from '../interfaces/OpenApi';
 import type { OpenApiSchema } from '../interfaces/OpenApiSchema';
-import { PrimaryType } from './constants';
 import { extendEnum } from './extendEnum';
 import { getComment } from './getComment';
 import { getEnum } from './getEnum';
@@ -14,8 +13,8 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isDefiniti
     const model: Model = {
         name: name,
         export: 'interface',
-        type: PrimaryType.OBJECT,
-        base: PrimaryType.OBJECT,
+        type: 'any',
+        base: 'any',
         template: null,
         link: null,
         description: getComment(definition.description),
@@ -59,8 +58,8 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isDefiniti
         const extendedEnumerators = extendEnum(enumerators, definition);
         if (extendedEnumerators.length) {
             model.export = 'enum';
-            model.type = PrimaryType.STRING;
-            model.base = PrimaryType.STRING;
+            model.type = 'string';
+            model.base = 'string';
             model.enum.push(...extendedEnumerators);
             return model;
         }
@@ -70,8 +69,8 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isDefiniti
         const enumerators = getEnumFromDescription(definition.description);
         if (enumerators.length) {
             model.export = 'enum';
-            model.type = PrimaryType.NUMBER;
-            model.base = PrimaryType.NUMBER;
+            model.type = 'number';
+            model.base = 'number';
             model.enum.push(...enumerators);
             return model;
         }
@@ -98,7 +97,7 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isDefiniti
         }
     }
 
-    if (definition.type === 'object' && definition.additionalProperties && typeof definition.additionalProperties === 'object') {
+    if (definition.type === 'object' && typeof definition.additionalProperties === 'object') {
         if (definition.additionalProperties.$ref) {
             const additionalProperties = getType(definition.additionalProperties.$ref);
             model.export = 'dictionary';
@@ -121,10 +120,10 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isDefiniti
 
     if (definition.type === 'object' || definition.allOf) {
         model.export = 'interface';
-        model.type = PrimaryType.OBJECT;
-        model.base = PrimaryType.OBJECT;
+        model.type = 'any';
+        model.base = 'any';
 
-        if (definition.allOf && definition.allOf.length) {
+        if (definition.allOf?.length) {
             definition.allOf.forEach(parent => {
                 if (parent.$ref) {
                     const parentRef = getType(parent.$ref);

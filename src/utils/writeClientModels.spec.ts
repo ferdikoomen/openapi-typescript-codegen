@@ -1,4 +1,5 @@
 import type { Model } from '../client/interfaces/Model';
+import { HttpClient } from '../index';
 import { writeFile } from './fileSystem';
 import { Templates } from './registerHandlebarTemplates';
 import { writeClientModels } from './writeClientModels';
@@ -44,7 +45,7 @@ describe('writeClientModels', () => {
             },
         };
 
-        await writeClientModels(models, templates, '/');
+        await writeClientModels(models, templates, '/', HttpClient.FETCH, false);
 
         expect(writeFile).toBeCalledWith('/MyModel.ts', 'model');
     });

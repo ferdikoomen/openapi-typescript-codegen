@@ -7,11 +7,10 @@
  * @see: build.js for more information
  */
 declare module '*.hbs' {
-    export default {
-        compiler: [8, '>= 4.3.0'],
-        useData: true,
-        main: function () {
-            return '';
-        },
+    const template: {
+        compiler: [number, string];
+        useData: true;
+        main: () => void;
     };
+    export default template;
 }
