@@ -50,6 +50,7 @@ export interface ApiResult {
     readonly status: number;
     readonly statusText: string;
     readonly body: any;
+    readonly response?: any;
 }"
 `;
 
@@ -60,10 +61,26 @@ exports[`v2 should generate: ./test/generated/v2/core/OpenAPI.ts 1`] = `
 type Resolver<T> = () => Promise<T>;
 type Headers = Record<string, string>;
 
+import { ApiResult } from './ApiResult';
+import { ApiRequestOptions } from './ApiRequestOptions';
+
+export interface RequestHookParams {
+    url: string;
+    request: ApiRequestOptions;
+    responseHeader: string|undefined;
+}
+
+export interface ResponseHookParams {
+    url: string;
+    result: ApiResult;
+}
+
 interface Config {
     BASE: string;
     VERSION: string;
     WITH_CREDENTIALS: boolean;
+    REQUEST_HOOK?(params: RequestHookParams): Promise<RequestHookParams>;
+    RESPONSE_HOOK?(result: ResponseHookParams): Promise<ApiResult>
     TOKEN?: string | Resolver<string>;
     USERNAME?: string | Resolver<string>;
     PASSWORD?: string | Resolver<string>;
@@ -268,19 +285,32 @@ function catchErrors(options: ApiRequestOptions, result: ApiResult): void {
  */
 export async function request(options: ApiRequestOptions): Promise<ApiResult> {
     const url = getUrl(options);
-    const response = await sendRequest(options, url);
-    const responseBody = await getResponseBody(response);
-    const responseHeader = getResponseHeader(response, options.responseHeader);
 
-    const result: ApiResult = {
+    // Pre-hook on request if a function is provided.
+    const requestHookResult = OpenAPI.REQUEST_HOOK ?
+    (await OpenAPI.REQUEST_HOOK({ url, request: options, responseHeader: options.responseHeader})) :
+    { url, options, responseHeader: options.responseHeader};
+
+
+    const response = await sendRequest(requestHookResult.options, requestHookResult.url);
+    const responseBody = await getResponseBody(response);
+    const responseHeader = getResponseHeader(response, requestHookResult.options.responseHeader);
+
+
+    let result: ApiResult = {
         url,
         ok: response.ok,
         status: response.status,
         statusText: response.statusText,
         body: responseHeader || responseBody,
+        response
     };
 
+    result =  OpenAPI.RESPONSE_HOOK ? await OpenAPI.RESPONSE_HOOK({url, result}) : result;
+
     catchErrors(options, result);
+
+
     return result;
 }
 
@@ -2394,6 +2424,7 @@ export interface ApiResult {
     readonly status: number;
     readonly statusText: string;
     readonly body: any;
+    readonly response?: any;
 }"
 `;
 
@@ -2404,10 +2435,26 @@ exports[`v3 should generate: ./test/generated/v3/core/OpenAPI.ts 1`] = `
 type Resolver<T> = () => Promise<T>;
 type Headers = Record<string, string>;
 
+import { ApiResult } from './ApiResult';
+import { ApiRequestOptions } from './ApiRequestOptions';
+
+export interface RequestHookParams {
+    url: string;
+    request: ApiRequestOptions;
+    responseHeader: string|undefined;
+}
+
+export interface ResponseHookParams {
+    url: string;
+    result: ApiResult;
+}
+
 interface Config {
     BASE: string;
     VERSION: string;
     WITH_CREDENTIALS: boolean;
+    REQUEST_HOOK?(params: RequestHookParams): Promise<RequestHookParams>;
+    RESPONSE_HOOK?(result: ResponseHookParams): Promise<ApiResult>
     TOKEN?: string | Resolver<string>;
     USERNAME?: string | Resolver<string>;
     PASSWORD?: string | Resolver<string>;
@@ -2612,19 +2659,32 @@ function catchErrors(options: ApiRequestOptions, result: ApiResult): void {
  */
 export async function request(options: ApiRequestOptions): Promise<ApiResult> {
     const url = getUrl(options);
-    const response = await sendRequest(options, url);
-    const responseBody = await getResponseBody(response);
-    const responseHeader = getResponseHeader(response, options.responseHeader);
 
-    const result: ApiResult = {
+    // Pre-hook on request if a function is provided.
+    const requestHookResult = OpenAPI.REQUEST_HOOK ?
+    (await OpenAPI.REQUEST_HOOK({ url, request: options, responseHeader: options.responseHeader})) :
+    { url, options, responseHeader: options.responseHeader};
+
+
+    const response = await sendRequest(requestHookResult.options, requestHookResult.url);
+    const responseBody = await getResponseBody(response);
+    const responseHeader = getResponseHeader(response, requestHookResult.options.responseHeader);
+
+
+    let result: ApiResult = {
         url,
         ok: response.ok,
         status: response.status,
         statusText: response.statusText,
         body: responseHeader || responseBody,
+        response
     };
 
+    result =  OpenAPI.RESPONSE_HOOK ? await OpenAPI.RESPONSE_HOOK({url, result}) : result;
+
     catchErrors(options, result);
+
+
     return result;
 }
 

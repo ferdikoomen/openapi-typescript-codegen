@@ -3,17 +3,18 @@
 type Resolver<T> = () => Promise<T>;
 type Headers = Record<string, string>;
 
-import { Result } from './Result';
+import { ApiResult } from './ApiResult';
+import { ApiRequestOptions } from './ApiRequestOptions';
 
 export interface RequestHookParams {
     url: string;
-    request: RequestInit;
+    request: ApiRequestOptions;
     responseHeader: string|undefined;
 }
 
 export interface ResponseHookParams {
     url: string;
-    result: Result;
+    result: ApiResult;
 }
 
 interface Config {
@@ -21,7 +22,7 @@ interface Config {
     VERSION: string;
     WITH_CREDENTIALS: boolean;
     REQUEST_HOOK?(params: RequestHookParams): Promise<RequestHookParams>;
-    RESPONSE_HOOK?(result: ResponseHookParams): Promise<Result>
+    RESPONSE_HOOK?(result: ResponseHookParams): Promise<ApiResult>
     TOKEN?: string | Resolver<string>;
     USERNAME?: string | Resolver<string>;
     PASSWORD?: string | Resolver<string>;
