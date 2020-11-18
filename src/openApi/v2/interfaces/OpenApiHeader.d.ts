@@ -1,5 +1,5 @@
-import { Dictionary } from '../../../utils/types';
-import { OpenApiItems } from './OpenApiItems';
+import type { Dictionary } from '../../../utils/types';
+import type { OpenApiItems } from './OpenApiItems';
 
 /**
  * https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#headerObject

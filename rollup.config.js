@@ -1,8 +1,8 @@
 'use strict';
 
 const commonjs = require('@rollup/plugin-commonjs');
-const {nodeResolve} = require('@rollup/plugin-node-resolve');
-const {terser} = require('rollup-plugin-terser');
+const { nodeResolve } = require('@rollup/plugin-node-resolve');
+const { terser } = require('rollup-plugin-terser');
 const typescript = require('rollup-plugin-typescript2');
 const handlebars = require('handlebars');
 const path = require('path');
@@ -10,7 +10,6 @@ const fs = require('fs');
 
 const pkg = require('./package.json');
 const external = Object.keys(pkg.dependencies);
-
 
 /**
  * Custom plugin to parse handlebar imports and precompile
@@ -56,7 +55,7 @@ const getPlugins = () => {
     return [...plugins, terser()];
 }
 
-export default {
+module.exports = {
     input: './src/index.ts',
     output: {
         file: './dist/index.js',

@@ -1,6 +1,6 @@
-import { OperationParameter } from '../../../client/interfaces/OperationParameter';
-import { OpenApi } from '../interfaces/OpenApi';
-import { OpenApiParameter } from '../interfaces/OpenApiParameter';
+import type { OperationParameter } from '../../../client/interfaces/OperationParameter';
+import type { OpenApi } from '../interfaces/OpenApi';
+import type { OpenApiParameter } from '../interfaces/OpenApiParameter';
 import { PrimaryType } from './constants';
 import { extendEnum } from './extendEnum';
 import { getComment } from './getComment';
@@ -9,6 +9,7 @@ import { getEnumFromDescription } from './getEnumFromDescription';
 import { getModel } from './getModel';
 import { getOperationParameterDefault } from './getOperationParameterDefault';
 import { getOperationParameterName } from './getOperationParameterName';
+import { getPattern } from './getPattern';
 import { getType } from './getType';
 
 export function getOperationParameter(openApi: OpenApi, parameter: OpenApiParameter): OperationParameter {
@@ -25,7 +26,7 @@ export function getOperationParameter(openApi: OpenApi, parameter: OpenApiParame
         isDefinition: false,
         isReadOnly: false,
         isRequired: parameter.required === true,
-        isNullable: false,
+        isNullable: parameter['x-nullable'] === true,
         format: parameter.format,
         maximum: parameter.maximum,
         exclusiveMaximum: parameter.exclusiveMaximum,
@@ -34,10 +35,10 @@ export function getOperationParameter(openApi: OpenApi, parameter: OpenApiParame
         multipleOf: parameter.multipleOf,
         maxLength: parameter.maxLength,
         minLength: parameter.minLength,
-        pattern: parameter.pattern,
         maxItems: parameter.maxItems,
         minItems: parameter.minItems,
         uniqueItems: parameter.uniqueItems,
+        pattern: getPattern(parameter.pattern),
         imports: [],
         extends: [],
         enum: [],
@@ -99,7 +100,6 @@ export function getOperationParameter(openApi: OpenApi, parameter: OpenApiParame
         operationParameter.base = items.base;
         operationParameter.template = items.template;
         operationParameter.imports.push(...items.imports);
-        operationParameter.imports.push('Dictionary');
         operationParameter.default = getOperationParameterDefault(parameter, operationParameter);
         return operationParameter;
     }

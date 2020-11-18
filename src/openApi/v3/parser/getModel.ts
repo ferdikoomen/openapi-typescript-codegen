@@ -1,6 +1,6 @@
-import { Model } from '../../../client/interfaces/Model';
-import { OpenApi } from '../interfaces/OpenApi';
-import { OpenApiSchema } from '../interfaces/OpenApiSchema';
+import type { Model } from '../../../client/interfaces/Model';
+import type { OpenApi } from '../interfaces/OpenApi';
+import type { OpenApiSchema } from '../interfaces/OpenApiSchema';
 import { PrimaryType } from './constants';
 import { extendEnum } from './extendEnum';
 import { getComment } from './getComment';
@@ -8,6 +8,7 @@ import { getEnum } from './getEnum';
 import { getEnumFromDescription } from './getEnumFromDescription';
 import { getModelDefault } from './getModelDefault';
 import { getModelProperties } from './getModelProperties';
+import { getPattern } from './getPattern';
 import { getType } from './getType';
 
 export function getModel(openApi: OpenApi, definition: OpenApiSchema, isDefinition: boolean = false, name: string = ''): Model {
@@ -23,6 +24,20 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isDefiniti
         isReadOnly: definition.readOnly === true,
         isNullable: definition.nullable === true,
         isRequired: false,
+        format: definition.format,
+        maximum: definition.maximum,
+        exclusiveMaximum: definition.exclusiveMaximum,
+        minimum: definition.minimum,
+        exclusiveMinimum: definition.exclusiveMinimum,
+        multipleOf: definition.multipleOf,
+        maxLength: definition.maxLength,
+        minLength: definition.minLength,
+        maxItems: definition.maxItems,
+        minItems: definition.minItems,
+        uniqueItems: definition.uniqueItems,
+        maxProperties: definition.maxProperties,
+        minProperties: definition.minProperties,
+        pattern: getPattern(definition.pattern),
         imports: [],
         extends: [],
         enum: [],
@@ -97,7 +112,6 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isDefiniti
             model.base = additionalProperties.base;
             model.template = additionalProperties.template;
             model.imports.push(...additionalProperties.imports);
-            model.imports.push('Dictionary');
             model.default = getModelDefault(definition, model);
             return model;
         } else {
@@ -108,14 +122,14 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isDefiniti
             model.template = additionalProperties.template;
             model.link = additionalProperties;
             model.imports.push(...additionalProperties.imports);
-            model.imports.push('Dictionary');
             model.default = getModelDefault(definition, model);
             return model;
         }
     }
 
-    // TODO: Add correct support for oneOf, anyOf, allOf
-    // TODO: https://swagger.io/docs/specification/data-models/oneof-anyof-allof-not/
+    // TODO:
+    //  Add correct support for oneOf, anyOf, allOf
+    //  https://swagger.io/docs/specification/data-models/oneof-anyof-allof-not/
 
     if (definition.anyOf && definition.anyOf.length && !definition.properties) {
         model.export = 'generic';

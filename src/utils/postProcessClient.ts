@@ -1,4 +1,4 @@
-import { Client } from '../client/interfaces/Client';
+import type { Client } from '../client/interfaces/Client';
 import { postProcessModel } from './postProcessModel';
 import { postProcessService } from './postProcessService';
 

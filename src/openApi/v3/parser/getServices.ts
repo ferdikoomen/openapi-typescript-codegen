@@ -1,5 +1,5 @@
-import { Service } from '../../../client/interfaces/Service';
-import { OpenApi } from '../interfaces/OpenApi';
+import type { Service } from '../../../client/interfaces/Service';
+import type { OpenApi } from '../interfaces/OpenApi';
 import { Method } from './constants';
 import { getOperation } from './getOperation';
 import { getOperationParameters } from './getOperationParameters';

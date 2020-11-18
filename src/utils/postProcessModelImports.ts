@@ -1,4 +1,4 @@
-import { Model } from '../client/interfaces/Model';
+import type { Model } from '../client/interfaces/Model';
 import { sort } from './sort';
 import { unique } from './unique';
 

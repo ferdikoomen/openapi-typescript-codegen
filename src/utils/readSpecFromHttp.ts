@@ -1,4 +1,4 @@
-import http from 'http';
+import * as http from 'http';
 
 /**
  * Download the spec file from a HTTP resource

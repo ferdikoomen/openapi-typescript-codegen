@@ -5,7 +5,10 @@ import camelCase from 'camelcase';
  * the input string to PascalCase and appends the "Service" prefix if needed.
  */
 export function getServiceClassName(value: string): string {
-    const clean = value.replace(/[^\w\s\-]+/g, '-').trim();
+    const clean = value
+        .replace(/^[^a-zA-Z]+/g, '')
+        .replace(/[^\w\-]+/g, '-')
+        .trim();
     const name = camelCase(clean, { pascalCase: true });
     if (name && !name.endsWith('Service')) {
         return `${name}Service`;

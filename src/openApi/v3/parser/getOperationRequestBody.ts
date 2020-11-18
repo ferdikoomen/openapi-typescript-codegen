@@ -1,10 +1,11 @@
-import { OperationParameter } from '../../../client/interfaces/OperationParameter';
-import { OpenApi } from '../interfaces/OpenApi';
-import { OpenApiRequestBody } from '../interfaces/OpenApiRequestBody';
+import type { OperationParameter } from '../../../client/interfaces/OperationParameter';
+import type { OpenApi } from '../interfaces/OpenApi';
+import type { OpenApiRequestBody } from '../interfaces/OpenApiRequestBody';
 import { PrimaryType } from './constants';
 import { getComment } from './getComment';
 import { getContent } from './getContent';
 import { getModel } from './getModel';
+import { getPattern } from './getPattern';
 import { getType } from './getType';
 
 export function getOperationRequestBody(openApi: OpenApi, parameter: OpenApiRequestBody): OperationParameter {
@@ -59,12 +60,12 @@ export function getOperationRequestBody(openApi: OpenApi, parameter: OpenApiRequ
                 requestBody.multipleOf = model.multipleOf;
                 requestBody.maxLength = model.maxLength;
                 requestBody.minLength = model.minLength;
-                requestBody.pattern = model.pattern;
                 requestBody.maxItems = model.maxItems;
                 requestBody.minItems = model.minItems;
                 requestBody.uniqueItems = model.uniqueItems;
                 requestBody.maxProperties = model.maxProperties;
                 requestBody.minProperties = model.minProperties;
+                requestBody.pattern = getPattern(model.pattern);
                 requestBody.imports.push(...model.imports);
                 requestBody.extends.push(...model.extends);
                 requestBody.enum.push(...model.enum);

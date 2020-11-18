@@ -1,4 +1,4 @@
-import { Client } from '../client/interfaces/Client';
+import type { Client } from '../client/interfaces/Client';
 import { HttpClient } from '../index';
 import { mkdir, rmdir, writeFile } from './fileSystem';
 import { Templates } from './registerHandlebarTemplates';
@@ -16,14 +16,22 @@ describe('writeClient', () => {
         };
 
         const templates: Templates = {
-            index: () => 'dummy',
-            model: () => 'dummy',
-            schema: () => 'dummy',
-            service: () => 'dummy',
-            settings: () => 'dummy',
+            index: () => 'index',
+            exports: {
+                model: () => 'model',
+                schema: () => 'schema',
+                service: () => 'service',
+            },
+            core: {
+                settings: () => 'settings',
+                apiError: () => 'apiError',
+                apiRequestOptions: () => 'apiRequestOptions',
+                apiResult: () => 'apiResult',
+                request: () => 'request',
+            },
         };
 
-        await writeClient(client, templates, '/', HttpClient.FETCH, false, true, true, true, true);
+        await writeClient(client, templates, './dist', HttpClient.FETCH, false, false, true, true, true, true);
 
         expect(rmdir).toBeCalled();
         expect(mkdir).toBeCalled();

@@ -1,54 +1,38 @@
 'use strict';
 
-const path = require('path');
-const ts = require('typescript');
 const OpenAPI = require('../dist');
 
-function compile(dir) {
-    const config = {
-        compilerOptions: {
-            target: 'esnext',
-            module: 'commonjs',
-            moduleResolution: 'node',
-        },
-        include: ['./index.ts'],
-    };
-    const configFile = ts.parseConfigFileTextToJson('tsconfig.json', JSON.stringify(config));
-    const configFileResult = ts.parseJsonConfigFileContent(configFile.config, ts.sys, path.resolve(process.cwd(), dir), undefined, 'tsconfig.json');
-    const compilerHost = ts.createCompilerHost(configFileResult.options);
-    const compiler = ts.createProgram(configFileResult.fileNames, configFileResult.options, compilerHost);
-    compiler.emit();
-}
-
-async function run() {
-    console.time('generate');
-
+async function generateV2() {
     await OpenAPI.generate({
-        input: './test/mock/v2/spec.json',
-        output: './test/result/v2/',
+        input: './test/spec/v2.json',
+        output: './test/generated/v2/',
         httpClient: OpenAPI.HttpClient.FETCH,
-        useOptions: false,
+        useOptions: true,
+        useUnionTypes: true,
         exportCore: true,
         exportSchemas: true,
         exportModels: true,
         exportServices: true,
     });
+}
 
+async function generateV3() {
     await OpenAPI.generate({
-        input: './test/mock/v3/spec.json',
-        output: './test/result/v3/',
+        input: './test/spec/v3.json',
+        output: './test/generated/v3/',
         httpClient: OpenAPI.HttpClient.FETCH,
-        useOptions: false,
+        useOptions: true,
+        useUnionTypes: true,
         exportCore: true,
         exportSchemas: true,
         exportModels: true,
         exportServices: true,
     });
-
-    console.timeEnd('generate');
-
-    compile('./test/result/v2/');
-    compile('./test/result/v3/');
 }
 
-run();
+async function generate() {
+    await generateV2();
+    await generateV3();
+}
+
+generate();

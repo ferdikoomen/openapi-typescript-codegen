@@ -9,5 +9,8 @@ describe('getServiceClassName', () => {
         expect(getServiceClassName('FooBarService')).toEqual('FooBarService');
         expect(getServiceClassName('Foo Bar Service')).toEqual('FooBarService');
         expect(getServiceClassName('foo bar service')).toEqual('FooBarService');
+        expect(getServiceClassName('@fooBar')).toEqual('FooBarService');
+        expect(getServiceClassName('$fooBar')).toEqual('FooBarService');
+        expect(getServiceClassName('123fooBar')).toEqual('FooBarService');
     });
 });

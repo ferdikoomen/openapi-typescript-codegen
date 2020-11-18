@@ -1,4 +1,4 @@
-import { Operation } from './Operation';
+import type { Operation } from './Operation';
 
 export interface Service {
     name: string;

@@ -1,35 +1,32 @@
 {
-    "compileOnSave": false,
-
     "compilerOptions": {
         "outDir": "./dist",
-        "target": "ES2017",
-        "module": "ES6",
-        "moduleResolution": "Node",
-        "lib": ["ES2017", "DOM"],
+        "target": "es2017",
+        "module": "es6",
+        "moduleResolution": "node",
+        "lib": ["es6", "es2017", "dom"],
         "types": ["jest", "node"],
-        "typeRoots": ["node_modules/@types"],
         "declaration": false,
         "declarationMap": false,
         "sourceMap": false,
         "noImplicitReturns": true,
         "noImplicitThis": true,
         "noImplicitAny": true,
-        "skipLibCheck": true,
         "strict": true,
         "strictNullChecks": true,
         "strictFunctionTypes": true,
-        "removeComments": true,
-        "forceConsistentCasingInFileNames": true,
         "allowSyntheticDefaultImports": true
     },
 
     "files": [
-        "./src/typings/hbs.d.ts"
+        "./src/typings/hbs.d.ts",
+        "./src/typings/camelcase.d.ts",
+        "./src/typings/mkdirp.d.ts",
+        "./src/typings/rimraf.d.ts"
     ],
 
     "include": [
-        "./src/index.ts"
+        "./src/**/*.ts"
     ],
 
     "exclude": [

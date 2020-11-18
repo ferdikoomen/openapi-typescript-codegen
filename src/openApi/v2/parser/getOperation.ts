@@ -1,7 +1,7 @@
-import { Operation } from '../../../client/interfaces/Operation';
-import { OperationParameters } from '../../../client/interfaces/OperationParameters';
-import { OpenApi } from '../interfaces/OpenApi';
-import { OpenApiOperation } from '../interfaces/OpenApiOperation';
+import type { Operation } from '../../../client/interfaces/Operation';
+import type { OperationParameters } from '../../../client/interfaces/OperationParameters';
+import type { OpenApi } from '../interfaces/OpenApi';
+import type { OpenApiOperation } from '../interfaces/OpenApiOperation';
 import { getComment } from './getComment';
 import { getOperationErrors } from './getOperationErrors';
 import { getOperationName } from './getOperationName';
@@ -26,7 +26,7 @@ export function getOperation(openApi: OpenApi, url: string, method: string, op: 
         summary: getComment(op.summary),
         description: getComment(op.description),
         deprecated: op.deprecated === true,
-        method: method,
+        method: method.toUpperCase(),
         path: operationPath,
         parameters: [...pathParams.parameters],
         parametersPath: [...pathParams.parametersPath],

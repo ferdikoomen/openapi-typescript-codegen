@@ -10,6 +10,7 @@ import { writeClient } from './utils/writeClient';
 export enum HttpClient {
     FETCH = 'fetch',
     XHR = 'xhr',
+    NODE = 'node',
 }
 
 export interface Options {
@@ -29,16 +30,16 @@ export interface Options {
  * Generate the OpenAPI client. This method will read the OpenAPI specification and based on the
  * given language it will generate the client, including the typed models, validation schemas,
  * service layer, etc.
- * @param input The relative location of the OpenAPI spec.
- * @param output The relative location of the output directory.
- * @param httpClient The selected httpClient (fetch or XHR).
- * @param useOptions Use options or arguments functions.
- * @param useUnionTypes Use inclusive union types.
- * @param exportCore: Generate core client classes.
- * @param exportServices: Generate services.
- * @param exportModels: Generate models.
- * @param exportSchemas: Generate schemas.
- * @param write Write the files to disk (true or false).
+ * @param input The relative location of the OpenAPI spec
+ * @param output The relative location of the output directory
+ * @param httpClient The selected httpClient (fetch or XHR)
+ * @param useOptions Use options or arguments functions
+ * @param useUnionTypes Use union types instead of enums
+ * @param exportCore: Generate core client classes
+ * @param exportServices: Generate services
+ * @param exportModels: Generate models
+ * @param exportSchemas: Generate schemas
+ * @param write Write the files to disk (true or false)
  */
 export async function generate({
     input,
@@ -52,8 +53,6 @@ export async function generate({
     exportSchemas = false,
     write = true,
 }: Options): Promise<void> {
-    // Load the specification, read the OpenAPI version and load the
-    // handlebar templates for the given language
     const openApi = isString(input) ? await getOpenApiSpec(input) : input;
     const openApiVersion = getOpenApiVersion(openApi);
     const templates = registerHandlebarTemplates();
@@ -62,18 +61,16 @@ export async function generate({
         case OpenApiVersion.V2: {
             const client = parseV2(openApi);
             const clientFinal = postProcessClient(client);
-            if (write) {
-                await writeClient(clientFinal, templates, output, httpClient, useOptions, useUnionTypes, exportCore, exportServices, exportModels, exportSchemas);
-            }
+            if (!write) break;
+            await writeClient(clientFinal, templates, output, httpClient, useOptions, useUnionTypes, exportCore, exportServices, exportModels, exportSchemas);
             break;
         }
 
         case OpenApiVersion.V3: {
             const client = parseV3(openApi);
             const clientFinal = postProcessClient(client);
-            if (write) {
-                await writeClient(clientFinal, templates, output, httpClient, useOptions, useUnionTypes, exportCore, exportServices, exportModels, exportSchemas);
-            }
+            if (!write) break;
+            await writeClient(clientFinal, templates, output, httpClient, useOptions, useUnionTypes, exportCore, exportServices, exportModels, exportSchemas);
             break;
         }
     }

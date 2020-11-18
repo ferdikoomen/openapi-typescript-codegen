@@ -1,0 +1,16 @@
+function getResponseBody(xhr: XMLHttpRequest): any {
+    try {
+        const contentType = xhr.getResponseHeader('Content-Type');
+        if (contentType) {
+            const isJSON = contentType.toLowerCase().startsWith('application/json');
+            if (isJSON) {
+                return JSON.parse(xhr.responseText);
+            } else {
+                return xhr.responseText;
+            }
+        }
+    } catch (error) {
+        console.error(error);
+    }
+    return null;
+}

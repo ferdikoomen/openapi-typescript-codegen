@@ -1,0 +1,20 @@
+async function sendRequest(options: ApiRequestOptions, url: string): Promise<XMLHttpRequest> {
+
+    const xhr = new XMLHttpRequest();
+    xhr.open(options.method, url, true);
+    xhr.withCredentials = OpenAPI.WITH_CREDENTIALS;
+
+    const headers = await getHeaders(options);
+    headers.forEach((value: string, key: string) => {
+        xhr.setRequestHeader(key, value);
+    });
+
+    return new Promise<XMLHttpRequest>(resolve => {
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                resolve(xhr);
+            }
+        };
+        xhr.send(getRequestBody(options));
+    });
+}

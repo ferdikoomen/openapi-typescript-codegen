@@ -1,4 +1,4 @@
-import { Service } from '../client/interfaces/Service';
+import type { Service } from '../client/interfaces/Service';
 import { writeFile } from './fileSystem';
 import { Templates } from './registerHandlebarTemplates';
 import { writeClientServices } from './writeClientServices';
@@ -9,22 +9,30 @@ describe('writeClientServices', () => {
     it('should write to filesystem', async () => {
         const services: Service[] = [
             {
-                name: 'Item',
+                name: 'MyService',
                 operations: [],
                 imports: [],
             },
         ];
 
         const templates: Templates = {
-            index: () => 'dummy',
-            model: () => 'dummy',
-            schema: () => 'dummy',
-            service: () => 'dummy',
-            settings: () => 'dummy',
+            index: () => 'index',
+            exports: {
+                model: () => 'model',
+                schema: () => 'schema',
+                service: () => 'service',
+            },
+            core: {
+                settings: () => 'settings',
+                apiError: () => 'apiError',
+                apiRequestOptions: () => 'apiRequestOptions',
+                apiResult: () => 'apiResult',
+                request: () => 'request',
+            },
         };
 
         await writeClientServices(services, templates, '/', false);
 
-        expect(writeFile).toBeCalledWith('/Item.ts', 'dummy');
+        expect(writeFile).toBeCalledWith('/MyService.ts', 'service');
     });
 });

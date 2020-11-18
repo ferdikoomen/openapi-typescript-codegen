@@ -9,5 +9,10 @@ describe('getOperationName', () => {
         expect(getOperationName('foo-bar')).toEqual('fooBar');
         expect(getOperationName('foo_bar')).toEqual('fooBar');
         expect(getOperationName('foo.bar')).toEqual('fooBar');
+        expect(getOperationName('@foo.bar')).toEqual('fooBar');
+        expect(getOperationName('$foo.bar')).toEqual('fooBar');
+        expect(getOperationName('_foo.bar')).toEqual('fooBar');
+        expect(getOperationName('-foo.bar')).toEqual('fooBar');
+        expect(getOperationName('123.foo.bar')).toEqual('fooBar');
     });
 });

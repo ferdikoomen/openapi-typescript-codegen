@@ -1,6 +1,7 @@
-/* istanbul ignore file */
-/* tslint:disable */
-/* eslint-disable */
+{{>header}}
+
+type Resolver<T> = () => Promise<T>;
+type Headers = Record<string, string>;
 
 import { Result } from './Result';
 
@@ -18,17 +19,21 @@ export interface ResponseHookParams {
 interface Config {
     BASE: string;
     VERSION: string;
-    CLIENT: 'fetch' | 'xhr';
     WITH_CREDENTIALS: boolean;
-    TOKEN: string;
     REQUEST_HOOK?(params: RequestHookParams): Promise<RequestHookParams>;
     RESPONSE_HOOK?(result: ResponseHookParams): Promise<Result>
+    TOKEN?: string | Resolver<string>;
+    USERNAME?: string | Resolver<string>;
+    PASSWORD?: string | Resolver<string>;
+    HEADERS?: Headers | Resolver<Headers>;
 }
 
 export const OpenAPI: Config = {
     BASE: '{{{server}}}',
     VERSION: '{{{version}}}',
-    CLIENT: '{{{httpClient}}}',
     WITH_CREDENTIALS: false,
-    TOKEN: ''
+    TOKEN: undefined,
+    USERNAME: undefined,
+    PASSWORD: undefined,
+    HEADERS: undefined,
 };

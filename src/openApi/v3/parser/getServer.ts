@@ -1,4 +1,4 @@
-import { OpenApi } from '../interfaces/OpenApi';
+import type { OpenApi } from '../interfaces/OpenApi';
 
 export function getServer(openApi: OpenApi): string {
     const server = openApi.servers && openApi.servers[0];

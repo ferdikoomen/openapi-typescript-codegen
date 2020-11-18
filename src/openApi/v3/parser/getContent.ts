@@ -1,7 +1,7 @@
-import { Dictionary } from '../../../utils/types';
-import { OpenApi } from '../interfaces/OpenApi';
-import { OpenApiMediaType } from '../interfaces/OpenApiMediaType';
-import { OpenApiSchema } from '../interfaces/OpenApiSchema';
+import type { Dictionary } from '../../../utils/types';
+import type { OpenApi } from '../interfaces/OpenApi';
+import type { OpenApiMediaType } from '../interfaces/OpenApiMediaType';
+import type { OpenApiSchema } from '../interfaces/OpenApiSchema';
 import { ContentType } from './constants';
 
 export function getContent(openApi: OpenApi, content: Dictionary<OpenApiMediaType>): OpenApiSchema | null {

@@ -1,4 +1,4 @@
-import { Service } from '../client/interfaces/Service';
+import type { Service } from '../client/interfaces/Service';
 import { getServiceNames } from './getServiceNames';
 
 describe('getServiceNames', () => {

@@ -1,4 +1,4 @@
-import { Model } from '../client/interfaces/Model';
+import type { Model } from '../client/interfaces/Model';
 import { writeFile } from './fileSystem';
 import { Templates } from './registerHandlebarTemplates';
 import { writeClientSchemas } from './writeClientSchemas';
@@ -10,9 +10,9 @@ describe('writeClientSchemas', () => {
         const models: Model[] = [
             {
                 export: 'interface',
-                name: 'Item',
-                type: 'Item',
-                base: 'Item',
+                name: 'MyModel',
+                type: 'MyModel',
+                base: 'MyModel',
                 template: null,
                 link: null,
                 description: null,
@@ -29,15 +29,23 @@ describe('writeClientSchemas', () => {
         ];
 
         const templates: Templates = {
-            index: () => 'dummy',
-            model: () => 'dummy',
-            schema: () => 'dummy',
-            service: () => 'dummy',
-            settings: () => 'dummy',
+            index: () => 'index',
+            exports: {
+                model: () => 'model',
+                schema: () => 'schema',
+                service: () => 'service',
+            },
+            core: {
+                settings: () => 'settings',
+                apiError: () => 'apiError',
+                apiRequestOptions: () => 'apiRequestOptions',
+                apiResult: () => 'apiResult',
+                request: () => 'request',
+            },
         };
 
         await writeClientSchemas(models, templates, '/');
 
-        expect(writeFile).toBeCalledWith('/$Item.ts', 'dummy');
+        expect(writeFile).toBeCalledWith('/$MyModel.ts', 'schema');
     });
 });

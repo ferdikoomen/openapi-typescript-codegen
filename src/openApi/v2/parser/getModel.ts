@@ -1,12 +1,13 @@
-import { Model } from '../../../client/interfaces/Model';
-import { OpenApi } from '../interfaces/OpenApi';
-import { OpenApiSchema } from '../interfaces/OpenApiSchema';
+import type { Model } from '../../../client/interfaces/Model';
+import type { OpenApi } from '../interfaces/OpenApi';
+import type { OpenApiSchema } from '../interfaces/OpenApiSchema';
 import { PrimaryType } from './constants';
 import { extendEnum } from './extendEnum';
 import { getComment } from './getComment';
 import { getEnum } from './getEnum';
 import { getEnumFromDescription } from './getEnumFromDescription';
 import { getModelProperties } from './getModelProperties';
+import { getPattern } from './getPattern';
 import { getType } from './getType';
 
 export function getModel(openApi: OpenApi, definition: OpenApiSchema, isDefinition: boolean = false, name: string = ''): Model {
@@ -20,7 +21,7 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isDefiniti
         description: getComment(definition.description),
         isDefinition: isDefinition,
         isReadOnly: definition.readOnly === true,
-        isNullable: false,
+        isNullable: definition['x-nullable'] === true,
         isRequired: false,
         format: definition.format,
         maximum: definition.maximum,
@@ -30,12 +31,12 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isDefiniti
         multipleOf: definition.multipleOf,
         maxLength: definition.maxLength,
         minLength: definition.minLength,
-        pattern: definition.pattern,
         maxItems: definition.maxItems,
         minItems: definition.minItems,
         uniqueItems: definition.uniqueItems,
         maxProperties: definition.maxProperties,
         minProperties: definition.minProperties,
+        pattern: getPattern(definition.pattern),
         imports: [],
         extends: [],
         enum: [],
@@ -105,7 +106,6 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isDefiniti
             model.base = additionalProperties.base;
             model.template = additionalProperties.template;
             model.imports.push(...additionalProperties.imports);
-            model.imports.push('Dictionary');
             return model;
         } else {
             const additionalProperties = getModel(openApi, definition.additionalProperties);
@@ -115,7 +115,6 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isDefiniti
             model.template = additionalProperties.template;
             model.link = additionalProperties;
             model.imports.push(...additionalProperties.imports);
-            model.imports.push('Dictionary');
             return model;
         }
     }

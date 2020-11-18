@@ -1,4 +1,4 @@
-import { Model } from '../client/interfaces/Model';
+import type { Model } from '../client/interfaces/Model';
 
 export function sortModelsByName(models: Model[]): Model[] {
     return models.sort((a, b) => {

@@ -1,6 +1,6 @@
-import { OpenApiOperation } from './OpenApiOperation';
-import { OpenApiParameter } from './OpenApiParameter';
-import { OpenApiServer } from './OpenApiServer';
+import type { OpenApiOperation } from './OpenApiOperation';
+import type { OpenApiParameter } from './OpenApiParameter';
+import type { OpenApiServer } from './OpenApiServer';
 
 /**
  * https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#pathItemObject

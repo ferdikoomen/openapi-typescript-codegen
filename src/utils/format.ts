@@ -1,8 +1,8 @@
-import { EOL } from 'os';
+import * as os from 'os';
 
 export function format(s: string): string {
     let indent: number = 0;
-    let lines = s.split(EOL);
+    let lines = s.split(os.EOL);
     lines = lines.map(line => {
         line = line.trim().replace(/^\*/g, ' *');
         let i = indent;
@@ -19,5 +19,5 @@ export function format(s: string): string {
         }
         return result;
     });
-    return lines.join(EOL);
+    return lines.join(os.EOL);
 }

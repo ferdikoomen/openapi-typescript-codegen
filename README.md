@@ -1,34 +1,59 @@
 # OpenAPI Typescript Codegen
 
-[![NPM](https://badgen.net/npm/v/openapi-typescript-codegen)](https://www.npmjs.com/package/openapi-typescript-codegen)
-[![License](https://badgen.net/npm/license/openapi-typescript-codegen)](https://www.npmjs.com/package/openapi-typescript-codegen)
-[![Build Status](https://badgen.net/travis/ferdikoomen/openapi-typescript-codegen/master)](https://travis-ci.org/ferdikoomen/openapi-typescript-codegen)
-[![Codecov](https://codecov.io/gh/ferdikoomen/openapi-typescript-codegen/branch/master/graph/badge.svg)](https://codecov.io/gh/ferdikoomen/openapi-typescript-codegen)
-[![Quality](https://badgen.net/lgtm/grade/javascript/g/ferdikoomen/openapi-typescript-codegen)](https://lgtm.com/projects/g/ferdikoomen/openapi-typescript-codegen)
+[![NPM][npm-image]][npm-url]
+[![License][license-image]][license-url]
+[![Build Status][travis-image]][travis-url]
+[![Dependency Status][deps-image]][deps-url]
+[![Coverage][coverage-image]][coverage-url]
+[![Quality][quality-image]][quality-url]
+[![Code Climate][climate-image]][climate-url]
+[![Downloads][downloads-image]][downloads-url]
 
-> NodeJS library that generates Typescript clients based on the OpenAPI specification.
+> Node.js library that generates Typescript clients based on the OpenAPI specification.
 
-#### Why?
-- Frontend ❤️ OpenAPI, but we do not want to use JAVA codegen in our builds.
-- Quick, lightweight, robust and framework agnostic.
-- Supports generation of Typescript clients.
-- Supports generations of fetch and XHR http clients.
-- Supports OpenAPI specification v2.0 and v3.0.
-- Supports JSON and YAML files for input.
-
-
-## Known issues:
-- If you use enums inside your models / definitions then those enums are now
-  inside a namespace with the same name as your model. This is called declaration
-  merging. However, Babel 7 now support compiling of Typescript and right now they
-  do not support namespaces.
+## Why?
+- Frontend ❤️ OpenAPI, but we do not want to use JAVA codegen in our builds
+- Quick, lightweight, robust and framework agnostic 🚀
+- Supports generation of TypeScript clients
+- Supports generations of fetch and XHR http clients
+- Supports OpenAPI specification v2.0 and v3.0
+- Supports JSON and YAML files for input
+- Supports generation through CLI, Node.js and NPX
+- Supports tsc and @babel/plugin-transform-typescript
 
 
-## Installation
+## Install
 
 ```
 npm install openapi-typescript-codegen --save-dev
 ```
+
+
+## Usage
+
+```
+$ openapi --help
+
+  Usage: openapi [options]
+
+  Options:
+    -V, --version             output the version number
+    -i, --input <value>       OpenAPI specification, can be a path, url or string content (required)
+    -o, --output <value>      Output directory (required)
+    -c, --client <value>      HTTP client to generate [fetch, xhr, node] (default: "fetch")
+    --useOptions              Use options instead of arguments
+    --useUnionTypes           Use union types instead of enums
+    --exportCore <value>      Write core files to disk (default: true)
+    --exportServices <value>  Write services to disk (default: true)
+    --exportModels <value>    Write models to disk (default: true)
+    --exportSchemas <value>   Write schemas to disk (default: false)
+
+  Examples
+    $ openapi --input ./spec.json
+    $ openapi --input ./spec.json --output ./dist
+    $ openapi --input ./spec.json --output ./dist --client xhr
+```
+
 
 ## Example
 
@@ -36,50 +61,42 @@ npm install openapi-typescript-codegen --save-dev
 ```json
 {
     "scripts": {
-        "generate": "openapi --input ./api/openapi.json --output ./dist"
+        "generate": "openapi --input ./spec.json --output ./dist"
     }
 }
 ```
 
-**Command line**
+**NPX**
 
 ```
-npm install openapi-typescript-codegen -g
-
-openapi --input ./api/openapi.json --output ./dist
+npx openapi-typescript-codegen --input ./spec.json --output ./dist
 ```
 
-**NodeJS API**
+**Node.js API**
 
 ```javascript
 const OpenAPI = require('openapi-typescript-codegen');
 
 OpenAPI.generate({
-    input: './api/openapi.json',
-    output: './generated'
+    input: './spec.json',
+    output: './dist'
 });
-```
 
-Or by providing the JSON directly:
-
-```javascript
-const OpenAPI = require('openapi-typescript-codegen');
-
-const spec = require('./api/openapi.json');
-
+// Or by providing the content of the spec directly 🚀
 OpenAPI.generate({
-    input: spec,
-    output: './generated'
+    input: require('./spec.json'),
+    output: './dist'
 });
 ```
+
 
 ## Features
 
-### Argument-style vs. Object-style
-There's no [named parameter](https://en.wikipedia.org/wiki/Named_parameter) in Javascript or Typescript, because of
+### Argument style vs. Object style `--useOptions`
+There's no [named parameter](https://en.wikipedia.org/wiki/Named_parameter) in JavaScript or TypeScript, because of
 that, we offer the flag `--useOptions` to generate code in two different styles.
 
-Argument-style:
+**Argument-style:**
 ```typescript
 function createUser(name: string, password: string, type?: string, address?: string) {
     // ...
@@ -89,7 +106,7 @@ function createUser(name: string, password: string, type?: string, address?: str
 createUser('Jack', '123456', undefined, 'NY US');
 ```
 
-Object-style:
+**Object-style:**
 ```typescript
 function createUser({ name, password, type, address }: {
     name: string,
@@ -108,10 +125,59 @@ createUser({
 });
 ```
 
+### Enums vs. Union Types `--useUnionTypes`
+The OpenAPI spec allows you to define [enums](https://swagger.io/docs/specification/data-models/enums/) inside the
+data model. By default, we convert these enums definitions to [TypeScript enums](https://www.typescriptlang.org/docs/handbook/enums.html).
+However, these enums are merged inside the namespace of the model, this is unsupported by Babel, [see docs](https://babeljs.io/docs/en/babel-plugin-transform-typescript#impartial-namespace-support).
+Because we also want to support projects that use Babel [@babel/plugin-transform-typescript](https://babeljs.io/docs/en/babel-plugin-transform-typescript),
+we offer the flag `--useOptions` to generate [union types](https://www.typescriptlang.org/docs/handbook/unions-and-intersections.html#union-types)
+instead of the traditional enums. The difference can be seen below:
 
-### Runtime schemas
-By default the OpenAPI generator only exports interfaces for your models. These interfaces will help you during
-development, but will not be available in javascript during runtime. However, Swagger allows you to define properties
+**Enums:**
+```typescript
+// Model
+export interface Order {
+    id?: number;
+    quantity?: number;
+    status?: Order.status;
+}
+
+export namespace Order {
+    export enum status {
+        PLACED = 'placed',
+        APPROVED = 'approved',
+        DELIVERED = 'delivered',
+    }
+}
+
+// Usage
+const order: Order = {
+    id: 1,
+    quantity: 40,
+    status: Order.status.PLACED
+}
+```
+
+**Union Types:**
+```typescript
+// Model
+export interface Order {
+    id?: number;
+    quantity?: number;
+    status?: 'placed' | 'approved' | 'delivered';
+}
+
+// Usage
+const order: Order = {
+    id: 1,
+    quantity: 40,
+    status: 'placed'
+}
+```
+
+### Runtime schemas `--exportSchemas`
+By default, the OpenAPI generator only exports interfaces for your models. These interfaces will help you during
+development, but will not be available in JavaScript during runtime. However, Swagger allows you to define properties
 that can be useful during runtime, for instance: `maxLength` of a string or a `pattern` to match, etc. Let's say
 we have the following model:
 
@@ -192,7 +258,7 @@ export const $MyModel = {
 ```
 
 These runtime object are prefixed with a `$` character and expose all the interesting attributes of a model
-and it's properties. We can now use this object to generate the form:
+and its properties. We can now use this object to generate the form:
 
 ```typescript jsx
 import { $MyModel } from './generated';
@@ -235,12 +301,12 @@ that can help developers use more meaningful enumerators.
         ],
         "x-enum-varnames": [
             "Success",
-            "Warning"
+            "Warning",
             "Error"
         ],
         "x-enum-descriptions": [
             "Used when the status of something is successful",
-            "Used when the status of something has a warning"
+            "Used when the status of something has a warning",
             "Used when the status of something has an error"
         ]
     }
@@ -265,6 +331,43 @@ enum EnumWithStrings {
 }
 ```
 
+
+### Nullable in OpenAPI v2
+In the OpenAPI v3 spec you can create properties that can be NULL, by providing a `nullable: true` in your schema.
+However, the v2 spec does not allow you to do this. You can use the unofficial `x-nullable` in your specification
+to generate nullable properties in OpenApi v2.
+
+```json
+{
+    "ModelWithNullableString": {
+        "required": ["requiredProp"],
+        "description": "This is a model with one string property",
+        "type": "object",
+        "properties": {
+            "prop": {
+                "description": "This is a simple string property",
+                "type": "string",
+                "x-nullable": true
+            },
+            "requiredProp": {
+                "description": "This is a simple string property",
+                "type": "string",
+                "x-nullable": true
+            }
+        }
+    }
+}
+```
+
+Generated code:
+```typescript
+interface ModelWithNullableString {
+    prop?: string | null,
+    requiredProp: string | null,
+}
+```
+
+
 ### Authorization
 The OpenAPI generator supports Bearer Token authorization. In order to enable the sending
 of tokens in each request you can set the token using the global OpenAPI configuration:
@@ -275,12 +378,92 @@ import { OpenAPI } from './generated';
 OpenAPI.TOKEN = 'some-bearer-token';
 ```
 
+Alternatively, we also support an async method that provides the token for each request.
+You can simply assign this method to the same `TOKEN `property in the global OpenAPI object.
+
+```typescript
+import { OpenAPI } from './generated';
+
+const getToken = async () => {
+    // Some code that requests a token...
+    return 'SOME_TOKEN';
+}
+
+OpenAPI.TOKEN = getToken;
+```
+
 
 ### Compare to other generators
-
 Depending on which swagger generator you use, you will see different output.
 For instance: Different ways of generating models, services, level of quality,
 HTTP client, etc. I've compiled a list with the results per area and how they
 compare against the openapi-typescript-codegen.
 
 [Click here to see the comparison](https://htmlpreview.github.io/?https://github.com/ferdikoomen/openapi-typescript-codegen/blob/master/samples/index.html)
+
+
+FAQ
+===
+
+### Babel support
+If you use enums inside your models / definitions then those enums are by default inside a namespace with the same name
+as your model. This is called declaration merging. However, the [@babel/plugin-transform-typescript](https://babeljs.io/docs/en/babel-plugin-transform-typescript)
+does not support these namespaces, so if you are using babel in your project please use the `--useUnionTypes` flag
+to generate union types instead of traditional enums. More info can be found here: [Enums vs. Union Types](#enums-vs-union-types---useuniontypes).
+
+**Note:** If you are using Babel 7 and Typescript 3.8 (or higher) then you should enable the `onlyRemoveTypeImports` to
+ignore any 'type only' imports, see https://babeljs.io/docs/en/babel-preset-typescript#onlyremovetypeimports for more info
+
+```javascript
+module.exports = {
+    presets: [
+        ['@babel/preset-typescript', {
+            onlyRemoveTypeImports: true,
+        }],
+    ],
+};
+```
+
+
+### Node.js support
+By default, this library will generate a client that is compatible with the (browser based) [fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API),
+however this client will not work inside the Node.js environment. If you want to generate a Node.js compatible client then
+you can specify `--client node` in the openapi call:
+
+`openapi --input ./spec.json --output ./dist --client node`
+
+This will generate a client that uses [`node-fetch`](https://www.npmjs.com/package/node-fetch) internally. However,
+in order to compile and run this client, you will need to install the `node-fetch` dependencies:
+
+```
+npm install @types/node-fetch --save-dev
+npm install node-fetch --save-dev
+npm install form-data --save-dev
+```
+
+In order to compile the project and resolve the imports, you will need to enable the `allowSyntheticDefaultImports`
+in your `tsconfig.json` file.
+
+```json
+{
+    "allowSyntheticDefaultImports": true
+}
+```
+
+
+[npm-url]: https://npmjs.org/package/openapi-typescript-codegen
+[npm-image]: https://img.shields.io/npm/v/openapi-typescript-codegen.svg
+[license-url]: LICENSE
+[license-image]: http://img.shields.io/npm/l/openapi-typescript-codegen.svg
+[travis-url]: https://travis-ci.org/ferdikoomen/openapi-typescript-codegen
+[travis-image]: https://img.shields.io/travis/ferdikoomen/openapi-typescript-codegen.svg
+[deps-url]: https://david-dm.org/ferdikoomen/openapi-typescript-codegen
+[deps-image]: https://img.shields.io/david/ferdikoomen/openapi-typescript-codegen.svg
+[coverage-url]: https://codecov.io/gh/ferdikoomen/openapi-typescript-codegen
+[coverage-image]: https://img.shields.io/codecov/c/github/ferdikoomen/openapi-typescript-codegen.svg
+[quality-url]: https://lgtm.com/projects/g/ferdikoomen/openapi-typescript-codegen
+[quality-image]: https://img.shields.io/lgtm/grade/javascript/g/ferdikoomen/openapi-typescript-codegen.svg
+[climate-url]: https://codeclimate.com/github/ferdikoomen/openapi-typescript-codegen
+[climate-image]: https://img.shields.io/codeclimate/maintainability/ferdikoomen/openapi-typescript-codegen.svg
+[downloads-url]: http://npm-stat.com/charts.html?package=openapi-typescript-codegen
+[downloads-image]: http://img.shields.io/npm/dm/openapi-typescript-codegen.svg

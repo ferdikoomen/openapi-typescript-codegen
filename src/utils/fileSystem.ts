@@ -1,13 +1,13 @@
-import * as fs from 'fs';
+import { copyFile as __copyFile, exists as __exists, readFile as __readFile, writeFile as __writeFile } from 'fs';
 import mkdirp from 'mkdirp';
 import rimraf from 'rimraf';
-import * as util from 'util';
+import { promisify } from 'util';
 
 // Wrapped file system calls
-export const readFile = util.promisify(fs.readFile);
-export const writeFile = util.promisify(fs.writeFile);
-export const copyFile = util.promisify(fs.copyFile);
-export const exists = util.promisify(fs.exists);
+export const readFile = promisify(__readFile);
+export const writeFile = promisify(__writeFile);
+export const copyFile = promisify(__copyFile);
+export const exists = promisify(__exists);
 
 // Re-export from mkdirp to make mocking easier
 export const mkdir = mkdirp;

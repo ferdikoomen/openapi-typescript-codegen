@@ -1,19 +1,12 @@
-/* istanbul ignore file */
-/* tslint:disable */
-/* eslint-disable */
+{{>header}}
 
 {{#if imports}}
 {{#each imports}}
-import { {{{this}}} } from '../models/{{{this}}}';
+import type { {{{this}}} } from '../models/{{{this}}}';
 {{/each}}
 {{/if}}
-{{#if hasApiErrors}}
-import { ApiError, catchGenericError } from '../core/ApiError';
-{{else}}
-import { catchGenericError } from '../core/ApiError';
-{{/if}}
 import { request as __request } from '../core/request';
-{{#if hasApiVersion}}
+{{#if @root.useVersion}}
 import { OpenAPI } from '../core/OpenAPI';
 {{/if}}
 
@@ -30,69 +23,64 @@ export class {{{name}}} {
     {{#if description}}
      * {{{description}}}
     {{/if}}
+    {{#unless @root.useOptions}}
     {{#if parameters}}
     {{#each parameters}}
      * @param {{{name}}} {{{description}}}
     {{/each}}
     {{/if}}
+    {{/unless}}
     {{#each results}}
      * @result {{{type}}} {{{description}}}
     {{/each}}
      * @throws ApiError
      */
     public static async {{{name}}}({{>parameters}}): Promise<{{>result}}> {
-
         const result = await __request({
             method: '{{{method}}}',
             path: `{{{path}}}`,
-            {{#if parametersCookie~}}
+            {{#if parametersCookie}}
             cookies: {
                 {{#each parametersCookie}}
                 '{{{prop}}}': {{{name}}},
                 {{/each}}
             },
             {{/if}}
-            {{#if parametersHeader~}}
+            {{#if parametersHeader}}
             headers: {
                 {{#each parametersHeader}}
                 '{{{prop}}}': {{{name}}},
                 {{/each}}
             },
             {{/if}}
-            {{#if parametersQuery~}}
+            {{#if parametersQuery}}
             query: {
                 {{#each parametersQuery}}
                 '{{{prop}}}': {{{name}}},
                 {{/each}}
             },
             {{/if}}
-            {{#if parametersForm~}}
+            {{#if parametersForm}}
             formData: {
                 {{#each parametersForm}}
                 '{{{prop}}}': {{{name}}},
                 {{/each}}
             },
             {{/if}}
-            {{#if parametersBody~}}
+            {{#if parametersBody}}
             body: {{{parametersBody.name}}},
             {{/if}}
-            {{#if responseHeader~}}
+            {{#if responseHeader}}
             responseHeader: '{{{responseHeader}}}',
             {{/if}}
+            {{#if errors}}
+            errors: {
+                {{#each errors}}
+                {{{code}}}: `{{{description}}}`,
+                {{/each}}
+            },
+            {{/if}}
         });
-        {{#if errors}}
-
-        if (!result.ok) {
-            switch (result.status) {
-            {{#each errors}}
-                case {{{code}}}: throw new ApiError(result, `{{{description}}}`);
-            {{/each}}
-            }
-        }
-        {{/if}}
-
-        catchGenericError(result);
-
         return result.body;
     }
 

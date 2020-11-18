@@ -10,9 +10,9 @@ import { readSpec } from './readSpec';
  * @param input
  */
 export async function getOpenApiSpec(input: string): Promise<any> {
-    const extname = path.extname(input).toLowerCase();
+    const extension = path.extname(input).toLowerCase();
     const content = await readSpec(input);
-    switch (extname) {
+    switch (extension) {
         case '.yml':
         case '.yaml':
             try {

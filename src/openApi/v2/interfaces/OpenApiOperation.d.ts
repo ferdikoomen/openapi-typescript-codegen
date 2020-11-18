@@ -1,7 +1,7 @@
-import { OpenApiExternalDocs } from './OpenApiExternalDocs';
-import { OpenApiParameter } from './OpenApiParameter';
-import { OpenApiResponses } from './OpenApiResponses';
-import { OpenApiSecurityRequirement } from './OpenApiSecurityRequirement';
+import type { OpenApiExternalDocs } from './OpenApiExternalDocs';
+import type { OpenApiParameter } from './OpenApiParameter';
+import type { OpenApiResponses } from './OpenApiResponses';
+import type { OpenApiSecurityRequirement } from './OpenApiSecurityRequirement';
 
 /**
  * https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#operationObject

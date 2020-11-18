@@ -1,11 +1,11 @@
-import { Dictionary } from '../../../utils/types';
-import { OpenApiCallback } from './OpenApiCallback';
-import { OpenApiExternalDocs } from './OpenApiExternalDocs';
-import { OpenApiParameter } from './OpenApiParameter';
-import { OpenApiRequestBody } from './OpenApiRequestBody';
-import { OpenApiResponses } from './OpenApiResponses';
-import { OpenApiSecurityRequirement } from './OpenApiSecurityRequirement';
-import { OpenApiServer } from './OpenApiServer';
+import type { Dictionary } from '../../../utils/types';
+import type { OpenApiCallback } from './OpenApiCallback';
+import type { OpenApiExternalDocs } from './OpenApiExternalDocs';
+import type { OpenApiParameter } from './OpenApiParameter';
+import type { OpenApiRequestBody } from './OpenApiRequestBody';
+import type { OpenApiResponses } from './OpenApiResponses';
+import type { OpenApiSecurityRequirement } from './OpenApiSecurityRequirement';
+import type { OpenApiServer } from './OpenApiServer';
 
 /**
  * https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#operationObject

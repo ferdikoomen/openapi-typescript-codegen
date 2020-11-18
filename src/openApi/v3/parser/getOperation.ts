@@ -1,7 +1,8 @@
-import { Operation } from '../../../client/interfaces/Operation';
-import { OperationParameters } from '../../../client/interfaces/OperationParameters';
-import { OpenApi } from '../interfaces/OpenApi';
-import { OpenApiOperation } from '../interfaces/OpenApiOperation';
+import type { Operation } from '../../../client/interfaces/Operation';
+import type { OperationParameters } from '../../../client/interfaces/OperationParameters';
+import type { OpenApi } from '../interfaces/OpenApi';
+import type { OpenApiOperation } from '../interfaces/OpenApiOperation';
+import type { OpenApiRequestBody } from '../interfaces/OpenApiRequestBody';
 import { getComment } from './getComment';
 import { getOperationErrors } from './getOperationErrors';
 import { getOperationName } from './getOperationName';
@@ -11,6 +12,7 @@ import { getOperationRequestBody } from './getOperationRequestBody';
 import { getOperationResponseHeader } from './getOperationResponseHeader';
 import { getOperationResponses } from './getOperationResponses';
 import { getOperationResults } from './getOperationResults';
+import { getRef } from './getRef';
 import { getServiceClassName } from './getServiceClassName';
 import { sortByRequired } from './sortByRequired';
 
@@ -28,7 +30,7 @@ export function getOperation(openApi: OpenApi, url: string, method: string, op: 
         summary: getComment(op.summary),
         description: getComment(op.description),
         deprecated: op.deprecated === true,
-        method: method,
+        method: method.toUpperCase(),
         path: operationPath,
         parameters: [...pathParams.parameters],
         parametersPath: [...pathParams.parametersPath],
@@ -56,8 +58,10 @@ export function getOperation(openApi: OpenApi, url: string, method: string, op: 
         operation.parametersBody = parameters.parametersBody;
     }
 
+    // TODO: form data goes wrong here: https://github.com/ferdikoomen/openapi-typescript-codegen/issues/257§
     if (op.requestBody) {
-        const requestBody = getOperationRequestBody(openApi, op.requestBody);
+        const requestBodyDef = getRef<OpenApiRequestBody>(openApi, op.requestBody);
+        const requestBody = getOperationRequestBody(openApi, requestBodyDef);
         operation.imports.push(...requestBody.imports);
         operation.parameters.push(requestBody);
         operation.parameters = operation.parameters.sort(sortByRequired);

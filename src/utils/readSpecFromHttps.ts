@@ -1,4 +1,4 @@
-import https from 'https';
+import * as https from 'https';
 
 /**
  * Download the spec file from a HTTPS resource
