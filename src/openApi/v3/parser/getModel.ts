@@ -1,7 +1,6 @@
 import type { Model } from '../../../client/interfaces/Model';
 import type { OpenApi } from '../interfaces/OpenApi';
 import type { OpenApiSchema } from '../interfaces/OpenApiSchema';
-import { PrimaryType } from './constants';
 import { extendEnum } from './extendEnum';
 import { getComment } from './getComment';
 import { getEnum } from './getEnum';
@@ -15,8 +14,8 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isDefiniti
     const model: Model = {
         name: name,
         export: 'interface',
-        type: PrimaryType.OBJECT,
-        base: PrimaryType.OBJECT,
+        type: 'any',
+        base: 'any',
         template: null,
         link: null,
         description: getComment(definition.description),
@@ -61,8 +60,8 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isDefiniti
         const extendedEnumerators = extendEnum(enumerators, definition);
         if (extendedEnumerators.length) {
             model.export = 'enum';
-            model.type = PrimaryType.STRING;
-            model.base = PrimaryType.STRING;
+            model.type = 'string';
+            model.base = 'string';
             model.enum.push(...extendedEnumerators);
             model.default = getModelDefault(definition, model);
             return model;
@@ -73,8 +72,8 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isDefiniti
         const enumerators = getEnumFromDescription(definition.description);
         if (enumerators.length) {
             model.export = 'enum';
-            model.type = PrimaryType.NUMBER;
-            model.base = PrimaryType.NUMBER;
+            model.type = 'number';
+            model.base = 'number';
             model.enum.push(...enumerators);
             model.default = getModelDefault(definition, model);
             return model;
@@ -126,9 +125,6 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isDefiniti
             return model;
         }
     }
-    // TODO:
-    //  Add correct support for oneOf
-    //  https://swagger.io/docs/specification/data-models/oneof-anyof-allof-not/
 
     if (definition.oneOf?.length || definition.anyOf?.length || definition.allOf?.length) {
         let types: OpenApiSchema[] = [];
@@ -151,8 +147,8 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isDefiniti
 
     if (definition.type === 'object') {
         model.export = 'interface';
-        model.type = PrimaryType.OBJECT;
-        model.base = PrimaryType.OBJECT;
+        model.type = 'any';
+        model.base = 'any';
         model.default = getModelDefault(definition, model);
         const properties = getModelProperties(openApi, definition, getModel);
         properties.forEach(property => {

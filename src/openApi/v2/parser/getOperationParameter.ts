@@ -1,7 +1,6 @@
 import type { OperationParameter } from '../../../client/interfaces/OperationParameter';
 import type { OpenApi } from '../interfaces/OpenApi';
 import type { OpenApiParameter } from '../interfaces/OpenApiParameter';
-import { PrimaryType } from './constants';
 import { extendEnum } from './extendEnum';
 import { getComment } from './getComment';
 import { getEnum } from './getEnum';
@@ -18,8 +17,8 @@ export function getOperationParameter(openApi: OpenApi, parameter: OpenApiParame
         prop: parameter.name,
         export: 'interface',
         name: getOperationParameterName(parameter.name),
-        type: PrimaryType.OBJECT,
-        base: PrimaryType.OBJECT,
+        type: 'any',
+        base: 'any',
         template: null,
         link: null,
         description: getComment(parameter.description),
@@ -62,8 +61,8 @@ export function getOperationParameter(openApi: OpenApi, parameter: OpenApiParame
         const extendedEnumerators = extendEnum(enumerators, parameter);
         if (extendedEnumerators.length) {
             operationParameter.export = 'enum';
-            operationParameter.type = PrimaryType.STRING;
-            operationParameter.base = PrimaryType.STRING;
+            operationParameter.type = 'string';
+            operationParameter.base = 'string';
             operationParameter.enum.push(...extendedEnumerators);
             operationParameter.default = getOperationParameterDefault(parameter, operationParameter);
             return operationParameter;
@@ -74,8 +73,8 @@ export function getOperationParameter(openApi: OpenApi, parameter: OpenApiParame
         const enumerators = getEnumFromDescription(parameter.description);
         if (enumerators.length) {
             operationParameter.export = 'enum';
-            operationParameter.type = PrimaryType.NUMBER;
-            operationParameter.base = PrimaryType.NUMBER;
+            operationParameter.type = 'number';
+            operationParameter.base = 'number';
             operationParameter.enum.push(...enumerators);
             operationParameter.default = getOperationParameterDefault(parameter, operationParameter);
             return operationParameter;

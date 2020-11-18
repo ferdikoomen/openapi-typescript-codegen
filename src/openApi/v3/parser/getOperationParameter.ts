@@ -1,7 +1,6 @@
 import type { OperationParameter } from '../../../client/interfaces/OperationParameter';
 import type { OpenApi } from '../interfaces/OpenApi';
 import type { OpenApiParameter } from '../interfaces/OpenApiParameter';
-import { PrimaryType } from './constants';
 import { getComment } from './getComment';
 import { getModel } from './getModel';
 import { getModelDefault } from './getModelDefault';
@@ -15,8 +14,8 @@ export function getOperationParameter(openApi: OpenApi, parameter: OpenApiParame
         prop: parameter.name,
         export: 'interface',
         name: getOperationParameterName(parameter.name),
-        type: PrimaryType.OBJECT,
-        base: PrimaryType.OBJECT,
+        type: 'any',
+        base: 'any',
         template: null,
         link: null,
         description: getComment(parameter.description),

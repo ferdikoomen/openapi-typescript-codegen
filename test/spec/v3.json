@@ -1515,7 +1515,7 @@
                     }
                 }
             },
-            "ModelWithOneOf": {
+            "CompositionWithOneOf": {
                 "description": "This is a model with one property with a 'one of' relationship",
                 "type": "object",
                 "properties": {
@@ -1538,7 +1538,33 @@
                     }
                 }
             },
-            "ModelWithAnyOf": {
+            "CompositionWithOneOfAnonymous": {
+                "description": "This is a model with one property with a 'one of' relationship where the options are not $ref",
+                "type": "object",
+                "properties": {
+                    "propA": {
+                        "type": "object",
+                        "oneOf": [
+                            {
+                                "description": "Anonymous object type",
+                                "type": "object",
+                                "properties": {
+                                    "propA": "string"
+                                }
+                            },
+                            {
+                                "description": "Anonymous string type",
+                                "type": "string"
+                            },
+                            {
+                                "description": "Anonymous integer type",
+                                "type": "integer"
+                            }
+                        ]
+                    }
+                }
+            },
+            "CompositionWithAnyOf": {
                 "description": "This is a model with one property with a 'any of' relationship",
                 "type": "object",
                 "properties": {
@@ -1561,7 +1587,33 @@
                     }
                 }
             },
-            "ModelWithOneOfAndNullable": {
+            "CompositionWithAnyOfAnonymous": {
+                "description": "This is a model with one property with a 'any of' relationship where the options are not $ref",
+                "type": "object",
+                "properties": {
+                    "propA": {
+                        "type": "object",
+                        "anyOf": [
+                            {
+                                "description": "Anonymous object type",
+                                "type": "object",
+                                "properties": {
+                                    "propA": "string"
+                                }
+                            },
+                            {
+                                "description": "Anonymous string type",
+                                "type": "string"
+                            },
+                            {
+                                "description": "Anonymous integer type",
+                                "type": "integer"
+                            }
+                        ]
+                    }
+                }
+            },
+            "CompositionWithOneOfAndNullable": {
                 "description": "This is a model with one property with a 'one of' relationship",
                 "type": "object",
                 "properties": {
@@ -1590,7 +1642,7 @@
                     }
                 }
             },
-            "ModelWithAllOfAndNullable": {
+            "CompositionWithAllOfAndNullable": {
                 "description": "This is a model with one property with a 'all of' relationship",
                 "type": "object",
                 "properties": {
@@ -1619,7 +1671,7 @@
                     }
                 }
             },
-            "ModelWithAnyOfAndNullable": {
+            "CompositionWithAnyOfAndNullable": {
                 "description": "This is a model with one property with a 'any of' relationship",
                 "type": "object",
                 "properties": {

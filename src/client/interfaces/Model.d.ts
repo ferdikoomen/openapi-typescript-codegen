@@ -15,6 +15,4 @@ export interface Model extends Schema {
     enum: Enum[];
     enums: Model[];
     properties: Model[];
-    extendedFrom?: string[];
-    extendedBy?: string[];
 }

@@ -1,5 +1,4 @@
 import type { Type } from '../../../client/interfaces/Type';
-import { PrimaryType } from './constants';
 import { getMappedType, hasMappedType } from './getMappedType';
 import { stripNamespace } from './stripNamespace';
 
@@ -14,8 +13,8 @@ function encode(value: string): string {
  */
 export function getType(value?: string, template?: string): Type {
     const result: Type = {
-        type: PrimaryType.OBJECT,
-        base: PrimaryType.OBJECT,
+        type: 'any',
+        base: 'any',
         template: null,
         imports: [],
     };
@@ -24,11 +23,11 @@ export function getType(value?: string, template?: string): Type {
 
     if (/\[.*\]$/g.test(valueClean)) {
         const matches = valueClean.match(/(.*?)\[(.*)\]$/);
-        if (matches && matches.length) {
+        if (matches?.length) {
             const match1 = getType(encode(matches[1]));
             const match2 = getType(encode(matches[2]));
 
-            if (match1.type === PrimaryType.ARRAY) {
+            if (match1.type === 'any[]') {
                 result.type = `${match2.type}[]`;
                 result.base = `${match2.type}`;
                 match1.imports = [];

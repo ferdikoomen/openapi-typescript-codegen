@@ -10,7 +10,7 @@ describe('getType', () => {
     });
 
     it('should convert string', () => {
-        const type = getType('String');
+        const type = getType('string');
         expect(type.type).toEqual('string');
         expect(type.base).toEqual('string');
         expect(type.template).toEqual(null);
@@ -18,7 +18,7 @@ describe('getType', () => {
     });
 
     it('should convert string array', () => {
-        const type = getType('Array[String]');
+        const type = getType('array[string]');
         expect(type.type).toEqual('string[]');
         expect(type.base).toEqual('string');
         expect(type.template).toEqual(null);
@@ -26,7 +26,7 @@ describe('getType', () => {
     });
 
     it('should convert template with primary', () => {
-        const type = getType('#/components/schemas/Link[String]');
+        const type = getType('#/components/schemas/Link[string]');
         expect(type.type).toEqual('Link<string>');
         expect(type.base).toEqual('Link');
         expect(type.template).toEqual('string');

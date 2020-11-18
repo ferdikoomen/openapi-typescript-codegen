@@ -46,28 +46,32 @@ export async function writeClient(
         throw new Error(`Output folder is not a subdirectory of the current working directory`);
     }
 
-    await rmdir(outputPath);
-    await mkdir(outputPath);
-
     if (exportCore) {
+        await rmdir(outputPathCore);
         await mkdir(outputPathCore);
         await writeClientCore(client, templates, outputPathCore, httpClient);
     }
 
     if (exportServices) {
+        await rmdir(outputPathServices);
         await mkdir(outputPathServices);
         await writeClientServices(client.services, templates, outputPathServices, httpClient, useUnionTypes, useOptions);
     }
 
     if (exportSchemas) {
+        await rmdir(outputPathSchemas);
         await mkdir(outputPathSchemas);
         await writeClientSchemas(client.models, templates, outputPathSchemas, httpClient, useUnionTypes);
     }
 
     if (exportModels) {
+        await rmdir(outputPathModels);
         await mkdir(outputPathModels);
         await writeClientModels(client.models, templates, outputPathModels, httpClient, useUnionTypes);
     }
 
-    await writeClientIndex(client, templates, outputPath, useUnionTypes, exportCore, exportServices, exportModels, exportSchemas);
+    if (exportCore || exportServices || exportSchemas || exportModels) {
+        await mkdir(outputPath);
+        await writeClientIndex(client, templates, outputPath, useUnionTypes, exportCore, exportServices, exportModels, exportSchemas);
+    }
 }

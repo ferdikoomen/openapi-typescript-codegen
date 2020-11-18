@@ -1,6 +1,5 @@
 {
     type: '{{export}}',
-
     contains: [{{#each properties}}{{>schema}}, {{/each}}]
 {{#if isReadOnly}}
     isReadOnly: {{{isReadOnly}}},

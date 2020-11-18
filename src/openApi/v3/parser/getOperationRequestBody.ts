@@ -1,7 +1,6 @@
 import type { OperationParameter } from '../../../client/interfaces/OperationParameter';
 import type { OpenApi } from '../interfaces/OpenApi';
 import type { OpenApiRequestBody } from '../interfaces/OpenApiRequestBody';
-import { PrimaryType } from './constants';
 import { getComment } from './getComment';
 import { getContent } from './getContent';
 import { getModel } from './getModel';
@@ -14,8 +13,8 @@ export function getOperationRequestBody(openApi: OpenApi, parameter: OpenApiRequ
         prop: 'body',
         export: 'interface',
         name: 'requestBody',
-        type: PrimaryType.OBJECT,
-        base: PrimaryType.OBJECT,
+        type: 'any',
+        base: 'any',
         template: null,
         link: null,
         description: getComment(parameter.description),
@@ -34,7 +33,7 @@ export function getOperationRequestBody(openApi: OpenApi, parameter: OpenApiRequ
     if (parameter.content) {
         const schema = getContent(openApi, parameter.content);
         if (schema) {
-            if (schema && schema.$ref) {
+            if (schema?.$ref) {
                 const model = getType(schema.$ref);
                 requestBody.export = 'reference';
                 requestBody.type = model.type;
