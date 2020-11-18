@@ -1,1 +1,1 @@
-({{#each properties}} | {{>type}}{{/each}}){{>isNullable}}
+({{#each properties}}{{#unless @first}} | {{/unless}}{{>type}}{{/each}}){{>isNullable}}

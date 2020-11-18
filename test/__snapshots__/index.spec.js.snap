@@ -2989,7 +2989,7 @@ import type { ModelWithString } from './ModelWithString';
 /**
  * This is a model that extends another model
  */
-export type ModelThatExtends = ( & ModelWithString & {
+export type ModelThatExtends = (ModelWithString & {
     propExtendsA?: string,
     propExtendsB?: ModelWithString,
 });"
@@ -3006,7 +3006,7 @@ import type { ModelWithString } from './ModelWithString';
 /**
  * This is a model that extends another model
  */
-export type ModelThatExtendsExtends = ( & ModelWithString & ModelThatExtends & {
+export type ModelThatExtendsExtends = (ModelWithString & ModelThatExtends & {
     propExtendsC?: string,
     propExtendsD?: ModelWithString,
 });"
@@ -3025,7 +3025,7 @@ import type { ModelWithEnum } from './ModelWithEnum';
  * This is a model with one property with a 'all of' relationship
  */
 export interface ModelWithAllOfAndNullable {
-    propA?: ( & {
+    propA?: ({
         boolean?: boolean,
     } & ModelWithEnum & ModelWithArray & ModelWithDictionary) | null;
 }
@@ -3046,7 +3046,7 @@ import type { ModelWithString } from './ModelWithString';
  * This is a model with one property with a 'any of' relationship
  */
 export interface ModelWithAnyOf {
-    propA?: ( | ModelWithString | ModelWithEnum | ModelWithArray | ModelWithDictionary);
+    propA?: (ModelWithString | ModelWithEnum | ModelWithArray | ModelWithDictionary);
 }
 "
 `;
@@ -3064,7 +3064,7 @@ import type { ModelWithEnum } from './ModelWithEnum';
  * This is a model with one property with a 'any of' relationship
  */
 export interface ModelWithAnyOfAndNullable {
-    propA?: ( | {
+    propA?: ({
         boolean?: boolean,
     } | ModelWithEnum | ModelWithArray | ModelWithDictionary) | null;
 }
@@ -3329,7 +3329,7 @@ import type { ModelWithString } from './ModelWithString';
  * This is a model with one property with a 'one of' relationship
  */
 export interface ModelWithOneOf {
-    propA?: ( | ModelWithString | ModelWithEnum | ModelWithArray | ModelWithDictionary);
+    propA?: (ModelWithString | ModelWithEnum | ModelWithArray | ModelWithDictionary);
 }
 "
 `;
@@ -3347,7 +3347,7 @@ import type { ModelWithEnum } from './ModelWithEnum';
  * This is a model with one property with a 'one of' relationship
  */
 export interface ModelWithOneOfAndNullable {
-    propA?: ( | {
+    propA?: ({
         boolean?: boolean,
     } | ModelWithEnum | ModelWithArray | ModelWithDictionary) | null;
 }
@@ -4438,7 +4438,7 @@ export class ComplexService {
             readonly type: 'Monkey' | 'Horse' | 'Bird',
             listOfModels?: Array<ModelWithString> | null,
             listOfStrings?: Array<string> | null,
-            parameters: ( | ModelWithString | ModelWithEnum | ModelWithArray | ModelWithDictionary),
+            parameters: (ModelWithString | ModelWithEnum | ModelWithArray | ModelWithDictionary),
             readonly user?: {
                 readonly id?: number,
                 readonly name?: string | null,
