@@ -3660,7 +3660,7 @@ export const $CompositionWithAllOfAndNullable = {
                 type: 'ModelWithArray',
             }, {
                 type: 'ModelWithDictionary',
-            }, ]
+            }],
             isNullable: true,
         },
     },
@@ -3684,7 +3684,7 @@ export const $CompositionWithAnyOf = {
                 type: 'ModelWithArray',
             }, {
                 type: 'ModelWithDictionary',
-            }, ]
+            }],
         },
     },
 };"
@@ -3711,7 +3711,7 @@ export const $CompositionWithAnyOfAndNullable = {
                 type: 'ModelWithArray',
             }, {
                 type: 'ModelWithDictionary',
-            }, ]
+            }],
             isNullable: true,
         },
     },
@@ -3738,7 +3738,7 @@ export const $CompositionWithAnyOfAnonymous = {
                 type: 'string',
             }, {
                 type: 'number',
-            }, ]
+            }],
         },
     },
 };"
@@ -3761,7 +3761,7 @@ export const $CompositionWithOneOf = {
                 type: 'ModelWithArray',
             }, {
                 type: 'ModelWithDictionary',
-            }, ]
+            }],
         },
     },
 };"
@@ -3788,7 +3788,7 @@ export const $CompositionWithOneOfAndNullable = {
                 type: 'ModelWithArray',
             }, {
                 type: 'ModelWithDictionary',
-            }, ]
+            }],
             isNullable: true,
         },
     },
@@ -3815,7 +3815,7 @@ export const $CompositionWithOneOfAnonymous = {
                 type: 'string',
             }, {
                 type: 'number',
-            }, ]
+            }],
         },
     },
 };"
@@ -3971,7 +3971,7 @@ export const $ModelThatExtends = {
                 type: 'ModelWithString',
             },
         },
-    }, ]
+    }],
 };"
 `;
 
@@ -3995,7 +3995,7 @@ export const $ModelThatExtendsExtends = {
                 type: 'ModelWithString',
             },
         },
-    }, ]
+    }],
 };"
 `;
 
