@@ -2644,7 +2644,13 @@ export type { ArrayWithNumbers } from './models/ArrayWithNumbers';
 export type { ArrayWithProperties } from './models/ArrayWithProperties';
 export type { ArrayWithReferences } from './models/ArrayWithReferences';
 export type { ArrayWithStrings } from './models/ArrayWithStrings';
-export type { Date } from './models/Date';
+export type { CompositionWithAllOfAndNullable } from './models/CompositionWithAllOfAndNullable';
+export type { CompositionWithAnyOf } from './models/CompositionWithAnyOf';
+export type { CompositionWithAnyOfAndNullable } from './models/CompositionWithAnyOfAndNullable';
+export type { CompositionWithAnyOfAnonymous } from './models/CompositionWithAnyOfAnonymous';
+export type { CompositionWithOneOf } from './models/CompositionWithOneOf';
+export type { CompositionWithOneOfAndNullable } from './models/CompositionWithOneOfAndNullable';
+export type { CompositionWithOneOfAnonymous } from './models/CompositionWithOneOfAnonymous';
 export type { DictionaryWithArray } from './models/DictionaryWithArray';
 export type { DictionaryWithDictionary } from './models/DictionaryWithDictionary';
 export type { DictionaryWithProperties } from './models/DictionaryWithProperties';
@@ -2657,7 +2663,6 @@ export { EnumWithStrings } from './models/EnumWithStrings';
 export type { ModelLink } from './models/ModelLink';
 export type { ModelThatExtends } from './models/ModelThatExtends';
 export type { ModelThatExtendsExtends } from './models/ModelThatExtendsExtends';
-export type { ModelWithAnyOf } from './models/ModelWithAnyOf';
 export type { ModelWithArray } from './models/ModelWithArray';
 export type { ModelWithBoolean } from './models/ModelWithBoolean';
 export type { ModelWithCircularReference } from './models/ModelWithCircularReference';
@@ -2670,7 +2675,6 @@ export type { ModelWithInteger } from './models/ModelWithInteger';
 export type { ModelWithLink } from './models/ModelWithLink';
 export type { ModelWithNestedEnums } from './models/ModelWithNestedEnums';
 export type { ModelWithNestedProperties } from './models/ModelWithNestedProperties';
-export type { ModelWithOneOf } from './models/ModelWithOneOf';
 export type { ModelWithOrderedProperties } from './models/ModelWithOrderedProperties';
 export type { ModelWithPattern } from './models/ModelWithPattern';
 export type { ModelWithProperties } from './models/ModelWithProperties';
@@ -2690,7 +2694,13 @@ export { $ArrayWithNumbers } from './schemas/$ArrayWithNumbers';
 export { $ArrayWithProperties } from './schemas/$ArrayWithProperties';
 export { $ArrayWithReferences } from './schemas/$ArrayWithReferences';
 export { $ArrayWithStrings } from './schemas/$ArrayWithStrings';
-export { $Date } from './schemas/$Date';
+export { $CompositionWithAllOfAndNullable } from './schemas/$CompositionWithAllOfAndNullable';
+export { $CompositionWithAnyOf } from './schemas/$CompositionWithAnyOf';
+export { $CompositionWithAnyOfAndNullable } from './schemas/$CompositionWithAnyOfAndNullable';
+export { $CompositionWithAnyOfAnonymous } from './schemas/$CompositionWithAnyOfAnonymous';
+export { $CompositionWithOneOf } from './schemas/$CompositionWithOneOf';
+export { $CompositionWithOneOfAndNullable } from './schemas/$CompositionWithOneOfAndNullable';
+export { $CompositionWithOneOfAnonymous } from './schemas/$CompositionWithOneOfAnonymous';
 export { $DictionaryWithArray } from './schemas/$DictionaryWithArray';
 export { $DictionaryWithDictionary } from './schemas/$DictionaryWithDictionary';
 export { $DictionaryWithProperties } from './schemas/$DictionaryWithProperties';
@@ -2703,7 +2713,6 @@ export { $EnumWithStrings } from './schemas/$EnumWithStrings';
 export { $ModelLink } from './schemas/$ModelLink';
 export { $ModelThatExtends } from './schemas/$ModelThatExtends';
 export { $ModelThatExtendsExtends } from './schemas/$ModelThatExtendsExtends';
-export { $ModelWithAnyOf } from './schemas/$ModelWithAnyOf';
 export { $ModelWithArray } from './schemas/$ModelWithArray';
 export { $ModelWithBoolean } from './schemas/$ModelWithBoolean';
 export { $ModelWithCircularReference } from './schemas/$ModelWithCircularReference';
@@ -2716,7 +2725,6 @@ export { $ModelWithInteger } from './schemas/$ModelWithInteger';
 export { $ModelWithLink } from './schemas/$ModelWithLink';
 export { $ModelWithNestedEnums } from './schemas/$ModelWithNestedEnums';
 export { $ModelWithNestedProperties } from './schemas/$ModelWithNestedProperties';
-export { $ModelWithOneOf } from './schemas/$ModelWithOneOf';
 export { $ModelWithOrderedProperties } from './schemas/$ModelWithOrderedProperties';
 export { $ModelWithPattern } from './schemas/$ModelWithPattern';
 export { $ModelWithProperties } from './schemas/$ModelWithProperties';
@@ -2817,15 +2825,134 @@ exports[`v3 should generate: ./test/generated/v3/models/ArrayWithStrings.ts 1`] 
 export type ArrayWithStrings = Array<string>;"
 `;
 
-exports[`v3 should generate: ./test/generated/v3/models/Date.ts 1`] = `
+exports[`v3 should generate: ./test/generated/v3/models/CompositionWithAllOfAndNullable.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+
+import type { ModelWithArray } from './ModelWithArray';
+import type { ModelWithDictionary } from './ModelWithDictionary';
+import type { ModelWithEnum } from './ModelWithEnum';
+
+/**
+ * This is a model with one property with a 'all of' relationship
+ */
+export interface CompositionWithAllOfAndNullable {
+    propA?: ({
+        boolean?: boolean,
+    } & ModelWithEnum & ModelWithArray & ModelWithDictionary) | null;
+}
+"
+`;
+
+exports[`v3 should generate: ./test/generated/v3/models/CompositionWithAnyOf.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+
+import type { ModelWithArray } from './ModelWithArray';
+import type { ModelWithDictionary } from './ModelWithDictionary';
+import type { ModelWithEnum } from './ModelWithEnum';
+import type { ModelWithString } from './ModelWithString';
+
+/**
+ * This is a model with one property with a 'any of' relationship
+ */
+export interface CompositionWithAnyOf {
+    propA?: (ModelWithString | ModelWithEnum | ModelWithArray | ModelWithDictionary);
+}
+"
+`;
+
+exports[`v3 should generate: ./test/generated/v3/models/CompositionWithAnyOfAndNullable.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+
+import type { ModelWithArray } from './ModelWithArray';
+import type { ModelWithDictionary } from './ModelWithDictionary';
+import type { ModelWithEnum } from './ModelWithEnum';
+
+/**
+ * This is a model with one property with a 'any of' relationship
+ */
+export interface CompositionWithAnyOfAndNullable {
+    propA?: ({
+        boolean?: boolean,
+    } | ModelWithEnum | ModelWithArray | ModelWithDictionary) | null;
+}
+"
+`;
+
+exports[`v3 should generate: ./test/generated/v3/models/CompositionWithAnyOfAnonymous.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
 
 /**
- * This is a type-only model that defines Date as a string
+ * This is a model with one property with a 'any of' relationship where the options are not $ref
  */
-export type Date = string;"
+export interface CompositionWithAnyOfAnonymous {
+    propA?: ({
+        propA?: any,
+    } | string | number);
+}
+"
+`;
+
+exports[`v3 should generate: ./test/generated/v3/models/CompositionWithOneOf.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+
+import type { ModelWithArray } from './ModelWithArray';
+import type { ModelWithDictionary } from './ModelWithDictionary';
+import type { ModelWithEnum } from './ModelWithEnum';
+import type { ModelWithString } from './ModelWithString';
+
+/**
+ * This is a model with one property with a 'one of' relationship
+ */
+export interface CompositionWithOneOf {
+    propA?: (ModelWithString | ModelWithEnum | ModelWithArray | ModelWithDictionary);
+}
+"
+`;
+
+exports[`v3 should generate: ./test/generated/v3/models/CompositionWithOneOfAndNullable.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+
+import type { ModelWithArray } from './ModelWithArray';
+import type { ModelWithDictionary } from './ModelWithDictionary';
+import type { ModelWithEnum } from './ModelWithEnum';
+
+/**
+ * This is a model with one property with a 'one of' relationship
+ */
+export interface CompositionWithOneOfAndNullable {
+    propA?: ({
+        boolean?: boolean,
+    } | ModelWithEnum | ModelWithArray | ModelWithDictionary) | null;
+}
+"
+`;
+
+exports[`v3 should generate: ./test/generated/v3/models/CompositionWithOneOfAnonymous.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+
+/**
+ * This is a model with one property with a 'one of' relationship where the options are not $ref
+ */
+export interface CompositionWithOneOfAnonymous {
+    propA?: ({
+        propA?: any,
+    } | string | number);
+}
+"
 `;
 
 exports[`v3 should generate: ./test/generated/v3/models/DictionaryWithArray.ts 1`] = `
@@ -2983,11 +3110,10 @@ import type { ModelWithString } from './ModelWithString';
 /**
  * This is a model that extends another model
  */
-export interface ModelThatExtends extends ModelWithString {
-    propExtendsA?: string;
-    propExtendsB?: ModelWithString;
-}
-"
+export type ModelThatExtends = (ModelWithString & {
+    propExtendsA?: string,
+    propExtendsB?: ModelWithString,
+});"
 `;
 
 exports[`v3 should generate: ./test/generated/v3/models/ModelThatExtendsExtends.ts 1`] = `
@@ -3001,30 +3127,10 @@ import type { ModelWithString } from './ModelWithString';
 /**
  * This is a model that extends another model
  */
-export interface ModelThatExtendsExtends extends ModelWithString, ModelThatExtends {
-    propExtendsC?: string;
-    propExtendsD?: ModelWithString;
-}
-"
-`;
-
-exports[`v3 should generate: ./test/generated/v3/models/ModelWithAnyOf.ts 1`] = `
-"/* istanbul ignore file */
-/* tslint:disable */
-/* eslint-disable */
-
-import type { ModelWithArray } from './ModelWithArray';
-import type { ModelWithDictionary } from './ModelWithDictionary';
-import type { ModelWithEnum } from './ModelWithEnum';
-import type { ModelWithString } from './ModelWithString';
-
-/**
- * This is a model with one property with a 'any of' relationship
- */
-export interface ModelWithAnyOf {
-    propA?: ModelWithArray | ModelWithDictionary | ModelWithEnum | ModelWithString;
-}
-"
+export type ModelThatExtendsExtends = (ModelWithString & ModelThatExtends & {
+    propExtendsC?: string,
+    propExtendsD?: ModelWithString,
+});"
 `;
 
 exports[`v3 should generate: ./test/generated/v3/models/ModelWithArray.ts 1`] = `
@@ -3267,25 +3373,6 @@ export interface ModelWithNestedProperties {
             readonly third: string | null,
         } | null,
     } | null;
-}
-"
-`;
-
-exports[`v3 should generate: ./test/generated/v3/models/ModelWithOneOf.ts 1`] = `
-"/* istanbul ignore file */
-/* tslint:disable */
-/* eslint-disable */
-
-import type { ModelWithArray } from './ModelWithArray';
-import type { ModelWithDictionary } from './ModelWithDictionary';
-import type { ModelWithEnum } from './ModelWithEnum';
-import type { ModelWithString } from './ModelWithString';
-
-/**
- * This is a model with one property with a 'one of' relationship
- */
-export interface ModelWithOneOf {
-    propA?: ModelWithArray | ModelWithDictionary | ModelWithEnum | ModelWithString;
 }
 "
 `;
@@ -3552,13 +3639,185 @@ export const $ArrayWithStrings = {
 };"
 `;
 
-exports[`v3 should generate: ./test/generated/v3/schemas/$Date.ts 1`] = `
+exports[`v3 should generate: ./test/generated/v3/schemas/$CompositionWithAllOfAndNullable.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
 
-export const $Date = {
-    type: 'string',
+export const $CompositionWithAllOfAndNullable = {
+    properties: {
+        propA: {
+            type: 'all-of',
+            contains: [{
+                properties: {
+                    boolean: {
+                        type: 'boolean',
+                    },
+                },
+            }, {
+                type: 'ModelWithEnum',
+            }, {
+                type: 'ModelWithArray',
+            }, {
+                type: 'ModelWithDictionary',
+            }],
+            isNullable: true,
+        },
+    },
+};"
+`;
+
+exports[`v3 should generate: ./test/generated/v3/schemas/$CompositionWithAnyOf.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+
+export const $CompositionWithAnyOf = {
+    properties: {
+        propA: {
+            type: 'any-of',
+            contains: [{
+                type: 'ModelWithString',
+            }, {
+                type: 'ModelWithEnum',
+            }, {
+                type: 'ModelWithArray',
+            }, {
+                type: 'ModelWithDictionary',
+            }],
+        },
+    },
+};"
+`;
+
+exports[`v3 should generate: ./test/generated/v3/schemas/$CompositionWithAnyOfAndNullable.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+
+export const $CompositionWithAnyOfAndNullable = {
+    properties: {
+        propA: {
+            type: 'any-of',
+            contains: [{
+                properties: {
+                    boolean: {
+                        type: 'boolean',
+                    },
+                },
+            }, {
+                type: 'ModelWithEnum',
+            }, {
+                type: 'ModelWithArray',
+            }, {
+                type: 'ModelWithDictionary',
+            }],
+            isNullable: true,
+        },
+    },
+};"
+`;
+
+exports[`v3 should generate: ./test/generated/v3/schemas/$CompositionWithAnyOfAnonymous.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+
+export const $CompositionWithAnyOfAnonymous = {
+    properties: {
+        propA: {
+            type: 'any-of',
+            contains: [{
+                properties: {
+                    propA: {
+                        properties: {
+                        },
+                    },
+                },
+            }, {
+                type: 'string',
+            }, {
+                type: 'number',
+            }],
+        },
+    },
+};"
+`;
+
+exports[`v3 should generate: ./test/generated/v3/schemas/$CompositionWithOneOf.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+
+export const $CompositionWithOneOf = {
+    properties: {
+        propA: {
+            type: 'one-of',
+            contains: [{
+                type: 'ModelWithString',
+            }, {
+                type: 'ModelWithEnum',
+            }, {
+                type: 'ModelWithArray',
+            }, {
+                type: 'ModelWithDictionary',
+            }],
+        },
+    },
+};"
+`;
+
+exports[`v3 should generate: ./test/generated/v3/schemas/$CompositionWithOneOfAndNullable.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+
+export const $CompositionWithOneOfAndNullable = {
+    properties: {
+        propA: {
+            type: 'one-of',
+            contains: [{
+                properties: {
+                    boolean: {
+                        type: 'boolean',
+                    },
+                },
+            }, {
+                type: 'ModelWithEnum',
+            }, {
+                type: 'ModelWithArray',
+            }, {
+                type: 'ModelWithDictionary',
+            }],
+            isNullable: true,
+        },
+    },
+};"
+`;
+
+exports[`v3 should generate: ./test/generated/v3/schemas/$CompositionWithOneOfAnonymous.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+
+export const $CompositionWithOneOfAnonymous = {
+    properties: {
+        propA: {
+            type: 'one-of',
+            contains: [{
+                properties: {
+                    propA: {
+                        properties: {
+                        },
+                    },
+                },
+            }, {
+                type: 'string',
+            }, {
+                type: 'number',
+            }],
+        },
+    },
 };"
 `;
 
@@ -3699,18 +3958,20 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$ModelThatExtends.ts 1`
 /* tslint:disable */
 /* eslint-disable */
 
-import { $ModelWithString } from './$ModelWithString';
-
 export const $ModelThatExtends = {
-    properties: {
-        ...$ModelWithString.properties,
-        propExtendsA: {
-            type: 'string',
+    type: 'all-of',
+    contains: [{
+        type: 'ModelWithString',
+    }, {
+        properties: {
+            propExtendsA: {
+                type: 'string',
+            },
+            propExtendsB: {
+                type: 'ModelWithString',
+            },
         },
-        propExtendsB: {
-            type: 'ModelWithString',
-        },
-    },
+    }],
 };"
 `;
 
@@ -3719,34 +3980,22 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$ModelThatExtendsExtend
 /* tslint:disable */
 /* eslint-disable */
 
-import { $ModelWithString } from './$ModelWithString';
-import { $ModelThatExtends } from './$ModelThatExtends';
-
 export const $ModelThatExtendsExtends = {
-    properties: {
-        ...$ModelWithString.properties,
-        ...$ModelThatExtends.properties,
-        propExtendsC: {
-            type: 'string',
+    type: 'all-of',
+    contains: [{
+        type: 'ModelWithString',
+    }, {
+        type: 'ModelThatExtends',
+    }, {
+        properties: {
+            propExtendsC: {
+                type: 'string',
+            },
+            propExtendsD: {
+                type: 'ModelWithString',
+            },
         },
-        propExtendsD: {
-            type: 'ModelWithString',
-        },
-    },
-};"
-`;
-
-exports[`v3 should generate: ./test/generated/v3/schemas/$ModelWithAnyOf.ts 1`] = `
-"/* istanbul ignore file */
-/* tslint:disable */
-/* eslint-disable */
-
-export const $ModelWithAnyOf = {
-    properties: {
-        propA: {
-            type: 'ModelWithArray | ModelWithDictionary | ModelWithEnum | ModelWithString',
-        },
-    },
+    }],
 };"
 `;
 
@@ -3978,20 +4227,6 @@ export const $ModelWithNestedProperties = {
             isReadOnly: true,
             isRequired: true,
             isNullable: true,
-        },
-    },
-};"
-`;
-
-exports[`v3 should generate: ./test/generated/v3/schemas/$ModelWithOneOf.ts 1`] = `
-"/* istanbul ignore file */
-/* tslint:disable */
-/* eslint-disable */
-
-export const $ModelWithOneOf = {
-    properties: {
-        propA: {
-            type: 'ModelWithArray | ModelWithDictionary | ModelWithEnum | ModelWithString',
         },
     },
 };"
@@ -4261,7 +4496,7 @@ export class ComplexService {
             readonly type: 'Monkey' | 'Horse' | 'Bird',
             listOfModels?: Array<ModelWithString> | null,
             listOfStrings?: Array<string> | null,
-            parameters: ModelWithArray | ModelWithDictionary | ModelWithEnum | ModelWithString,
+            parameters: (ModelWithString | ModelWithEnum | ModelWithArray | ModelWithDictionary),
             readonly user?: {
                 readonly id?: number,
                 readonly name?: string | null,

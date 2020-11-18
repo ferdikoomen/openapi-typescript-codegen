@@ -1,0 +1,13 @@
+{
+    type: '{{export}}',
+    contains: [{{#each properties}}{{>schema}}{{#unless @last}}, {{/unless}}{{/each}}],
+{{#if isReadOnly}}
+    isReadOnly: {{{isReadOnly}}},
+{{/if}}
+{{#if isRequired}}
+    isRequired: {{{isRequired}}},
+{{/if}}
+{{#if isNullable}}
+    isNullable: {{{isNullable}}},
+{{/if}}
+}
