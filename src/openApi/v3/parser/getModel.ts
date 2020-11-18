@@ -103,7 +103,7 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isDefiniti
         }
     }
 
-    if (definition.type === 'object' && typeof definition.additionalProperties === 'object') {
+    if (definition.type === 'object' && definition.additionalProperties && typeof definition.additionalProperties === 'object') {
         if (definition.additionalProperties.$ref) {
             const additionalProperties = getType(definition.additionalProperties.$ref);
             model.export = 'dictionary';
