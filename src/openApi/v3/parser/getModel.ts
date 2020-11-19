@@ -13,11 +13,11 @@ import { getPattern } from './getPattern';
 import { getType } from './getType';
 import { getExternalReference, getRelativeReference, isFormalRef, isLocalRef, withCurrentMeta } from '../../../utils/refs';
 
-export const resolveModelReference = async (openApi: OpenApi, definition: OpenApiSchema, ref: string, isDefinition: boolean = false, name: string = ''): Promise<Type> => {
+export const resolveModelReference = async (openApi: OpenApi, definition: OpenApiSchema, ref: string, isDefinition: boolean = false, name: string = '', createFormalRef: (t: Type) => Model): Promise<Model> => {
     if (isLocalRef(ref)) {
         if (isFormalRef(ref)) {
             const t = getType(ref);
-            return t;
+            return createFormalRef(t);
         } else {
             const internalDefinition = getRelativeReference<OpenApiSchema>(openApi, ref);
             return getModel(openApi, internalDefinition);
@@ -63,14 +63,15 @@ export async function getModel(openApi: OpenApi, definition: OpenApiSchema, isDe
     };
 
     if (definition.$ref) {
-        const definitionRef = await resolveModelReference(openApi, definition, definition.$ref, isDefinition, name);
-        model.export = 'reference';
-        model.type = definitionRef.type;
-        model.base = definitionRef.base;
-        model.template = definitionRef.template;
-        model.imports.push(...definitionRef.imports);
-        model.default = getModelDefault(definition, model);
-        return model;
+        return resolveModelReference(openApi, definition, definition.$ref, isDefinition, name, definitionRef => {
+            model.export = 'reference';
+            model.type = definitionRef.type;
+            model.base = definitionRef.base;
+            model.template = definitionRef.template;
+            model.imports.push(...definitionRef.imports);
+            model.default = getModelDefault(definition, model);
+            return model;
+        });
     }
 
     if (definition.enum) {
@@ -100,14 +101,15 @@ export async function getModel(openApi: OpenApi, definition: OpenApiSchema, isDe
 
     if (definition.type === 'array' && definition.items) {
         if (definition.items.$ref) {
-            const arrayItems = await resolveModelReference(openApi, definition, definition.items.$ref, isDefinition, name);
-            model.export = 'array';
-            model.type = arrayItems.type;
-            model.base = arrayItems.base;
-            model.template = arrayItems.template;
-            model.imports.push(...arrayItems.imports);
-            model.default = getModelDefault(definition, model);
-            return model;
+            return resolveModelReference(openApi, definition, definition.items.$ref, isDefinition, name, arrayItems => {
+                model.export = 'array';
+                model.type = arrayItems.type;
+                model.base = arrayItems.base;
+                model.template = arrayItems.template;
+                model.imports.push(...arrayItems.imports);
+                model.default = getModelDefault(definition, model);
+                return model;
+            });
         } else {
             const arrayItems = await getModel(openApi, withCurrentMeta(definition.items, definition.$meta));
             model.export = 'array';
@@ -123,14 +125,15 @@ export async function getModel(openApi: OpenApi, definition: OpenApiSchema, isDe
 
     if (definition.type === 'object' && definition.additionalProperties && typeof definition.additionalProperties === 'object') {
         if (definition.additionalProperties.$ref) {
-            const additionalProperties = await resolveModelReference(openApi, definition, definition.additionalProperties.$ref, isDefinition, name);
-            model.export = 'dictionary';
-            model.type = additionalProperties.type;
-            model.base = additionalProperties.base;
-            model.template = additionalProperties.template;
-            model.imports.push(...additionalProperties.imports);
-            model.default = getModelDefault(definition, model);
-            return model;
+            return resolveModelReference(openApi, definition, definition.additionalProperties.$ref, isDefinition, name, additionalProperties => {
+                model.export = 'dictionary';
+                model.type = additionalProperties.type;
+                model.base = additionalProperties.base;
+                model.template = additionalProperties.template;
+                model.imports.push(...additionalProperties.imports);
+                model.default = getModelDefault(definition, model);
+                return model;
+            });
         } else {
             const additionalProperties = await getModel(openApi, withCurrentMeta(definition.additionalProperties, definition.$meta));
             model.export = 'dictionary';
