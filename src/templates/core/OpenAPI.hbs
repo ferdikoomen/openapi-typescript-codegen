@@ -9,12 +9,12 @@ import { ApiRequestOptions } from './ApiRequestOptions';
 export interface RequestHookParams {
     url: string;
     options: ApiRequestOptions;
-    responseHeader: string|undefined;
 }
 
 export interface ResponseHookParams {
     url: string;
     result: ApiResult;
+    response?: any;
 }
 
 interface Config {
