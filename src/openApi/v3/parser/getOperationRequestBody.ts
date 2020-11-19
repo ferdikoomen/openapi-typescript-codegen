@@ -24,7 +24,6 @@ export function getOperationRequestBody(openApi: OpenApi, parameter: OpenApiRequ
         isRequired: parameter.required === true,
         isNullable: parameter.nullable === true,
         imports: [],
-        extends: [],
         enum: [],
         enums: [],
         properties: [],
@@ -66,7 +65,6 @@ export function getOperationRequestBody(openApi: OpenApi, parameter: OpenApiRequ
                 requestBody.minProperties = model.minProperties;
                 requestBody.pattern = getPattern(model.pattern);
                 requestBody.imports.push(...model.imports);
-                requestBody.extends.push(...model.extends);
                 requestBody.enum.push(...model.enum);
                 requestBody.enums.push(...model.enums);
                 requestBody.properties.push(...model.properties);

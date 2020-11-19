@@ -24,7 +24,6 @@ export function getOperationParameter(openApi: OpenApi, parameter: OpenApiParame
         isRequired: parameter.required === true,
         isNullable: parameter.nullable === true,
         imports: [],
-        extends: [],
         enum: [],
         enums: [],
         properties: [],
@@ -76,7 +75,6 @@ export function getOperationParameter(openApi: OpenApi, parameter: OpenApiParame
             operationParameter.pattern = getPattern(model.pattern);
             operationParameter.default = model.default;
             operationParameter.imports.push(...model.imports);
-            operationParameter.extends.push(...model.extends);
             operationParameter.enum.push(...model.enum);
             operationParameter.enums.push(...model.enums);
             operationParameter.properties.push(...model.properties);

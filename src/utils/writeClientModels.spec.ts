@@ -22,7 +22,6 @@ describe('writeClientModels', () => {
                 isRequired: false,
                 isNullable: false,
                 imports: [],
-                extends: [],
                 enum: [],
                 enums: [],
                 properties: [],

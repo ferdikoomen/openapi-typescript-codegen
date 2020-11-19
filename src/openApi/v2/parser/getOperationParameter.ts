@@ -39,7 +39,6 @@ export function getOperationParameter(openApi: OpenApi, parameter: OpenApiParame
         uniqueItems: parameter.uniqueItems,
         pattern: getPattern(parameter.pattern),
         imports: [],
-        extends: [],
         enum: [],
         enums: [],
         properties: [],
@@ -121,7 +120,6 @@ export function getOperationParameter(openApi: OpenApi, parameter: OpenApiParame
             operationParameter.template = model.template;
             operationParameter.link = model.link;
             operationParameter.imports.push(...model.imports);
-            operationParameter.extends.push(...model.extends);
             operationParameter.enum.push(...model.enum);
             operationParameter.enums.push(...model.enums);
             operationParameter.properties.push(...model.properties);

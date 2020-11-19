@@ -11,7 +11,6 @@ export interface Model extends Schema {
     description: string | null;
     default?: string;
     imports: string[];
-    extends: string[];
     enum: Enum[];
     enums: Model[];
     properties: Model[];

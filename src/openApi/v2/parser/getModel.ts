@@ -5,20 +5,21 @@ import { extendEnum } from './extendEnum';
 import { getComment } from './getComment';
 import { getEnum } from './getEnum';
 import { getEnumFromDescription } from './getEnumFromDescription';
+import { getModelComposition } from './getModelComposition';
 import { getModelProperties } from './getModelProperties';
 import { getPattern } from './getPattern';
 import { getType } from './getType';
 
 export function getModel(openApi: OpenApi, definition: OpenApiSchema, isDefinition: boolean = false, name: string = ''): Model {
     const model: Model = {
-        name: name,
+        name,
         export: 'interface',
         type: 'any',
         base: 'any',
         template: null,
         link: null,
         description: getComment(definition.description),
-        isDefinition: isDefinition,
+        isDefinition,
         isReadOnly: definition.readOnly === true,
         isNullable: definition['x-nullable'] === true,
         isRequired: false,
@@ -37,7 +38,6 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isDefiniti
         minProperties: definition.minProperties,
         pattern: getPattern(definition.pattern),
         imports: [],
-        extends: [],
         enum: [],
         enums: [],
         properties: [],
@@ -118,42 +118,30 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isDefiniti
         }
     }
 
-    if (definition.type === 'object' || definition.allOf) {
+    if (definition.allOf?.length) {
+        const composition = getModelComposition(openApi, definition.allOf, 'all-of', getModel);
+        model.export = composition.type;
+        model.imports.push(...composition.imports);
+        model.enums.push(...composition.enums);
+        model.properties.push(...composition.properties);
+        return model;
+    }
+
+    if (definition.type === 'object') {
         model.export = 'interface';
         model.type = 'any';
         model.base = 'any';
 
-        if (definition.allOf?.length) {
-            definition.allOf.forEach(parent => {
-                if (parent.$ref) {
-                    const parentRef = getType(parent.$ref);
-                    model.extends.push(parentRef.base);
-                    model.imports.push(parentRef.base);
-                }
-                if (parent.type === 'object' && parent.properties) {
-                    const properties = getModelProperties(openApi, parent, getModel);
-                    properties.forEach(property => {
-                        model.properties.push(property);
-                        model.imports.push(...property.imports);
-                        if (property.export === 'enum') {
-                            model.enums.push(property);
-                        }
-                    });
-                }
-            });
-        }
-
         if (definition.properties) {
             const properties = getModelProperties(openApi, definition, getModel);
             properties.forEach(property => {
-                model.properties.push(property);
                 model.imports.push(...property.imports);
+                model.properties.push(property);
                 if (property.export === 'enum') {
                     model.enums.push(property);
                 }
             });
         }
-
         return model;
     }
 

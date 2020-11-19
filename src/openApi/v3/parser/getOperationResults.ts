@@ -34,7 +34,6 @@ export function getOperationResults(operationResponses: OperationResponse[]): Op
             isRequired: false,
             isNullable: false,
             imports: [],
-            extends: [],
             enum: [],
             enums: [],
             properties: [],
