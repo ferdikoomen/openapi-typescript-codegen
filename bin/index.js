@@ -2,6 +2,8 @@
 
 'use strict';
 
+require('source-map-support/register');
+
 const path = require('path');
 const program = require('commander');
 const pkg = require('../package.json');
