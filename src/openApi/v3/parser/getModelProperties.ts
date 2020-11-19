@@ -19,10 +19,45 @@ export async function getModelProperties(openApi: OpenApi, definition: OpenApiSc
             const property = definition.properties[propertyName];
             const propertyRequired = definition.required?.includes(propertyName);
             if (property.$ref) {
-                let model: Type;
+                let model: Model;
                 if (isLocalRef(property.$ref)) {
                     if (isFormalRef(property.$ref)) {
-                        model = getType(property.$ref);
+                        const propertyRef = getType(property.$ref);
+                        model = {
+                            name: escapeName(propertyName),
+                            export: 'reference',
+                            type: propertyRef.type,
+                            base: propertyRef.base,
+                            template: propertyRef.template,
+                            link: null,
+                            description: getComment(property.description),
+                            isDefinition: false,
+                            // These properties are filled out to satisfy the Model type, but should otherwise be ignored
+                            // as this is a reference
+                            isReadOnly: property.readOnly === true,
+                            isRequired: propertyRequired === true,
+                            isNullable: property.nullable === true,
+                            format: property.format,
+                            maximum: property.maximum,
+                            exclusiveMaximum: property.exclusiveMaximum,
+                            minimum: property.minimum,
+                            exclusiveMinimum: property.exclusiveMinimum,
+                            multipleOf: property.multipleOf,
+                            maxLength: property.maxLength,
+                            minLength: property.minLength,
+                            maxItems: property.maxItems,
+                            minItems: property.minItems,
+                            uniqueItems: property.uniqueItems,
+                            maxProperties: property.maxProperties,
+                            minProperties: property.minProperties,
+                            pattern: getPattern(property.pattern),
+                            // end of canned properties
+                            imports: propertyRef.imports,
+                            extends: [],
+                            enum: [],
+                            enums: [],
+                            properties: [],
+                        };
                     } else {
                         const internalDefinition = getRelativeReference<OpenApiSchema>(openApi, property.$ref);
                         model = await getModel(openApi, internalDefinition);
@@ -31,38 +66,7 @@ export async function getModelProperties(openApi: OpenApi, definition: OpenApiSc
                     const resolvedDefinition = await getExternalReference<OpenApiSchema>(definition.$meta, property.$ref);
                     model = await getModel(openApi, resolvedDefinition);
                 }
-                models.push({
-                    name: escapeName(propertyName),
-                    export: 'reference',
-                    type: model.type,
-                    base: model.base,
-                    template: model.template,
-                    link: null,
-                    description: getComment(property.description),
-                    isDefinition: false,
-                    isReadOnly: property.readOnly === true,
-                    isRequired: propertyRequired === true,
-                    isNullable: property.nullable === true,
-                    format: property.format,
-                    maximum: property.maximum,
-                    exclusiveMaximum: property.exclusiveMaximum,
-                    minimum: property.minimum,
-                    exclusiveMinimum: property.exclusiveMinimum,
-                    multipleOf: property.multipleOf,
-                    maxLength: property.maxLength,
-                    minLength: property.minLength,
-                    maxItems: property.maxItems,
-                    minItems: property.minItems,
-                    uniqueItems: property.uniqueItems,
-                    maxProperties: property.maxProperties,
-                    minProperties: property.minProperties,
-                    pattern: getPattern(property.pattern),
-                    imports: model.imports,
-                    extends: [],
-                    enum: [],
-                    enums: [],
-                    properties: [],
-                });
+                models.push(model);
             } else {
                 const model = await getModel(openApi, property);
                 models.push({
