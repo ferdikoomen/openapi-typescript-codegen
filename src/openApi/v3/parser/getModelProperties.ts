@@ -1,4 +1,6 @@
 import type { Model } from '../../../client/interfaces/Model';
+import type { Type } from '../../../client/interfaces/Type';
+import { getExternalReference, getRelativeReference, isFormalRef, isLocalRef } from '../../../utils/refs';
 import type { OpenApi } from '../interfaces/OpenApi';
 import type { OpenApiSchema } from '../interfaces/OpenApiSchema';
 import { escapeName } from './escapeName';
@@ -16,7 +18,18 @@ export async function getModelProperties(openApi: OpenApi, definition: OpenApiSc
             const property = definition.properties[propertyName];
             const propertyRequired = definition.required && definition.required.includes(propertyName);
             if (property.$ref) {
-                const model = getType(property.$ref);
+                let model: Type;
+                if (isLocalRef(property.$ref)) {
+                    if (isFormalRef(property.$ref)) {
+                        model = getType(property.$ref);
+                    } else {
+                        const internalDefinition = getRelativeReference<OpenApiSchema>(openApi, property.$ref);
+                        model = await getModel(openApi, internalDefinition);
+                    }
+                } else {
+                    const resolvedDefinition = await getExternalReference<OpenApiSchema>(definition.$meta, property.$ref);
+                    model = await getModel(openApi, resolvedDefinition);
+                }
                 models.push({
                     name: escapeName(propertyName),
                     export: 'reference',

@@ -1,3 +1,4 @@
+import { ParserMeta } from '../../../interfaces/ParserMeta';
 import type { Dictionary } from '../../../utils/types';
 import type { WithEnumExtension } from './Extensions/WithEnumExtension';
 import type { OpenApiDiscriminator } from './OpenApiDiscriminator';
@@ -44,4 +45,5 @@ export interface OpenApiSchema extends OpenApiReference, WithEnumExtension {
     externalDocs?: OpenApiExternalDocs;
     example?: any;
     deprecated?: boolean;
+    $meta: ParserMeta;
 }

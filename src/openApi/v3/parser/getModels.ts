@@ -1,7 +1,7 @@
 import type { Model } from '../../../client/interfaces/Model';
+import { withCurrentMeta } from '../../../utils/refs';
 import type { OpenApi } from '../interfaces/OpenApi';
 import { getModel } from './getModel';
-import { getRef } from './getRef';
 import { getType } from './getType';
 
 export async function getModels(openApi: OpenApi): Promise<Model[]> {
@@ -9,7 +9,7 @@ export async function getModels(openApi: OpenApi): Promise<Model[]> {
     if (openApi.components) {
         for (const definitionName in openApi.components.schemas) {
             if (openApi.components.schemas.hasOwnProperty(definitionName)) {
-                const definition = openApi.components.schemas[definitionName];
+                const definition = withCurrentMeta(openApi.components.schemas[definitionName], openApi.$meta);
                 const definitionType = getType(definitionName);
                 const model = await getModel(openApi, definition, true, definitionType.base);
                 models.push(model);

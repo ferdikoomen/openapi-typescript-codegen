@@ -15,14 +15,15 @@ async function retrieveFile(filePath: string, projectPath: string) {
     try {
         return await getOpenApiSpec(normalised);
     } catch (error) {
-        throw new Error(`Unable to read referenced file ${normalised}: ${error.message}`)
+        throw new Error(`Unable to read referenced file ${normalised}: ${error.message}`);
     }
 }
 
 export function getRelativeReference<T>(openApi: OpenApiBase, ref: string): T {
     // Fetch the paths to the definitions, this converts:
     // "#/components/schemas/Form" to ["components", "schemas", "Form"]
-    const paths = ref.replace(/^#/g, '')
+    const paths = ref
+        .replace(/^#/g, '')
         .split('/')
         .filter(item => item);
 
@@ -36,21 +37,58 @@ export function getRelativeReference<T>(openApi: OpenApiBase, ref: string): T {
             throw new Error(`Could not find reference: "${ref}"`);
         }
     });
-    return result as T;
+    return { ...result, $meta: openApi.$meta } as T;
 }
-export async function getExternalReference<T>($meta: ParserMeta, ref: string): Promise<T> {
+
+export const withCurrentMeta = <T extends OpenApiBase>(parsedValue: T, $meta: ParserMeta): T => ({ ...parsedValue, $meta });
+
+/**
+ * Reference types that are formalised as schemas
+ * and so can be imported directly
+ */
+export const formalReferenceTypes = [
+    '#/components/schemas/',
+    '#/components/responses/',
+    '#/components/parameters/',
+    '#/components/examples/',
+    '#/components/requestBodies/',
+];
+
+/**
+ * Is the $ref a direct reference to one of the
+ * components that we convert to schemas, or is
+ * it a reference into something inside a schema.
+ *
+ * This is used to determine if we should just do
+ * an inline replace when generating types, or refer
+ * to a generated schema type
+ */
+export const isFormalRef = (ref: string) => {
+    const matchedFormalRef = formalReferenceTypes.find(formalRef => ref.startsWith(formalRef));
+    if (matchedFormalRef) {
+        const notNestedRef = !ref.replace(matchedFormalRef, '').includes('/');
+        return notNestedRef;
+    }
+    return false;
+};
+
+export async function getExternalReference<T extends OpenApiBase>($meta: ParserMeta, ref: string): Promise<T> {
     const uri = new URL(ref, $meta.baseUri);
     if (uri.protocol === 'file:') {
         const resolvedItem = await retrieveFile(uri.pathname, $meta.projectPath);
-        return Promise.resolve(resolvedItem as T);
+        const withMeta = { ...resolvedItem, $meta: { projectPath: $meta.projectPath, baseUri: uri } };
+        const internallyResolved = uri.hash ? (getRelativeReference(withMeta as OpenApiBase, uri.hash) as T) : (withMeta as T);
+        return Promise.resolve(internallyResolved);
     } else {
         throw new Error(`Cannot retrieve $ref ${ref} for protocol "${uri.protocol}"`);
     }
 }
 
-export function isLocalRef(ref: string) { return ref.startsWith('#'); }
+export function isLocalRef(ref: string) {
+    return ref.startsWith('#');
+}
 
-export async function getRef<T>(openApi: OpenApiBase, item: T & JSONReference): Promise<T> {
+export async function getRef<T extends OpenApiBase>(openApi: OpenApiBase, item: T & JSONReference): Promise<T> {
     if (item.$ref) {
         if (isLocalRef(item.$ref)) {
             // relative file reference

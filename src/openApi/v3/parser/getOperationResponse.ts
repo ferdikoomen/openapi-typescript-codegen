@@ -1,6 +1,8 @@
 import type { OperationResponse } from '../../../client/interfaces/OperationResponse';
+import { getExternalReference, isLocalRef } from '../../../utils/refs';
 import type { OpenApi } from '../interfaces/OpenApi';
 import type { OpenApiResponse } from '../interfaces/OpenApiResponse';
+import type { OpenApiSchema } from '../interfaces/OpenApiSchema';
 import { PrimaryType } from './constants';
 import { getComment } from './getComment';
 import { getContent } from './getContent';
@@ -48,12 +50,24 @@ export async function getOperationResponse(openApi: OpenApi, response: OpenApiRe
         const schema = getContent(openApi, response.content);
         if (schema) {
             if (schema && schema.$ref) {
-                const model = getType(schema.$ref);
-                operationResponse.export = 'reference';
-                operationResponse.type = model.type;
-                operationResponse.base = model.base;
-                operationResponse.template = model.template;
-                operationResponse.imports.push(...model.imports);
+                if (isLocalRef(schema.$ref)) {
+                    const model = getType(schema.$ref);
+                    operationResponse.export = 'reference';
+                    operationResponse.type = model.type;
+                    operationResponse.base = model.base;
+                    operationResponse.template = model.template;
+                    operationResponse.imports.push(...model.imports);
+                } else {
+                    const resolvedDefinition = await getExternalReference<OpenApiSchema>(openApi.$meta, schema.$ref);
+                    console.log(resolvedDefinition);
+                    const model = await getModel(openApi, resolvedDefinition, true, resolvedDefinition.title);
+                    console.log(model);
+                    operationResponse.export = 'reference';
+                    operationResponse.type = model.type;
+                    operationResponse.base = model.base;
+                    operationResponse.template = model.template;
+                    operationResponse.imports.push(...model.imports);
+                }
                 return operationResponse;
             } else {
                 const model = await getModel(openApi, schema);

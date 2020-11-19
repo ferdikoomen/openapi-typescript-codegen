@@ -1,3 +1,4 @@
+import { ParserMeta } from '../../../interfaces/ParserMeta';
 import type { Dictionary } from '../../../utils/types';
 import type { OpenApiExample } from './OpenApiExample';
 import type { OpenApiReference } from './OpenApiReference';
@@ -20,4 +21,5 @@ export interface OpenApiParameter extends OpenApiReference {
     schema?: OpenApiSchema;
     example?: any;
     examples?: Dictionary<OpenApiExample>;
+    $meta: ParserMeta;
 }
