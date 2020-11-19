@@ -20,3 +20,4 @@ export interface OpenApi {
     tags?: OpenApiTag[];
     externalDocs?: OpenApiExternalDocs;
     $meta: ParserMeta;
+}

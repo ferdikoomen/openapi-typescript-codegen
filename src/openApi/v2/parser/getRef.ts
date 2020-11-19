@@ -48,7 +48,7 @@ export function getRef<T>(openApi: OpenApi, item: T & OpenApiReference): T {
                 const resolvedItem = retrieveFile(uri.pathname, openApi.$meta.projectPath);
                 return resolvedItem as T;
             } else {
-                throw new Error('Cannot retrieve $ref item.$ref for protocol "${uri.protocol}"');
+                throw new Error(`Cannot retrieve $ref item.$ref for protocol "${uri.protocol}"`);
             }
         }
     }
