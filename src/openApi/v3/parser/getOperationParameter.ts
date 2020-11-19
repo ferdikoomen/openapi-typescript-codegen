@@ -1,7 +1,6 @@
 import type { OperationParameter } from '../../../client/interfaces/OperationParameter';
 import type { OpenApi } from '../interfaces/OpenApi';
 import type { OpenApiParameter } from '../interfaces/OpenApiParameter';
-import { PrimaryType } from './constants';
 import { getComment } from './getComment';
 import { getModel } from './getModel';
 import { getModelDefault } from './getModelDefault';
@@ -15,8 +14,8 @@ export function getOperationParameter(openApi: OpenApi, parameter: OpenApiParame
         prop: parameter.name,
         export: 'interface',
         name: getOperationParameterName(parameter.name),
-        type: PrimaryType.OBJECT,
-        base: PrimaryType.OBJECT,
+        type: 'any',
+        base: 'any',
         template: null,
         link: null,
         description: getComment(parameter.description),
@@ -25,7 +24,6 @@ export function getOperationParameter(openApi: OpenApi, parameter: OpenApiParame
         isRequired: parameter.required === true,
         isNullable: parameter.nullable === true,
         imports: [],
-        extends: [],
         enum: [],
         enums: [],
         properties: [],
@@ -77,7 +75,6 @@ export function getOperationParameter(openApi: OpenApi, parameter: OpenApiParame
             operationParameter.pattern = getPattern(model.pattern);
             operationParameter.default = model.default;
             operationParameter.imports.push(...model.imports);
-            operationParameter.extends.push(...model.extends);
             operationParameter.enum.push(...model.enum);
             operationParameter.enums.push(...model.enums);
             operationParameter.properties.push(...model.properties);

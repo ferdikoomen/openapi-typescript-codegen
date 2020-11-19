@@ -1,11 +1,11 @@
 import type { Model } from '../../../client/interfaces/Model';
 import type { OpenApi } from '../interfaces/OpenApi';
 import type { OpenApiSchema } from '../interfaces/OpenApiSchema';
-import { PrimaryType } from './constants';
 import { extendEnum } from './extendEnum';
 import { getComment } from './getComment';
 import { getEnum } from './getEnum';
 import { getEnumFromDescription } from './getEnumFromDescription';
+import { getModelComposition } from './getModelComposition';
 import { getModelDefault } from './getModelDefault';
 import { getModelProperties } from './getModelProperties';
 import { getPattern } from './getPattern';
@@ -13,14 +13,14 @@ import { getType } from './getType';
 
 export function getModel(openApi: OpenApi, definition: OpenApiSchema, isDefinition: boolean = false, name: string = ''): Model {
     const model: Model = {
-        name: name,
+        name,
         export: 'interface',
-        type: PrimaryType.OBJECT,
-        base: PrimaryType.OBJECT,
+        type: 'any',
+        base: 'any',
         template: null,
         link: null,
         description: getComment(definition.description),
-        isDefinition: isDefinition,
+        isDefinition,
         isReadOnly: definition.readOnly === true,
         isNullable: definition.nullable === true,
         isRequired: false,
@@ -39,7 +39,6 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isDefiniti
         minProperties: definition.minProperties,
         pattern: getPattern(definition.pattern),
         imports: [],
-        extends: [],
         enum: [],
         enums: [],
         properties: [],
@@ -61,8 +60,8 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isDefiniti
         const extendedEnumerators = extendEnum(enumerators, definition);
         if (extendedEnumerators.length) {
             model.export = 'enum';
-            model.type = PrimaryType.STRING;
-            model.base = PrimaryType.STRING;
+            model.type = 'string';
+            model.base = 'string';
             model.enum.push(...extendedEnumerators);
             model.default = getModelDefault(definition, model);
             return model;
@@ -73,8 +72,8 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isDefiniti
         const enumerators = getEnumFromDescription(definition.description);
         if (enumerators.length) {
             model.export = 'enum';
-            model.type = PrimaryType.NUMBER;
-            model.base = PrimaryType.NUMBER;
+            model.type = 'number';
+            model.base = 'number';
             model.enum.push(...enumerators);
             model.default = getModelDefault(definition, model);
             return model;
@@ -104,7 +103,7 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isDefiniti
         }
     }
 
-    if (definition.type === 'object' && definition.additionalProperties && typeof definition.additionalProperties === 'object') {
+    if (definition.type === 'object' && typeof definition.additionalProperties === 'object') {
         if (definition.additionalProperties.$ref) {
             const additionalProperties = getType(definition.additionalProperties.$ref);
             model.export = 'dictionary';
@@ -127,73 +126,49 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isDefiniti
         }
     }
 
-    // TODO:
-    //  Add correct support for oneOf, anyOf, allOf
-    //  https://swagger.io/docs/specification/data-models/oneof-anyof-allof-not/
-
-    if (definition.anyOf && definition.anyOf.length && !definition.properties) {
-        model.export = 'generic';
-        const compositionTypes = definition.anyOf.filter(type => type.$ref).map(type => getType(type.$ref));
-        const composition = compositionTypes
-            .map(type => type.type)
-            .sort()
-            .join(' | ');
-        model.imports.push(...compositionTypes.map(type => type.base));
-        model.type = composition;
-        model.base = composition;
+    if (definition.oneOf?.length) {
+        const composition = getModelComposition(openApi, definition.oneOf, 'one-of', getModel);
+        model.export = composition.type;
+        model.imports.push(...composition.imports);
+        model.enums.push(...composition.enums);
+        model.properties.push(...composition.properties);
         return model;
     }
 
-    if (definition.oneOf && definition.oneOf.length && !definition.properties) {
-        model.export = 'generic';
-        const compositionTypes = definition.oneOf.filter(type => type.$ref).map(type => getType(type.$ref));
-        const composition = compositionTypes
-            .map(type => type.type)
-            .sort()
-            .join(' | ');
-        model.imports.push(...compositionTypes.map(type => type.base));
-        model.type = composition;
-        model.base = composition;
+    if (definition.anyOf?.length) {
+        const composition = getModelComposition(openApi, definition.anyOf, 'any-of', getModel);
+        model.export = composition.type;
+        model.imports.push(...composition.imports);
+        model.enums.push(...composition.enums);
+        model.properties.push(...composition.properties);
         return model;
     }
 
-    if (definition.type === 'object' || definition.allOf) {
+    if (definition.allOf?.length) {
+        const composition = getModelComposition(openApi, definition.allOf, 'all-of', getModel);
+        model.export = composition.type;
+        model.imports.push(...composition.imports);
+        model.enums.push(...composition.enums);
+        model.properties.push(...composition.properties);
+        return model;
+    }
+
+    if (definition.type === 'object') {
         model.export = 'interface';
-        model.type = PrimaryType.OBJECT;
-        model.base = PrimaryType.OBJECT;
-        model.default = getModelDefault(definition, model);
-
-        if (definition.allOf && definition.allOf.length) {
-            definition.allOf.forEach(parent => {
-                if (parent.$ref) {
-                    const parentRef = getType(parent.$ref);
-                    model.extends.push(parentRef.base);
-                    model.imports.push(parentRef.base);
-                }
-                if (parent.type === 'object' && parent.properties) {
-                    const properties = getModelProperties(openApi, parent, getModel);
-                    properties.forEach(property => {
-                        model.properties.push(property);
-                        model.imports.push(...property.imports);
-                        if (property.export === 'enum') {
-                            model.enums.push(property);
-                        }
-                    });
-                }
-            });
-        }
+        model.type = 'any';
+        model.base = 'any';
 
         if (definition.properties) {
+            model.default = getModelDefault(definition, model);
             const properties = getModelProperties(openApi, definition, getModel);
             properties.forEach(property => {
-                model.properties.push(property);
                 model.imports.push(...property.imports);
+                model.properties.push(property);
                 if (property.export === 'enum') {
                     model.enums.push(property);
                 }
             });
         }
-
         return model;
     }
 

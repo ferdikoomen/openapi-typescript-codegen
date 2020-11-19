@@ -1,11 +1,6 @@
 {
-    properties: {
-{{#if properties}}
-    {{#each properties}}
-        {{{name}}}: {{>schema}},
-    {{/each}}
-{{/if}}
-    },
+    type: '{{export}}',
+    contains: [{{#each properties}}{{>schema}}{{#unless @last}}, {{/unless}}{{/each}}],
 {{#if isReadOnly}}
     isReadOnly: {{{isReadOnly}}},
 {{/if}}

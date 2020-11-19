@@ -3,18 +3,19 @@ import type { OpenApi } from '../interfaces/OpenApi';
 import type { OpenApiSchema } from '../interfaces/OpenApiSchema';
 import { escapeName } from './escapeName';
 import { getComment } from './getComment';
+import type { getModel } from './getModel';
 import { getPattern } from './getPattern';
 import { getType } from './getType';
 
-// Fix for circular dependency between getModel and getModelProperties
-export type GetModel = (openApi: OpenApi, definition: OpenApiSchema, isDefinition?: boolean, name?: string) => Model;
+// Fix for circular dependency
+export type GetModelFn = typeof getModel;
 
-export function getModelProperties(openApi: OpenApi, definition: OpenApiSchema, getModel: GetModel): Model[] {
+export function getModelProperties(openApi: OpenApi, definition: OpenApiSchema, getModel: GetModelFn): Model[] {
     const models: Model[] = [];
     for (const propertyName in definition.properties) {
         if (definition.properties.hasOwnProperty(propertyName)) {
             const property = definition.properties[propertyName];
-            const propertyRequired = definition.required && definition.required.includes(propertyName);
+            const propertyRequired = definition.required?.includes(propertyName);
             if (property.$ref) {
                 const model = getType(property.$ref);
                 models.push({
@@ -44,7 +45,6 @@ export function getModelProperties(openApi: OpenApi, definition: OpenApiSchema, 
                     minProperties: property.minProperties,
                     pattern: getPattern(property.pattern),
                     imports: model.imports,
-                    extends: [],
                     enum: [],
                     enums: [],
                     properties: [],
@@ -78,7 +78,6 @@ export function getModelProperties(openApi: OpenApi, definition: OpenApiSchema, 
                     minProperties: property.minProperties,
                     pattern: getPattern(property.pattern),
                     imports: model.imports,
-                    extends: model.extends,
                     enum: model.enum,
                     enums: model.enums,
                     properties: model.properties,

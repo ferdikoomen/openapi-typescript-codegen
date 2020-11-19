@@ -2,30 +2,29 @@ import type { Dictionary } from '../../../utils/types';
 import type { OpenApi } from '../interfaces/OpenApi';
 import type { OpenApiMediaType } from '../interfaces/OpenApiMediaType';
 import type { OpenApiSchema } from '../interfaces/OpenApiSchema';
-import { ContentType } from './constants';
 
 export function getContent(openApi: OpenApi, content: Dictionary<OpenApiMediaType>): OpenApiSchema | null {
     /* prettier-ignore */
     return (
-        content[ContentType.APPLICATION_JSON_PATCH] &&
-        content[ContentType.APPLICATION_JSON_PATCH].schema
+        content['application/json-patch+json'] &&
+        content['application/json-patch+json'].schema
     ) || (
-        content[ContentType.APPLICATION_JSON] &&
-        content[ContentType.APPLICATION_JSON].schema
+        content['application/json'] &&
+        content['application/json'].schema
     ) || (
-        content[ContentType.TEXT_JSON] &&
-        content[ContentType.TEXT_JSON].schema
+        content['text/json'] &&
+        content['text/json'].schema
     ) || (
-        content[ContentType.TEXT_PAIN] &&
-        content[ContentType.TEXT_PAIN].schema
+        content['text/plain'] &&
+        content['text/plain'].schema
     ) || (
-        content[ContentType.MULTIPART_MIXED] &&
-        content[ContentType.MULTIPART_MIXED].schema
+        content['multipart/mixed'] &&
+        content['multipart/mixed'].schema
     ) || (
-        content[ContentType.MULTIPART_RELATED] &&
-        content[ContentType.MULTIPART_RELATED].schema
+        content['multipart/related'] &&
+        content['multipart/related'].schema
     ) || (
-        content[ContentType.MULTIPART_BATCH] &&
-        content[ContentType.MULTIPART_BATCH].schema
+        content['multipart/batch'] &&
+        content['multipart/batch'].schema
     ) || null;
 }

@@ -17,7 +17,7 @@ import { getServiceClassName } from './getServiceClassName';
 import { sortByRequired } from './sortByRequired';
 
 export function getOperation(openApi: OpenApi, url: string, method: string, op: OpenApiOperation, pathParams: OperationParameters): Operation {
-    const serviceName = (op.tags && op.tags[0]) || 'Service';
+    const serviceName = op.tags?.[0] || 'Service';
     const serviceClassName = getServiceClassName(serviceName);
     const operationNameFallback = `${method}${serviceClassName}`;
     const operationName = getOperationName(op.operationId || operationNameFallback);

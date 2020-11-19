@@ -12,8 +12,8 @@ export function extendEnum(enumerators: Enum[], definition: WithEnumExtension): 
     const descriptions = definition['x-enum-descriptions'];
 
     return enumerators.map((enumerator, index) => ({
-        name: (names && names[index]) || enumerator.name,
-        description: (descriptions && descriptions[index]) || enumerator.description,
+        name: names?.[index] || enumerator.name,
+        description: descriptions?.[index] || enumerator.description,
         value: enumerator.value,
         type: enumerator.type,
     }));
