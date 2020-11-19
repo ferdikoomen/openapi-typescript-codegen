@@ -2,7 +2,6 @@ import type { Model } from '../../../client/interfaces/Model';
 import type { OpenApi } from '../interfaces/OpenApi';
 import type { OpenApiSchema } from '../interfaces/OpenApiSchema';
 import type { Type } from '../../../client/interfaces/Type';
-import { PrimaryType } from './constants';
 import { extendEnum } from './extendEnum';
 import { getComment } from './getComment';
 import { getEnum } from './getEnum';
@@ -162,7 +161,7 @@ export async function getModel(openApi: OpenApi, definition: OpenApiSchema, isDe
             model.export = 'all-of';
             types = definition.allOf;
         }
-        const compositionTypes = types.map(model => getModel(openApi, model));
+        const compositionTypes = await Promise.all(types.map(model => getModel(openApi, model)));
         model.properties = compositionTypes;
         model.imports.push(...compositionTypes.reduce((acc: string[], type) => acc.concat(type.imports), []));
         model.enums.push(...compositionTypes.reduce((acc: Model[], type) => acc.concat(type.enums), []));
