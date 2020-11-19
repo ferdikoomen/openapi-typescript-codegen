@@ -1,7 +1,6 @@
 import type { Service } from '../../../client/interfaces/Service';
 import type { OpenApi } from '../interfaces/OpenApi';
 import type { OpenApiPath } from '../interfaces/OpenApiPath';
-import { Method } from './constants';
 import { getOperation } from './getOperation';
 import { getOperationParameters } from './getOperationParameters';
 import { getRef } from './getRef';
@@ -21,13 +20,13 @@ export async function getServices(openApi: OpenApi): Promise<Service[]> {
             for (const method in path) {
                 if (path.hasOwnProperty(method)) {
                     switch (method) {
-                        case Method.GET:
-                        case Method.PUT:
-                        case Method.POST:
-                        case Method.DELETE:
-                        case Method.OPTIONS:
-                        case Method.HEAD:
-                        case Method.PATCH:
+                        case 'get':
+                        case 'put':
+                        case 'post':
+                        case 'delete':
+                        case 'options':
+                        case 'head':
+                        case 'patch':
                             // Each method contains an OpenAPI operation, we parse the operation
                             const op = path[method]!;
                             const operation = await getOperation(openApi, url, method, op, pathParams);

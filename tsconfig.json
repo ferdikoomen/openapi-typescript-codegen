@@ -15,7 +15,8 @@
         "strict": true,
         "strictNullChecks": true,
         "strictFunctionTypes": true,
-        "allowSyntheticDefaultImports": true
+        "allowSyntheticDefaultImports": true,
+        "skipLibCheck": true
     },
 
     "files": [

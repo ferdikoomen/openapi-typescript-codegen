@@ -3,7 +3,6 @@ import { getExternalReference, isLocalRef } from '../../../utils/refs';
 import type { OpenApi } from '../interfaces/OpenApi';
 import type { OpenApiResponse } from '../interfaces/OpenApiResponse';
 import type { OpenApiSchema } from '../interfaces/OpenApiSchema';
-import { PrimaryType } from './constants';
 import { getComment } from './getComment';
 import { getContent } from './getContent';
 import { getModel } from './getModel';
@@ -17,8 +16,8 @@ export async function getOperationResponse(openApi: OpenApi, response: OpenApiRe
         code: responseCode,
         description: getComment(response.description)!,
         export: 'generic',
-        type: PrimaryType.OBJECT,
-        base: PrimaryType.OBJECT,
+        type: 'any',
+        base: 'any',
         template: null,
         link: null,
         isDefinition: false,
@@ -39,8 +38,8 @@ export async function getOperationResponse(openApi: OpenApi, response: OpenApiRe
             if (response.headers.hasOwnProperty(name)) {
                 operationResponse.in = 'header';
                 operationResponse.name = name;
-                operationResponse.type = PrimaryType.STRING;
-                operationResponse.base = PrimaryType.STRING;
+                operationResponse.type = 'string';
+                operationResponse.base = 'string';
                 return operationResponse;
             }
         }
@@ -49,7 +48,7 @@ export async function getOperationResponse(openApi: OpenApi, response: OpenApiRe
     if (response.content) {
         const schema = getContent(openApi, response.content);
         if (schema) {
-            if (schema && schema.$ref) {
+            if (schema?.$ref) {
                 if (isLocalRef(schema.$ref)) {
                     const model = getType(schema.$ref);
                     operationResponse.export = 'reference';
@@ -59,9 +58,7 @@ export async function getOperationResponse(openApi: OpenApi, response: OpenApiRe
                     operationResponse.imports.push(...model.imports);
                 } else {
                     const resolvedDefinition = await getExternalReference<OpenApiSchema>(openApi.$meta, schema.$ref);
-                    console.log(resolvedDefinition);
                     const model = await getModel(openApi, resolvedDefinition, true, resolvedDefinition.title);
-                    console.log(model);
                     operationResponse.export = 'reference';
                     operationResponse.type = model.type;
                     operationResponse.base = model.base;

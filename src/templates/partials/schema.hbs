@@ -6,6 +6,12 @@
 {{>schemaArray}}
 {{else equals export 'dictionary'}}
 {{>schemaDictionary}}
+{{else equals export 'any-of'}}
+{{>schemaComposition}}
+{{else equals export 'all-of'}}
+{{>schemaComposition}}
+{{else equals export 'one-of'}}
+{{>schemaComposition}}
 {{else}}
 {{>schemaGeneric}}
 {{/equals}}

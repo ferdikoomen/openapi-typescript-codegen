@@ -22,6 +22,7 @@ function compileWithTypescript(dir) {
             strictNullChecks: true,
             strictFunctionTypes: true,
             allowSyntheticDefaultImports: true,
+            skipLibCheck: true
         },
         include: ['./index.ts'],
     };

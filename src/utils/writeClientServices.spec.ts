@@ -1,4 +1,5 @@
 import type { Service } from '../client/interfaces/Service';
+import { HttpClient } from '../index';
 import { writeFile } from './fileSystem';
 import { Templates } from './registerHandlebarTemplates';
 import { writeClientServices } from './writeClientServices';
@@ -31,7 +32,7 @@ describe('writeClientServices', () => {
             },
         };
 
-        await writeClientServices(services, templates, '/', false);
+        await writeClientServices(services, templates, '/', HttpClient.FETCH, false, false);
 
         expect(writeFile).toBeCalledWith('/MyService.ts', 'service');
     });
