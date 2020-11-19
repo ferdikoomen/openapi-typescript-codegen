@@ -310,7 +310,6 @@ export { EnumFromDescription } from './models/EnumFromDescription';
 export { EnumWithExtensions } from './models/EnumWithExtensions';
 export { EnumWithNumbers } from './models/EnumWithNumbers';
 export { EnumWithStrings } from './models/EnumWithStrings';
-export type { ModelLink } from './models/ModelLink';
 export type { ModelThatExtends } from './models/ModelThatExtends';
 export type { ModelThatExtendsExtends } from './models/ModelThatExtendsExtends';
 export type { ModelWithArray } from './models/ModelWithArray';
@@ -322,7 +321,6 @@ export type { ModelWithDuplicateProperties } from './models/ModelWithDuplicatePr
 export { ModelWithEnum } from './models/ModelWithEnum';
 export { ModelWithEnumFromDescription } from './models/ModelWithEnumFromDescription';
 export type { ModelWithInteger } from './models/ModelWithInteger';
-export type { ModelWithLink } from './models/ModelWithLink';
 export type { ModelWithNestedEnums } from './models/ModelWithNestedEnums';
 export type { ModelWithNestedProperties } from './models/ModelWithNestedProperties';
 export type { ModelWithNullableString } from './models/ModelWithNullableString';
@@ -355,7 +353,6 @@ export { $EnumFromDescription } from './schemas/$EnumFromDescription';
 export { $EnumWithExtensions } from './schemas/$EnumWithExtensions';
 export { $EnumWithNumbers } from './schemas/$EnumWithNumbers';
 export { $EnumWithStrings } from './schemas/$EnumWithStrings';
-export { $ModelLink } from './schemas/$ModelLink';
 export { $ModelThatExtends } from './schemas/$ModelThatExtends';
 export { $ModelThatExtendsExtends } from './schemas/$ModelThatExtendsExtends';
 export { $ModelWithArray } from './schemas/$ModelWithArray';
@@ -367,7 +364,6 @@ export { $ModelWithDuplicateProperties } from './schemas/$ModelWithDuplicateProp
 export { $ModelWithEnum } from './schemas/$ModelWithEnum';
 export { $ModelWithEnumFromDescription } from './schemas/$ModelWithEnumFromDescription';
 export { $ModelWithInteger } from './schemas/$ModelWithInteger';
-export { $ModelWithLink } from './schemas/$ModelWithLink';
 export { $ModelWithNestedEnums } from './schemas/$ModelWithNestedEnums';
 export { $ModelWithNestedProperties } from './schemas/$ModelWithNestedProperties';
 export { $ModelWithNullableString } from './schemas/$ModelWithNullableString';
@@ -610,20 +606,6 @@ export enum EnumWithStrings {
 }"
 `;
 
-exports[`v2 should generate: ./test/generated/v2/models/ModelLink.ts 1`] = `
-"/* istanbul ignore file */
-/* tslint:disable */
-/* eslint-disable */
-
-/**
- * This is a model that can have a template??
- */
-export type ModelLink = {
-    id?: string;
-}
-"
-`;
-
 exports[`v2 should generate: ./test/generated/v2/models/ModelThatExtends.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
@@ -845,23 +827,6 @@ export type ModelWithInteger = {
      * This is a simple number property
      */
     prop?: number;
-}
-"
-`;
-
-exports[`v2 should generate: ./test/generated/v2/models/ModelWithLink.ts 1`] = `
-"/* istanbul ignore file */
-/* tslint:disable */
-/* eslint-disable */
-
-import type { ModelLink } from './ModelLink';
-import type { ModelWithString } from './ModelWithString';
-
-/**
- * This is a model that can have a template??
- */
-export type ModelWithLink = {
-    prop?: ModelLink;
 }
 "
 `;
@@ -1295,19 +1260,6 @@ export const $EnumWithStrings = {
 };"
 `;
 
-exports[`v2 should generate: ./test/generated/v2/schemas/$ModelLink.ts 1`] = `
-"/* istanbul ignore file */
-/* tslint:disable */
-/* eslint-disable */
-export const $ModelLink = {
-    properties: {
-        id: {
-            type: 'string',
-        },
-    },
-};"
-`;
-
 exports[`v2 should generate: ./test/generated/v2/schemas/$ModelThatExtends.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
@@ -1491,19 +1443,6 @@ export const $ModelWithInteger = {
     properties: {
         prop: {
             type: 'number',
-        },
-    },
-};"
-`;
-
-exports[`v2 should generate: ./test/generated/v2/schemas/$ModelWithLink.ts 1`] = `
-"/* istanbul ignore file */
-/* tslint:disable */
-/* eslint-disable */
-export const $ModelWithLink = {
-    properties: {
-        prop: {
-            type: 'ModelLink',
         },
     },
 };"
@@ -2618,7 +2557,6 @@ export { EnumFromDescription } from './models/EnumFromDescription';
 export { EnumWithExtensions } from './models/EnumWithExtensions';
 export { EnumWithNumbers } from './models/EnumWithNumbers';
 export { EnumWithStrings } from './models/EnumWithStrings';
-export type { ModelLink } from './models/ModelLink';
 export type { ModelThatExtends } from './models/ModelThatExtends';
 export type { ModelThatExtendsExtends } from './models/ModelThatExtendsExtends';
 export type { ModelWithArray } from './models/ModelWithArray';
@@ -2630,7 +2568,6 @@ export type { ModelWithDuplicateProperties } from './models/ModelWithDuplicatePr
 export { ModelWithEnum } from './models/ModelWithEnum';
 export { ModelWithEnumFromDescription } from './models/ModelWithEnumFromDescription';
 export type { ModelWithInteger } from './models/ModelWithInteger';
-export type { ModelWithLink } from './models/ModelWithLink';
 export type { ModelWithNestedEnums } from './models/ModelWithNestedEnums';
 export type { ModelWithNestedProperties } from './models/ModelWithNestedProperties';
 export type { ModelWithOrderedProperties } from './models/ModelWithOrderedProperties';
@@ -2668,7 +2605,6 @@ export { $EnumFromDescription } from './schemas/$EnumFromDescription';
 export { $EnumWithExtensions } from './schemas/$EnumWithExtensions';
 export { $EnumWithNumbers } from './schemas/$EnumWithNumbers';
 export { $EnumWithStrings } from './schemas/$EnumWithStrings';
-export { $ModelLink } from './schemas/$ModelLink';
 export { $ModelThatExtends } from './schemas/$ModelThatExtends';
 export { $ModelThatExtendsExtends } from './schemas/$ModelThatExtendsExtends';
 export { $ModelWithArray } from './schemas/$ModelWithArray';
@@ -2680,7 +2616,6 @@ export { $ModelWithDuplicateProperties } from './schemas/$ModelWithDuplicateProp
 export { $ModelWithEnum } from './schemas/$ModelWithEnum';
 export { $ModelWithEnumFromDescription } from './schemas/$ModelWithEnumFromDescription';
 export { $ModelWithInteger } from './schemas/$ModelWithInteger';
-export { $ModelWithLink } from './schemas/$ModelWithLink';
 export { $ModelWithNestedEnums } from './schemas/$ModelWithNestedEnums';
 export { $ModelWithNestedProperties } from './schemas/$ModelWithNestedProperties';
 export { $ModelWithOrderedProperties } from './schemas/$ModelWithOrderedProperties';
@@ -3044,20 +2979,6 @@ export enum EnumWithStrings {
 }"
 `;
 
-exports[`v3 should generate: ./test/generated/v3/models/ModelLink.ts 1`] = `
-"/* istanbul ignore file */
-/* tslint:disable */
-/* eslint-disable */
-
-/**
- * This is a model that can have a template??
- */
-export type ModelLink = {
-    id?: string;
-}
-"
-`;
-
 exports[`v3 should generate: ./test/generated/v3/models/ModelThatExtends.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
@@ -3279,23 +3200,6 @@ export type ModelWithInteger = {
      * This is a simple number property
      */
     prop?: number;
-}
-"
-`;
-
-exports[`v3 should generate: ./test/generated/v3/models/ModelWithLink.ts 1`] = `
-"/* istanbul ignore file */
-/* tslint:disable */
-/* eslint-disable */
-
-import type { ModelLink } from './ModelLink';
-import type { ModelWithString } from './ModelWithString';
-
-/**
- * This is a model that can have a template??
- */
-export type ModelWithLink = {
-    prop?: ModelLink;
 }
 "
 `;
@@ -3875,19 +3779,6 @@ export const $EnumWithStrings = {
 };"
 `;
 
-exports[`v3 should generate: ./test/generated/v3/schemas/$ModelLink.ts 1`] = `
-"/* istanbul ignore file */
-/* tslint:disable */
-/* eslint-disable */
-export const $ModelLink = {
-    properties: {
-        id: {
-            type: 'string',
-        },
-    },
-};"
-`;
-
 exports[`v3 should generate: ./test/generated/v3/schemas/$ModelThatExtends.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
@@ -4071,19 +3962,6 @@ export const $ModelWithInteger = {
     properties: {
         prop: {
             type: 'number',
-        },
-    },
-};"
-`;
-
-exports[`v3 should generate: ./test/generated/v3/schemas/$ModelWithLink.ts 1`] = `
-"/* istanbul ignore file */
-/* tslint:disable */
-/* eslint-disable */
-export const $ModelWithLink = {
-    properties: {
-        prop: {
-            type: 'ModelLink',
         },
     },
 };"

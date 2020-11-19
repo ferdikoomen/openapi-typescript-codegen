@@ -1030,24 +1030,6 @@
                 }
             }
         },
-        "ModelLink": {
-            "description": "This is a model that can have a template??",
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "string"
-                }
-            }
-        },
-        "ModelWithLink": {
-            "description": "This is a model that can have a template??",
-            "type": "object",
-            "properties": {
-                "prop": {
-                    "$ref": "#/definitions/ModelLink[ModelWithString]"
-                }
-            }
-        },
         "ModelWithCircularReference": {
             "description": "This is a model with one property containing a circular reference",
             "type": "object",
