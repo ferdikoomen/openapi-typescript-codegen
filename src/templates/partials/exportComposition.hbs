@@ -1,0 +1,28 @@
+{{#if description}}
+/**
+ * {{{description}}}
+ */
+{{/if}}
+export type {{{name}}} = {{>type parent=name}};
+{{#if enums}}
+{{#unless @root.useUnionTypes}}
+
+export namespace {{{name}}} {
+
+    {{#each enums}}
+    {{#if description}}
+    /**
+     * {{{description}}}
+     */
+    {{/if}}
+    export enum {{{name}}} {
+        {{#each enum}}
+        {{{name}}} = {{{value}}},
+        {{/each}}
+    }
+
+    {{/each}}
+
+}
+{{/unless}}
+{{/if}}

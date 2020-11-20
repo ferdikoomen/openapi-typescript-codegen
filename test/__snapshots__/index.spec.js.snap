@@ -619,7 +619,8 @@ import type { ModelWithString } from './ModelWithString';
 export type ModelThatExtends = (ModelWithString & {
     propExtendsA?: string,
     propExtendsB?: ModelWithString,
-});"
+});
+"
 `;
 
 exports[`v2 should generate: ./test/generated/v2/models/ModelThatExtendsExtends.ts 1`] = `
@@ -636,7 +637,8 @@ import type { ModelWithString } from './ModelWithString';
 export type ModelThatExtendsExtends = (ModelWithString & ModelThatExtends & {
     propExtendsC?: string,
     propExtendsD?: ModelWithString,
-});"
+});
+"
 `;
 
 exports[`v2 should generate: ./test/generated/v2/models/ModelWithArray.ts 1`] = `
@@ -2992,7 +2994,8 @@ import type { ModelWithString } from './ModelWithString';
 export type ModelThatExtends = (ModelWithString & {
     propExtendsA?: string,
     propExtendsB?: ModelWithString,
-});"
+});
+"
 `;
 
 exports[`v3 should generate: ./test/generated/v3/models/ModelThatExtendsExtends.ts 1`] = `
@@ -3009,7 +3012,8 @@ import type { ModelWithString } from './ModelWithString';
 export type ModelThatExtendsExtends = (ModelWithString & ModelThatExtends & {
     propExtendsC?: string,
     propExtendsD?: ModelWithString,
-});"
+});
+"
 `;
 
 exports[`v3 should generate: ./test/generated/v3/models/ModelWithArray.ts 1`] = `

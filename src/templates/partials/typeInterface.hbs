@@ -6,7 +6,11 @@
  * {{{description}}}
  */
 {{/if}}
+{{#if ../parent}}
+{{>isReadOnly}}{{{name}}}{{>isRequired}}: {{>type parent=../parent}},
+{{else}}
 {{>isReadOnly}}{{{name}}}{{>isRequired}}: {{>type}},
+{{/if}}
 {{/each}}
 }{{>isNullable}}
 {{~else~}}

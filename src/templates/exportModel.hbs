@@ -9,6 +9,12 @@ import type { {{{this}}} } from './{{{this}}}';
 
 {{#equals export 'interface'}}
 {{>exportInterface}}
+{{else equals export 'one-of'}}
+{{>exportComposition}}
+{{else equals export 'any-of'}}
+{{>exportComposition}}
+{{else equals export 'all-of'}}
+{{>exportComposition}}
 {{else equals export 'enum'}}
 {{>exportEnum}}
 {{else}}
