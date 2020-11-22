@@ -23,7 +23,12 @@ export const resolveModelReference = async (openApi: OpenApi, definition: OpenAp
         }
     } else {
         const resolvedDefinition = await getExternalReference<OpenApiSchema>(definition.$meta, ref);
-        return getModel(openApi, resolvedDefinition, isDefinition, name);
+        const url = new URL(ref.slice(ref.indexOf('#')), resolvedDefinition.$meta.baseUri);
+        if (url.hash) {
+            return resolveModelReference(openApi, resolvedDefinition, url.hash, isDefinition, name, createFormalRef);
+        } else {
+            return getModel(openApi, resolvedDefinition, isDefinition, name);
+        }
     }
 };
 

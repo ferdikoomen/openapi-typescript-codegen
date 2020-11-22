@@ -77,8 +77,7 @@ export async function getExternalReference<T extends OpenApiBase>($meta: ParserM
     if (uri.protocol === 'file:') {
         const resolvedItem = await retrieveFile(uri.pathname, $meta.projectPath);
         const withMeta = { ...resolvedItem, $meta: { projectPath: $meta.projectPath, baseUri: uri } };
-        const internallyResolved = uri.hash ? (getRelativeReference(withMeta as OpenApiBase, uri.hash) as T) : (withMeta as T);
-        return Promise.resolve(internallyResolved);
+        return Promise.resolve(withMeta);
     } else {
         throw new Error(`Cannot retrieve $ref ${ref} for protocol "${uri.protocol}"`);
     }
