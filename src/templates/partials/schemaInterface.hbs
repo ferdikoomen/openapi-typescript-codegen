@@ -1,10 +1,5 @@
 {
     properties: {
-{{#if extends}}
-    {{#each extends}}
-        ...${{{this}}}.properties,
-    {{/each}}
-{{/if}}
 {{#if properties}}
     {{#each properties}}
         {{{name}}}: {{>schema}},

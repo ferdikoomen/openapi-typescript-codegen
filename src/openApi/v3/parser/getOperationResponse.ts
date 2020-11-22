@@ -25,7 +25,6 @@ export async function getOperationResponse(openApi: OpenApi, response: OpenApiRe
         isRequired: false,
         isNullable: false,
         imports: [],
-        extends: [],
         enum: [],
         enums: [],
         properties: [],
@@ -91,7 +90,6 @@ export async function getOperationResponse(openApi: OpenApi, response: OpenApiRe
                 operationResponse.minProperties = model.minProperties;
                 operationResponse.pattern = getPattern(model.pattern);
                 operationResponse.imports.push(...model.imports);
-                operationResponse.extends.push(...model.extends);
                 operationResponse.enum.push(...model.enum);
                 operationResponse.enums.push(...model.enums);
                 operationResponse.properties.push(...model.properties);

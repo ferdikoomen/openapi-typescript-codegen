@@ -32,7 +32,6 @@ export const resolveModelPropertyReference = async (openApi: OpenApi, definition
                 isNullable: false,
                 // end of canned properties
                 imports: propertyRef.imports,
-                extends: [],
                 enum: [],
                 enums: [],
                 properties: [],
@@ -90,7 +89,6 @@ export async function getModelProperties(openApi: OpenApi, definition: OpenApiSc
                     minProperties: property.minProperties,
                     pattern: getPattern(property.pattern),
                     imports: model.imports,
-                    extends: model.extends,
                     enum: model.enum,
                     enums: model.enums,
                     properties: model.properties,

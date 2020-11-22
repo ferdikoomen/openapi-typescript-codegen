@@ -3,16 +3,7 @@
  * {{{description}}}
  */
 {{/if}}
-export type {{{name}}} = {
-    {{#each properties}}
-    {{#if description}}
-    /**
-     * {{{description}}}
-     */
-    {{/if}}
-    {{>isReadOnly}}{{{name}}}{{>isRequired}}: {{>type parent=../name}};
-    {{/each}}
-}
+export type {{{name}}} = {{>type parent=name}};
 {{#if enums}}
 {{#unless @root.useUnionTypes}}
 

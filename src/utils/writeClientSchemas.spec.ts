@@ -22,7 +22,6 @@ describe('writeClientSchemas', () => {
                 isRequired: false,
                 isNullable: false,
                 imports: [],
-                extends: [],
                 enum: [],
                 enums: [],
                 properties: [],
