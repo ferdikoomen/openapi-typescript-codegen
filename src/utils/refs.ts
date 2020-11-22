@@ -46,13 +46,7 @@ export const withCurrentMeta = <T extends OpenApiBase>(parsedValue: T, $meta: Pa
  * Reference types that are formalised as schemas
  * and so can be imported directly
  */
-export const formalReferenceTypes = [
-    '#/components/schemas/',
-    '#/components/responses/',
-    '#/components/parameters/',
-    '#/components/examples/',
-    '#/components/requestBodies/',
-];
+export const formalReferenceTypes = ['#/components/schemas/', '#/components/responses/', '#/components/parameters/', '#/components/examples/', '#/components/requestBodies/'];
 
 /**
  * Is the $ref a direct reference to one of the

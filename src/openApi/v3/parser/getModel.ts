@@ -13,7 +13,14 @@ import { getPattern } from './getPattern';
 import { getType } from './getType';
 import { getExternalReference, getRelativeReference, isFormalRef, isLocalRef, withCurrentMeta } from '../../../utils/refs';
 
-export const resolveModelReference = async (openApi: OpenApi, definition: OpenApiSchema, ref: string, isDefinition: boolean = false, name: string = '', createFormalRef: (t: Type) => Model): Promise<Model> => {
+export const resolveModelReference = async (
+    openApi: OpenApi,
+    definition: OpenApiSchema,
+    ref: string,
+    isDefinition: boolean = false,
+    name: string = '',
+    createFormalRef: (t: Type) => Model
+): Promise<Model> => {
     if (isLocalRef(ref)) {
         if (isFormalRef(ref)) {
             const t = getType(ref);

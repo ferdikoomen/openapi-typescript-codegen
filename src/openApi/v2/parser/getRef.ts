@@ -13,14 +13,15 @@ function retrieveFile(projectPath: string, filePath: string) {
         const fileString = fileContents.toString('utf8');
         return JSON.parse(fileString);
     } catch (error) {
-        throw new Error(`Unable to read referenced file ${normalised}: ${error.message}`)
+        throw new Error(`Unable to read referenced file ${normalised}: ${error.message}`);
     }
 }
 
 function getRelativeReference<T>(openApi: OpenApi, ref: string): T {
     // Fetch the paths to the definitions, this converts:
     // "#/components/schemas/Form" to ["components", "schemas", "Form"]
-    const paths = ref.replace(/^#/g, '')
+    const paths = ref
+        .replace(/^#/g, '')
         .split('/')
         .filter(item => item);
 

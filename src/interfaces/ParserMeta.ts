@@ -6,4 +6,4 @@ export interface ParserMeta {
      */
     baseUri: string;
     projectPath: string;
-};
+}
