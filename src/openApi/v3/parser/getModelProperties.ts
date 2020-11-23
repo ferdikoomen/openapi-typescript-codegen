@@ -11,7 +11,7 @@ import { getType } from './getType';
 // Fix for circular dependency
 export type GetModelFn = typeof getModel;
 
-export const resolveModelPropertyReference = async (openApi: OpenApi, definition: OpenApiSchema, propertyName: string, ref: string, getModel: GetModelFn): Promise<Model> => {
+export const resolveModelPropertyReference = async (openApi: OpenApi, definition: OpenApiSchema, propertyName: string, propertyRequired: boolean, ref: string, getModel: GetModelFn): Promise<Model> => {
     let model: Model;
     if (isLocalRef(ref)) {
         if (isFormalRef(ref)) {
@@ -28,7 +28,7 @@ export const resolveModelPropertyReference = async (openApi: OpenApi, definition
                 // These properties are filled out to satisfy the Model type, but should otherwise be ignored
                 // as this is a reference
                 isReadOnly: false,
-                isRequired: false,
+                isRequired: propertyRequired,
                 isNullable: false,
                 // end of canned properties
                 imports: propertyRef.imports,
@@ -38,15 +38,15 @@ export const resolveModelPropertyReference = async (openApi: OpenApi, definition
             };
         } else {
             const internalDefinition = getRelativeReference<OpenApiSchema>(openApi, ref);
-            model = await getModel(openApi, internalDefinition);
+            model = await getModel(openApi, internalDefinition, false, propertyName);
         }
     } else {
         const resolvedDefinition = await getExternalReference<OpenApiSchema>(definition.$meta, ref);
         const url = new URL(ref.slice(ref.indexOf('#')), resolvedDefinition.$meta.baseUri);
         if (url.hash) {
-            return resolveModelPropertyReference(openApi, resolvedDefinition, propertyName, url.hash, getModel);
+            return resolveModelPropertyReference(openApi, resolvedDefinition, propertyName, propertyRequired, url.hash, getModel);
         }
-        model = await getModel(openApi, resolvedDefinition);
+        model = await getModel(openApi, resolvedDefinition, false, propertyName);
     }
     return model;
 };
@@ -56,9 +56,9 @@ export async function getModelProperties(openApi: OpenApi, definition: OpenApiSc
     for (const propertyName in definition.properties) {
         if (definition.properties.hasOwnProperty(propertyName)) {
             const property = definition.properties[propertyName];
-            const propertyRequired = definition.required?.includes(propertyName);
+            const propertyRequired = Boolean(definition.required?.includes(propertyName));
             if (property.$ref) {
-                const model = await resolveModelPropertyReference(openApi, definition, propertyName, property.$ref, getModel);
+                const model = await resolveModelPropertyReference(openApi, definition, propertyName, propertyRequired, property.$ref, getModel);
                 models.push(model);
             } else {
                 const model = await getModel(openApi, property);
