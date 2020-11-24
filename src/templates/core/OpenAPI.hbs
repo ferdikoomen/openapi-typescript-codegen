@@ -1,12 +1,33 @@
 {{>header}}
 
+
+{{#equals @root.httpClient 'fetch'}}{{>fetch/responseType}}{{/equals}}
+{{#equals @root.httpClient 'xhr'}}{{>xhr/responseType}}{{/equals}}
+{{#equals @root.httpClient 'node'}}{{>node/responseType}}{{/equals}}
+
 type Resolver<T> = () => Promise<T>;
 type Headers = Record<string, string>;
+
+import { ApiResult } from './ApiResult';
+import { ApiRequestOptions } from './ApiRequestOptions';
+
+export interface RequestHookParams {
+    url: string;
+    options: ApiRequestOptions;
+}
+
+export interface ResponseHookParams {
+    url: string;
+    result: ApiResult;
+    response?: ResponseImplementation;
+}
 
 type Config = {
     BASE: string;
     VERSION: string;
     WITH_CREDENTIALS: boolean;
+    REQUEST_HOOK?(params: RequestHookParams): Promise<RequestHookParams>;
+    RESPONSE_HOOK?(result: ResponseHookParams): Promise<ApiResult>
     TOKEN?: string | Resolver<string>;
     USERNAME?: string | Resolver<string>;
     PASSWORD?: string | Resolver<string>;
