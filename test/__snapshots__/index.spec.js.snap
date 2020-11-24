@@ -57,6 +57,11 @@ exports[`v2 should generate: ./test/generated/v2/core/OpenAPI.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+
+type ResponseImplementation = Response;
+
+
+
 type Resolver<T> = () => Promise<T>;
 type Headers = Record<string, string>;
 
@@ -71,7 +76,7 @@ export interface RequestHookParams {
 export interface ResponseHookParams {
     url: string;
     result: ApiResult;
-    response?: any;
+    response?: ResponseImplementation;
 }
 
 type Config = {
@@ -2326,6 +2331,11 @@ exports[`v3 should generate: ./test/generated/v3/core/OpenAPI.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+
+type ResponseImplementation = Response;
+
+
+
 type Resolver<T> = () => Promise<T>;
 type Headers = Record<string, string>;
 
@@ -2340,7 +2350,7 @@ export interface RequestHookParams {
 export interface ResponseHookParams {
     url: string;
     result: ApiResult;
-    response?: any;
+    response?: ResponseImplementation;
 }
 
 type Config = {
