@@ -1,5 +1,10 @@
 {{>header}}
 
+
+{{#equals @root.httpClient 'fetch'}}{{>fetch/responseType}}{{/equals}}
+{{#equals @root.httpClient 'xhr'}}{{>xhr/responseType}}{{/equals}}
+{{#equals @root.httpClient 'node'}}{{>node/responseType}}{{/equals}}
+
 type Resolver<T> = () => Promise<T>;
 type Headers = Record<string, string>;
 
@@ -14,7 +19,7 @@ export interface RequestHookParams {
 export interface ResponseHookParams {
     url: string;
     result: ApiResult;
-    response?: any;
+    response?: ResponseImplementation;
 }
 
 type Config = {
