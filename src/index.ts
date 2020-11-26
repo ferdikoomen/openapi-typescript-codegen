@@ -1,5 +1,6 @@
 import * as path from 'path';
 import * as pkgdir from 'pkg-dir';
+
 import { parse as parseV2 } from './openApi/v2';
 import { parse as parseV3 } from './openApi/v3';
 import { getOpenApiSpec } from './utils/getOpenApiSpec';

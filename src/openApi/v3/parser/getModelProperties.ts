@@ -11,7 +11,14 @@ import { getType } from './getType';
 // Fix for circular dependency
 export type GetModelFn = typeof getModel;
 
-export const resolveModelPropertyReference = async (openApi: OpenApi, definition: OpenApiSchema, propertyName: string, propertyRequired: boolean, ref: string, getModel: GetModelFn): Promise<Model> => {
+export const resolveModelPropertyReference = async (
+    openApi: OpenApi,
+    definition: OpenApiSchema,
+    propertyName: string,
+    propertyRequired: boolean,
+    ref: string,
+    getModel: GetModelFn
+): Promise<Model> => {
     let model: Model;
     if (isLocalRef(ref)) {
         if (isFormalRef(ref)) {

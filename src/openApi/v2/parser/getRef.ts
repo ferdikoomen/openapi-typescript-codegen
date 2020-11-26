@@ -1,5 +1,6 @@
-import * as path from 'path';
 import * as fs from 'fs';
+import * as path from 'path';
+
 import type { OpenApi } from '../interfaces/OpenApi';
 import type { OpenApiReference } from '../interfaces/OpenApiReference';
 

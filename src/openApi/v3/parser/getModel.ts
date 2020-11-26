@@ -1,7 +1,8 @@
 import type { Model } from '../../../client/interfaces/Model';
+import type { Type } from '../../../client/interfaces/Type';
+import { getExternalReference, getRelativeReference, isFormalRef, isLocalRef, withCurrentMeta } from '../../../utils/refs';
 import type { OpenApi } from '../interfaces/OpenApi';
 import type { OpenApiSchema } from '../interfaces/OpenApiSchema';
-import type { Type } from '../../../client/interfaces/Type';
 import { extendEnum } from './extendEnum';
 import { getComment } from './getComment';
 import { getEnum } from './getEnum';
@@ -11,7 +12,6 @@ import { getModelDefault } from './getModelDefault';
 import { getModelProperties } from './getModelProperties';
 import { getPattern } from './getPattern';
 import { getType } from './getType';
-import { getExternalReference, getRelativeReference, isFormalRef, isLocalRef, withCurrentMeta } from '../../../utils/refs';
 
 export const resolveModelReference = async (
     openApi: OpenApi,

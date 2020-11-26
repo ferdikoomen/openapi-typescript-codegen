@@ -1,6 +1,7 @@
 import * as path from 'path';
-import { ParserMeta } from '../interfaces/ParserMeta';
+
 import { OpenApiBase } from '../interfaces/OpenApiBase';
+import { ParserMeta } from '../interfaces/ParserMeta';
 import { getOpenApiSpec } from './getOpenApiSpec';
 
 export type JSONReference = {
