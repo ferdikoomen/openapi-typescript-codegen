@@ -65,6 +65,7 @@ module.exports = {
         'fs',
         'os',
         'util',
+        'path',
         'http',
         'https',
         'handlebars/runtime',
