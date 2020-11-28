@@ -15,11 +15,19 @@ export function getModelComposition(openApi: OpenApi, definitions: OpenApiSchema
     };
 
     const modes = definitions.map(definition => getModel(openApi, definition));
-    modes.forEach(model => {
-        composition.imports.push(...model.imports);
-        composition.enums.push(...model.enums);
-        composition.properties.push(model);
-    });
+    modes
+        .filter(model => {
+            const hasProperties = model.properties.length;
+            const hasEnums = model.enums.length;
+            const isObject = model.type === 'any';
+            const isEmpty = isObject && !hasProperties && !hasEnums;
+            return !isEmpty;
+        })
+        .forEach(model => {
+            composition.imports.push(...model.imports);
+            composition.enums.push(...model.enums);
+            composition.properties.push(model);
+        });
 
     return composition;
 }
