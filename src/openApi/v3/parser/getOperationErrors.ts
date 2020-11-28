@@ -1,5 +1,6 @@
 import type { OperationError } from '../../../client/interfaces/OperationError';
 import type { OperationResponse } from '../../../client/interfaces/OperationResponse';
+import { escapeDescription } from './escapeDescription';
 
 export function getOperationErrors(operationResponses: OperationResponse[]): OperationError[] {
     return operationResponses
@@ -8,6 +9,6 @@ export function getOperationErrors(operationResponses: OperationResponse[]): Ope
         })
         .map(response => ({
             code: response.code,
-            description: response.description!,
+            description: escapeDescription(response.description!),
         }));
 }
