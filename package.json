@@ -61,12 +61,12 @@
         "codecov": "codecov --token=66c30c23-8954-4892-bef9-fbaed0a2e42b"
     },
     "dependencies": {
-        "camelcase": "6.2.0",
-        "commander": "6.2.0",
-        "handlebars": "4.7.6",
-        "js-yaml": "3.14.0",
-        "mkdirp": "1.0.4",
-        "rimraf": "3.0.2"
+        "camelcase": "^6.2.0",
+        "commander": "^6.2.0",
+        "handlebars": "^4.7.6",
+        "js-yaml": "^3.14.0",
+        "mkdirp": "^1.0.4",
+        "rimraf": "^3.0.2"
     },
     "devDependencies": {
         "@babel/cli": "7.12.7",
@@ -98,6 +98,6 @@
         "rollup": "2.33.3",
         "rollup-plugin-terser": "7.0.2",
         "rollup-plugin-typescript2": "0.29.0",
-        "typescript": "4.0.5"
+        "typescript": "4.1.2"
     }
 }
