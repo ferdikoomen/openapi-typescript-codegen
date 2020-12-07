@@ -73,7 +73,7 @@
         "@babel/core": "7.12.9",
         "@babel/preset-env": "7.12.7",
         "@babel/preset-typescript": "7.12.7",
-        "@rollup/plugin-commonjs": "16.0.0",
+        "@rollup/plugin-commonjs": "17.0.0",
         "@rollup/plugin-node-resolve": "11.0.0",
         "@types/express": "4.17.9",
         "@types/jest": "26.0.16",
