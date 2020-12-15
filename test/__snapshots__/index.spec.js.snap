@@ -68,6 +68,7 @@ type Config = {
     USERNAME?: string | Resolver<string>;
     PASSWORD?: string | Resolver<string>;
     HEADERS?: Headers | Resolver<Headers>;
+    CUSTOM_FETCHER?: (url: string, request: RequestInit) => Promise<Response>;
 }
 
 export const OpenAPI: Config = {
@@ -78,6 +79,7 @@ export const OpenAPI: Config = {
     USERNAME: undefined,
     PASSWORD: undefined,
     HEADERS: undefined,
+    CUSTOM_FETCHER: undefined,
 };"
 `;
 
@@ -208,7 +210,8 @@ async function sendRequest(options: ApiRequestOptions, url: string): Promise<Res
         headers: await getHeaders(options),
         body: getRequestBody(options),
     };
-    return await fetch(url, request);
+    const customFetch = OpenAPI.CUSTOM_FETCHER || fetch;
+    return await customFetch(url, request);
 }
 
 function getResponseHeader(response: Response, responseHeader?: string): string | null {
@@ -2311,6 +2314,7 @@ type Config = {
     USERNAME?: string | Resolver<string>;
     PASSWORD?: string | Resolver<string>;
     HEADERS?: Headers | Resolver<Headers>;
+    CUSTOM_FETCHER?: (url: string, request: RequestInit) => Promise<Response>;
 }
 
 export const OpenAPI: Config = {
@@ -2321,6 +2325,7 @@ export const OpenAPI: Config = {
     USERNAME: undefined,
     PASSWORD: undefined,
     HEADERS: undefined,
+    CUSTOM_FETCHER: undefined,
 };"
 `;
 
@@ -2451,7 +2456,8 @@ async function sendRequest(options: ApiRequestOptions, url: string): Promise<Res
         headers: await getHeaders(options),
         body: getRequestBody(options),
     };
-    return await fetch(url, request);
+    const customFetch = OpenAPI.CUSTOM_FETCHER || fetch;
+    return await customFetch(url, request);
 }
 
 function getResponseHeader(response: Response, responseHeader?: string): string | null {
