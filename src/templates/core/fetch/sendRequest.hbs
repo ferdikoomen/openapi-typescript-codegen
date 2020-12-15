@@ -4,5 +4,6 @@ async function sendRequest(options: ApiRequestOptions, url: string): Promise<Res
         headers: await getHeaders(options),
         body: getRequestBody(options),
     };
-    return await fetch(url, request);
+    const customFetch = OpenAPI.CUSTOM_FETCHER || fetch;
+    return await customFetch(url, request);
 }

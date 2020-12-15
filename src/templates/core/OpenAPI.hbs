@@ -11,6 +11,7 @@ type Config = {
     USERNAME?: string | Resolver<string>;
     PASSWORD?: string | Resolver<string>;
     HEADERS?: Headers | Resolver<Headers>;
+    CUSTOM_FETCHER?: (url: string, request: RequestInit) => Promise<Response>;
 }
 
 export const OpenAPI: Config = {
@@ -21,4 +22,5 @@ export const OpenAPI: Config = {
     USERNAME: undefined,
     PASSWORD: undefined,
     HEADERS: undefined,
+    CUSTOM_FETCHER: undefined,
 };
