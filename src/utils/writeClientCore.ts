@@ -22,5 +22,8 @@ export async function writeClientCore(client: Client, templates: Templates, outp
     await writeFile(path.resolve(outputPath, 'ApiError.ts'), templates.core.apiError({}));
     await writeFile(path.resolve(outputPath, 'ApiRequestOptions.ts'), templates.core.apiRequestOptions({}));
     await writeFile(path.resolve(outputPath, 'ApiResult.ts'), templates.core.apiResult({}));
-    await writeFile(path.resolve(outputPath, 'request.ts'), templates.core.request(context));
+
+    if (httpClient !== HttpClient.INJECTED) {
+        await writeFile(path.resolve(outputPath, 'request.ts'), templates.core.request(context));
+    }
 }

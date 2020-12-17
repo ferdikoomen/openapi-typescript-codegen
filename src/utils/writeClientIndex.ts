@@ -1,6 +1,7 @@
 import * as path from 'path';
 
 import type { Client } from '../client/interfaces/Client';
+import {HttpClient} from '..';
 import { writeFile } from './fileSystem';
 import { Templates } from './registerHandlebarTemplates';
 import { sortModelsByName } from './sortModelsByName';
@@ -23,6 +24,7 @@ export async function writeClientIndex(
     client: Client,
     templates: Templates,
     outputPath: string,
+    httpClient: HttpClient,
     useUnionTypes: boolean,
     exportCore: boolean,
     exportServices: boolean,
@@ -36,6 +38,7 @@ export async function writeClientIndex(
             exportServices,
             exportModels,
             exportSchemas,
+            httpClient,
             useUnionTypes,
             server: client.server,
             version: client.version,

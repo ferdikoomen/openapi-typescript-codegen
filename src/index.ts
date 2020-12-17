@@ -11,6 +11,7 @@ export enum HttpClient {
     FETCH = 'fetch',
     XHR = 'xhr',
     NODE = 'node',
+    INJECTED = 'injected'
 }
 
 export type Options = {

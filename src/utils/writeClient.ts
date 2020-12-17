@@ -72,6 +72,6 @@ export async function writeClient(
 
     if (exportCore || exportServices || exportSchemas || exportModels) {
         await mkdir(outputPath);
-        await writeClientIndex(client, templates, outputPath, useUnionTypes, exportCore, exportServices, exportModels, exportSchemas);
+        await writeClientIndex(client, templates, outputPath, httpClient, useUnionTypes, exportCore, exportServices, exportModels, exportSchemas);
     }
 }

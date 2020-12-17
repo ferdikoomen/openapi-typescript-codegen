@@ -1,11 +1,13 @@
 {{>header}}
 {{#if @root.exportServices}}
 {{#if services}}
+{{#notEquals @root.httpClient 'injected'}}
 
 {{#each services}}
 import { {{{name}}} as _{{{name}}} } from './services/{{{name}}}';
 {{/each}}
 import { request } from './core/request';
+{{/notEquals}}
 {{/if}}
 {{/if}}
 {{#if @root.exportCore}}
@@ -40,8 +42,15 @@ export { ${{{name}}} } from './schemas/${{{name}}}';
 {{#if @root.exportServices}}
 {{#if services}}
 
+{{#notEquals @root.httpClient 'injected'}}
 {{#each services}}
 export const {{{name}}} = new _{{{name}}}(request);
 {{/each}}
+{{/notEquals}}
+{{~#equals @root.httpClient 'injected'}}
+{{#each services}}
+export { {{{name}}} } from './services/{{{name}}}';
+{{/each}}
+{{/equals~}}
 {{/if}}
 {{/if}}
