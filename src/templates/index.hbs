@@ -1,4 +1,13 @@
 {{>header}}
+{{#if @root.exportServices}}
+{{#if services}}
+
+{{#each services}}
+import { {{{name}}} as _{{{name}}} } from './services/{{{name}}}';
+{{/each}}
+import { request } from './core/request';
+{{/if}}
+{{/if}}
 {{#if @root.exportCore}}
 
 export { ApiError } from './core/ApiError';
@@ -32,7 +41,7 @@ export { ${{{name}}} } from './schemas/${{{name}}}';
 {{#if services}}
 
 {{#each services}}
-export { {{{name}}} } from './services/{{{name}}}';
+export const {{{name}}} = new _{{{name}}}(request);
 {{/each}}
 {{/if}}
 {{/if}}

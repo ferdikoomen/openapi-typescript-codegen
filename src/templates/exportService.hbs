@@ -5,12 +5,13 @@
 import type { {{{this}}} } from '../models/{{{this}}}';
 {{/each}}
 {{/if}}
-import { request as __request } from '../core/request';
+import { ApiRequestOptions } from '../core/ApiRequestOptions';
 {{#if @root.useVersion}}
 import { OpenAPI } from '../core/OpenAPI';
 {{/if}}
 
 export class {{{name}}} {
+    constructor(private __request: (options: ApiRequestOptions) => Promise<any>) {}
 
     {{#each operations}}
     /**
@@ -35,8 +36,8 @@ export class {{{name}}} {
     {{/each}}
      * @throws ApiError
      */
-    public static async {{{name}}}({{>parameters}}): Promise<{{>result}}> {
-        return await __request({
+    public async {{{name}}}({{>parameters}}): Promise<{{>result}}> {
+        return await this.__request({
             method: '{{{method}}}',
             path: `{{{path}}}`,
             {{#if parametersCookie}}
