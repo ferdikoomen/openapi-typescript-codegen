@@ -266,10 +266,10 @@ function catchErrors(options: ApiRequestOptions, result: ApiResult): void {
 /**
  * Request using fetch client
  * @param options The request options from the the service
- * @returns ApiResult
+ * @returns The response from the API
  * @throws ApiError
  */
-export async function request(options: ApiRequestOptions): Promise<ApiResult> {
+export async function request(options: ApiRequestOptions): Promise<any> {
     const url = getUrl(options);
     const response = await sendRequest(options, url);
     const responseBody = await getResponseBody(response);
@@ -284,7 +284,7 @@ export async function request(options: ApiRequestOptions): Promise<ApiResult> {
     };
 
     catchErrors(options, result);
-    return result;
+    return result.body;
 }"
 `;
 
@@ -292,6 +292,16 @@ exports[`v2 should generate: ./test/generated/v2/index.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import { ComplexService as _ComplexService } from './services/ComplexService';
+import { DefaultsService as _DefaultsService } from './services/DefaultsService';
+import { DuplicateService as _DuplicateService } from './services/DuplicateService';
+import { HeaderService as _HeaderService } from './services/HeaderService';
+import { ParametersService as _ParametersService } from './services/ParametersService';
+import { ResponseService as _ResponseService } from './services/ResponseService';
+import { SimpleService as _SimpleService } from './services/SimpleService';
+import { TypesService as _TypesService } from './services/TypesService';
+import { request } from './core/request';
+
 export { ApiError } from './core/ApiError';
 export { OpenAPI } from './core/OpenAPI';
 
@@ -381,14 +391,14 @@ export { $SimpleReference } from './schemas/$SimpleReference';
 export { $SimpleString } from './schemas/$SimpleString';
 export { $SimpleStringWithPattern } from './schemas/$SimpleStringWithPattern';
 
-export { ComplexService } from './services/ComplexService';
-export { DefaultsService } from './services/DefaultsService';
-export { DuplicateService } from './services/DuplicateService';
-export { HeaderService } from './services/HeaderService';
-export { ParametersService } from './services/ParametersService';
-export { ResponseService } from './services/ResponseService';
-export { SimpleService } from './services/SimpleService';
-export { TypesService } from './services/TypesService';
+export const ComplexService = new _ComplexService(request);
+export const DefaultsService = new _DefaultsService(request);
+export const DuplicateService = new _DuplicateService(request);
+export const HeaderService = new _HeaderService(request);
+export const ParametersService = new _ParametersService(request);
+export const ResponseService = new _ResponseService(request);
+export const SimpleService = new _SimpleService(request);
+export const TypesService = new _TypesService(request);
 "
 `;
 
@@ -1723,10 +1733,11 @@ exports[`v2 should generate: ./test/generated/v2/services/ComplexService.ts 1`] 
 /* tslint:disable */
 /* eslint-disable */
 import type { ModelWithString } from '../models/ModelWithString';
-import { request as __request } from '../core/request';
+import { ApiRequestOptions } from '../core/ApiRequestOptions';
 import { OpenAPI } from '../core/OpenAPI';
 
 export class ComplexService {
+    constructor(private __request: (options: ApiRequestOptions) => Promise<any>) {}
 
     /**
      * @param parameterObject Parameter containing object
@@ -1734,7 +1745,7 @@ export class ComplexService {
      * @returns ModelWithString Successful response
      * @throws ApiError
      */
-    public static async complexTypes(
+    public async complexTypes(
         parameterObject: {
             first?: {
                 second?: {
@@ -1744,7 +1755,7 @@ export class ComplexService {
         },
         parameterReference: ModelWithString,
     ): Promise<Array<ModelWithString>> {
-        const result = await __request({
+        return await this.__request({
             method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/complex\`,
             query: {
@@ -1756,7 +1767,6 @@ export class ComplexService {
                 500: \`500 server error\`,
             },
         });
-        return result.body;
     }
 
 }"
@@ -1767,10 +1777,11 @@ exports[`v2 should generate: ./test/generated/v2/services/DefaultsService.ts 1`]
 /* tslint:disable */
 /* eslint-disable */
 import type { ModelWithString } from '../models/ModelWithString';
-import { request as __request } from '../core/request';
+import { ApiRequestOptions } from '../core/ApiRequestOptions';
 import { OpenAPI } from '../core/OpenAPI';
 
 export class DefaultsService {
+    constructor(private __request: (options: ApiRequestOptions) => Promise<any>) {}
 
     /**
      * @param parameterString This is a simple string with default value
@@ -1780,16 +1791,16 @@ export class DefaultsService {
      * @param parameterModel This is a simple model with default value
      * @throws ApiError
      */
-    public static async callWithDefaultParameters(
+    public async callWithDefaultParameters(
         parameterString: string = 'Hello World!',
         parameterNumber: number = 123,
         parameterBoolean: boolean = true,
         parameterEnum: 'Success' | 'Warning' | 'Error' = 'Success',
         parameterModel: ModelWithString = {
-            \\"prop\\": \\"Hello World!\\"
-        },
+    \\"prop\\": \\"Hello World!\\"
+},
     ): Promise<void> {
-        const result = await __request({
+        return await this.__request({
             method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/defaults\`,
             query: {
@@ -1800,7 +1811,6 @@ export class DefaultsService {
                 'parameterModel': parameterModel,
             },
         });
-        return result.body;
     }
 
     /**
@@ -1811,16 +1821,16 @@ export class DefaultsService {
      * @param parameterModel This is a simple model that is optional with default value
      * @throws ApiError
      */
-    public static async callWithDefaultOptionalParameters(
+    public async callWithDefaultOptionalParameters(
         parameterString: string = 'Hello World!',
         parameterNumber: number = 123,
         parameterBoolean: boolean = true,
         parameterEnum: 'Success' | 'Warning' | 'Error' = 'Success',
         parameterModel: ModelWithString = {
-            \\"prop\\": \\"Hello World!\\"
-        },
+    \\"prop\\": \\"Hello World!\\"
+},
     ): Promise<void> {
-        const result = await __request({
+        return await this.__request({
             method: 'POST',
             path: \`/api/v\${OpenAPI.VERSION}/defaults\`,
             query: {
@@ -1831,7 +1841,6 @@ export class DefaultsService {
                 'parameterModel': parameterModel,
             },
         });
-        return result.body;
     }
 
     /**
@@ -1843,7 +1852,7 @@ export class DefaultsService {
      * @param parameterStringWithEmptyDefault This is a string with empty default
      * @throws ApiError
      */
-    public static async callToTestOrderOfParams(
+    public async callToTestOrderOfParams(
         parameterStringWithNoDefault: string,
         parameterOptionalStringWithDefault: string = 'Hello World!',
         parameterOptionalStringWithEmptyDefault: string = '',
@@ -1851,7 +1860,7 @@ export class DefaultsService {
         parameterStringWithDefault: string = 'Hello World!',
         parameterStringWithEmptyDefault: string = '',
     ): Promise<void> {
-        const result = await __request({
+        return await this.__request({
             method: 'PUT',
             path: \`/api/v\${OpenAPI.VERSION}/defaults\`,
             query: {
@@ -1863,7 +1872,6 @@ export class DefaultsService {
                 'parameterStringWithEmptyDefault': parameterStringWithEmptyDefault,
             },
         });
-        return result.body;
     }
 
 }"
@@ -1873,53 +1881,50 @@ exports[`v2 should generate: ./test/generated/v2/services/DuplicateService.ts 1`
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import { request as __request } from '../core/request';
+import { ApiRequestOptions } from '../core/ApiRequestOptions';
 import { OpenAPI } from '../core/OpenAPI';
 
 export class DuplicateService {
+    constructor(private __request: (options: ApiRequestOptions) => Promise<any>) {}
 
     /**
      * @throws ApiError
      */
-    public static async duplicateName(): Promise<void> {
-        const result = await __request({
+    public async duplicateName(): Promise<void> {
+        return await this.__request({
             method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/duplicate\`,
         });
-        return result.body;
     }
 
     /**
      * @throws ApiError
      */
-    public static async duplicateName1(): Promise<void> {
-        const result = await __request({
+    public async duplicateName1(): Promise<void> {
+        return await this.__request({
             method: 'POST',
             path: \`/api/v\${OpenAPI.VERSION}/duplicate\`,
         });
-        return result.body;
     }
 
     /**
      * @throws ApiError
      */
-    public static async duplicateName2(): Promise<void> {
-        const result = await __request({
+    public async duplicateName2(): Promise<void> {
+        return await this.__request({
             method: 'PUT',
             path: \`/api/v\${OpenAPI.VERSION}/duplicate\`,
         });
-        return result.body;
     }
 
     /**
      * @throws ApiError
      */
-    public static async duplicateName3(): Promise<void> {
-        const result = await __request({
+    public async duplicateName3(): Promise<void> {
+        return await this.__request({
             method: 'DELETE',
             path: \`/api/v\${OpenAPI.VERSION}/duplicate\`,
         });
-        return result.body;
     }
 
 }"
@@ -1929,17 +1934,18 @@ exports[`v2 should generate: ./test/generated/v2/services/HeaderService.ts 1`] =
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import { request as __request } from '../core/request';
+import { ApiRequestOptions } from '../core/ApiRequestOptions';
 import { OpenAPI } from '../core/OpenAPI';
 
 export class HeaderService {
+    constructor(private __request: (options: ApiRequestOptions) => Promise<any>) {}
 
     /**
      * @returns string Successful response
      * @throws ApiError
      */
-    public static async callWithResultFromHeader(): Promise<string> {
-        const result = await __request({
+    public async callWithResultFromHeader(): Promise<string> {
+        return await this.__request({
             method: 'POST',
             path: \`/api/v\${OpenAPI.VERSION}/header\`,
             responseHeader: 'operation-location',
@@ -1948,7 +1954,6 @@ export class HeaderService {
                 500: \`500 server error\`,
             },
         });
-        return result.body;
     }
 
 }"
@@ -1958,10 +1963,11 @@ exports[`v2 should generate: ./test/generated/v2/services/ParametersService.ts 1
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import { request as __request } from '../core/request';
+import { ApiRequestOptions } from '../core/ApiRequestOptions';
 import { OpenAPI } from '../core/OpenAPI';
 
 export class ParametersService {
+    constructor(private __request: (options: ApiRequestOptions) => Promise<any>) {}
 
     /**
      * @param parameterHeader This is the parameter that goes into the header
@@ -1971,14 +1977,14 @@ export class ParametersService {
      * @param parameterPath This is the parameter that goes into the path
      * @throws ApiError
      */
-    public static async callWithParameters(
+    public async callWithParameters(
         parameterHeader: string,
         parameterQuery: string,
         parameterForm: string,
         parameterBody: string,
         parameterPath: string,
     ): Promise<void> {
-        const result = await __request({
+        return await this.__request({
             method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/parameters/\${parameterPath}\`,
             headers: {
@@ -1992,7 +1998,6 @@ export class ParametersService {
             },
             body: parameterBody,
         });
-        return result.body;
     }
 
     /**
@@ -2005,7 +2010,7 @@ export class ParametersService {
      * @param parameterPath3 This is the parameter that goes into the path
      * @throws ApiError
      */
-    public static async callWithWeirdParameterNames(
+    public async callWithWeirdParameterNames(
         parameterHeader: string,
         parameterQuery: string,
         parameterForm: string,
@@ -2014,7 +2019,7 @@ export class ParametersService {
         parameterPath2?: string,
         parameterPath3?: string,
     ): Promise<void> {
-        const result = await __request({
+        return await this.__request({
             method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/parameters/\${parameterPath1}/\${parameterPath2}/\${parameterPath3}\`,
             headers: {
@@ -2028,7 +2033,6 @@ export class ParametersService {
             },
             body: parameterBody,
         });
-        return result.body;
     }
 
 }"
@@ -2041,29 +2045,29 @@ exports[`v2 should generate: ./test/generated/v2/services/ResponseService.ts 1`]
 import type { ModelThatExtends } from '../models/ModelThatExtends';
 import type { ModelThatExtendsExtends } from '../models/ModelThatExtendsExtends';
 import type { ModelWithString } from '../models/ModelWithString';
-import { request as __request } from '../core/request';
+import { ApiRequestOptions } from '../core/ApiRequestOptions';
 import { OpenAPI } from '../core/OpenAPI';
 
 export class ResponseService {
+    constructor(private __request: (options: ApiRequestOptions) => Promise<any>) {}
 
     /**
      * @returns ModelWithString Message for default response
      * @throws ApiError
      */
-    public static async callWithResponse(): Promise<ModelWithString> {
-        const result = await __request({
+    public async callWithResponse(): Promise<ModelWithString> {
+        return await this.__request({
             method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/response\`,
         });
-        return result.body;
     }
 
     /**
      * @returns ModelWithString Message for default response
      * @throws ApiError
      */
-    public static async callWithDuplicateResponses(): Promise<ModelWithString> {
-        const result = await __request({
+    public async callWithDuplicateResponses(): Promise<ModelWithString> {
+        return await this.__request({
             method: 'POST',
             path: \`/api/v\${OpenAPI.VERSION}/response\`,
             errors: {
@@ -2072,7 +2076,6 @@ export class ResponseService {
                 502: \`Message for 502 error\`,
             },
         });
-        return result.body;
     }
 
     /**
@@ -2082,12 +2085,12 @@ export class ResponseService {
      * @returns ModelThatExtendsExtends Message for 202 response
      * @throws ApiError
      */
-    public static async callWithResponses(): Promise<{
+    public async callWithResponses(): Promise<{
         readonly '@namespace.string'?: string,
         readonly '@namespace.integer'?: number,
         readonly value?: Array<ModelWithString>,
     } | ModelWithString | ModelThatExtends | ModelThatExtendsExtends> {
-        const result = await __request({
+        return await this.__request({
             method: 'PUT',
             path: \`/api/v\${OpenAPI.VERSION}/response\`,
             errors: {
@@ -2096,7 +2099,6 @@ export class ResponseService {
                 502: \`Message for 502 error\`,
             },
         });
-        return result.body;
     }
 
 }"
@@ -2106,86 +2108,80 @@ exports[`v2 should generate: ./test/generated/v2/services/SimpleService.ts 1`] =
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import { request as __request } from '../core/request';
+import { ApiRequestOptions } from '../core/ApiRequestOptions';
 import { OpenAPI } from '../core/OpenAPI';
 
 export class SimpleService {
+    constructor(private __request: (options: ApiRequestOptions) => Promise<any>) {}
 
     /**
      * @throws ApiError
      */
-    public static async getCallWithoutParametersAndResponse(): Promise<void> {
-        const result = await __request({
+    public async getCallWithoutParametersAndResponse(): Promise<void> {
+        return await this.__request({
             method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
-        return result.body;
     }
 
     /**
      * @throws ApiError
      */
-    public static async putCallWithoutParametersAndResponse(): Promise<void> {
-        const result = await __request({
+    public async putCallWithoutParametersAndResponse(): Promise<void> {
+        return await this.__request({
             method: 'PUT',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
-        return result.body;
     }
 
     /**
      * @throws ApiError
      */
-    public static async postCallWithoutParametersAndResponse(): Promise<void> {
-        const result = await __request({
+    public async postCallWithoutParametersAndResponse(): Promise<void> {
+        return await this.__request({
             method: 'POST',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
-        return result.body;
     }
 
     /**
      * @throws ApiError
      */
-    public static async deleteCallWithoutParametersAndResponse(): Promise<void> {
-        const result = await __request({
+    public async deleteCallWithoutParametersAndResponse(): Promise<void> {
+        return await this.__request({
             method: 'DELETE',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
-        return result.body;
     }
 
     /**
      * @throws ApiError
      */
-    public static async optionsCallWithoutParametersAndResponse(): Promise<void> {
-        const result = await __request({
+    public async optionsCallWithoutParametersAndResponse(): Promise<void> {
+        return await this.__request({
             method: 'OPTIONS',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
-        return result.body;
     }
 
     /**
      * @throws ApiError
      */
-    public static async headCallWithoutParametersAndResponse(): Promise<void> {
-        const result = await __request({
+    public async headCallWithoutParametersAndResponse(): Promise<void> {
+        return await this.__request({
             method: 'HEAD',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
-        return result.body;
     }
 
     /**
      * @throws ApiError
      */
-    public static async patchCallWithoutParametersAndResponse(): Promise<void> {
-        const result = await __request({
+    public async patchCallWithoutParametersAndResponse(): Promise<void> {
+        return await this.__request({
             method: 'PATCH',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
-        return result.body;
     }
 
 }"
@@ -2195,10 +2191,11 @@ exports[`v2 should generate: ./test/generated/v2/services/TypesService.ts 1`] = 
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import { request as __request } from '../core/request';
+import { ApiRequestOptions } from '../core/ApiRequestOptions';
 import { OpenAPI } from '../core/OpenAPI';
 
 export class TypesService {
+    constructor(private __request: (options: ApiRequestOptions) => Promise<any>) {}
 
     /**
      * @param parameterArray This is an array parameter
@@ -2215,7 +2212,7 @@ export class TypesService {
      * @returns any Response is a simple object
      * @throws ApiError
      */
-    public static async types(
+    public async types(
         parameterArray: Array<string>,
         parameterDictionary: Record<string, string>,
         parameterEnum: 'Success' | 'Warning' | 'Error',
@@ -2225,7 +2222,7 @@ export class TypesService {
         parameterObject: any = null,
         id?: number,
     ): Promise<number | string | boolean | any> {
-        const result = await __request({
+        return await this.__request({
             method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/types\`,
             query: {
@@ -2238,7 +2235,6 @@ export class TypesService {
                 'parameterObject': parameterObject,
             },
         });
-        return result.body;
     }
 
 }"
@@ -2510,10 +2506,10 @@ function catchErrors(options: ApiRequestOptions, result: ApiResult): void {
 /**
  * Request using fetch client
  * @param options The request options from the the service
- * @returns ApiResult
+ * @returns The response from the API
  * @throws ApiError
  */
-export async function request(options: ApiRequestOptions): Promise<ApiResult> {
+export async function request(options: ApiRequestOptions): Promise<any> {
     const url = getUrl(options);
     const response = await sendRequest(options, url);
     const responseBody = await getResponseBody(response);
@@ -2528,7 +2524,7 @@ export async function request(options: ApiRequestOptions): Promise<ApiResult> {
     };
 
     catchErrors(options, result);
-    return result;
+    return result.body;
 }"
 `;
 
@@ -2536,6 +2532,19 @@ exports[`v3 should generate: ./test/generated/v3/index.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import { ComplexService as _ComplexService } from './services/ComplexService';
+import { DefaultsService as _DefaultsService } from './services/DefaultsService';
+import { DuplicateService as _DuplicateService } from './services/DuplicateService';
+import { HeaderService as _HeaderService } from './services/HeaderService';
+import { MultipartService as _MultipartService } from './services/MultipartService';
+import { ParametersService as _ParametersService } from './services/ParametersService';
+import { RequestBodyService as _RequestBodyService } from './services/RequestBodyService';
+import { ResponseService as _ResponseService } from './services/ResponseService';
+import { SimpleService as _SimpleService } from './services/SimpleService';
+import { TypesService as _TypesService } from './services/TypesService';
+import { UploadService as _UploadService } from './services/UploadService';
+import { request } from './core/request';
+
 export { ApiError } from './core/ApiError';
 export { OpenAPI } from './core/OpenAPI';
 
@@ -2635,17 +2644,17 @@ export { $SimpleReference } from './schemas/$SimpleReference';
 export { $SimpleString } from './schemas/$SimpleString';
 export { $SimpleStringWithPattern } from './schemas/$SimpleStringWithPattern';
 
-export { ComplexService } from './services/ComplexService';
-export { DefaultsService } from './services/DefaultsService';
-export { DuplicateService } from './services/DuplicateService';
-export { HeaderService } from './services/HeaderService';
-export { MultipartService } from './services/MultipartService';
-export { ParametersService } from './services/ParametersService';
-export { RequestBodyService } from './services/RequestBodyService';
-export { ResponseService } from './services/ResponseService';
-export { SimpleService } from './services/SimpleService';
-export { TypesService } from './services/TypesService';
-export { UploadService } from './services/UploadService';
+export const ComplexService = new _ComplexService(request);
+export const DefaultsService = new _DefaultsService(request);
+export const DuplicateService = new _DuplicateService(request);
+export const HeaderService = new _HeaderService(request);
+export const MultipartService = new _MultipartService(request);
+export const ParametersService = new _ParametersService(request);
+export const RequestBodyService = new _RequestBodyService(request);
+export const ResponseService = new _ResponseService(request);
+export const SimpleService = new _SimpleService(request);
+export const TypesService = new _TypesService(request);
+export const UploadService = new _UploadService(request);
 "
 `;
 
@@ -4238,10 +4247,11 @@ import type { ModelWithArray } from '../models/ModelWithArray';
 import type { ModelWithDictionary } from '../models/ModelWithDictionary';
 import type { ModelWithEnum } from '../models/ModelWithEnum';
 import type { ModelWithString } from '../models/ModelWithString';
-import { request as __request } from '../core/request';
+import { ApiRequestOptions } from '../core/ApiRequestOptions';
 import { OpenAPI } from '../core/OpenAPI';
 
 export class ComplexService {
+    constructor(private __request: (options: ApiRequestOptions) => Promise<any>) {}
 
     /**
      * @param parameterObject Parameter containing object
@@ -4249,7 +4259,7 @@ export class ComplexService {
      * @returns ModelWithString Successful response
      * @throws ApiError
      */
-    public static async complexTypes(
+    public async complexTypes(
         parameterObject: {
             first?: {
                 second?: {
@@ -4259,7 +4269,7 @@ export class ComplexService {
         },
         parameterReference: ModelWithString,
     ): Promise<Array<ModelWithString>> {
-        const result = await __request({
+        return await this.__request({
             method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/complex\`,
             query: {
@@ -4271,7 +4281,6 @@ export class ComplexService {
                 500: \`500 server error\`,
             },
         });
-        return result.body;
     }
 
     /**
@@ -4280,7 +4289,7 @@ export class ComplexService {
      * @returns ModelWithString Success
      * @throws ApiError
      */
-    public static async complexParams(
+    public async complexParams(
         id: number,
         requestBody?: {
             readonly key: string | null,
@@ -4296,12 +4305,11 @@ export class ComplexService {
             },
         },
     ): Promise<ModelWithString> {
-        const result = await __request({
+        return await this.__request({
             method: 'PUT',
             path: \`/api/v\${OpenAPI.VERSION}/complex/\${id}\`,
             body: requestBody,
         });
-        return result.body;
     }
 
 }"
@@ -4312,10 +4320,11 @@ exports[`v3 should generate: ./test/generated/v3/services/DefaultsService.ts 1`]
 /* tslint:disable */
 /* eslint-disable */
 import type { ModelWithString } from '../models/ModelWithString';
-import { request as __request } from '../core/request';
+import { ApiRequestOptions } from '../core/ApiRequestOptions';
 import { OpenAPI } from '../core/OpenAPI';
 
 export class DefaultsService {
+    constructor(private __request: (options: ApiRequestOptions) => Promise<any>) {}
 
     /**
      * @param parameterString This is a simple string with default value
@@ -4325,16 +4334,16 @@ export class DefaultsService {
      * @param parameterModel This is a simple model with default value
      * @throws ApiError
      */
-    public static async callWithDefaultParameters(
+    public async callWithDefaultParameters(
         parameterString: string | null = 'Hello World!',
         parameterNumber: number | null = 123,
         parameterBoolean: boolean | null = true,
         parameterEnum: 'Success' | 'Warning' | 'Error' = 'Success',
         parameterModel: ModelWithString | null = {
-            \\"prop\\": \\"Hello World!\\"
-        },
+    \\"prop\\": \\"Hello World!\\"
+},
     ): Promise<void> {
-        const result = await __request({
+        return await this.__request({
             method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/defaults\`,
             query: {
@@ -4345,7 +4354,6 @@ export class DefaultsService {
                 'parameterModel': parameterModel,
             },
         });
-        return result.body;
     }
 
     /**
@@ -4356,16 +4364,16 @@ export class DefaultsService {
      * @param parameterModel This is a simple model that is optional with default value
      * @throws ApiError
      */
-    public static async callWithDefaultOptionalParameters(
+    public async callWithDefaultOptionalParameters(
         parameterString: string = 'Hello World!',
         parameterNumber: number = 123,
         parameterBoolean: boolean = true,
         parameterEnum: 'Success' | 'Warning' | 'Error' = 'Success',
         parameterModel: ModelWithString = {
-            \\"prop\\": \\"Hello World!\\"
-        },
+    \\"prop\\": \\"Hello World!\\"
+},
     ): Promise<void> {
-        const result = await __request({
+        return await this.__request({
             method: 'POST',
             path: \`/api/v\${OpenAPI.VERSION}/defaults\`,
             query: {
@@ -4376,7 +4384,6 @@ export class DefaultsService {
                 'parameterModel': parameterModel,
             },
         });
-        return result.body;
     }
 
     /**
@@ -4388,7 +4395,7 @@ export class DefaultsService {
      * @param parameterStringWithEmptyDefault This is a string with empty default
      * @throws ApiError
      */
-    public static async callToTestOrderOfParams(
+    public async callToTestOrderOfParams(
         parameterStringWithNoDefault: string,
         parameterOptionalStringWithDefault: string = 'Hello World!',
         parameterOptionalStringWithEmptyDefault: string = '',
@@ -4396,7 +4403,7 @@ export class DefaultsService {
         parameterStringWithDefault: string = 'Hello World!',
         parameterStringWithEmptyDefault: string = '',
     ): Promise<void> {
-        const result = await __request({
+        return await this.__request({
             method: 'PUT',
             path: \`/api/v\${OpenAPI.VERSION}/defaults\`,
             query: {
@@ -4408,7 +4415,6 @@ export class DefaultsService {
                 'parameterStringWithEmptyDefault': parameterStringWithEmptyDefault,
             },
         });
-        return result.body;
     }
 
 }"
@@ -4418,53 +4424,50 @@ exports[`v3 should generate: ./test/generated/v3/services/DuplicateService.ts 1`
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import { request as __request } from '../core/request';
+import { ApiRequestOptions } from '../core/ApiRequestOptions';
 import { OpenAPI } from '../core/OpenAPI';
 
 export class DuplicateService {
+    constructor(private __request: (options: ApiRequestOptions) => Promise<any>) {}
 
     /**
      * @throws ApiError
      */
-    public static async duplicateName(): Promise<void> {
-        const result = await __request({
+    public async duplicateName(): Promise<void> {
+        return await this.__request({
             method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/duplicate\`,
         });
-        return result.body;
     }
 
     /**
      * @throws ApiError
      */
-    public static async duplicateName1(): Promise<void> {
-        const result = await __request({
+    public async duplicateName1(): Promise<void> {
+        return await this.__request({
             method: 'POST',
             path: \`/api/v\${OpenAPI.VERSION}/duplicate\`,
         });
-        return result.body;
     }
 
     /**
      * @throws ApiError
      */
-    public static async duplicateName2(): Promise<void> {
-        const result = await __request({
+    public async duplicateName2(): Promise<void> {
+        return await this.__request({
             method: 'PUT',
             path: \`/api/v\${OpenAPI.VERSION}/duplicate\`,
         });
-        return result.body;
     }
 
     /**
      * @throws ApiError
      */
-    public static async duplicateName3(): Promise<void> {
-        const result = await __request({
+    public async duplicateName3(): Promise<void> {
+        return await this.__request({
             method: 'DELETE',
             path: \`/api/v\${OpenAPI.VERSION}/duplicate\`,
         });
-        return result.body;
     }
 
 }"
@@ -4474,17 +4477,18 @@ exports[`v3 should generate: ./test/generated/v3/services/HeaderService.ts 1`] =
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import { request as __request } from '../core/request';
+import { ApiRequestOptions } from '../core/ApiRequestOptions';
 import { OpenAPI } from '../core/OpenAPI';
 
 export class HeaderService {
+    constructor(private __request: (options: ApiRequestOptions) => Promise<any>) {}
 
     /**
      * @returns string Successful response
      * @throws ApiError
      */
-    public static async callWithResultFromHeader(): Promise<string> {
-        const result = await __request({
+    public async callWithResultFromHeader(): Promise<string> {
+        return await this.__request({
             method: 'POST',
             path: \`/api/v\${OpenAPI.VERSION}/header\`,
             responseHeader: 'operation-location',
@@ -4493,7 +4497,6 @@ export class HeaderService {
                 500: \`500 server error\`,
             },
         });
-        return result.body;
     }
 
 }"
@@ -4503,27 +4506,27 @@ exports[`v3 should generate: ./test/generated/v3/services/MultipartService.ts 1`
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import { request as __request } from '../core/request';
+import { ApiRequestOptions } from '../core/ApiRequestOptions';
 import { OpenAPI } from '../core/OpenAPI';
 
 export class MultipartService {
+    constructor(private __request: (options: ApiRequestOptions) => Promise<any>) {}
 
     /**
      * @returns any OK
      * @throws ApiError
      */
-    public static async multipartResponse(): Promise<{
+    public async multipartResponse(): Promise<{
         file?: string,
         metadata?: {
             foo?: string,
             bar?: string,
         },
     }> {
-        const result = await __request({
+        return await this.__request({
             method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/multipart\`,
         });
-        return result.body;
     }
 
 }"
@@ -4534,10 +4537,11 @@ exports[`v3 should generate: ./test/generated/v3/services/ParametersService.ts 1
 /* tslint:disable */
 /* eslint-disable */
 import type { ModelWithString } from '../models/ModelWithString';
-import { request as __request } from '../core/request';
+import { ApiRequestOptions } from '../core/ApiRequestOptions';
 import { OpenAPI } from '../core/OpenAPI';
 
 export class ParametersService {
+    constructor(private __request: (options: ApiRequestOptions) => Promise<any>) {}
 
     /**
      * @param parameterHeader This is the parameter that goes into the header
@@ -4548,7 +4552,7 @@ export class ParametersService {
      * @param requestBody This is the parameter that goes into the body
      * @throws ApiError
      */
-    public static async callWithParameters(
+    public async callWithParameters(
         parameterHeader: string | null,
         parameterQuery: string | null,
         parameterForm: string | null,
@@ -4556,7 +4560,7 @@ export class ParametersService {
         parameterPath: string | null,
         requestBody: ModelWithString | null,
     ): Promise<void> {
-        const result = await __request({
+        return await this.__request({
             method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/parameters/\${parameterPath}\`,
             cookies: {
@@ -4573,7 +4577,6 @@ export class ParametersService {
             },
             body: requestBody,
         });
-        return result.body;
     }
 
     /**
@@ -4587,7 +4590,7 @@ export class ParametersService {
      * @param parameterPath3 This is the parameter that goes into the path
      * @throws ApiError
      */
-    public static async callWithWeirdParameterNames(
+    public async callWithWeirdParameterNames(
         parameterHeader: string | null,
         parameterQuery: string | null,
         parameterForm: string | null,
@@ -4597,7 +4600,7 @@ export class ParametersService {
         parameterPath2?: string,
         parameterPath3?: string,
     ): Promise<void> {
-        const result = await __request({
+        return await this.__request({
             method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/parameters/\${parameterPath1}/\${parameterPath2}/\${parameterPath3}\`,
             cookies: {
@@ -4614,7 +4617,6 @@ export class ParametersService {
             },
             body: requestBody,
         });
-        return result.body;
     }
 
     /**
@@ -4622,11 +4624,11 @@ export class ParametersService {
      * @param parameter This is an optional parameter
      * @throws ApiError
      */
-    public static async getCallWithOptionalParam(
+    public async getCallWithOptionalParam(
         requestBody: ModelWithString,
         parameter?: string,
     ): Promise<void> {
-        const result = await __request({
+        return await this.__request({
             method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/parameters/\`,
             query: {
@@ -4634,7 +4636,6 @@ export class ParametersService {
             },
             body: requestBody,
         });
-        return result.body;
     }
 
     /**
@@ -4642,11 +4643,11 @@ export class ParametersService {
      * @param requestBody This is an optional parameter
      * @throws ApiError
      */
-    public static async postCallWithOptionalParam(
+    public async postCallWithOptionalParam(
         parameter: string,
         requestBody?: ModelWithString,
     ): Promise<void> {
-        const result = await __request({
+        return await this.__request({
             method: 'POST',
             path: \`/api/v\${OpenAPI.VERSION}/parameters/\`,
             query: {
@@ -4654,7 +4655,6 @@ export class ParametersService {
             },
             body: requestBody,
         });
-        return result.body;
     }
 
 }"
@@ -4665,24 +4665,24 @@ exports[`v3 should generate: ./test/generated/v3/services/RequestBodyService.ts 
 /* tslint:disable */
 /* eslint-disable */
 import type { ModelWithString } from '../models/ModelWithString';
-import { request as __request } from '../core/request';
+import { ApiRequestOptions } from '../core/ApiRequestOptions';
 import { OpenAPI } from '../core/OpenAPI';
 
 export class RequestBodyService {
+    constructor(private __request: (options: ApiRequestOptions) => Promise<any>) {}
 
     /**
      * @param requestBody A reusable request body
      * @throws ApiError
      */
-    public static async postRequestBodyService(
+    public async postRequestBodyService(
         requestBody?: ModelWithString,
     ): Promise<void> {
-        const result = await __request({
+        return await this.__request({
             method: 'POST',
             path: \`/api/v\${OpenAPI.VERSION}/requestBody/\`,
             body: requestBody,
         });
-        return result.body;
     }
 
 }"
@@ -4695,29 +4695,29 @@ exports[`v3 should generate: ./test/generated/v3/services/ResponseService.ts 1`]
 import type { ModelThatExtends } from '../models/ModelThatExtends';
 import type { ModelThatExtendsExtends } from '../models/ModelThatExtendsExtends';
 import type { ModelWithString } from '../models/ModelWithString';
-import { request as __request } from '../core/request';
+import { ApiRequestOptions } from '../core/ApiRequestOptions';
 import { OpenAPI } from '../core/OpenAPI';
 
 export class ResponseService {
+    constructor(private __request: (options: ApiRequestOptions) => Promise<any>) {}
 
     /**
      * @returns ModelWithString
      * @throws ApiError
      */
-    public static async callWithResponse(): Promise<ModelWithString> {
-        const result = await __request({
+    public async callWithResponse(): Promise<ModelWithString> {
+        return await this.__request({
             method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/response\`,
         });
-        return result.body;
     }
 
     /**
      * @returns ModelWithString Message for default response
      * @throws ApiError
      */
-    public static async callWithDuplicateResponses(): Promise<ModelWithString> {
-        const result = await __request({
+    public async callWithDuplicateResponses(): Promise<ModelWithString> {
+        return await this.__request({
             method: 'POST',
             path: \`/api/v\${OpenAPI.VERSION}/response\`,
             errors: {
@@ -4726,7 +4726,6 @@ export class ResponseService {
                 502: \`Message for 502 error\`,
             },
         });
-        return result.body;
     }
 
     /**
@@ -4736,12 +4735,12 @@ export class ResponseService {
      * @returns ModelThatExtendsExtends Message for 202 response
      * @throws ApiError
      */
-    public static async callWithResponses(): Promise<{
+    public async callWithResponses(): Promise<{
         readonly '@namespace.string'?: string,
         readonly '@namespace.integer'?: number,
         readonly value?: Array<ModelWithString>,
     } | ModelWithString | ModelThatExtends | ModelThatExtendsExtends> {
-        const result = await __request({
+        return await this.__request({
             method: 'PUT',
             path: \`/api/v\${OpenAPI.VERSION}/response\`,
             errors: {
@@ -4750,7 +4749,6 @@ export class ResponseService {
                 502: \`Message for 502 error\`,
             },
         });
-        return result.body;
     }
 
 }"
@@ -4760,86 +4758,80 @@ exports[`v3 should generate: ./test/generated/v3/services/SimpleService.ts 1`] =
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import { request as __request } from '../core/request';
+import { ApiRequestOptions } from '../core/ApiRequestOptions';
 import { OpenAPI } from '../core/OpenAPI';
 
 export class SimpleService {
+    constructor(private __request: (options: ApiRequestOptions) => Promise<any>) {}
 
     /**
      * @throws ApiError
      */
-    public static async getCallWithoutParametersAndResponse(): Promise<void> {
-        const result = await __request({
+    public async getCallWithoutParametersAndResponse(): Promise<void> {
+        return await this.__request({
             method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
-        return result.body;
     }
 
     /**
      * @throws ApiError
      */
-    public static async putCallWithoutParametersAndResponse(): Promise<void> {
-        const result = await __request({
+    public async putCallWithoutParametersAndResponse(): Promise<void> {
+        return await this.__request({
             method: 'PUT',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
-        return result.body;
     }
 
     /**
      * @throws ApiError
      */
-    public static async postCallWithoutParametersAndResponse(): Promise<void> {
-        const result = await __request({
+    public async postCallWithoutParametersAndResponse(): Promise<void> {
+        return await this.__request({
             method: 'POST',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
-        return result.body;
     }
 
     /**
      * @throws ApiError
      */
-    public static async deleteCallWithoutParametersAndResponse(): Promise<void> {
-        const result = await __request({
+    public async deleteCallWithoutParametersAndResponse(): Promise<void> {
+        return await this.__request({
             method: 'DELETE',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
-        return result.body;
     }
 
     /**
      * @throws ApiError
      */
-    public static async optionsCallWithoutParametersAndResponse(): Promise<void> {
-        const result = await __request({
+    public async optionsCallWithoutParametersAndResponse(): Promise<void> {
+        return await this.__request({
             method: 'OPTIONS',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
-        return result.body;
     }
 
     /**
      * @throws ApiError
      */
-    public static async headCallWithoutParametersAndResponse(): Promise<void> {
-        const result = await __request({
+    public async headCallWithoutParametersAndResponse(): Promise<void> {
+        return await this.__request({
             method: 'HEAD',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
-        return result.body;
     }
 
     /**
      * @throws ApiError
      */
-    public static async patchCallWithoutParametersAndResponse(): Promise<void> {
-        const result = await __request({
+    public async patchCallWithoutParametersAndResponse(): Promise<void> {
+        return await this.__request({
             method: 'PATCH',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
-        return result.body;
     }
 
 }"
@@ -4849,10 +4841,11 @@ exports[`v3 should generate: ./test/generated/v3/services/TypesService.ts 1`] = 
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import { request as __request } from '../core/request';
+import { ApiRequestOptions } from '../core/ApiRequestOptions';
 import { OpenAPI } from '../core/OpenAPI';
 
 export class TypesService {
+    constructor(private __request: (options: ApiRequestOptions) => Promise<any>) {}
 
     /**
      * @param parameterObject This is an object parameter
@@ -4869,7 +4862,7 @@ export class TypesService {
      * @returns any Response is a simple object
      * @throws ApiError
      */
-    public static async types(
+    public async types(
         parameterObject: any,
         parameterArray: Array<string> | null,
         parameterDictionary: any,
@@ -4879,7 +4872,7 @@ export class TypesService {
         parameterBoolean: boolean | null = true,
         id?: number,
     ): Promise<number | string | boolean | any> {
-        const result = await __request({
+        return await this.__request({
             method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/types\`,
             query: {
@@ -4892,7 +4885,6 @@ export class TypesService {
                 'parameterBoolean': parameterBoolean,
             },
         });
-        return result.body;
     }
 
 }"
@@ -4902,27 +4894,27 @@ exports[`v3 should generate: ./test/generated/v3/services/UploadService.ts 1`] =
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import { request as __request } from '../core/request';
+import { ApiRequestOptions } from '../core/ApiRequestOptions';
 import { OpenAPI } from '../core/OpenAPI';
 
 export class UploadService {
+    constructor(private __request: (options: ApiRequestOptions) => Promise<any>) {}
 
     /**
      * @param file Supply a file reference for upload
      * @returns boolean
      * @throws ApiError
      */
-    public static async uploadFile(
+    public async uploadFile(
         file: Blob,
     ): Promise<boolean> {
-        const result = await __request({
+        return await this.__request({
             method: 'POST',
             path: \`/api/v\${OpenAPI.VERSION}/upload\`,
             formData: {
                 'file': file,
             },
         });
-        return result.body;
     }
 
 }"

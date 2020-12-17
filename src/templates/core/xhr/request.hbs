@@ -53,10 +53,10 @@ import { OpenAPI } from './OpenAPI';
 /**
  * Request using XHR client
  * @param options The request options from the the service
- * @returns ApiResult
+ * @returns The response from the API
  * @throws ApiError
  */
-export async function request(options: ApiRequestOptions): Promise<ApiResult> {
+export async function request(options: ApiRequestOptions): Promise<any> {
     const url = getUrl(options);
     const response = await sendRequest(options, url);
     const responseBody = getResponseBody(response);
@@ -71,5 +71,5 @@ export async function request(options: ApiRequestOptions): Promise<ApiResult> {
     };
 
     catchErrors(options, result);
-    return result;
+    return result.body;
 }
