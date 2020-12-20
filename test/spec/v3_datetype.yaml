@@ -1,0 +1,70 @@
+openapi: 3.0.1
+info:
+  title: Data Type Test Spec
+  version: "1.0"
+  description: OpenAPI v3 (Swagger) file representing the CoBaLo API
+servers:
+  - url: /api/v1
+paths:
+components:
+  schemas:
+    ParentType:
+      title: Parent
+      type: object
+      properties: 
+        name: string
+    ExampleType:
+      title: ExampleType
+      type: object
+      properties:
+        id:
+          type: integer
+        dateTime:
+          type: string
+          format: date-time
+          example: "2012-10-27T17:18:30.966Z"
+        date:
+          type: string
+          format: date
+          example: "2012-10-27"
+        dateTimeNullable:
+          type: string
+          format: date
+          nullable: true
+          example: "2012-10-27"
+        dateNullable:
+          type: string
+          format: date
+          nullable: true
+          example: "2012-10-27"
+    InheritType:
+      title: InheritType
+      allOf:
+        - $ref: "#/components/schemas/ParentType"
+        - $ref: "#/components/schemas/ExampleType"
+    WrappedInArray:
+      title: WrappedInArray
+      type: array
+      items:
+        type: object
+        properties:
+          dateTime:
+            type: string
+            format: date-time
+            example: "2012-10-27T17:18:30.966Z"
+          date:
+            type: string
+            format: date
+            example: "2012-10-27"
+          dateTimeNullable:
+            type: string
+            format: date
+            nullable: true
+            example: "2012-10-27"
+          dateNullable:
+            type: string
+            format: date
+            nullable: true
+            example: "2012-10-27"
+
+  
