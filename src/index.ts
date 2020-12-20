@@ -24,6 +24,7 @@ export interface Options {
     exportModels?: boolean;
     exportSchemas?: boolean;
     write?: boolean;
+    useDateType?: boolean;
 }
 
 /**
@@ -52,6 +53,7 @@ export async function generate({
     exportModels = true,
     exportSchemas = false,
     write = true,
+    useDateType = false,
 }: Options): Promise<void> {
     const openApi = isString(input) ? await getOpenApiSpec(input) : input;
     const openApiVersion = getOpenApiVersion(openApi);
@@ -62,7 +64,7 @@ export async function generate({
             const client = parseV2(openApi);
             const clientFinal = postProcessClient(client);
             if (!write) break;
-            await writeClient(clientFinal, templates, output, httpClient, useOptions, useUnionTypes, exportCore, exportServices, exportModels, exportSchemas);
+            await writeClient(clientFinal, templates, output, httpClient, useOptions, useUnionTypes, exportCore, exportServices, exportModels, exportSchemas, useDateType);
             break;
         }
 
@@ -70,7 +72,7 @@ export async function generate({
             const client = parseV3(openApi);
             const clientFinal = postProcessClient(client);
             if (!write) break;
-            await writeClient(clientFinal, templates, output, httpClient, useOptions, useUnionTypes, exportCore, exportServices, exportModels, exportSchemas);
+            await writeClient(clientFinal, templates, output, httpClient, useOptions, useUnionTypes, exportCore, exportServices, exportModels, exportSchemas, useDateType);
             break;
         }
     }
