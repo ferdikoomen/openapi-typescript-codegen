@@ -10,7 +10,7 @@ describe('getType', () => {
     });
 
     it('should convert string', () => {
-        const type = getType('String');
+        const type = getType('string');
         expect(type.type).toEqual('string');
         expect(type.base).toEqual('string');
         expect(type.template).toEqual(null);
@@ -18,7 +18,7 @@ describe('getType', () => {
     });
 
     it('should convert string array', () => {
-        const type = getType('Array[String]');
+        const type = getType('array[string]');
         expect(type.type).toEqual('string[]');
         expect(type.base).toEqual('string');
         expect(type.template).toEqual(null);
@@ -26,7 +26,7 @@ describe('getType', () => {
     });
 
     it('should convert template with primary', () => {
-        const type = getType('#/definitions/Link[String]');
+        const type = getType('#/definitions/Link[string]');
         expect(type.type).toEqual('Link<string>');
         expect(type.base).toEqual('Link');
         expect(type.template).toEqual('string');
@@ -55,5 +55,29 @@ describe('getType', () => {
         expect(type.base).toEqual('T');
         expect(type.template).toEqual(null);
         expect(type.imports).toEqual([]);
+    });
+
+    it('should support dot', () => {
+        const type = getType('#/definitions/model.000');
+        expect(type.type).toEqual('model_000');
+        expect(type.base).toEqual('model_000');
+        expect(type.template).toEqual(null);
+        expect(type.imports).toEqual(['model_000']);
+    });
+
+    it('should support dashes', () => {
+        const type = getType('#/definitions/some_special-schema');
+        expect(type.type).toEqual('some_special_schema');
+        expect(type.base).toEqual('some_special_schema');
+        expect(type.template).toEqual(null);
+        expect(type.imports).toEqual(['some_special_schema']);
+    });
+
+    it('should support dollar sign', () => {
+        const type = getType('#/definitions/$some+special+schema');
+        expect(type.type).toEqual('$some_special_schema');
+        expect(type.base).toEqual('$some_special_schema');
+        expect(type.template).toEqual(null);
+        expect(type.imports).toEqual(['$some_special_schema']);
     });
 });

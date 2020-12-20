@@ -1,6 +1,0 @@
-async function getToken(): Promise<string> {
-    if (typeof OpenAPI.TOKEN === 'function') {
-        return OpenAPI.TOKEN();
-    }
-    return OpenAPI.TOKEN;
-}

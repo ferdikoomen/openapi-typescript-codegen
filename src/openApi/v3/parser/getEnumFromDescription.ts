@@ -1,5 +1,4 @@
 import type { Enum } from '../../../client/interfaces/Enum';
-import { PrimaryType } from './constants';
 
 export function getEnumFromDescription(description: string): Enum[] {
     // Check if we can find this special format string:
@@ -20,7 +19,7 @@ export function getEnumFromDescription(description: string): Enum[] {
                             .replace(/([a-z])([A-Z]+)/g, '$1_$2')
                             .toUpperCase(),
                         value: String(value),
-                        type: PrimaryType.NUMBER,
+                        type: 'number',
                         description: null,
                     });
                 }

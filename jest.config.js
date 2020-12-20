@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = {
     projects: [
         {
@@ -7,6 +9,7 @@ module.exports = {
                 '<rootDir>/src/**/*.spec.ts',
                 '<rootDir>/test/index.spec.js',
             ],
+            moduleFileExtensions: ['js', 'ts', 'd.ts'],
             moduleNameMapper: {
                 '\\.hbs$': '<rootDir>/src/templates/__mocks__/index.js',
             },

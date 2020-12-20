@@ -12,6 +12,17 @@ function compileWithTypescript(dir) {
             module: 'es6',
             moduleResolution: 'node',
             lib: ['es6', 'es2017', 'dom'],
+            declaration: false,
+            declarationMap: false,
+            sourceMap: false,
+            noImplicitReturns: true,
+            noImplicitThis: true,
+            noImplicitAny: true,
+            strict: true,
+            strictNullChecks: true,
+            strictFunctionTypes: true,
+            allowSyntheticDefaultImports: true,
+            skipLibCheck: true
         },
         include: ['./index.ts'],
     };

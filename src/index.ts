@@ -1,3 +1,4 @@
+import { HttpClient } from './HttpClient';
 import { parse as parseV2 } from './openApi/v2';
 import { parse as parseV3 } from './openApi/v3';
 import { getOpenApiSpec } from './utils/getOpenApiSpec';
@@ -7,13 +8,9 @@ import { postProcessClient } from './utils/postProcessClient';
 import { registerHandlebarTemplates } from './utils/registerHandlebarTemplates';
 import { writeClient } from './utils/writeClient';
 
-export enum HttpClient {
-    FETCH = 'fetch',
-    XHR = 'xhr',
-    NODE = 'node',
-}
+export { HttpClient } from './HttpClient';
 
-export interface Options {
+export type Options = {
     input: string | Record<string, any>;
     output: string;
     httpClient?: HttpClient;
@@ -23,9 +20,10 @@ export interface Options {
     exportServices?: boolean;
     exportModels?: boolean;
     exportSchemas?: boolean;
+    request?: string;
     write?: boolean;
     useDateType?: boolean;
-}
+};
 
 /**
  * Generate the OpenAPI client. This method will read the OpenAPI specification and based on the
@@ -40,7 +38,9 @@ export interface Options {
  * @param exportServices: Generate services
  * @param exportModels: Generate models
  * @param exportSchemas: Generate schemas
+ * @param request: Path to custom request file
  * @param write Write the files to disk (true or false)
+ * @param useDateType: Output Date instead of string with format date-time
  */
 export async function generate({
     input,
@@ -52,6 +52,7 @@ export async function generate({
     exportServices = true,
     exportModels = true,
     exportSchemas = false,
+    request,
     write = true,
     useDateType = false,
 }: Options): Promise<void> {
@@ -64,7 +65,7 @@ export async function generate({
             const client = parseV2(openApi);
             const clientFinal = postProcessClient(client);
             if (!write) break;
-            await writeClient(clientFinal, templates, output, httpClient, useOptions, useUnionTypes, exportCore, exportServices, exportModels, exportSchemas, useDateType);
+            await writeClient(clientFinal, templates, output, httpClient, useOptions, useUnionTypes, exportCore, exportServices, exportModels, exportSchemas, useDateType, request);
             break;
         }
 
@@ -72,7 +73,7 @@ export async function generate({
             const client = parseV3(openApi);
             const clientFinal = postProcessClient(client);
             if (!write) break;
-            await writeClient(clientFinal, templates, output, httpClient, useOptions, useUnionTypes, exportCore, exportServices, exportModels, exportSchemas, useDateType);
+            await writeClient(clientFinal, templates, output, httpClient, useOptions, useUnionTypes, exportCore, exportServices, exportModels, exportSchemas, useDateType, request);
             break;
         }
     }

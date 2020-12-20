@@ -20,6 +20,7 @@ program
     .option('--exportModels <value>', 'Write models to disk', true)
     .option('--exportSchemas <value>', 'Write schemas to disk', false)
     .option('--useDateType', 'Output Date instead of string for the format "date-time" in the models')
+    .option('--request <value>', 'Path to custom request file')
     .parse(process.argv);
 
 const OpenAPI = require(path.resolve(__dirname, '../dist/index.js'));
@@ -36,6 +37,7 @@ if (OpenAPI) {
         exportModels: JSON.parse(program.exportModels) === true,
         exportSchemas: JSON.parse(program.exportSchemas) === true,
         useDateType: program.useDateType,
+        request: program.request,
     })
         .then(() => {
             process.exit(0);

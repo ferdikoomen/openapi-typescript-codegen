@@ -1488,24 +1488,6 @@
                     }
                 }
             },
-            "ModelLink": {
-                "description": "This is a model that can have a template??",
-                "type": "object",
-                "properties": {
-                    "id": {
-                        "type": "string"
-                    }
-                }
-            },
-            "ModelWithLink": {
-                "description": "This is a model that can have a template??",
-                "type": "object",
-                "properties": {
-                    "prop": {
-                        "$ref": "#/components/schemas/ModelLink[ModelWithString]"
-                    }
-                }
-            },
             "ModelWithCircularReference": {
                 "description": "This is a model with one property containing a circular reference",
                 "type": "object",
@@ -1515,7 +1497,7 @@
                     }
                 }
             },
-            "ModelWithOneOf": {
+            "CompositionWithOneOf": {
                 "description": "This is a model with one property with a 'one of' relationship",
                 "type": "object",
                 "properties": {
@@ -1538,7 +1520,33 @@
                     }
                 }
             },
-            "ModelWithAnyOf": {
+            "CompositionWithOneOfAnonymous": {
+                "description": "This is a model with one property with a 'one of' relationship where the options are not $ref",
+                "type": "object",
+                "properties": {
+                    "propA": {
+                        "type": "object",
+                        "oneOf": [
+                            {
+                                "description": "Anonymous object type",
+                                "type": "object",
+                                "properties": {
+                                    "propA": "string"
+                                }
+                            },
+                            {
+                                "description": "Anonymous string type",
+                                "type": "string"
+                            },
+                            {
+                                "description": "Anonymous integer type",
+                                "type": "integer"
+                            }
+                        ]
+                    }
+                }
+            },
+            "CompositionWithAnyOf": {
                 "description": "This is a model with one property with a 'any of' relationship",
                 "type": "object",
                 "properties": {
@@ -1547,6 +1555,119 @@
                         "anyOf": [
                             {
                                 "$ref": "#/components/schemas/ModelWithString"
+                            },
+                            {
+                                "$ref": "#/components/schemas/ModelWithEnum"
+                            },
+                            {
+                                "$ref": "#/components/schemas/ModelWithArray"
+                            },
+                            {
+                                "$ref": "#/components/schemas/ModelWithDictionary"
+                            }
+                        ]
+                    }
+                }
+            },
+            "CompositionWithAnyOfAnonymous": {
+                "description": "This is a model with one property with a 'any of' relationship where the options are not $ref",
+                "type": "object",
+                "properties": {
+                    "propA": {
+                        "type": "object",
+                        "anyOf": [
+                            {
+                                "description": "Anonymous object type",
+                                "type": "object",
+                                "properties": {
+                                    "propA": "string"
+                                }
+                            },
+                            {
+                                "description": "Anonymous string type",
+                                "type": "string"
+                            },
+                            {
+                                "description": "Anonymous integer type",
+                                "type": "integer"
+                            }
+                        ]
+                    }
+                }
+            },
+            "CompositionWithOneOfAndNullable": {
+                "description": "This is a model with one property with a 'one of' relationship",
+                "type": "object",
+                "properties": {
+                    "propA": {
+                        "nullable": true,
+                        "type": "object",
+                        "oneOf": [
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "boolean": {
+                                        "type": "boolean"
+                                    }
+                                }
+                            },
+                            {
+                                "$ref": "#/components/schemas/ModelWithEnum"
+                            },
+                            {
+                                "$ref": "#/components/schemas/ModelWithArray"
+                            },
+                            {
+                                "$ref": "#/components/schemas/ModelWithDictionary"
+                            }
+                        ]
+                    }
+                }
+            },
+            "CompositionWithAllOfAndNullable": {
+                "description": "This is a model with one property with a 'all of' relationship",
+                "type": "object",
+                "properties": {
+                    "propA": {
+                        "nullable": true,
+                        "type": "object",
+                        "allOf": [
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "boolean": {
+                                        "type": "boolean"
+                                    }
+                                }
+                            },
+                            {
+                                "$ref": "#/components/schemas/ModelWithEnum"
+                            },
+                            {
+                                "$ref": "#/components/schemas/ModelWithArray"
+                            },
+                            {
+                                "$ref": "#/components/schemas/ModelWithDictionary"
+                            }
+                        ]
+                    }
+                }
+            },
+            "CompositionWithAnyOfAndNullable": {
+                "description": "This is a model with one property with a 'any of' relationship",
+                "type": "object",
+                "properties": {
+                    "propA": {
+                        "nullable": true,
+                        "type": "object",
+                        "anyOf": [
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "boolean": {
+                                        "type": "boolean"
+                                    }
+                                }
                             },
                             {
                                 "$ref": "#/components/schemas/ModelWithEnum"
@@ -1592,6 +1713,9 @@
                     },
                     "reference": {
                         "$ref": "#/components/schemas/ModelWithString"
+                    },
+                    "property with space": {
+                        "type": "string"
                     },
                     "@namespace.string": {
                         "type": "string",

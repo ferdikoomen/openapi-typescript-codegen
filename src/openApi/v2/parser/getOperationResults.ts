@@ -1,6 +1,5 @@
 import type { Model } from '../../../client/interfaces/Model';
 import type { OperationResponse } from '../../../client/interfaces/OperationResponse';
-import { PrimaryType } from './constants';
 
 function areEqual(a: Model, b: Model): boolean {
     const equal = a.type === b.type && a.base === b.base && a.template === b.template;
@@ -26,8 +25,8 @@ export function getOperationResults(operationResponses: OperationResponse[]): Op
             code: 200,
             description: '',
             export: 'interface',
-            type: PrimaryType.OBJECT,
-            base: PrimaryType.OBJECT,
+            type: 'any',
+            base: 'any',
             template: null,
             link: null,
             isDefinition: false,
@@ -35,7 +34,6 @@ export function getOperationResults(operationResponses: OperationResponse[]): Op
             isRequired: false,
             isNullable: false,
             imports: [],
-            extends: [],
             enum: [],
             enums: [],
             properties: [],

@@ -26,9 +26,22 @@ describe('v3.xhr', () => {
         const result = await browser.evaluate(async () => {
             const { OpenAPI, SimpleService } = window.api;
             OpenAPI.TOKEN = window.tokenRequest;
+            OpenAPI.USERNAME = undefined;
+            OpenAPI.PASSWORD = undefined;
             return await SimpleService.getCallWithoutParametersAndResponse();
         });
         expect(result.headers.authorization).toBe('Bearer MY_TOKEN');
+    });
+
+    it('uses credentials', async () => {
+        const result = await browser.evaluate(async () => {
+            const { OpenAPI, SimpleService } = window.api;
+            OpenAPI.TOKEN = undefined;
+            OpenAPI.USERNAME = 'username';
+            OpenAPI.PASSWORD = 'password';
+            return await SimpleService.getCallWithoutParametersAndResponse();
+        });
+        expect(result.headers.authorization).toBe('Basic dXNlcm5hbWU6cGFzc3dvcmQ=');
     });
 
     it('complexService', async () => {

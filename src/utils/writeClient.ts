@@ -1,7 +1,7 @@
-import * as path from 'path';
+import { resolve } from 'path';
 
 import type { Client } from '../client/interfaces/Client';
-import { HttpClient } from '../index';
+import { HttpClient } from '../HttpClient';
 import { dateTypeOverride } from './dateTypeOverride';
 import { mkdir, rmdir } from './fileSystem';
 import { isSubDirectory } from './isSubdirectory';
@@ -13,7 +13,7 @@ import { writeClientSchemas } from './writeClientSchemas';
 import { writeClientServices } from './writeClientServices';
 
 /**
- * Write our OpenAPI client, using the given templates at the given output path.
+ * Write our OpenAPI client, using the given templates at the given output
  * @param client Client object with all the models, services, etc.
  * @param templates Templates wrapper with all loaded Handlebars templates
  * @param output The relative location of the output directory
@@ -24,6 +24,8 @@ import { writeClientServices } from './writeClientServices';
  * @param exportServices: Generate services
  * @param exportModels: Generate models
  * @param exportSchemas: Generate schemas
+ * @param useDateType: Output Date instead of string with format date-time
+ * @param request: Path to custom request file
  */
 export async function writeClient(
     client: Client,
@@ -36,37 +38,39 @@ export async function writeClient(
     exportServices: boolean,
     exportModels: boolean,
     exportSchemas: boolean,
-    useDateType: boolean
+    useDateType: boolean,
+    request?: string
 ): Promise<void> {
-    const outputPath = path.resolve(process.cwd(), output);
-    const outputPathCore = path.resolve(outputPath, 'core');
-    const outputPathModels = path.resolve(outputPath, 'models');
-    const outputPathSchemas = path.resolve(outputPath, 'schemas');
-    const outputPathServices = path.resolve(outputPath, 'services');
+    const outputPath = resolve(process.cwd(), output);
+    const outputPathCore = resolve(outputPath, 'core');
+    const outputPathModels = resolve(outputPath, 'models');
+    const outputPathSchemas = resolve(outputPath, 'schemas');
+    const outputPathServices = resolve(outputPath, 'services');
 
     if (!isSubDirectory(process.cwd(), output)) {
         throw new Error(`Output folder is not a subdirectory of the current working directory`);
     }
 
-    await rmdir(outputPath);
-    await mkdir(outputPath);
-
     if (exportCore) {
+        await rmdir(outputPathCore);
         await mkdir(outputPathCore);
-        await writeClientCore(client, templates, outputPathCore, httpClient);
+        await writeClientCore(client, templates, outputPathCore, httpClient, request);
     }
 
     if (exportServices) {
+        await rmdir(outputPathServices);
         await mkdir(outputPathServices);
         await writeClientServices(client.services, templates, outputPathServices, httpClient, useUnionTypes, useOptions);
     }
 
     if (exportSchemas) {
+        await rmdir(outputPathSchemas);
         await mkdir(outputPathSchemas);
         await writeClientSchemas(client.models, templates, outputPathSchemas, httpClient, useUnionTypes);
     }
 
     if (exportModels) {
+        await rmdir(outputPathModels);
         await mkdir(outputPathModels);
         if (useDateType) {
             client.models = dateTypeOverride(client.models);
@@ -74,5 +78,8 @@ export async function writeClient(
         await writeClientModels(client.models, templates, outputPathModels, httpClient, useUnionTypes);
     }
 
-    await writeClientIndex(client, templates, outputPath, useUnionTypes, exportCore, exportServices, exportModels, exportSchemas);
+    if (exportCore || exportServices || exportSchemas || exportModels) {
+        await mkdir(outputPath);
+        await writeClientIndex(client, templates, outputPath, useUnionTypes, exportCore, exportServices, exportModels, exportSchemas);
+    }
 }

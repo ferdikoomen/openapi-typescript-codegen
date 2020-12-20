@@ -1,9 +1,3 @@
 {{>header}}
-{{#if extends}}
-
-{{#each extends}}
-import { ${{{this}}} } from './${{{this}}}';
-{{/each}}
-{{/if}}
 
 export const ${{{name}}} = {{>schema}};

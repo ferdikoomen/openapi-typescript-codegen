@@ -4,7 +4,7 @@ export declare enum HttpClient {
     NODE = 'node',
 }
 
-export interface Options {
+export type Options = {
     input: string | Record<string, any>;
     output: string;
     httpClient?: HttpClient;
@@ -14,7 +14,8 @@ export interface Options {
     exportServices?: boolean;
     exportModels?: boolean;
     exportSchemas?: boolean;
+    request?: string;
     write?: boolean;
-}
+};
 
 export declare function generate(options: Options): Promise<void>;

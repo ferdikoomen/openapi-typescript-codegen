@@ -1,7 +1,10 @@
 import type { Type } from '../../../client/interfaces/Type';
-import { PrimaryType } from './constants';
 import { getMappedType, hasMappedType } from './getMappedType';
 import { stripNamespace } from './stripNamespace';
+
+function encode(value: string): string {
+    return value.replace(/^[^a-zA-Z_$]+/g, '').replace(/[^\w$]+/g, '_');
+}
 
 /**
  * Parse any string value into a type object.
@@ -10,8 +13,8 @@ import { stripNamespace } from './stripNamespace';
  */
 export function getType(value?: string, template?: string): Type {
     const result: Type = {
-        type: PrimaryType.OBJECT,
-        base: PrimaryType.OBJECT,
+        type: 'any',
+        base: 'any',
         template: null,
         imports: [],
     };
@@ -20,11 +23,11 @@ export function getType(value?: string, template?: string): Type {
 
     if (/\[.*\]$/g.test(valueClean)) {
         const matches = valueClean.match(/(.*?)\[(.*)\]$/);
-        if (matches && matches.length) {
-            const match1 = getType(matches[1]);
-            const match2 = getType(matches[2]);
+        if (matches?.length) {
+            const match1 = getType(encode(matches[1]));
+            const match2 = getType(encode(matches[2]));
 
-            if (match1.type === PrimaryType.ARRAY) {
+            if (match1.type === 'any[]') {
                 result.type = `${match2.type}[]`;
                 result.base = `${match2.type}`;
                 match1.imports = [];
@@ -43,12 +46,15 @@ export function getType(value?: string, template?: string): Type {
         }
     } else if (hasMappedType(valueClean)) {
         const mapped = getMappedType(valueClean);
-        result.type = mapped;
-        result.base = mapped;
+        if (mapped) {
+            result.type = mapped;
+            result.base = mapped;
+        }
     } else if (valueClean) {
-        result.type = valueClean;
-        result.base = valueClean;
-        result.imports.push(valueClean);
+        const type = encode(valueClean);
+        result.type = type;
+        result.base = type;
+        result.imports.push(type);
     }
 
     // If the property that we found matched the parent template class
