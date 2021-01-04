@@ -3,6 +3,7 @@ async function sendRequest(options: ApiRequestOptions, url: string): Promise<Res
         method: options.method,
         headers: await getHeaders(options),
         body: getRequestBody(options),
+        ...(options.requestInit || {}),
     };
     return await fetch(url, request);
 }
