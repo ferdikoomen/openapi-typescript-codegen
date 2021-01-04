@@ -5,5 +5,8 @@ async function sendRequest(options: ApiRequestOptions, url: string): Promise<Res
         body: getRequestBody(options),
         ...(options.requestInit || {}),
     };
+    if (OpenAPI.WITH_CREDENTIALS) {
+        request.credentials = 'include';
+    }
     return await fetch(url, request);
 }

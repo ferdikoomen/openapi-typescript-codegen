@@ -19,6 +19,7 @@ program
     .option('--exportServices <value>', 'Write services to disk', true)
     .option('--exportModels <value>', 'Write models to disk', true)
     .option('--exportSchemas <value>', 'Write schemas to disk', false)
+    .option('--request <value>', 'Path to custom request file')
     .parse(process.argv);
 
 const OpenAPI = require(path.resolve(__dirname, '../dist/index.js'));
@@ -34,6 +35,7 @@ if (OpenAPI) {
         exportServices: JSON.parse(program.exportServices) === true,
         exportModels: JSON.parse(program.exportModels) === true,
         exportSchemas: JSON.parse(program.exportSchemas) === true,
+        request: program.request,
     })
         .then(() => {
             process.exit(0);

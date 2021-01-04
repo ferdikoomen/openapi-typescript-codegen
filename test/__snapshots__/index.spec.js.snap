@@ -229,6 +229,9 @@ async function sendRequest(options: ApiRequestOptions, url: string): Promise<Res
         headers: await getHeaders(options),
         body: getRequestBody(options),
     };
+    if (OpenAPI.WITH_CREDENTIALS) {
+        request.credentials = 'include';
+    }
     return await fetch(url, request);
 }
 
@@ -284,7 +287,7 @@ function catchErrors(options: ApiRequestOptions, result: ApiResult): void {
 /**
  * Request using fetch client
  * @param options The request options from the the service
- * @result ApiResult
+ * @returns ApiResult
  * @throws ApiError
  */
 export async function request(options: ApiRequestOptions): Promise<ApiResult> {
@@ -315,9 +318,7 @@ export async function request(options: ApiRequestOptions): Promise<ApiResult> {
 
 
     return result;
-}
-
-"
+}"
 `;
 
 exports[`v2 should generate: ./test/generated/v2/index.ts 1`] = `
@@ -974,6 +975,7 @@ export type ModelWithProperties = {
     number?: number;
     boolean?: boolean;
     reference?: ModelWithString;
+    'property with space'?: string;
     readonly '@namespace.string'?: string;
     readonly '@namespace.integer'?: number;
 }
@@ -1647,6 +1649,9 @@ export const $ModelWithProperties = {
         reference: {
             type: 'ModelWithString',
         },
+        'property with space': {
+            type: 'string',
+        },
         '@namespace.string': {
             type: 'string',
             isReadOnly: true,
@@ -1763,7 +1768,7 @@ export class ComplexService {
     /**
      * @param parameterObject Parameter containing object
      * @param parameterReference Parameter containing reference
-     * @result ModelWithString Successful response
+     * @returns ModelWithString Successful response
      * @throws ApiError
      */
     public static async complexTypes(
@@ -1967,7 +1972,7 @@ import { OpenAPI } from '../core/OpenAPI';
 export class HeaderService {
 
     /**
-     * @result string Successful response
+     * @returns string Successful response
      * @throws ApiError
      */
     public static async callWithResultFromHeader(): Promise<string> {
@@ -2079,7 +2084,7 @@ import { OpenAPI } from '../core/OpenAPI';
 export class ResponseService {
 
     /**
-     * @result ModelWithString Message for default response
+     * @returns ModelWithString Message for default response
      * @throws ApiError
      */
     public static async callWithResponse(): Promise<ModelWithString> {
@@ -2091,7 +2096,7 @@ export class ResponseService {
     }
 
     /**
-     * @result ModelWithString Message for default response
+     * @returns ModelWithString Message for default response
      * @throws ApiError
      */
     public static async callWithDuplicateResponses(): Promise<ModelWithString> {
@@ -2108,10 +2113,10 @@ export class ResponseService {
     }
 
     /**
-     * @result any Message for 200 response
-     * @result ModelWithString Message for default response
-     * @result ModelThatExtends Message for 201 response
-     * @result ModelThatExtendsExtends Message for 202 response
+     * @returns any Message for 200 response
+     * @returns ModelWithString Message for default response
+     * @returns ModelThatExtends Message for 201 response
+     * @returns ModelThatExtendsExtends Message for 202 response
      * @throws ApiError
      */
     public static async callWithResponses(): Promise<{
@@ -2241,10 +2246,10 @@ export class TypesService {
      * @param parameterBoolean This is a boolean parameter
      * @param parameterObject This is an object parameter
      * @param id This is a number parameter
-     * @result number Response is a simple number
-     * @result string Response is a simple string
-     * @result boolean Response is a simple boolean
-     * @result any Response is a simple object
+     * @returns number Response is a simple number
+     * @returns string Response is a simple string
+     * @returns boolean Response is a simple boolean
+     * @returns any Response is a simple object
      * @throws ApiError
      */
     public static async types(
@@ -2505,6 +2510,9 @@ async function sendRequest(options: ApiRequestOptions, url: string): Promise<Res
         headers: await getHeaders(options),
         body: getRequestBody(options),
     };
+    if (OpenAPI.WITH_CREDENTIALS) {
+        request.credentials = 'include';
+    }
     return await fetch(url, request);
 }
 
@@ -2560,7 +2568,7 @@ function catchErrors(options: ApiRequestOptions, result: ApiResult): void {
 /**
  * Request using fetch client
  * @param options The request options from the the service
- * @result ApiResult
+ * @returns ApiResult
  * @throws ApiError
  */
 export async function request(options: ApiRequestOptions): Promise<ApiResult> {
@@ -2591,9 +2599,7 @@ export async function request(options: ApiRequestOptions): Promise<ApiResult> {
 
 
     return result;
-}
-
-"
+}"
 `;
 
 exports[`v3 should generate: ./test/generated/v3/index.ts 1`] = `
@@ -3362,6 +3368,7 @@ export type ModelWithProperties = {
     number?: number;
     boolean?: boolean;
     reference?: ModelWithString;
+    'property with space'?: string;
     readonly '@namespace.string'?: string;
     readonly '@namespace.integer'?: number;
 }
@@ -4190,6 +4197,9 @@ export const $ModelWithProperties = {
         reference: {
             type: 'ModelWithString',
         },
+        'property with space': {
+            type: 'string',
+        },
         '@namespace.string': {
             type: 'string',
             isReadOnly: true,
@@ -4310,7 +4320,7 @@ export class ComplexService {
     /**
      * @param parameterObject Parameter containing object
      * @param parameterReference Parameter containing reference
-     * @result ModelWithString Successful response
+     * @returns ModelWithString Successful response
      * @throws ApiError
      */
     public static async complexTypes(
@@ -4341,7 +4351,7 @@ export class ComplexService {
     /**
      * @param id
      * @param requestBody
-     * @result ModelWithString Success
+     * @returns ModelWithString Success
      * @throws ApiError
      */
     public static async complexParams(
@@ -4544,7 +4554,7 @@ import { OpenAPI } from '../core/OpenAPI';
 export class HeaderService {
 
     /**
-     * @result string Successful response
+     * @returns string Successful response
      * @throws ApiError
      */
     public static async callWithResultFromHeader(): Promise<string> {
@@ -4573,7 +4583,7 @@ import { OpenAPI } from '../core/OpenAPI';
 export class MultipartService {
 
     /**
-     * @result any OK
+     * @returns any OK
      * @throws ApiError
      */
     public static async multipartResponse(): Promise<{
@@ -4765,7 +4775,7 @@ import { OpenAPI } from '../core/OpenAPI';
 export class ResponseService {
 
     /**
-     * @result ModelWithString
+     * @returns ModelWithString
      * @throws ApiError
      */
     public static async callWithResponse(): Promise<ModelWithString> {
@@ -4777,7 +4787,7 @@ export class ResponseService {
     }
 
     /**
-     * @result ModelWithString Message for default response
+     * @returns ModelWithString Message for default response
      * @throws ApiError
      */
     public static async callWithDuplicateResponses(): Promise<ModelWithString> {
@@ -4794,10 +4804,10 @@ export class ResponseService {
     }
 
     /**
-     * @result any Message for 200 response
-     * @result ModelWithString Message for default response
-     * @result ModelThatExtends Message for 201 response
-     * @result ModelThatExtendsExtends Message for 202 response
+     * @returns any Message for 200 response
+     * @returns ModelWithString Message for default response
+     * @returns ModelThatExtends Message for 201 response
+     * @returns ModelThatExtendsExtends Message for 202 response
      * @throws ApiError
      */
     public static async callWithResponses(): Promise<{
@@ -4927,10 +4937,10 @@ export class TypesService {
      * @param parameterString This is a string parameter
      * @param parameterBoolean This is a boolean parameter
      * @param id This is a number parameter
-     * @result number Response is a simple number
-     * @result string Response is a simple string
-     * @result boolean Response is a simple boolean
-     * @result any Response is a simple object
+     * @returns number Response is a simple number
+     * @returns string Response is a simple string
+     * @returns boolean Response is a simple boolean
+     * @returns any Response is a simple object
      * @throws ApiError
      */
     public static async types(
@@ -4973,7 +4983,7 @@ export class UploadService {
 
     /**
      * @param file Supply a file reference for upload
-     * @result boolean
+     * @returns boolean
      * @throws ApiError
      */
     public static async uploadFile(

@@ -34,6 +34,8 @@ const handlebarsPlugin = () => ({
                 knownHelpers: {
                     equals: true,
                     notEquals: true,
+                    containsSpaces: true,
+                    union: true,
                 },
             });
             return `export default ${templateSpec};`;
@@ -65,6 +67,7 @@ module.exports = {
         'fs',
         'os',
         'util',
+        'path',
         'http',
         'https',
         'handlebars/runtime',
