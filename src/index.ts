@@ -22,6 +22,7 @@ export type Options = {
     exportSchemas?: boolean;
     request?: string;
     write?: boolean;
+    useDateType?: boolean;
 };
 
 /**
@@ -39,6 +40,7 @@ export type Options = {
  * @param exportSchemas: Generate schemas
  * @param request: Path to custom request file
  * @param write Write the files to disk (true or false)
+ * @param useDateType: Output Date instead of string with format date-time
  */
 export async function generate({
     input,
@@ -52,6 +54,7 @@ export async function generate({
     exportSchemas = false,
     request,
     write = true,
+    useDateType = false,
 }: Options): Promise<void> {
     const openApi = isString(input) ? await getOpenApiSpec(input) : input;
     const openApiVersion = getOpenApiVersion(openApi);
@@ -66,7 +69,7 @@ export async function generate({
             const client = parseV2(openApi);
             const clientFinal = postProcessClient(client);
             if (!write) break;
-            await writeClient(clientFinal, templates, output, httpClient, useOptions, useUnionTypes, exportCore, exportServices, exportModels, exportSchemas, request);
+            await writeClient(clientFinal, templates, output, httpClient, useOptions, useUnionTypes, exportCore, exportServices, exportModels, exportSchemas, useDateType, request);
             break;
         }
 
@@ -74,7 +77,7 @@ export async function generate({
             const client = parseV3(openApi);
             const clientFinal = postProcessClient(client);
             if (!write) break;
-            await writeClient(clientFinal, templates, output, httpClient, useOptions, useUnionTypes, exportCore, exportServices, exportModels, exportSchemas, request);
+            await writeClient(clientFinal, templates, output, httpClient, useOptions, useUnionTypes, exportCore, exportServices, exportModels, exportSchemas, useDateType, request);
             break;
         }
     }

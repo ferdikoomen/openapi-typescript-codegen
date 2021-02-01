@@ -2,6 +2,7 @@ import { resolve } from 'path';
 
 import type { Client } from '../client/interfaces/Client';
 import { HttpClient } from '../HttpClient';
+import { dateTypeOverride } from './dateTypeOverride';
 import { mkdir, rmdir } from './fileSystem';
 import { isSubDirectory } from './isSubdirectory';
 import { Templates } from './registerHandlebarTemplates';
@@ -23,6 +24,7 @@ import { writeClientServices } from './writeClientServices';
  * @param exportServices: Generate services
  * @param exportModels: Generate models
  * @param exportSchemas: Generate schemas
+ * @param useDateType: Output Date instead of string with format date-time
  * @param request: Path to custom request file
  */
 export async function writeClient(
@@ -36,6 +38,7 @@ export async function writeClient(
     exportServices: boolean,
     exportModels: boolean,
     exportSchemas: boolean,
+    useDateType: boolean,
     request?: string
 ): Promise<void> {
     const outputPath = resolve(process.cwd(), output);
@@ -69,6 +72,9 @@ export async function writeClient(
     if (exportModels) {
         await rmdir(outputPathModels);
         await mkdir(outputPathModels);
+        if (useDateType) {
+            client.models = dateTypeOverride(client.models);
+        }
         await writeClientModels(client.models, templates, outputPathModels, httpClient, useUnionTypes);
     }
 
