@@ -1,0 +1,22 @@
+async function getResponseBody(response: Response<unknown>): Promise<any> {
+    try {
+        const contentType = response.headers['content-type'];
+        if (contentType) {
+            const isJSON = contentType.toLowerCase().startsWith('application/json');
+            if (isJSON) {
+                if (Buffer.isBuffer(response.body)) {
+                  return JSON.parse(response.body.toString());
+                } else if (isString(response.body)) {
+                  return JSON.parse(response.body);
+                } else {
+                  throw new TypeError('Unknown JS type for JSON response')
+                }
+            } else {
+                return response.body;
+            }
+        }
+    } catch (error) {
+        console.error(error);
+    }
+    return null;
+}

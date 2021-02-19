@@ -1,0 +1,75 @@
+{{>header}}
+
+import got, { Headers, Response, OptionsOfUnknownResponseBody } from 'got';
+import { types } from 'util';
+
+import { ApiError } from './ApiError';
+import type { ApiRequestOptions } from './ApiRequestOptions';
+import type { ApiResult } from './ApiResult';
+import { OpenAPI } from './OpenAPI';
+
+{{>functions/isDefined}}
+
+
+{{>functions/isString}}
+
+
+{{>functions/isStringWithValue}}
+
+
+{{>functions/isBinary}}
+
+
+{{>functions/getQueryString}}
+
+
+{{>functions/getUrl}}
+
+
+{{>functions/getFormData}}
+
+
+{{>functions/resolve}}
+
+
+{{>got/getHeaders}}
+
+
+{{>got/getRequestBody}}
+
+
+{{>got/sendRequest}}
+
+
+{{>got/getResponseHeader}}
+
+
+{{>got/getResponseBody}}
+
+
+{{>functions/catchErrors}}
+
+
+/**
+ * Request using got client
+ * @param options The request options from the the service
+ * @returns ApiResult
+ * @throws ApiError
+ */
+export async function request(options: ApiRequestOptions): Promise<ApiResult> {
+    const url = getUrl(options);
+    const response = await sendRequest(options, url);
+    const responseBody = await getResponseBody(response);
+    const responseHeader = getResponseHeader(response, options.responseHeader);
+
+    const result: ApiResult = {
+        url,
+        ok: true,
+        status: response.statusCode,
+        statusText: response.statusMessage || '',
+        body: responseHeader || responseBody,
+    };
+
+    catchErrors(options, result);
+    return result;
+}

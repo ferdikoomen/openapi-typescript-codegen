@@ -1,0 +1,31 @@
+async function getHeaders(options: ApiRequestOptions): Promise<Headers> {
+    const headers: Headers = {
+        accept: 'application/json',
+        ...OpenAPI.HEADERS,
+        ...options.headers,
+    };
+
+    const token = await resolve(OpenAPI.TOKEN);
+    const username = await resolve(OpenAPI.USERNAME);
+    const password = await resolve(OpenAPI.PASSWORD);
+
+    if (isStringWithValue(token)) {
+        headers['authorization'] = `Bearer ${token}`;
+    }
+
+    if (isStringWithValue(username) && isStringWithValue(password)) {
+        const credentials = Buffer.from(`${username}:${password}`).toString('base64');
+        headers['authorization'] = `Basic ${credentials}`;
+    }
+
+    if (options.body) {
+        if (isBinary(options.body)) {
+            headers['content-type'] = 'application/octet-stream';
+        } else if (isString(options.body)) {
+            headers['content-type'] = 'text/plain';
+        } else {
+            headers['content-type'] = 'application/json';
+        }
+    }
+    return headers;
+}

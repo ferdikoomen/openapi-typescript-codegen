@@ -1,0 +1,15 @@
+function getRequestBody(options: ApiRequestOptions): string | Buffer | undefined {
+    if (options.formData) {
+        return getFormData(options.formData).toString();
+    }
+    if (options.body) {
+        if (isString(options.body)) {
+            return options.body;
+        } else if (isBinary(options.body)) {
+            return Buffer.isBuffer(options.body) ? options.body : Buffer.from(types.isArrayBuffer(options.body) ? options.body : options.body.buffer);
+        } else {
+            return JSON.stringify(options.body);
+        }
+    }
+    return undefined;
+}

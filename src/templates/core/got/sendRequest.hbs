@@ -1,0 +1,9 @@
+async function sendRequest(options: ApiRequestOptions, url: string): Promise<Response<unknown>> {
+    const request: OptionsOfUnknownResponseBody = {
+        method: options.method,
+        headers: await getHeaders(options),
+        body: getRequestBody(options),
+        throwHttpErrors: false,
+    };
+    return await got(url, request);
+}

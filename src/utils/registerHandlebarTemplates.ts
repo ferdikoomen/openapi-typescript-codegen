@@ -27,6 +27,12 @@ import nodeGetResponseBody from '../templates/core/node/getResponseBody.hbs';
 import nodeGetResponseHeader from '../templates/core/node/getResponseHeader.hbs';
 import nodeRequest from '../templates/core/node/request.hbs';
 import nodeSendRequest from '../templates/core/node/sendRequest.hbs';
+import gotGetHeaders from '../templates/core/got/getHeaders.hbs';
+import gotGetRequestBody from '../templates/core/got/getRequestBody.hbs';
+import gotGetResponseBody from '../templates/core/got/getResponseBody.hbs';
+import gotGetResponseHeader from '../templates/core/got/getResponseHeader.hbs';
+import gotRequest from '../templates/core/got/request.hbs';
+import gotSendRequest from '../templates/core/got/sendRequest.hbs';
 import templateCoreSettings from '../templates/core/OpenAPI.hbs';
 import templateCoreRequest from '../templates/core/request.hbs';
 import xhrGetHeaders from '../templates/core/xhr/getHeaders.hbs';
@@ -173,6 +179,14 @@ export function registerHandlebarTemplates(root: { httpClient: HttpClient; useOp
     Handlebars.registerPartial('node/getResponseHeader', Handlebars.template(nodeGetResponseHeader));
     Handlebars.registerPartial('node/sendRequest', Handlebars.template(nodeSendRequest));
     Handlebars.registerPartial('node/request', Handlebars.template(nodeRequest));
+
+    // Specific files for the got client implementation
+    Handlebars.registerPartial('got/getHeaders', Handlebars.template(gotGetHeaders));
+    Handlebars.registerPartial('got/getRequestBody', Handlebars.template(gotGetRequestBody));
+    Handlebars.registerPartial('got/getResponseBody', Handlebars.template(gotGetResponseBody));
+    Handlebars.registerPartial('got/getResponseHeader', Handlebars.template(gotGetResponseHeader));
+    Handlebars.registerPartial('got/sendRequest', Handlebars.template(gotSendRequest));
+    Handlebars.registerPartial('got/request', Handlebars.template(gotRequest));
 
     return templates;
 }
