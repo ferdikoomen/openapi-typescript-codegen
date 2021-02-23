@@ -2,6 +2,7 @@ import * as Handlebars from 'handlebars/runtime';
 
 import { HttpClient } from '../HttpClient';
 import templateCoreApiError from '../templates/core/ApiError.hbs';
+import templateCoreTimeoutError from '../templates/core/TimeoutError.hbs';
 import templateCoreApiRequestOptions from '../templates/core/ApiRequestOptions.hbs';
 import templateCoreApiResult from '../templates/core/ApiResult.hbs';
 import fetchGetHeaders from '../templates/core/fetch/getHeaders.hbs';
@@ -78,6 +79,7 @@ export interface Templates {
     core: {
         settings: Handlebars.TemplateDelegate;
         apiError: Handlebars.TemplateDelegate;
+        timeoutError: Handlebars.TemplateDelegate;
         apiRequestOptions: Handlebars.TemplateDelegate;
         apiResult: Handlebars.TemplateDelegate;
         request: Handlebars.TemplateDelegate;
@@ -102,6 +104,7 @@ export function registerHandlebarTemplates(root: { httpClient: HttpClient; useOp
         core: {
             settings: Handlebars.template(templateCoreSettings),
             apiError: Handlebars.template(templateCoreApiError),
+            timeoutError: Handlebars.template(templateCoreTimeoutError),
             apiRequestOptions: Handlebars.template(templateCoreApiRequestOptions),
             apiResult: Handlebars.template(templateCoreApiResult),
             request: Handlebars.template(templateCoreRequest),

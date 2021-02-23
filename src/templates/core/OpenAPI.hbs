@@ -13,6 +13,7 @@ type Config = {
     USERNAME?: string | Resolver<string>;
     PASSWORD?: string | Resolver<string>;
     HEADERS?: Headers | Resolver<Headers>;
+    TIMEOUT?: number;
 }
 
 export const OpenAPI: Config = {

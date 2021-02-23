@@ -6,7 +6,7 @@ const compileWithBabel = require('./scripts/compileWithBabel');
 const server = require('./scripts/server');
 const browser = require('./scripts/browser');
 
-describe('v3.fetch', () => {
+fdescribe('v3.babel.fetch', () => {
 
     beforeAll(async () => {
         await generate('v3/babel', 'v3', 'fetch', true, true);
@@ -56,5 +56,32 @@ describe('v3.fetch', () => {
             });
         });
         expect(result).toBeDefined();
+    });
+
+    it('passes timeout', async () => {
+        const result = await browser.evaluate(async () => {
+            const { DelayService, OpenAPI } = window.api;
+            OpenAPI.TIMEOUT = 1000;
+            return await DelayService.callWithRequestHeader({ xDelay: '500' });
+        });
+        expect(result).toBeDefined();
+    });
+
+    it('throws on timeout', async () => {
+        const result = await browser.evaluate(async () => {
+            const { DelayService, OpenAPI, TimeoutError } = window.api;
+            OpenAPI.TIMEOUT = 1000;
+            try {
+                await DelayService.callWithRequestHeader({ xDelay: '1500' });
+                return { passed: false, message: 'did not trigger timeout' };
+            } catch (error) {
+                if (error instanceof TimeoutError) {
+                    return { passed: true };
+                }
+                return { passed: false, message: `threw another error: ${error.constructor.name} - ${error.message}` };
+            }
+        });
+        expect(result.message).not.toBeDefined();
+        expect(result.passed).toBeTruthy();
     });
 });

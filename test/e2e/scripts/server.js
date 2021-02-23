@@ -27,7 +27,11 @@ async function start(dir) {
         // Register an 'echo' server that just returns all data from the API calls.
         // Although this might not be a 'correct' response, we can use this to test
         // the majority of API calls.
-        app.all('/base/api/*', (req, res) => {
+        app.all('/base/api/*', async (req, res) => {
+            if (req.headers['x-delay']) {
+                const time = Number.parseInt(req.headers['x-delay'], 10);
+                await new Promise(resolve => setTimeout(resolve, time));
+            }
             res.json({
                 method: req.method,
                 protocol: req.protocol,
@@ -39,6 +43,7 @@ async function start(dir) {
                 headers: req.headers,
             });
         });
+
 
         server = app.listen(3000, resolve);
     });

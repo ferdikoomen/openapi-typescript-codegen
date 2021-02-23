@@ -769,6 +769,32 @@
                     }
                 }
             }
+        },
+        "/api/v{api-version}/delay": {
+            "post": {
+                "tags": ["Delay"],
+                "operationId": "CallWithRequestHeader",
+                "parameters": [
+                    {
+                        "description": "delay header",
+                        "name": "x-delay",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response"
+                    },
+                    "400": {
+                        "description": "400 server error"
+                    },
+                    "500": {
+                        "description": "500 server error"
+                    }
+                }
+            }
         }
     },
     "definitions": {

@@ -25,6 +25,7 @@ describe('writeClient', () => {
             core: {
                 settings: () => 'settings',
                 apiError: () => 'apiError',
+                timeoutError: () => 'timeoutError',
                 apiRequestOptions: () => 'apiRequestOptions',
                 apiResult: () => 'apiResult',
                 request: () => 'request',
