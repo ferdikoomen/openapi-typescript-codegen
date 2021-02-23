@@ -1,9 +1,10 @@
 {{>header}}
 
-import got, { Headers, Response, OptionsOfUnknownResponseBody } from 'got';
+import got, { Headers, Response, OptionsOfUnknownResponseBody, TimeoutError as GotTimeoutError } from 'got';
 import { types } from 'util';
 
 import { ApiError } from './ApiError';
+import { TimeoutError } from './TimeoutError';
 import type { ApiRequestOptions } from './ApiRequestOptions';
 import type { ApiResult } from './ApiResult';
 import { OpenAPI } from './OpenAPI';

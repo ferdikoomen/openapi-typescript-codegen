@@ -68,6 +68,7 @@ type Config = {
     USERNAME?: string | Resolver<string>;
     PASSWORD?: string | Resolver<string>;
     HEADERS?: Headers | Resolver<Headers>;
+    TIMEOUT?: number;
 }
 
 export const OpenAPI: Config = {
@@ -81,11 +82,24 @@ export const OpenAPI: Config = {
 };"
 `;
 
+exports[`v2 should generate: ./test/generated/v2/core/TimeoutError.ts 1`] = `
+"export class TimeoutError extends Error {
+  public readonly url: string;
+
+  constructor(url: string) {
+    super(\`Timeout during call to \${url}\`);
+    this.name = 'timeout';
+    this.url = url;
+  }
+}"
+`;
+
 exports[`v2 should generate: ./test/generated/v2/core/request.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
 import { ApiError } from './ApiError';
+import { TimeoutError } from './TimeoutError';
 import type { ApiRequestOptions } from './ApiRequestOptions';
 import type { ApiResult } from './ApiResult';
 import { OpenAPI } from './OpenAPI';
@@ -211,7 +225,19 @@ async function sendRequest(options: ApiRequestOptions, url: string): Promise<Res
     if (OpenAPI.WITH_CREDENTIALS) {
         request.credentials = 'include';
     }
-    return await fetch(url, request);
+    const promises = [fetch(url, request)];
+    if (typeof OpenAPI.TIMEOUT === 'number' && OpenAPI.TIMEOUT > 0) {
+      promises.push(
+          new Promise(
+              (_, reject) => 
+                  setTimeout(
+                      () => reject(new TimeoutError(url)),
+                      OpenAPI.TIMEOUT,
+                  ),
+          ),
+      );
+    }
+    return Promise.race(promises);
 }
 
 function getResponseHeader(response: Response, responseHeader?: string): string | null {
@@ -293,6 +319,7 @@ exports[`v2 should generate: ./test/generated/v2/index.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 export { ApiError } from './core/ApiError';
+export { TimeoutError } from './core/TimeoutError';
 export { OpenAPI } from './core/OpenAPI';
 
 export type { ArrayWithArray } from './models/ArrayWithArray';
@@ -384,6 +411,7 @@ export { $SimpleStringWithPattern } from './schemas/$SimpleStringWithPattern';
 export { CollectionFormatService } from './services/CollectionFormatService';
 export { ComplexService } from './services/ComplexService';
 export { DefaultsService } from './services/DefaultsService';
+export { DelayService } from './services/DelayService';
 export { DuplicateService } from './services/DuplicateService';
 export { HeaderService } from './services/HeaderService';
 export { ParametersService } from './services/ParametersService';
@@ -1922,6 +1950,40 @@ export class DefaultsService {
 }"
 `;
 
+exports[`v2 should generate: ./test/generated/v2/services/DelayService.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import { request as __request } from '../core/request';
+import { OpenAPI } from '../core/OpenAPI';
+
+export class DelayService {
+
+    /**
+     * @param xDelay delay header
+     * @returns any Successful response
+     * @throws ApiError
+     */
+    public static async callWithRequestHeader(
+        xDelay?: string,
+    ): Promise<any> {
+        const result = await __request({
+            method: 'POST',
+            path: \`/api/v\${OpenAPI.VERSION}/delay\`,
+            headers: {
+                'x-delay': xDelay,
+            },
+            errors: {
+                400: \`400 server error\`,
+                500: \`500 server error\`,
+            },
+        });
+        return result.body;
+    }
+
+}"
+`;
+
 exports[`v2 should generate: ./test/generated/v2/services/DuplicateService.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
@@ -2365,6 +2427,7 @@ type Config = {
     USERNAME?: string | Resolver<string>;
     PASSWORD?: string | Resolver<string>;
     HEADERS?: Headers | Resolver<Headers>;
+    TIMEOUT?: number;
 }
 
 export const OpenAPI: Config = {
@@ -2378,11 +2441,24 @@ export const OpenAPI: Config = {
 };"
 `;
 
+exports[`v3 should generate: ./test/generated/v3/core/TimeoutError.ts 1`] = `
+"export class TimeoutError extends Error {
+  public readonly url: string;
+
+  constructor(url: string) {
+    super(\`Timeout during call to \${url}\`);
+    this.name = 'timeout';
+    this.url = url;
+  }
+}"
+`;
+
 exports[`v3 should generate: ./test/generated/v3/core/request.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
 import { ApiError } from './ApiError';
+import { TimeoutError } from './TimeoutError';
 import type { ApiRequestOptions } from './ApiRequestOptions';
 import type { ApiResult } from './ApiResult';
 import { OpenAPI } from './OpenAPI';
@@ -2508,7 +2584,19 @@ async function sendRequest(options: ApiRequestOptions, url: string): Promise<Res
     if (OpenAPI.WITH_CREDENTIALS) {
         request.credentials = 'include';
     }
-    return await fetch(url, request);
+    const promises = [fetch(url, request)];
+    if (typeof OpenAPI.TIMEOUT === 'number' && OpenAPI.TIMEOUT > 0) {
+      promises.push(
+          new Promise(
+              (_, reject) => 
+                  setTimeout(
+                      () => reject(new TimeoutError(url)),
+                      OpenAPI.TIMEOUT,
+                  ),
+          ),
+      );
+    }
+    return Promise.race(promises);
 }
 
 function getResponseHeader(response: Response, responseHeader?: string): string | null {
@@ -2590,6 +2678,7 @@ exports[`v3 should generate: ./test/generated/v3/index.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 export { ApiError } from './core/ApiError';
+export { TimeoutError } from './core/TimeoutError';
 export { OpenAPI } from './core/OpenAPI';
 
 export type { ArrayWithArray } from './models/ArrayWithArray';
@@ -2691,6 +2780,7 @@ export { $SimpleStringWithPattern } from './schemas/$SimpleStringWithPattern';
 export { CollectionFormatService } from './services/CollectionFormatService';
 export { ComplexService } from './services/ComplexService';
 export { DefaultsService } from './services/DefaultsService';
+export { DelayService } from './services/DelayService';
 export { DuplicateService } from './services/DuplicateService';
 export { HeaderService } from './services/HeaderService';
 export { MultipartService } from './services/MultipartService';
@@ -4512,6 +4602,40 @@ export class DefaultsService {
                 'parameterOptionalStringWithNoDefault': parameterOptionalStringWithNoDefault,
                 'parameterStringWithDefault': parameterStringWithDefault,
                 'parameterStringWithEmptyDefault': parameterStringWithEmptyDefault,
+            },
+        });
+        return result.body;
+    }
+
+}"
+`;
+
+exports[`v3 should generate: ./test/generated/v3/services/DelayService.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import { request as __request } from '../core/request';
+import { OpenAPI } from '../core/OpenAPI';
+
+export class DelayService {
+
+    /**
+     * @param xDelay delay header
+     * @returns any Successful response
+     * @throws ApiError
+     */
+    public static async callWithRequestHeader(
+        xDelay?: string,
+    ): Promise<any> {
+        const result = await __request({
+            method: 'POST',
+            path: \`/api/v\${OpenAPI.VERSION}/delay\`,
+            headers: {
+                'x-delay': xDelay,
+            },
+            errors: {
+                400: \`400 server error\`,
+                500: \`500 server error\`,
             },
         });
         return result.body;

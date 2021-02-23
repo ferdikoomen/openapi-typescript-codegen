@@ -35,4 +35,17 @@ describe('v2.got', () => {
         });
         expect(result).toBeDefined();
     });
+
+    it('passes timeout', async () => {
+        const { DelayService, OpenAPI } = require('./generated/v2/got/index.js');
+        OpenAPI.TIMEOUT = 1000;
+        const result = await DelayService.callWithRequestHeader('500');
+        expect(result).toBeDefined();
+    });
+
+    it('throws on timeout', async () => {
+        const { DelayService, OpenAPI, TimeoutError } = require('./generated/v2/got/index.js');
+        OpenAPI.TIMEOUT = 1000;
+        return expect(() => DelayService.callWithRequestHeader('1500')).rejects.toThrow(TimeoutError);
+    });
 });
