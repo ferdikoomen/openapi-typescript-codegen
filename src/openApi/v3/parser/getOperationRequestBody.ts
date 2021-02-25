@@ -30,7 +30,7 @@ export function getOperationRequestBody(openApi: OpenApi, parameter: OpenApiRequ
     };
 
     if (parameter.content) {
-        const schema = getContent(openApi, parameter.content);
+        var schema = getContent(openApi, parameter.content);
         if (schema) {
             if (schema?.$ref) {
                 const model = getType(schema.$ref);
@@ -42,6 +42,9 @@ export function getOperationRequestBody(openApi: OpenApi, parameter: OpenApiRequ
                 return requestBody;
             } else {
                 const model = getModel(openApi, schema);
+                if (model.content == "multipart/form-data") {
+                    requestBody.name = 'formData'
+                }
                 requestBody.export = model.export;
                 requestBody.type = model.type;
                 requestBody.base = model.base;

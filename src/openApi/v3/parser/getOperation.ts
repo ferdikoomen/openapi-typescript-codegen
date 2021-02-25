@@ -62,10 +62,17 @@ export function getOperation(openApi: OpenApi, url: string, method: string, op: 
     if (op.requestBody) {
         const requestBodyDef = getRef<OpenApiRequestBody>(openApi, op.requestBody);
         const requestBody = getOperationRequestBody(openApi, requestBodyDef);
-        operation.imports.push(...requestBody.imports);
-        operation.parameters.push(requestBody);
-        operation.parameters = operation.parameters.sort(sortByRequired);
-        operation.parametersBody = requestBody;
+        if (requestBody.name == "formData") {
+            operation.imports.push(...requestBody.imports);
+            operation.parameters.push(requestBody);
+            operation.parameters = operation.parameters.sort(sortByRequired);
+            operation.parametersFormData = requestBody;
+        } else {
+            operation.imports.push(...requestBody.imports);
+            operation.parameters.push(requestBody);
+            operation.parameters = operation.parameters.sort(sortByRequired);
+            operation.parametersBody = requestBody;
+        }
     }
 
     // Parse the operation responses.

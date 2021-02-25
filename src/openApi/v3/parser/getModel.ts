@@ -42,6 +42,7 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isDefiniti
         enum: [],
         enums: [],
         properties: [],
+        content: definition.content
     };
 
     if (definition.$ref) {

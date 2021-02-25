@@ -31,10 +31,19 @@ async function generateV3() {
         request: './test/custom/request.ts',
     });
 }
+async function generateForm() {
+    /* eslint-disable @typescript-eslint/no-var-requires */
+    process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
+    await OpenAPI.generate({
+        input: "https://localhost:44350/swagger/v1/swagger.json",
+        output: './test/generated/form/',
+        useOptions: true
+    });
+ }
+
 
 async function generate() {
-    await generateV2();
-    await generateV3();
+    await generateForm();
 }
 
 generate();
