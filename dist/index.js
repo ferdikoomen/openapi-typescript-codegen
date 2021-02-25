@@ -5,6 +5,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 var os = require('os');
 var camelCase = require('camelcase');
 var jsYaml = require('js-yaml');
+var RefParser = require('json-schema-ref-parser');
 var path = require('path');
 var fs = require('fs');
 var mkdirp = require('mkdirp');
@@ -17,9 +18,11 @@ var Handlebars = require('handlebars/runtime');
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
 var camelCase__default = /*#__PURE__*/_interopDefaultLegacy(camelCase);
+var RefParser__default = /*#__PURE__*/_interopDefaultLegacy(RefParser);
 var mkdirp__default = /*#__PURE__*/_interopDefaultLegacy(mkdirp);
 var rimraf__default = /*#__PURE__*/_interopDefaultLegacy(rimraf);
 
+exports.HttpClient = void 0;
 (function (HttpClient) {
     HttpClient["FETCH"] = "fetch";
     HttpClient["XHR"] = "xhr";
@@ -91,7 +94,7 @@ function getEnum(values) {
                 };
             }
             return {
-                name: value
+                name: String(value)
                     .replace(/\W+/g, '_')
                     .replace(/^(\d+)/g, '_$1')
                     .replace(/([a-z])([A-Z]+)/g, '$1_$2')
@@ -136,30 +139,6 @@ function getEnumFromDescription(description) {
         }
     }
     return [];
-}
-
-function getModelComposition(openApi, definitions, type, getModel) {
-    const composition = {
-        type,
-        imports: [],
-        enums: [],
-        properties: [],
-    };
-    const models = definitions.map(definition => getModel(openApi, definition));
-    models
-        .filter(model => {
-        const hasProperties = model.properties.length;
-        const hasEnums = model.enums.length;
-        const isObject = model.type === 'any';
-        const isEmpty = isObject && !hasProperties && !hasEnums;
-        return !isEmpty;
-    })
-        .forEach(model => {
-        composition.imports.push(...model.imports);
-        composition.enums.push(...model.enums);
-        composition.properties.push(model);
-    });
-    return composition;
 }
 
 function escapeName(value) {
@@ -361,6 +340,49 @@ function getModelProperties(openApi, definition, getModel) {
     return models;
 }
 
+function getModelComposition(openApi, definition, definitions, type, getModel) {
+    const composition = {
+        type,
+        imports: [],
+        enums: [],
+        properties: [],
+    };
+    const models = definitions.map(definition => getModel(openApi, definition));
+    models
+        .filter(model => {
+        const hasProperties = model.properties.length;
+        const hasEnums = model.enums.length;
+        const isObject = model.type === 'any';
+        const isEmpty = isObject && !hasProperties && !hasEnums;
+        return !isEmpty;
+    })
+        .forEach(model => {
+        composition.imports.push(...model.imports);
+        composition.enums.push(...model.enums);
+        composition.properties.push(model);
+    });
+    if (definition.properties) {
+        composition.properties.push({
+            name: 'properties',
+            export: 'interface',
+            type: 'any',
+            base: 'any',
+            template: null,
+            link: null,
+            description: '',
+            isDefinition: false,
+            isReadOnly: false,
+            isNullable: false,
+            isRequired: false,
+            imports: [],
+            enum: [],
+            enums: [],
+            properties: [...getModelProperties(openApi, definition, getModel)],
+        });
+    }
+    return composition;
+}
+
 function getModel(openApi, definition, isDefinition = false, name = '') {
     var _a;
     const model = {
@@ -403,7 +425,7 @@ function getModel(openApi, definition, isDefinition = false, name = '') {
         model.imports.push(...definitionRef.imports);
         return model;
     }
-    if (definition.enum) {
+    if (definition.enum && definition.type !== 'boolean') {
         const enumerators = getEnum(definition.enum);
         const extendedEnumerators = extendEnum(enumerators, definition);
         if (extendedEnumerators.length) {
@@ -467,11 +489,11 @@ function getModel(openApi, definition, isDefinition = false, name = '') {
         }
     }
     if ((_a = definition.allOf) === null || _a === void 0 ? void 0 : _a.length) {
-        const composition = getModelComposition(openApi, definition.allOf, 'all-of', getModel);
+        const composition = getModelComposition(openApi, definition, definition.allOf, 'all-of', getModel);
         model.export = composition.type;
         model.imports.push(...composition.imports);
-        model.enums.push(...composition.enums);
         model.properties.push(...composition.properties);
+        model.enums.push(...composition.enums);
         return model;
     }
     if (definition.type === 'object') {
@@ -482,6 +504,7 @@ function getModel(openApi, definition, isDefinition = false, name = '') {
             const properties = getModelProperties(openApi, definition, getModel);
             properties.forEach(property => {
                 model.imports.push(...property.imports);
+                model.enums.push(...property.enums);
                 model.properties.push(property);
                 if (property.export === 'enum') {
                     model.enums.push(property);
@@ -569,7 +592,7 @@ function getOperationParameterDefault(parameter, operationParameter) {
         case 'int':
         case 'integer':
         case 'number':
-            if (operationParameter.export == 'enum' && ((_a = operationParameter.enum) === null || _a === void 0 ? void 0 : _a[parameter.default])) {
+            if (operationParameter.export === 'enum' && ((_a = operationParameter.enum) === null || _a === void 0 ? void 0 : _a[parameter.default])) {
                 return operationParameter.enum[parameter.default].value;
             }
             return parameter.default;
@@ -860,19 +883,6 @@ function getOperationResponse(openApi, response, responseCode) {
         enums: [],
         properties: [],
     };
-    // We support basic properties from response headers, since both
-    // fetch and XHR client just support string types.
-    if (response.headers) {
-        for (const name in response.headers) {
-            if (response.headers.hasOwnProperty(name)) {
-                operationResponse.in = 'header';
-                operationResponse.name = name;
-                operationResponse.type = 'string';
-                operationResponse.base = 'string';
-                return operationResponse;
-            }
-        }
-    }
     // If this response has a schema, then we need to check two things:
     // if this is a reference then the parameter is just the 'name' of
     // this reference type. Otherwise it might be a complex schema and
@@ -916,6 +926,19 @@ function getOperationResponse(openApi, response, responseCode) {
             operationResponse.enums.push(...model.enums);
             operationResponse.properties.push(...model.properties);
             return operationResponse;
+        }
+    }
+    // We support basic properties from response headers, since both
+    // fetch and XHR client just support string types.
+    if (response.headers) {
+        for (const name in response.headers) {
+            if (response.headers.hasOwnProperty(name)) {
+                operationResponse.in = 'header';
+                operationResponse.name = name;
+                operationResponse.type = 'string';
+                operationResponse.base = 'string';
+                return operationResponse;
+            }
         }
     }
     return operationResponse;
@@ -1181,7 +1204,7 @@ function getEnum$1(values) {
                 };
             }
             return {
-                name: value
+                name: String(value)
                     .replace(/\W+/g, '_')
                     .replace(/^(\d+)/g, '_$1')
                     .replace(/([a-z])([A-Z]+)/g, '$1_$2')
@@ -1226,62 +1249,6 @@ function getEnumFromDescription$1(description) {
         }
     }
     return [];
-}
-
-function getModelComposition$1(openApi, definitions, type, getModel) {
-    const composition = {
-        type,
-        imports: [],
-        enums: [],
-        properties: [],
-    };
-    const models = definitions.map(definition => getModel(openApi, definition));
-    models
-        .filter(model => {
-        const hasProperties = model.properties.length;
-        const hasEnums = model.enums.length;
-        const isObject = model.type === 'any';
-        const isEmpty = isObject && !hasProperties && !hasEnums;
-        return !isEmpty;
-    })
-        .forEach(model => {
-        composition.imports.push(...model.imports);
-        composition.enums.push(...model.enums);
-        composition.properties.push(model);
-    });
-    return composition;
-}
-
-function getModelDefault(definition, model) {
-    var _a;
-    if (definition.default === undefined) {
-        return;
-    }
-    if (definition.default === null) {
-        return 'null';
-    }
-    const type = definition.type || typeof definition.default;
-    switch (type) {
-        case 'int':
-        case 'integer':
-        case 'number':
-            if ((model === null || model === void 0 ? void 0 : model.export) == 'enum' && ((_a = model.enum) === null || _a === void 0 ? void 0 : _a[definition.default])) {
-                return model.enum[definition.default].value;
-            }
-            return definition.default;
-        case 'boolean':
-            return JSON.stringify(definition.default);
-        case 'string':
-            return `'${definition.default}'`;
-        case 'object':
-            try {
-                return JSON.stringify(definition.default, null, 4);
-            }
-            catch (e) {
-                // Ignore
-            }
-    }
-    return;
 }
 
 function escapeName$1(value) {
@@ -1488,6 +1455,81 @@ function getModelProperties$1(openApi, definition, getModel) {
     return models;
 }
 
+function getModelComposition$1(openApi, definition, definitions, type, getModel) {
+    const composition = {
+        type,
+        imports: [],
+        enums: [],
+        properties: [],
+    };
+    const models = definitions.map(definition => getModel(openApi, definition));
+    models
+        .filter(model => {
+        const hasProperties = model.properties.length;
+        const hasEnums = model.enums.length;
+        const isObject = model.type === 'any';
+        const isEmpty = isObject && !hasProperties && !hasEnums;
+        return !isEmpty;
+    })
+        .forEach(model => {
+        composition.imports.push(...model.imports);
+        composition.enums.push(...model.enums);
+        composition.properties.push(model);
+    });
+    if (definition.properties) {
+        composition.properties.push({
+            name: 'properties',
+            export: 'interface',
+            type: 'any',
+            base: 'any',
+            template: null,
+            link: null,
+            description: '',
+            isDefinition: false,
+            isReadOnly: false,
+            isNullable: false,
+            isRequired: false,
+            imports: [],
+            enum: [],
+            enums: [],
+            properties: [...getModelProperties$1(openApi, definition, getModel)],
+        });
+    }
+    return composition;
+}
+
+function getModelDefault(definition, model) {
+    var _a;
+    if (definition.default === undefined) {
+        return;
+    }
+    if (definition.default === null) {
+        return 'null';
+    }
+    const type = definition.type || typeof definition.default;
+    switch (type) {
+        case 'int':
+        case 'integer':
+        case 'number':
+            if ((model === null || model === void 0 ? void 0 : model.export) === 'enum' && ((_a = model.enum) === null || _a === void 0 ? void 0 : _a[definition.default])) {
+                return model.enum[definition.default].value;
+            }
+            return definition.default;
+        case 'boolean':
+            return JSON.stringify(definition.default);
+        case 'string':
+            return `'${definition.default}'`;
+        case 'object':
+            try {
+                return JSON.stringify(definition.default, null, 4);
+            }
+            catch (e) {
+                // Ignore
+            }
+    }
+    return;
+}
+
 function getModel$1(openApi, definition, isDefinition = false, name = '') {
     var _a, _b, _c;
     const model = {
@@ -1531,7 +1573,7 @@ function getModel$1(openApi, definition, isDefinition = false, name = '') {
         model.default = getModelDefault(definition, model);
         return model;
     }
-    if (definition.enum) {
+    if (definition.enum && definition.type !== 'boolean') {
         const enumerators = getEnum$1(definition.enum);
         const extendedEnumerators = extendEnum$1(enumerators, definition);
         if (extendedEnumerators.length) {
@@ -1601,38 +1643,39 @@ function getModel$1(openApi, definition, isDefinition = false, name = '') {
         }
     }
     if ((_a = definition.oneOf) === null || _a === void 0 ? void 0 : _a.length) {
-        const composition = getModelComposition$1(openApi, definition.oneOf, 'one-of', getModel$1);
+        const composition = getModelComposition$1(openApi, definition, definition.oneOf, 'one-of', getModel$1);
         model.export = composition.type;
         model.imports.push(...composition.imports);
-        model.enums.push(...composition.enums);
         model.properties.push(...composition.properties);
+        model.enums.push(...composition.enums);
         return model;
     }
     if ((_b = definition.anyOf) === null || _b === void 0 ? void 0 : _b.length) {
-        const composition = getModelComposition$1(openApi, definition.anyOf, 'any-of', getModel$1);
+        const composition = getModelComposition$1(openApi, definition, definition.anyOf, 'any-of', getModel$1);
         model.export = composition.type;
         model.imports.push(...composition.imports);
-        model.enums.push(...composition.enums);
         model.properties.push(...composition.properties);
+        model.enums.push(...composition.enums);
         return model;
     }
     if ((_c = definition.allOf) === null || _c === void 0 ? void 0 : _c.length) {
-        const composition = getModelComposition$1(openApi, definition.allOf, 'all-of', getModel$1);
+        const composition = getModelComposition$1(openApi, definition, definition.allOf, 'all-of', getModel$1);
         model.export = composition.type;
         model.imports.push(...composition.imports);
-        model.enums.push(...composition.enums);
         model.properties.push(...composition.properties);
+        model.enums.push(...composition.enums);
         return model;
     }
     if (definition.type === 'object') {
         model.export = 'interface';
         model.type = 'any';
         model.base = 'any';
+        model.default = getModelDefault(definition, model);
         if (definition.properties) {
-            model.default = getModelDefault(definition, model);
             const properties = getModelProperties$1(openApi, definition, getModel$1);
             properties.forEach(property => {
                 model.imports.push(...property.imports);
+                model.enums.push(...property.enums);
                 model.properties.push(property);
                 if (property.export === 'enum') {
                     model.enums.push(property);
@@ -2013,19 +2056,6 @@ function getOperationResponse$1(openApi, response, responseCode) {
         enums: [],
         properties: [],
     };
-    // We support basic properties from response headers, since both
-    // fetch and XHR client just support string types.
-    if (response.headers) {
-        for (const name in response.headers) {
-            if (response.headers.hasOwnProperty(name)) {
-                operationResponse.in = 'header';
-                operationResponse.name = name;
-                operationResponse.type = 'string';
-                operationResponse.base = 'string';
-                return operationResponse;
-            }
-        }
-    }
     if (response.content) {
         const schema = getContent(openApi, response.content);
         if (schema) {
@@ -2066,6 +2096,19 @@ function getOperationResponse$1(openApi, response, responseCode) {
                 operationResponse.enum.push(...model.enum);
                 operationResponse.enums.push(...model.enums);
                 operationResponse.properties.push(...model.properties);
+                return operationResponse;
+            }
+        }
+    }
+    // We support basic properties from response headers, since both
+    // fetch and XHR client just support string types.
+    if (response.headers) {
+        for (const name in response.headers) {
+            if (response.headers.hasOwnProperty(name)) {
+                operationResponse.in = 'header';
+                operationResponse.name = name;
+                operationResponse.type = 'string';
+                operationResponse.base = 'string';
                 return operationResponse;
             }
         }
@@ -2395,23 +2438,27 @@ async function readSpec(input) {
 async function getOpenApiSpec(input) {
     const extension = path.extname(input).toLowerCase();
     const content = await readSpec(input);
+    let rootObject;
     switch (extension) {
         case '.yml':
         case '.yaml':
             try {
-                return jsYaml.safeLoad(content);
+                rootObject = jsYaml.load(content);
             }
             catch (e) {
                 throw new Error(`Could not parse OpenApi YAML: "${input}"`);
             }
+            break;
         default:
             try {
-                return JSON.parse(content);
+                rootObject = JSON.parse(content);
             }
             catch (e) {
                 throw new Error(`Could not parse OpenApi JSON: "${input}"`);
             }
+            break;
     }
+    return await RefParser__default['default'].bundle(rootObject);
 }
 
 var OpenApiVersion;
@@ -2572,7 +2619,7 @@ var templateCoreApiRequestOptions = {"compiler":[8,">= 4.3.0"],"main":function(c
     };
 
   return ((stack1 = container.invokePartial(lookupProperty(partials,"header"),depth0,{"name":"header","data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "")
-    + "\nexport type ApiRequestOptions = {\n    readonly method: 'GET' | 'PUT' | 'POST' | 'DELETE' | 'OPTIONS' | 'HEAD' | 'PATCH';\n    readonly path: string;\n    readonly cookies?: Record<string, any>;\n    readonly headers?: Record<string, any>;\n    readonly query?: Record<string, any>;\n    readonly formData?: Record<string, any>;\n    readonly body?: any;\n    readonly responseHeader?: string;\n    readonly errors?: Record<number, string>;\n    readonly requestInit?: Partial<RequestInit>;\n}";
+    + "\nexport type ApiRequestOptions = {\n    readonly method: 'GET' | 'PUT' | 'POST' | 'DELETE' | 'OPTIONS' | 'HEAD' | 'PATCH';\n    readonly path: string;\n    readonly cookies?: Record<string, any>;\n    readonly headers?: Record<string, any>;\n    readonly query?: Record<string, any>;\n    readonly formData?: Record<string, any>;\n    readonly body?: any;\n    readonly responseHeader?: string;\n    readonly errors?: Record<number, string>;\n}";
 },"usePartial":true,"useData":true};
 
 var templateCoreApiResult = {"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
@@ -2644,7 +2691,7 @@ var fetchRequest = {"compiler":[8,">= 4.3.0"],"main":function(container,depth0,h
 },"usePartial":true,"useData":true};
 
 var fetchSendRequest = {"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
-    return "async function sendRequest(options: ApiRequestOptions, url: string): Promise<Response> {\n    const request: RequestInit = {\n        method: options.method,\n        headers: await getHeaders(options),\n        body: getRequestBody(options),\n        ...(options.requestInit || {}),\n    };\n    if (OpenAPI.WITH_CREDENTIALS) {\n        request.credentials = 'include';\n    }\n    return await fetch(url, request);\n}";
+    return "async function sendRequest(options: ApiRequestOptions, url: string): Promise<Response> {\n    const request: RequestInit = {\n        method: options.method,\n        headers: await getHeaders(options),\n        body: getRequestBody(options),\n    };\n    if (OpenAPI.WITH_CREDENTIALS) {\n        request.credentials = 'include';\n    }\n    return await fetch(url, request);\n}";
 },"useData":true};
 
 var fetchResponseType = {"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
@@ -4565,48 +4612,9 @@ var partialTypeDictionary = {"1":function(container,depth0,helpers,partials,data
 },"usePartial":true,"useData":true};
 
 var partialTypeEnum = {"1":function(container,depth0,helpers,partials,data) {
-    var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
-        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
-          return parent[propertyName];
-        }
-        return undefined
-    };
+    var stack1;
 
-  return ((stack1 = lookupProperty(helpers,"each").call(depth0 != null ? depth0 : (container.nullContext || {}),lookupProperty(depth0,"enum"),{"name":"each","hash":{},"fn":container.program(2, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":2,"column":0},"end":{"line":2,"column":65}}})) != null ? stack1 : "")
-    + ((stack1 = container.invokePartial(lookupProperty(partials,"isNullable"),depth0,{"name":"isNullable","data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "");
-},"2":function(container,depth0,helpers,partials,data) {
-    var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
-        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
-          return parent[propertyName];
-        }
-        return undefined
-    };
-
-  return ((stack1 = container.lambda(container.strict(depth0, "value", {"start":{"line":2,"column":17},"end":{"line":2,"column":22}} ), depth0)) != null ? stack1 : "")
-    + ((stack1 = lookupProperty(helpers,"unless").call(depth0 != null ? depth0 : (container.nullContext || {}),lookupProperty(data,"last"),{"name":"unless","hash":{},"fn":container.program(3, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":2,"column":25},"end":{"line":2,"column":56}}})) != null ? stack1 : "");
-},"3":function(container,depth0,helpers,partials,data) {
-    return " | ";
-},"5":function(container,depth0,helpers,partials,data) {
-    var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
-        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
-          return parent[propertyName];
-        }
-        return undefined
-    };
-
-  return ((stack1 = lookupProperty(helpers,"if").call(depth0 != null ? depth0 : (container.nullContext || {}),lookupProperty(depth0,"parent"),{"name":"if","hash":{},"fn":container.program(6, data, 0),"inverse":container.program(1, data, 0),"data":data,"loc":{"start":{"line":3,"column":0},"end":{"line":7,"column":0}}})) != null ? stack1 : "");
-},"6":function(container,depth0,helpers,partials,data) {
-    var stack1, alias1=container.strict, alias2=container.lambda, lookupProperty = container.lookupProperty || function(parent, propertyName) {
-        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
-          return parent[propertyName];
-        }
-        return undefined
-    };
-
-  return ((stack1 = alias2(alias1(depth0, "parent", {"start":{"line":4,"column":3},"end":{"line":4,"column":9}} ), depth0)) != null ? stack1 : "")
-    + "."
-    + ((stack1 = alias2(alias1(depth0, "name", {"start":{"line":4,"column":16},"end":{"line":4,"column":20}} ), depth0)) != null ? stack1 : "")
-    + ((stack1 = container.invokePartial(lookupProperty(partials,"isNullable"),depth0,{"name":"isNullable","data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "");
+  return ((stack1 = container.lambda(depth0, depth0)) != null ? stack1 : "");
 },"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
         if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
@@ -4615,7 +4623,8 @@ var partialTypeEnum = {"1":function(container,depth0,helpers,partials,data) {
         return undefined
     };
 
-  return ((stack1 = lookupProperty(helpers,"if").call(depth0 != null ? depth0 : (container.nullContext || {}),lookupProperty(lookupProperty(data,"root"),"useUnionTypes"),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.program(5, data, 0),"data":data,"loc":{"start":{"line":1,"column":0},"end":{"line":7,"column":9}}})) != null ? stack1 : "");
+  return ((stack1 = lookupProperty(helpers,"enumerator").call(depth0 != null ? depth0 : (container.nullContext || {}),lookupProperty(depth0,"enum"),lookupProperty(depth0,"parent"),lookupProperty(depth0,"name"),{"name":"enumerator","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":55}}})) != null ? stack1 : "")
+    + ((stack1 = container.invokePartial(lookupProperty(partials,"isNullable"),depth0,{"name":"isNullable","data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "");
 },"usePartial":true,"useData":true};
 
 var partialTypeGeneric = {"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
@@ -4699,7 +4708,11 @@ var partialTypeInterface = {"1":function(container,depth0,helpers,partials,data,
   return ((stack1 = lookupProperty(helpers,"if").call(depth0 != null ? depth0 : (container.nullContext || {}),lookupProperty(depth0,"properties"),{"name":"if","hash":{},"fn":container.program(1, data, 0, blockParams, depths),"inverse":container.program(9, data, 0, blockParams, depths),"data":data,"loc":{"start":{"line":1,"column":0},"end":{"line":18,"column":9}}})) != null ? stack1 : "");
 },"usePartial":true,"useData":true,"useDepths":true};
 
-var partialTypeIntersection = {"1":function(container,depth0,helpers,partials,data,blockParams,depths) {
+var partialTypeIntersection = {"1":function(container,depth0,helpers,partials,data) {
+    var stack1;
+
+  return ((stack1 = container.lambda(depth0, depth0)) != null ? stack1 : "");
+},"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
         if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
           return parent[propertyName];
@@ -4708,53 +4721,10 @@ var partialTypeIntersection = {"1":function(container,depth0,helpers,partials,da
     };
 
   return "("
-    + ((stack1 = lookupProperty(helpers,"each").call(depth0 != null ? depth0 : (container.nullContext || {}),lookupProperty(depth0,"properties"),{"name":"each","hash":{},"fn":container.program(2, data, 0, blockParams, depths),"inverse":container.noop,"data":data,"loc":{"start":{"line":2,"column":1},"end":{"line":2,"column":87}}})) != null ? stack1 : "")
+    + ((stack1 = lookupProperty(helpers,"intersection").call(depth0 != null ? depth0 : (container.nullContext || {}),lookupProperty(depth0,"properties"),lookupProperty(depth0,"parent"),{"name":"intersection","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":1,"column":1},"end":{"line":1,"column":61}}})) != null ? stack1 : "")
     + ")"
     + ((stack1 = container.invokePartial(lookupProperty(partials,"isNullable"),depth0,{"name":"isNullable","data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "");
-},"2":function(container,depth0,helpers,partials,data,blockParams,depths) {
-    var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
-        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
-          return parent[propertyName];
-        }
-        return undefined
-    };
-
-  return ((stack1 = container.invokePartial(lookupProperty(partials,"type"),depth0,{"name":"type","hash":{"parent":lookupProperty(depths[1],"parent")},"data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "")
-    + ((stack1 = lookupProperty(helpers,"unless").call(depth0 != null ? depth0 : (container.nullContext || {}),lookupProperty(data,"last"),{"name":"unless","hash":{},"fn":container.program(3, data, 0, blockParams, depths),"inverse":container.noop,"data":data,"loc":{"start":{"line":2,"column":47},"end":{"line":2,"column":78}}})) != null ? stack1 : "");
-},"3":function(container,depth0,helpers,partials,data) {
-    return " & ";
-},"5":function(container,depth0,helpers,partials,data) {
-    var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
-        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
-          return parent[propertyName];
-        }
-        return undefined
-    };
-
-  return "("
-    + ((stack1 = lookupProperty(helpers,"each").call(depth0 != null ? depth0 : (container.nullContext || {}),lookupProperty(depth0,"properties"),{"name":"each","hash":{},"fn":container.program(6, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":4,"column":1},"end":{"line":4,"column":70}}})) != null ? stack1 : "")
-    + ")"
-    + ((stack1 = container.invokePartial(lookupProperty(partials,"isNullable"),depth0,{"name":"isNullable","data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "");
-},"6":function(container,depth0,helpers,partials,data) {
-    var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
-        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
-          return parent[propertyName];
-        }
-        return undefined
-    };
-
-  return ((stack1 = container.invokePartial(lookupProperty(partials,"type"),depth0,{"name":"type","data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "")
-    + ((stack1 = lookupProperty(helpers,"unless").call(depth0 != null ? depth0 : (container.nullContext || {}),lookupProperty(data,"last"),{"name":"unless","hash":{},"fn":container.program(3, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":4,"column":30},"end":{"line":4,"column":61}}})) != null ? stack1 : "");
-},"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data,blockParams,depths) {
-    var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
-        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
-          return parent[propertyName];
-        }
-        return undefined
-    };
-
-  return ((stack1 = lookupProperty(helpers,"if").call(depth0 != null ? depth0 : (container.nullContext || {}),lookupProperty(depth0,"parent"),{"name":"if","hash":{},"fn":container.program(1, data, 0, blockParams, depths),"inverse":container.program(5, data, 0, blockParams, depths),"data":data,"loc":{"start":{"line":1,"column":0},"end":{"line":5,"column":9}}})) != null ? stack1 : "");
-},"usePartial":true,"useData":true,"useDepths":true};
+},"usePartial":true,"useData":true};
 
 var partialTypeReference = {"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
@@ -4786,7 +4756,7 @@ var partialTypeUnion = {"1":function(container,depth0,helpers,partials,data) {
     + ((stack1 = container.invokePartial(lookupProperty(partials,"isNullable"),depth0,{"name":"isNullable","data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "");
 },"usePartial":true,"useData":true};
 
-function registerHandlebarHelpers() {
+function registerHandlebarHelpers(root) {
     Handlebars.registerHelper('equals', function (a, b, options) {
         return a === b ? options.fn(this) : options.inverse(this);
     });
@@ -4798,8 +4768,22 @@ function registerHandlebarHelpers() {
     });
     Handlebars.registerHelper('union', function (properties, parent, options) {
         const type = Handlebars.partials['type'];
-        const types = properties.map(property => type(Object.assign(Object.assign({}, property), { parent })));
+        const types = properties.map(property => type(Object.assign(Object.assign(Object.assign({}, root), property), { parent })));
         return options.fn(types.filter(unique).join(' | '));
+    });
+    Handlebars.registerHelper('intersection', function (properties, parent, options) {
+        const type = Handlebars.partials['type'];
+        const types = properties.map(property => type(Object.assign(Object.assign(Object.assign({}, root), property), { parent })));
+        return options.fn(types.filter(unique).join(' & '));
+    });
+    Handlebars.registerHelper('enumerator', function (enumerators, parent, name, options) {
+        if (!root.useUnionTypes && parent && name) {
+            return `${parent}.${name}`;
+        }
+        return options.fn(enumerators
+            .map(enumerator => enumerator.value)
+            .filter(unique)
+            .join(' | '));
     });
 }
 
@@ -4807,8 +4791,8 @@ function registerHandlebarHelpers() {
  * Read all the Handlebar templates that we need and return on wrapper object
  * so we can easily access the templates in out generator / write functions.
  */
-function registerHandlebarTemplates() {
-    registerHandlebarHelpers();
+function registerHandlebarTemplates(root) {
+    registerHandlebarHelpers(root);
     // Main templates (entry points for the files we write to disk)
     const templates = {
         index: Handlebars.template(templateIndex),
@@ -5114,7 +5098,11 @@ async function writeClient(client, templates, output, httpClient, useOptions, us
 async function generate({ input, output, httpClient = exports.HttpClient.FETCH, useOptions = false, useUnionTypes = false, exportCore = true, exportServices = true, exportModels = true, exportSchemas = false, request, write = true, }) {
     const openApi = isString(input) ? await getOpenApiSpec(input) : input;
     const openApiVersion = getOpenApiVersion(openApi);
-    const templates = registerHandlebarTemplates();
+    const templates = registerHandlebarTemplates({
+        httpClient,
+        useUnionTypes,
+        useOptions,
+    });
     switch (openApiVersion) {
         case OpenApiVersion.V2: {
             const client = parse(openApi);
