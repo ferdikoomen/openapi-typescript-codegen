@@ -1,0 +1,14 @@
+/**
+ *
+ * @export
+ * @class BaseAPI
+ */
+export class BaseAPI {
+    readonly configuration: Configuration | undefined;
+
+    constructor(readonly axios: AxiosInstance, configuration?: Configuration) {
+        if (configuration) {
+            this.configuration = configuration;
+        }
+    }
+};

@@ -1,21 +1,41 @@
 {{#if parameters}}
 {{#if @root.useOptions~}}
 {
+api,
 {{#each parameters}}
 {{{name}}}{{#if default}} = {{{default}}}{{/if}},
 {{/each}}
+options = {},
 }: {
+api: BaseApi,
 {{#each parameters}}
 {{#if description}}
 /** {{{description}}} **/
 {{/if}}
 {{{name}}}{{>isRequired}}: {{>type}},
 {{/each}}
+options: any,
 }
 {{~else}}
 
+api: BaseAPI,
 {{#each parameters}}
 {{{name}}}{{>isRequired}}: {{>type}}{{#if default}} = {{{default}}}{{/if}},
 {{/each}}
+options: any = {},
+{{/if}}
+{{else}}
+{{#if @root.useOptions~}}
+{
+api,
+options = {},
+}: {
+api: BaseApi,
+options: any,
+}
+{{~else}}
+
+api: BaseAPI,
+options: any = {},
 {{/if}}
 {{/if}}

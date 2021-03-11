@@ -35,6 +35,9 @@ import xhrGetResponseBody from '../templates/core/xhr/getResponseBody.hbs';
 import xhrGetResponseHeader from '../templates/core/xhr/getResponseHeader.hbs';
 import xhrRequest from '../templates/core/xhr/request.hbs';
 import xhrSendRequest from '../templates/core/xhr/sendRequest.hbs';
+import axiosRequest from '../templates/core/axios/request.hbs';
+import axiosConfiguration from '../templates/core/axios/configuration.hbs';
+import axiosBase from '../templates/core/axios/base.hbs';
 import templateExportModel from '../templates/exportModel.hbs';
 import templateExportSchema from '../templates/exportSchema.hbs';
 import templateExportService from '../templates/exportService.hbs';
@@ -165,6 +168,11 @@ export function registerHandlebarTemplates(root: { httpClient: HttpClient; useOp
     Handlebars.registerPartial('xhr/getResponseHeader', Handlebars.template(xhrGetResponseHeader));
     Handlebars.registerPartial('xhr/sendRequest', Handlebars.template(xhrSendRequest));
     Handlebars.registerPartial('xhr/request', Handlebars.template(xhrRequest));
+
+    // Specific files for the axios client implementation
+    Handlebars.registerPartial('axios/configuration', Handlebars.template(axiosConfiguration));
+    Handlebars.registerPartial('axios/base', Handlebars.template(axiosBase));
+    Handlebars.registerPartial('axios/request', Handlebars.template(axiosRequest));
 
     // Specific files for the node client implementation
     Handlebars.registerPartial('node/getHeaders', Handlebars.template(nodeGetHeaders));

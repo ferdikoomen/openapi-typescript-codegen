@@ -5,84 +5,120 @@
 import type { {{{this}}} } from '../models/{{{this}}}';
 {{/each}}
 {{/if}}
-import { request as __request } from '../core/request';
+import { BaseAPI, globalImportUrl, AxiosPromise } from '../core/request';
 {{#if @root.useVersion}}
 import { OpenAPI } from '../core/OpenAPI';
 {{/if}}
 
-export class {{{name}}} {
-
-    {{#each operations}}
-    /**
-    {{#if deprecated}}
-     * @deprecated
-    {{/if}}
-    {{#if summary}}
-     * {{{summary}}}
-    {{/if}}
-    {{#if description}}
-     * {{{description}}}
-    {{/if}}
-    {{#unless @root.useOptions}}
-    {{#if parameters}}
-    {{#each parameters}}
-     * @param {{{name}}} {{{description}}}
-    {{/each}}
-    {{/if}}
-    {{/unless}}
-    {{#each results}}
-     * @returns {{{type}}} {{{description}}}
-    {{/each}}
-     * @throws ApiError
-     */
-    public static async {{{name}}}({{>parameters}}): Promise<{{>result}}> {
-        const result = await __request({
-            method: '{{{method}}}',
-            path: `{{{path}}}`,
-            {{#if parametersCookie}}
-            cookies: {
-                {{#each parametersCookie}}
-                '{{{prop}}}': {{{name}}},
-                {{/each}}
-            },
-            {{/if}}
-            {{#if parametersHeader}}
-            headers: {
-                {{#each parametersHeader}}
-                '{{{prop}}}': {{{name}}},
-                {{/each}}
-            },
-            {{/if}}
-            {{#if parametersQuery}}
-            query: {
-                {{#each parametersQuery}}
-                '{{{prop}}}': {{{name}}},
-                {{/each}}
-            },
-            {{/if}}
-            {{#if parametersForm}}
-            formData: {
-                {{#each parametersForm}}
-                '{{{prop}}}': {{{name}}},
-                {{/each}}
-            },
-            {{/if}}
-            {{#if parametersBody}}
-            body: {{{parametersBody.name}}},
-            {{/if}}
-            {{#if responseHeader}}
-            responseHeader: '{{{responseHeader}}}',
-            {{/if}}
-            {{#if errors}}
-            errors: {
-                {{#each errors}}
-                {{{code}}}: `{{{description}}}`,
-                {{/each}}
-            },
-            {{/if}}
-        });
-        return result.body;
+{{#each operations}}
+/**
+{{#if deprecated}}
+    * @deprecated
+{{/if}}
+{{#if summary}}
+    * {{{summary}}}
+{{/if}}
+{{#if description}}
+    * {{{description}}}
+{{/if}}
+{{#unless @root.useOptions}}
+{{#if parameters}}
+{{#each parameters}}
+    * @param {{{name}}} {{{description}}}
+{{/each}}
+{{/if}}
+{{/unless}}
+{{#each results}}
+    * @returns {{{type}}} {{{description}}}
+{{/each}}
+    * @throws ApiError
+    */
+export const {{{name}}} = ({{>parameters}}): AxiosPromise<{{>result}}> => {
+    const localVarPath = `{{{path}}}`;
+    const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+    let baseOptions;
+    if (api.configuration) {
+        baseOptions = api.configuration.baseOptions;
     }
+    const localVarRequestOptions = { method: '{{{method}}}', ...baseOptions, ...options};
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
+    {{#if parametersQuery}}
+    {{#each parametersQuery}}
+    localVarQueryParameter['{{{prop}}}'] = {{{name}}};
     {{/each}}
+    {{/if}}
+
+    {{#if parametersHeader}}
+    {{#each parametersHeader}}
+    localVarHeaderParameter['{{{prop}}}'] = String({{{name}}});
+    {{/each}}
+    {{/if}}
+
+    localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
+    // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+    delete (localVarUrlObj as any).search;
+    localVarRequestOptions.headers = {...localVarHeaderParameter, ...options.headers};
+
+    const localVarAxiosArgs = {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+    };
+
+    const axios = api.axios;
+
+    const axiosRequestArgs = {...localVarAxiosArgs.options, url: localVarAxiosArgs.url};
+    return axios.request(axiosRequestArgs);
+
+    {{#notEquals @root.httpClient 'axios'}}
+    const result = await __request({
+        method: '{{{method}}}',
+        path: `{{{path}}}`,
+        {{#if parametersCookie}}
+        cookies: {
+            {{#each parametersCookie}}
+            '{{{prop}}}': {{{name}}},
+            {{/each}}
+        },
+        {{/if}}
+        {{#if parametersHeader}}
+        headers: {
+            {{#each parametersHeader}}
+            '{{{prop}}}': {{{name}}},
+            {{/each}}
+        },
+        {{/if}}
+        {{#if parametersQuery}}
+        query: {
+            {{#each parametersQuery}}
+            '{{{prop}}}': {{{name}}},
+            {{/each}}
+        },
+        {{/if}}
+        {{#if parametersForm}}
+        formData: {
+            {{#each parametersForm}}
+            '{{{prop}}}': {{{name}}},
+            {{/each}}
+        },
+        {{/if}}
+        {{#if parametersBody}}
+        body: {{{parametersBody.name}}},
+        {{/if}}
+        {{#if responseHeader}}
+        responseHeader: '{{{responseHeader}}}',
+        {{/if}}
+        {{#if errors}}
+        errors: {
+            {{#each errors}}
+            {{{code}}}: `{{{description}}}`,
+            {{/each}}
+        },
+        {{/if}}
+    });
+    return result.body;
+    {{/notEquals}}
 }
+
+{{/each}}
