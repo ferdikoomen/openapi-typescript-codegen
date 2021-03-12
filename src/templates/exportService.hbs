@@ -61,6 +61,10 @@ export const {{{name}}} = ({{>parameters}}): AxiosPromise<{{>result}}> => {
     delete (localVarUrlObj as any).search;
     localVarRequestOptions.headers = {...localVarHeaderParameter, ...options.headers};
 
+    {{#if parametersBody}}
+    localVarRequestOptions.data = {{{parametersBody.name}}};
+    {{/if}}
+
     const localVarAxiosArgs = {
         url: globalImportUrl.format(localVarUrlObj),
         options: localVarRequestOptions,
