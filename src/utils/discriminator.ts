@@ -13,20 +13,12 @@ const inverseDictionary = (mapObj: Dictionary<string>) => {
 };
 
 export function findOneOfParentDiscriminator(openApi: OpenApi, parent?: Model): OpenApiDiscriminator | undefined {
-    if (openApi.components) {
+    if (openApi.components && parent) {
         for (const definitionName in openApi.components.schemas) {
             if (openApi.components.schemas.hasOwnProperty(definitionName)) {
                 const schema = openApi.components.schemas[definitionName];
-                if (parent && schema.oneOf?.length && schema.discriminator) {
-                    const isPartOf =
-                        schema.oneOf
-                            .map(definition => {
-                                return definition.$ref && stripNamespace(definition.$ref) == parent.name;
-                            })
-                            .filter(Boolean).length > 0;
-                    if (isPartOf) {
-                        return schema.discriminator;
-                    }
+                if (schema.discriminator && schema.oneOf?.length && schema.oneOf.some(definition => definition.$ref && stripNamespace(definition.$ref) == parent.name)) {
+                    return schema.discriminator;
                 }
             }
         }
