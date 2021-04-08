@@ -160,7 +160,7 @@ export function getModel(openApi: OpenApi, definition: OpenApiSchema, isDefiniti
         model.default = getModelDefault(definition, model);
 
         if (definition.properties) {
-            const properties = getModelProperties(openApi, definition, getModel);
+            const properties = getModelProperties(openApi, definition, getModel, model);
             properties.forEach(property => {
                 model.imports.push(...property.imports);
                 model.enums.push(...property.enums);
