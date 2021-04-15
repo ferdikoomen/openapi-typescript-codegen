@@ -46,7 +46,9 @@ export const {{{name}}} = ({{>parameters}}): AxiosPromise<{{>result}}> => {
 
     {{#if parametersQuery}}
     {{#each parametersQuery}}
-    localVarQueryParameter['{{{prop}}}'] = {{{name}}};
+    if(typeof {{{name}}} !== 'undefined') {
+        localVarQueryParameter['{{{prop}}}'] = {{{name}}};
+    }
     {{/each}}
     {{/if}}
 
