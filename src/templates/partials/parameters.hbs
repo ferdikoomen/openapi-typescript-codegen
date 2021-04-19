@@ -20,7 +20,8 @@ options: any,
 
 api: BaseAPI,
 {{#each parameters}}
-{{{name}}}{{>isRequired}}: {{>type}}{{#if isRequired}} = {{{default}}}{{/if}}{{/if}},{{/each}}
+{{{name}}}{{>isRequired}}: {{>type}}{{#if default}}{{#if isRequired}} = {{{default}}}{{/if}}{{/if}},
+{{/each}}
 options: any = {},
 {{/if}}
 {{else}}
