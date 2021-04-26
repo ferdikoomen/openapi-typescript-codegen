@@ -25,6 +25,9 @@ export function getModelDefault(definition: OpenApiSchema, model?: Model): strin
             return JSON.stringify(definition.default);
 
         case 'string':
+            if (model?.export === 'reference') {
+                return `'${definition.default}' as ${model.type}`;
+            }
             return `'${definition.default}'`;
 
         case 'object':

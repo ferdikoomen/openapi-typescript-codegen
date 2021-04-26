@@ -3,6 +3,7 @@
 
 export { ApiError } from './core/ApiError';
 export { OpenAPI } from './core/OpenAPI';
+export { BaseAPI } from './core/request';
 {{/if}}
 {{#if @root.exportModels}}
 {{#if models}}
@@ -32,7 +33,7 @@ export { ${{{name}}} } from './schemas/${{{name}}}';
 {{#if services}}
 
 {{#each services}}
-export { {{{name}}} } from './services/{{{name}}}';
+export * from './services/{{{name}}}';
 {{/each}}
 {{/if}}
 {{/if}}
