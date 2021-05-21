@@ -1,3 +1,5 @@
+ > See the `feature/yotta-codegen` branch for modifications to support yotta tooling
+
 # OpenAPI Typescript Codegen
 
 [![NPM][npm-image]][npm-url]
