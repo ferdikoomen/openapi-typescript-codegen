@@ -110,21 +110,24 @@ function isBlob(value: any): value is Blob {
 }
 
 function getQueryString(params: Record<string, any>): string {
-    const qs: string[] = [];
-    Object.keys(params).forEach(key => {
-        const value = params[key];
-        if (isDefined(value)) {
-            if (Array.isArray(value)) {
-                value.forEach(value => {
-                    qs.push(\`\${encodeURIComponent(key)}=\${encodeURIComponent(String(value))}\`);
-                });
-            } else {
-                qs.push(\`\${encodeURIComponent(key)}=\${encodeURIComponent(String(value))}\`);
+    const serialize = function (obj: {[paramName: string]: any}, prefix: string): string {
+        const str = [];
+        for (let p in obj) {
+            if (obj.hasOwnProperty(p)) {
+                const k = prefix ? prefix + '[' + p + ']' : p;
+                const v = obj[p];
+                str.push(
+                    (v !== null && typeof v === 'object')
+                        ? serialize(v, k)
+                        : encodeURIComponent(k) + '=' + encodeURIComponent(v),
+                );
             }
         }
-    });
-    if (qs.length > 0) {
-        return \`?\${qs.join('&')}\`;
+        return str.join('&');
+    };
+    const qs = serialize(params, '');
+    if (qs !== '') {
+        return \`?\${qs}\`;
     }
     return '';
 }
@@ -2463,21 +2466,24 @@ function isBlob(value: any): value is Blob {
 }
 
 function getQueryString(params: Record<string, any>): string {
-    const qs: string[] = [];
-    Object.keys(params).forEach(key => {
-        const value = params[key];
-        if (isDefined(value)) {
-            if (Array.isArray(value)) {
-                value.forEach(value => {
-                    qs.push(\`\${encodeURIComponent(key)}=\${encodeURIComponent(String(value))}\`);
-                });
-            } else {
-                qs.push(\`\${encodeURIComponent(key)}=\${encodeURIComponent(String(value))}\`);
+    const serialize = function (obj: {[paramName: string]: any}, prefix: string): string {
+        const str = [];
+        for (let p in obj) {
+            if (obj.hasOwnProperty(p)) {
+                const k = prefix ? prefix + '[' + p + ']' : p;
+                const v = obj[p];
+                str.push(
+                    (v !== null && typeof v === 'object')
+                        ? serialize(v, k)
+                        : encodeURIComponent(k) + '=' + encodeURIComponent(v),
+                );
             }
         }
-    });
-    if (qs.length > 0) {
-        return \`?\${qs.join('&')}\`;
+        return str.join('&');
+    };
+    const qs = serialize(params, '');
+    if (qs !== '') {
+        return \`?\${qs}\`;
     }
     return '';
 }
