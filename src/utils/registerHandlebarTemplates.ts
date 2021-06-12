@@ -16,6 +16,7 @@ import functionGetQueryString from '../templates/core/functions/getQueryString.h
 import functionGetUrl from '../templates/core/functions/getUrl.hbs';
 import functionIsBinary from '../templates/core/functions/isBinary.hbs';
 import functionIsBlob from '../templates/core/functions/isBlob.hbs';
+import functionIsFormData from '../templates/core/functions/isFormData.hbs';
 import functionIsDefined from '../templates/core/functions/isDefined.hbs';
 import functionIsString from '../templates/core/functions/isString.hbs';
 import functionIsStringWithValue from '../templates/core/functions/isStringWithValue.hbs';
@@ -144,6 +145,7 @@ export function registerHandlebarTemplates(root: { httpClient: HttpClient; useOp
     Handlebars.registerPartial('functions/getUrl', Handlebars.template(functionGetUrl));
     Handlebars.registerPartial('functions/isBinary', Handlebars.template(functionIsBinary));
     Handlebars.registerPartial('functions/isBlob', Handlebars.template(functionIsBlob));
+    Handlebars.registerPartial('functions/isFormData', Handlebars.template(functionIsFormData));
     Handlebars.registerPartial('functions/isDefined', Handlebars.template(functionIsDefined));
     Handlebars.registerPartial('functions/isString', Handlebars.template(functionIsString));
     Handlebars.registerPartial('functions/isStringWithValue', Handlebars.template(functionIsStringWithValue));

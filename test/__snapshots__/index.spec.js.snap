@@ -109,6 +109,10 @@ function isBlob(value: any): value is Blob {
     return value instanceof Blob;
 }
 
+function isFormData(value: any): value is FormData {
+    return value instanceof FormData;
+}
+
 function getQueryString(params: Record<string, any>): string {
     const qs: string[] = [];
     Object.keys(params).forEach(key => {
@@ -2460,6 +2464,10 @@ function isStringWithValue(value: any): value is string {
 
 function isBlob(value: any): value is Blob {
     return value instanceof Blob;
+}
+
+function isFormData(value: any): value is FormData {
+    return value instanceof FormData;
 }
 
 function getQueryString(params: Record<string, any>): string {
