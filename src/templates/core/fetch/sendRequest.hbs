@@ -7,5 +7,17 @@ async function sendRequest(options: ApiRequestOptions, url: string): Promise<Res
     if (OpenAPI.WITH_CREDENTIALS) {
         request.credentials = 'include';
     }
-    return await fetch(url, request);
+    const promises = [fetch(url, request)];
+    if (typeof OpenAPI.TIMEOUT === 'number' && OpenAPI.TIMEOUT > 0) {
+      promises.push(
+          new Promise(
+              (_, reject) => 
+                  setTimeout(
+                      () => reject(new TimeoutError(url)),
+                      OpenAPI.TIMEOUT,
+                  ),
+          ),
+      );
+    }
+    return Promise.race(promises);
 }

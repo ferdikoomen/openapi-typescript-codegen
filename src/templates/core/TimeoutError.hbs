@@ -1,0 +1,9 @@
+export class TimeoutError extends Error {
+  public readonly url: string;
+
+  constructor(url: string) {
+    super(`Timeout during call to ${url}`);
+    this.name = 'timeout';
+    this.url = url;
+  }
+}

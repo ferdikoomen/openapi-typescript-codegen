@@ -22,6 +22,7 @@ export async function writeClientCore(client: Client, templates: Templates, outp
 
     await writeFile(resolve(outputPath, 'OpenAPI.ts'), templates.core.settings(context));
     await writeFile(resolve(outputPath, 'ApiError.ts'), templates.core.apiError({}));
+    await writeFile(resolve(outputPath, 'TimeoutError.ts'), templates.core.timeoutError({}));
     await writeFile(resolve(outputPath, 'ApiRequestOptions.ts'), templates.core.apiRequestOptions({}));
     await writeFile(resolve(outputPath, 'ApiResult.ts'), templates.core.apiResult({}));
     await writeFile(resolve(outputPath, 'request.ts'), templates.core.request(context));

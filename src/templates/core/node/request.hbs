@@ -5,6 +5,7 @@ import fetch, { BodyInit, Headers, RequestInit, Response } from 'node-fetch';
 import { types } from 'util';
 
 import { ApiError } from './ApiError';
+import { TimeoutError } from './TimeoutError';
 import type { ApiRequestOptions } from './ApiRequestOptions';
 import type { ApiResult } from './ApiResult';
 import { OpenAPI } from './OpenAPI';
