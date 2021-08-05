@@ -17,6 +17,8 @@ export type Options = {
     exportSchemas?: boolean;
     request?: string;
     write?: boolean;
+    exportClient?: boolean;
+    clientName?: string;
 };
 
 export declare function generate(options: Options): Promise<void>;

@@ -181,10 +181,10 @@ import type { ApiRequestOptions } from './ApiRequestOptions';
 type Resolver<T> = (options: ApiRequestOptions) => Promise<T>;
 type Headers = Record<string, string>;
 
-type Config = {
-    BASE: string;
-    VERSION: string;
-    WITH_CREDENTIALS: boolean;
+export type OpenAPIConfig = {
+    BASE?: string;
+    VERSION?: string;
+    WITH_CREDENTIALS?: boolean;
     CREDENTIALS: 'include' | 'omit' | 'same-origin';
     TOKEN?: string | Resolver<string>;
     USERNAME?: string | Resolver<string>;
@@ -193,7 +193,7 @@ type Config = {
     ENCODE_PATH?: (path: string) => string;
 }
 
-export const OpenAPI: Config = {
+export const OpenAPI: OpenAPIConfig = {
     BASE: 'http://localhost:3000/base',
     VERSION: '1.0',
     WITH_CREDENTIALS: false,
@@ -215,6 +215,7 @@ import type { ApiRequestOptions } from './ApiRequestOptions';
 import type { ApiResult } from './ApiResult';
 import { CancelablePromise } from './CancelablePromise';
 import type { OnCancel } from './CancelablePromise';
+import type { OpenAPIConfig } from './OpenAPI';
 import { OpenAPI } from './OpenAPI';
 
 function isDefined<T>(value: T | null | undefined): value is Exclude<T, null | undefined> {
@@ -279,9 +280,9 @@ function getQueryString(params: Record<string, any>): string {
     return '';
 }
 
-function getUrl(options: ApiRequestOptions): string {
-    const path = OpenAPI.ENCODE_PATH ? OpenAPI.ENCODE_PATH(options.path) : options.path;
-    const url = \`\${OpenAPI.BASE}\${path}\`;
+function getUrl(options: ApiRequestOptions, config: OpenAPIConfig): string {
+    const path = config.ENCODE_PATH ? config.ENCODE_PATH(options.path) : options.path;
+    const url = \`\${config.BASE}\${path}\`;
     if (options.query) {
         return \`\${url}\${getQueryString(options.query)}\`;
     }
@@ -325,11 +326,11 @@ async function resolve<T>(options: ApiRequestOptions, resolver?: T | Resolver<T>
     return resolver;
 }
 
-async function getHeaders(options: ApiRequestOptions): Promise<Headers> {
-    const token = await resolve(options, OpenAPI.TOKEN);
-    const username = await resolve(options, OpenAPI.USERNAME);
-    const password = await resolve(options, OpenAPI.PASSWORD);
-    const additionalHeaders = await resolve(options, OpenAPI.HEADERS);
+async function getHeaders(options: ApiRequestOptions, config: OpenAPIConfig): Promise<Headers> {
+    const token = await resolve(options, config.TOKEN);
+    const username = await resolve(options, config.USERNAME);
+    const password = await resolve(options, config.PASSWORD);
+    const additionalHeaders = await resolve(options, config.HEADERS);
 
     const defaultHeaders = Object.entries({
         Accept: 'application/json',
@@ -383,6 +384,7 @@ function getRequestBody(options: ApiRequestOptions): BodyInit | undefined {
 
 async function sendRequest(
     options: ApiRequestOptions,
+    config: OpenAPIConfig,
     url: string,
     formData: FormData | undefined,
     body: BodyInit | undefined,
@@ -398,8 +400,8 @@ async function sendRequest(
         signal: controller.signal,
     };
 
-    if (OpenAPI.WITH_CREDENTIALS) {
-        request.credentials = OpenAPI.CREDENTIALS;
+    if (config.WITH_CREDENTIALS) {
+        request.credentials = config.CREDENTIALS;
     }
 
     onCancel(() => controller.abort());
@@ -467,13 +469,13 @@ function catchErrors(options: ApiRequestOptions, result: ApiResult): void {
 export function request<T>(options: ApiRequestOptions): CancelablePromise<T> {
     return new CancelablePromise(async (resolve, reject, onCancel) => {
         try {
-            const url = getUrl(options);
+            const url = getUrl(options, OpenAPI);
             const formData = getFormData(options);
             const body = getRequestBody(options);
-            const headers = await getHeaders(options);
+            const headers = await getHeaders(options, OpenAPI);
 
             if (!onCancel.isCancelled) {
-                const response = await sendRequest(options, url, formData, body, headers, onCancel);
+                const response = await sendRequest(options, OpenAPI, url, formData, body, headers, onCancel);
                 const responseBody = await getResponseBody(response);
                 const responseHeader = getResponseHeader(response, options.responseHeader);
 
@@ -493,7 +495,8 @@ export function request<T>(options: ApiRequestOptions): CancelablePromise<T> {
             reject(error);
         }
     });
-}"
+}
+"
 `;
 
 exports[`v2 should generate: ./test/generated/v2/index.ts 1`] = `
@@ -604,6 +607,7 @@ export { ParametersService } from './services/ParametersService';
 export { ResponseService } from './services/ResponseService';
 export { SimpleService } from './services/SimpleService';
 export { TypesService } from './services/TypesService';
+
 "
 `;
 
@@ -2894,10 +2898,10 @@ import type { ApiRequestOptions } from './ApiRequestOptions';
 type Resolver<T> = (options: ApiRequestOptions) => Promise<T>;
 type Headers = Record<string, string>;
 
-type Config = {
-    BASE: string;
-    VERSION: string;
-    WITH_CREDENTIALS: boolean;
+export type OpenAPIConfig = {
+    BASE?: string;
+    VERSION?: string;
+    WITH_CREDENTIALS?: boolean;
     CREDENTIALS: 'include' | 'omit' | 'same-origin';
     TOKEN?: string | Resolver<string>;
     USERNAME?: string | Resolver<string>;
@@ -2906,7 +2910,7 @@ type Config = {
     ENCODE_PATH?: (path: string) => string;
 }
 
-export const OpenAPI: Config = {
+export const OpenAPI: OpenAPIConfig = {
     BASE: 'http://localhost:3000/base',
     VERSION: '1.0',
     WITH_CREDENTIALS: false,
@@ -2928,6 +2932,7 @@ import type { ApiRequestOptions } from './ApiRequestOptions';
 import type { ApiResult } from './ApiResult';
 import { CancelablePromise } from './CancelablePromise';
 import type { OnCancel } from './CancelablePromise';
+import type { OpenAPIConfig } from './OpenAPI';
 import { OpenAPI } from './OpenAPI';
 
 function isDefined<T>(value: T | null | undefined): value is Exclude<T, null | undefined> {
@@ -2992,9 +2997,9 @@ function getQueryString(params: Record<string, any>): string {
     return '';
 }
 
-function getUrl(options: ApiRequestOptions): string {
-    const path = OpenAPI.ENCODE_PATH ? OpenAPI.ENCODE_PATH(options.path) : options.path;
-    const url = \`\${OpenAPI.BASE}\${path}\`;
+function getUrl(options: ApiRequestOptions, config: OpenAPIConfig): string {
+    const path = config.ENCODE_PATH ? config.ENCODE_PATH(options.path) : options.path;
+    const url = \`\${config.BASE}\${path}\`;
     if (options.query) {
         return \`\${url}\${getQueryString(options.query)}\`;
     }
@@ -3038,11 +3043,11 @@ async function resolve<T>(options: ApiRequestOptions, resolver?: T | Resolver<T>
     return resolver;
 }
 
-async function getHeaders(options: ApiRequestOptions): Promise<Headers> {
-    const token = await resolve(options, OpenAPI.TOKEN);
-    const username = await resolve(options, OpenAPI.USERNAME);
-    const password = await resolve(options, OpenAPI.PASSWORD);
-    const additionalHeaders = await resolve(options, OpenAPI.HEADERS);
+async function getHeaders(options: ApiRequestOptions, config: OpenAPIConfig): Promise<Headers> {
+    const token = await resolve(options, config.TOKEN);
+    const username = await resolve(options, config.USERNAME);
+    const password = await resolve(options, config.PASSWORD);
+    const additionalHeaders = await resolve(options, config.HEADERS);
 
     const defaultHeaders = Object.entries({
         Accept: 'application/json',
@@ -3096,6 +3101,7 @@ function getRequestBody(options: ApiRequestOptions): BodyInit | undefined {
 
 async function sendRequest(
     options: ApiRequestOptions,
+    config: OpenAPIConfig,
     url: string,
     formData: FormData | undefined,
     body: BodyInit | undefined,
@@ -3111,8 +3117,8 @@ async function sendRequest(
         signal: controller.signal,
     };
 
-    if (OpenAPI.WITH_CREDENTIALS) {
-        request.credentials = OpenAPI.CREDENTIALS;
+    if (config.WITH_CREDENTIALS) {
+        request.credentials = config.CREDENTIALS;
     }
 
     onCancel(() => controller.abort());
@@ -3180,13 +3186,13 @@ function catchErrors(options: ApiRequestOptions, result: ApiResult): void {
 export function request<T>(options: ApiRequestOptions): CancelablePromise<T> {
     return new CancelablePromise(async (resolve, reject, onCancel) => {
         try {
-            const url = getUrl(options);
+            const url = getUrl(options, OpenAPI);
             const formData = getFormData(options);
             const body = getRequestBody(options);
-            const headers = await getHeaders(options);
+            const headers = await getHeaders(options, OpenAPI);
 
             if (!onCancel.isCancelled) {
-                const response = await sendRequest(options, url, formData, body, headers, onCancel);
+                const response = await sendRequest(options, OpenAPI, url, formData, body, headers, onCancel);
                 const responseBody = await getResponseBody(response);
                 const responseHeader = getResponseHeader(response, options.responseHeader);
 
@@ -3206,7 +3212,8 @@ export function request<T>(options: ApiRequestOptions): CancelablePromise<T> {
             reject(error);
         }
     });
-}"
+}
+"
 `;
 
 exports[`v3 should generate: ./test/generated/v3/index.ts 1`] = `
@@ -3345,6 +3352,7 @@ export { ResponseService } from './services/ResponseService';
 export { SimpleService } from './services/SimpleService';
 export { TypesService } from './services/TypesService';
 export { UploadService } from './services/UploadService';
+
 "
 `;
 

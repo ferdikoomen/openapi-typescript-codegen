@@ -8,8 +8,12 @@ import type { ApiRequestOptions } from './ApiRequestOptions';
 import type { ApiResult } from './ApiResult';
 import { CancelablePromise } from './CancelablePromise';
 import type { OnCancel } from './CancelablePromise';
+import type { OpenAPIConfig } from './OpenAPI';
+{{#if @root.exportClient}}
+import { BaseHttpRequest } from './BaseHttpRequest';
+{{else}}
 import { OpenAPI } from './OpenAPI';
-
+{{/if}}
 {{>functions/isDefined}}
 
 
@@ -58,6 +62,50 @@ import { OpenAPI } from './OpenAPI';
 {{>functions/catchErrors}}
 
 
+{{#if @root.exportClient}}
+export class AxiosHttpRequest extends BaseHttpRequest {
+    constructor(openApiConfig: OpenAPIConfig) {
+        super(openApiConfig);
+    }
+
+    /**
+    * Request using axios client
+    * @param options The request options from the the service
+    * @returns ApiResult
+    * @throws ApiError
+    */
+    request<T>(options: ApiRequestOptions): CancelablePromise<T> {
+        return new CancelablePromise(async (resolve, reject, onCancel) => {
+            try {
+                const url = getUrl(options, this.openApiConfig);
+                const formData = getFormData(options);
+                const body = getRequestBody(options);
+                const headers = await getHeaders(options, this.openApiConfig, formData);
+
+                if (!onCancel.isCancelled) {
+                    const response = await sendRequest(options, url, formData, body, headers, onCancel, this.openApiConfig);
+                    const responseBody = getResponseBody(response);
+                    const responseHeader = getResponseHeader(response, options.responseHeader);
+
+                    const result: ApiResult = {
+                        url,
+                        ok: isSuccess(response.status),
+                        status: response.status,
+                        statusText: response.statusText,
+                        body: responseHeader || responseBody,
+                    };
+
+                    catchErrors(options, result);
+
+                    resolve(result.body);
+                }
+            } catch (error) {
+                reject(error);
+            }
+        });
+    }
+}
+{{else}}
 /**
  * Request using axios client
  * @param options The request options from the the service
@@ -67,13 +115,13 @@ import { OpenAPI } from './OpenAPI';
 export function request<T>(options: ApiRequestOptions): CancelablePromise<T> {
     return new CancelablePromise(async (resolve, reject, onCancel) => {
         try {
-            const url = getUrl(options);
+            const url = getUrl(options, OpenAPI);
             const formData = getFormData(options);
             const body = getRequestBody(options);
-            const headers = await getHeaders(options, formData);
+            const headers = await getHeaders(options, OpenAPI, formData);
 
             if (!onCancel.isCancelled) {
-                const response = await sendRequest(options, url, formData, body, headers, onCancel);
+                const response = await sendRequest(options, url, formData, body, headers, onCancel, OpenAPI);
                 const responseBody = getResponseBody(response);
                 const responseHeader = getResponseHeader(response, options.responseHeader);
 
@@ -94,4 +142,4 @@ export function request<T>(options: ApiRequestOptions): CancelablePromise<T> {
         }
     });
 }
-
+{{/if}}

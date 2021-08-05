@@ -1,5 +1,6 @@
 async function sendRequest(
     options: ApiRequestOptions,
+    config: OpenAPIConfig,
     url: string,
     formData: FormData | undefined,
     body: any,
@@ -8,7 +9,7 @@ async function sendRequest(
 ): Promise<XMLHttpRequest> {
     const xhr = new XMLHttpRequest();
     xhr.open(options.method, url, true);
-    xhr.withCredentials = OpenAPI.WITH_CREDENTIALS;
+    xhr.withCredentials = config.WITH_CREDENTIALS ?? false;
 
     headers.forEach((value, key) => {
         xhr.setRequestHeader(key, value);

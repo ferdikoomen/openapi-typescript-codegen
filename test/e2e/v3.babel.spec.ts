@@ -1,57 +1,20 @@
-import browser from './scripts/browser';
+import {
+    executeBrowserTestsWithInstanceClient,
+    executeBrowserTestsWithStaticClient,
+    executeBrowserTestsWithStaticClientOptionsTrue,
+} from './tests';
 import { compileWithBabel } from './scripts/compileWithBabel';
-import { copy } from './scripts/copy';
-import { generate } from './scripts/generate';
-import server from './scripts/server';
 
-describe('v3.babel', () => {
-    beforeAll(async () => {
-        await generate('v3/babel', 'v3', 'fetch', true, true);
-        await copy('v3/babel');
-        compileWithBabel('v3/babel');
-        await server.start('v3/babel');
-        await browser.start();
-    }, 30000);
-
-    afterAll(async () => {
-        await browser.stop();
-        await server.stop();
+describe('v3/babel', () => {
+    describe('static client', () => {
+        executeBrowserTestsWithStaticClient('v3/babel', 'v3', 'fetch', false, true, false, compileWithBabel);
     });
 
-    it('requests token', async () => {
-        await browser.exposeFunction('tokenRequest', jest.fn().mockResolvedValue('MY_TOKEN'));
-        const result = await browser.evaluate(async () => {
-            const { OpenAPI, SimpleService } = (window as any).api;
-            OpenAPI.TOKEN = (window as any).tokenRequest;
-            OpenAPI.USERNAME = undefined;
-            OpenAPI.PASSWORD = undefined;
-            return await SimpleService.getCallWithoutParametersAndResponse();
-        });
-        expect(result.headers.authorization).toBe('Bearer MY_TOKEN');
+    describe('static client with options', () => {
+        executeBrowserTestsWithStaticClientOptionsTrue('v2/babel_options', 'v2', 'fetch', compileWithBabel);
     });
 
-    it('uses credentials', async () => {
-        const result = await browser.evaluate(async () => {
-            const { OpenAPI, SimpleService } = (window as any).api;
-            OpenAPI.TOKEN = undefined;
-            OpenAPI.USERNAME = 'username';
-            OpenAPI.PASSWORD = 'password';
-            return await SimpleService.getCallWithoutParametersAndResponse();
-        });
-        expect(result.headers.authorization).toBe('Basic dXNlcm5hbWU6cGFzc3dvcmQ=');
-    });
-
-    it('supports complex params', async () => {
-        const result = await browser.evaluate(async () => {
-            const { ComplexService } = (window as any).api;
-            return await ComplexService.complexTypes({
-                first: {
-                    second: {
-                        third: 'Hello World!',
-                    },
-                },
-            });
-        });
-        expect(result).toBeDefined();
+    describe('instance client', () => {
+        executeBrowserTestsWithInstanceClient('v3/babel_client', 'v3', 'fetch', false, true, true, compileWithBabel);
     });
 });

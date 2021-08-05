@@ -11,6 +11,8 @@ import axiosGetResponseHeader from '../templates/core/axios/getResponseHeader.hb
 import axiosRequest from '../templates/core/axios/request.hbs';
 import axiosSendRequest from '../templates/core/axios/sendRequest.hbs';
 import templateCancelablePromise from '../templates/core/CancelablePromise.hbs';
+import templateCoreBaseHttpClient from '../templates/core/BaseHttpRequest.hbs';
+import templateCoreConcreteHttpClient from '../templates/core/ConcreteHttpRequest.hbs';
 import fetchGetHeaders from '../templates/core/fetch/getHeaders.hbs';
 import fetchGetRequestBody from '../templates/core/fetch/getRequestBody.hbs';
 import fetchGetResponseBody from '../templates/core/fetch/getResponseBody.hbs';
@@ -36,13 +38,13 @@ import nodeGetResponseHeader from '../templates/core/node/getResponseHeader.hbs'
 import nodeRequest from '../templates/core/node/request.hbs';
 import nodeSendRequest from '../templates/core/node/sendRequest.hbs';
 import templateCoreSettings from '../templates/core/OpenAPI.hbs';
-import templateCoreRequest from '../templates/core/request.hbs';
 import xhrGetHeaders from '../templates/core/xhr/getHeaders.hbs';
 import xhrGetRequestBody from '../templates/core/xhr/getRequestBody.hbs';
 import xhrGetResponseBody from '../templates/core/xhr/getResponseBody.hbs';
 import xhrGetResponseHeader from '../templates/core/xhr/getResponseHeader.hbs';
 import xhrRequest from '../templates/core/xhr/request.hbs';
 import xhrSendRequest from '../templates/core/xhr/sendRequest.hbs';
+import templateAppClient from '../templates/exportAppClient.hbs';
 import templateExportModel from '../templates/exportModel.hbs';
 import templateExportSchema from '../templates/exportSchema.hbs';
 import templateExportService from '../templates/exportService.hbs';
@@ -78,6 +80,7 @@ import { registerHandlebarHelpers } from './registerHandlebarHelpers';
 
 export interface Templates {
     index: Handlebars.TemplateDelegate;
+    client: Handlebars.TemplateDelegate;
     exports: {
         model: Handlebars.TemplateDelegate;
         schema: Handlebars.TemplateDelegate;
@@ -89,7 +92,8 @@ export interface Templates {
         apiRequestOptions: Handlebars.TemplateDelegate;
         apiResult: Handlebars.TemplateDelegate;
         cancelablePromise: Handlebars.TemplateDelegate;
-        request: Handlebars.TemplateDelegate;
+        baseHttpRequest: Handlebars.TemplateDelegate;
+        concreteHttpRequest: Handlebars.TemplateDelegate;
     };
 }
 
@@ -107,6 +111,7 @@ export function registerHandlebarTemplates(root: {
     // Main templates (entry points for the files we write to disk)
     const templates: Templates = {
         index: Handlebars.template(templateIndex),
+        client: Handlebars.template(templateAppClient),
         exports: {
             model: Handlebars.template(templateExportModel),
             schema: Handlebars.template(templateExportSchema),
@@ -118,7 +123,8 @@ export function registerHandlebarTemplates(root: {
             apiRequestOptions: Handlebars.template(templateCoreApiRequestOptions),
             apiResult: Handlebars.template(templateCoreApiResult),
             cancelablePromise: Handlebars.template(templateCancelablePromise),
-            request: Handlebars.template(templateCoreRequest),
+            baseHttpRequest: Handlebars.template(templateCoreBaseHttpClient),
+            concreteHttpRequest: Handlebars.template(templateCoreConcreteHttpClient),
         },
     };
 

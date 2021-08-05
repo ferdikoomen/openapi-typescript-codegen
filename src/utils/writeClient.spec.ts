@@ -17,6 +17,7 @@ describe('writeClient', () => {
 
         const templates: Templates = {
             index: () => 'index',
+            client: () => 'client',
             exports: {
                 model: () => 'model',
                 schema: () => 'schema',
@@ -28,11 +29,26 @@ describe('writeClient', () => {
                 apiRequestOptions: () => 'apiRequestOptions',
                 apiResult: () => 'apiResult',
                 cancelablePromise: () => 'cancelablePromise',
-                request: () => 'request',
+                baseHttpRequest: () => 'baseHttpRequest',
+                concreteHttpRequest: () => 'concreteHttpRequest',
             },
         };
 
-        await writeClient(client, templates, './dist', HttpClient.FETCH, false, false, true, true, true, true, '');
+        await writeClient(
+            client,
+            templates,
+            './dist',
+            HttpClient.FETCH,
+            false,
+            false,
+            true,
+            true,
+            true,
+            true,
+            '',
+            false,
+            'AppClient'
+        );
 
         expect(rmdir).toBeCalled();
         expect(mkdir).toBeCalled();

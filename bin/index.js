@@ -20,7 +20,9 @@ const params = program
     .option('--exportModels <value>', 'Write models to disk', true)
     .option('--exportSchemas <value>', 'Write schemas to disk', false)
     .option('--postfix <value>', 'Service name postfix', 'Service')
+    .option('--exportClient <value>', 'Generate and write client class to disk', false)
     .option('--request <value>', 'Path to custom request file')
+    .option('--name <value>', 'Custom client class name', 'AppClient')
     .parse(process.argv)
     .opts();
 
@@ -38,6 +40,8 @@ if (OpenAPI) {
         exportModels: JSON.parse(params.exportModels) === true,
         exportSchemas: JSON.parse(params.exportSchemas) === true,
         postfix: params.postfix,
+        exportClient: JSON.parse(params.exportClient) === true,
+        clientName: params.name,
         request: params.request,
     })
         .then(() => {

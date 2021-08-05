@@ -21,7 +21,9 @@ export type Options = {
     exportModels?: boolean;
     exportSchemas?: boolean;
     postfix?: string;
+    exportClient?: boolean;
     request?: string;
+    clientName?: string;
     write?: boolean;
 };
 
@@ -39,6 +41,8 @@ export type Options = {
  * @param exportModels: Generate models
  * @param exportSchemas: Generate schemas
  * @param postfix: Service name postfix
+ * @param exportClient: Generate client class
+ * @param clientName: Custom client class name
  * @param request: Path to custom request file
  * @param write Write the files to disk (true or false)
  */
@@ -53,6 +57,8 @@ export async function generate({
     exportModels = true,
     exportSchemas = false,
     postfix = 'Service',
+    exportClient = false,
+    clientName = 'AppClient',
     request,
     write = true,
 }: Options): Promise<void> {
@@ -67,7 +73,7 @@ export async function generate({
     switch (openApiVersion) {
         case OpenApiVersion.V2: {
             const client = parseV2(openApi);
-            const clientFinal = postProcessClient(client);
+            const clientFinal = postProcessClient(client, exportClient);
             if (!write) break;
             await writeClient(
                 clientFinal,
@@ -81,6 +87,8 @@ export async function generate({
                 exportModels,
                 exportSchemas,
                 postfix,
+                exportClient,
+                clientName,
                 request
             );
             break;
@@ -88,7 +96,7 @@ export async function generate({
 
         case OpenApiVersion.V3: {
             const client = parseV3(openApi);
-            const clientFinal = postProcessClient(client);
+            const clientFinal = postProcessClient(client, exportClient);
             if (!write) break;
             await writeClient(
                 clientFinal,
@@ -102,6 +110,8 @@ export async function generate({
                 exportModels,
                 exportSchemas,
                 postfix,
+                exportClient,
+                clientName,
                 request
             );
             break;

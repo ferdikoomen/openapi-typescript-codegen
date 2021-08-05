@@ -5,6 +5,7 @@ import { HttpClient } from '../HttpClient';
 import { mkdir, rmdir } from './fileSystem';
 import { isSubDirectory } from './isSubdirectory';
 import { Templates } from './registerHandlebarTemplates';
+import { writeAppClient } from './writeAppClient';
 import { writeClientCore } from './writeClientCore';
 import { writeClientIndex } from './writeClientIndex';
 import { writeClientModels } from './writeClientModels';
@@ -25,6 +26,8 @@ import { writeClientServices } from './writeClientServices';
  * @param exportSchemas: Generate schemas
  * @param exportSchemas: Generate schemas
  * @param postfix: Service name postfix
+ * @param exportClient: Generate client class
+ * @param clientName: Custom client class name
  * @param request: Path to custom request file
  */
 export async function writeClient(
@@ -39,6 +42,8 @@ export async function writeClient(
     exportModels: boolean,
     exportSchemas: boolean,
     postfix: string,
+    exportClient: boolean,
+    clientName: string,
     request?: string
 ): Promise<void> {
     const outputPath = resolve(process.cwd(), output);
@@ -54,7 +59,7 @@ export async function writeClient(
     if (exportCore) {
         await rmdir(outputPathCore);
         await mkdir(outputPathCore);
-        await writeClientCore(client, templates, outputPathCore, httpClient, request);
+        await writeClientCore(client, templates, outputPathCore, httpClient, exportClient, request);
     }
 
     if (exportServices) {
@@ -67,7 +72,8 @@ export async function writeClient(
             httpClient,
             useUnionTypes,
             useOptions,
-            postfix
+            postfix,
+            exportClient
         );
     }
 
@@ -83,18 +89,25 @@ export async function writeClient(
         await writeClientModels(client.models, templates, outputPathModels, httpClient, useUnionTypes);
     }
 
-    if (exportCore || exportServices || exportSchemas || exportModels) {
+    if (exportClient) {
+        await writeAppClient(client, templates, outputPath, httpClient, clientName, postfix);
+    }
+
+    if (exportCore || exportServices || exportSchemas || exportModels || exportClient) {
         await mkdir(outputPath);
         await writeClientIndex(
             client,
             templates,
             outputPath,
+            clientName,
             useUnionTypes,
             exportCore,
             exportServices,
             exportModels,
             exportSchemas,
-            postfix
+            postfix,
+            exportClient,
+            httpClient
         );
     }
 }

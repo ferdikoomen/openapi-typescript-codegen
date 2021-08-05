@@ -30,6 +30,7 @@ describe('writeClientModels', () => {
 
         const templates: Templates = {
             index: () => 'index',
+            client: () => 'client',
             exports: {
                 model: () => 'model',
                 schema: () => 'schema',
@@ -41,7 +42,8 @@ describe('writeClientModels', () => {
                 apiRequestOptions: () => 'apiRequestOptions',
                 apiResult: () => 'apiResult',
                 cancelablePromise: () => 'cancelablePromise',
-                request: () => 'request',
+                baseHttpRequest: () => 'baseHttpRequest',
+                concreteHttpRequest: () => 'concreteHttpRequest',
             },
         };
 

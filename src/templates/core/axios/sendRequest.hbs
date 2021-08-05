@@ -4,7 +4,8 @@ async function sendRequest(
     formData: FormData | undefined,
     body: any,
     headers: Record<string, string>,
-    onCancel: OnCancel
+    onCancel: OnCancel,
+    openApiConfig: OpenAPIConfig
 ): Promise<AxiosResponse<any>> {
     const source = axios.CancelToken.source();
 
@@ -13,8 +14,9 @@ async function sendRequest(
         headers,
         data: body || formData,
         method: options.method,
-        withCredentials: OpenAPI.WITH_CREDENTIALS,
+        withCredentials: openApiConfig.WITH_CREDENTIALS,
         cancelToken: source.token,
+        validateStatus: () => true,
     };
 
     onCancel(() => source.cancel('The user aborted a request.'));

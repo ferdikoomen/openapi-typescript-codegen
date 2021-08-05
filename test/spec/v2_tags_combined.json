@@ -1,0 +1,29 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "swagger",
+        "version": "v1.0"
+    },
+    "host": "localhost:3000",
+    "basePath": "/base",
+    "schemes": ["http"],
+    "paths": {
+        "/api/v{api-version}/simple": {
+            "get": {
+                "tags": [
+                    "Simple"
+                ],
+                "operationId": "GetCallWithoutParametersAndResponse"
+            },
+            "put": {
+                "tags": [
+                    "Simple"
+                ],
+                "operationId": "PutCallWithoutParametersAndResponse"
+            },
+            "post": {
+                "operationId": "PostCallWithoutParametersAndResponse"
+            }
+        }
+    }
+}

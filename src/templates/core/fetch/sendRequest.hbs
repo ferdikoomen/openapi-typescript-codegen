@@ -1,5 +1,6 @@
 async function sendRequest(
     options: ApiRequestOptions,
+    config: OpenAPIConfig,
     url: string,
     formData: FormData | undefined,
     body: BodyInit | undefined,
@@ -15,8 +16,8 @@ async function sendRequest(
         signal: controller.signal,
     };
 
-    if (OpenAPI.WITH_CREDENTIALS) {
-        request.credentials = OpenAPI.CREDENTIALS;
+    if (config.WITH_CREDENTIALS) {
+        request.credentials = config.CREDENTIALS;
     }
 
     onCancel(() => controller.abort());
