@@ -1,11 +1,8 @@
 {{>header}}
 
+import type { ApiRequestOptions } from './ApiRequestOptions';
 
-{{#equals @root.httpClient 'fetch'}}{{>fetch/responseType}}{{/equals}}
-{{#equals @root.httpClient 'xhr'}}{{>xhr/responseType}}{{/equals}}
-{{#equals @root.httpClient 'node'}}{{>node/responseType}}{{/equals}}
-
-type Resolver<T> = () => Promise<T>;
+type Resolver<T> = (options: ApiRequestOptions) => Promise<T>;
 type Headers = Record<string, string>;
 
 import { ApiResult } from './ApiResult';
