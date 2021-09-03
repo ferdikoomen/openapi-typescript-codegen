@@ -134,6 +134,13 @@
                         "required": false
                     },
                     {
+                        "description": "This is the parameter with a reserved keyword",
+                        "name": "default",
+                        "in": "query",
+                        "type": "string",
+                        "required": false
+                    },
+                    {
                         "description": "This is the parameter that goes into the request header",
                         "name": "parameter.header",
                         "in": "header",
@@ -361,6 +368,19 @@
                     "Duplicate"
                 ],
                 "operationId": "DuplicateName"
+            }
+        },
+        "/api/v{api-version}/no-content": {
+            "get": {
+                "tags": [
+                    "NoContent"
+                ],
+                "operationId": "CallWithNoContentResponse",
+                "responses": {
+                    "204": {
+                        "description": "Success"
+                    }
+                }
             }
         },
         "/api/v{api-version}/response": {
@@ -795,7 +815,19 @@
             "enum": [
                 1,
                 2,
-                3
+                3,
+                1.1,
+                1.20,
+                1.300,
+                100,
+                200,
+                300,
+                -100,
+                -200,
+                -300,
+                -1.1,
+                -1.20,
+                -1.300
             ]
         },
         "EnumFromDescription": {
@@ -1139,6 +1171,12 @@
                     "$ref": "#/definitions/ModelWithString"
                 },
                 "property with space": {
+                    "type": "string"
+                },
+                "default": {
+                    "type": "string"
+                },
+                "try": {
                     "type": "string"
                 },
                 "@namespace.string": {
