@@ -64,7 +64,7 @@ function extendEnum(enumerators, definition) {
  */
 function getComment(comment) {
     if (comment) {
-        return comment.replace(/\r?\n(.*)/g, (_, w) => `${os.EOL} * ${w.trim()}`);
+        return comment.replace(/(\*\/)/g, '*_/').replace(/\r?\n(.*)/g, (_, w) => `${os.EOL} * ${w.trim()}`);
     }
     return null;
 }
@@ -87,7 +87,7 @@ function getEnum(values) {
             .map(value => {
             if (typeof value === 'number') {
                 return {
-                    name: `_${value}`,
+                    name: `'_${value}'`,
                     value: String(value),
                     type: 'number',
                     description: null,
@@ -111,7 +111,7 @@ function getEnum(values) {
 function getEnumFromDescription(description) {
     // Check if we can find this special format string:
     // None=0,Something=1,AnotherThing=2
-    if (/^(\w+=[0-9]+,?)+$/g.test(description)) {
+    if (/^(\w+=[0-9]+)/g.test(description)) {
         const matches = description.match(/(\w+=[0-9]+,?)/g);
         if (matches) {
             // Grab the values from the description
@@ -266,7 +266,7 @@ function getModelProperties(openApi, definition, getModel) {
     for (const propertyName in definition.properties) {
         if (definition.properties.hasOwnProperty(propertyName)) {
             const property = definition.properties[propertyName];
-            const propertyRequired = (_a = definition.required) === null || _a === void 0 ? void 0 : _a.includes(propertyName);
+            const propertyRequired = ((_a = definition.required) === null || _a === void 0 ? void 0 : _a.includes(propertyName)) || property.default !== undefined;
             if (property.$ref) {
                 const model = getType(property.$ref);
                 models.push({
@@ -279,7 +279,7 @@ function getModelProperties(openApi, definition, getModel) {
                     description: getComment(property.description),
                     isDefinition: false,
                     isReadOnly: property.readOnly === true,
-                    isRequired: propertyRequired === true,
+                    isRequired: propertyRequired,
                     isNullable: property['x-nullable'] === true,
                     format: property.format,
                     maximum: property.maximum,
@@ -313,7 +313,7 @@ function getModelProperties(openApi, definition, getModel) {
                     description: getComment(property.description),
                     isDefinition: false,
                     isReadOnly: property.readOnly === true,
-                    isRequired: propertyRequired === true,
+                    isRequired: propertyRequired,
                     isNullable: property['x-nullable'] === true,
                     format: property.format,
                     maximum: property.maximum,
@@ -362,6 +362,11 @@ function getModelComposition(openApi, definition, definitions, type, getModel) {
         composition.properties.push(model);
     });
     if (definition.properties) {
+        const properties = getModelProperties(openApi, definition, getModel);
+        properties.forEach(property => {
+            composition.imports.push(...property.imports);
+            composition.enums.push(...property.enums);
+        });
         composition.properties.push({
             name: 'properties',
             export: 'interface',
@@ -377,7 +382,7 @@ function getModelComposition(openApi, definition, definitions, type, getModel) {
             imports: [],
             enum: [],
             enums: [],
-            properties: [...getModelProperties(openApi, definition, getModel)],
+            properties,
         });
     }
     return composition;
@@ -396,7 +401,7 @@ function getModel(openApi, definition, isDefinition = false, name = '') {
         isDefinition,
         isReadOnly: definition.readOnly === true,
         isNullable: definition['x-nullable'] === true,
-        isRequired: false,
+        isRequired: definition.default !== undefined,
         format: definition.format,
         maximum: definition.maximum,
         exclusiveMaximum: definition.exclusiveMaximum,
@@ -552,7 +557,7 @@ function getServer(openApi) {
 }
 
 function escapeDescription(value) {
-    return value.replace(/([^\\])`/g, '$1\\`');
+    return value.replace(/([^\\])`/g, '$1\\`').replace(/(\*\/)/g, '*_/');
 }
 
 function getOperationErrors(operationResponses) {
@@ -611,6 +616,7 @@ function getOperationParameterDefault(parameter, operationParameter) {
     return;
 }
 
+const reservedWords = /^(arguments|break|case|catch|class|const|continue|debugger|default|delete|do|else|enum|eval|export|extends|false|finally|for|function|if|implements|import|in|instanceof|interface|let|new|null|package|private|protected|public|return|static|super|switch|this|throw|true|try|typeof|var|void|while|with|yield)$/g;
 /**
  * Replaces any invalid characters from a parameter name.
  * For example: 'filter.someProperty' becomes 'filterSomeProperty'.
@@ -620,7 +626,7 @@ function getOperationParameterName(value) {
         .replace(/^[^a-zA-Z]+/g, '')
         .replace(/[^\w\-]+/g, '-')
         .trim();
-    return camelCase__default['default'](clean);
+    return camelCase__default['default'](clean).replace(reservedWords, '_$1');
 }
 
 function getOperationParameter(openApi, parameter) {
@@ -654,6 +660,7 @@ function getOperationParameter(openApi, parameter) {
         enum: [],
         enums: [],
         properties: [],
+        mediaType: null,
     };
     if (parameter.$ref) {
         const definitionRef = getType(parameter.$ref);
@@ -989,8 +996,10 @@ function areEqual(a, b) {
 }
 function getOperationResults(operationResponses) {
     const operationResults = [];
+    // Filter out success response codes, but skip "204 No Content"
     operationResponses.forEach(operationResponse => {
-        if (operationResponse.code && operationResponse.code >= 200 && operationResponse.code < 300) {
+        const { code } = operationResponse;
+        if (code && code !== 204 && code >= 200 && code < 300) {
             operationResults.push(operationResponse);
         }
     });
@@ -1000,9 +1009,9 @@ function getOperationResults(operationResponses) {
             name: '',
             code: 200,
             description: '',
-            export: 'interface',
-            type: 'any',
-            base: 'any',
+            export: 'generic',
+            type: 'void',
+            base: 'void',
             template: null,
             link: null,
             isDefinition: false,
@@ -1182,7 +1191,7 @@ function extendEnum$1(enumerators, definition) {
  */
 function getComment$1(comment) {
     if (comment) {
-        return comment.replace(/\r?\n(.*)/g, (_, w) => `${os.EOL} * ${w.trim()}`);
+        return comment.replace(/(\*\/)/g, '*_/').replace(/\r?\n(.*)/g, (_, w) => `${os.EOL} * ${w.trim()}`);
     }
     return null;
 }
@@ -1197,7 +1206,7 @@ function getEnum$1(values) {
             .map(value => {
             if (typeof value === 'number') {
                 return {
-                    name: `_${value}`,
+                    name: `'_${value}'`,
                     value: String(value),
                     type: 'number',
                     description: null,
@@ -1221,7 +1230,7 @@ function getEnum$1(values) {
 function getEnumFromDescription$1(description) {
     // Check if we can find this special format string:
     // None=0,Something=1,AnotherThing=2
-    if (/^(\w+=[0-9]+,?)+$/g.test(description)) {
+    if (/^(\w+=[0-9]+)/g.test(description)) {
         const matches = description.match(/(\w+=[0-9]+,?)/g);
         if (matches) {
             // Grab the values from the description
@@ -1249,6 +1258,56 @@ function getEnumFromDescription$1(description) {
         }
     }
     return [];
+}
+
+/**
+ * Strip (OpenAPI) namespaces fom values.
+ * @param value
+ */
+function stripNamespace$1(value) {
+    return value
+        .trim()
+        .replace(/^#\/components\/schemas\//, '')
+        .replace(/^#\/components\/responses\//, '')
+        .replace(/^#\/components\/parameters\//, '')
+        .replace(/^#\/components\/examples\//, '')
+        .replace(/^#\/components\/requestBodies\//, '')
+        .replace(/^#\/components\/headers\//, '')
+        .replace(/^#\/components\/securitySchemes\//, '')
+        .replace(/^#\/components\/links\//, '')
+        .replace(/^#\/components\/callbacks\//, '');
+}
+
+const inverseDictionary = (mapObj) => {
+    const m2 = {};
+    for (const key in mapObj) {
+        m2[mapObj[key]] = key;
+    }
+    return m2;
+};
+function findOneOfParentDiscriminator(openApi, parent) {
+    var _a;
+    if (openApi.components && parent) {
+        for (const definitionName in openApi.components.schemas) {
+            if (openApi.components.schemas.hasOwnProperty(definitionName)) {
+                const schema = openApi.components.schemas[definitionName];
+                if (schema.discriminator && ((_a = schema.oneOf) === null || _a === void 0 ? void 0 : _a.length) && schema.oneOf.some(definition => definition.$ref && stripNamespace$1(definition.$ref) == parent.name)) {
+                    return schema.discriminator;
+                }
+            }
+        }
+    }
+    return undefined;
+}
+function mapPropertyValue(discriminator, parent) {
+    if (discriminator.mapping) {
+        const mapping = inverseDictionary(discriminator.mapping);
+        const key = Object.keys(mapping).find(item => stripNamespace$1(item) == parent.name);
+        if (key && mapping[key]) {
+            return mapping[key];
+        }
+    }
+    return parent.name;
 }
 
 function escapeName$1(value) {
@@ -1292,24 +1351,6 @@ function getMappedType$1(type) {
 }
 function hasMappedType$1(type) {
     return TYPE_MAPPINGS$1.has(type);
-}
-
-/**
- * Strip (OpenAPI) namespaces fom values.
- * @param value
- */
-function stripNamespace$1(value) {
-    return value
-        .trim()
-        .replace(/^#\/components\/schemas\//, '')
-        .replace(/^#\/components\/responses\//, '')
-        .replace(/^#\/components\/parameters\//, '')
-        .replace(/^#\/components\/examples\//, '')
-        .replace(/^#\/components\/requestBodies\//, '')
-        .replace(/^#\/components\/headers\//, '')
-        .replace(/^#\/components\/securitySchemes\//, '')
-        .replace(/^#\/components\/links\//, '')
-        .replace(/^#\/components\/callbacks\//, '');
 }
 
 function encode$1(value) {
@@ -1375,80 +1416,46 @@ function getType$1(value, template) {
     return result;
 }
 
-function getModelProperties$1(openApi, definition, getModel) {
+function getModelProperties$1(openApi, definition, getModel, parent) {
     var _a;
     const models = [];
+    const discriminator = findOneOfParentDiscriminator(openApi, parent);
     for (const propertyName in definition.properties) {
         if (definition.properties.hasOwnProperty(propertyName)) {
             const property = definition.properties[propertyName];
-            const propertyRequired = (_a = definition.required) === null || _a === void 0 ? void 0 : _a.includes(propertyName);
-            if (property.$ref) {
+            const propertyRequired = ((_a = definition.required) === null || _a === void 0 ? void 0 : _a.includes(propertyName)) || property.default !== undefined;
+            const propertyValues = {
+                name: escapeName$1(propertyName),
+                description: getComment$1(property.description),
+                isDefinition: false,
+                isReadOnly: property.readOnly === true,
+                isRequired: propertyRequired,
+                isNullable: property.nullable === true,
+                format: property.format,
+                maximum: property.maximum,
+                exclusiveMaximum: property.exclusiveMaximum,
+                minimum: property.minimum,
+                exclusiveMinimum: property.exclusiveMinimum,
+                multipleOf: property.multipleOf,
+                maxLength: property.maxLength,
+                minLength: property.minLength,
+                maxItems: property.maxItems,
+                minItems: property.minItems,
+                uniqueItems: property.uniqueItems,
+                maxProperties: property.maxProperties,
+                minProperties: property.minProperties,
+                pattern: getPattern(property.pattern),
+            };
+            if (parent && (discriminator === null || discriminator === void 0 ? void 0 : discriminator.propertyName) == propertyName) {
+                models.push(Object.assign({ export: 'reference', type: 'string', base: `'${mapPropertyValue(discriminator, parent)}'`, template: null, link: null, imports: [], enum: [], enums: [], properties: [] }, propertyValues));
+            }
+            else if (property.$ref) {
                 const model = getType$1(property.$ref);
-                models.push({
-                    name: escapeName$1(propertyName),
-                    export: 'reference',
-                    type: model.type,
-                    base: model.base,
-                    template: model.template,
-                    link: null,
-                    description: getComment$1(property.description),
-                    isDefinition: false,
-                    isReadOnly: property.readOnly === true,
-                    isRequired: propertyRequired === true,
-                    isNullable: property.nullable === true,
-                    format: property.format,
-                    maximum: property.maximum,
-                    exclusiveMaximum: property.exclusiveMaximum,
-                    minimum: property.minimum,
-                    exclusiveMinimum: property.exclusiveMinimum,
-                    multipleOf: property.multipleOf,
-                    maxLength: property.maxLength,
-                    minLength: property.minLength,
-                    maxItems: property.maxItems,
-                    minItems: property.minItems,
-                    uniqueItems: property.uniqueItems,
-                    maxProperties: property.maxProperties,
-                    minProperties: property.minProperties,
-                    pattern: getPattern(property.pattern),
-                    imports: model.imports,
-                    enum: [],
-                    enums: [],
-                    properties: [],
-                });
+                models.push(Object.assign({ export: 'reference', type: model.type, base: model.base, template: model.template, link: null, imports: model.imports, enum: [], enums: [], properties: [] }, propertyValues));
             }
             else {
                 const model = getModel(openApi, property);
-                models.push({
-                    name: escapeName$1(propertyName),
-                    export: model.export,
-                    type: model.type,
-                    base: model.base,
-                    template: model.template,
-                    link: model.link,
-                    description: getComment$1(property.description),
-                    isDefinition: false,
-                    isReadOnly: property.readOnly === true,
-                    isRequired: propertyRequired === true,
-                    isNullable: property.nullable === true,
-                    format: property.format,
-                    maximum: property.maximum,
-                    exclusiveMaximum: property.exclusiveMaximum,
-                    minimum: property.minimum,
-                    exclusiveMinimum: property.exclusiveMinimum,
-                    multipleOf: property.multipleOf,
-                    maxLength: property.maxLength,
-                    minLength: property.minLength,
-                    maxItems: property.maxItems,
-                    minItems: property.minItems,
-                    uniqueItems: property.uniqueItems,
-                    maxProperties: property.maxProperties,
-                    minProperties: property.minProperties,
-                    pattern: getPattern(property.pattern),
-                    imports: model.imports,
-                    enum: model.enum,
-                    enums: model.enums,
-                    properties: model.properties,
-                });
+                models.push(Object.assign({ export: model.export, type: model.type, base: model.base, template: model.template, link: model.link, imports: model.imports, enum: model.enum, enums: model.enums, properties: model.properties }, propertyValues));
             }
         }
     }
@@ -1477,6 +1484,11 @@ function getModelComposition$1(openApi, definition, definitions, type, getModel)
         composition.properties.push(model);
     });
     if (definition.properties) {
+        const properties = getModelProperties$1(openApi, definition, getModel);
+        properties.forEach(property => {
+            composition.imports.push(...property.imports);
+            composition.enums.push(...property.enums);
+        });
         composition.properties.push({
             name: 'properties',
             export: 'interface',
@@ -1492,7 +1504,7 @@ function getModelComposition$1(openApi, definition, definitions, type, getModel)
             imports: [],
             enum: [],
             enums: [],
-            properties: [...getModelProperties$1(openApi, definition, getModel)],
+            properties,
         });
     }
     return composition;
@@ -1543,7 +1555,7 @@ function getModel$1(openApi, definition, isDefinition = false, name = '') {
         isDefinition,
         isReadOnly: definition.readOnly === true,
         isNullable: definition.nullable === true,
-        isRequired: false,
+        isRequired: definition.default !== undefined,
         format: definition.format,
         maximum: definition.maximum,
         exclusiveMaximum: definition.exclusiveMaximum,
@@ -1672,7 +1684,7 @@ function getModel$1(openApi, definition, isDefinition = false, name = '') {
         model.base = 'any';
         model.default = getModelDefault(definition, model);
         if (definition.properties) {
-            const properties = getModelProperties$1(openApi, definition, getModel$1);
+            const properties = getModelProperties$1(openApi, definition, getModel$1, model);
             properties.forEach(property => {
                 model.imports.push(...property.imports);
                 model.enums.push(...property.enums);
@@ -1727,7 +1739,7 @@ function getServer$1(openApi) {
 }
 
 function escapeDescription$1(value) {
-    return value.replace(/([^\\])`/g, '$1\\`');
+    return value.replace(/([^\\])`/g, '$1\\`').replace(/(\*\/)/g, '*_/');
 }
 
 function getOperationErrors$1(operationResponses) {
@@ -1754,6 +1766,7 @@ function getOperationName$1(value) {
     return camelCase__default['default'](clean);
 }
 
+const reservedWords$1 = /^(arguments|break|case|catch|class|const|continue|debugger|default|delete|do|else|enum|eval|export|extends|false|finally|for|function|if|implements|import|in|instanceof|interface|let|new|null|package|private|protected|public|return|static|super|switch|this|throw|true|try|typeof|var|void|while|with|yield)$/g;
 /**
  * Replaces any invalid characters from a parameter name.
  * For example: 'filter.someProperty' becomes 'filterSomeProperty'.
@@ -1763,7 +1776,7 @@ function getOperationParameterName$1(value) {
         .replace(/^[^a-zA-Z]+/g, '')
         .replace(/[^\w\-]+/g, '-')
         .trim();
-    return camelCase__default['default'](clean);
+    return camelCase__default['default'](clean).replace(reservedWords$1, '_$1');
 }
 
 function getOperationParameter$1(openApi, parameter) {
@@ -1785,6 +1798,7 @@ function getOperationParameter$1(openApi, parameter) {
         enum: [],
         enums: [],
         properties: [],
+        mediaType: null,
     };
     if (parameter.$ref) {
         const definitionRef = getType$1(parameter.$ref);
@@ -1958,6 +1972,11 @@ function getContent(openApi, content) {
         content['multipart/batch'].schema) || null;
 }
 
+function getMediaType(openApi, content) {
+    return (Object.keys(content).find(key => ['application/json-patch+json', 'application/json', 'text/json', 'text/plain', 'multipart/mixed', 'multipart/related', 'multipart/batch'].includes(key)) ||
+        null);
+}
+
 function getOperationRequestBody(openApi, parameter) {
     const requestBody = {
         in: 'body',
@@ -1978,10 +1997,12 @@ function getOperationRequestBody(openApi, parameter) {
         enum: [],
         enums: [],
         properties: [],
+        mediaType: null,
     };
     if (parameter.content) {
         const schema = getContent(openApi, parameter.content);
         if (schema) {
+            requestBody.mediaType = getMediaType(openApi, parameter.content);
             if (schema === null || schema === void 0 ? void 0 : schema.$ref) {
                 const model = getType$1(schema.$ref);
                 requestBody.export = 'reference';
@@ -2141,7 +2162,8 @@ function getOperationResponses$1(openApi, responses) {
             const response = getRef$1(openApi, responseOrReference);
             const responseCode = getOperationResponseCode$1(code);
             if (responseCode) {
-                operationResponses.push(getOperationResponse$1(openApi, response, responseCode));
+                const operationResponse = getOperationResponse$1(openApi, response, responseCode);
+                operationResponses.push(operationResponse);
             }
         }
     }
@@ -2160,8 +2182,10 @@ function areEqual$1(a, b) {
 }
 function getOperationResults$1(operationResponses) {
     const operationResults = [];
+    // Filter out success response codes, but skip "204 No Content"
     operationResponses.forEach(operationResponse => {
-        if (operationResponse.code && operationResponse.code >= 200 && operationResponse.code < 300) {
+        const { code } = operationResponse;
+        if (code && code !== 204 && code >= 200 && code < 300) {
             operationResults.push(operationResponse);
         }
     });
@@ -2171,9 +2195,9 @@ function getOperationResults$1(operationResponses) {
             name: '',
             code: 200,
             description: '',
-            export: 'interface',
-            type: 'any',
-            base: 'any',
+            export: 'generic',
+            type: 'void',
+            base: 'void',
             template: null,
             link: null,
             isDefinition: false,
@@ -2619,7 +2643,7 @@ var templateCoreApiRequestOptions = {"compiler":[8,">= 4.3.0"],"main":function(c
     };
 
   return ((stack1 = container.invokePartial(lookupProperty(partials,"header"),depth0,{"name":"header","data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "")
-    + "\nexport type ApiRequestOptions = {\n    readonly method: 'GET' | 'PUT' | 'POST' | 'DELETE' | 'OPTIONS' | 'HEAD' | 'PATCH';\n    readonly path: string;\n    readonly cookies?: Record<string, any>;\n    readonly headers?: Record<string, any>;\n    readonly query?: Record<string, any>;\n    readonly formData?: Record<string, any>;\n    readonly body?: any;\n    readonly responseHeader?: string;\n    readonly errors?: Record<number, string>;\n}";
+    + "\nexport type ApiRequestOptions = {\n    readonly method: 'GET' | 'PUT' | 'POST' | 'DELETE' | 'OPTIONS' | 'HEAD' | 'PATCH';\n    readonly path: string;\n    readonly cookies?: Record<string, any>;\n    readonly headers?: Record<string, any>;\n    readonly query?: Record<string, any>;\n    readonly formData?: Record<string, any>;\n    readonly body?: any;\n    readonly mediaType?: string;\n    readonly responseHeader?: string;\n    readonly errors?: Record<number, string>;\n}";
 },"usePartial":true,"useData":true};
 
 var templateCoreApiResult = {"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
@@ -2635,11 +2659,11 @@ var templateCoreApiResult = {"compiler":[8,">= 4.3.0"],"main":function(container
 },"usePartial":true,"useData":true};
 
 var fetchGetHeaders = {"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
-    return "async function getHeaders(options: ApiRequestOptions): Promise<Headers> {\n    const headers = new Headers({\n        Accept: 'application/json',\n        ...OpenAPI.HEADERS,\n        ...options.headers,\n    });\n\n    const token = await resolve(OpenAPI.TOKEN);\n    const username = await resolve(OpenAPI.USERNAME);\n    const password = await resolve(OpenAPI.PASSWORD);\n\n    if (isStringWithValue(token)) {\n        headers.append('Authorization', `Bearer ${token}`);\n    }\n\n    if (isStringWithValue(username) && isStringWithValue(password)) {\n        const credentials = btoa(`${username}:${password}`);\n        headers.append('Authorization', `Basic ${credentials}`);\n    }\n\n    if (options.body) {\n        if (isBlob(options.body)) {\n            headers.append('Content-Type', options.body.type || 'application/octet-stream');\n        } else if (isString(options.body)) {\n            headers.append('Content-Type', 'text/plain');\n        } else {\n            headers.append('Content-Type', 'application/json');\n        }\n    }\n    return headers;\n}";
+    return "async function getHeaders(options: ApiRequestOptions): Promise<Headers> {\n    const token = await resolve(options, OpenAPI.TOKEN);\n    const username = await resolve(options, OpenAPI.USERNAME);\n    const password = await resolve(options, OpenAPI.PASSWORD);\n    const defaultHeaders = await resolve(options, OpenAPI.HEADERS);\n\n    const headers = new Headers({\n        Accept: 'application/json',\n        ...defaultHeaders,\n        ...options.headers,\n    });\n\n    if (isStringWithValue(token)) {\n        headers.append('Authorization', `Bearer ${token}`);\n    }\n\n    if (isStringWithValue(username) && isStringWithValue(password)) {\n        const credentials = btoa(`${username}:${password}`);\n        headers.append('Authorization', `Basic ${credentials}`);\n    }\n\n    if (options.body) {\n        if (options.mediaType) {\n            headers.append('Content-Type', options.mediaType);\n        } else if (isBlob(options.body)) {\n            headers.append('Content-Type', options.body.type || 'application/octet-stream');\n        } else if (isString(options.body)) {\n            headers.append('Content-Type', 'text/plain');\n        } else {\n            headers.append('Content-Type', 'application/json');\n        }\n    }\n    return headers;\n}";
 },"useData":true};
 
 var fetchGetRequestBody = {"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
-    return "function getRequestBody(options: ApiRequestOptions): BodyInit | undefined {\n    if (options.formData) {\n        return getFormData(options.formData);\n    }\n    if (options.body) {\n        if (isString(options.body) || isBlob(options.body)) {\n            return options.body;\n        } else {\n            return JSON.stringify(options.body);\n        }\n    }\n    return undefined;\n}";
+    return "function getRequestBody(options: ApiRequestOptions): BodyInit | undefined {\n    if (options.formData) {\n        return getFormData(options.formData);\n    }\n    if (options.body) {\n        if (options.mediaType?.includes('/json')) {\n            return JSON.stringify(options.body)\n        } else if (isString(options.body) || isBlob(options.body)) {\n            return options.body;\n        } else {\n            return JSON.stringify(options.body);\n        }\n    }\n    return undefined;\n}";
 },"useData":true};
 
 var fetchGetResponseBody = {"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
@@ -2739,15 +2763,15 @@ var functionIsSuccess = {"compiler":[8,">= 4.3.0"],"main":function(container,dep
 },"useData":true};
 
 var functionResolve = {"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
-    return "type Resolver<T> = () => Promise<T>;\n\nasync function resolve<T>(resolver?: T | Resolver<T>): Promise<T | undefined> {\n    if (typeof resolver === 'function') {\n        return (resolver as Resolver<T>)();\n    }\n    return resolver;\n}";
+    return "type Resolver<T> = (options: ApiRequestOptions) => Promise<T>;\n\nasync function resolve<T>(options: ApiRequestOptions, resolver?: T | Resolver<T>): Promise<T | undefined> {\n    if (typeof resolver === 'function') {\n        return (resolver as Resolver<T>)(options);\n    }\n    return resolver;\n}";
 },"useData":true};
 
 var nodeGetHeaders = {"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
-    return "async function getHeaders(options: ApiRequestOptions): Promise<Headers> {\n    const headers = new Headers({\n        Accept: 'application/json',\n        ...OpenAPI.HEADERS,\n        ...options.headers,\n    });\n\n    const token = await resolve(OpenAPI.TOKEN);\n    const username = await resolve(OpenAPI.USERNAME);\n    const password = await resolve(OpenAPI.PASSWORD);\n\n    if (isStringWithValue(token)) {\n        headers.append('Authorization', `Bearer ${token}`);\n    }\n\n    if (isStringWithValue(username) && isStringWithValue(password)) {\n        const credentials = Buffer.from(`${username}:${password}`).toString('base64');\n        headers.append('Authorization', `Basic ${credentials}`);\n    }\n\n    if (options.body) {\n        if (isBinary(options.body)) {\n            headers.append('Content-Type', 'application/octet-stream');\n        } else if (isString(options.body)) {\n            headers.append('Content-Type', 'text/plain');\n        } else {\n            headers.append('Content-Type', 'application/json');\n        }\n    }\n    return headers;\n}";
+    return "async function getHeaders(options: ApiRequestOptions): Promise<Headers> {\n    const token = await resolve(options, OpenAPI.TOKEN);\n    const username = await resolve(options, OpenAPI.USERNAME);\n    const password = await resolve(options, OpenAPI.PASSWORD);\n    const defaultHeaders = await resolve(options, OpenAPI.HEADERS);\n\n    const headers = new Headers({\n        Accept: 'application/json',\n        ...defaultHeaders,\n        ...options.headers,\n    });\n\n    if (isStringWithValue(token)) {\n        headers.append('Authorization', `Bearer ${token}`);\n    }\n\n    if (isStringWithValue(username) && isStringWithValue(password)) {\n        const credentials = Buffer.from(`${username}:${password}`).toString('base64');\n        headers.append('Authorization', `Basic ${credentials}`);\n    }\n\n    if (options.body) {\n        if (options.mediaType) {\n            headers.append('Content-Type', options.mediaType);\n        } else if (isBinary(options.body)) {\n            headers.append('Content-Type', 'application/octet-stream');\n        } else if (isString(options.body)) {\n            headers.append('Content-Type', 'text/plain');\n        } else {\n            headers.append('Content-Type', 'application/json');\n        }\n    }\n    return headers;\n}";
 },"useData":true};
 
 var nodeGetRequestBody = {"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
-    return "function getRequestBody(options: ApiRequestOptions): BodyInit | undefined {\n    if (options.formData) {\n        return getFormData(options.formData);\n    }\n    if (options.body) {\n        if (isString(options.body) || isBinary(options.body)) {\n            return options.body;\n        } else {\n            return JSON.stringify(options.body);\n        }\n    }\n    return undefined;\n}";
+    return "function getRequestBody(options: ApiRequestOptions): BodyInit | undefined {\n    if (options.formData) {\n        return getFormData(options.formData);\n    }\n    if (options.body) {\n        if (options.mediaType?.includes('/json')) {\n            return JSON.stringify(options.body)\n        } else if (isString(options.body) || isBinary(options.body)) {\n            return options.body;\n        } else {\n            return JSON.stringify(options.body);\n        }\n    }\n    return undefined;\n}";
 },"useData":true};
 
 var nodeGetResponseBody = {"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
@@ -2806,35 +2830,8 @@ var nodeResponseType = {"compiler":[8,">= 4.3.0"],"main":function(container,dept
     return "import { Response as ResponseImplementation } from 'node-fetch';";
 },"useData":true};
 
-var templateCoreSettings = {"1":function(container,depth0,helpers,partials,data) {
-    var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
-        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
-          return parent[propertyName];
-        }
-        return undefined
-    };
-
-  return ((stack1 = container.invokePartial(lookupProperty(partials,"fetch/responseType"),depth0,{"name":"fetch/responseType","data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "");
-},"3":function(container,depth0,helpers,partials,data) {
-    var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
-        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
-          return parent[propertyName];
-        }
-        return undefined
-    };
-
-  return ((stack1 = container.invokePartial(lookupProperty(partials,"xhr/responseType"),depth0,{"name":"xhr/responseType","data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "");
-},"5":function(container,depth0,helpers,partials,data) {
-    var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
-        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
-          return parent[propertyName];
-        }
-        return undefined
-    };
-
-  return ((stack1 = container.invokePartial(lookupProperty(partials,"node/responseType"),depth0,{"name":"node/responseType","data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "");
-},"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
-    var stack1, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=container.strict, alias3=container.lambda, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+var templateCoreSettings = {"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1, alias1=container.strict, alias2=container.lambda, lookupProperty = container.lookupProperty || function(parent, propertyName) {
         if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
           return parent[propertyName];
         }
@@ -2842,16 +2839,10 @@ var templateCoreSettings = {"1":function(container,depth0,helpers,partials,data)
     };
 
   return ((stack1 = container.invokePartial(lookupProperty(partials,"header"),depth0,{"name":"header","data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "")
-    + "\n\n"
-    + ((stack1 = lookupProperty(helpers,"equals").call(alias1,lookupProperty(lookupProperty(data,"root"),"httpClient"),"fetch",{"name":"equals","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":4,"column":0},"end":{"line":4,"column":70}}})) != null ? stack1 : "")
-    + "\n"
-    + ((stack1 = lookupProperty(helpers,"equals").call(alias1,lookupProperty(lookupProperty(data,"root"),"httpClient"),"xhr",{"name":"equals","hash":{},"fn":container.program(3, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":5,"column":0},"end":{"line":5,"column":66}}})) != null ? stack1 : "")
-    + "\n"
-    + ((stack1 = lookupProperty(helpers,"equals").call(alias1,lookupProperty(lookupProperty(data,"root"),"httpClient"),"node",{"name":"equals","hash":{},"fn":container.program(5, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":6,"column":0},"end":{"line":6,"column":68}}})) != null ? stack1 : "")
-    + "\n\ntype Resolver<T> = () => Promise<T>;\ntype Headers = Record<string, string>;\n\nimport { ApiResult } from './ApiResult';\nimport { ApiRequestOptions } from './ApiRequestOptions';\n\nexport interface RequestHookParams {\n    url: string;\n    options: ApiRequestOptions;\n}\n\nexport interface ResponseHookParams {\n    url: string;\n    result: ApiResult;\n    response?: ResponseImplementation;\n}\n\ntype Config = {\n    BASE: string;\n    VERSION: string;\n    WITH_CREDENTIALS: boolean;\n    REQUEST_HOOK?(params: RequestHookParams): Promise<RequestHookParams>;\n    RESPONSE_HOOK?(result: ResponseHookParams): Promise<ApiResult>\n    TOKEN?: string | Resolver<string>;\n    USERNAME?: string | Resolver<string>;\n    PASSWORD?: string | Resolver<string>;\n    HEADERS?: Headers | Resolver<Headers>;\n}\n\nexport const OpenAPI: Config = {\n    BASE: '"
-    + ((stack1 = alias3(alias2(depth0, "server", {"start":{"line":38,"column":14},"end":{"line":38,"column":20}} ), depth0)) != null ? stack1 : "")
+    + "\nimport type { ApiRequestOptions } from './ApiRequestOptions';\n\ntype Resolver<T> = (options: ApiRequestOptions) => Promise<T>;\ntype Headers = Record<string, string>;\n\nimport { ApiResult } from './ApiResult';\nimport { ApiRequestOptions } from './ApiRequestOptions';\n\nexport interface RequestHookParams {\n    url: string;\n    options: ApiRequestOptions;\n}\n\nexport interface ResponseHookParams {\n    url: string;\n    result: ApiResult;\n    response?: ResponseImplementation;\n}\n\ntype Config = {\n    BASE: string;\n    VERSION: string;\n    WITH_CREDENTIALS: boolean;\n    REQUEST_HOOK?(params: RequestHookParams): Promise<RequestHookParams>;\n    RESPONSE_HOOK?(result: ResponseHookParams): Promise<ApiResult>\n    TOKEN?: string | Resolver<string>;\n    USERNAME?: string | Resolver<string>;\n    PASSWORD?: string | Resolver<string>;\n    HEADERS?: Headers | Resolver<Headers>;\n}\n\nexport const OpenAPI: Config = {\n    BASE: '"
+    + ((stack1 = alias2(alias1(depth0, "server", {"start":{"line":35,"column":14},"end":{"line":35,"column":20}} ), depth0)) != null ? stack1 : "")
     + "',\n    VERSION: '"
-    + ((stack1 = alias3(alias2(depth0, "version", {"start":{"line":39,"column":17},"end":{"line":39,"column":24}} ), depth0)) != null ? stack1 : "")
+    + ((stack1 = alias2(alias1(depth0, "version", {"start":{"line":36,"column":17},"end":{"line":36,"column":24}} ), depth0)) != null ? stack1 : "")
     + "',\n    WITH_CREDENTIALS: false,\n    TOKEN: undefined,\n    USERNAME: undefined,\n    PASSWORD: undefined,\n    HEADERS: undefined,\n};";
 },"usePartial":true,"useData":true};
 
@@ -2896,11 +2887,11 @@ var templateCoreRequest = {"1":function(container,depth0,helpers,partials,data) 
 },"usePartial":true,"useData":true};
 
 var xhrGetHeaders = {"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
-    return "async function getHeaders(options: ApiRequestOptions): Promise<Headers> {\n    const headers = new Headers({\n        Accept: 'application/json',\n        ...OpenAPI.HEADERS,\n        ...options.headers,\n    });\n\n    const token = await resolve(OpenAPI.TOKEN);\n    const username = await resolve(OpenAPI.USERNAME);\n    const password = await resolve(OpenAPI.PASSWORD);\n\n    if (isStringWithValue(token)) {\n        headers.append('Authorization', `Bearer ${token}`);\n    }\n\n    if (isStringWithValue(username) && isStringWithValue(password)) {\n        const credentials = btoa(`${username}:${password}`);\n        headers.append('Authorization', `Basic ${credentials}`);\n    }\n\n    if (options.body) {\n        if (isBlob(options.body)) {\n            headers.append('Content-Type', options.body.type || 'application/octet-stream');\n        } else if (isString(options.body)) {\n            headers.append('Content-Type', 'text/plain');\n        } else {\n            headers.append('Content-Type', 'application/json');\n        }\n    }\n    return headers;\n}";
+    return "async function getHeaders(options: ApiRequestOptions): Promise<Headers> {\n    const token = await resolve(options, OpenAPI.TOKEN);\n    const username = await resolve(options, OpenAPI.USERNAME);\n    const password = await resolve(options, OpenAPI.PASSWORD);\n    const defaultHeaders = await resolve(options, OpenAPI.HEADERS);\n\n    const headers = new Headers({\n        Accept: 'application/json',\n        ...defaultHeaders,\n        ...options.headers,\n    });\n\n    if (isStringWithValue(token)) {\n        headers.append('Authorization', `Bearer ${token}`);\n    }\n\n    if (isStringWithValue(username) && isStringWithValue(password)) {\n        const credentials = btoa(`${username}:${password}`);\n        headers.append('Authorization', `Basic ${credentials}`);\n    }\n\n    if (options.body) {\n        if (options.mediaType) {\n            headers.append('Content-Type', options.mediaType);\n        } else if (isBlob(options.body)) {\n            headers.append('Content-Type', options.body.type || 'application/octet-stream');\n        } else if (isString(options.body)) {\n            headers.append('Content-Type', 'text/plain');\n        } else {\n            headers.append('Content-Type', 'application/json');\n        }\n    }\n    return headers;\n}";
 },"useData":true};
 
 var xhrGetRequestBody = {"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
-    return "function getRequestBody(options: ApiRequestOptions): any {\n    if (options.formData) {\n        return getFormData(options.formData);\n    }\n    if (options.body) {\n        if (isString(options.body) || isBlob(options.body)) {\n            return options.body;\n        } else {\n            return JSON.stringify(options.body);\n        }\n    }\n    return undefined;\n}";
+    return "function getRequestBody(options: ApiRequestOptions): any {\n    if (options.formData) {\n        return getFormData(options.formData);\n    }\n    if (options.body) {\n        if (options.mediaType?.includes('/json')) {\n            return JSON.stringify(options.body)\n        } else if (isString(options.body) || isBlob(options.body)) {\n            return options.body;\n        } else {\n            return JSON.stringify(options.body);\n        }\n    }\n    return undefined;\n}";
 },"useData":true};
 
 var xhrGetResponseBody = {"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
@@ -3130,9 +3121,9 @@ var templateExportService = {"1":function(container,depth0,helpers,partials,data
     + ((stack1 = lookupProperty(helpers,"if").call(alias1,lookupProperty(depth0,"parametersHeader"),{"name":"if","hash":{},"fn":container.program(22, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":49,"column":12},"end":{"line":55,"column":19}}})) != null ? stack1 : "")
     + ((stack1 = lookupProperty(helpers,"if").call(alias1,lookupProperty(depth0,"parametersQuery"),{"name":"if","hash":{},"fn":container.program(24, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":56,"column":12},"end":{"line":62,"column":19}}})) != null ? stack1 : "")
     + ((stack1 = lookupProperty(helpers,"if").call(alias1,lookupProperty(depth0,"parametersForm"),{"name":"if","hash":{},"fn":container.program(26, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":63,"column":12},"end":{"line":69,"column":19}}})) != null ? stack1 : "")
-    + ((stack1 = lookupProperty(helpers,"if").call(alias1,lookupProperty(depth0,"parametersBody"),{"name":"if","hash":{},"fn":container.program(28, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":70,"column":12},"end":{"line":72,"column":19}}})) != null ? stack1 : "")
-    + ((stack1 = lookupProperty(helpers,"if").call(alias1,lookupProperty(depth0,"responseHeader"),{"name":"if","hash":{},"fn":container.program(30, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":73,"column":12},"end":{"line":75,"column":19}}})) != null ? stack1 : "")
-    + ((stack1 = lookupProperty(helpers,"if").call(alias1,lookupProperty(depth0,"errors"),{"name":"if","hash":{},"fn":container.program(32, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":76,"column":12},"end":{"line":82,"column":19}}})) != null ? stack1 : "")
+    + ((stack1 = lookupProperty(helpers,"if").call(alias1,lookupProperty(depth0,"parametersBody"),{"name":"if","hash":{},"fn":container.program(28, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":70,"column":12},"end":{"line":75,"column":19}}})) != null ? stack1 : "")
+    + ((stack1 = lookupProperty(helpers,"if").call(alias1,lookupProperty(depth0,"responseHeader"),{"name":"if","hash":{},"fn":container.program(31, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":76,"column":12},"end":{"line":78,"column":19}}})) != null ? stack1 : "")
+    + ((stack1 = lookupProperty(helpers,"if").call(alias1,lookupProperty(depth0,"errors"),{"name":"if","hash":{},"fn":container.program(33, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":79,"column":12},"end":{"line":85,"column":19}}})) != null ? stack1 : "")
     + "        });\n        return result.body;\n    }\n\n";
 },"7":function(container,depth0,helpers,partials,data) {
     return "     * @deprecated\n";
@@ -3244,14 +3235,26 @@ var templateExportService = {"1":function(container,depth0,helpers,partials,data
 
   return "            body: "
     + ((stack1 = container.lambda(container.strict(lookupProperty(depth0,"parametersBody"), "name", {"start":{"line":71,"column":21},"end":{"line":71,"column":40}} ), depth0)) != null ? stack1 : "")
-    + ",\n";
-},"30":function(container,depth0,helpers,partials,data) {
+    + ",\n"
+    + ((stack1 = lookupProperty(helpers,"if").call(depth0 != null ? depth0 : (container.nullContext || {}),lookupProperty(lookupProperty(depth0,"parametersBody"),"mediaType"),{"name":"if","hash":{},"fn":container.program(29, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":72,"column":12},"end":{"line":74,"column":19}}})) != null ? stack1 : "");
+},"29":function(container,depth0,helpers,partials,data) {
+    var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return "            mediaType: '"
+    + ((stack1 = container.lambda(container.strict(lookupProperty(depth0,"parametersBody"), "mediaType", {"start":{"line":73,"column":27},"end":{"line":73,"column":51}} ), depth0)) != null ? stack1 : "")
+    + "',\n";
+},"31":function(container,depth0,helpers,partials,data) {
     var stack1;
 
   return "            responseHeader: '"
-    + ((stack1 = container.lambda(container.strict(depth0, "responseHeader", {"start":{"line":74,"column":32},"end":{"line":74,"column":46}} ), depth0)) != null ? stack1 : "")
+    + ((stack1 = container.lambda(container.strict(depth0, "responseHeader", {"start":{"line":77,"column":32},"end":{"line":77,"column":46}} ), depth0)) != null ? stack1 : "")
     + "',\n";
-},"32":function(container,depth0,helpers,partials,data) {
+},"33":function(container,depth0,helpers,partials,data) {
     var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
         if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
           return parent[propertyName];
@@ -3260,15 +3263,15 @@ var templateExportService = {"1":function(container,depth0,helpers,partials,data
     };
 
   return "            errors: {\n"
-    + ((stack1 = lookupProperty(helpers,"each").call(depth0 != null ? depth0 : (container.nullContext || {}),lookupProperty(depth0,"errors"),{"name":"each","hash":{},"fn":container.program(33, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":78,"column":16},"end":{"line":80,"column":25}}})) != null ? stack1 : "")
+    + ((stack1 = lookupProperty(helpers,"each").call(depth0 != null ? depth0 : (container.nullContext || {}),lookupProperty(depth0,"errors"),{"name":"each","hash":{},"fn":container.program(34, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":81,"column":16},"end":{"line":83,"column":25}}})) != null ? stack1 : "")
     + "            },\n";
-},"33":function(container,depth0,helpers,partials,data) {
+},"34":function(container,depth0,helpers,partials,data) {
     var stack1, alias1=container.strict, alias2=container.lambda;
 
   return "                "
-    + ((stack1 = alias2(alias1(depth0, "code", {"start":{"line":79,"column":19},"end":{"line":79,"column":23}} ), depth0)) != null ? stack1 : "")
+    + ((stack1 = alias2(alias1(depth0, "code", {"start":{"line":82,"column":19},"end":{"line":82,"column":23}} ), depth0)) != null ? stack1 : "")
     + ": `"
-    + ((stack1 = alias2(alias1(depth0, "description", {"start":{"line":79,"column":32},"end":{"line":79,"column":43}} ), depth0)) != null ? stack1 : "")
+    + ((stack1 = alias2(alias1(depth0, "description", {"start":{"line":82,"column":32},"end":{"line":82,"column":43}} ), depth0)) != null ? stack1 : "")
     + "`,\n";
 },"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, alias1=depth0 != null ? depth0 : (container.nullContext || {}), lookupProperty = container.lookupProperty || function(parent, propertyName) {
@@ -3286,7 +3289,7 @@ var templateExportService = {"1":function(container,depth0,helpers,partials,data
     + "\nexport class "
     + ((stack1 = container.lambda(container.strict(depth0, "name", {"start":{"line":13,"column":16},"end":{"line":13,"column":20}} ), depth0)) != null ? stack1 : "")
     + " {\n\n"
-    + ((stack1 = lookupProperty(helpers,"each").call(alias1,lookupProperty(depth0,"operations"),{"name":"each","hash":{},"fn":container.program(6, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":15,"column":4},"end":{"line":87,"column":13}}})) != null ? stack1 : "")
+    + ((stack1 = lookupProperty(helpers,"each").call(alias1,lookupProperty(depth0,"operations"),{"name":"each","hash":{},"fn":container.program(6, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":15,"column":4},"end":{"line":90,"column":13}}})) != null ? stack1 : "")
     + "}";
 },"usePartial":true,"useData":true};
 
@@ -4204,7 +4207,7 @@ var partialSchemaGeneric = {"1":function(container,depth0,helpers,partials,data)
     var stack1;
 
   return "    type: '"
-    + ((stack1 = container.lambda(container.strict(depth0, "base", {"start":{"line":3,"column":14},"end":{"line":3,"column":18}} ), depth0)) != null ? stack1 : "")
+    + ((stack1 = container.lambda(container.strict(depth0, "type", {"start":{"line":3,"column":14},"end":{"line":3,"column":18}} ), depth0)) != null ? stack1 : "")
     + "',\n";
 },"3":function(container,depth0,helpers,partials,data) {
     var stack1;
@@ -4720,9 +4723,7 @@ var partialTypeIntersection = {"1":function(container,depth0,helpers,partials,da
         return undefined
     };
 
-  return "("
-    + ((stack1 = lookupProperty(helpers,"intersection").call(depth0 != null ? depth0 : (container.nullContext || {}),lookupProperty(depth0,"properties"),lookupProperty(depth0,"parent"),{"name":"intersection","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":1,"column":1},"end":{"line":1,"column":61}}})) != null ? stack1 : "")
-    + ")"
+  return ((stack1 = lookupProperty(helpers,"intersection").call(depth0 != null ? depth0 : (container.nullContext || {}),lookupProperty(depth0,"properties"),lookupProperty(depth0,"parent"),{"name":"intersection","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":60}}})) != null ? stack1 : "")
     + ((stack1 = container.invokePartial(lookupProperty(partials,"isNullable"),depth0,{"name":"isNullable","data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "");
 },"usePartial":true,"useData":true};
 
@@ -4750,9 +4751,7 @@ var partialTypeUnion = {"1":function(container,depth0,helpers,partials,data) {
         return undefined
     };
 
-  return "("
-    + ((stack1 = lookupProperty(helpers,"union").call(depth0 != null ? depth0 : (container.nullContext || {}),lookupProperty(depth0,"properties"),lookupProperty(depth0,"parent"),{"name":"union","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":1,"column":1},"end":{"line":1,"column":47}}})) != null ? stack1 : "")
-    + ")"
+  return ((stack1 = lookupProperty(helpers,"union").call(depth0 != null ? depth0 : (container.nullContext || {}),lookupProperty(depth0,"properties"),lookupProperty(depth0,"parent"),{"name":"union","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":46}}})) != null ? stack1 : "")
     + ((stack1 = container.invokePartial(lookupProperty(partials,"isNullable"),depth0,{"name":"isNullable","data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "");
 },"usePartial":true,"useData":true};
 
@@ -4769,12 +4768,22 @@ function registerHandlebarHelpers(root) {
     Handlebars.registerHelper('union', function (properties, parent, options) {
         const type = Handlebars.partials['type'];
         const types = properties.map(property => type(Object.assign(Object.assign(Object.assign({}, root), property), { parent })));
-        return options.fn(types.filter(unique).join(' | '));
+        const uniqueTypes = types.filter(unique);
+        let uniqueTypesString = uniqueTypes.join(' | ');
+        if (uniqueTypes.length > 1) {
+            uniqueTypesString = `(${uniqueTypesString})`;
+        }
+        return options.fn(uniqueTypesString);
     });
     Handlebars.registerHelper('intersection', function (properties, parent, options) {
         const type = Handlebars.partials['type'];
         const types = properties.map(property => type(Object.assign(Object.assign(Object.assign({}, root), property), { parent })));
-        return options.fn(types.filter(unique).join(' & '));
+        const uniqueTypes = types.filter(unique);
+        let uniqueTypesString = uniqueTypes.join(' & ');
+        if (uniqueTypes.length > 1) {
+            uniqueTypesString = `(${uniqueTypesString})`;
+        }
+        return options.fn(uniqueTypesString);
     });
     Handlebars.registerHelper('enumerator', function (enumerators, parent, name, options) {
         if (!root.useUnionTypes && parent && name) {
