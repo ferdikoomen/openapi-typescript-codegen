@@ -2830,8 +2830,35 @@ var nodeResponseType = {"compiler":[8,">= 4.3.0"],"main":function(container,dept
     return "import { Response as ResponseImplementation } from 'node-fetch';";
 },"useData":true};
 
-var templateCoreSettings = {"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
-    var stack1, alias1=container.strict, alias2=container.lambda, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+var templateCoreSettings = {"1":function(container,depth0,helpers,partials,data) {
+    var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return ((stack1 = container.invokePartial(lookupProperty(partials,"fetch/responseType"),depth0,{"name":"fetch/responseType","data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "");
+},"3":function(container,depth0,helpers,partials,data) {
+    var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return ((stack1 = container.invokePartial(lookupProperty(partials,"xhr/responseType"),depth0,{"name":"xhr/responseType","data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "");
+},"5":function(container,depth0,helpers,partials,data) {
+    var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return ((stack1 = container.invokePartial(lookupProperty(partials,"node/responseType"),depth0,{"name":"node/responseType","data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "");
+},"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=container.strict, alias3=container.lambda, lookupProperty = container.lookupProperty || function(parent, propertyName) {
         if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
           return parent[propertyName];
         }
@@ -2839,10 +2866,16 @@ var templateCoreSettings = {"compiler":[8,">= 4.3.0"],"main":function(container,
     };
 
   return ((stack1 = container.invokePartial(lookupProperty(partials,"header"),depth0,{"name":"header","data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "")
-    + "\nimport type { ApiRequestOptions } from './ApiRequestOptions';\n\ntype Resolver<T> = (options: ApiRequestOptions) => Promise<T>;\ntype Headers = Record<string, string>;\n\nimport { ApiResult } from './ApiResult';\nimport { ApiRequestOptions } from './ApiRequestOptions';\n\nexport interface RequestHookParams {\n    url: string;\n    options: ApiRequestOptions;\n}\n\nexport interface ResponseHookParams {\n    url: string;\n    result: ApiResult;\n    response?: ResponseImplementation;\n}\n\ntype Config = {\n    BASE: string;\n    VERSION: string;\n    WITH_CREDENTIALS: boolean;\n    REQUEST_HOOK?(params: RequestHookParams): Promise<RequestHookParams>;\n    RESPONSE_HOOK?(result: ResponseHookParams): Promise<ApiResult>\n    TOKEN?: string | Resolver<string>;\n    USERNAME?: string | Resolver<string>;\n    PASSWORD?: string | Resolver<string>;\n    HEADERS?: Headers | Resolver<Headers>;\n}\n\nexport const OpenAPI: Config = {\n    BASE: '"
-    + ((stack1 = alias2(alias1(depth0, "server", {"start":{"line":35,"column":14},"end":{"line":35,"column":20}} ), depth0)) != null ? stack1 : "")
+    + "\n"
+    + ((stack1 = lookupProperty(helpers,"equals").call(alias1,lookupProperty(lookupProperty(data,"root"),"httpClient"),"fetch",{"name":"equals","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":3,"column":0},"end":{"line":3,"column":70}}})) != null ? stack1 : "")
+    + "\n"
+    + ((stack1 = lookupProperty(helpers,"equals").call(alias1,lookupProperty(lookupProperty(data,"root"),"httpClient"),"xhr",{"name":"equals","hash":{},"fn":container.program(3, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":4,"column":0},"end":{"line":4,"column":66}}})) != null ? stack1 : "")
+    + "\n"
+    + ((stack1 = lookupProperty(helpers,"equals").call(alias1,lookupProperty(lookupProperty(data,"root"),"httpClient"),"node",{"name":"equals","hash":{},"fn":container.program(5, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":5,"column":0},"end":{"line":5,"column":68}}})) != null ? stack1 : "")
+    + "\n\nimport type { ApiRequestOptions } from './ApiRequestOptions';\n\ntype Resolver<T> = (options: ApiRequestOptions) => Promise<T>;\ntype Headers = Record<string, string>;\n\nimport { ApiResult } from './ApiResult';\nimport { ApiRequestOptions } from './ApiRequestOptions';\n\nexport interface RequestHookParams {\n    url: string;\n    options: ApiRequestOptions;\n}\n\nexport interface ResponseHookParams {\n    url: string;\n    result: ApiResult;\n    response?: ResponseImplementation;\n}\n\ntype Config = {\n    BASE: string;\n    VERSION: string;\n    WITH_CREDENTIALS: boolean;\n    REQUEST_HOOK?(params: RequestHookParams): Promise<RequestHookParams>;\n    RESPONSE_HOOK?(result: ResponseHookParams): Promise<ApiResult>\n    TOKEN?: string | Resolver<string>;\n    USERNAME?: string | Resolver<string>;\n    PASSWORD?: string | Resolver<string>;\n    HEADERS?: Headers | Resolver<Headers>;\n}\n\nexport const OpenAPI: Config = {\n    BASE: '"
+    + ((stack1 = alias3(alias2(depth0, "server", {"start":{"line":39,"column":14},"end":{"line":39,"column":20}} ), depth0)) != null ? stack1 : "")
     + "',\n    VERSION: '"
-    + ((stack1 = alias2(alias1(depth0, "version", {"start":{"line":36,"column":17},"end":{"line":36,"column":24}} ), depth0)) != null ? stack1 : "")
+    + ((stack1 = alias3(alias2(depth0, "version", {"start":{"line":40,"column":17},"end":{"line":40,"column":24}} ), depth0)) != null ? stack1 : "")
     + "',\n    WITH_CREDENTIALS: false,\n    TOKEN: undefined,\n    USERNAME: undefined,\n    PASSWORD: undefined,\n    HEADERS: undefined,\n};";
 },"usePartial":true,"useData":true};
 
