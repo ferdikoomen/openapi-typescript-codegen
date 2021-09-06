@@ -68,7 +68,6 @@ type Resolver<T> = (options: ApiRequestOptions) => Promise<T>;
 type Headers = Record<string, string>;
 
 import { ApiResult } from './ApiResult';
-import { ApiRequestOptions } from './ApiRequestOptions';
 
 export interface RequestHookParams {
     url: string;
@@ -2453,7 +2452,6 @@ type Resolver<T> = (options: ApiRequestOptions) => Promise<T>;
 type Headers = Record<string, string>;
 
 import { ApiResult } from './ApiResult';
-import { ApiRequestOptions } from './ApiRequestOptions';
 
 export interface RequestHookParams {
     url: string;
