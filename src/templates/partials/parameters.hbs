@@ -4,7 +4,7 @@
 {{#each parameters}}
 {{{name}}}{{#if default}} = {{{default}}}{{/if}},
 {{/each}}
-}: {{name}}{{capitalizeFirstOnly method}}Params
+}: {{capitalize name}}{{capitalize (lowercase method)}}Params
 {{~else}}
 
 {{#each parameters}}

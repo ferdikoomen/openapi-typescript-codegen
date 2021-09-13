@@ -38,7 +38,8 @@ const handlebarsPlugin = () => ({
                     union: true,
                     intersection: true,
                     enumerator: true,
-                    capitalizeFirstOnly: true,
+                    lowercase: true,
+                    capitalize: true,
                 },
             });
             return `export default ${templateSpec};`;

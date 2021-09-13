@@ -1,6 +1,6 @@
 {{#if parameters}}
 {{#if @root.useOptions~}}
-export type {{{name}}}{{{capitalizeFirstOnly method}}}Params = {
+export type {{{capitalize name}}}{{{capitalize (lowercase method)}}}Params = {
   {{#each parameters}}
   {{#if description}}
   /** {{{description}}} **/

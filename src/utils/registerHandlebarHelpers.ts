@@ -52,7 +52,11 @@ export function registerHandlebarHelpers(root: { httpClient: HttpClient; useOpti
         );
     });
 
-    Handlebars.registerHelper('capitalizeFirstOnly', function (this: any, a: string): string {
-        return a.charAt(0).toUpperCase() + a.slice(1).toLowerCase();
+    Handlebars.registerHelper('lowercase', function (a: string): string {
+        return a.toLowerCase();
+    });
+
+    Handlebars.registerHelper('capitalize', function (a: string): string {
+        return a.charAt(0).toUpperCase() + a.slice(1);
     });
 }

@@ -1766,7 +1766,7 @@ exports[`v2 should generate: ./test/generated/v2/services/CollectionFormatServic
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
-export type collectionFormatGetParams = {
+export type CollectionFormatGetParams = {
     /** This is an array parameter that is send as csv format (comma-separated values) **/
     parameterArrayCsv: Array<string>,
     /** This is an array parameter that is send as ssv format (space-separated values) **/
@@ -1791,7 +1791,7 @@ export class CollectionFormatService {
         parameterArrayTsv,
         parameterArrayPipes,
         parameterArrayMulti,
-    }: collectionFormatGetParams): Promise<void> {
+    }: CollectionFormatGetParams): Promise<void> {
         const result = await __request({
             method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/collectionFormat\`,
@@ -1817,7 +1817,7 @@ import type { ModelWithString } from '../models/ModelWithString';
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
-export type complexTypesGetParams = {
+export type ComplexTypesGetParams = {
     /** Parameter containing object **/
     parameterObject: {
         first?: {
@@ -1840,7 +1840,7 @@ export class ComplexService {
     public static async complexTypes({
         parameterObject,
         parameterReference,
-    }: complexTypesGetParams): Promise<Array<ModelWithString>> {
+    }: ComplexTypesGetParams): Promise<Array<ModelWithString>> {
         const result = await __request({
             method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/complex\`,
@@ -1867,7 +1867,7 @@ import type { ModelWithString } from '../models/ModelWithString';
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
-export type callWithDefaultParametersGetParams = {
+export type CallWithDefaultParametersGetParams = {
     /** This is a simple string with default value **/
     parameterString?: string,
     /** This is a simple number with default value **/
@@ -1880,7 +1880,7 @@ export type callWithDefaultParametersGetParams = {
     parameterModel?: ModelWithString,
 }
 
-export type callWithDefaultOptionalParametersPostParams = {
+export type CallWithDefaultOptionalParametersPostParams = {
     /** This is a simple string that is optional with default value **/
     parameterString?: string,
     /** This is a simple number that is optional with default value **/
@@ -1893,7 +1893,7 @@ export type callWithDefaultOptionalParametersPostParams = {
     parameterModel?: ModelWithString,
 }
 
-export type callToTestOrderOfParamsPutParams = {
+export type CallToTestOrderOfParamsPutParams = {
     /** This is a string with no default **/
     parameterStringWithNoDefault: string,
     /** This is a optional string with default **/
@@ -1922,7 +1922,7 @@ export class DefaultsService {
         parameterModel = {
             \\"prop\\": \\"Hello World!\\"
         },
-    }: callWithDefaultParametersGetParams): Promise<void> {
+    }: CallWithDefaultParametersGetParams): Promise<void> {
         const result = await __request({
             method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/defaults\`,
@@ -1948,7 +1948,7 @@ export class DefaultsService {
         parameterModel = {
             \\"prop\\": \\"Hello World!\\"
         },
-    }: callWithDefaultOptionalParametersPostParams): Promise<void> {
+    }: CallWithDefaultOptionalParametersPostParams): Promise<void> {
         const result = await __request({
             method: 'POST',
             path: \`/api/v\${OpenAPI.VERSION}/defaults\`,
@@ -1973,7 +1973,7 @@ export class DefaultsService {
         parameterOptionalStringWithNoDefault,
         parameterStringWithDefault = 'Hello World!',
         parameterStringWithEmptyDefault = '',
-    }: callToTestOrderOfParamsPutParams): Promise<void> {
+    }: CallToTestOrderOfParamsPutParams): Promise<void> {
         const result = await __request({
             method: 'PUT',
             path: \`/api/v\${OpenAPI.VERSION}/defaults\`,
@@ -2111,7 +2111,7 @@ exports[`v2 should generate: ./test/generated/v2/services/ParametersService.ts 1
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
-export type callWithParametersGetParams = {
+export type CallWithParametersGetParams = {
     /** This is the parameter that goes into the header **/
     parameterHeader: string,
     /** This is the parameter that goes into the query params **/
@@ -2124,7 +2124,7 @@ export type callWithParametersGetParams = {
     parameterPath: string,
 }
 
-export type callWithWeirdParameterNamesGetParams = {
+export type CallWithWeirdParameterNamesGetParams = {
     /** This is the parameter that goes into the request header **/
     parameterHeader: string,
     /** This is the parameter that goes into the request query params **/
@@ -2155,7 +2155,7 @@ export class ParametersService {
         parameterForm,
         parameterBody,
         parameterPath,
-    }: callWithParametersGetParams): Promise<void> {
+    }: CallWithParametersGetParams): Promise<void> {
         const result = await __request({
             method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/parameters/\${parameterPath}\`,
@@ -2185,7 +2185,7 @@ export class ParametersService {
         parameterPath2,
         parameterPath3,
         _default,
-    }: callWithWeirdParameterNamesGetParams): Promise<void> {
+    }: CallWithWeirdParameterNamesGetParams): Promise<void> {
         const result = await __request({
             method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/parameters/\${parameterPath1}/\${parameterPath2}/\${parameterPath3}\`,
@@ -2373,7 +2373,7 @@ exports[`v2 should generate: ./test/generated/v2/services/TypesService.ts 1`] = 
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
-export type typesGetParams = {
+export type TypesGetParams = {
     /** This is an array parameter **/
     parameterArray: Array<string>,
     /** This is a dictionary parameter **/
@@ -2411,7 +2411,7 @@ export class TypesService {
         parameterBoolean = true,
         parameterObject = null,
         id,
-    }: typesGetParams): Promise<number | string | boolean | any> {
+    }: TypesGetParams): Promise<number | string | boolean | any> {
         const result = await __request({
             method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/types\`,
@@ -4465,7 +4465,7 @@ exports[`v3 should generate: ./test/generated/v3/services/CollectionFormatServic
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
-export type collectionFormatGetParams = {
+export type CollectionFormatGetParams = {
     /** This is an array parameter that is send as csv format (comma-separated values) **/
     parameterArrayCsv: Array<string> | null,
     /** This is an array parameter that is send as ssv format (space-separated values) **/
@@ -4490,7 +4490,7 @@ export class CollectionFormatService {
         parameterArrayTsv,
         parameterArrayPipes,
         parameterArrayMulti,
-    }: collectionFormatGetParams): Promise<void> {
+    }: CollectionFormatGetParams): Promise<void> {
         const result = await __request({
             method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/collectionFormat\`,
@@ -4519,7 +4519,7 @@ import type { ModelWithString } from '../models/ModelWithString';
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
-export type complexTypesGetParams = {
+export type ComplexTypesGetParams = {
     /** Parameter containing object **/
     parameterObject: {
         first?: {
@@ -4532,7 +4532,7 @@ export type complexTypesGetParams = {
     parameterReference: ModelWithString,
 }
 
-export type complexParamsPutParams = {
+export type ComplexParamsPutParams = {
     id: number,
     requestBody?: {
         readonly key: string | null,
@@ -4559,7 +4559,7 @@ export class ComplexService {
     public static async complexTypes({
         parameterObject,
         parameterReference,
-    }: complexTypesGetParams): Promise<Array<ModelWithString>> {
+    }: ComplexTypesGetParams): Promise<Array<ModelWithString>> {
         const result = await __request({
             method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/complex\`,
@@ -4582,7 +4582,7 @@ export class ComplexService {
     public static async complexParams({
         id,
         requestBody,
-    }: complexParamsPutParams): Promise<ModelWithString> {
+    }: ComplexParamsPutParams): Promise<ModelWithString> {
         const result = await __request({
             method: 'PUT',
             path: \`/api/v\${OpenAPI.VERSION}/complex/\${id}\`,
@@ -4603,7 +4603,7 @@ import type { ModelWithString } from '../models/ModelWithString';
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
-export type callWithDefaultParametersGetParams = {
+export type CallWithDefaultParametersGetParams = {
     /** This is a simple string with default value **/
     parameterString?: string | null,
     /** This is a simple number with default value **/
@@ -4616,7 +4616,7 @@ export type callWithDefaultParametersGetParams = {
     parameterModel?: ModelWithString | null,
 }
 
-export type callWithDefaultOptionalParametersPostParams = {
+export type CallWithDefaultOptionalParametersPostParams = {
     /** This is a simple string that is optional with default value **/
     parameterString?: string,
     /** This is a simple number that is optional with default value **/
@@ -4629,7 +4629,7 @@ export type callWithDefaultOptionalParametersPostParams = {
     parameterModel?: ModelWithString,
 }
 
-export type callToTestOrderOfParamsPutParams = {
+export type CallToTestOrderOfParamsPutParams = {
     /** This is a string with no default **/
     parameterStringWithNoDefault: string,
     /** This is a optional string with default **/
@@ -4658,7 +4658,7 @@ export class DefaultsService {
         parameterModel = {
             \\"prop\\": \\"Hello World!\\"
         },
-    }: callWithDefaultParametersGetParams): Promise<void> {
+    }: CallWithDefaultParametersGetParams): Promise<void> {
         const result = await __request({
             method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/defaults\`,
@@ -4684,7 +4684,7 @@ export class DefaultsService {
         parameterModel = {
             \\"prop\\": \\"Hello World!\\"
         },
-    }: callWithDefaultOptionalParametersPostParams): Promise<void> {
+    }: CallWithDefaultOptionalParametersPostParams): Promise<void> {
         const result = await __request({
             method: 'POST',
             path: \`/api/v\${OpenAPI.VERSION}/defaults\`,
@@ -4709,7 +4709,7 @@ export class DefaultsService {
         parameterOptionalStringWithNoDefault,
         parameterStringWithDefault = 'Hello World!',
         parameterStringWithEmptyDefault = '',
-    }: callToTestOrderOfParamsPutParams): Promise<void> {
+    }: CallToTestOrderOfParamsPutParams): Promise<void> {
         const result = await __request({
             method: 'PUT',
             path: \`/api/v\${OpenAPI.VERSION}/defaults\`,
@@ -4879,7 +4879,7 @@ import type { ModelWithString } from '../models/ModelWithString';
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
-export type callWithParametersGetParams = {
+export type CallWithParametersGetParams = {
     /** This is the parameter that goes into the header **/
     parameterHeader: string | null,
     /** This is the parameter that goes into the query params **/
@@ -4894,7 +4894,7 @@ export type callWithParametersGetParams = {
     requestBody: ModelWithString | null,
 }
 
-export type callWithWeirdParameterNamesGetParams = {
+export type CallWithWeirdParameterNamesGetParams = {
     /** This is the parameter that goes into the request header **/
     parameterHeader: string | null,
     /** This is the parameter that goes into the request query params **/
@@ -4915,14 +4915,14 @@ export type callWithWeirdParameterNamesGetParams = {
     _default?: string,
 }
 
-export type getCallWithOptionalParamGetParams = {
+export type GetCallWithOptionalParamGetParams = {
     /** This is a required parameter **/
     requestBody: ModelWithString,
     /** This is an optional parameter **/
     parameter?: string,
 }
 
-export type postCallWithOptionalParamPostParams = {
+export type PostCallWithOptionalParamPostParams = {
     /** This is a required parameter **/
     parameter: string,
     /** This is an optional parameter **/
@@ -4942,7 +4942,7 @@ export class ParametersService {
         parameterCookie,
         parameterPath,
         requestBody,
-    }: callWithParametersGetParams): Promise<void> {
+    }: CallWithParametersGetParams): Promise<void> {
         const result = await __request({
             method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/parameters/\${parameterPath}\`,
@@ -4977,7 +4977,7 @@ export class ParametersService {
         parameterPath2,
         parameterPath3,
         _default,
-    }: callWithWeirdParameterNamesGetParams): Promise<void> {
+    }: CallWithWeirdParameterNamesGetParams): Promise<void> {
         const result = await __request({
             method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/parameters/\${parameterPath1}/\${parameterPath2}/\${parameterPath3}\`,
@@ -5006,7 +5006,7 @@ export class ParametersService {
     public static async getCallWithOptionalParam({
         requestBody,
         parameter,
-    }: getCallWithOptionalParamGetParams): Promise<void> {
+    }: GetCallWithOptionalParamGetParams): Promise<void> {
         const result = await __request({
             method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/parameters/\`,
@@ -5025,7 +5025,7 @@ export class ParametersService {
     public static async postCallWithOptionalParam({
         parameter,
         requestBody,
-    }: postCallWithOptionalParamPostParams): Promise<void> {
+    }: PostCallWithOptionalParamPostParams): Promise<void> {
         const result = await __request({
             method: 'POST',
             path: \`/api/v\${OpenAPI.VERSION}/parameters/\`,
@@ -5049,7 +5049,7 @@ import type { ModelWithString } from '../models/ModelWithString';
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
-export type postRequestBodyServicePostParams = {
+export type PostRequestBodyServicePostParams = {
     /** A reusable request body **/
     requestBody?: ModelWithString,
 }
@@ -5062,7 +5062,7 @@ export class RequestBodyService {
      */
     public static async postRequestBodyService({
         requestBody,
-    }: postRequestBodyServicePostParams): Promise<void> {
+    }: PostRequestBodyServicePostParams): Promise<void> {
         const result = await __request({
             method: 'POST',
             path: \`/api/v\${OpenAPI.VERSION}/requestBody/\`,
@@ -5241,7 +5241,7 @@ exports[`v3 should generate: ./test/generated/v3/services/TypesService.ts 1`] = 
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
-export type typesGetParams = {
+export type TypesGetParams = {
     /** This is an array parameter **/
     parameterArray: Array<string> | null,
     /** This is a dictionary parameter **/
@@ -5279,7 +5279,7 @@ export class TypesService {
         parameterBoolean = true,
         parameterObject = null,
         id,
-    }: typesGetParams): Promise<number | string | boolean | any> {
+    }: TypesGetParams): Promise<number | string | boolean | any> {
         const result = await __request({
             method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/types\`,
@@ -5306,7 +5306,7 @@ exports[`v3 should generate: ./test/generated/v3/services/UploadService.ts 1`] =
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
-export type uploadFilePostParams = {
+export type UploadFilePostParams = {
     /** Supply a file reference for upload **/
     file: Blob,
 }
@@ -5320,7 +5320,7 @@ export class UploadService {
      */
     public static async uploadFile({
         file,
-    }: uploadFilePostParams): Promise<boolean> {
+    }: UploadFilePostParams): Promise<boolean> {
         const result = await __request({
             method: 'POST',
             path: \`/api/v\${OpenAPI.VERSION}/upload\`,
