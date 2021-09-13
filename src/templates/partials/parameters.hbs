@@ -4,14 +4,7 @@
 {{#each parameters}}
 {{{name}}}{{#if default}} = {{{default}}}{{/if}},
 {{/each}}
-}: {
-{{#each parameters}}
-{{#if description}}
-/** {{{description}}} **/
-{{/if}}
-{{{name}}}{{>isRequired}}: {{>type}},
-{{/each}}
-}
+}: {{name}}{{capitalizeFirstOnly method}}Params
 {{~else}}
 
 {{#each parameters}}

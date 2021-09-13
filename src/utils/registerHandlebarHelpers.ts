@@ -51,4 +51,8 @@ export function registerHandlebarHelpers(root: { httpClient: HttpClient; useOpti
                 .join(' | ')
         );
     });
+
+    Handlebars.registerHelper('capitalizeFirstOnly', function (this: any, a: string): string {
+        return a.charAt(0).toUpperCase() + a.slice(1).toLowerCase();
+    });
 }

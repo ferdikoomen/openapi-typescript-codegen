@@ -10,6 +10,10 @@ import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 {{/if}}
 
+{{#each operations}}
+{{>parametersTypes}}
+{{/each}}
+
 export class {{{name}}} {
 
     {{#each operations}}

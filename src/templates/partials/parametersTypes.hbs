@@ -1,0 +1,13 @@
+{{#if parameters}}
+{{#if @root.useOptions~}}
+export type {{{name}}}{{{capitalizeFirstOnly method}}}Params = {
+  {{#each parameters}}
+  {{#if description}}
+  /** {{{description}}} **/
+  {{/if}}
+  {{{name}}}{{>isRequired}}: {{>type}},
+  {{/each}}
+}
+
+{{/if}}
+{{/if}}
