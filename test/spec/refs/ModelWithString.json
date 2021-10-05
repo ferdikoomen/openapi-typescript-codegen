@@ -1,0 +1,10 @@
+{
+    "description": "This is a model with one string property",
+    "type": "object",
+    "properties": {
+        "prop": {
+            "description": "This is a simple string property",
+            "type": "string"
+        }
+    }
+}

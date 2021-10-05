@@ -13,12 +13,11 @@ import { readSpec } from './readSpec';
 export async function getOpenApiSpec(input: string): Promise<any> {
     const extension = extname(input).toLowerCase();
     const content = await readSpec(input);
-    let rootObject: any;
     switch (extension) {
         case '.yml':
         case '.yaml':
             try {
-                rootObject = load(content);
+                load(content);
             } catch (e) {
                 throw new Error(`Could not parse OpenApi YAML: "${input}"`);
             }
@@ -26,11 +25,12 @@ export async function getOpenApiSpec(input: string): Promise<any> {
 
         default:
             try {
-                rootObject = JSON.parse(content);
+                JSON.parse(content);
             } catch (e) {
+                console.log(e);
                 throw new Error(`Could not parse OpenApi JSON: "${input}"`);
             }
             break;
     }
-    return await RefParser.bundle(rootObject);
+    return await RefParser.bundle(input);
 }

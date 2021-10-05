@@ -1464,24 +1464,10 @@
                 }
             },
             "ModelWithBoolean": {
-                "description": "This is a model with one boolean property",
-                "type": "object",
-                "properties": {
-                    "prop": {
-                        "description": "This is a simple boolean property",
-                        "type": "boolean"
-                    }
-                }
+                "$ref": "./refs/ModelWithBoolean.yaml"
             },
             "ModelWithString": {
-                "description": "This is a model with one string property",
-                "type": "object",
-                "properties": {
-                    "prop": {
-                        "description": "This is a simple string property",
-                        "type": "string"
-                    }
-                }
+                "$ref": "./refs/ModelWithString.json"
             },
             "ModelWithEnum": {
                 "description": "This is a model with one enum",
