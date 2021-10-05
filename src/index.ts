@@ -1,7 +1,8 @@
+import RefParser from 'json-schema-ref-parser';
+
 import { HttpClient } from './HttpClient';
 import { parse as parseV2 } from './openApi/v2';
 import { parse as parseV3 } from './openApi/v3';
-import { getOpenApiSpec } from './utils/getOpenApiSpec';
 import { getOpenApiVersion, OpenApiVersion } from './utils/getOpenApiVersion';
 import { isString } from './utils/isString';
 import { postProcessClient } from './utils/postProcessClient';
@@ -53,7 +54,7 @@ export async function generate({
     request,
     write = true,
 }: Options): Promise<void> {
-    const openApi = isString(input) ? await getOpenApiSpec(input) : input;
+    const openApi = isString(input) ? ((await RefParser.bundle(input)) as any) : input;
     const openApiVersion = getOpenApiVersion(openApi);
     const templates = registerHandlebarTemplates({
         httpClient,
