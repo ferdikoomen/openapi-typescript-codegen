@@ -44,4 +44,23 @@ describe('v3', () => {
             expect(content).toMatchSnapshot(file);
         });
     });
+
+    it('should generate for node client', async () => {
+        await OpenAPI.generate({
+            input: './test/spec/v3.json',
+            output: './test/generated/v3-node/',
+            httpClient: OpenAPI.HttpClient.NODE,
+            useOptions: false,
+            useUnionTypes: false,
+            exportCore: true,
+            exportSchemas: true,
+            exportModels: true,
+            exportServices: true,
+        });
+
+        glob.sync('./test/generated/v3-node/**/*.ts').forEach(file => {
+            const content = fs.readFileSync(file, 'utf8').toString();
+            expect(content).toMatchSnapshot(file);
+        });
+    });
 });
