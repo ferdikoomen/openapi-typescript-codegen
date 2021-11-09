@@ -180,11 +180,13 @@ import type { ApiRequestOptions } from './ApiRequestOptions';
 
 type Resolver<T> = (options: ApiRequestOptions) => Promise<T>;
 type Headers = Record<string, string>;
+type CredentialModes = 'include' | 'omit' | 'same-origin'
 
 type Config = {
     BASE: string;
     VERSION: string;
     WITH_CREDENTIALS: boolean;
+    CREDENTIALS: CredentialModes;
     TOKEN?: string | Resolver<string>;
     USERNAME?: string | Resolver<string>;
     PASSWORD?: string | Resolver<string>;
@@ -196,6 +198,7 @@ export const OpenAPI: Config = {
     BASE: 'http://localhost:3000/base',
     VERSION: '1.0',
     WITH_CREDENTIALS: false,
+    CREDENTIALS: 'include',
     TOKEN: undefined,
     USERNAME: undefined,
     PASSWORD: undefined,
@@ -371,7 +374,7 @@ async function sendRequest(
     };
 
     if (OpenAPI.WITH_CREDENTIALS) {
-        request.credentials = 'include';
+        request.credentials = OpenAPI.CREDENTIALS;
     }
 
     onCancel(() => controller.abort());
@@ -2688,11 +2691,13 @@ import type { ApiRequestOptions } from './ApiRequestOptions';
 
 type Resolver<T> = (options: ApiRequestOptions) => Promise<T>;
 type Headers = Record<string, string>;
+type CredentialModes = 'include' | 'omit' | 'same-origin'
 
 type Config = {
     BASE: string;
     VERSION: string;
     WITH_CREDENTIALS: boolean;
+    CREDENTIALS: CredentialModes;
     TOKEN?: string | Resolver<string>;
     USERNAME?: string | Resolver<string>;
     PASSWORD?: string | Resolver<string>;
@@ -2704,6 +2709,7 @@ export const OpenAPI: Config = {
     BASE: 'http://localhost:3000/base',
     VERSION: '1.0',
     WITH_CREDENTIALS: false,
+    CREDENTIALS: 'include',
     TOKEN: undefined,
     USERNAME: undefined,
     PASSWORD: undefined,
@@ -2879,7 +2885,7 @@ async function sendRequest(
     };
 
     if (OpenAPI.WITH_CREDENTIALS) {
-        request.credentials = 'include';
+        request.credentials = OpenAPI.CREDENTIALS;
     }
 
     onCancel(() => controller.abort());
