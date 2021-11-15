@@ -26,7 +26,13 @@ export function getOperation(
 ): Operation {
     const serviceName = getServiceName(tag);
     const operationNameFallback = `${method}${serviceName}`;
-    const operationName = getOperationName(op.operationId || operationNameFallback);
+    
+        // Remove possible redundant serviceName from operationId before generating operationName
+    let operationId = op.operationId;
+    if (operationId?.startsWith(serviceName + '_')) {
+        operationId = operationId.split(serviceName + '_')[1];
+    }
+    const operationName = getOperationName(operationId || operationNameFallback);
     const operationPath = getOperationPath(url);
 
     // Create a new operation object for this method.
