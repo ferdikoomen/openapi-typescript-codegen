@@ -13,6 +13,7 @@ async function sendRequest(
         body: body || formData,
         method: options.method,
         signal: controller.signal,
+        ...options.otherOptions
     };
 
     if (OpenAPI.WITH_CREDENTIALS) {

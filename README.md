@@ -395,6 +395,18 @@ const getToken = async () => {
 OpenAPI.TOKEN = getToken;
 ```
 
+### Additional Http Request parameters
+Sometimes it might be useful to pass additional options to the HttpClient request. For example here we are setting the httpsAgent parameter on the request.
+
+```typescript
+import { OpenAPI } from './generated';
+
+OpenAPI.OTHER_OPTIONS = {
+    // Anything required by the http client you are using (Axios, Fetch, ...)
+    httpsAgent: new https.Agent({ rejectUnauthorized: false }),
+};
+```
+
 ### References
 
 Local references to schema definitions (those beginning with `#/definitions/schemas/`)

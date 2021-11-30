@@ -39,6 +39,7 @@ export type ApiRequestOptions = {
     readonly mediaType?: string;
     readonly responseHeader?: string;
     readonly errors?: Record<number, string>;
+    readOnly otherOptions?: Record<string, any>;
 }"
 `;
 
@@ -191,6 +192,7 @@ type Config = {
     PASSWORD?: string | Resolver<string>;
     HEADERS?: Headers | Resolver<Headers>;
     ENCODE_PATH?: (path: string) => string;
+    OTHER_OPTIONS?: Record<string, string>;
 }
 
 export const OpenAPI: Config = {
@@ -203,6 +205,7 @@ export const OpenAPI: Config = {
     PASSWORD: undefined,
     HEADERS: undefined,
     ENCODE_PATH: undefined,
+    OTHER_OPTIONS: undefined,
 };"
 `;
 
@@ -382,6 +385,7 @@ async function sendRequest(
         body: body || formData,
         method: options.method,
         signal: controller.signal,
+        ...options.otherOptions
     };
 
     if (OpenAPI.WITH_CREDENTIALS) {
@@ -2701,6 +2705,7 @@ export type ApiRequestOptions = {
     readonly mediaType?: string;
     readonly responseHeader?: string;
     readonly errors?: Record<number, string>;
+    readOnly otherOptions?: Record<string, any>;
 }"
 `;
 
@@ -2853,6 +2858,7 @@ type Config = {
     PASSWORD?: string | Resolver<string>;
     HEADERS?: Headers | Resolver<Headers>;
     ENCODE_PATH?: (path: string) => string;
+    OTHER_OPTIONS?: Record<string, string>;
 }
 
 export const OpenAPI: Config = {
@@ -2865,6 +2871,7 @@ export const OpenAPI: Config = {
     PASSWORD: undefined,
     HEADERS: undefined,
     ENCODE_PATH: undefined,
+    OTHER_OPTIONS: undefined,
 };"
 `;
 
@@ -3044,6 +3051,7 @@ async function sendRequest(
         body: body || formData,
         method: options.method,
         signal: controller.signal,
+        ...options.otherOptions
     };
 
     if (OpenAPI.WITH_CREDENTIALS) {

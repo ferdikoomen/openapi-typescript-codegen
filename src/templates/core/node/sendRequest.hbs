@@ -13,6 +13,7 @@ async function sendRequest(
         method: options.method,
         body: body || formData,
         signal: controller.signal,
+        ...options.otherOptions
     };
 
     onCancel(() => controller.abort());

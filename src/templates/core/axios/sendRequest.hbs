@@ -15,6 +15,7 @@ async function sendRequest(
         method: options.method,
         withCredentials: OpenAPI.WITH_CREDENTIALS,
         cancelToken: source.token,
+        ...options.otherOptions
     };
 
     onCancel(() => source.cancel('The user aborted a request.'));
