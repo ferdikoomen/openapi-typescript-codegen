@@ -11,6 +11,14 @@ import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 {{/if}}
 
+{{#each operations}}
+{{#hasLength parameters}}
+export type {{capitalizeFirstLetter name}}Request = {
+  {{>parametersType}}
+}
+
+{{/hasLength}}
+{{/each}}
 export class {{{name}}}{{{@root.postfix}}} {
 
     {{#each operations}}

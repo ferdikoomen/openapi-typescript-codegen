@@ -2,6 +2,7 @@ import * as Handlebars from 'handlebars/runtime';
 
 import { Enum } from '../client/interfaces/Enum';
 import { Model } from '../client/interfaces/Model';
+import { OperationParameter } from '../client/interfaces/OperationParameter';
 import { HttpClient } from '../HttpClient';
 import { unique } from './unique';
 
@@ -10,6 +11,31 @@ export function registerHandlebarHelpers(root: {
     useOptions: boolean;
     useUnionTypes: boolean;
 }): void {
+    Handlebars.registerHelper(
+      'capitalizeFirstLetter',
+      function (this: any, a: string): string {
+        return a.charAt(0).toUpperCase() + a.slice(1)
+      }
+    );
+
+    Handlebars.registerHelper(
+      'hasProperty',
+      function (this: any, a: OperationParameter[], b: string, options: Handlebars.HelperOptions): string {
+        return a.map(item => item.in).find(value => value === b) 
+          ? options.fn(this) 
+          : options.inverse(this);
+      }
+    );
+    
+    Handlebars.registerHelper(
+      'hasLength',
+      function (this: any, a: any[], options: Handlebars.HelperOptions): string {
+        return a.length > 0
+          ? options.fn(this) 
+          : options.inverse(this);
+      }
+    );
+
     Handlebars.registerHelper(
         'equals',
         function (this: any, a: string, b: string, options: Handlebars.HelperOptions): string {

@@ -1,0 +1,29 @@
+{{#if parameters}}
+{{#hasProperty parameters 'path'}}
+path: {
+{{#each parameters}}
+  {{#equals in 'path'}}
+  {{{name}}}{{>isRequired}}: {{>type}}{{#if default}} = {{{default}}}{{/if}},
+  {{/equals}}
+{{/each}}
+}
+{{/hasProperty}}
+{{#hasProperty parameters 'query'}}
+query: {
+{{#each parameters}}
+  {{#equals in 'query'}}
+  {{{name}}}{{>isRequired}}: {{>type}}{{#if default}} = {{{default}}}{{/if}},
+  {{/equals}}
+{{/each}}
+}
+{{/hasProperty}}
+{{#hasProperty parameters 'body'}}
+body: {
+{{#each parameters}}
+  {{#equals in 'body'}}
+  {{{name}}}{{>isRequired}}: {{>type}}{{#if default}} = {{{default}}}{{/if}},
+  {{/equals}}
+{{/each}}
+}
+{{/hasProperty}}
+{{/if}}

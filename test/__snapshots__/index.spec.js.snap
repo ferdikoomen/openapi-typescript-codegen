@@ -1955,6 +1955,16 @@ import type { CancelablePromise } from '../core/CancelablePromise';
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
+export type CollectionFormatRequest = {
+    query: {
+        parameterArrayCsv: Array<string>,
+        parameterArraySsv: Array<string>,
+        parameterArrayTsv: Array<string>,
+        parameterArrayPipes: Array<string>,
+        parameterArrayMulti: Array<string>,
+    }
+}
+
 export class CollectionFormatService {
 
     /**
@@ -1996,6 +2006,19 @@ import type { ModelWithString } from '../models/ModelWithString';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
+
+export type ComplexTypesRequest = {
+    query: {
+        parameterObject: {
+            first?: {
+                second?: {
+                    third?: string;
+                };
+            };
+        },
+        parameterReference: ModelWithString,
+    }
+}
 
 export class ComplexService {
 
@@ -2040,6 +2063,43 @@ import type { ModelWithString } from '../models/ModelWithString';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
+
+export type CallWithDefaultParametersRequest = {
+    query: {
+        parameterString: string = 'Hello World!',
+        parameterNumber: number = 123,
+        parameterBoolean: boolean = true,
+        parameterEnum: 'Success' | 'Warning' | 'Error' = 'Success',
+        parameterModel: ModelWithString = {
+            \\"prop\\": \\"Hello World!\\"
+        },
+    }
+}
+
+export type CallWithDefaultOptionalParametersRequest = {
+    query: {
+        parameterString: string = 'Hello World!',
+        parameterNumber: number = 123,
+        parameterBoolean: boolean = true,
+        parameterEnum: 'Success' | 'Warning' | 'Error' = 'Success',
+        parameterModel: ModelWithString = {
+            \\"prop\\": \\"Hello World!\\"
+        },
+    }
+}
+
+export type CallToTestOrderOfParamsRequest = {
+    query: {
+        parameterStringWithNoDefault: string,
+        parameterOptionalStringWithDefault: string = 'Hello World!',
+        parameterOptionalStringWithEmptyDefault: string = '',
+        parameterOptionalStringWithNoDefault?: string,
+        parameterStringWithDefault: string = 'Hello World!',
+        parameterStringWithEmptyDefault: string = '',
+        parameterStringNullableWithNoDefault?: string | null,
+        parameterStringNullableWithDefault: string | null = null,
+    }
+}
 
 export class DefaultsService {
 
@@ -2203,6 +2263,12 @@ exports[`v2 should generate: ./test/generated/v2/services/ErrorService.ts 1`] = 
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
+
+export type TestErrorCodeRequest = {
+    query: {
+        status: string,
+    }
+}
 
 export class ErrorService {
 
@@ -2386,6 +2452,33 @@ exports[`v2 should generate: ./test/generated/v2/services/ParametersService.ts 1
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
+
+export type CallWithParametersRequest = {
+    path: {
+        parameterPath: string,
+    }
+    query: {
+        parameterQuery: string,
+    }
+    body: {
+        parameterBody: string,
+    }
+}
+
+export type CallWithWeirdParameterNamesRequest = {
+    path: {
+        parameterPath1?: string,
+        parameterPath2?: string,
+        parameterPath3?: string,
+    }
+    query: {
+        parameterQuery: string,
+        _default?: string,
+    }
+    body: {
+        parameterBody: string,
+    }
+}
 
 export class ParametersService {
 
@@ -2617,6 +2710,21 @@ exports[`v2 should generate: ./test/generated/v2/services/TypesService.ts 1`] = 
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
+
+export type TypesRequest = {
+    path: {
+        id?: number,
+    }
+    query: {
+        parameterArray: Array<string>,
+        parameterDictionary: Record<string, string>,
+        parameterEnum: 'Success' | 'Warning' | 'Error',
+        parameterNumber: number = 123,
+        parameterString: string = 'default',
+        parameterBoolean: boolean = true,
+        parameterObject: any = null,
+    }
+}
 
 export class TypesService {
 
@@ -5024,6 +5132,16 @@ import type { CancelablePromise } from '../core/CancelablePromise';
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
+export type CollectionFormatRequest = {
+    query: {
+        parameterArrayCsv: Array<string> | null,
+        parameterArraySsv: Array<string> | null,
+        parameterArrayTsv: Array<string> | null,
+        parameterArrayPipes: Array<string> | null,
+        parameterArrayMulti: Array<string> | null,
+    }
+}
+
 export class CollectionFormatService {
 
     /**
@@ -5068,6 +5186,40 @@ import type { ModelWithString } from '../models/ModelWithString';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
+
+export type ComplexTypesRequest = {
+    query: {
+        parameterObject: {
+            first?: {
+                second?: {
+                    third?: string;
+                };
+            };
+        },
+        parameterReference: ModelWithString,
+    }
+}
+
+export type ComplexParamsRequest = {
+    path: {
+        id: number,
+    }
+    body: {
+        requestBody?: {
+            readonly key: string | null;
+            name: string | null;
+            enabled?: boolean;
+            readonly type: 'Monkey' | 'Horse' | 'Bird';
+            listOfModels?: Array<ModelWithString> | null;
+            listOfStrings?: Array<string> | null;
+            parameters: (ModelWithString | ModelWithEnum | ModelWithArray | ModelWithDictionary);
+            readonly user?: {
+                readonly id?: number;
+                readonly name?: string | null;
+            };
+        },
+    }
+}
 
 export class ComplexService {
 
@@ -5142,6 +5294,43 @@ import type { ModelWithString } from '../models/ModelWithString';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
+
+export type CallWithDefaultParametersRequest = {
+    query: {
+        parameterString: string | null = 'Hello World!',
+        parameterNumber: number | null = 123,
+        parameterBoolean: boolean | null = true,
+        parameterEnum: 'Success' | 'Warning' | 'Error' = 'Success',
+        parameterModel: ModelWithString | null = {
+            \\"prop\\": \\"Hello World!\\"
+        },
+    }
+}
+
+export type CallWithDefaultOptionalParametersRequest = {
+    query: {
+        parameterString: string = 'Hello World!',
+        parameterNumber: number = 123,
+        parameterBoolean: boolean = true,
+        parameterEnum: 'Success' | 'Warning' | 'Error' = 'Success',
+        parameterModel: ModelWithString = {
+            \\"prop\\": \\"Hello World!\\"
+        },
+    }
+}
+
+export type CallToTestOrderOfParamsRequest = {
+    query: {
+        parameterStringWithNoDefault: string,
+        parameterOptionalStringWithDefault: string = 'Hello World!',
+        parameterOptionalStringWithEmptyDefault: string = '',
+        parameterOptionalStringWithNoDefault?: string,
+        parameterStringWithDefault: string = 'Hello World!',
+        parameterStringWithEmptyDefault: string = '',
+        parameterStringNullableWithNoDefault?: string | null,
+        parameterStringNullableWithDefault: string | null = null,
+    }
+}
 
 export class DefaultsService {
 
@@ -5306,6 +5495,12 @@ import type { CancelablePromise } from '../core/CancelablePromise';
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
+export type TestErrorCodeRequest = {
+    query: {
+        status: number,
+    }
+}
+
 export class ErrorService {
 
     /**
@@ -5342,6 +5537,12 @@ import type { ModelWithString } from '../models/ModelWithString';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
+
+export type PostFormDataRequest = {
+    query: {
+        parameter?: string,
+    }
+}
 
 export class FormDataService {
 
@@ -5405,6 +5606,9 @@ import type { ModelWithString } from '../models/ModelWithString';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
+
+export type MultipartRequestRequest = {
+}
 
 export class MultipartService {
 
@@ -5573,6 +5777,51 @@ import type { CancelablePromise } from '../core/CancelablePromise';
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
+export type CallWithParametersRequest = {
+    path: {
+        parameterPath: string | null,
+    }
+    query: {
+        parameterQuery: string | null,
+    }
+    body: {
+        requestBody: ModelWithString | null,
+    }
+}
+
+export type CallWithWeirdParameterNamesRequest = {
+    path: {
+        parameterPath1?: string,
+        parameterPath2?: string,
+        parameterPath3?: string,
+    }
+    query: {
+        parameterQuery: string | null,
+        _default?: string,
+    }
+    body: {
+        requestBody: ModelWithString | null,
+    }
+}
+
+export type GetCallWithOptionalParamRequest = {
+    query: {
+        parameter?: string,
+    }
+    body: {
+        requestBody: ModelWithString,
+    }
+}
+
+export type PostCallWithOptionalParamRequest = {
+    query: {
+        parameter: string,
+    }
+    body: {
+        requestBody?: ModelWithString,
+    }
+}
+
 export class ParametersService {
 
     /**
@@ -5707,6 +5956,15 @@ import type { ModelWithString } from '../models/ModelWithString';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
+
+export type PostRequestBodyRequest = {
+    query: {
+        parameter?: string,
+    }
+    body: {
+        requestBody?: ModelWithString,
+    }
+}
 
 export class RequestBodyService {
 
@@ -5890,6 +6148,21 @@ import type { CancelablePromise } from '../core/CancelablePromise';
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
 
+export type TypesRequest = {
+    path: {
+        id?: number,
+    }
+    query: {
+        parameterArray: Array<string> | null,
+        parameterDictionary: any,
+        parameterEnum: 'Success' | 'Warning' | 'Error' | null,
+        parameterNumber: number = 123,
+        parameterString: string | null = 'default',
+        parameterBoolean: boolean | null = true,
+        parameterObject: any = null,
+    }
+}
+
 export class TypesService {
 
     /**
@@ -5942,6 +6215,9 @@ exports[`v3 should generate: ./test/generated/v3/services/UploadService.ts 1`] =
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { request as __request } from '../core/request';
 import { OpenAPI } from '../core/OpenAPI';
+
+export type UploadFileRequest = {
+}
 
 export class UploadService {
 
