@@ -86,7 +86,7 @@
         "@types/node": "16.11.11",
         "@types/qs": "6.9.7",
         "@typescript-eslint/eslint-plugin": "5.5.0",
-        "@typescript-eslint/parser": "5.5.0",
+        "@typescript-eslint/parser": "5.8.1",
         "codecov": "3.8.3",
         "eslint": "8.3.0",
         "eslint-config-prettier": "8.3.0",
