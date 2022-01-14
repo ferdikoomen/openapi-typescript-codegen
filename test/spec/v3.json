@@ -1433,6 +1433,10 @@
                 "description": "Testing multiline comments.\nThis must go to the next line.\n\nThis will contain a break.",
                 "type": "integer"
             },
+            "CommentWithSpecialCharacters": {
+                "description": "Testing special characters in template string, such as `backticks`, ```multiple backticks``` and ${expression placeholders}. These should be escaped in the schema output.",
+                "type": "integer"
+            },
             "SimpleInteger": {
                 "description": "This is a simple number",
                 "type": "integer"
@@ -1873,7 +1877,7 @@
                     },
                     "radius": {
                         "type": "number"
-                    } 
+                    }
                 }
             },
             "ModelSquare": {

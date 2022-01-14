@@ -10,6 +10,11 @@ export function registerHandlebarHelpers(root: {
     useOptions: boolean;
     useUnionTypes: boolean;
 }): void {
+
+    Handlebars.registerHelper('escapeTemplateLiteral', function (value: string): string {
+        return value.replace(/(`|\${)/g, '\\$1');
+    });
+
     Handlebars.registerHelper(
         'equals',
         function (this: any, a: string, b: string, options: Handlebars.HelperOptions): string {

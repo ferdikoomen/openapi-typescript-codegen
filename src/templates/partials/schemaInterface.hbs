@@ -1,6 +1,6 @@
 {
 {{#if description}}
-    description: `{{{description}}}`,
+    description: `{{{escapeTemplateLiteral description}}}`,
 {{/if}}
     properties: {
 {{#if properties}}

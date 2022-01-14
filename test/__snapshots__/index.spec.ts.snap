@@ -3223,6 +3223,7 @@ export type { ArrayWithNumbers } from './models/ArrayWithNumbers';
 export type { ArrayWithProperties } from './models/ArrayWithProperties';
 export type { ArrayWithReferences } from './models/ArrayWithReferences';
 export type { ArrayWithStrings } from './models/ArrayWithStrings';
+export type { CommentWithSpecialCharacters } from './models/CommentWithSpecialCharacters';
 export type { CompositionBaseModel } from './models/CompositionBaseModel';
 export type { CompositionExtendedModel } from './models/CompositionExtendedModel';
 export type { CompositionWithAllOfAndNullable } from './models/CompositionWithAllOfAndNullable';
@@ -3278,6 +3279,7 @@ export { $ArrayWithNumbers } from './schemas/$ArrayWithNumbers';
 export { $ArrayWithProperties } from './schemas/$ArrayWithProperties';
 export { $ArrayWithReferences } from './schemas/$ArrayWithReferences';
 export { $ArrayWithStrings } from './schemas/$ArrayWithStrings';
+export { $CommentWithSpecialCharacters } from './schemas/$CommentWithSpecialCharacters';
 export { $CompositionBaseModel } from './schemas/$CompositionBaseModel';
 export { $CompositionExtendedModel } from './schemas/$CompositionExtendedModel';
 export { $CompositionWithAllOfAndNullable } from './schemas/$CompositionWithAllOfAndNullable';
@@ -3419,6 +3421,17 @@ exports[`v3 should generate: ./test/generated/v3/models/ArrayWithStrings.ts 1`] 
  * This is a simple array with strings
  */
 export type ArrayWithStrings = Array<string>;"
+`;
+
+exports[`v3 should generate: ./test/generated/v3/models/CommentWithSpecialCharacters.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+
+/**
+ * Testing special characters in template string, such as \`backticks\`, \`\`\`multiple backticks\`\`\` and \${expression placeholders}. These should be escaped in the schema output.
+ */
+export type CommentWithSpecialCharacters = number;"
 `;
 
 exports[`v3 should generate: ./test/generated/v3/models/CompositionBaseModel.ts 1`] = `
@@ -4334,6 +4347,16 @@ export const $ArrayWithStrings = {
     contains: {
         type: 'string',
     },
+} as const;"
+`;
+
+exports[`v3 should generate: ./test/generated/v3/schemas/$CommentWithSpecialCharacters.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+export const $CommentWithSpecialCharacters = {
+    type: 'number',
+    description: \`Testing special characters in template string, such as \\\\\`backticks\\\\\`, \\\\\`\\\\\`\\\\\`multiple backticks\\\\\`\\\\\`\\\\\` and \\\\\${expression placeholders}. These should be escaped in the schema output.\`,
 } as const;"
 `;
 
