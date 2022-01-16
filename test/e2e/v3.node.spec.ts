@@ -1,14 +1,12 @@
-'use strict';
+import { compileWithTypescript } from './scripts/compileWithTypescript';
+import { generate } from './scripts/generate';
+import server from './scripts/server';
 
-const generate = require('./scripts/generate');
-const compileWithTypescript = require('./scripts/compileWithTypescript');
-const server = require('./scripts/server');
-
-describe('v2.node', () => {
+describe('v3.node', () => {
     beforeAll(async () => {
-        await generate('v2/node', 'v2', 'node');
-        compileWithTypescript('v2/node');
-        await server.start('v2/node');
+        await generate('v3/node', 'v3', 'node');
+        compileWithTypescript('v3/node');
+        await server.start('v3/node');
     }, 30000);
 
     afterAll(async () => {
@@ -16,16 +14,27 @@ describe('v2.node', () => {
     });
 
     it('requests token', async () => {
-        const { OpenAPI, SimpleService } = require('./generated/v2/node/index.js');
+        const { OpenAPI, SimpleService } = require('./generated/v3/node/index.js');
         const tokenRequest = jest.fn().mockResolvedValue('MY_TOKEN');
         OpenAPI.TOKEN = tokenRequest;
+        OpenAPI.USERNAME = undefined;
+        OpenAPI.PASSWORD = undefined;
         const result = await SimpleService.getCallWithoutParametersAndResponse();
         expect(tokenRequest.mock.calls.length).toBe(1);
         expect(result.headers.authorization).toBe('Bearer MY_TOKEN');
     });
 
-    it('complexService', async () => {
-        const { ComplexService } = require('./generated/v2/node/index.js');
+    it('uses credentials', async () => {
+        const { OpenAPI, SimpleService } = require('./generated/v3/node/index.js');
+        OpenAPI.TOKEN = undefined;
+        OpenAPI.USERNAME = 'username';
+        OpenAPI.PASSWORD = 'password';
+        const result = await SimpleService.getCallWithoutParametersAndResponse();
+        expect(result.headers.authorization).toBe('Basic dXNlcm5hbWU6cGFzc3dvcmQ=');
+    });
+
+    it('supports complex params', async () => {
+        const { ComplexService } = require('./generated/v3/node/index.js');
         const result = await ComplexService.complexTypes({
             first: {
                 second: {
@@ -36,17 +45,32 @@ describe('v2.node', () => {
         expect(result).toBeDefined();
     });
 
+    it('support form data', async () => {
+        const { ParametersService } = require('./generated/v3/node/index.js');
+        const result = await ParametersService.callWithParameters(
+            'valueHeader',
+            'valueQuery',
+            'valueForm',
+            'valueCookie',
+            'valuePath',
+            {
+                prop: 'valueBody',
+            }
+        );
+        expect(result).toBeDefined();
+    });
+
     it('can abort the request', async () => {
         let error;
         try {
-            const { SimpleService } = require('./generated/v2/node/index.js');
+            const { SimpleService } = require('./generated/v3/node/index.js');
             const promise = SimpleService.getCallWithoutParametersAndResponse();
             setTimeout(() => {
                 promise.cancel();
             }, 10);
             await promise;
         } catch (e) {
-            error = e.message;
+            error = (e as Error).message;
         }
         expect(error).toContain('The user aborted a request.');
     });
@@ -54,16 +78,17 @@ describe('v2.node', () => {
     it('should throw known error (500)', async () => {
         let error;
         try {
-            const { ErrorService } = require('./generated/v2/node/index.js');
+            const { ErrorService } = require('./generated/v3/node/index.js');
             await ErrorService.testErrorCode(500);
         } catch (e) {
+            const err = e as any;
             error = JSON.stringify({
-                name: e.name,
-                message: e.message,
-                url: e.url,
-                status: e.status,
-                statusText: e.statusText,
-                body: e.body,
+                name: err.name,
+                message: err.message,
+                url: err.url,
+                status: err.status,
+                statusText: err.statusText,
+                body: err.body,
             });
         }
         expect(error).toBe(
@@ -81,16 +106,17 @@ describe('v2.node', () => {
     it('should throw unknown error (409)', async () => {
         let error;
         try {
-            const { ErrorService } = require('./generated/v2/node/index.js');
+            const { ErrorService } = require('./generated/v3/node/index.js');
             await ErrorService.testErrorCode(409);
         } catch (e) {
+            const err = e as any;
             error = JSON.stringify({
-                name: e.name,
-                message: e.message,
-                url: e.url,
-                status: e.status,
-                statusText: e.statusText,
-                body: e.body,
+                name: err.name,
+                message: err.message,
+                url: err.url,
+                status: err.status,
+                statusText: err.statusText,
+                body: err.body,
             });
         }
         expect(error).toBe(

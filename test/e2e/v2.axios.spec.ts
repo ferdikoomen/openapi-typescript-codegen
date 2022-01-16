@@ -1,8 +1,6 @@
-'use strict';
-
-const generate = require('./scripts/generate');
-const compileWithTypescript = require('./scripts/compileWithTypescript');
-const server = require('./scripts/server');
+import { compileWithTypescript } from './scripts/compileWithTypescript';
+import { generate } from './scripts/generate';
+import server from './scripts/server';
 
 describe('v2.node', () => {
     beforeAll(async () => {
@@ -24,7 +22,7 @@ describe('v2.node', () => {
         expect(result.headers.authorization).toBe('Bearer MY_TOKEN');
     });
 
-    it('complexService', async () => {
+    it('supports complex params', async () => {
         const { ComplexService } = require('./generated/v2/axios/index.js');
         const result = await ComplexService.complexTypes({
             first: {
@@ -46,7 +44,7 @@ describe('v2.node', () => {
             }, 10);
             await promise;
         } catch (e) {
-            error = e.message;
+            error = (e as Error).message;
         }
         expect(error).toContain('The user aborted a request.');
     });

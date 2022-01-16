@@ -1,10 +1,8 @@
-'use strict';
-
-const generate = require('./scripts/generate');
-const copy = require('./scripts/copy');
-const compileWithBabel = require('./scripts/compileWithBabel');
-const server = require('./scripts/server');
-const browser = require('./scripts/browser');
+import browser from './scripts/browser';
+import { compileWithBabel } from './scripts/compileWithBabel';
+import { copy } from './scripts/copy';
+import { generate } from './scripts/generate';
+import server from './scripts/server';
 
 describe('v3.babel', () => {
     beforeAll(async () => {
@@ -23,8 +21,8 @@ describe('v3.babel', () => {
     it('requests token', async () => {
         await browser.exposeFunction('tokenRequest', jest.fn().mockResolvedValue('MY_TOKEN'));
         const result = await browser.evaluate(async () => {
-            const { OpenAPI, SimpleService } = window.api;
-            OpenAPI.TOKEN = window.tokenRequest;
+            const { OpenAPI, SimpleService } = (window as any).api;
+            OpenAPI.TOKEN = (window as any).tokenRequest;
             OpenAPI.USERNAME = undefined;
             OpenAPI.PASSWORD = undefined;
             return await SimpleService.getCallWithoutParametersAndResponse();
@@ -34,7 +32,7 @@ describe('v3.babel', () => {
 
     it('uses credentials', async () => {
         const result = await browser.evaluate(async () => {
-            const { OpenAPI, SimpleService } = window.api;
+            const { OpenAPI, SimpleService } = (window as any).api;
             OpenAPI.TOKEN = undefined;
             OpenAPI.USERNAME = 'username';
             OpenAPI.PASSWORD = 'password';
@@ -43,9 +41,9 @@ describe('v3.babel', () => {
         expect(result.headers.authorization).toBe('Basic dXNlcm5hbWU6cGFzc3dvcmQ=');
     });
 
-    it('complexService', async () => {
+    it('supports complex params', async () => {
         const result = await browser.evaluate(async () => {
-            const { ComplexService } = window.api;
+            const { ComplexService } = (window as any).api;
             return await ComplexService.complexTypes({
                 first: {
                     second: {
