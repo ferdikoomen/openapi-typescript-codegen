@@ -45,8 +45,8 @@ export class {{{name}}}{{{@root.postfix}}} {
     {{/each}}
      * @throws ApiError
      */
-    public{{#if @root.staticMethods}} static{{/if}} {{{name}}}({{>parameters}}): CancelablePromise<{{>result}}> {
-        return __request({
+    public{{#if @root.staticMethods}} static{{/if}} {{{name}}}({{>parameters}}) {
+        return __request<{{>result}}>({
             method: '{{{method}}}',
             path: `{{{path}}}`,
             {{#if parametersCookie}}

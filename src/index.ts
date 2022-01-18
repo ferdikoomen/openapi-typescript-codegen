@@ -15,6 +15,7 @@ export interface ServiceOptions {
     serviceConstructor?: string;
     serviceDecorator?: string;
     staticMethods?: boolean;
+    serviceRequestContext?: string;
 }
 
 export interface Options {

@@ -28,21 +28,21 @@ const params = program
 const OpenAPI = require(path.resolve(__dirname, '../dist/index.js'));
 
 const genereteParams = {
-    input: program.input,
-    output: program.output,
-    httpClient: program.client,
-    useOptions: program.useOptions,
-    useUnionTypes: program.useUnionTypes,
-    exportCore: JSON.parse(program.exportCore) === true,
-    exportServices: JSON.parse(program.exportServices) === true,
-    exportModels: JSON.parse(program.exportModels) === true,
-    exportSchemas: JSON.parse(program.exportSchemas) === true,
+    input: params.input,
+    output: params.output,
+    httpClient: params.client,
+    useOptions: params.useOptions,
+    useUnionTypes: params.useUnionTypes,
+    exportCore: JSON.parse(params.exportCore) === true,
+    exportServices: JSON.parse(params.exportServices) === true,
+    exportModels: JSON.parse(params.exportModels) === true,
+    exportSchemas: JSON.parse(params.exportSchemas) === true,
     postfix: params.postfix,
     request: params.request,
 };
 
-if (program.serviceOptions) {
-    genereteParams.serviceOptions = require(path.resolve(__dirname, '../../', program.serviceOptions));
+if (params.serviceOptions) {
+    genereteParams.serviceOptions = require(path.resolve(process.cwd(), params.serviceOptions));
 }
 
 if (OpenAPI) {

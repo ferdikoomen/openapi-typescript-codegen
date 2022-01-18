@@ -1,6 +1,6 @@
 import { resolve } from 'path';
-import { ServiceOptions } from '..';
 
+import { ServiceOptions } from '..';
 import type { Service } from '../client/interfaces/Service';
 import { HttpClient } from '../HttpClient';
 import { writeFile } from './fileSystem';

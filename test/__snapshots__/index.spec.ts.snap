@@ -39,6 +39,7 @@ export type ApiRequestOptions = {
     readonly mediaType?: string;
     readonly responseHeader?: string;
     readonly errors?: Record<number, string>;
+    readonly context?: any;
 }"
 `;
 
@@ -2021,8 +2022,8 @@ export class CollectionFormatService {
         parameterArrayTsv: Array<string>,
         parameterArrayPipes: Array<string>,
         parameterArrayMulti: Array<string>,
-    ): CancelablePromise<void> {
-        return __request({
+    ) {
+        return __request<void>({
             method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/collectionFormat\`,
             query: {
@@ -2064,8 +2065,8 @@ export class ComplexService {
             };
         },
         parameterReference: ModelWithString,
-    ): CancelablePromise<Array<ModelWithString>> {
-        return __request({
+    ) {
+        return __request<Array<ModelWithString>>({
             method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/complex\`,
             query: {
@@ -2109,8 +2110,8 @@ export class DefaultsService {
         parameterModel: ModelWithString = {
             \\"prop\\": \\"Hello World!\\"
         },
-    ): CancelablePromise<void> {
-        return __request({
+    ) {
+        return __request<void>({
             method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/defaults\`,
             query: {
@@ -2139,8 +2140,8 @@ export class DefaultsService {
         parameterModel: ModelWithString = {
             \\"prop\\": \\"Hello World!\\"
         },
-    ): CancelablePromise<void> {
-        return __request({
+    ) {
+        return __request<void>({
             method: 'POST',
             path: \`/api/v\${OpenAPI.VERSION}/defaults\`,
             query: {
@@ -2173,8 +2174,8 @@ export class DefaultsService {
         parameterStringWithEmptyDefault: string = '',
         parameterStringNullableWithNoDefault?: string | null,
         parameterStringNullableWithDefault: string | null = null,
-    ): CancelablePromise<void> {
-        return __request({
+    ) {
+        return __request<void>({
             method: 'PUT',
             path: \`/api/v\${OpenAPI.VERSION}/defaults\`,
             query: {
@@ -2206,8 +2207,8 @@ export class DuplicateService {
     /**
      * @throws ApiError
      */
-    public static duplicateName(): CancelablePromise<void> {
-        return __request({
+    public static duplicateName() {
+        return __request<void>({
             method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/duplicate\`,
         });
@@ -2216,8 +2217,8 @@ export class DuplicateService {
     /**
      * @throws ApiError
      */
-    public static duplicateName1(): CancelablePromise<void> {
-        return __request({
+    public static duplicateName1() {
+        return __request<void>({
             method: 'POST',
             path: \`/api/v\${OpenAPI.VERSION}/duplicate\`,
         });
@@ -2226,8 +2227,8 @@ export class DuplicateService {
     /**
      * @throws ApiError
      */
-    public static duplicateName2(): CancelablePromise<void> {
-        return __request({
+    public static duplicateName2() {
+        return __request<void>({
             method: 'PUT',
             path: \`/api/v\${OpenAPI.VERSION}/duplicate\`,
         });
@@ -2236,8 +2237,8 @@ export class DuplicateService {
     /**
      * @throws ApiError
      */
-    public static duplicateName3(): CancelablePromise<void> {
-        return __request({
+    public static duplicateName3() {
+        return __request<void>({
             method: 'DELETE',
             path: \`/api/v\${OpenAPI.VERSION}/duplicate\`,
         });
@@ -2263,8 +2264,8 @@ export class ErrorService {
      */
     public static testErrorCode(
         status: string,
-    ): CancelablePromise<any> {
-        return __request({
+    ) {
+        return __request<any>({
             method: 'POST',
             path: \`/api/v\${OpenAPI.VERSION}/error\`,
             query: {
@@ -2296,8 +2297,8 @@ export class HeaderService {
      * @returns string Successful response
      * @throws ApiError
      */
-    public static callWithResultFromHeader(): CancelablePromise<string> {
-        return __request({
+    public static callWithResultFromHeader() {
+        return __request<string>({
             method: 'POST',
             path: \`/api/v\${OpenAPI.VERSION}/header\`,
             responseHeader: 'operation-location',
@@ -2325,8 +2326,8 @@ export class MultipleTags1Service {
      * @returns void
      * @throws ApiError
      */
-    public static dummyA(): CancelablePromise<void> {
-        return __request({
+    public static dummyA() {
+        return __request<void>({
             method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/multiple-tags/a\`,
         });
@@ -2336,8 +2337,8 @@ export class MultipleTags1Service {
      * @returns void
      * @throws ApiError
      */
-    public static dummyB(): CancelablePromise<void> {
-        return __request({
+    public static dummyB() {
+        return __request<void>({
             method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/multiple-tags/b\`,
         });
@@ -2360,8 +2361,8 @@ export class MultipleTags2Service {
      * @returns void
      * @throws ApiError
      */
-    public static dummyA(): CancelablePromise<void> {
-        return __request({
+    public static dummyA() {
+        return __request<void>({
             method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/multiple-tags/a\`,
         });
@@ -2371,8 +2372,8 @@ export class MultipleTags2Service {
      * @returns void
      * @throws ApiError
      */
-    public static dummyB(): CancelablePromise<void> {
-        return __request({
+    public static dummyB() {
+        return __request<void>({
             method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/multiple-tags/b\`,
         });
@@ -2395,8 +2396,8 @@ export class MultipleTags3Service {
      * @returns void
      * @throws ApiError
      */
-    public static dummyB(): CancelablePromise<void> {
-        return __request({
+    public static dummyB() {
+        return __request<void>({
             method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/multiple-tags/b\`,
         });
@@ -2419,8 +2420,8 @@ export class NoContentService {
      * @returns void
      * @throws ApiError
      */
-    public static callWithNoContentResponse(): CancelablePromise<void> {
-        return __request({
+    public static callWithNoContentResponse() {
+        return __request<void>({
             method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/no-content\`,
         });
@@ -2453,8 +2454,8 @@ export class ParametersService {
         parameterForm: string,
         parameterBody: string,
         parameterPath: string,
-    ): CancelablePromise<void> {
-        return __request({
+    ) {
+        return __request<void>({
             method: 'POST',
             path: \`/api/v\${OpenAPI.VERSION}/parameters/\${parameterPath}\`,
             headers: {
@@ -2490,8 +2491,8 @@ export class ParametersService {
         parameterPath2?: string,
         parameterPath3?: string,
         _default?: string,
-    ): CancelablePromise<void> {
-        return __request({
+    ) {
+        return __request<void>({
             method: 'POST',
             path: \`/api/v\${OpenAPI.VERSION}/parameters/\${parameterPath1}/\${parameterPath2}/\${parameterPath3}\`,
             headers: {
@@ -2528,8 +2529,8 @@ export class ResponseService {
      * @returns ModelWithString Message for default response
      * @throws ApiError
      */
-    public static callWithResponse(): CancelablePromise<ModelWithString> {
-        return __request({
+    public static callWithResponse() {
+        return __request<ModelWithString>({
             method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/response\`,
         });
@@ -2539,8 +2540,8 @@ export class ResponseService {
      * @returns ModelWithString Message for default response
      * @throws ApiError
      */
-    public static callWithDuplicateResponses(): CancelablePromise<ModelWithString> {
-        return __request({
+    public static callWithDuplicateResponses() {
+        return __request<ModelWithString>({
             method: 'POST',
             path: \`/api/v\${OpenAPI.VERSION}/response\`,
             errors: {
@@ -2558,12 +2559,12 @@ export class ResponseService {
      * @returns ModelThatExtendsExtends Message for 202 response
      * @throws ApiError
      */
-    public static callWithResponses(): CancelablePromise<{
-        readonly '@namespace.string'?: string;
-        readonly '@namespace.integer'?: number;
-        readonly value?: Array<ModelWithString>;
-    } | ModelWithString | ModelThatExtends | ModelThatExtendsExtends> {
-        return __request({
+    public static callWithResponses() {
+        return __request<{
+            readonly '@namespace.string'?: string;
+            readonly '@namespace.integer'?: number;
+            readonly value?: Array<ModelWithString>;
+        } | ModelWithString | ModelThatExtends | ModelThatExtendsExtends>({
             method: 'PUT',
             path: \`/api/v\${OpenAPI.VERSION}/response\`,
             errors: {
@@ -2590,8 +2591,8 @@ export class SimpleService {
     /**
      * @throws ApiError
      */
-    public static getCallWithoutParametersAndResponse(): CancelablePromise<void> {
-        return __request({
+    public static getCallWithoutParametersAndResponse() {
+        return __request<void>({
             method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
@@ -2600,8 +2601,8 @@ export class SimpleService {
     /**
      * @throws ApiError
      */
-    public static putCallWithoutParametersAndResponse(): CancelablePromise<void> {
-        return __request({
+    public static putCallWithoutParametersAndResponse() {
+        return __request<void>({
             method: 'PUT',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
@@ -2610,8 +2611,8 @@ export class SimpleService {
     /**
      * @throws ApiError
      */
-    public static postCallWithoutParametersAndResponse(): CancelablePromise<void> {
-        return __request({
+    public static postCallWithoutParametersAndResponse() {
+        return __request<void>({
             method: 'POST',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
@@ -2620,8 +2621,8 @@ export class SimpleService {
     /**
      * @throws ApiError
      */
-    public static deleteCallWithoutParametersAndResponse(): CancelablePromise<void> {
-        return __request({
+    public static deleteCallWithoutParametersAndResponse() {
+        return __request<void>({
             method: 'DELETE',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
@@ -2630,8 +2631,8 @@ export class SimpleService {
     /**
      * @throws ApiError
      */
-    public static optionsCallWithoutParametersAndResponse(): CancelablePromise<void> {
-        return __request({
+    public static optionsCallWithoutParametersAndResponse() {
+        return __request<void>({
             method: 'OPTIONS',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
@@ -2640,8 +2641,8 @@ export class SimpleService {
     /**
      * @throws ApiError
      */
-    public static headCallWithoutParametersAndResponse(): CancelablePromise<void> {
-        return __request({
+    public static headCallWithoutParametersAndResponse() {
+        return __request<void>({
             method: 'HEAD',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
@@ -2650,8 +2651,8 @@ export class SimpleService {
     /**
      * @throws ApiError
      */
-    public static patchCallWithoutParametersAndResponse(): CancelablePromise<void> {
-        return __request({
+    public static patchCallWithoutParametersAndResponse() {
+        return __request<void>({
             method: 'PATCH',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
@@ -2694,8 +2695,8 @@ export class TypesService {
         parameterBoolean: boolean = true,
         parameterObject: any = null,
         id?: number,
-    ): CancelablePromise<number | string | boolean | any> {
-        return __request({
+    ) {
+        return __request<number | string | boolean | any>({
             method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/types\`,
             query: {
@@ -2752,6 +2753,7 @@ export type ApiRequestOptions = {
     readonly mediaType?: string;
     readonly responseHeader?: string;
     readonly errors?: Record<number, string>;
+    readonly context?: any;
 }"
 `;
 
@@ -5311,8 +5313,8 @@ export class CollectionFormatService {
         parameterArrayTsv: Array<string> | null,
         parameterArrayPipes: Array<string> | null,
         parameterArrayMulti: Array<string> | null,
-    ): CancelablePromise<void> {
-        return __request({
+    ) {
+        return __request<void>({
             method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/collectionFormat\`,
             query: {
@@ -5357,8 +5359,8 @@ export class ComplexService {
             };
         },
         parameterReference: ModelWithString,
-    ): CancelablePromise<Array<ModelWithString>> {
-        return __request({
+    ) {
+        return __request<Array<ModelWithString>>({
             method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/complex\`,
             query: {
@@ -5393,8 +5395,8 @@ export class ComplexService {
                 readonly name?: string | null;
             };
         },
-    ): CancelablePromise<ModelWithString> {
-        return __request({
+    ) {
+        return __request<ModelWithString>({
             method: 'PUT',
             path: \`/api/v\${OpenAPI.VERSION}/complex/\${id}\`,
             body: requestBody,
@@ -5432,8 +5434,8 @@ export class DefaultsService {
         parameterModel: ModelWithString | null = {
             \\"prop\\": \\"Hello World!\\"
         },
-    ): CancelablePromise<void> {
-        return __request({
+    ) {
+        return __request<void>({
             method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/defaults\`,
             query: {
@@ -5462,8 +5464,8 @@ export class DefaultsService {
         parameterModel: ModelWithString = {
             \\"prop\\": \\"Hello World!\\"
         },
-    ): CancelablePromise<void> {
-        return __request({
+    ) {
+        return __request<void>({
             method: 'POST',
             path: \`/api/v\${OpenAPI.VERSION}/defaults\`,
             query: {
@@ -5496,8 +5498,8 @@ export class DefaultsService {
         parameterStringWithEmptyDefault: string = '',
         parameterStringNullableWithNoDefault?: string | null,
         parameterStringNullableWithDefault: string | null = null,
-    ): CancelablePromise<void> {
-        return __request({
+    ) {
+        return __request<void>({
             method: 'PUT',
             path: \`/api/v\${OpenAPI.VERSION}/defaults\`,
             query: {
@@ -5529,8 +5531,8 @@ export class DuplicateService {
     /**
      * @throws ApiError
      */
-    public static duplicateName(): CancelablePromise<void> {
-        return __request({
+    public static duplicateName() {
+        return __request<void>({
             method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/duplicate\`,
         });
@@ -5539,8 +5541,8 @@ export class DuplicateService {
     /**
      * @throws ApiError
      */
-    public static duplicateName1(): CancelablePromise<void> {
-        return __request({
+    public static duplicateName1() {
+        return __request<void>({
             method: 'POST',
             path: \`/api/v\${OpenAPI.VERSION}/duplicate\`,
         });
@@ -5549,8 +5551,8 @@ export class DuplicateService {
     /**
      * @throws ApiError
      */
-    public static duplicateName2(): CancelablePromise<void> {
-        return __request({
+    public static duplicateName2() {
+        return __request<void>({
             method: 'PUT',
             path: \`/api/v\${OpenAPI.VERSION}/duplicate\`,
         });
@@ -5559,8 +5561,8 @@ export class DuplicateService {
     /**
      * @throws ApiError
      */
-    public static duplicateName3(): CancelablePromise<void> {
-        return __request({
+    public static duplicateName3() {
+        return __request<void>({
             method: 'DELETE',
             path: \`/api/v\${OpenAPI.VERSION}/duplicate\`,
         });
@@ -5586,8 +5588,8 @@ export class ErrorService {
      */
     public static testErrorCode(
         status: number,
-    ): CancelablePromise<any> {
-        return __request({
+    ) {
+        return __request<any>({
             method: 'POST',
             path: \`/api/v\${OpenAPI.VERSION}/error\`,
             query: {
@@ -5624,8 +5626,8 @@ export class FormDataService {
     public static postFormData(
         parameter?: string,
         formData?: ModelWithString,
-    ): CancelablePromise<void> {
-        return __request({
+    ) {
+        return __request<void>({
             method: 'POST',
             path: \`/api/v\${OpenAPI.VERSION}/formData/\`,
             query: {
@@ -5653,8 +5655,8 @@ export class HeaderService {
      * @returns string Successful response
      * @throws ApiError
      */
-    public static callWithResultFromHeader(): CancelablePromise<string> {
-        return __request({
+    public static callWithResultFromHeader() {
+        return __request<string>({
             method: 'POST',
             path: \`/api/v\${OpenAPI.VERSION}/header\`,
             responseHeader: 'operation-location',
@@ -5688,8 +5690,8 @@ export class MultipartService {
             content?: Blob;
             data?: ModelWithString | null;
         },
-    ): CancelablePromise<void> {
-        return __request({
+    ) {
+        return __request<void>({
             method: 'POST',
             path: \`/api/v\${OpenAPI.VERSION}/multipart\`,
             formData: formData,
@@ -5701,14 +5703,14 @@ export class MultipartService {
      * @returns any OK
      * @throws ApiError
      */
-    public static multipartResponse(): CancelablePromise<{
-        file?: Blob;
-        metadata?: {
-            foo?: string;
-            bar?: string;
-        };
-    }> {
-        return __request({
+    public static multipartResponse() {
+        return __request<{
+            file?: Blob;
+            metadata?: {
+                foo?: string;
+                bar?: string;
+            };
+        }>({
             method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/multipart\`,
         });
@@ -5731,8 +5733,8 @@ export class MultipleTags1Service {
      * @returns void
      * @throws ApiError
      */
-    public static dummyA(): CancelablePromise<void> {
-        return __request({
+    public static dummyA() {
+        return __request<void>({
             method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/multiple-tags/a\`,
         });
@@ -5742,8 +5744,8 @@ export class MultipleTags1Service {
      * @returns void
      * @throws ApiError
      */
-    public static dummyB(): CancelablePromise<void> {
-        return __request({
+    public static dummyB() {
+        return __request<void>({
             method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/multiple-tags/b\`,
         });
@@ -5766,8 +5768,8 @@ export class MultipleTags2Service {
      * @returns void
      * @throws ApiError
      */
-    public static dummyA(): CancelablePromise<void> {
-        return __request({
+    public static dummyA() {
+        return __request<void>({
             method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/multiple-tags/a\`,
         });
@@ -5777,8 +5779,8 @@ export class MultipleTags2Service {
      * @returns void
      * @throws ApiError
      */
-    public static dummyB(): CancelablePromise<void> {
-        return __request({
+    public static dummyB() {
+        return __request<void>({
             method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/multiple-tags/b\`,
         });
@@ -5801,8 +5803,8 @@ export class MultipleTags3Service {
      * @returns void
      * @throws ApiError
      */
-    public static dummyB(): CancelablePromise<void> {
-        return __request({
+    public static dummyB() {
+        return __request<void>({
             method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/multiple-tags/b\`,
         });
@@ -5825,8 +5827,8 @@ export class NoContentService {
      * @returns void
      * @throws ApiError
      */
-    public static callWithNoContentResponse(): CancelablePromise<void> {
-        return __request({
+    public static callWithNoContentResponse() {
+        return __request<void>({
             method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/no-content\`,
         });
@@ -5862,8 +5864,8 @@ export class ParametersService {
         parameterCookie: string | null,
         parameterPath: string | null,
         requestBody: ModelWithString | null,
-    ): CancelablePromise<void> {
-        return __request({
+    ) {
+        return __request<void>({
             method: 'POST',
             path: \`/api/v\${OpenAPI.VERSION}/parameters/\${parameterPath}\`,
             cookies: {
@@ -5905,8 +5907,8 @@ export class ParametersService {
         parameterPath2?: string,
         parameterPath3?: string,
         _default?: string,
-    ): CancelablePromise<void> {
-        return __request({
+    ) {
+        return __request<void>({
             method: 'POST',
             path: \`/api/v\${OpenAPI.VERSION}/parameters/\${parameterPath1}/\${parameterPath2}/\${parameterPath3}\`,
             cookies: {
@@ -5935,8 +5937,8 @@ export class ParametersService {
     public static getCallWithOptionalParam(
         requestBody: ModelWithString,
         parameter?: string,
-    ): CancelablePromise<void> {
-        return __request({
+    ) {
+        return __request<void>({
             method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/parameters/\`,
             query: {
@@ -5955,8 +5957,8 @@ export class ParametersService {
     public static postCallWithOptionalParam(
         parameter: string,
         requestBody?: ModelWithString,
-    ): CancelablePromise<void> {
-        return __request({
+    ) {
+        return __request<void>({
             method: 'POST',
             path: \`/api/v\${OpenAPI.VERSION}/parameters/\`,
             query: {
@@ -5989,8 +5991,8 @@ export class RequestBodyService {
     public static postRequestBody(
         parameter?: string,
         requestBody?: ModelWithString,
-    ): CancelablePromise<void> {
-        return __request({
+    ) {
+        return __request<void>({
             method: 'POST',
             path: \`/api/v\${OpenAPI.VERSION}/requestBody/\`,
             query: {
@@ -6021,8 +6023,8 @@ export class ResponseService {
      * @returns ModelWithString
      * @throws ApiError
      */
-    public static callWithResponse(): CancelablePromise<ModelWithString> {
-        return __request({
+    public static callWithResponse() {
+        return __request<ModelWithString>({
             method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/response\`,
         });
@@ -6032,8 +6034,8 @@ export class ResponseService {
      * @returns ModelWithString Message for default response
      * @throws ApiError
      */
-    public static callWithDuplicateResponses(): CancelablePromise<ModelWithString> {
-        return __request({
+    public static callWithDuplicateResponses() {
+        return __request<ModelWithString>({
             method: 'POST',
             path: \`/api/v\${OpenAPI.VERSION}/response\`,
             errors: {
@@ -6051,12 +6053,12 @@ export class ResponseService {
      * @returns ModelThatExtendsExtends Message for 202 response
      * @throws ApiError
      */
-    public static callWithResponses(): CancelablePromise<{
-        readonly '@namespace.string'?: string;
-        readonly '@namespace.integer'?: number;
-        readonly value?: Array<ModelWithString>;
-    } | ModelWithString | ModelThatExtends | ModelThatExtendsExtends> {
-        return __request({
+    public static callWithResponses() {
+        return __request<{
+            readonly '@namespace.string'?: string;
+            readonly '@namespace.integer'?: number;
+            readonly value?: Array<ModelWithString>;
+        } | ModelWithString | ModelThatExtends | ModelThatExtendsExtends>({
             method: 'PUT',
             path: \`/api/v\${OpenAPI.VERSION}/response\`,
             errors: {
@@ -6083,8 +6085,8 @@ export class SimpleService {
     /**
      * @throws ApiError
      */
-    public static getCallWithoutParametersAndResponse(): CancelablePromise<void> {
-        return __request({
+    public static getCallWithoutParametersAndResponse() {
+        return __request<void>({
             method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
@@ -6093,8 +6095,8 @@ export class SimpleService {
     /**
      * @throws ApiError
      */
-    public static putCallWithoutParametersAndResponse(): CancelablePromise<void> {
-        return __request({
+    public static putCallWithoutParametersAndResponse() {
+        return __request<void>({
             method: 'PUT',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
@@ -6103,8 +6105,8 @@ export class SimpleService {
     /**
      * @throws ApiError
      */
-    public static postCallWithoutParametersAndResponse(): CancelablePromise<void> {
-        return __request({
+    public static postCallWithoutParametersAndResponse() {
+        return __request<void>({
             method: 'POST',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
@@ -6113,8 +6115,8 @@ export class SimpleService {
     /**
      * @throws ApiError
      */
-    public static deleteCallWithoutParametersAndResponse(): CancelablePromise<void> {
-        return __request({
+    public static deleteCallWithoutParametersAndResponse() {
+        return __request<void>({
             method: 'DELETE',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
@@ -6123,8 +6125,8 @@ export class SimpleService {
     /**
      * @throws ApiError
      */
-    public static optionsCallWithoutParametersAndResponse(): CancelablePromise<void> {
-        return __request({
+    public static optionsCallWithoutParametersAndResponse() {
+        return __request<void>({
             method: 'OPTIONS',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
@@ -6133,8 +6135,8 @@ export class SimpleService {
     /**
      * @throws ApiError
      */
-    public static headCallWithoutParametersAndResponse(): CancelablePromise<void> {
-        return __request({
+    public static headCallWithoutParametersAndResponse() {
+        return __request<void>({
             method: 'HEAD',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
@@ -6143,8 +6145,8 @@ export class SimpleService {
     /**
      * @throws ApiError
      */
-    public static patchCallWithoutParametersAndResponse(): CancelablePromise<void> {
-        return __request({
+    public static patchCallWithoutParametersAndResponse() {
+        return __request<void>({
             method: 'PATCH',
             path: \`/api/v\${OpenAPI.VERSION}/simple\`,
         });
@@ -6187,8 +6189,8 @@ export class TypesService {
         parameterBoolean: boolean | null = true,
         parameterObject: any = null,
         id?: number,
-    ): CancelablePromise<number | string | boolean | any> {
-        return __request({
+    ) {
+        return __request<number | string | boolean | any>({
             method: 'GET',
             path: \`/api/v\${OpenAPI.VERSION}/types\`,
             query: {
@@ -6223,8 +6225,8 @@ export class UploadService {
      */
     public static uploadFile(
         file: Blob,
-    ): CancelablePromise<boolean> {
-        return __request({
+    ) {
+        return __request<boolean>({
             method: 'POST',
             path: \`/api/v\${OpenAPI.VERSION}/upload\`,
             formData: {
