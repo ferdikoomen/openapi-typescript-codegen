@@ -16,6 +16,15 @@ const generate = async (input, output) => {
         exportServices: true,
         // postfix: 'Api',
         // request: './test/custom/request.ts',
+        // serviceOptions: {
+        //     staticMethods: false,
+        //     serviceImports: `
+        //     import {Injectable} from '@angular/core';
+        //     import {HttpClient} from '@angular/common/http';
+        //     `,
+        //     serviceDecorator: `@Injectable()`,
+        //     serviceConstructor: `constructor(private http: HttpClient) {}`,
+        // },
     });
 };
 

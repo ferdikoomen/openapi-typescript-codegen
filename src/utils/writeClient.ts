@@ -2,6 +2,7 @@ import { resolve } from 'path';
 
 import type { Client } from '../client/interfaces/Client';
 import { HttpClient } from '../HttpClient';
+import { ServiceOptions } from '../index';
 import { mkdir, rmdir } from './fileSystem';
 import { isSubDirectory } from './isSubdirectory';
 import { Templates } from './registerHandlebarTemplates';
@@ -39,6 +40,7 @@ export async function writeClient(
     exportModels: boolean,
     exportSchemas: boolean,
     postfix: string,
+    serviceOptions: ServiceOptions,
     request?: string
 ): Promise<void> {
     const outputPath = resolve(process.cwd(), output);
@@ -67,7 +69,8 @@ export async function writeClient(
             httpClient,
             useUnionTypes,
             useOptions,
-            postfix
+            postfix,
+            serviceOptions
         );
     }
 

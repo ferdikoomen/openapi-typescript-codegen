@@ -10,8 +10,17 @@ import { request as __request } from '../core/request';
 {{#if @root.useVersion}}
 import { OpenAPI } from '../core/OpenAPI';
 {{/if}}
+{{#if @root.serviceImports}}
+{{@root.serviceImports}}
+{{/if}}
 
+{{#if @root.serviceDecorator}}
+{{@root.serviceDecorator}}
+{{/if}}
 export class {{{name}}}{{{@root.postfix}}} {
+    {{#if @root.serviceConstructor}}
+    {{@root.serviceConstructor}}
+    {{/if}}
 
     {{#each operations}}
     /**
@@ -36,7 +45,7 @@ export class {{{name}}}{{{@root.postfix}}} {
     {{/each}}
      * @throws ApiError
      */
-    public static {{{name}}}({{>parameters}}): CancelablePromise<{{>result}}> {
+    public{{#if @root.staticMethods}} static{{/if}} {{{name}}}({{>parameters}}): CancelablePromise<{{>result}}> {
         return __request({
             method: '{{{method}}}',
             path: `{{{path}}}`,
@@ -88,6 +97,9 @@ export class {{{name}}}{{{@root.postfix}}} {
                 {{{code}}}: `{{{description}}}`,
                 {{/each}}
             },
+            {{/if}}
+            {{#if @root.serviceRequestContext}}
+            context: {{@root.serviceRequestContext}},
             {{/if}}
         });
     }

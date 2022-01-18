@@ -10,9 +10,17 @@ import { writeClient } from './utils/writeClient';
 
 export { HttpClient } from './HttpClient';
 
-export type Options = {
+export interface ServiceOptions {
+    serviceImports?: string;
+    serviceConstructor?: string;
+    serviceDecorator?: string;
+    staticMethods?: boolean;
+}
+
+export interface Options {
     input: string | Record<string, any>;
     output: string;
+    serviceOptions?: ServiceOptions;
     httpClient?: HttpClient;
     useOptions?: boolean;
     useUnionTypes?: boolean;
@@ -23,7 +31,7 @@ export type Options = {
     postfix?: string;
     request?: string;
     write?: boolean;
-};
+}
 
 /**
  * Generate the OpenAPI client. This method will read the OpenAPI specification and based on the
@@ -55,6 +63,9 @@ export async function generate({
     postfix = 'Service',
     request,
     write = true,
+    serviceOptions = {
+        staticMethods: true,
+    },
 }: Options): Promise<void> {
     const openApi = isString(input) ? await getOpenApiSpec(input) : input;
     const openApiVersion = getOpenApiVersion(openApi);
@@ -81,6 +92,7 @@ export async function generate({
                 exportModels,
                 exportSchemas,
                 postfix,
+                serviceOptions,
                 request
             );
             break;
@@ -102,6 +114,7 @@ export async function generate({
                 exportModels,
                 exportSchemas,
                 postfix,
+                serviceOptions,
                 request
             );
             break;

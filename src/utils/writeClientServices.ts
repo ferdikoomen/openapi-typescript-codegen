@@ -1,4 +1,5 @@
 import { resolve } from 'path';
+import { ServiceOptions } from '..';
 
 import type { Service } from '../client/interfaces/Service';
 import { HttpClient } from '../HttpClient';
@@ -25,7 +26,8 @@ export async function writeClientServices(
     httpClient: HttpClient,
     useUnionTypes: boolean,
     useOptions: boolean,
-    postfix: string
+    postfix: string,
+    serviceOptions: ServiceOptions
 ): Promise<void> {
     for (const service of services) {
         const file = resolve(outputPath, `${service.name}${postfix}.ts`);
@@ -37,6 +39,7 @@ export async function writeClientServices(
             useVersion,
             useOptions,
             postfix,
+            ...serviceOptions,
         });
         await writeFile(file, format(templateResult));
     }
