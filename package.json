@@ -60,7 +60,7 @@
     },
     "dependencies": {
         "camelcase": "^6.3.0",
-        "commander": "^8.3.0",
+        "commander": "^9.0.0",
         "handlebars": "^4.7.6",
         "json-schema-ref-parser": "^9.0.7"
     },
