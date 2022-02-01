@@ -18,6 +18,14 @@
     "@angular-devkit/core" "13.1.4"
     rxjs "6.6.7"
 
+"@angular-devkit/architect@0.1302.1":
+  version "0.1302.1"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/architect/-/architect-0.1302.1.tgz#0388a9b9b2bbb63ea57085cece8c5e362fbc7f27"
+  integrity sha512-h5LA1VTmWKLLzYvnLPqwdyLI9l43FVIUflvmDf6s2ScTrVf3Bb7B4KkCBDdNa8FxnBitfFqKJBf6RGcKjjeDcw==
+  dependencies:
+    "@angular-devkit/core" "13.2.1"
+    rxjs "6.6.7"
+
 "@angular-devkit/build-angular@13.1.4":
   version "13.1.4"
   resolved "https://registry.yarnpkg.com/@angular-devkit/build-angular/-/build-angular-13.1.4.tgz#942023fca240b0f5753dcf65bb67e57e4779bf86"
@@ -110,12 +118,24 @@
     rxjs "6.6.7"
     source-map "0.7.3"
 
-"@angular-devkit/schematics@13.1.4":
-  version "13.1.4"
-  resolved "https://registry.yarnpkg.com/@angular-devkit/schematics/-/schematics-13.1.4.tgz#e8ed817887aa51268dec27d8d6188e2f3f10742a"
-  integrity sha512-yBa7IeC4cLZ7s137NAQD+sMB5c6SI6UJ6xYxl6J/CvV2RLGOZZA93i4GuRALi5s82eLi1fH+HEL/gvf3JQynzQ==
+"@angular-devkit/core@13.2.1":
+  version "13.2.1"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/core/-/core-13.2.1.tgz#5815de99fa8b8b2a2188b6f7f2472d6bb96f0797"
+  integrity sha512-yR+FJq/RfthPmK0LtPIjj6mZLzLGMQ137yyOljsRgHoFhLxtluz9FdjyAk+61rP0LxH3FCt4qRWa9jd7+oBJxw==
   dependencies:
-    "@angular-devkit/core" "13.1.4"
+    ajv "8.9.0"
+    ajv-formats "2.1.1"
+    fast-json-stable-stringify "2.1.0"
+    magic-string "0.25.7"
+    rxjs "6.6.7"
+    source-map "0.7.3"
+
+"@angular-devkit/schematics@13.2.1":
+  version "13.2.1"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/schematics/-/schematics-13.2.1.tgz#85090c9dc071f2a6eef9497bc91e77a1051c0d30"
+  integrity sha512-vEQnQfO1IrsWd8VneqGBSbunClP0nQwDAnPKUH2n1yeqPnj8SZmxsw2s8A6WV7Xifk6RUOGK0JGS8rbAwqGvZA==
+  dependencies:
+    "@angular-devkit/core" "13.2.1"
     jsonc-parser "3.0.0"
     magic-string "0.25.7"
     ora "5.4.1"
@@ -128,15 +148,15 @@
   dependencies:
     tslib "^2.3.0"
 
-"@angular/cli@13.1.4":
-  version "13.1.4"
-  resolved "https://registry.yarnpkg.com/@angular/cli/-/cli-13.1.4.tgz#34e6e87d1c6950408167c41293cf2cd5d1e00a2e"
-  integrity sha512-PP9xpvDDCHhLTIZjewQQzzf+JbpF2s5mXTW2AgIL/E53ukaVvXwwjFMt9dQvECwut/LDpThoc3OfqcGrmwtqnA==
+"@angular/cli@13.2.1":
+  version "13.2.1"
+  resolved "https://registry.yarnpkg.com/@angular/cli/-/cli-13.2.1.tgz#f39dad9703dafe944cf5d61ded6c934e0e35c7f5"
+  integrity sha512-LsnpesZhQerALlshnOZPffi94PIzG6JbT0JGol+qBwxYZ8SfEN+l4G9y/WyLT5FEo/3EtACTbdiObqVKiNnpzg==
   dependencies:
-    "@angular-devkit/architect" "0.1301.4"
-    "@angular-devkit/core" "13.1.4"
-    "@angular-devkit/schematics" "13.1.4"
-    "@schematics/angular" "13.1.4"
+    "@angular-devkit/architect" "0.1302.1"
+    "@angular-devkit/core" "13.2.1"
+    "@angular-devkit/schematics" "13.2.1"
+    "@schematics/angular" "13.2.1"
     "@yarnpkg/lockfile" "1.1.0"
     ansi-colors "4.1.1"
     debug "4.3.3"
@@ -147,8 +167,8 @@
     npm-pick-manifest "6.1.1"
     open "8.4.0"
     ora "5.4.1"
-    pacote "12.0.2"
-    resolve "1.20.0"
+    pacote "12.0.3"
+    resolve "1.22.0"
     semver "7.3.5"
     symbol-observable "4.0.0"
     uuid "8.3.2"
@@ -1722,13 +1742,13 @@
     estree-walker "^1.0.1"
     picomatch "^2.2.2"
 
-"@schematics/angular@13.1.4":
-  version "13.1.4"
-  resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-13.1.4.tgz#8b8c9ad40403c485bae9adeb51649711651189d2"
-  integrity sha512-P1YsHn1LLAmdpB9X2TBuUgrvEW/KaoBbHr8ifYO8/uQEXyeiIF+So8h/dnegkYkdsr3OwQ2X/j3UF6/+HS0odg==
+"@schematics/angular@13.2.1":
+  version "13.2.1"
+  resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-13.2.1.tgz#72553b75f09144997aa1b0947c629836af86ec12"
+  integrity sha512-WoJXGYBpv2tBFBO89L82b8e21aR856xAtghe+Il6qr/bz2F9ovGJZRa6SMGWS7hBE65CJFI3HpMCksvWeJiazg==
   dependencies:
-    "@angular-devkit/core" "13.1.4"
-    "@angular-devkit/schematics" "13.1.4"
+    "@angular-devkit/core" "13.2.1"
+    "@angular-devkit/schematics" "13.2.1"
     jsonc-parser "3.0.0"
 
 "@sinonjs/commons@^1.7.0":
@@ -1749,6 +1769,11 @@
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@tootallnate/once/-/once-1.1.2.tgz#ccb91445360179a04e7fe6aff78c00ffc1eeaf82"
   integrity sha512-RbzJvlNzmRq5c3O09UipeuXno4tA1FE6ikOjxZK0tuxVv3412l64l5t1W5pj4+rJq9vpkm/kwiR07aZXnsKPxw==
+
+"@tootallnate/once@2":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@tootallnate/once/-/once-2.0.0.tgz#f544a148d3ab35801c1f633a7441fd87c2e484bf"
+  integrity sha512-XCuKFP5PS55gnMVu3dty8KPatLqUoy/ZYzDzAGCQ8JNFCkLXzmI7vNHCR+XpbZaMWQK/vQubr7PkYq8g470J/A==
 
 "@tsconfig/node10@^1.0.7":
   version "1.0.8"
@@ -2351,6 +2376,16 @@ ajv@8.8.2:
     require-from-string "^2.0.2"
     uri-js "^4.2.2"
 
+ajv@8.9.0, ajv@^8.0.0, ajv@^8.8.0:
+  version "8.9.0"
+  resolved "https://registry.yarnpkg.com/ajv/-/ajv-8.9.0.tgz#738019146638824dea25edcf299dcba1b0e7eb18"
+  integrity sha512-qOKJyNj/h+OWx7s5DePL6Zu1KeM9jPZhwBqs+7DzP6bGOvqzVCSf0xueYmVuaC/oQ/VtS2zLMLHdQFbkka+XDQ==
+  dependencies:
+    fast-deep-equal "^3.1.1"
+    json-schema-traverse "^1.0.0"
+    require-from-string "^2.0.2"
+    uri-js "^4.2.2"
+
 ajv@^6.10.0, ajv@^6.12.4, ajv@^6.12.5:
   version "6.12.6"
   resolved "https://registry.yarnpkg.com/ajv/-/ajv-6.12.6.tgz#baf5a62e802b07d977034586f8c3baf5adf26df4"
@@ -2359,16 +2394,6 @@ ajv@^6.10.0, ajv@^6.12.4, ajv@^6.12.5:
     fast-deep-equal "^3.1.1"
     fast-json-stable-stringify "^2.0.0"
     json-schema-traverse "^0.4.1"
-    uri-js "^4.2.2"
-
-ajv@^8.0.0, ajv@^8.8.0:
-  version "8.9.0"
-  resolved "https://registry.yarnpkg.com/ajv/-/ajv-8.9.0.tgz#738019146638824dea25edcf299dcba1b0e7eb18"
-  integrity sha512-qOKJyNj/h+OWx7s5DePL6Zu1KeM9jPZhwBqs+7DzP6bGOvqzVCSf0xueYmVuaC/oQ/VtS2zLMLHdQFbkka+XDQ==
-  dependencies:
-    fast-deep-equal "^3.1.1"
-    json-schema-traverse "^1.0.0"
-    require-from-string "^2.0.2"
     uri-js "^4.2.2"
 
 ansi-colors@4.1.1:
@@ -4482,6 +4507,15 @@ http-proxy-agent@^4.0.0, http-proxy-agent@^4.0.1:
     agent-base "6"
     debug "4"
 
+http-proxy-agent@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/http-proxy-agent/-/http-proxy-agent-5.0.0.tgz#5129800203520d434f142bc78ff3c170800f2b43"
+  integrity sha512-n2hY8YdoRE1i7r6M0w9DIw5GgZN0G25P8zLCRQ8rjXtTU3vsNFBI/vWK/UIeE6g5MUUz6avwAPXmL6Fy9D/90w==
+  dependencies:
+    "@tootallnate/once" "2"
+    agent-base "6"
+    debug "4"
+
 http-proxy-middleware@^2.0.0:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/http-proxy-middleware/-/http-proxy-middleware-2.0.2.tgz#94d7593790aad6b3de48164f13792262f656c332"
@@ -4689,7 +4723,7 @@ is-binary-path@~2.1.0:
   dependencies:
     binary-extensions "^2.0.0"
 
-is-core-module@^2.2.0, is-core-module@^2.8.1:
+is-core-module@^2.8.1:
   version "2.8.1"
   resolved "https://registry.yarnpkg.com/is-core-module/-/is-core-module-2.8.1.tgz#f59fdfca701d5879d0a6b100a40aa1560ce27211"
   integrity sha512-SdNCUs284hr40hFTFP6l0IfZ/RSrMXF3qgoRHd3/79unUTvrFO/JoXwkGm+5J/Oe3E/b5GsnG330uUNgRpu1PA==
@@ -5586,7 +5620,29 @@ make-error@^1.1.1:
   resolved "https://registry.yarnpkg.com/make-error/-/make-error-1.3.6.tgz#2eb2e37ea9b67c4891f684a1394799af484cf7a2"
   integrity sha512-s8UhlNe7vPKomQhC1qFelMokr/Sc3AgNbso3n74mVPA5LTZwkB9NlXf4XPamLxJE8h0gh73rM94xvwRT2CVInw==
 
-make-fetch-happen@^9.0.1, make-fetch-happen@^9.1.0:
+make-fetch-happen@^10.0.0:
+  version "10.0.0"
+  resolved "https://registry.yarnpkg.com/make-fetch-happen/-/make-fetch-happen-10.0.0.tgz#a2dc77ec1ebf082927f4dc6eaa70227f72e5a250"
+  integrity sha512-CREcDkbKZZ64g5MN1FT+u58mDHX9FQFFtFyio5HonX44BdQdytqPZBXUz+6ibi2w/6ncji59f2phyXGSMGpgzA==
+  dependencies:
+    agentkeepalive "^4.1.3"
+    cacache "^15.2.0"
+    http-cache-semantics "^4.1.0"
+    http-proxy-agent "^5.0.0"
+    https-proxy-agent "^5.0.0"
+    is-lambda "^1.0.1"
+    lru-cache "^6.0.0"
+    minipass "^3.1.3"
+    minipass-collect "^1.0.2"
+    minipass-fetch "^1.3.2"
+    minipass-flush "^1.0.5"
+    minipass-pipeline "^1.2.4"
+    negotiator "^0.6.3"
+    promise-retry "^2.0.1"
+    socks-proxy-agent "^6.0.0"
+    ssri "^8.0.0"
+
+make-fetch-happen@^9.1.0:
   version "9.1.0"
   resolved "https://registry.yarnpkg.com/make-fetch-happen/-/make-fetch-happen-9.1.0.tgz#53085a09e7971433e6765f7971bf63f4e05cb968"
   integrity sha512-+zopwDy7DNknmwPQplem5lAZX/eCOzSvSNNcSKm5eVwTkOBzoktEfXsa9L23J/GIRhxRsaxzkPEhrJEpE2F4Gg==
@@ -5837,7 +5893,7 @@ negotiator@0.6.2:
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.2.tgz#feacf7ccf525a77ae9634436a64883ffeca346fb"
   integrity sha512-hZXc7K2e+PgeI1eDBe/10Ard4ekbfrrqG8Ep+8Jmf4JID2bNg7NvCPOZN+kfF574pFQI7mum2AUqDidoKqcTOw==
 
-negotiator@^0.6.2:
+negotiator@^0.6.2, negotiator@^0.6.3:
   version "0.6.3"
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.3.tgz#58e323a72fedc0d6f9cd4d31fe49f51479590ccd"
   integrity sha512-+EUsqGPLsM+j/zdChZjsnX51g4XrHFOIXwfnCVPGlQk/k5giakcKsuxCObBRu6DSm9opw/O6slWbJdghQM4bBg==
@@ -5968,12 +6024,12 @@ npm-pick-manifest@6.1.1, npm-pick-manifest@^6.0.0, npm-pick-manifest@^6.1.1:
     npm-package-arg "^8.1.2"
     semver "^7.3.4"
 
-npm-registry-fetch@^11.0.0:
-  version "11.0.0"
-  resolved "https://registry.yarnpkg.com/npm-registry-fetch/-/npm-registry-fetch-11.0.0.tgz#68c1bb810c46542760d62a6a965f85a702d43a76"
-  integrity sha512-jmlgSxoDNuhAtxUIG6pVwwtz840i994dL14FoNVZisrmZW5kWd63IUTNv1m/hyRSGSqWjCUp/YZlS1BJyNp9XA==
+npm-registry-fetch@^12.0.0:
+  version "12.0.1"
+  resolved "https://registry.yarnpkg.com/npm-registry-fetch/-/npm-registry-fetch-12.0.1.tgz#211eff2483b1e71706c9a7ce891182ab3ea9168b"
+  integrity sha512-ricy4ezH3Uv0d4am6RSwHjCYTWJI74NJjurIigWMAG7Vs3PFyd0TUlkrez5L0AgaPzDLRsEzqb5cOZ/Ue01bmA==
   dependencies:
-    make-fetch-happen "^9.0.1"
+    make-fetch-happen "^10.0.0"
     minipass "^3.1.3"
     minipass-fetch "^1.3.0"
     minipass-json-stream "^1.0.1"
@@ -6169,10 +6225,10 @@ p-try@^2.0.0:
   resolved "https://registry.yarnpkg.com/p-try/-/p-try-2.2.0.tgz#cb2868540e313d61de58fafbe35ce9004d5540e6"
   integrity sha512-R4nPAVTAU0B9D35/Gk3uJf/7XYbQcyohSKdvAxIRSNghFl4e71hVoGnBNQz9cWaXxO2I10KTC+3jMdvvoKw6dQ==
 
-pacote@12.0.2:
-  version "12.0.2"
-  resolved "https://registry.yarnpkg.com/pacote/-/pacote-12.0.2.tgz#14ae30a81fe62ec4fc18c071150e6763e932527c"
-  integrity sha512-Ar3mhjcxhMzk+OVZ8pbnXdb0l8+pimvlsqBGRNkble2NVgyqOGE3yrCGi/lAYq7E7NRDMz89R1Wx5HIMCGgeYg==
+pacote@12.0.3:
+  version "12.0.3"
+  resolved "https://registry.yarnpkg.com/pacote/-/pacote-12.0.3.tgz#b6f25868deb810e7e0ddf001be88da2bcaca57c7"
+  integrity sha512-CdYEl03JDrRO3x18uHjBYA9TyoW8gy+ThVcypcDkxPtKlw76e4ejhYB6i9lJ+/cebbjpqPW/CijjqxwDTts8Ow==
   dependencies:
     "@npmcli/git" "^2.1.0"
     "@npmcli/installed-package-contents" "^1.0.6"
@@ -6187,7 +6243,7 @@ pacote@12.0.2:
     npm-package-arg "^8.0.1"
     npm-packlist "^3.0.0"
     npm-pick-manifest "^6.0.0"
-    npm-registry-fetch "^11.0.0"
+    npm-registry-fetch "^12.0.0"
     promise-retry "^2.0.1"
     read-package-json-fast "^2.0.1"
     rimraf "^3.0.2"
@@ -6273,7 +6329,7 @@ path-key@^3.0.0, path-key@^3.1.0:
   resolved "https://registry.yarnpkg.com/path-key/-/path-key-3.1.1.tgz#581f6ade658cbba65a0d3380de7753295054f375"
   integrity sha512-ojmeN0qd+y0jszEtoY48r0Peq5dwMEkIlCOu6Q5f41lfkswXuKtYrhgoTpLnyIcHm24Uhqx+5Tqm2InSwLhE6Q==
 
-path-parse@^1.0.6, path-parse@^1.0.7:
+path-parse@^1.0.7:
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/path-parse/-/path-parse-1.0.7.tgz#fbc114b60ca42b30d9daf5858e4bd68bbedb6735"
   integrity sha512-LDJzPVEEEPR+y48z93A0Ed0yXb8pAByGWo/k5YYdYgpY2/2EsOsksJrq7lOHxryrVOn1ejG6oAp8ahvOIQD8sw==
@@ -6981,15 +7037,7 @@ resolve.exports@^1.1.0:
   resolved "https://registry.yarnpkg.com/resolve.exports/-/resolve.exports-1.1.0.tgz#5ce842b94b05146c0e03076985d1d0e7e48c90c9"
   integrity sha512-J1l+Zxxp4XK3LUDZ9m60LRJF/mAe4z6a4xyabPHk7pvK5t35dACV32iIjJDFeWZFfZlO29w6SZ67knR0tHzJtQ==
 
-resolve@1.20.0:
-  version "1.20.0"
-  resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.20.0.tgz#629a013fb3f70755d6f0b7935cc1c2c5378b1975"
-  integrity sha512-wENBPt4ySzg4ybFQW2TT1zMQucPK95HSh/nq2CFTZVOGut2+pQvSsgtda4d26YrYcr067wjbmzOG8byDPBX63A==
-  dependencies:
-    is-core-module "^2.2.0"
-    path-parse "^1.0.6"
-
-resolve@^1.1.7, resolve@^1.14.2, resolve@^1.17.0, resolve@^1.19.0, resolve@^1.20.0:
+resolve@1.22.0, resolve@^1.1.7, resolve@^1.14.2, resolve@^1.17.0, resolve@^1.19.0, resolve@^1.20.0:
   version "1.22.0"
   resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.22.0.tgz#5e0b8c67c15df57a89bdbabe603a002f21731198"
   integrity sha512-Hhtrw0nLeSrFQ7phPp4OOcVjLPIeMnRlr5mcnVuMe7M/7eBn98A3hmFRLoFo3DLZkivSYwhRUJTyPyWAk56WLw==
