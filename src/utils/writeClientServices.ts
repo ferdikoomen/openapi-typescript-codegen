@@ -17,6 +17,7 @@ import type { Templates } from './registerHandlebarTemplates';
  * @param httpClient The selected httpClient (fetch, xhr, node or axios)
  * @param useUnionTypes Use union types instead of enums
  * @param useOptions Use options or arguments functions
+ * @param exposeHeadersAndBody Return response headers and body (default is body only)
  * @param indent Indentation options (4, 2 or tab)
  * @param postfix Service name postfix
  * @param clientName Custom client class name
@@ -28,6 +29,7 @@ export const writeClientServices = async (
     httpClient: HttpClient,
     useUnionTypes: boolean,
     useOptions: boolean,
+    exposeHeadersAndBody: boolean,
     indent: Indent,
     postfix: string,
     clientName?: string
@@ -39,6 +41,7 @@ export const writeClientServices = async (
             httpClient,
             useUnionTypes,
             useOptions,
+            exposeHeadersAndBody,
             postfix,
             exportClient: isDefined(clientName),
         });

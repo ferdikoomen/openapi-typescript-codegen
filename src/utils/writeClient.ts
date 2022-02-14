@@ -22,6 +22,7 @@ import { writeClientServices } from './writeClientServices';
  * @param httpClient The selected httpClient (fetch, xhr, node or axios)
  * @param useOptions Use options or arguments functions
  * @param useUnionTypes Use union types instead of enums
+ * @param exposeHeadersAndBody Return response headers and body (default is body only)
  * @param exportCore Generate core client classes
  * @param exportServices Generate services
  * @param exportModels Generate models
@@ -39,6 +40,7 @@ export const writeClient = async (
     httpClient: HttpClient,
     useOptions: boolean,
     useUnionTypes: boolean,
+    exposeHeadersAndBody: boolean,
     exportCore: boolean,
     exportServices: boolean,
     exportModels: boolean,
@@ -61,7 +63,7 @@ export const writeClient = async (
     if (exportCore) {
         await rmdir(outputPathCore);
         await mkdir(outputPathCore);
-        await writeClientCore(client, templates, outputPathCore, httpClient, indent, clientName, request);
+        await writeClientCore(client, templates, outputPathCore, httpClient, exposeHeadersAndBody, indent, clientName, request);
     }
 
     if (exportServices) {
@@ -74,6 +76,7 @@ export const writeClient = async (
             httpClient,
             useUnionTypes,
             useOptions,
+            exposeHeadersAndBody,
             indent,
             postfix,
             clientName

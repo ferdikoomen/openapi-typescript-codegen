@@ -19,6 +19,7 @@ export type Options = {
     clientName?: string;
     useOptions?: boolean;
     useUnionTypes?: boolean;
+    exposeHeadersAndBody?: boolean;
     exportCore?: boolean;
     exportServices?: boolean;
     exportModels?: boolean;
@@ -39,6 +40,7 @@ export type Options = {
  * @param clientName Custom client class name
  * @param useOptions Use options or arguments functions
  * @param useUnionTypes Use union types instead of enums
+ * @param exposeHeadersAndBody Return response headers and body (default is body only)
  * @param exportCore Generate core client classes
  * @param exportServices Generate services
  * @param exportModels Generate models
@@ -55,6 +57,7 @@ export const generate = async ({
     clientName,
     useOptions = false,
     useUnionTypes = false,
+    exposeHeadersAndBody = false,
     exportCore = true,
     exportServices = true,
     exportModels = true,
@@ -84,6 +87,7 @@ export const generate = async ({
                 httpClient,
                 useOptions,
                 useUnionTypes,
+                exposeHeadersAndBody,
                 exportCore,
                 exportServices,
                 exportModels,
@@ -107,6 +111,7 @@ export const generate = async ({
                 httpClient,
                 useOptions,
                 useUnionTypes,
+                exposeHeadersAndBody,
                 exportCore,
                 exportServices,
                 exportModels,

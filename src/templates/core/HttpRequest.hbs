@@ -51,10 +51,18 @@ export class {{httpRequest}} extends BaseHttpRequest {
 	/**
 	 * Request method
 	 * @param options The request options from the service
+	 {{#if @root.exposeHeadersAndBody}}
+	 * @returns CancelablePromise<{ headers: Record<string, string>; body: T; }>
+	 {{else}}
 	 * @returns CancelablePromise<T>
+	 {{/if}}
 	 * @throws ApiError
 	 */
+	{{#if @root.exposeHeadersAndBody}}
+	public override request<T>(options: ApiRequestOptions): CancelablePromise<{ headers: Record<string, string>; body: T; }> {
+	{{else}} 
 	public override request<T>(options: ApiRequestOptions): CancelablePromise<T> {
+	{{/if}}
 		return __request(this.config, options);
 	}
 	{{/equals}}

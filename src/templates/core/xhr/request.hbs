@@ -62,10 +62,21 @@ import type { OpenAPIConfig } from './OpenAPI';
  * Request method
  * @param config The OpenAPI configuration object
  * @param options The request options from the service
+ {{#if @root.exposeHeadersAndBody}}
+ * @returns CancelablePromise<{ headers: Record<string, string>; body: T; }>
+ {{else}}
  * @returns CancelablePromise<T>
+ {{/if}}
  * @throws ApiError
  */
+{{#if @root.exposeHeadersAndBody}}
+export const request = <T>(config: OpenAPIConfig, options: ApiRequestOptions): CancelablePromise<{
+	headers: Record<string, string>;
+	body: T;
+}> => {
+{{else}}
 export const request = <T>(config: OpenAPIConfig, options: ApiRequestOptions): CancelablePromise<T> => {
+{{/if}}
 	return new CancelablePromise(async (resolve, reject, onCancel) => {
 		try {
 			const url = getUrl(config, options);
@@ -76,19 +87,36 @@ export const request = <T>(config: OpenAPIConfig, options: ApiRequestOptions): C
 			if (!onCancel.isCancelled) {
 				const response = await sendRequest(config, options, url, body, formData, headers, onCancel);
 				const responseBody = getResponseBody(response);
+				{{#if @root.exposeHeadersAndBody}}
+				const responseHeaders: Record<string, string> = {};
+				const allResponseHeaders = response.getAllResponseHeaders() ?? '';
+				allResponseHeaders.split(/[\r\n]+/).forEach(line => {
+					const nv = line.split(': ', 2);
+					responseHeaders[nv[0]] = nv[1];
+				});
+				{{else}}
 				const responseHeader = getResponseHeader(response, options.responseHeader);
+				{{/if}}
 
 				const result: ApiResult = {
 					url,
 					ok: isSuccess(response.status),
 					status: response.status,
 					statusText: response.statusText,
+					{{#if @root.exposeHeadersAndBody}}
+					body: responseBody,
+					{{else}}
 					body: responseHeader ?? responseBody,
+					{{/if}}
 				};
 
 				catchErrorCodes(options, result);
 
+        {{#if @root.exposeHeadersAndBody}}
+				resolve({ headers: responseHeaders, body: result.body });
+				{{else}}
 				resolve(result.body);
+				{{/if}}
 			}
 		} catch (error) {
 			reject(error);

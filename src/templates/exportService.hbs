@@ -73,7 +73,11 @@ export class {{{name}}}{{{@root.postfix}}} {
 	public {{{name}}}({{>parameters}}): Observable<{{>result}}> {
 		return this.httpRequest.request({
 	{{else}}
+  {{#if @root.exposeHeadersAndBody}}
+	public {{{name}}}({{>parameters}}): CancelablePromise<{ headers: Record<string, string>; body: {{>result}}; }> {
+	{{else}}
 	public {{{name}}}({{>parameters}}): CancelablePromise<{{>result}}> {
+	{{/if}}
 		return this.httpRequest.request({
 	{{/equals}}
 	{{else}}
@@ -81,7 +85,11 @@ export class {{{name}}}{{{@root.postfix}}} {
 	public {{{name}}}({{>parameters}}): Observable<{{>result}}> {
 		return __request(OpenAPI, this.http, {
 	{{else}}
+	{{#if @root.exposeHeadersAndBody}}
+	public static {{{name}}}({{>parameters}}): CancelablePromise<{ headers: Record<string, string>; body: {{>result}}; }> {
+	{{else}}
 	public static {{{name}}}({{>parameters}}): CancelablePromise<{{>result}}> {
+	{{/if}}
 		return __request(OpenAPI, {
 	{{/equals}}
 	{{/if}}

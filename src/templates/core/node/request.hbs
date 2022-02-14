@@ -63,10 +63,21 @@ import type { OpenAPIConfig } from './OpenAPI';
  * Request method
  * @param config The OpenAPI configuration object
  * @param options The request options from the service
+ {{#if @root.exposeHeadersAndBody}}
+ * @returns CancelablePromise<{ headers: Record<string, string>; body: T; }>
+ {{else}}
  * @returns CancelablePromise<T>
+ {{/if}}
  * @throws ApiError
  */
+{{#if @root.exposeHeadersAndBody}}
+export const request = <T>(config: OpenAPIConfig, options: ApiRequestOptions): CancelablePromise<{
+	headers: Record<string, string>;
+	body: T;
+}> => {
+{{else}}
 export const request = <T>(config: OpenAPIConfig, options: ApiRequestOptions): CancelablePromise<T> => {
+{{/if}}
 	return new CancelablePromise(async (resolve, reject, onCancel) => {
 		try {
 			const url = getUrl(config, options);
@@ -77,19 +88,34 @@ export const request = <T>(config: OpenAPIConfig, options: ApiRequestOptions): C
 			if (!onCancel.isCancelled) {
 				const response = await sendRequest(options, url, body, formData, headers, onCancel);
 				const responseBody = await getResponseBody(response);
+				{{#if @root.exposeHeadersAndBody}}
+				const responseHeaders: Record<string, string> = {};
+				for (const header of Array.from(response.headers.keys())) {
+					responseHeaders[header] = response.headers.get(header) ?? '';
+				}
+				{{else}}
 				const responseHeader = getResponseHeader(response, options.responseHeader);
+				{{/if}}
 
 				const result: ApiResult = {
 					url,
 					ok: response.ok,
 					status: response.status,
 					statusText: response.statusText,
+					{{#if @root.exposeHeadersAndBody}}
+					body: responseBody,
+					{{else}}
 					body: responseHeader ?? responseBody,
+					{{/if}}
 				};
 
 				catchErrorCodes(options, result);
 
+        {{#if @root.exposeHeadersAndBody}}
+				resolve({ headers: responseHeaders, body: result.body });
+				{{else}}
 				resolve(result.body);
+				{{/if}}
 			}
 		} catch (error) {
 			reject(error);

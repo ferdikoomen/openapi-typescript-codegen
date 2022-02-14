@@ -28,7 +28,11 @@ export class BaseHttpRequest {
 		throw new Error('Not Implemented');
 	}
 	{{else}}
+	{{#if @root.exposeHeadersAndBody}}
+	public request<T>(options: ApiRequestOptions): CancelablePromise<{ headers: Record<string, string>; body: T; }> {
+	{{else}}
 	public request<T>(options: ApiRequestOptions): CancelablePromise<T> {
+	{{/if}}
 		throw new Error('Not Implemented');
 	}
 	{{/equals}}
