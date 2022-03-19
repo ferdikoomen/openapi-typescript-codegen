@@ -1,4 +1,4 @@
-const getResponseBody = (xhr: XMLHttpRequest): any => {
+const getResponseBody = (xhr: XMLHttpRequest, options: ApiRequestOptions): any => {
 	if (xhr.status !== 204) {
 		try {
 			const contentType = xhr.getResponseHeader('Content-Type');
@@ -6,6 +6,8 @@ const getResponseBody = (xhr: XMLHttpRequest): any => {
 				const isJSON = contentType.toLowerCase().startsWith('application/json');
 				if (isJSON) {
 					return JSON.parse(xhr.responseText);
+				} else if (options.responseType === 'blob') {
+					return xhr.response;
 				} else {
 					return xhr.responseText;
 				}

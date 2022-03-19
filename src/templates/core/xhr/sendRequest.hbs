@@ -10,6 +10,7 @@ export const sendRequest = async (
 	const xhr = new XMLHttpRequest();
 	xhr.open(options.method, url, true);
 	xhr.withCredentials = config.WITH_CREDENTIALS;
+	xhr.responseType = options.responseType;
 
 	headers.forEach((value, key) => {
 		xhr.setRequestHeader(key, value);

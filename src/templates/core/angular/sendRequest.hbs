@@ -12,5 +12,6 @@ export const sendRequest = <T>(
 		body: body ?? formData,
 		withCredentials: config.WITH_CREDENTIALS,
 		observe: 'response',
+		responseType: options.responseType,
 	});
 };
