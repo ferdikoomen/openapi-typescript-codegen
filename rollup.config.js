@@ -57,6 +57,7 @@ const getPlugins = () => {
         handlebarsPlugin(),
         typescript({
             module: 'esnext',
+            declaration: true,
         }),
     ];
     if (process.env.NODE_ENV === 'development') {
@@ -69,8 +70,9 @@ export default {
     input: './src/index.ts',
     output: {
         exports: 'named',
-        file: './dist/index.js',
+        dir: './dist',
         format: 'cjs',
+        preserveModules: true,
     },
     plugins: getPlugins(),
 };

@@ -38,7 +38,7 @@
     },
     "files": [
         "bin/index.js",
-        "dist/index.js",
+        "dist",
         "types/index.d.ts"
     ],
     "scripts": {
