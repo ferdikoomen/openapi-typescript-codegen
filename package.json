@@ -44,6 +44,7 @@
     "scripts": {
         "clean": "rimraf ./dist ./test/generated ./test/e2e/generated ./samples/generated ./coverage ./node_modules/.cache",
         "build": "rollup --config --environment NODE_ENV:development",
+        "postbuild": "rsync -am --include='*.d.ts' --include='*/' --exclude='*' ./src/ ./dist",
         "build:watch": "rollup --config --environment NODE_ENV:development --watch",
         "release": "rollup --config --environment NODE_ENV:production",
         "validate": "tsc --project tsconfig.json --noEmit",
