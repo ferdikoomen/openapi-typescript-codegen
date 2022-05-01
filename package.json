@@ -65,7 +65,7 @@
         "json-schema-ref-parser": "^9.0.9"
     },
     "devDependencies": {
-        "@angular-devkit/build-angular": "13.3.3",
+        "@angular-devkit/build-angular": "13.3.4",
         "@angular/animations": "13.3.4",
         "@angular/cli": "13.3.3",
         "@angular/common": "13.3.4",
