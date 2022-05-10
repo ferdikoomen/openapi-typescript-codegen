@@ -83,13 +83,13 @@ export interface OnCancel {
 export class CancelablePromise<T> implements Promise<T> {
     readonly [Symbol.toStringTag]: string;
 
-    #isResolved: boolean;
-    #isRejected: boolean;
-    #isCancelled: boolean;
-    readonly #cancelHandlers: (() => void)[];
-    readonly #promise: Promise<T>;
-    #resolve?: (value: T | PromiseLike<T>) => void;
-    #reject?: (reason?: any) => void;
+    private _isResolved: boolean;
+    private _isRejected: boolean;
+    private _isCancelled: boolean;
+    private readonly _cancelHandlers: (() => void)[];
+    private readonly _promise: Promise<T>;
+    private _resolve?: (value: T | PromiseLike<T>) => void;
+    private _reject?: (reason?: any) => void;
 
     constructor(
         executor: (
@@ -98,47 +98,47 @@ export class CancelablePromise<T> implements Promise<T> {
             onCancel: OnCancel
         ) => void
     ) {
-        this.#isResolved = false;
-        this.#isRejected = false;
-        this.#isCancelled = false;
-        this.#cancelHandlers = [];
-        this.#promise = new Promise<T>((resolve, reject) => {
-            this.#resolve = resolve;
-            this.#reject = reject;
+        this._isResolved = false;
+        this._isRejected = false;
+        this._isCancelled = false;
+        this._cancelHandlers = [];
+        this._promise = new Promise<T>((resolve, reject) => {
+            this._resolve = resolve;
+            this._reject = reject;
 
             const onResolve = (value: T | PromiseLike<T>): void => {
-                if (this.#isResolved || this.#isRejected || this.#isCancelled) {
+                if (this._isResolved || this._isRejected || this._isCancelled) {
                     return;
                 }
-                this.#isResolved = true;
-                this.#resolve?.(value);
+                this._isResolved = true;
+                this._resolve?.(value);
             };
 
             const onReject = (reason?: any): void => {
-                if (this.#isResolved || this.#isRejected || this.#isCancelled) {
+                if (this._isResolved || this._isRejected || this._isCancelled) {
                     return;
                 }
-                this.#isRejected = true;
-                this.#reject?.(reason);
+                this._isRejected = true;
+                this._reject?.(reason);
             };
 
             const onCancel = (cancelHandler: () => void): void => {
-                if (this.#isResolved || this.#isRejected || this.#isCancelled) {
+                if (this._isResolved || this._isRejected || this._isCancelled) {
                     return;
                 }
-                this.#cancelHandlers.push(cancelHandler);
+                this._cancelHandlers.push(cancelHandler);
             };
 
             Object.defineProperty(onCancel, 'isResolved', {
-                get: (): boolean => this.#isResolved,
+                get: (): boolean => this._isResolved,
             });
 
             Object.defineProperty(onCancel, 'isRejected', {
-                get: (): boolean => this.#isRejected,
+                get: (): boolean => this._isRejected,
             });
 
             Object.defineProperty(onCancel, 'isCancelled', {
-                get: (): boolean => this.#isCancelled,
+                get: (): boolean => this._isCancelled,
             });
 
             return executor(onResolve, onReject, onCancel as OnCancel);
@@ -149,27 +149,27 @@ export class CancelablePromise<T> implements Promise<T> {
         onFulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | null,
         onRejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | null
     ): Promise<TResult1 | TResult2> {
-        return this.#promise.then(onFulfilled, onRejected);
+        return this._promise.then(onFulfilled, onRejected);
     }
 
     public catch<TResult = never>(
         onRejected?: ((reason: any) => TResult | PromiseLike<TResult>) | null
     ): Promise<T | TResult> {
-        return this.#promise.catch(onRejected);
+        return this._promise.catch(onRejected);
     }
 
     public finally(onFinally?: (() => void) | null): Promise<T> {
-        return this.#promise.finally(onFinally);
+        return this._promise.finally(onFinally);
     }
 
     public cancel(): void {
-        if (this.#isResolved || this.#isRejected || this.#isCancelled) {
+        if (this._isResolved || this._isRejected || this._isCancelled) {
             return;
         }
-        this.#isCancelled = true;
-        if (this.#cancelHandlers.length) {
+        this._isCancelled = true;
+        if (this._cancelHandlers.length) {
             try {
-                for (const cancelHandler of this.#cancelHandlers) {
+                for (const cancelHandler of this._cancelHandlers) {
                     cancelHandler();
                 }
             } catch (error) {
@@ -177,12 +177,12 @@ export class CancelablePromise<T> implements Promise<T> {
                 return;
             }
         }
-        this.#cancelHandlers.length = 0;
-        this.#reject?.(new CancelError('Request aborted'));
+        this._cancelHandlers.length = 0;
+        this._reject?.(new CancelError('Request aborted'));
     }
 
     public get isCancelled(): boolean {
-        return this.#isCancelled;
+        return this._isCancelled;
     }
 }"
 `;
@@ -347,7 +347,7 @@ const getFormData = (options: ApiRequestOptions): FormData | undefined => {
 
         return formData;
     }
-    return;
+    return undefined;
 };
 
 type Resolver<T> = (options: ApiRequestOptions) => Promise<T>;
@@ -410,7 +410,7 @@ const getRequestBody = (options: ApiRequestOptions): any => {
             return JSON.stringify(options.body);
         }
     }
-    return;
+    return undefined;
 };
 
 export const sendRequest = async (
@@ -447,7 +447,7 @@ const getResponseHeader = (response: Response, responseHeader?: string): string 
             return content;
         }
     }
-    return;
+    return undefined;
 };
 
 const getResponseBody = async (response: Response): Promise<any> => {
@@ -466,7 +466,7 @@ const getResponseBody = async (response: Response): Promise<any> => {
             console.error(error);
         }
     }
-    return;
+    return undefined;
 };
 
 const catchErrorCodes = (options: ApiRequestOptions, result: ApiResult): void => {
@@ -570,7 +570,7 @@ export type { ModelWithDictionary } from './models/ModelWithDictionary';
 export type { ModelWithDuplicateImports } from './models/ModelWithDuplicateImports';
 export type { ModelWithDuplicateProperties } from './models/ModelWithDuplicateProperties';
 export { ModelWithEnum } from './models/ModelWithEnum';
-export { ModelWithEnumFromDescription } from './models/ModelWithEnumFromDescription';
+export type { ModelWithEnumFromDescription } from './models/ModelWithEnumFromDescription';
 export type { ModelWithInteger } from './models/ModelWithInteger';
 export type { ModelWithNestedEnums } from './models/ModelWithNestedEnums';
 export type { ModelWithNestedProperties } from './models/ModelWithNestedProperties';
@@ -890,15 +890,15 @@ exports[`v2 should generate: ./test/generated/v2/models/EnumWithExtensions.ts 1`
  */
 export enum EnumWithExtensions {
     /**
-     * \\"Used when the status of something is successful\\"
+     * Used when the status of something is successful
      */
     CUSTOM_SUCCESS = 200,
     /**
-     * \\"Used when the status of something has a warning\\"
+     * Used when the status of something has a warning
      */
     CUSTOM_WARNING = 400,
     /**
-     * \\"Used when the status of something has an error\\"
+     * Used when the status of something has an error
      */
     CUSTOM_ERROR = 500,
 }"
@@ -913,65 +913,20 @@ exports[`v2 should generate: ./test/generated/v2/models/EnumWithNumbers.ts 1`] =
  * This is a simple enum with numbers
  */
 export enum EnumWithNumbers {
-    /**
-     * null
-     */
     '_1' = 1,
-    /**
-     * null
-     */
     '_2' = 2,
-    /**
-     * null
-     */
     '_3' = 3,
-    /**
-     * null
-     */
     '_1.1' = 1.1,
-    /**
-     * null
-     */
     '_1.2' = 1.2,
-    /**
-     * null
-     */
     '_1.3' = 1.3,
-    /**
-     * null
-     */
     '_100' = 100,
-    /**
-     * null
-     */
     '_200' = 200,
-    /**
-     * null
-     */
     '_300' = 300,
-    /**
-     * null
-     */
     '_-100' = -100,
-    /**
-     * null
-     */
     '_-200' = -200,
-    /**
-     * null
-     */
     '_-300' = -300,
-    /**
-     * null
-     */
     '_-1.1' = -1.1,
-    /**
-     * null
-     */
     '_-1.2' = -1.2,
-    /**
-     * null
-     */
     '_-1.3' = -1.3,
 }"
 `;
@@ -985,25 +940,10 @@ exports[`v2 should generate: ./test/generated/v2/models/EnumWithStrings.ts 1`] =
  * This is a simple enum with strings
  */
 export enum EnumWithStrings {
-    /**
-     * null
-     */
     SUCCESS = 'Success',
-    /**
-     * null
-     */
     WARNING = 'Warning',
-    /**
-     * null
-     */
     ERROR = 'Error',
-    /**
-     * null
-     */
     _SINGLE_QUOTE_ = '\\\\'Single Quote\\\\'',
-    /**
-     * null
-     */
     _DOUBLE_QUOTES_ = '\\"Double Quotes\\"',
 }"
 `;
@@ -1203,22 +1143,8 @@ export type ModelWithEnumFromDescription = {
     /**
      * Success=1,Warning=2,Error=3
      */
-    test?: ModelWithEnumFromDescription.test;
+    test?: number;
 };
-
-export namespace ModelWithEnumFromDescription {
-
-    /**
-     * Success=1,Warning=2,Error=3
-     */
-    export enum test {
-        SUCCESS = 1,
-        WARNING = 2,
-        ERROR = 3,
-    }
-
-
-}
 "
 `;
 
@@ -1249,9 +1175,9 @@ exports[`v2 should generate: ./test/generated/v2/models/ModelWithNestedEnums.ts 
  */
 export type ModelWithNestedEnums = {
     dictionaryWithEnum?: Record<string, 'Success' | 'Warning' | 'Error'>;
-    dictionaryWithEnumFromDescription?: Record<string, 1 | 2 | 3>;
+    dictionaryWithEnumFromDescription?: Record<string, number>;
     arrayWithEnum?: Array<'Success' | 'Warning' | 'Error'>;
-    arrayWithDescription?: Array<1 | 2 | 3>;
+    arrayWithDescription?: Array<number>;
 };
 "
 `;
@@ -1906,7 +1832,8 @@ export const $ModelWithEnumFromDescription = {
     description: \`This is a model with one enum\`,
     properties: {
         test: {
-            type: 'Enum',
+            type: 'number',
+            description: \`Success=1,Warning=2,Error=3\`,
         },
     },
 } as const;"
@@ -1943,7 +1870,8 @@ export const $ModelWithNestedEnums = {
         dictionaryWithEnumFromDescription: {
             type: 'dictionary',
             contains: {
-                type: 'Enum',
+                type: 'number',
+                description: \`Success=1,Warning=2,Error=3\`,
             },
         },
         arrayWithEnum: {
@@ -1955,7 +1883,8 @@ export const $ModelWithNestedEnums = {
         arrayWithDescription: {
             type: 'array',
             contains: {
-                type: 'Enum',
+                type: 'number',
+                description: \`Success=1,Warning=2,Error=3\`,
             },
         },
     },
@@ -3094,13 +3023,13 @@ export interface OnCancel {
 export class CancelablePromise<T> implements Promise<T> {
     readonly [Symbol.toStringTag]: string;
 
-    #isResolved: boolean;
-    #isRejected: boolean;
-    #isCancelled: boolean;
-    readonly #cancelHandlers: (() => void)[];
-    readonly #promise: Promise<T>;
-    #resolve?: (value: T | PromiseLike<T>) => void;
-    #reject?: (reason?: any) => void;
+    private _isResolved: boolean;
+    private _isRejected: boolean;
+    private _isCancelled: boolean;
+    private readonly _cancelHandlers: (() => void)[];
+    private readonly _promise: Promise<T>;
+    private _resolve?: (value: T | PromiseLike<T>) => void;
+    private _reject?: (reason?: any) => void;
 
     constructor(
         executor: (
@@ -3109,47 +3038,47 @@ export class CancelablePromise<T> implements Promise<T> {
             onCancel: OnCancel
         ) => void
     ) {
-        this.#isResolved = false;
-        this.#isRejected = false;
-        this.#isCancelled = false;
-        this.#cancelHandlers = [];
-        this.#promise = new Promise<T>((resolve, reject) => {
-            this.#resolve = resolve;
-            this.#reject = reject;
+        this._isResolved = false;
+        this._isRejected = false;
+        this._isCancelled = false;
+        this._cancelHandlers = [];
+        this._promise = new Promise<T>((resolve, reject) => {
+            this._resolve = resolve;
+            this._reject = reject;
 
             const onResolve = (value: T | PromiseLike<T>): void => {
-                if (this.#isResolved || this.#isRejected || this.#isCancelled) {
+                if (this._isResolved || this._isRejected || this._isCancelled) {
                     return;
                 }
-                this.#isResolved = true;
-                this.#resolve?.(value);
+                this._isResolved = true;
+                this._resolve?.(value);
             };
 
             const onReject = (reason?: any): void => {
-                if (this.#isResolved || this.#isRejected || this.#isCancelled) {
+                if (this._isResolved || this._isRejected || this._isCancelled) {
                     return;
                 }
-                this.#isRejected = true;
-                this.#reject?.(reason);
+                this._isRejected = true;
+                this._reject?.(reason);
             };
 
             const onCancel = (cancelHandler: () => void): void => {
-                if (this.#isResolved || this.#isRejected || this.#isCancelled) {
+                if (this._isResolved || this._isRejected || this._isCancelled) {
                     return;
                 }
-                this.#cancelHandlers.push(cancelHandler);
+                this._cancelHandlers.push(cancelHandler);
             };
 
             Object.defineProperty(onCancel, 'isResolved', {
-                get: (): boolean => this.#isResolved,
+                get: (): boolean => this._isResolved,
             });
 
             Object.defineProperty(onCancel, 'isRejected', {
-                get: (): boolean => this.#isRejected,
+                get: (): boolean => this._isRejected,
             });
 
             Object.defineProperty(onCancel, 'isCancelled', {
-                get: (): boolean => this.#isCancelled,
+                get: (): boolean => this._isCancelled,
             });
 
             return executor(onResolve, onReject, onCancel as OnCancel);
@@ -3160,27 +3089,27 @@ export class CancelablePromise<T> implements Promise<T> {
         onFulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | null,
         onRejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | null
     ): Promise<TResult1 | TResult2> {
-        return this.#promise.then(onFulfilled, onRejected);
+        return this._promise.then(onFulfilled, onRejected);
     }
 
     public catch<TResult = never>(
         onRejected?: ((reason: any) => TResult | PromiseLike<TResult>) | null
     ): Promise<T | TResult> {
-        return this.#promise.catch(onRejected);
+        return this._promise.catch(onRejected);
     }
 
     public finally(onFinally?: (() => void) | null): Promise<T> {
-        return this.#promise.finally(onFinally);
+        return this._promise.finally(onFinally);
     }
 
     public cancel(): void {
-        if (this.#isResolved || this.#isRejected || this.#isCancelled) {
+        if (this._isResolved || this._isRejected || this._isCancelled) {
             return;
         }
-        this.#isCancelled = true;
-        if (this.#cancelHandlers.length) {
+        this._isCancelled = true;
+        if (this._cancelHandlers.length) {
             try {
-                for (const cancelHandler of this.#cancelHandlers) {
+                for (const cancelHandler of this._cancelHandlers) {
                     cancelHandler();
                 }
             } catch (error) {
@@ -3188,12 +3117,12 @@ export class CancelablePromise<T> implements Promise<T> {
                 return;
             }
         }
-        this.#cancelHandlers.length = 0;
-        this.#reject?.(new CancelError('Request aborted'));
+        this._cancelHandlers.length = 0;
+        this._reject?.(new CancelError('Request aborted'));
     }
 
     public get isCancelled(): boolean {
-        return this.#isCancelled;
+        return this._isCancelled;
     }
 }"
 `;
@@ -3358,7 +3287,7 @@ const getFormData = (options: ApiRequestOptions): FormData | undefined => {
 
         return formData;
     }
-    return;
+    return undefined;
 };
 
 type Resolver<T> = (options: ApiRequestOptions) => Promise<T>;
@@ -3421,7 +3350,7 @@ const getRequestBody = (options: ApiRequestOptions): any => {
             return JSON.stringify(options.body);
         }
     }
-    return;
+    return undefined;
 };
 
 export const sendRequest = async (
@@ -3458,7 +3387,7 @@ const getResponseHeader = (response: Response, responseHeader?: string): string 
             return content;
         }
     }
-    return;
+    return undefined;
 };
 
 const getResponseBody = async (response: Response): Promise<any> => {
@@ -3477,7 +3406,7 @@ const getResponseBody = async (response: Response): Promise<any> => {
             console.error(error);
         }
     }
-    return;
+    return undefined;
 };
 
 const catchErrorCodes = (options: ApiRequestOptions, result: ApiResult): void => {
@@ -3596,7 +3525,7 @@ export type { ModelWithDictionary } from './models/ModelWithDictionary';
 export type { ModelWithDuplicateImports } from './models/ModelWithDuplicateImports';
 export type { ModelWithDuplicateProperties } from './models/ModelWithDuplicateProperties';
 export { ModelWithEnum } from './models/ModelWithEnum';
-export { ModelWithEnumFromDescription } from './models/ModelWithEnumFromDescription';
+export type { ModelWithEnumFromDescription } from './models/ModelWithEnumFromDescription';
 export type { ModelWithInteger } from './models/ModelWithInteger';
 export type { ModelWithNestedEnums } from './models/ModelWithNestedEnums';
 export type { ModelWithNestedProperties } from './models/ModelWithNestedProperties';
@@ -4444,22 +4373,8 @@ export type ModelWithEnumFromDescription = {
     /**
      * Success=1,Warning=2,Error=3
      */
-    test?: ModelWithEnumFromDescription.test;
+    test?: number;
 };
-
-export namespace ModelWithEnumFromDescription {
-
-    /**
-     * Success=1,Warning=2,Error=3
-     */
-    export enum test {
-        SUCCESS = 1,
-        WARNING = 2,
-        ERROR = 3,
-    }
-
-
-}
 "
 `;
 
@@ -4490,9 +4405,9 @@ exports[`v3 should generate: ./test/generated/v3/models/ModelWithNestedEnums.ts 
  */
 export type ModelWithNestedEnums = {
     dictionaryWithEnum?: Record<string, 'Success' | 'Warning' | 'Error'>;
-    dictionaryWithEnumFromDescription?: Record<string, 1 | 2 | 3>;
+    dictionaryWithEnumFromDescription?: Record<string, number>;
     arrayWithEnum?: Array<'Success' | 'Warning' | 'Error'>;
-    arrayWithDescription?: Array<1 | 2 | 3>;
+    arrayWithDescription?: Array<number>;
 };
 "
 `;
@@ -5554,7 +5469,8 @@ export const $ModelWithEnumFromDescription = {
     description: \`This is a model with one enum\`,
     properties: {
         test: {
-            type: 'Enum',
+            type: 'number',
+            description: \`Success=1,Warning=2,Error=3\`,
         },
     },
 } as const;"
@@ -5591,7 +5507,8 @@ export const $ModelWithNestedEnums = {
         dictionaryWithEnumFromDescription: {
             type: 'dictionary',
             contains: {
-                type: 'Enum',
+                type: 'number',
+                description: \`Success=1,Warning=2,Error=3\`,
             },
         },
         arrayWithEnum: {
@@ -5603,7 +5520,8 @@ export const $ModelWithNestedEnums = {
         arrayWithDescription: {
             type: 'array',
             contains: {
-                type: 'Enum',
+                type: 'number',
+                description: \`Success=1,Warning=2,Error=3\`,
             },
         },
     },
