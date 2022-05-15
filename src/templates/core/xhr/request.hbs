@@ -105,14 +105,14 @@ export const requestWithResponseHeader = <T>(config: OpenAPIConfig, options: Api
  * @throws ApiError
  */
 export const request = <T>(config: OpenAPIConfig, options: ApiRequestOptions): CancelablePromise<T> => {
-    return new CancelablePromise(async (resolve, reject, onCancel) => {
-        try {
-            if (!onCancel.isCancelled) {
-                const result = await requestWithResponseHeader(config, options)
-                resolve(result.body)
-            }
-        } catch (error) {
-            reject(error);
-        }
-    });
+	return new CancelablePromise(async (resolve, reject, onCancel) => {
+		try {
+			if (!onCancel.isCancelled) {
+				const result = await requestWithResponseHeader(config, options)
+				resolve(result.body)
+			}
+		} catch (error) {
+			reject(error);
+		}
+	});
 };
