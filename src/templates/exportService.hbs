@@ -23,12 +23,16 @@ import type { CancelablePromise } from '../core/CancelablePromise';
 {{#if @root.exportClient}}
 {{#equals @root.httpClient 'angular'}}
 import { BaseHttpRequest } from '../core/BaseHttpRequest';
+import type { ApiResult } from '../core/ApiResult';
 {{else}}
 import type { BaseHttpRequest } from '../core/BaseHttpRequest';
+import type { ApiResult } from '../core/ApiResult';
 {{/equals}}
 {{else}}
+import type { ApiResult } from '../core/ApiResult';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+import { requestWithResponseHeader as __requestWithResponseHeader } from '../core/request';
 {{/if}}
 
 {{#equals @root.httpClient 'angular'}}
@@ -73,16 +77,26 @@ export class {{{name}}}{{{@root.postfix}}} {
 	public {{{name}}}({{>parameters}}): Observable<{{>result}}> {
 		return this.httpRequest.request({
 	{{else}}
+		{{#if responseHeader}}
+	public {{{name}}}({{>parameters}}): CancelablePromise<ApiResult> {
+		return this.httpRequest.requestWithResponseHeader({
+		{{else}}
 	public {{{name}}}({{>parameters}}): CancelablePromise<{{>result}}> {
 		return this.httpRequest.request({
+		{{/if}}
 	{{/equals}}
 	{{else}}
 	{{#equals @root.httpClient 'angular'}}
 	public {{{name}}}({{>parameters}}): Observable<{{>result}}> {
 		return __request(OpenAPI, this.http, {
 	{{else}}
+		{{#if responseHeader}}
+	public {{{name}}}({{>parameters}}): CancelablePromise<ApiResult> {
+		return __requestWithResponseHeader(OpenAPI, {
+		{{else}}
 	public static {{{name}}}({{>parameters}}): CancelablePromise<{{>result}}> {
 		return __request(OpenAPI, {
+		{{/if}}
 	{{/equals}}
 	{{/if}}
 			method: '{{{method}}}',

@@ -2,7 +2,7 @@ import type { OperationResponse } from '../../../client/interfaces/OperationResp
 import type { OpenApi } from '../interfaces/OpenApi';
 import type { OpenApiResponse } from '../interfaces/OpenApiResponse';
 import type { OpenApiResponses } from '../interfaces/OpenApiResponses';
-import { getOperationResponse } from './getOperationResponse';
+import { getOperationResponseContent, getOperationResponseHeaders } from './getOperationResponse';
 import { getOperationResponseCode } from './getOperationResponseCode';
 import { getRef } from './getRef';
 
@@ -18,8 +18,14 @@ export const getOperationResponses = (openApi: OpenApi, responses: OpenApiRespon
             const responseCode = getOperationResponseCode(code);
 
             if (responseCode) {
-                const operationResponse = getOperationResponse(openApi, response, responseCode);
-                operationResponses.push(operationResponse);
+                const operationResponseContent = getOperationResponseContent(openApi, response, responseCode);
+                if (operationResponseContent !== null) {
+                    operationResponses.push(operationResponseContent);
+                }
+                const operationResponseHeaders = getOperationResponseHeaders(openApi, response, responseCode);
+                if (operationResponseHeaders !== null) {
+                    operationResponses.push(operationResponseHeaders);
+                }
             }
         }
     }
