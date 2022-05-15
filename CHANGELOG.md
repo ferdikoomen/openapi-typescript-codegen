@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## unreleased
+### Fixed
+- Fixed binary response type to process as a Blob rather than text/string (#986)
+- Use type-only imports for axios (#1037)
+
 ## [0.22.0] - 2022-04-26
 ### Fixed
 - Upgraded dependencies
