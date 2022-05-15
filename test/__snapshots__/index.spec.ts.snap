@@ -54,6 +54,7 @@ export type ApiResult = {
     readonly status: number;
     readonly statusText: string;
     readonly body: any;
+    readonly header: string | undefined;
 };"
 `;
 
@@ -495,13 +496,13 @@ const catchErrorCodes = (options: ApiRequestOptions, result: ApiResult): void =>
 };
 
 /**
- * Request method
+ * Request method with header
  * @param config The OpenAPI configuration object
  * @param options The request options from the service
- * @returns CancelablePromise<T>
+ * @returns CancelablePromise<ApiResult>
  * @throws ApiError
  */
-export const request = <T>(config: OpenAPIConfig, options: ApiRequestOptions): CancelablePromise<T> => {
+export const requestWithResponseHeader = <T>(config: OpenAPIConfig, options: ApiRequestOptions): CancelablePromise<ApiResult> => {
     return new CancelablePromise(async (resolve, reject, onCancel) => {
         try {
             const url = getUrl(config, options);
@@ -519,12 +520,33 @@ export const request = <T>(config: OpenAPIConfig, options: ApiRequestOptions): C
                     ok: response.ok,
                     status: response.status,
                     statusText: response.statusText,
-                    body: responseHeader ?? responseBody,
+                    body: responseBody,
+                    header: responseHeader,
                 };
 
                 catchErrorCodes(options, result);
 
-                resolve(result.body);
+                resolve(result);
+            }
+        } catch (error) {
+            reject(error);
+        }
+    });
+};
+
+/**
+ * Request method
+ * @param config The OpenAPI configuration object
+ * @param options The request options from the service
+ * @returns CancelablePromise<T>
+ * @throws ApiError
+ */
+export const request = <T>(config: OpenAPIConfig, options: ApiRequestOptions): CancelablePromise<T> => {
+    return new CancelablePromise(async (resolve, reject, onCancel) => {
+        try {
+            if (!onCancel.isCancelled) {
+                const result = await requestWithResponseHeader(config, options)
+                resolve(result.body)
             }
         } catch (error) {
             reject(error);
@@ -2997,6 +3019,7 @@ export type ApiResult = {
     readonly status: number;
     readonly statusText: string;
     readonly body: any;
+    readonly header: string | undefined;
 };"
 `;
 
@@ -3438,13 +3461,13 @@ const catchErrorCodes = (options: ApiRequestOptions, result: ApiResult): void =>
 };
 
 /**
- * Request method
+ * Request method with header
  * @param config The OpenAPI configuration object
  * @param options The request options from the service
- * @returns CancelablePromise<T>
+ * @returns CancelablePromise<ApiResult>
  * @throws ApiError
  */
-export const request = <T>(config: OpenAPIConfig, options: ApiRequestOptions): CancelablePromise<T> => {
+export const requestWithResponseHeader = <T>(config: OpenAPIConfig, options: ApiRequestOptions): CancelablePromise<ApiResult> => {
     return new CancelablePromise(async (resolve, reject, onCancel) => {
         try {
             const url = getUrl(config, options);
@@ -3462,12 +3485,33 @@ export const request = <T>(config: OpenAPIConfig, options: ApiRequestOptions): C
                     ok: response.ok,
                     status: response.status,
                     statusText: response.statusText,
-                    body: responseHeader ?? responseBody,
+                    body: responseBody,
+                    header: responseHeader,
                 };
 
                 catchErrorCodes(options, result);
 
-                resolve(result.body);
+                resolve(result);
+            }
+        } catch (error) {
+            reject(error);
+        }
+    });
+};
+
+/**
+ * Request method
+ * @param config The OpenAPI configuration object
+ * @param options The request options from the service
+ * @returns CancelablePromise<T>
+ * @throws ApiError
+ */
+export const request = <T>(config: OpenAPIConfig, options: ApiRequestOptions): CancelablePromise<T> => {
+    return new CancelablePromise(async (resolve, reject, onCancel) => {
+        try {
+            if (!onCancel.isCancelled) {
+                const result = await requestWithResponseHeader(config, options)
+                resolve(result.body)
             }
         } catch (error) {
             reject(error);
