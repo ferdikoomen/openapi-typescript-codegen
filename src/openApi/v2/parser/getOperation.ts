@@ -1,5 +1,6 @@
 import type { Operation } from '../../../client/interfaces/Operation';
 import type { OperationParameters } from '../../../client/interfaces/OperationParameters';
+import type { OperationResponse } from '../../../client/interfaces/OperationResponse';
 import type { OpenApi } from '../interfaces/OpenApi';
 import type { OpenApiOperation } from '../interfaces/OpenApiOperation';
 import { getOperationErrors } from './getOperationErrors';
@@ -10,6 +11,10 @@ import { getOperationResponses } from './getOperationResponses';
 import { getOperationResults } from './getOperationResults';
 import { getServiceName } from './getServiceName';
 import { sortByRequired } from './sortByRequired';
+
+const getOperationResultsWithoutHeader = (operationResults: OperationResponse[]) => {
+    return operationResults.filter(operationResult => operationResult.in !== 'header');
+};
 
 export const getOperation = (
     openApi: OpenApi,
@@ -63,8 +68,9 @@ export const getOperation = (
         const operationResults = getOperationResults(operationResponses);
         operation.errors = getOperationErrors(operationResponses);
         operation.responseHeader = getOperationResponseHeader(operationResults);
+        const operationResultsWithoutHeader = getOperationResultsWithoutHeader(operationResults);
 
-        operationResults.forEach(operationResult => {
+        operationResultsWithoutHeader.forEach(operationResult => {
             operation.results.push(operationResult);
             operation.imports.push(...operationResult.imports);
         });

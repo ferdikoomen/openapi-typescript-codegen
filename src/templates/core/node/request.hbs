@@ -59,13 +59,13 @@ import type { OpenAPIConfig } from './OpenAPI';
 
 
 /**
- * Request method with header
+ * Request method to get ApiResult
  * @param config The OpenAPI configuration object
  * @param options The request options from the service
- * @returns CancelablePromise<ApiResult>
+ * @returns CancelablePromise<ApiResult<T>>
  * @throws ApiError
  */
-export const requestWithResponseHeader = <T>(config: OpenAPIConfig, options: ApiRequestOptions): CancelablePromise<ApiResult> => {
+export const requestApiResult = <T>(config: OpenAPIConfig, options: ApiRequestOptions): CancelablePromise<ApiResult<T>> => {
 	return new CancelablePromise(async (resolve, reject, onCancel) => {
 		try {
 			const url = getUrl(config, options);
@@ -78,7 +78,7 @@ export const requestWithResponseHeader = <T>(config: OpenAPIConfig, options: Api
 				const responseBody = await getResponseBody(response, options);
 				const responseHeader = getResponseHeader(response, options.responseHeader);
 
-				const result: ApiResult = {
+				const result: ApiResult<T> = {
 					url,
 					ok: response.ok,
 					status: response.status,
@@ -108,7 +108,7 @@ export const request = <T>(config: OpenAPIConfig, options: ApiRequestOptions): C
 	return new CancelablePromise(async (resolve, reject, onCancel) => {
 		try {
 			if (!onCancel.isCancelled) {
-				const result = await requestWithResponseHeader(config, options)
+				const result = await requestApiResult<T>(config, options)
 				resolve(result.body)
 			}
 		} catch (error) {

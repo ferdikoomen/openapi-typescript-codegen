@@ -10,14 +10,14 @@ import type { ApiResult } from './ApiResult';
 import { BaseHttpRequest } from './BaseHttpRequest';
 import type { OpenAPIConfig } from './OpenAPI';
 import { OpenAPI } from './OpenAPI';
-import { request as __request } from './request';
+import { request as __request, requestApiResult as __requestApiResult } from './request';
 {{else}}
 import type { ApiRequestOptions } from './ApiRequestOptions';
 import type { ApiResult } from './ApiResult';
 import { BaseHttpRequest } from './BaseHttpRequest';
 import type { CancelablePromise } from './CancelablePromise';
 import type { OpenAPIConfig } from './OpenAPI';
-import { request as __request, requestWithResponseHeader as __requestWithResponseHeader } from './request';
+import { request as __request, requestApiResult as __requestApiResult } from './request';
 {{/equals}}
 
 {{#equals @root.httpClient 'angular'}}
@@ -52,11 +52,11 @@ export class {{httpRequest}} extends BaseHttpRequest {
 	/**
 	 * Request method with ResponseHeader
 	 * @param options The request options from the service
-	 * @returns Observable<ApiResult>
+	 * @returns Observable<ApiResult<T>>
 	 * @throws ApiError
 	 */
-	public override requestWithResponseHeader<T>(options: ApiRequestOptions): Observable<ApiResult> {
-		return __requestWithResponseHeader(this.config, this.http, options);
+	public override requestApiResult<T>(options: ApiRequestOptions): Observable<ApiResult<T>> {
+		return __requestApiResult(this.config, this.http, options);
 	}
 	{{else}}
 	/**
@@ -71,11 +71,11 @@ export class {{httpRequest}} extends BaseHttpRequest {
 	/**
 	 * Request method with ResponseHeader
 	 * @param options The request options from the service
-	 * @returns CancelablePromise<ApiResult>
+	 * @returns CancelablePromise<ApiResult<T>>
 	 * @throws ApiError
 	 */
-	public override requestWithResponseHeader<T>(options: ApiRequestOptions): CancelablePromise<ApiResult> {
-		return __requestWithResponseHeader(this.config, options);
+	public override requestApiResult<T>(options: ApiRequestOptions): CancelablePromise<ApiResult<T>> {
+		return __requestApiResult(this.config, options);
 	}
 	{{/equals}}
 }

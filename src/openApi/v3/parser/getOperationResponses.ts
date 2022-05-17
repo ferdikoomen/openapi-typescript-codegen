@@ -19,9 +19,7 @@ export const getOperationResponses = (openApi: OpenApi, responses: OpenApiRespon
 
             if (responseCode) {
                 const operationResponseContent = getOperationResponseContent(openApi, response, responseCode);
-                if (operationResponseContent !== null) {
-                    operationResponses.push(operationResponseContent);
-                }
+                operationResponses.push(operationResponseContent);
                 const operationResponseHeaders = getOperationResponseHeaders(openApi, response, responseCode);
                 if (operationResponseHeaders !== null) {
                     operationResponses.push(operationResponseHeaders);

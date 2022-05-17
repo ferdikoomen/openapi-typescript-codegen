@@ -27,9 +27,9 @@ export abstract class BaseHttpRequest {
 
 	{{#equals @root.httpClient 'angular'}}
 	public abstract request<T>(options: ApiRequestOptions): Observable<T>;
-	public abstract requestWithResponseHeader<T>(options: ApiRequestOptions): Observable<ApiResult>;
+	public abstract requestApiResult<T>(options: ApiRequestOptions): Observable<ApiResult<T>>;
 	{{else}}
 	public abstract request<T>(options: ApiRequestOptions): CancelablePromise<T>;
-	public abstract requestWithResponseHeader<T>(options: ApiRequestOptions): CancelablePromise<ApiResult>;
+	public abstract requestApiResult<T>(options: ApiRequestOptions): CancelablePromise<ApiResult<T>>;
 	{{/equals}}
 }

@@ -34,7 +34,7 @@ export const getOperationResponseContent = (
     openApi: OpenApi,
     response: OpenApiResponse,
     responseCode: number
-): OperationResponse | null => {
+): OperationResponse => {
     const operationResponse = getDefaultOperationResponse(responseCode, response);
 
     if (response.content) {
@@ -83,7 +83,7 @@ export const getOperationResponseContent = (
             }
         }
     }
-    return null;
+    return operationResponse;
 };
 
 export const getOperationResponseHeaders = (

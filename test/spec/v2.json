@@ -872,6 +872,36 @@
                 }
             }
         },
+        "/api/v{api-version}/content/header": {
+            "post": {
+                "tags": [
+                    "Header"
+                ],
+                "operationId": "CallWithResultFromContentAndHeader",
+                "produces": [
+                    "application/pdf"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "type": "file"
+                        },
+                        "headers": {
+                            "content-disposition": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "400 server error"
+                    },
+                    "500": {
+                        "description": "500 server error"
+                    }
+                }
+            }
+        },
         "/api/v{api-version}/error": {
             "post": {
                 "tags": [
