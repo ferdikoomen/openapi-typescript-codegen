@@ -15,6 +15,7 @@ const sendRequest = async <T>(
 		data: body ?? formData,
 		method: options.method,
 		withCredentials: config.WITH_CREDENTIALS,
+		responseType: options.responseType,
 		cancelToken: source.token,
 	};
 

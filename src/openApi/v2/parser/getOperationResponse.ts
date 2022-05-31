@@ -7,12 +7,8 @@ import { getModel } from './getModel';
 import { getRef } from './getRef';
 import { getType } from './getType';
 
-export const getOperationResponse = (
-    openApi: OpenApi,
-    response: OpenApiResponse,
-    responseCode: number
-): OperationResponse => {
-    const operationResponse: OperationResponse = {
+const getDefaultOperationResponse = (responseCode: number, response: OpenApiResponse): OperationResponse => {
+    return {
         in: 'response',
         name: '',
         code: responseCode,
@@ -31,6 +27,14 @@ export const getOperationResponse = (
         enums: [],
         properties: [],
     };
+};
+
+export const getOperationResponseContent = (
+    openApi: OpenApi,
+    response: OpenApiResponse,
+    responseCode: number
+): OperationResponse => {
+    const operationResponse = getDefaultOperationResponse(responseCode, response);
 
     // If this response has a schema, then we need to check two things:
     // if this is a reference then the parameter is just the 'name' of
@@ -80,6 +84,15 @@ export const getOperationResponse = (
             return operationResponse;
         }
     }
+    return operationResponse;
+};
+
+export const getOperationResponseHeaders = (
+    openApi: OpenApi,
+    response: OpenApiResponse,
+    responseCode: number
+): OperationResponse | null => {
+    const operationResponse = getDefaultOperationResponse(responseCode, response);
 
     // We support basic properties from response headers, since both
     // fetch and XHR client just support string types.
@@ -94,6 +107,5 @@ export const getOperationResponse = (
             }
         }
     }
-
-    return operationResponse;
+    return null;
 };

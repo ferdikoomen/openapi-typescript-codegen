@@ -62,13 +62,13 @@ import type { OpenAPIConfig } from './OpenAPI';
 
 
 /**
- * Request method
+ * Request method to get ApiResult
  * @param config The OpenAPI configuration object
  * @param options The request options from the service
- * @returns CancelablePromise<T>
+ * @returns CancelablePromise<ApiResult<T>>
  * @throws ApiError
  */
-export const request = <T>(config: OpenAPIConfig, options: ApiRequestOptions): CancelablePromise<T> => {
+export const requestApiResult = <T>(config: OpenAPIConfig, options: ApiRequestOptions): CancelablePromise<ApiResult<T>> => {
 	return new CancelablePromise(async (resolve, reject, onCancel) => {
 		try {
 			const url = getUrl(config, options);
@@ -81,17 +81,39 @@ export const request = <T>(config: OpenAPIConfig, options: ApiRequestOptions): C
 				const responseBody = getResponseBody(response);
 				const responseHeader = getResponseHeader(response, options.responseHeader);
 
-				const result: ApiResult = {
+				const result: ApiResult<T> = {
 					url,
 					ok: isSuccess(response.status),
 					status: response.status,
 					statusText: response.statusText,
-					body: responseHeader ?? responseBody,
+					body: responseBody,
+					header: responseHeader,
 				};
 
 				catchErrorCodes(options, result);
 
-				resolve(result.body);
+				resolve(result);
+			}
+		} catch (error) {
+			reject(error);
+		}
+	});
+};
+
+
+/**
+ * Request method
+ * @param config The OpenAPI configuration object
+ * @param options The request options from the service
+ * @returns CancelablePromise<T>
+ * @throws ApiError
+ */
+export const request = <T>(config: OpenAPIConfig, options: ApiRequestOptions): CancelablePromise<T> => {
+	return new CancelablePromise(async (resolve, reject, onCancel) => {
+		try {
+			if (!onCancel.isCancelled) {
+				const result = await requestApiResult<T>(config, options)
+				resolve(result.body)
 			}
 		} catch (error) {
 			reject(error);

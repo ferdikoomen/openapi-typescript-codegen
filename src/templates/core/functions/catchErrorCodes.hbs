@@ -1,4 +1,4 @@
-const catchErrorCodes = (options: ApiRequestOptions, result: ApiResult): void => {
+const catchErrorCodes = (options: ApiRequestOptions, result: ApiResult<any>): void => {
 	const errors: Record<number, string> = {
 		400: 'Bad Request',
 		401: 'Unauthorized',

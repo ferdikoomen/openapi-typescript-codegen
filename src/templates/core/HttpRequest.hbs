@@ -6,16 +6,18 @@ import { HttpClient } from '@angular/common/http';
 import type { Observable } from 'rxjs';
 
 import type { ApiRequestOptions } from './ApiRequestOptions';
+import type { ApiResult } from './ApiResult';
 import { BaseHttpRequest } from './BaseHttpRequest';
 import type { OpenAPIConfig } from './OpenAPI';
 import { OpenAPI } from './OpenAPI';
-import { request as __request } from './request';
+import { request as __request, requestApiResult as __requestApiResult } from './request';
 {{else}}
 import type { ApiRequestOptions } from './ApiRequestOptions';
+import type { ApiResult } from './ApiResult';
 import { BaseHttpRequest } from './BaseHttpRequest';
 import type { CancelablePromise } from './CancelablePromise';
 import type { OpenAPIConfig } from './OpenAPI';
-import { request as __request } from './request';
+import { request as __request, requestApiResult as __requestApiResult } from './request';
 {{/equals}}
 
 {{#equals @root.httpClient 'angular'}}
@@ -47,6 +49,15 @@ export class {{httpRequest}} extends BaseHttpRequest {
 	public override request<T>(options: ApiRequestOptions): Observable<T> {
 		return __request(this.config, this.http, options);
 	}
+	/**
+	 * Request method with ResponseHeader
+	 * @param options The request options from the service
+	 * @returns Observable<ApiResult<T>>
+	 * @throws ApiError
+	 */
+	public override requestApiResult<T>(options: ApiRequestOptions): Observable<ApiResult<T>> {
+		return __requestApiResult(this.config, this.http, options);
+	}
 	{{else}}
 	/**
 	 * Request method
@@ -56,6 +67,15 @@ export class {{httpRequest}} extends BaseHttpRequest {
 	 */
 	public override request<T>(options: ApiRequestOptions): CancelablePromise<T> {
 		return __request(this.config, options);
+	}
+	/**
+	 * Request method with ResponseHeader
+	 * @param options The request options from the service
+	 * @returns CancelablePromise<ApiResult<T>>
+	 * @throws ApiError
+	 */
+	public override requestApiResult<T>(options: ApiRequestOptions): CancelablePromise<ApiResult<T>> {
+		return __requestApiResult(this.config, options);
 	}
 	{{/equals}}
 }

@@ -1,6 +1,15 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## unreleased
+### Added
+- Added `requestApiResult` as additional request function
+### Changed
+- Changed ApiResult to be generic and also contain response header
+### Fixed
+- Fixed binary response type to process as a Blob rather than text/string (#986)
+- Use type-only imports for axios (#1037)
+
 ## [0.22.0] - 2022-04-26
 ### Fixed
 - Upgraded dependencies

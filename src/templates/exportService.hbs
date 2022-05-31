@@ -23,12 +23,16 @@ import type { CancelablePromise } from '../core/CancelablePromise';
 {{#if @root.exportClient}}
 {{#equals @root.httpClient 'angular'}}
 import { BaseHttpRequest } from '../core/BaseHttpRequest';
+import type { ApiResult } from '../core/ApiResult';
 {{else}}
 import type { BaseHttpRequest } from '../core/BaseHttpRequest';
+import type { ApiResult } from '../core/ApiResult';
 {{/equals}}
 {{else}}
+import type { ApiResult } from '../core/ApiResult';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+import { requestApiResult as __requestApiResult } from '../core/request';
 {{/if}}
 
 {{#equals @root.httpClient 'angular'}}
@@ -63,9 +67,15 @@ export class {{{name}}}{{{@root.postfix}}} {
 	{{/each}}
 	{{/if}}
 	{{/unless}}
-	{{#each results}}
+	{{#if responseHeader}}
+		{{#each results}}
+	 * @returns ApiResult<{{{type}}}> {{#if description}}{{{escapeComment description}}}{{/if}}
+		{{/each}}
+	{{else}}
+		{{#each results}}
 	 * @returns {{{type}}} {{#if description}}{{{escapeComment description}}}{{/if}}
-	{{/each}}
+		{{/each}}
+	{{/if}}
 	 * @throws ApiError
 	 */
 	{{#if @root.exportClient}}
@@ -73,16 +83,26 @@ export class {{{name}}}{{{@root.postfix}}} {
 	public {{{name}}}({{>parameters}}): Observable<{{>result}}> {
 		return this.httpRequest.request({
 	{{else}}
+		{{#if responseHeader}}
+	public {{{name}}}({{>parameters}}): CancelablePromise<ApiResult<{{>result}}>> {
+		return this.httpRequest.requestApiResult({
+		{{else}}
 	public {{{name}}}({{>parameters}}): CancelablePromise<{{>result}}> {
 		return this.httpRequest.request({
+		{{/if}}
 	{{/equals}}
 	{{else}}
 	{{#equals @root.httpClient 'angular'}}
 	public {{{name}}}({{>parameters}}): Observable<{{>result}}> {
 		return __request(OpenAPI, this.http, {
 	{{else}}
+		{{#if responseHeader}}
+	public {{{name}}}({{>parameters}}): CancelablePromise<ApiResult<{{>result}}>> {
+		return __requestApiResult(OpenAPI, {
+		{{else}}
 	public static {{{name}}}({{>parameters}}): CancelablePromise<{{>result}}> {
 		return __request(OpenAPI, {
+		{{/if}}
 	{{/equals}}
 	{{/if}}
 			method: '{{{method}}}',
@@ -132,6 +152,9 @@ export class {{{name}}}{{{@root.postfix}}} {
 			{{#if parametersBody.mediaType}}
 			mediaType: '{{{parametersBody.mediaType}}}',
 			{{/if}}
+			{{/if}}
+			{{#if results}}
+				{{>responseType}}
 			{{/if}}
 			{{#if responseHeader}}
 			responseHeader: '{{{responseHeader}}}',

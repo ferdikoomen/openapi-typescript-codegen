@@ -7,10 +7,11 @@ export const sendRequest = <T>(
 	formData: FormData | undefined,
 	headers: HttpHeaders
 ): Observable<HttpResponse<T>> => {
-	return http.request<T>(options.method, url, {
+	return http.request(options.method, url, {
 		headers,
 		body: body ?? formData,
 		withCredentials: config.WITH_CREDENTIALS,
 		observe: 'response',
+		responseType: options.responseType,
 	});
 };
