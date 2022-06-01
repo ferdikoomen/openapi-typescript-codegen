@@ -5,6 +5,7 @@ import { EOL } from 'os';
 import type { Enum } from '../client/interfaces/Enum';
 import type { Model } from '../client/interfaces/Model';
 import type { HttpClient } from '../HttpClient';
+import { toHyphenCase } from './hyphenCase';
 import { unique } from './unique';
 
 export const registerHandlebarHelpers = (root: {
@@ -96,4 +97,21 @@ export const registerHandlebarHelpers = (root: {
     Handlebars.registerHelper('camelCase', function (value: string): string {
         return camelCase(value);
     });
+
+    Handlebars.registerHelper('pascalCase', function (value: string): string {
+        return camelCase(value, { pascalCase: true });
+    });
+
+    Handlebars.registerHelper('hyphenCase', function (value: string): string {
+        return toHyphenCase(value);
+    });
+
+    Handlebars.registerHelper(
+        'hasNonBodyParams',
+        function (this: any, op: any, options: Handlebars.HelperOptions): string {
+            return op.parameters && op.parameters.length > 0 && !op.parametersBody
+                ? options.fn(this)
+                : options.inverse(this);
+        }
+    );
 };

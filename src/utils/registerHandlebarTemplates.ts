@@ -30,6 +30,7 @@ import functionCatchErrorCodes from '../templates/core/functions/catchErrorCodes
 import functionGetFormData from '../templates/core/functions/getFormData.hbs';
 import functionGetQueryString from '../templates/core/functions/getQueryString.hbs';
 import functionGetUrl from '../templates/core/functions/getUrl.hbs';
+import functionHasNonBodyParams from '../templates/core/functions/hasNonBodyParams.hbs';
 import functionIsBlob from '../templates/core/functions/isBlob.hbs';
 import functionIsDefined from '../templates/core/functions/isDefined.hbs';
 import functionIsFormData from '../templates/core/functions/isFormData.hbs';
@@ -53,7 +54,9 @@ import xhrGetResponseHeader from '../templates/core/xhr/getResponseHeader.hbs';
 import xhrRequest from '../templates/core/xhr/request.hbs';
 import xhrSendRequest from '../templates/core/xhr/sendRequest.hbs';
 import templateExportModel from '../templates/exportModel.hbs';
+import templateExportQueryModel from '../templates/exportQueryModel.hbs';
 import templateExportSchema from '../templates/exportSchema.hbs';
+import templateExportServerInterface from '../templates/exportServerInterface.hbs';
 import templateExportService from '../templates/exportService.hbs';
 import templateIndex from '../templates/index.hbs';
 import partialBase from '../templates/partials/base.hbs';
@@ -90,8 +93,10 @@ export interface Templates {
     client: Handlebars.TemplateDelegate;
     exports: {
         model: Handlebars.TemplateDelegate;
+        queryModel: Handlebars.TemplateDelegate;
         schema: Handlebars.TemplateDelegate;
         service: Handlebars.TemplateDelegate;
+        serverInterface: Handlebars.TemplateDelegate;
     };
     core: {
         settings: Handlebars.TemplateDelegate;
@@ -122,8 +127,10 @@ export const registerHandlebarTemplates = (root: {
         client: Handlebars.template(templateClient),
         exports: {
             model: Handlebars.template(templateExportModel),
+            queryModel: Handlebars.template(templateExportQueryModel),
             schema: Handlebars.template(templateExportSchema),
             service: Handlebars.template(templateExportService),
+            serverInterface: Handlebars.template(templateExportServerInterface),
         },
         core: {
             settings: Handlebars.template(templateCoreSettings),
@@ -170,6 +177,7 @@ export const registerHandlebarTemplates = (root: {
     Handlebars.registerPartial('functions/catchErrorCodes', Handlebars.template(functionCatchErrorCodes));
     Handlebars.registerPartial('functions/getFormData', Handlebars.template(functionGetFormData));
     Handlebars.registerPartial('functions/getQueryString', Handlebars.template(functionGetQueryString));
+    Handlebars.registerPartial('functions/hasNonBodyParams', Handlebars.template(functionHasNonBodyParams));
     Handlebars.registerPartial('functions/getUrl', Handlebars.template(functionGetUrl));
     Handlebars.registerPartial('functions/isBlob', Handlebars.template(functionIsBlob));
     Handlebars.registerPartial('functions/isDefined', Handlebars.template(functionIsDefined));

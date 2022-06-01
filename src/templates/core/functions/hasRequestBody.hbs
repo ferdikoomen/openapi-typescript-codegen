@@ -1,0 +1,3 @@
+const hasRequestBody = (values: any): boolean => {
+	return values.some((val, key) => key === 'requestBody');
+};

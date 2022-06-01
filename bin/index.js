@@ -12,6 +12,12 @@ const params = program
     .version(pkg.version)
     .requiredOption('-i, --input <value>', 'OpenAPI specification, can be a path, url or string content (required)')
     .requiredOption('-o, --output <value>', 'Output directory (required)')
+    .option('--serverOutput <value>', 'Server output directory')
+    .option('--serverDirName <value>', 'Server directory name')
+    .option('--serverModelImportPath <value>', 'Server model import path')
+    .option('--serverApiTypesImportPath <value>', 'Server Api Types import path')
+    .option('--serverReqTypeName <value>', 'Name of Server Request type to use')
+    .option('--serverResTypeName <value>', 'Name of Server Response type to use')
     .option('-c, --client <value>', 'HTTP client to generate [fetch, xhr, node, axios, angular]', 'fetch')
     .option('--name <value>', 'Custom client class name')
     .option('--useOptions', 'Use options instead of arguments')
@@ -32,6 +38,12 @@ if (OpenAPI) {
     OpenAPI.generate({
         input: params.input,
         output: params.output,
+        serverOutput: params.serverOutput,
+        serverDirName: params.serverDirName,
+        serverModelImportPath: params.serverModelImportPath,
+        serverApiTypesImportPath: params.serverApiTypesImportPath,
+        serverReqTypeName: params.serverReqTypeName,
+        serverResTypeName: params.serverResTypeName,
         httpClient: params.client,
         clientName: params.name,
         useOptions: params.useOptions,

@@ -1,0 +1,14 @@
+{{>header}}
+
+export interface {{{pascalCase name}}}Params {
+  {{#each parameters}}
+  {{#notEquals this.in 'body'}}
+  {{#if description}}
+  /**
+  * {{{escapeComment description}}}
+  */
+  {{/if}}
+  {{{prop}}}{{>isRequired}}: {{{type}}},
+  {{/notEquals}}
+  {{/each}}
+}

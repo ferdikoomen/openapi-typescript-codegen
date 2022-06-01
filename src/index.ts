@@ -15,13 +15,21 @@ export { Indent } from './Indent';
 export type Options = {
     input: string | Record<string, any>;
     output: string;
+    serverOutput?: string;
+    serverDirName?: string;
+    serverModelImportPath?: string;
+    serverApiTypesImportPath?: string;
+    serverReqTypeName?: string;
+    serverResTypeName?: string;
     httpClient?: HttpClient;
     clientName?: string;
     useOptions?: boolean;
     useUnionTypes?: boolean;
     exportCore?: boolean;
     exportServices?: boolean;
+    exportServerInterfaces?: boolean;
     exportModels?: boolean;
+    exportQueryModels?: boolean;
     exportSchemas?: boolean;
     indent?: Indent;
     postfix?: string;
@@ -51,6 +59,12 @@ export type Options = {
 export const generate = async ({
     input,
     output,
+    serverOutput,
+    serverDirName = 'server',
+    serverModelImportPath = '',
+    serverApiTypesImportPath = '',
+    serverReqTypeName = 'ApiRequestWrapper',
+    serverResTypeName = 'ApiResponseWrapper',
     httpClient = HttpClient.FETCH,
     clientName,
     useOptions = false,
@@ -58,7 +72,9 @@ export const generate = async ({
     exportCore = true,
     exportServices = true,
     exportModels = true,
+    exportQueryModels = true,
     exportSchemas = false,
+    exportServerInterfaces = true,
     indent = Indent.SPACE_4,
     postfix = 'Service',
     request,
@@ -81,12 +97,20 @@ export const generate = async ({
                 clientFinal,
                 templates,
                 output,
+                serverOutput ?? output,
+                serverDirName,
+                serverModelImportPath,
+                serverApiTypesImportPath,
+                serverReqTypeName,
+                serverResTypeName,
                 httpClient,
                 useOptions,
                 useUnionTypes,
                 exportCore,
                 exportServices,
+                exportServerInterfaces,
                 exportModels,
+                exportQueryModels,
                 exportSchemas,
                 indent,
                 postfix,
@@ -104,12 +128,20 @@ export const generate = async ({
                 clientFinal,
                 templates,
                 output,
+                serverOutput ?? output,
+                serverDirName,
+                serverModelImportPath,
+                serverApiTypesImportPath,
+                serverReqTypeName,
+                serverResTypeName,
                 httpClient,
                 useOptions,
                 useUnionTypes,
                 exportCore,
                 exportServices,
+                exportServerInterfaces,
                 exportModels,
+                exportQueryModels,
                 exportSchemas,
                 indent,
                 postfix,

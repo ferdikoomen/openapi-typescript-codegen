@@ -1,0 +1,38 @@
+{{>header}}
+
+import { {{{serverReqTypeName}}}, {{{serverResTypeName}}} } from '{{{serverApiTypesImportPath}}}';
+
+{{#if imports}}
+{{#each imports}}
+import type { {{{this}}} } from '{{{@root.serverModelImportPath}}}/{{{hyphenCase this}}}';
+{{/each}}
+{{/if}}
+
+{{#each operations}}
+{{#hasNonBodyParams this}}
+import { {{{pascalCase name}}}Params } from '{{{@root.serverModelImportPath}}}/{{{hyphenCase name}}}-params';
+{{/hasNonBodyParams}}
+{{/each}}
+
+export interface I{{{name}}}{{{@root.postfix}}} {
+	{{#each operations}}
+	/**
+	{{#if deprecated}}
+	 * @deprecated
+	{{/if}}
+	{{#if summary}}
+	 * {{{escapeComment summary}}}
+	{{/if}}
+	{{#if description}}
+	 * {{{escapeComment description}}}
+	{{/if}}
+	 * @param req {{{escapeComment 'The API request'}}}
+	{{#each results}}
+	 * @returns {{{type}}} {{#if description}}{{{escapeComment description}}}{{/if}}
+	{{/each}}
+	 * @throws ApiError
+	 */
+	 {{{name}}}(req: {{{@root.serverReqTypeName}}}<{{#hasNonBodyParams this}}{{{pascalCase name}}}Params{{else}}never{{/hasNonBodyParams}}{{#if parametersBody}}, {{{parametersBody.type}}}{{/if}}>): {{{@root.serverResTypeName}}}<{{>result}}>;
+
+	{{/each}}
+}

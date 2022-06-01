@@ -34,8 +34,10 @@ describe('writeClientSchemas', () => {
             client: () => 'client',
             exports: {
                 model: () => 'model',
+                queryModel: () => 'model',
                 schema: () => 'schema',
                 service: () => 'service',
+                serverInterface: () => 'serverInterface',
             },
             core: {
                 settings: () => 'settings',

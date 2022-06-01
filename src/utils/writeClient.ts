@@ -13,6 +13,8 @@ import { writeClientIndex } from './writeClientIndex';
 import { writeClientModels } from './writeClientModels';
 import { writeClientSchemas } from './writeClientSchemas';
 import { writeClientServices } from './writeClientServices';
+import { writeQueryModels } from './writeQueryModels';
+import { writeServerInterfaces } from './writeServerInterfaces';
 
 /**
  * Write our OpenAPI client, using the given templates at the given output
@@ -36,12 +38,20 @@ export const writeClient = async (
     client: Client,
     templates: Templates,
     output: string,
+    serverOutput: string,
+    serverDirName: string,
+    serverModelImportPath: string,
+    serverApiTypesImportPath: string,
+    serverReqTypeName: string,
+    serverResTypeName: string,
     httpClient: HttpClient,
     useOptions: boolean,
     useUnionTypes: boolean,
     exportCore: boolean,
     exportServices: boolean,
+    exportServerInterfaces: boolean,
     exportModels: boolean,
+    exportQueryModels: boolean,
     exportSchemas: boolean,
     indent: Indent,
     postfix: string,
@@ -49,10 +59,12 @@ export const writeClient = async (
     request?: string
 ): Promise<void> => {
     const outputPath = resolve(process.cwd(), output);
+    const serverOutputPath = resolve(process.cwd(), serverOutput);
     const outputPathCore = resolve(outputPath, 'core');
     const outputPathModels = resolve(outputPath, 'models');
     const outputPathSchemas = resolve(outputPath, 'schemas');
     const outputPathServices = resolve(outputPath, 'services');
+    const outputPathServerInterfaces = resolve(serverOutputPath, serverDirName);
 
     if (!isSubDirectory(process.cwd(), output)) {
         throw new Error(`Output folder is not a subdirectory of the current working directory`);
@@ -80,6 +92,26 @@ export const writeClient = async (
         );
     }
 
+    if (exportServerInterfaces) {
+        // await rmdir(outputPathServerInterfaces);
+        // await mkdir(outputPathServerInterfaces);
+        await writeServerInterfaces(
+            client.services,
+            templates,
+            outputPathServerInterfaces,
+            serverModelImportPath,
+            serverApiTypesImportPath,
+            serverReqTypeName,
+            serverResTypeName,
+            httpClient,
+            useUnionTypes,
+            useOptions,
+            indent,
+            postfix,
+            clientName
+        );
+    }
+
     if (exportSchemas) {
         await rmdir(outputPathSchemas);
         await mkdir(outputPathSchemas);
@@ -90,6 +122,10 @@ export const writeClient = async (
         await rmdir(outputPathModels);
         await mkdir(outputPathModels);
         await writeClientModels(client.models, templates, outputPathModels, httpClient, useUnionTypes, indent);
+    }
+
+    if (exportModels && exportQueryModels) {
+        await writeQueryModels(client.services, templates, outputPathModels, httpClient, useUnionTypes, indent);
     }
 
     if (isDefined(clientName)) {

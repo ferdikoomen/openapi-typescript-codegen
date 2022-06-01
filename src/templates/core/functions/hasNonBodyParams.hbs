@@ -1,0 +1,3 @@
+const hasNonBodyParams = (op: any): boolean => {
+  op.parameters && op.parameters.length > 0 && !op.parametersBody;
+};

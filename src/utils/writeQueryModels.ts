@@ -1,6 +1,8 @@
+import camelcase from 'camelcase';
 import { resolve } from 'path';
 
 import type { Model } from '../client/interfaces/Model';
+import { Service } from '../client/interfaces/Service';
 import type { HttpClient } from '../HttpClient';
 import type { Indent } from '../Indent';
 import { writeFile } from './fileSystem';
@@ -18,21 +20,29 @@ import type { Templates } from './registerHandlebarTemplates';
  * @param useUnionTypes Use union types instead of enums
  * @param indent Indentation options (4, 2 or tab)
  */
-export const writeClientModels = async (
-    models: Model[],
+export const writeQueryModels = async (
+    services: Service[],
     templates: Templates,
     outputPath: string,
     httpClient: HttpClient,
     useUnionTypes: boolean,
     indent: Indent
 ): Promise<void> => {
-    for (const model of models) {
-        const file = resolve(outputPath, `${toHyphenCase(model.name)}.ts`);
-        const templateResult = templates.exports.model({
-            ...model,
-            httpClient,
-            useUnionTypes,
-        });
-        await writeFile(file, i(f(templateResult), indent));
+    for (const service of services) {
+        for (const operation of service.operations) {
+            if (operation.parameters.filter(param => param.in !== 'body').length === 0) {
+                continue;
+            }
+            const modelName = camelcase(operation.name, { pascalCase: true });
+            const modelNameHyphens = toHyphenCase(modelName);
+            const file = resolve(outputPath, `${modelNameHyphens}-params.ts`);
+
+            const templateResult = templates.exports.queryModel({
+                ...operation,
+                httpClient,
+                useUnionTypes,
+            });
+            await writeFile(file, i(f(templateResult), indent));
+        }
     }
 };
