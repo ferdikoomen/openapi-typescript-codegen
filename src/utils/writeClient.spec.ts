@@ -42,6 +42,7 @@ describe('writeClient', () => {
             client,
             templates,
             './dist',
+            'models',
             './dist',
             'server',
             '../models',

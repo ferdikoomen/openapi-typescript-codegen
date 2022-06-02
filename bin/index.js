@@ -12,6 +12,7 @@ const params = program
     .version(pkg.version)
     .requiredOption('-i, --input <value>', 'OpenAPI specification, can be a path, url or string content (required)')
     .requiredOption('-o, --output <value>', 'Output directory (required)')
+    .option('--modelsDirName <value>', 'Models directory name')
     .option('--serverOutput <value>', 'Server output directory')
     .option('--serverDirName <value>', 'Server directory name')
     .option('--serverModelImportPath <value>', 'Server model import path')
@@ -29,6 +30,7 @@ const params = program
     .option('--indent <value>', 'Indentation options [4, 2, tabs]', '4')
     .option('--postfix <value>', 'Service name postfix', 'Service')
     .option('--request <value>', 'Path to custom request file')
+    .option('--createIndex <value>', 'Generate barrel index file', true)
     .parse(process.argv)
     .opts();
 
@@ -39,6 +41,7 @@ if (OpenAPI) {
         input: params.input,
         output: params.output,
         serverOutput: params.serverOutput,
+        modelsDirName: params.modelsDirName,
         serverDirName: params.serverDirName,
         serverModelImportPath: params.serverModelImportPath,
         serverApiTypesImportPath: params.serverApiTypesImportPath,
@@ -55,6 +58,7 @@ if (OpenAPI) {
         indent: params.indent,
         postfix: params.postfix,
         request: params.request,
+        createIndex: params.createIndex,
     })
         .then(() => {
             process.exit(0);

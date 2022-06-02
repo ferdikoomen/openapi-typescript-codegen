@@ -15,6 +15,7 @@ export { Indent } from './Indent';
 export type Options = {
     input: string | Record<string, any>;
     output: string;
+    modelsDirName?: string;
     serverOutput?: string;
     serverDirName?: string;
     serverModelImportPath?: string;
@@ -35,6 +36,7 @@ export type Options = {
     postfix?: string;
     request?: string;
     write?: boolean;
+    createIndex?: boolean;
 };
 
 /**
@@ -43,6 +45,7 @@ export type Options = {
  * service layer, etc.
  * @param input The relative location of the OpenAPI spec
  * @param output The relative location of the output directory
+ * @param modelsDirName Models directory name
  * @param httpClient The selected httpClient (fetch, xhr, node or axios)
  * @param clientName Custom client class name
  * @param useOptions Use options or arguments functions
@@ -55,10 +58,12 @@ export type Options = {
  * @param postfix Service name postfix
  * @param request Path to custom request file
  * @param write Write the files to disk (true or false)
+ * @param createIndex Generate barrel index file
  */
 export const generate = async ({
     input,
     output,
+    modelsDirName = 'models',
     serverOutput,
     serverDirName = 'server',
     serverModelImportPath = '',
@@ -79,6 +84,7 @@ export const generate = async ({
     postfix = 'Service',
     request,
     write = true,
+    createIndex = true,
 }: Options): Promise<void> => {
     const openApi = isString(input) ? await getOpenApiSpec(input) : input;
     const openApiVersion = getOpenApiVersion(openApi);
@@ -97,6 +103,7 @@ export const generate = async ({
                 clientFinal,
                 templates,
                 output,
+                modelsDirName,
                 serverOutput ?? output,
                 serverDirName,
                 serverModelImportPath,
@@ -115,7 +122,8 @@ export const generate = async ({
                 indent,
                 postfix,
                 clientName,
-                request
+                request,
+                createIndex
             );
             break;
         }
@@ -128,6 +136,7 @@ export const generate = async ({
                 clientFinal,
                 templates,
                 output,
+                modelsDirName,
                 serverOutput ?? output,
                 serverDirName,
                 serverModelImportPath,

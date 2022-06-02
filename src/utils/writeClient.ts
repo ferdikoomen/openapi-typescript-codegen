@@ -26,18 +26,21 @@ import { writeServerInterfaces } from './writeServerInterfaces';
  * @param useUnionTypes Use union types instead of enums
  * @param exportCore Generate core client classes
  * @param exportServices Generate services
+ * @param exportServerInterfaces Generate server interfaces
  * @param exportModels Generate models
- * @param exportSchemas Generate schemas
+ * @param exportQueryModels Generate query models
  * @param exportSchemas Generate schemas
  * @param indent Indentation options (4, 2 or tab)
  * @param postfix Service name postfix
  * @param clientName Custom client class name
  * @param request Path to custom request file
+ * @param createIndex Generate barrel index file
  */
 export const writeClient = async (
     client: Client,
     templates: Templates,
     output: string,
+    modelsDirName: string,
     serverOutput: string,
     serverDirName: string,
     serverModelImportPath: string,
@@ -56,12 +59,13 @@ export const writeClient = async (
     indent: Indent,
     postfix: string,
     clientName?: string,
-    request?: string
+    request?: string,
+    createIndex?: boolean
 ): Promise<void> => {
     const outputPath = resolve(process.cwd(), output);
     const serverOutputPath = resolve(process.cwd(), serverOutput);
     const outputPathCore = resolve(outputPath, 'core');
-    const outputPathModels = resolve(outputPath, 'models');
+    const outputPathModels = resolve(outputPath, modelsDirName);
     const outputPathSchemas = resolve(outputPath, 'schemas');
     const outputPathServices = resolve(outputPath, 'services');
     const outputPathServerInterfaces = resolve(serverOutputPath, serverDirName);
@@ -119,8 +123,8 @@ export const writeClient = async (
     }
 
     if (exportModels) {
-        await rmdir(outputPathModels);
-        await mkdir(outputPathModels);
+        // await rmdir(outputPathModels);
+        // await mkdir(outputPathModels);
         await writeClientModels(client.models, templates, outputPathModels, httpClient, useUnionTypes, indent);
     }
 
@@ -133,7 +137,7 @@ export const writeClient = async (
         await writeClientClass(client, templates, outputPath, httpClient, clientName, indent, postfix);
     }
 
-    if (exportCore || exportServices || exportSchemas || exportModels) {
+    if (createIndex && (exportCore || exportServices || exportSchemas || exportModels)) {
         await mkdir(outputPath);
         await writeClientIndex(
             client,
