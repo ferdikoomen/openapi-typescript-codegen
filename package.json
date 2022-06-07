@@ -106,7 +106,7 @@
         "form-data": "4.0.0",
         "glob": "8.0.3",
         "jest": "28.1.0",
-        "jest-cli": "28.1.0",
+        "jest-cli": "28.1.1",
         "node-fetch": "2.6.7",
         "prettier": "2.6.2",
         "puppeteer": "14.2.1",
