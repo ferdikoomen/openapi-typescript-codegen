@@ -19,5 +19,5 @@ export const formatCode = (s: string): string => {
         }
         return result;
     });
-    return lines.join(EOL);
+    return lines.join(EOL) + EOL;
 };

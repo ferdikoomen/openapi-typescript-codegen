@@ -19,6 +19,9 @@ const params = program
     .option('--serverApiTypesImportPath <value>', 'Server Api Types import path')
     .option('--serverReqTypeName <value>', 'Name of Server Request type to use')
     .option('--serverResTypeName <value>', 'Name of Server Response type to use')
+    .option('--exportRouteHandler', 'create a route handler to map routes to controller methods')
+    .option('--transformFuncName <value>', 'Name of request transformation function')
+    .option('--transformFuncPath <value>', 'Import path of request transformation function')
     .option('-c, --client <value>', 'HTTP client to generate [fetch, xhr, node, axios, angular]', 'fetch')
     .option('--name <value>', 'Custom client class name')
     .option('--useOptions', 'Use options instead of arguments')
@@ -47,6 +50,9 @@ if (OpenAPI) {
         serverApiTypesImportPath: params.serverApiTypesImportPath,
         serverReqTypeName: params.serverReqTypeName,
         serverResTypeName: params.serverResTypeName,
+        exportRouteHandler: params.exportRouteHandler,
+        transformFuncName: params.transformFuncName,
+        transformFuncPath: params.transformFuncPath,
         httpClient: params.client,
         clientName: params.name,
         useOptions: params.useOptions,

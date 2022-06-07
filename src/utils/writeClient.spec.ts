@@ -25,6 +25,7 @@ describe('writeClient', () => {
                 schema: () => 'schema',
                 service: () => 'service',
                 serverInterface: () => 'serverInterface',
+                routeHandler: () => 'routeHandler',
             },
             core: {
                 settings: () => 'settings',
@@ -49,6 +50,9 @@ describe('writeClient', () => {
             '',
             'ApiRequestWrapper',
             'ApiResponseWrapper',
+            false,
+            '',
+            '',
             HttpClient.FETCH,
             false,
             false,

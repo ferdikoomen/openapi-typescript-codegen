@@ -14,6 +14,7 @@ import { writeClientModels } from './writeClientModels';
 import { writeClientSchemas } from './writeClientSchemas';
 import { writeClientServices } from './writeClientServices';
 import { writeQueryModels } from './writeQueryModels';
+import { writeRouteHandler } from './writeRouteHandler';
 import { writeServerInterfaces } from './writeServerInterfaces';
 
 /**
@@ -47,6 +48,9 @@ export const writeClient = async (
     serverApiTypesImportPath: string,
     serverReqTypeName: string,
     serverResTypeName: string,
+    exportRouteHandler: boolean,
+    transformFuncName: string,
+    transformFuncPath: string,
     httpClient: HttpClient,
     useOptions: boolean,
     useUnionTypes: boolean,
@@ -107,6 +111,27 @@ export const writeClient = async (
             serverApiTypesImportPath,
             serverReqTypeName,
             serverResTypeName,
+            httpClient,
+            useUnionTypes,
+            useOptions,
+            indent,
+            postfix,
+            clientName
+        );
+    }
+
+    if (exportRouteHandler) {
+        await writeRouteHandler(
+            client.services,
+            templates,
+            serverOutputPath,
+            serverDirName,
+            serverModelImportPath,
+            serverApiTypesImportPath,
+            serverReqTypeName,
+            serverResTypeName,
+            transformFuncName,
+            transformFuncPath,
             httpClient,
             useUnionTypes,
             useOptions,

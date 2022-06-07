@@ -1,0 +1,17 @@
+{{#each services}}
+import { {{{pascalCase name}}}{{{@root.postfix}}} } from './{{{@root.serverDirName}}}/{{{hyphenCase name}}}-{{{hyphenCase @root.postfix}}}';
+{{/each}}
+import { {{{transformFuncName}}} as transformOutbound } from '{{{transformFuncPath}}}';
+
+export class RouteHandler {
+  constructor(
+    {{#each services}}
+    private {{{camelCase name}}}: {{{pascalCase name}}}{{{@root.postfix}}},
+    {{/each}}
+  ) { }
+{{#each services}}
+{{#each operations}}
+  {{{name}}} = req => this.{{{camelCase service}}}.{{{name}}}(transformOutbound(req));
+{{/each}}
+{{/each}}
+}

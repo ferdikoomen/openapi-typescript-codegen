@@ -25,6 +25,7 @@ describe('writeClientClass', () => {
                 schema: () => 'schema',
                 service: () => 'service',
                 serverInterface: () => 'serverInterface',
+                routeHandler: () => 'routeHandler',
             },
             core: {
                 settings: () => 'settings',

@@ -6,7 +6,6 @@ import type { Indent } from '../Indent';
 import { writeFile } from './fileSystem';
 import { formatCode as f } from './formatCode';
 import { formatIndentation as i } from './formatIndentation';
-import { toHyphenCase } from './hyphenCase';
 import { isDefined } from './isDefined';
 import type { Templates } from './registerHandlebarTemplates';
 
@@ -22,14 +21,17 @@ import type { Templates } from './registerHandlebarTemplates';
  * @param postfix Service name postfix
  * @param clientName Custom client class name
  */
-export const writeServerInterfaces = async (
+export const writeRouteHandler = async (
     services: Service[],
     templates: Templates,
     outputPath: string,
+    serverDirName: string,
     serverModelImportPath: string,
     serverApiTypesImportPath: string,
     serverReqTypeName: string,
     serverResTypeName: string,
+    transformFuncName: string,
+    transformFuncPath: string,
     httpClient: HttpClient,
     useUnionTypes: boolean,
     useOptions: boolean,
@@ -37,22 +39,23 @@ export const writeServerInterfaces = async (
     postfix: string,
     clientName?: string
 ): Promise<void> => {
-    for (const service of services) {
-        const serviceNameHyphens = toHyphenCase(service.name);
-        const file = resolve(outputPath, `i-${serviceNameHyphens}-${toHyphenCase(postfix)}.ts`);
-        serverModelImportPath = serverModelImportPath;
-        const templateResult = templates.exports.serverInterface({
-            ...service,
-            serverModelImportPath,
-            serverApiTypesImportPath,
-            serverReqTypeName,
-            serverResTypeName,
-            httpClient,
-            useUnionTypes,
-            useOptions,
-            postfix,
-            exportClient: isDefined(clientName),
-        });
-        await writeFile(file, i(f(templateResult), indent));
-    }
+    // const serviceNameHyphens = toHyphenCase(service.name);
+    const file = resolve(outputPath, `route-handler.ts`);
+    serverModelImportPath = serverModelImportPath;
+    const templateResult = templates.exports.routeHandler({
+        services,
+        serverDirName,
+        serverModelImportPath,
+        serverApiTypesImportPath,
+        serverReqTypeName,
+        serverResTypeName,
+        transformFuncName,
+        transformFuncPath,
+        httpClient,
+        useUnionTypes,
+        useOptions,
+        postfix,
+        exportClient: isDefined(clientName),
+    });
+    await writeFile(file, i(f(templateResult), indent));
 };
