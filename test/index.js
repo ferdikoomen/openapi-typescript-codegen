@@ -59,6 +59,7 @@ const generateRealWorldSpecs = async () => {
 const main = async () => {
     await generate('./test/spec/v2.json', './test/generated/v2/');
     await generate('./test/spec/v3.json', './test/generated/v3/');
+    await OpenAPI.generateCustomSpec(generate, './test/spec/saddlebackApi.json', './test/generated/saddleback/');
     // await generateRealWorldSpecs();
 };
 
