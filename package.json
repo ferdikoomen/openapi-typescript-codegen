@@ -63,7 +63,8 @@
         "commander": "^9.3.0",
         "fs-extra": "^10.1.0",
         "handlebars": "^4.7.7",
-        "json-schema-ref-parser": "^9.0.9"
+        "json-schema-ref-parser": "^9.0.9",
+        "pluralize": "^8.0.0"
     },
     "devDependencies": {
         "@angular-devkit/build-angular": "13.3.7",
@@ -91,6 +92,7 @@
         "@types/jest": "27.5.1",
         "@types/node": "17.0.38",
         "@types/node-fetch": "2.6.1",
+        "@types/pluralize": "^0.0.29",
         "@types/qs": "6.9.7",
         "@typescript-eslint/eslint-plugin": "5.27.0",
         "@typescript-eslint/parser": "5.27.0",
