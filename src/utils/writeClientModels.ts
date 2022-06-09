@@ -26,7 +26,7 @@ export const writeClientModels = async (
     indent: Indent
 ): Promise<void> => {
     for (const model of models) {
-        const file = resolve(outputPath, `${model.name}.ts`);
+        const file = resolve(outputPath, `${model.name}.models.ts`);
         const templateResult = templates.exports.model({
             ...model,
             httpClient,
