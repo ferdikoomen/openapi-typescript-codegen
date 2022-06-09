@@ -48,6 +48,7 @@
         "release": "rollup --config --environment NODE_ENV:production",
         "validate": "tsc --project tsconfig.json --noEmit",
         "run": "node ./test/index.js",
+        "cleanRun": "npm run clean && npm run build && npm run run",
         "test": "jest --selectProjects UNIT",
         "test:update": "jest --selectProjects UNIT --updateSnapshot",
         "test:watch": "jest --selectProjects UNIT --watch",

@@ -1,3 +1,4 @@
+import { generate, Options } from './generate';
 import { OpenApi } from './openApi/v3/interfaces/OpenApi';
 import { OpenApiMediaType } from './openApi/v3/interfaces/OpenApiMediaType';
 import { OpenApiOperation } from './openApi/v3/interfaces/OpenApiOperation';
@@ -7,7 +8,13 @@ import { OpenApiServer } from './openApi/v3/interfaces/OpenApiServer';
 import { getOpenApiSpec } from './utils/getOpenApiSpec';
 import { Dictionary } from './utils/types';
 
-export const generateCustomSpec = async (gen: any, input: string, output: string, config: Record<string, unknown>) => {
+type Config = Options & {
+    filterMethod: 'greedy' | 'ascetic';
+    filterArray: string[];
+    input: string;
+};
+
+export const generateCustomSpec = async (config: Config) => {
     const getSchemaRefFromContent = (content: OpenApiMediaType): string => {
         let ref: string = '';
 
@@ -16,15 +23,20 @@ export const generateCustomSpec = async (gen: any, input: string, output: string
         return ref.split('/').slice(-1)[0];
     };
 
-    const list: OpenApi = await getOpenApiSpec(input);
+    const list: OpenApi = await getOpenApiSpec(config.input);
 
-    const requiredPathsList: string[] = ['/api/agreement', '/api/agreement/{id}'];
+    // const filterArray: string[] = ['/api/agreement', '/api/agreement/{id}'];
 
     const requiredPaths: OpenApi['paths'] = {};
 
     for (const path in list.paths) {
-        if (requiredPathsList.some(it => it === path)) {
-            requiredPaths[path] = list.paths[path];
+        if (!list.paths.hasOwnProperty(path)) return;
+
+        if (config.filterMethod === 'ascetic') {
+            if (config.filterArray.some(it => it === path)) requiredPaths[path] = list.paths[path];
+        }
+        if (config.filterMethod === 'greedy') {
+            if (!config.filterArray.some(it => it === path)) requiredPaths[path] = list.paths[path];
         }
     }
 
@@ -84,5 +96,7 @@ export const generateCustomSpec = async (gen: any, input: string, output: string
         },
     };
 
-    await gen(listWithRequiredPaths, output);
+    await generate({ ...config, input: listWithRequiredPaths });
 };
+
+export default generateCustomSpec;

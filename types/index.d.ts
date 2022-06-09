@@ -29,12 +29,20 @@ export type Options = {
     write?: boolean;
 };
 
+export type CustomConfig = Options & {
+    filterMethod: 'greedy' | 'ascetic';
+    filterArray: string[];
+    input: string;
+};
+
 export declare function generate(options: Options): Promise<void>;
+export declare function generateCustomSpec(config: CustomConfig): Promise<void>;
 
 declare type OpenAPI = {
     HttpClient: HttpClient;
     Indent: Indent;
     generate: typeof generate;
+    generateCustomSpec: typeof generateCustomSpec;
 };
 
 export default OpenAPI;
