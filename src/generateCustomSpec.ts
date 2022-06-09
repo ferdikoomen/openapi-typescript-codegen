@@ -15,12 +15,31 @@ type Config = Options & {
 };
 
 export const generateCustomSpec = async (config: Config) => {
+    const getNameFromRef = (ref: string): string => {
+        return ref.split('/').slice(-1)[0];
+    };
+
     const getSchemaRefFromContent = (content: OpenApiMediaType): string => {
         let ref: string = '';
 
         ref = content.$ref || content.schema?.$ref || content.schema?.items?.$ref || '';
 
-        return ref.split('/').slice(-1)[0];
+        return getNameFromRef(ref);
+    };
+
+    const recursiveAddAllUnknownModels = (modelName: string): void => {
+        const model = list.components?.schemas ? list.components.schemas[modelName] : undefined;
+        if (model === undefined) return;
+
+        for (const property in model.properties) {
+            const ref = model.properties[property].$ref || model.properties[property].items?.$ref || '';
+            const modelName = getNameFromRef(ref);
+
+            if (!requiredSchemasSet.has(modelName)) {
+                requiredSchemasSet.add(modelName);
+                recursiveAddAllUnknownModels(modelName);
+            }
+        }
     };
 
     const list: OpenApi = await getOpenApiSpec(config.input);
@@ -57,9 +76,12 @@ export const generateCustomSpec = async (config: Config) => {
                 if (!('url' in requestMethodData)) {
                     if ('parameters' in requestMethodData) {
                         // add schemas from {apiPath}/{method}/parameters
-                        requestMethodData.parameters?.forEach(parameter =>
-                            requiredSchemasSet.add(getSchemaRefFromContent(parameter))
-                        );
+                        requestMethodData.parameters?.forEach(parameter => {
+                            const modelName = getSchemaRefFromContent(parameter);
+
+                            requiredSchemasSet.add(modelName);
+                            recursiveAddAllUnknownModels(modelName);
+                        });
                     }
                     if ('responses' in requestMethodData) {
                         const responsesCodeData = Object.values(requestMethodData.responses);
@@ -69,7 +91,10 @@ export const generateCustomSpec = async (config: Config) => {
 
                             // add schemas from {apiPath}/{method}/responses/{responseType}/content
                             contentTypeData.forEach(content => {
+                                const modelName = getSchemaRefFromContent(content);
+
                                 requiredSchemasSet.add(getSchemaRefFromContent(content));
+                                recursiveAddAllUnknownModels(modelName);
                             });
                         });
                     }
