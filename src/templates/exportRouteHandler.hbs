@@ -1,7 +1,10 @@
 {{#each services}}
 import { {{{pascalCase name}}}{{{@root.postfix}}} } from './{{{@root.serverDirName}}}/{{{hyphenCase name}}}-{{{hyphenCase @root.postfix}}}';
 {{/each}}
-import { {{{transformFuncName}}} as transformOutbound } from '{{{transformFuncPath}}}';
+import {
+  {{{transformReqFuncName}}} as transformRequest,
+  {{{transformResFuncName}}} as transformResponse
+} from '{{{transformFuncPath}}}';
 
 export class RouteHandler {
   constructor(
@@ -9,9 +12,17 @@ export class RouteHandler {
     private {{{camelCase name}}}: {{{pascalCase name}}}{{{@root.postfix}}},
     {{/each}}
   ) { }
+
+  private applyTransforms(req, reply, handlerFunc) {
+    const transformedRequest = transformRequest(req);
+    const handlerResponse = handlerFunc(transformedRequest);
+    const transformedResponse = transformResponse(handlerResponse, reply);
+    return transformedResponse;
+  }
+
 {{#each services}}
 {{#each operations}}
-  {{{name}}} = req => this.{{{camelCase service}}}.{{{name}}}(transformOutbound(req));
+  {{{name}}} = (req, reply) => (req, reply, this.{{{camelCase service}}}.{{{name}}});
 {{/each}}
 {{/each}}
 }
