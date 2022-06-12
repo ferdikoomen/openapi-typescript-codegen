@@ -23,7 +23,8 @@ export type Options = {
     serverReqTypeName?: string;
     serverResTypeName?: string;
     exportRouteHandler?: boolean;
-    transformFuncName?: string;
+    transformReqFuncName?: string;
+    transformResFuncName?: string;
     transformFuncPath?: string;
     httpClient?: HttpClient;
     clientName?: string;
@@ -74,7 +75,8 @@ export const generate = async ({
     serverReqTypeName = 'ApiRequestWrapper',
     serverResTypeName = 'ApiResponseWrapper',
     exportRouteHandler = false,
-    transformFuncName = 'transformApiRequest',
+    transformReqFuncName = 'transformApiRequest',
+    transformResFuncName = 'transformApiResponse',
     transformFuncPath = './util/transform-api-request',
     httpClient = HttpClient.FETCH,
     clientName,
@@ -117,7 +119,8 @@ export const generate = async ({
                 serverReqTypeName,
                 serverResTypeName,
                 exportRouteHandler,
-                transformFuncName,
+                transformReqFuncName,
+                transformResFuncName,
                 transformFuncPath,
                 httpClient,
                 useOptions,
@@ -153,7 +156,8 @@ export const generate = async ({
                 serverReqTypeName,
                 serverResTypeName,
                 exportRouteHandler,
-                transformFuncName,
+                transformReqFuncName,
+                transformResFuncName,
                 transformFuncPath,
                 httpClient,
                 useOptions,
