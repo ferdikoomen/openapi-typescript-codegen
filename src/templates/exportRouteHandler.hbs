@@ -22,7 +22,7 @@ export class RouteHandler {
 
 {{#each services}}
 {{#each operations}}
-  {{{name}}} = (req, reply) => (req, reply, this.{{{camelCase service}}}.{{{name}}});
+  {{{name}}} = (req, reply) => this.applyTransforms(req, reply, this.{{{camelCase service}}}.{{{name}}});
 {{/each}}
 {{/each}}
 }
