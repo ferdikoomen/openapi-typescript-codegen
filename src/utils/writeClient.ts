@@ -13,6 +13,7 @@ import { writeClientIndex } from './writeClientIndex';
 import { writeClientModels } from './writeClientModels';
 import { writeClientSchemas } from './writeClientSchemas';
 import { writeClientServices } from './writeClientServices';
+import { writeSaddlebackClientServices } from './writeSaddlebackClientServices';
 
 /**
  * Write our OpenAPI client, using the given templates at the given output
@@ -53,6 +54,7 @@ export const writeClient = async (
     const outputPathModels = resolve(outputPath, 'models');
     const outputPathSchemas = resolve(outputPath, 'schemas');
     const outputPathServices = resolve(outputPath, 'services');
+    const outputPathSaddlebackServices = resolve(outputPath, 'saddlebackServices');
 
     if (!isSubDirectory(process.cwd(), output)) {
         throw new Error(`Output folder is not a subdirectory of the current working directory`);
@@ -108,6 +110,23 @@ export const writeClient = async (
             exportServices,
             exportModels,
             exportSchemas,
+            postfix,
+            clientName
+        );
+    }
+
+    if (true) {
+        await rmdir(outputPathSaddlebackServices);
+        await mkdir(outputPathSaddlebackServices);
+
+        await writeSaddlebackClientServices(
+            client.services,
+            templates,
+            outputPathSaddlebackServices,
+            httpClient,
+            useUnionTypes,
+            useOptions,
+            indent,
             postfix,
             clientName
         );

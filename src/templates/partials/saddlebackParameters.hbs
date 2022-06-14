@@ -1,0 +1,73 @@
+{{#if parameters}}
+{
+	{{#if parametersBody}}
+	data,
+	{{/if}}
+	{{#if parametersPath}}
+	params,
+	{{else if parametersQuery}}
+	params,
+{{/if~}} }: {
+	{{#if parametersBody}}
+	data: {{#equals parametersBody.in 'formData'}}FormData;{{else}}{{{parametersBody.type}}};{{/equals}}
+	{{/if}}
+	{{#if parametersPath}}
+	params: {
+		{{#each parametersPath}}
+		{{#ifdef description deprecated}}
+		/**
+				{{#if description}}
+		 * {{{escapeComment description}}}
+		{{/if}}
+			{{#if deprecated}}
+		 * @deprecated
+				{{/if}}
+		 */
+			{{/ifdef}}
+		{{{name}}}{{>isRequired}}: {{>type}};
+		{{/each}}
+		{{#each parametersQuery}}
+			{{#ifdef description deprecated}}
+		/**
+				{{#if description}}
+		 * {{{escapeComment description}}}
+			{{/if}}
+				{{#if deprecated}}
+		 * @deprecated
+				{{/if}}
+		 */
+			{{/ifdef}}
+		{{{name}}}{{>isRequired}}: {{>type}};
+		{{/each}}
+	};
+	{{else if parametersQuery}}
+	params: {
+		{{#each parametersPath}}
+			{{#ifdef description deprecated}}
+		/**
+				{{#if description}}
+		 * {{{escapeComment description}}}
+				{{/if}}
+				{{#if deprecated}}
+		 * @deprecated
+				{{/if}}
+		 */
+			{{/ifdef}}
+		{{{name}}}{{>isRequired}}: {{>type}};
+		{{/each}}
+		{{#each parametersQuery}}
+			{{#ifdef description deprecated}}
+		/**
+				{{#if description}}
+		 * {{{escapeComment description}}}
+				{{/if}}
+				{{#if deprecated}}
+		 * @deprecated
+				{{/if}}
+		 */
+			{{/ifdef}}
+		{{{name}}}{{>isRequired}}: {{>type}};
+		{{/each}}
+	};
+{{/if}}
+}{{/if}}

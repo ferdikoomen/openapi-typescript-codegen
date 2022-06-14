@@ -53,6 +53,7 @@ import xhrGetResponseHeader from '../templates/core/xhr/getResponseHeader.hbs';
 import xhrRequest from '../templates/core/xhr/request.hbs';
 import xhrSendRequest from '../templates/core/xhr/sendRequest.hbs';
 import templateExportModel from '../templates/exportModel.hbs';
+import templateExportSaddlebackService from '../templates/exportSaddlebackService.hbs';
 import templateExportSchema from '../templates/exportSchema.hbs';
 import templateExportService from '../templates/exportService.hbs';
 import templateIndex from '../templates/index.hbs';
@@ -67,6 +68,7 @@ import partialIsReadOnly from '../templates/partials/isReadOnly.hbs';
 import partialIsRequired from '../templates/partials/isRequired.hbs';
 import partialParameters from '../templates/partials/parameters.hbs';
 import partialResult from '../templates/partials/result.hbs';
+import saddlebackParameters from '../templates/partials/saddlebackParameters.hbs';
 import partialSchema from '../templates/partials/schema.hbs';
 import partialSchemaArray from '../templates/partials/schemaArray.hbs';
 import partialSchemaComposition from '../templates/partials/schemaComposition.hbs';
@@ -92,6 +94,7 @@ export interface Templates {
         model: Handlebars.TemplateDelegate;
         schema: Handlebars.TemplateDelegate;
         service: Handlebars.TemplateDelegate;
+        saddlebackService: Handlebars.TemplateDelegate;
     };
     core: {
         settings: Handlebars.TemplateDelegate;
@@ -124,6 +127,7 @@ export const registerHandlebarTemplates = (root: {
             model: Handlebars.template(templateExportModel),
             schema: Handlebars.template(templateExportSchema),
             service: Handlebars.template(templateExportService),
+            saddlebackService: Handlebars.template(templateExportSaddlebackService),
         },
         core: {
             settings: Handlebars.template(templateCoreSettings),
@@ -147,6 +151,7 @@ export const registerHandlebarTemplates = (root: {
     Handlebars.registerPartial('isReadOnly', Handlebars.template(partialIsReadOnly));
     Handlebars.registerPartial('isRequired', Handlebars.template(partialIsRequired));
     Handlebars.registerPartial('parameters', Handlebars.template(partialParameters));
+    Handlebars.registerPartial('saddlebackParameters', Handlebars.template(saddlebackParameters));
     Handlebars.registerPartial('result', Handlebars.template(partialResult));
     Handlebars.registerPartial('schema', Handlebars.template(partialSchema));
     Handlebars.registerPartial('schemaArray', Handlebars.template(partialSchemaArray));

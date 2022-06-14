@@ -1,0 +1,74 @@
+{{#if imports}}
+{{#each imports}}
+import type { {{{this}}} } from '../models/{{{this}}}.models';
+{{/each}}
+{{/if}}
+import axios, {
+	AxiosError,
+	AxiosResponse,
+} from 'axios';
+import serviceError from 'global/api/serviceError';
+import getBaseConfig from 'global/api/getBaseConfig';
+
+{{#each operations}}
+/**
+{{#if deprecated}}
+ * @deprecated
+{{/if}}
+{{#if summary}}
+ * {{{escapeComment summary}}}
+{{/if}}
+{{#if description}}
+ * {{{escapeComment description}}}
+{{/if}}
+{{#unless @root.useOptions}}
+{{#if parameters}}
+{{#each parameters}}
+ * @param {{{name}}} {{#if description}}{{{escapeComment description}}}{{/if}}
+{{/each}}
+{{/if}}
+{{/unless}}
+{{#each results}}
+ * @returns {{{type}}} {{#if description}}{{{escapeComment description}}}{{/if}}
+{{/each}}
+ * @throws Error('{{{../name}}}Service > {{name}}')
+ */
+
+export const fetch{{{../name}}}{{pascalCase name}} = async ({{> saddlebackParameters}}): Promise<AxiosResponse<{{>result}}>> => {
+	const setBaseConfig = getBaseConfig({
+{{#if parametersBody}}
+		data,
+{{/if}}
+{{#if parametersPath}}
+		params,
+{{else if parametersQuery}}
+		params,
+{{/if}}
+		method: '{{{method}}}',
+		url: '{{{path}}}',
+{{#if parametersBody}}
+{{#if parametersBody.mediaType}}
+		contentType: '{{{parametersBody.mediaType}}}',
+{{/if}}
+{{/if}}
+	});
+
+	try {
+		const response: AxiosResponse<{{>result}}> = await axios({
+			...setBaseConfig,
+		});
+
+		return response;
+	} catch (error) {
+		const axiosError = error as AxiosError;
+
+		serviceError({
+			response: axiosError.response,
+		});
+
+		throw new Error('{{{../name}}}Service > {{name}}');
+	}
+};
+
+{{/each}}
+

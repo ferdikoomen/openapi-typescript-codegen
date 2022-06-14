@@ -72,8 +72,8 @@ const main = async () => {
         exportSchemas: false,
         indent: '4',
         postfix: '',
-        filterMethod: 'ascetic',
-        filterArray: ['/api/agreement', '/api/agreement/{id}'],
+        filterMethod: 'greedy',
+        filterArray: ['/api/agreement', '/api/agreement/{id}', '/api/share-page/compare-results'],
     });
     // await generateRealWorldSpecs();
 };

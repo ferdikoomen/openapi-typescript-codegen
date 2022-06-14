@@ -23,6 +23,7 @@ describe('writeClient', () => {
                 model: () => 'model',
                 schema: () => 'schema',
                 service: () => 'service',
+                saddlebackService: () => 'saddlebackService',
             },
             core: {
                 settings: () => 'settings',
