@@ -1,5 +1,5 @@
 {{#each services}}
-import { I{{{pascalCase name}}}{{{@root.postfix}}} } from './i-{{{@root.serverDirName}}}/{{{hyphenCase name}}}-{{{hyphenCase @root.postfix}}}';
+import { I{{{pascalCase name}}}{{{@root.postfix}}} } from './{{{@root.serverDirName}}}/i-{{{hyphenCase name}}}-{{{hyphenCase @root.postfix}}}';
 {{/each}}
 import {
   {{{transformReqFuncName}}} as transformRequest,
