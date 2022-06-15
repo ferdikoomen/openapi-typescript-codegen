@@ -5,11 +5,13 @@ import {
   {{{transformReqFuncName}}} as transformRequest,
   {{{transformResFuncName}}} as transformResponse
 } from '{{{transformFuncPath}}}';
+import { inject, injectable } from 'tsyringe';
 
+@injectable()
 export class RouteHandler {
   constructor(
     {{#each services}}
-    private {{{camelCase name}}}: {{{pascalCase name}}}{{{@root.postfix}}},
+    @inject("{{{pascalCase name}}}{{{@root.postfix}}}") private {{{camelCase name}}}: {{{pascalCase name}}}{{{@root.postfix}}},
     {{/each}}
   ) { }
 
