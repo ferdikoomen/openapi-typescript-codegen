@@ -7,7 +7,9 @@
 	params,
 	{{else if parametersQuery}}
 	params,
-{{/if~}} }: {
+{{/if}}
+	config,
+}: {
 	{{#if parametersBody}}
 	data: {{#equals parametersBody.in 'formData'}}FormData;{{else}}{{{parametersBody.type}}};{{/equals}}
 	{{/if}}
@@ -70,4 +72,8 @@
 		{{/each}}
 	};
 {{/if}}
+	/**
+	 * Config to add or overwrite getBaseConfig arguments
+	 */
+	config?: Partial<Parameters<typeof getBaseConfig>[0]>;
 }{{/if}}

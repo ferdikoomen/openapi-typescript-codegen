@@ -12,6 +12,7 @@ type Config = Options & {
     filterMethod: 'greedy' | 'ascetic';
     filterArray: string[];
     input: string;
+    useSaddlebackServices?: boolean;
 };
 
 export const generateCustomSpec = async (config: Config) => {
@@ -96,6 +97,17 @@ export const generateCustomSpec = async (config: Config) => {
                                 requiredSchemasSet.add(getSchemaRefFromContent(content));
                                 recursiveAddAllUnknownModels(modelName);
                             });
+                        });
+                    }
+                    if ('requestBody' in requestMethodData) {
+                        const requestBodyContent = Object.values(requestMethodData.requestBody?.content ?? {});
+
+                        // add schemas from {apiPath}/{method}/responses/{responseType}/requestBody/content
+                        requestBodyContent.forEach(content => {
+                            const modelName = getSchemaRefFromContent(content);
+
+                            requiredSchemasSet.add(getSchemaRefFromContent(content));
+                            recursiveAddAllUnknownModels(modelName);
                         });
                     }
                 }
