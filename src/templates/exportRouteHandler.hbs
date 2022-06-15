@@ -1,5 +1,5 @@
 {{#each services}}
-import { {{{pascalCase name}}}{{{@root.postfix}}} } from './{{{@root.serverDirName}}}/{{{hyphenCase name}}}-{{{hyphenCase @root.postfix}}}';
+import { I{{{pascalCase name}}}{{{@root.postfix}}} } from './i-{{{@root.serverDirName}}}/{{{hyphenCase name}}}-{{{hyphenCase @root.postfix}}}';
 {{/each}}
 import {
   {{{transformReqFuncName}}} as transformRequest,
@@ -11,7 +11,7 @@ import { inject, injectable } from 'tsyringe';
 export class RouteHandler {
   constructor(
     {{#each services}}
-    @inject("{{{pascalCase name}}}{{{@root.postfix}}}") private {{{camelCase name}}}: {{{pascalCase name}}}{{{@root.postfix}}},
+    @inject('I{{{pascalCase name}}}{{{@root.postfix}}}') private {{{camelCase name}}}: I{{{pascalCase name}}}{{{@root.postfix}}},
     {{/each}}
   ) { }
 
