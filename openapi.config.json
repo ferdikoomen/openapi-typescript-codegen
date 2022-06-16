@@ -1,0 +1,16 @@
+{
+    "input": "./test/spec/saddlebackApi.json",
+    "output": "./test/test/saddleback/",
+    "httpClient": "axios",
+    "clientName": "TestAxiosClassName",
+    "useOptions": true,
+    "useUnionTypes": false,
+    "exportCore": true,
+    "exportServices": true,
+    "exportModels": true,
+    "exportSchemas": false,
+    "indent": "4",
+    "postfix": "",
+    "filterMethod": "greedy",
+    "filterArray": ["/api/agreement", "/api/agreement/{id}", "/api/share-page/compare-results"]
+}

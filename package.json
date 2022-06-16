@@ -34,10 +34,12 @@
     "main": "dist/index.js",
     "types": "types/index.d.ts",
     "bin": {
-        "openapi": "bin/index.js"
+        "openapi": "bin/index.js",
+        "saddlebackOpenapi": "bin/saddleback.cli.js"
     },
     "files": [
         "bin/index.js",
+        "bin/saddleback.cli.js",
         "dist/index.js",
         "types/index.d.ts"
     ],
