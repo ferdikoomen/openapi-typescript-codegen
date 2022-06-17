@@ -1,0 +1,1054 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "HC Workflows Service Web API",
+        "version": "v1"
+    },
+    "paths": {
+        "/api/bootstrap": {
+            "get": {
+                "tags": [
+                    "Bootstrap"
+                ],
+                "operationId": "GetBootstrap",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/enumerations": {
+            "get": {
+                "tags": [
+                    "Bootstrap"
+                ],
+                "description": "**Authorization Policy:**<br />\r\nAnonymous Access Allowed<br />\r\n",
+                "operationId": "GetEnumerations",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "x-hc-security": {
+                    "AllowAnonymous": true
+                }
+            }
+        },
+        "/api/rpc": {
+            "post": {
+                "tags": [
+                    "Rpc"
+                ],
+                "summary": "Handle RPC request",
+                "description": "**Authorization Policy:**<br />\r\nAllowed With Scope: hc:internal-systems<br />\r\n<br />\r\n**Data Access:**<br />\r\nExecute functionality exposed via the RPC interface.",
+                "operationId": "Rpc",
+                "requestBody": {
+                    "description": "RPC command",
+                    "content": {
+                        "application/json-patch+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Workflow_App_RpcRestContainer"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Workflow_App_RpcRestContainer"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Workflow_App_RpcRestContainer"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Workflow_App_RpcRestContainer"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Returns RPC operation result."
+                    },
+                    "400": {
+                        "description": "Invalid RPC model."
+                    },
+                    "403": {
+                        "description": "Not authorized."
+                    }
+                },
+                "x-hc-security": {
+                    "AllowedWithScopes": [
+                        {
+                            "Scopes": [
+                                "hc:internal-systems"
+                            ]
+                        }
+                    ]
+                }
+            }
+        },
+        "/api/rule": {
+            "get": {
+                "tags": [
+                    "Rule"
+                ],
+                "summary": "Gets a collection of Rules By associated Entity Type and Entity ID",
+                "description": "**Authorization Policy:**<br />\r\nRequires access to Permission: Manage Follow Up Rules<br />\r\n<br />\r\n**Data Access:**<br />\r\nREAD access to a collection of Rules for an entity, with only basic descriptive attributes",
+                "operationId": "GetByEntity",
+                "parameters": [
+                    {
+                        "name": "EntityType",
+                        "in": "query",
+                        "description": "Entity Type to which requested Rules are associated (via Entity Conditions, or the right-hand side of Attribute Conditions)",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "EntityId",
+                        "in": "query",
+                        "description": "Entity ID to which requested Rules are associated (via Entity Conditions, or the right-hand side of Attribute Conditions)",
+                        "required": true,
+                        "schema": {
+                            "minimum": 1,
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "ChurchEntityIds",
+                        "in": "query",
+                        "description": "Comma-separated list of Church Entity IDs",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "IsActive",
+                        "in": "query",
+                        "description": "Optional filter to request only Active or Inactive Rules",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "name": "Query",
+                        "in": "query",
+                        "description": "Optional free-text search query (will be matched, as if surrounded by wildcards, against Rule Name)",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "SecondaryEntityType",
+                        "in": "query",
+                        "description": "Optional secondary Entity Type to which requested Rules are also associated (via Entity Conditions, or the right-hand side of Attribute Conditions)",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "SecondaryEntityId",
+                        "in": "query",
+                        "description": "Optional secondary Entity ID to which requested Rules are also associated (via Entity Conditions, or the right-hand side of Attribute Conditions)",
+                        "schema": {
+                            "minimum": 1,
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "IncludeSystemRules",
+                        "in": "query",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "name": "SortQuery",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Sort",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "SortColumns",
+                        "in": "query",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/Workflow_App_Sorting"
+                            }
+                        }
+                    },
+                    {
+                        "name": "SortColumn",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "IsDescendingSort",
+                        "in": "query",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "name": "Offset",
+                        "in": "query",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "Limit",
+                        "in": "query",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "DBLimit",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "PageNumber",
+                        "in": "query",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "PageSize",
+                        "in": "query",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Workflow_SearchResultsViewModel_RuleViewModel"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Workflow_SearchResultsViewModel_RuleViewModel"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Workflow_SearchResultsViewModel_RuleViewModel"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Workflow_Model_StandardErrorResponse"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Workflow_Model_StandardErrorResponse"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Workflow_Model_StandardErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "x-hc-security": {
+                    "RequiredPermissions": [
+                        {
+                            "Permissions": [
+                                "Manage Follow Up Rules"
+                            ]
+                        }
+                    ]
+                }
+            },
+            "post": {
+                "tags": [
+                    "Rule"
+                ],
+                "summary": "Creates a new Rule",
+                "description": "**Authorization Policy:**<br />\r\nRequires access to Permission: Manage Follow Up Rules<br />\r\n<br />\r\n**Data Access:**<br />\r\nCREATE a new Rule",
+                "operationId": "CreateRule",
+                "requestBody": {
+                    "description": "Saddleback.Cm.WebApp.Workflows.ViewModels.RuleDetailsViewModel Rule to create",
+                    "content": {
+                        "application/json-patch+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Workflow_App_RuleDetailsViewModel"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Workflow_App_RuleDetailsViewModel"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Workflow_App_RuleDetailsViewModel"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Workflow_App_RuleDetailsViewModel"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Workflow_App_RuleDetailsViewModel"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Workflow_App_RuleDetailsViewModel"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Workflow_App_RuleDetailsViewModel"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Workflow_Model_StandardErrorResponse"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Workflow_Model_StandardErrorResponse"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Workflow_Model_StandardErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Workflow_Model_StandardErrorResponse"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Workflow_Model_StandardErrorResponse"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Workflow_Model_StandardErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-hc-security": {
+                    "RequiredPermissions": [
+                        {
+                            "Permissions": [
+                                "Manage Follow Up Rules"
+                            ]
+                        }
+                    ]
+                }
+            }
+        },
+        "/api/rule/{id}": {
+            "get": {
+                "tags": [
+                    "Rule"
+                ],
+                "summary": "Gets the full details of a Rule by ID",
+                "description": "**Authorization Policy:**<br />\r\nRequires access to Permission: Manage Follow Up Rules<br />\r\n<br />\r\n**Data Access:**<br />\r\nREAD access to the full details of a single specified Rule",
+                "operationId": "GetDetailedById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "integer: Rule ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Workflow_App_RuleDetailsViewModel"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Workflow_App_RuleDetailsViewModel"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Workflow_App_RuleDetailsViewModel"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "x-hc-security": {
+                    "RequiredPermissions": [
+                        {
+                            "Permissions": [
+                                "Manage Follow Up Rules"
+                            ]
+                        }
+                    ]
+                }
+            },
+            "put": {
+                "tags": [
+                    "Rule"
+                ],
+                "summary": "Updates a Rule",
+                "description": "**Authorization Policy:**<br />\r\nRequires access to Permission: Manage Follow Up Rules<br />\r\n<br />\r\n**Data Access:**<br />\r\nUPDATE the specified Rule\r\n\r\n**More Info:**<br />\r\nThis method is not intended to enable the caller to transform an existing rule into a completely different rule.\r\nIt only allows sensible modifications to an existing rule.\r\nCurrently this method will *ONLY* update the following:\r\n* Name\r\n* Description\r\n* Active/Inactive \"Status\"\r\n* Entity Conditions, Attribute Conditions and Actions (collection upserts)\r\nThis method will *NOT* update (so as not to change the \"identity\" of the Rule) the following:\r\n* Church Entity ID\r\nIf an existing rule needs to be discarded and replaced with a different rule, this should be accomplished via\r\na delete and an insert.",
+                "operationId": "UpdateRule",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "integer: Follow Up Rule ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Saddleback.Cm.WebApp.Workflows.ViewModels.RuleDetailsViewModelRule details to be updated",
+                    "content": {
+                        "application/json-patch+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Workflow_App_RuleDetailsViewModel"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Workflow_App_RuleDetailsViewModel"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Workflow_App_RuleDetailsViewModel"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Workflow_App_RuleDetailsViewModel"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Workflow_App_RuleDetailsViewModel"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Workflow_App_RuleDetailsViewModel"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Workflow_App_RuleDetailsViewModel"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Workflow_Model_StandardErrorResponse"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Workflow_Model_StandardErrorResponse"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Workflow_Model_StandardErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Workflow_Model_StandardErrorResponse"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Workflow_Model_StandardErrorResponse"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Workflow_Model_StandardErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-hc-security": {
+                    "RequiredPermissions": [
+                        {
+                            "Permissions": [
+                                "Manage Follow Up Rules"
+                            ]
+                        }
+                    ]
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Rule"
+                ],
+                "summary": "Deletes a Rule",
+                "description": "**Authorization Policy:**<br />\r\nRequires access to Permission: Manage Follow Up Rules<br />\r\n<br />\r\n**Data Access:**<br />\r\nDELETE a single specified Rule (soft/logical delete)",
+                "operationId": "DeleteRule",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Workflow_App_RuleDetailsViewModel"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Workflow_App_RuleDetailsViewModel"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Workflow_App_RuleDetailsViewModel"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "x-hc-security": {
+                    "RequiredPermissions": [
+                        {
+                            "Permissions": [
+                                "Manage Follow Up Rules"
+                            ]
+                        }
+                    ]
+                }
+            }
+        },
+        "/api/rule-builder-metadata/attribute": {
+            "get": {
+                "tags": [
+                    "RuleBuilderMetadata"
+                ],
+                "summary": "Gets a collection of Attributes allowed in Rule Attribute Conditions, and associated metadata to aid Rule Building, by Entity Type",
+                "description": "**Data Access:**<br />\r\nREAD access to a collection of Attributes allowed in Rule Attribute Conditions, and associated metadata",
+                "operationId": "GetAttributesByEntityType",
+                "parameters": [
+                    {
+                        "name": "entityType",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/version": {
+            "get": {
+                "tags": [
+                    "Version"
+                ],
+                "operationId": "Get",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Workflow_App_RpcRestContainer": {
+                "type": "object",
+                "properties": {
+                    "body": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "Workflow_App_RuleActionSettingViewModel": {
+                "required": [
+                    "name"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Action Setting Key/Name/Property"
+                    },
+                    "value": {
+                        "type": "string",
+                        "description": "Action Setting Value.  Must be populated for Inserts, but may be null/empty for updates (to allow deletion).",
+                        "nullable": true
+                    },
+                    "ruleActionId": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "Workflow_App_RuleActionViewModel": {
+                "required": [
+                    "actionType"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "order": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "action": {
+                        "type": "string",
+                        "description": "Friendly Action Name",
+                        "nullable": true
+                    },
+                    "actionType": {
+                        "$ref": "#/components/schemas/Workflow_Model_ActionType"
+                    },
+                    "actionSettings": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Workflow_App_RuleActionSettingViewModel"
+                        },
+                        "nullable": true
+                    },
+                    "executionDelay": {
+                        "type": "string",
+                        "format": "date-span",
+                        "nullable": true
+                    },
+                    "isActive": {
+                        "type": "boolean"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "Workflow_App_RuleAttributeConditionViewModel": {
+                "required": [
+                    "attribute",
+                    "condition"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "attribute": {
+                        "$ref": "#/components/schemas/Workflow_Model_AttributeType"
+                    },
+                    "condition": {
+                        "$ref": "#/components/schemas/Workflow_Model_ConditionType"
+                    },
+                    "parameter": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "entityType": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "entityId": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    },
+                    "doesEntityOwnRule": {
+                        "type": "boolean"
+                    },
+                    "order": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "Workflow_App_RuleDetailsViewModel": {
+                "required": [
+                    "churchEntityId",
+                    "name"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "churchEntityId": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "churchEntityName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "isActive": {
+                        "type": "boolean"
+                    },
+                    "isSystem": {
+                        "type": "boolean"
+                    },
+                    "entityConditions": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Workflow_App_RuleEntityConditionViewModel"
+                        },
+                        "nullable": true
+                    },
+                    "attributeConditions": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Workflow_App_RuleAttributeConditionViewModel"
+                        },
+                        "nullable": true
+                    },
+                    "actions": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Workflow_App_RuleActionViewModel"
+                        },
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "Workflow_App_RuleEntityConditionViewModel": {
+                "required": [
+                    "condition"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "entityType": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "entityId": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "condition": {
+                        "$ref": "#/components/schemas/Workflow_Model_ConditionType"
+                    },
+                    "parameter": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "order": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "Workflow_App_RuleViewModel": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "name": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "description": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "churchEntityId": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "churchEntityName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "isActive": {
+                        "type": "boolean"
+                    },
+                    "isSystem": {
+                        "type": "boolean"
+                    },
+                    "createDate": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "createdBy": {
+                        "$ref": "#/components/schemas/Workflow_PersonSecurityUltraLiteViewModel"
+                    },
+                    "modifyDate": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "modifiedBy": {
+                        "$ref": "#/components/schemas/Workflow_PersonSecurityUltraLiteViewModel"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "Workflow_App_SortDirection": {
+                "enum": [
+                    "Ascending",
+                    "Descending"
+                ],
+                "type": "string"
+            },
+            "Workflow_App_Sorting": {
+                "type": "object",
+                "properties": {
+                    "sortColumn": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "sortDirection": {
+                        "$ref": "#/components/schemas/Workflow_App_SortDirection"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "Workflow_Model_ActionType": {
+                "enum": [
+                    "Unknown",
+                    "SendEmail",
+                    "CreateFollowUp",
+                    "CancelDelayedActions"
+                ],
+                "type": "string"
+            },
+            "Workflow_Model_AttributeType": {
+                "enum": [
+                    "Unknown",
+                    "Campus",
+                    "AnswerSourceType",
+                    "AnswerSourceEntity",
+                    "AnswerValue",
+                    "PersonHasMetPrerequisiteMilestones"
+                ],
+                "type": "string"
+            },
+            "Workflow_Model_ConditionType": {
+                "enum": [
+                    "Unknown",
+                    "IsSelected",
+                    "RelatedRecordAdded",
+                    "RelatedRecordEdited",
+                    "RelatedRecordDeleted",
+                    "IsEqualTo",
+                    "IsNotSelected",
+                    "HasValue",
+                    "DoesNotHaveValue",
+                    "IsNotEqualTo",
+                    "Contains",
+                    "DoesNotContain",
+                    "IsLessThan",
+                    "IsLessThanOrEqualTo",
+                    "IsGreaterThan",
+                    "IsGreaterThanOrEqualTo",
+                    "IsBetween",
+                    "IsTrue",
+                    "IsFalse"
+                ],
+                "type": "string"
+            },
+            "Workflow_Model_StandardErrorResponse": {
+                "type": "object",
+                "properties": {
+                    "message": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "Workflow_PersonSecurityUltraLiteViewModel": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "fullName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "email": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "avatarUrl": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "Workflow_SearchResultsViewModel_RuleViewModel": {
+                "type": "object",
+                "properties": {
+                    "resultCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "results": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Workflow_App_RuleViewModel"
+                        },
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            }
+        }
+    }
+}

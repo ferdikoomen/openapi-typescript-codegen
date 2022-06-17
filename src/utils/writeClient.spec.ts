@@ -50,6 +50,8 @@ describe('writeClient', () => {
             true,
             Indent.SPACE_4,
             'Service',
+            false,
+            false,
             'AppClient'
         );
 

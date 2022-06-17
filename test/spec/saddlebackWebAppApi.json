@@ -1,0 +1,2751 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "HC WebApp API",
+        "version": "v1"
+    },
+    "paths": {
+        "/api/bootstrap": {
+            "get": {
+                "tags": [
+                    "Bootstrap"
+                ],
+                "operationId": "GetBootstrap",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/enumerations": {
+            "get": {
+                "tags": [
+                    "Bootstrap"
+                ],
+                "description": "**Authorization Policy:**<br />\r\nAnonymous Access Allowed<br />\r\n",
+                "operationId": "GetEnumerations",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "x-hc-security": {
+                    "AllowAnonymous": true
+                }
+            }
+        },
+        "/api/notification": {
+            "get": {
+                "tags": [
+                    "Notification"
+                ],
+                "summary": "Get all notifications with optional sourceType and channel filters",
+                "operationId": "GetAll",
+                "parameters": [
+                    {
+                        "name": "sourceType",
+                        "in": "query",
+                        "schema": {
+                            "$ref": "#/components/schemas/Notification_Model_NotificationSourceType"
+                        }
+                    },
+                    {
+                        "name": "channel",
+                        "in": "query",
+                        "schema": {
+                            "$ref": "#/components/schemas/Notification_Model_NotificationChannelType"
+                        }
+                    },
+                    {
+                        "name": "days",
+                        "in": "query",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Notification"
+                ],
+                "summary": "Create a new notification",
+                "description": "**Authorization Policy:**<br />\r\nRequires access to Scope: hc:internal-systems<br />\r\n",
+                "operationId": "CreateNotification",
+                "requestBody": {
+                    "content": {
+                        "application/json-patch+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Notification_NotificationViewModel"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Notification_NotificationViewModel"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Notification_NotificationViewModel"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Notification_NotificationViewModel"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "x-hc-security": {
+                    "RequiredScopes": [
+                        {
+                            "Scopes": [
+                                "hc:internal-systems"
+                            ]
+                        }
+                    ]
+                }
+            }
+        },
+        "/api/notification/group-count": {
+            "get": {
+                "tags": [
+                    "Notification"
+                ],
+                "summary": "",
+                "description": "**Authorization Policy:**<br />\r\nAllowed With Scope: hc:internal-systems<br />\r\n",
+                "operationId": "GetGroupCounts",
+                "parameters": [
+                    {
+                        "name": "sourceTypes",
+                        "in": "query",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/Notification_Model_NotificationSourceType"
+                            }
+                        }
+                    },
+                    {
+                        "name": "sourceId",
+                        "in": "query",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "sourceId2",
+                        "in": "query",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "x-hc-security": {
+                    "AllowedWithScopes": [
+                        {
+                            "Scopes": [
+                                "hc:internal-systems"
+                            ]
+                        }
+                    ]
+                }
+            }
+        },
+        "/api/notification/group-count/last": {
+            "get": {
+                "tags": [
+                    "Notification"
+                ],
+                "description": "**Authorization Policy:**<br />\r\nAllowed With Scope: hc:internal-systems<br />\r\n",
+                "operationId": "GetLastWithGrouping",
+                "parameters": [
+                    {
+                        "name": "channel",
+                        "in": "query",
+                        "schema": {
+                            "$ref": "#/components/schemas/Notification_Model_NotificationChannelType"
+                        }
+                    },
+                    {
+                        "name": "types",
+                        "in": "query",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/Notification_Model_NotificationSourceType"
+                            }
+                        }
+                    },
+                    {
+                        "name": "sourceId",
+                        "in": "query",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "sourceId2",
+                        "in": "query",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "pageNumber",
+                        "in": "query",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32",
+                            "default": 0
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "x-hc-security": {
+                    "AllowedWithScopes": [
+                        {
+                            "Scopes": [
+                                "hc:internal-systems"
+                            ]
+                        }
+                    ]
+                }
+            }
+        },
+        "/api/notification/user": {
+            "get": {
+                "tags": [
+                    "Notification"
+                ],
+                "summary": "Get all notifications for current user",
+                "operationId": "GetForCurrentUser",
+                "parameters": [
+                    {
+                        "name": "sourceType",
+                        "in": "query",
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/components/schemas/Notification_Model_NotificationSourceType"
+                        }
+                    },
+                    {
+                        "name": "channel",
+                        "in": "query",
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/components/schemas/Notification_Model_NotificationChannelType"
+                        }
+                    },
+                    {
+                        "name": "categories",
+                        "in": "query",
+                        "description": "",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "days",
+                        "in": "query",
+                        "description": "",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "isViewed",
+                        "in": "query",
+                        "description": "",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "name": "sort",
+                        "in": "query",
+                        "description": "Sorting parameter [createdate],[ASC | DESC]. Optional, by default sorted by createdate DESC",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "fromDate",
+                        "in": "query",
+                        "description": "",
+                        "schema": {
+                            "type": "string",
+                            "format": "date-time"
+                        }
+                    },
+                    {
+                        "name": "toDate",
+                        "in": "query",
+                        "description": "",
+                        "schema": {
+                            "type": "string",
+                            "format": "date-time"
+                        }
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "pageNumber",
+                        "in": "query",
+                        "description": "",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/notification/person/{id}": {
+            "get": {
+                "tags": [
+                    "Notification"
+                ],
+                "summary": "Get all notifications by person id",
+                "operationId": "GetByPersonId",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "sourceType",
+                        "in": "query",
+                        "schema": {
+                            "$ref": "#/components/schemas/Notification_Model_NotificationSourceType"
+                        }
+                    },
+                    {
+                        "name": "channel",
+                        "in": "query",
+                        "schema": {
+                            "$ref": "#/components/schemas/Notification_Model_NotificationChannelType"
+                        }
+                    },
+                    {
+                        "name": "days",
+                        "in": "query",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "pageNumber",
+                        "in": "query",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/notification/{id}/resend_email": {
+            "post": {
+                "tags": [
+                    "Notification"
+                ],
+                "summary": "Resend Email to failed recipients by Notification ID",
+                "description": "**Authorization Policy:**<br />\r\nAllowed With one of these Permissions: Email Ministry Leadership, Email Ministry Members, Manage Event Attendees, Manage Ministry Invitations<br />\r\n",
+                "operationId": "ResendEmail",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Notification Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Recipient's person unique Ids",
+                    "content": {
+                        "application/json-patch+json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                }
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                }
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                }
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "x-hc-security": {
+                    "AllowedWithPermissions": [
+                        {
+                            "Permissions": [
+                                "Email Ministry Leadership"
+                            ]
+                        },
+                        {
+                            "Permissions": [
+                                "Email Ministry Members"
+                            ]
+                        },
+                        {
+                            "Permissions": [
+                                "Manage Event Attendees"
+                            ]
+                        },
+                        {
+                            "Permissions": [
+                                "Manage Ministry Invitations"
+                            ]
+                        }
+                    ]
+                }
+            }
+        },
+        "/api/notification/{id}/resend_sms": {
+            "post": {
+                "tags": [
+                    "Notification"
+                ],
+                "summary": "Resend SMS to failed recipients by Notification ID",
+                "description": "**Authorization Policy:**<br />\r\nAllowed With one of these Permissions: Send SMS to Interested Ministry Members, Send SMS to Ministry Members, Manage Event Attendees, Manage Ministry Invitations<br />\r\n",
+                "operationId": "ResendSms",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Notification Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Recipient's person unique Ids",
+                    "content": {
+                        "application/json-patch+json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                }
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                }
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                }
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "x-hc-security": {
+                    "AllowedWithPermissions": [
+                        {
+                            "Permissions": [
+                                "Send SMS to Interested Ministry Members"
+                            ]
+                        },
+                        {
+                            "Permissions": [
+                                "Send SMS to Ministry Members"
+                            ]
+                        },
+                        {
+                            "Permissions": [
+                                "Manage Event Attendees"
+                            ]
+                        },
+                        {
+                            "Permissions": [
+                                "Manage Ministry Invitations"
+                            ]
+                        }
+                    ]
+                }
+            }
+        },
+        "/api/notification/{id}": {
+            "get": {
+                "tags": [
+                    "Notification"
+                ],
+                "summary": "Get a notification by id",
+                "operationId": "GetById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/notification/{notificationId}/person/{personId}": {
+            "get": {
+                "tags": [
+                    "Notification"
+                ],
+                "operationId": "GetFiltered",
+                "parameters": [
+                    {
+                        "name": "notificationId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "personId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "channel",
+                        "in": "query",
+                        "schema": {
+                            "$ref": "#/components/schemas/Notification_Model_NotificationChannelType"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/notification/user/count": {
+            "get": {
+                "tags": [
+                    "Notification"
+                ],
+                "summary": "Get Count of Pending Messages",
+                "operationId": "GetCountForCurrentUser",
+                "parameters": [
+                    {
+                        "name": "sourceType",
+                        "in": "query",
+                        "schema": {
+                            "$ref": "#/components/schemas/Notification_Model_NotificationSourceType"
+                        }
+                    },
+                    {
+                        "name": "channel",
+                        "in": "query",
+                        "schema": {
+                            "$ref": "#/components/schemas/Notification_Model_NotificationChannelType"
+                        }
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "schema": {
+                            "$ref": "#/components/schemas/Notification_Model_NotificationStatusType"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/notification/person/{personUniqueId}/count-unique": {
+            "get": {
+                "tags": [
+                    "Notification"
+                ],
+                "description": "**Authorization Policy:**<br />\r\nAllowed With Scope: hc:internal-systems<br />\r\n",
+                "operationId": "GetCountByUniqueId",
+                "parameters": [
+                    {
+                        "name": "personUniqueId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "sourceType",
+                        "in": "query",
+                        "schema": {
+                            "$ref": "#/components/schemas/Notification_Model_NotificationSourceType"
+                        }
+                    },
+                    {
+                        "name": "channel",
+                        "in": "query",
+                        "schema": {
+                            "$ref": "#/components/schemas/Notification_Model_NotificationChannelType"
+                        }
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "schema": {
+                            "$ref": "#/components/schemas/Notification_Model_NotificationStatusType"
+                        }
+                    },
+                    {
+                        "name": "isViewed",
+                        "in": "query",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "x-hc-security": {
+                    "AllowedWithScopes": [
+                        {
+                            "Scopes": [
+                                "hc:internal-systems"
+                            ]
+                        }
+                    ]
+                }
+            }
+        },
+        "/api/notification/person/{id}/count": {
+            "get": {
+                "tags": [
+                    "Notification"
+                ],
+                "summary": "Get Count of Pending Message by Person Id",
+                "operationId": "GetCountByPersonId",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "sourceType",
+                        "in": "query",
+                        "schema": {
+                            "$ref": "#/components/schemas/Notification_Model_NotificationSourceType"
+                        }
+                    },
+                    {
+                        "name": "channel",
+                        "in": "query",
+                        "schema": {
+                            "$ref": "#/components/schemas/Notification_Model_NotificationChannelType"
+                        }
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "schema": {
+                            "$ref": "#/components/schemas/Notification_Model_NotificationStatusType"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/notification/status": {
+            "post": {
+                "tags": [
+                    "Notification"
+                ],
+                "summary": "Update notification status",
+                "operationId": "UpdateNotificationStatus",
+                "requestBody": {
+                    "content": {
+                        "application/json-patch+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Notification_NotificationStatusViewModel"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Notification_NotificationStatusViewModel"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Notification_NotificationStatusViewModel"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Notification_NotificationStatusViewModel"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/notification/person/{personUniqueId}/status": {
+            "post": {
+                "tags": [
+                    "Notification"
+                ],
+                "operationId": "UpdateStatusByUniqueId",
+                "parameters": [
+                    {
+                        "name": "personUniqueId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "channel",
+                        "in": "query",
+                        "schema": {
+                            "$ref": "#/components/schemas/Notification_Model_NotificationChannelType"
+                        }
+                    },
+                    {
+                        "name": "oldStatus",
+                        "in": "query",
+                        "schema": {
+                            "$ref": "#/components/schemas/Notification_Model_NotificationStatusType"
+                        }
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "schema": {
+                            "$ref": "#/components/schemas/Notification_Model_NotificationStatusType"
+                        }
+                    },
+                    {
+                        "name": "error",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/notification/{notificationId}/person/{personUniqueId}/status": {
+            "post": {
+                "tags": [
+                    "Notification"
+                ],
+                "operationId": "UpdateStatusByNotificationIdAndUniqueId",
+                "parameters": [
+                    {
+                        "name": "notificationId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "personUniqueId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "channel",
+                        "in": "query",
+                        "schema": {
+                            "$ref": "#/components/schemas/Notification_Model_NotificationChannelType"
+                        }
+                    },
+                    {
+                        "name": "oldStatus",
+                        "in": "query",
+                        "schema": {
+                            "$ref": "#/components/schemas/Notification_Model_NotificationStatusType"
+                        }
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "schema": {
+                            "$ref": "#/components/schemas/Notification_Model_NotificationStatusType"
+                        }
+                    },
+                    {
+                        "name": "error",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/notification/sms-status": {
+            "post": {
+                "tags": [
+                    "Notification"
+                ],
+                "summary": "Gets SMS status for recipients",
+                "description": "**Authorization Policy:**<br />\r\nAllowed With Scope: hc:internal-systems<br />\r\nAllowed With Permission: Read Person Contact Data<br />\r\n<br />\r\n**Data Access:**<br />\r\nTrusted (internal) application access to notification.\r\nor\r\nREAD Access to person contact data",
+                "operationId": "GetPersonSmsStatus",
+                "parameters": [
+                    {
+                        "name": "churchEntityId",
+                        "in": "query",
+                        "description": "Church Entity ID",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "sourceType",
+                        "in": "query",
+                        "description": "Notification source type",
+                        "schema": {
+                            "$ref": "#/components/schemas/Notification_Model_NotificationSourceType"
+                        }
+                    },
+                    {
+                        "name": "sourceId",
+                        "in": "query",
+                        "description": "Source ID if necessary",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "List of person unique IDs",
+                    "content": {
+                        "application/json-patch+json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                }
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                }
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                }
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Returns person SMS statuses.",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Notification_Dto_PersonSmsStatuses"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Notification_Dto_PersonSmsStatuses"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Notification_Dto_PersonSmsStatuses"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Not authorized."
+                    }
+                },
+                "x-hc-security": {
+                    "AllowedWithScopes": [
+                        {
+                            "Scopes": [
+                                "hc:internal-systems"
+                            ]
+                        }
+                    ],
+                    "AllowedWithPermissions": [
+                        {
+                            "Permissions": [
+                                "Read Person Contact Data"
+                            ]
+                        }
+                    ]
+                }
+            }
+        },
+        "/api/notification/reassign-person": {
+            "post": {
+                "tags": [
+                    "Notification"
+                ],
+                "summary": "Reassign person in all tables of notification microservice",
+                "description": "**Authorization Policy:**<br />\r\nRequires access to Scope: hc:internal-systems<br />\r\n<br />\r\n**Data Access:**<br />\r\nTrusted (internal) application access to notification.",
+                "operationId": "ReassignPerson",
+                "parameters": [
+                    {
+                        "name": "oldPersonId",
+                        "in": "query",
+                        "description": "Old person unique ID",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "newPersonId",
+                        "in": "query",
+                        "description": "New person unique ID",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Person was reassigned successfully."
+                    },
+                    "403": {
+                        "description": "Not authorized."
+                    }
+                },
+                "x-hc-security": {
+                    "RequiredScopes": [
+                        {
+                            "Scopes": [
+                                "hc:internal-systems"
+                            ]
+                        }
+                    ]
+                }
+            }
+        },
+        "/api/user/notification-preference": {
+            "get": {
+                "tags": [
+                    "NotificationPreference"
+                ],
+                "summary": "Get notification preferences for current user\r\nIf corresponding preference is not found for specific source type, the method returns default preference",
+                "operationId": "GetForCurrentUser",
+                "parameters": [
+                    {
+                        "name": "sourceType",
+                        "in": "query",
+                        "schema": {
+                            "$ref": "#/components/schemas/Notification_Model_NotificationSourceType"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "NotificationPreference"
+                ],
+                "summary": "Create/update set of notification preferences for current user",
+                "operationId": "UpsertForCurrentUser",
+                "requestBody": {
+                    "content": {
+                        "application/json-patch+json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/Notification_NotificationPreferenceViewModel"
+                                }
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/Notification_NotificationPreferenceViewModel"
+                                }
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/Notification_NotificationPreferenceViewModel"
+                                }
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/Notification_NotificationPreferenceViewModel"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/device/{registrationId}/client/{clientId}/notification-preference": {
+            "get": {
+                "tags": [
+                    "NotificationPreference"
+                ],
+                "summary": "Get notification preferences for given device and client id",
+                "description": "**Authorization Policy:**<br />\r\nAnonymous Access Allowed<br />\r\n",
+                "operationId": "GetForDevice",
+                "parameters": [
+                    {
+                        "name": "registrationId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "clientId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "x-hc-security": {
+                    "AllowAnonymous": true
+                }
+            },
+            "post": {
+                "tags": [
+                    "NotificationPreference"
+                ],
+                "summary": "Create/update set of push notification registration preferences",
+                "description": "**Authorization Policy:**<br />\r\nAnonymous Access Allowed<br />\r\n",
+                "operationId": "UpsertByRegistrationIdAndClientId",
+                "parameters": [
+                    {
+                        "name": "registrationId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "clientId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json-patch+json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/Notification_NotificationPreferenceViewModel"
+                                }
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/Notification_NotificationPreferenceViewModel"
+                                }
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/Notification_NotificationPreferenceViewModel"
+                                }
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/Notification_NotificationPreferenceViewModel"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "x-hc-security": {
+                    "AllowAnonymous": true
+                }
+            }
+        },
+        "/api/person/{personId}/notification-preference": {
+            "get": {
+                "tags": [
+                    "NotificationPreference"
+                ],
+                "summary": "Get notification preferences by person id (or by person id and sourceType)\r\nIf corresponding preference is not found for specific source type, the method returns default preference",
+                "operationId": "GetByPersonId",
+                "parameters": [
+                    {
+                        "name": "personId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "sourceType",
+                        "in": "query",
+                        "schema": {
+                            "$ref": "#/components/schemas/Notification_Model_NotificationSourceType"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "NotificationPreference"
+                ],
+                "summary": "Create/update set of notification preferences",
+                "description": "**Authorization Policy:**<br />\r\nAllowed With Scope: hc:internal-systems<br />\r\nAllowed with Person Record Ownership<br />\r\nAllowed With Permission: Update Person Contact Data<br />\r\n",
+                "operationId": "UpsertByPerson",
+                "parameters": [
+                    {
+                        "name": "personId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json-patch+json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/Notification_NotificationPreferenceViewModel"
+                                }
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/Notification_NotificationPreferenceViewModel"
+                                }
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/Notification_NotificationPreferenceViewModel"
+                                }
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/Notification_NotificationPreferenceViewModel"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "x-hc-security": {
+                    "AllowedWithScopes": [
+                        {
+                            "Scopes": [
+                                "hc:internal-systems"
+                            ]
+                        }
+                    ],
+                    "AllowWithPersonRecordOwners": [
+                        {
+                            "RecordOwners": [
+                                "personId"
+                            ]
+                        }
+                    ],
+                    "AllowedWithPermissions": [
+                        {
+                            "Permissions": [
+                                "Update Person Contact Data"
+                            ]
+                        }
+                    ]
+                }
+            }
+        },
+        "/api/notification-preference/{id}": {
+            "get": {
+                "tags": [
+                    "NotificationPreference"
+                ],
+                "summary": "Get a notification preference by id",
+                "operationId": "GetById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/notification-preference/recipient-identifier": {
+            "get": {
+                "tags": [
+                    "NotificationPreference"
+                ],
+                "summary": "Get Person UniqueIDs and push notification registration ids by notificationSourceType",
+                "operationId": "GetPersonIdsByNotificationSourceType",
+                "parameters": [
+                    {
+                        "name": "notificationSourceType",
+                        "in": "query",
+                        "schema": {
+                            "$ref": "#/components/schemas/Notification_Model_NotificationSourceType"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/notification-source-types": {
+            "get": {
+                "tags": [
+                    "NotificationPreference"
+                ],
+                "summary": "Gets all available notification source types.  These types control system generated notifications for CHP Users.",
+                "operationId": "GetNotificationSourceTypes",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/notification/sms-configuration": {
+            "get": {
+                "tags": [
+                    "NotificationSmsConfiguration"
+                ],
+                "summary": "Gets all the notification SMS configurations",
+                "operationId": "GetAll",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/notification/sms-configuration/church-entity/{churchEntityId}": {
+            "get": {
+                "tags": [
+                    "NotificationSmsConfiguration"
+                ],
+                "summary": "Gets notification SMS configurations by church entity id",
+                "operationId": "GetByChurchEntityId",
+                "parameters": [
+                    {
+                        "name": "churchEntityId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "entityType",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "entityId",
+                        "in": "query",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "NotificationSmsConfiguration"
+                ],
+                "summary": "Creates new notification SMS configuration",
+                "description": "**Authorization Policy:**<br />\r\nRequires access to Permission: Manage SMS Configuration<br />\r\n",
+                "operationId": "UpsertConfiguration",
+                "parameters": [
+                    {
+                        "name": "churchEntityId",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "",
+                    "content": {
+                        "application/json-patch+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Notification_App_NotificationSmsConfigurationViewModel"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Notification_App_NotificationSmsConfigurationViewModel"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Notification_App_NotificationSmsConfigurationViewModel"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Notification_App_NotificationSmsConfigurationViewModel"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "x-hc-security": {
+                    "RequiredPermissions": [
+                        {
+                            "Permissions": [
+                                "Manage SMS Configuration"
+                            ]
+                        }
+                    ]
+                }
+            }
+        },
+        "/api/notification/sms-configuration/preference": {
+            "get": {
+                "tags": [
+                    "NotificationSmsConfiguration"
+                ],
+                "summary": "Gets all mobile phones paired with SMS preference (opt-out flag) for the specified persons\r\nusing Church Entity ID and an optional entity specification to identify the relevant SMS configuration.",
+                "description": "**Authorization Policy:**<br />\r\nRequires access to Scope: hc:internal-systems<br />\r\n",
+                "operationId": "GetPreferencesAsync",
+                "parameters": [
+                    {
+                        "name": "personIds",
+                        "in": "query",
+                        "description": "Person Unique IDs",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "integer",
+                                "format": "int32"
+                            }
+                        }
+                    },
+                    {
+                        "name": "churchEntityId",
+                        "in": "query",
+                        "description": "Church Entity ID used identify relevant SMS Configuration",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "entityType",
+                        "in": "query",
+                        "description": "Entity Type (optional) used to identify relevant SMS Configuration",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "entityId",
+                        "in": "query",
+                        "description": "Entity ID (optional) used to identify relevant SMS Configuration",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "x-hc-security": {
+                    "RequiredScopes": [
+                        {
+                            "Scopes": [
+                                "hc:internal-systems"
+                            ]
+                        }
+                    ]
+                }
+            }
+        },
+        "/api/notification/sms-consent/{personId}": {
+            "get": {
+                "tags": [
+                    "NotificationSmsConsent"
+                ],
+                "summary": "Gets SMS Consent record for the specified Person (if it exists)",
+                "description": "**Authorization Policy:**<br />\r\nAllowed With Scope: hc:internal-systems<br />\r\nAllowed with Person Record Ownership<br />\r\n",
+                "operationId": "GetConsentByPerson",
+                "parameters": [
+                    {
+                        "name": "personId",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "x-hc-security": {
+                    "AllowedWithScopes": [
+                        {
+                            "Scopes": [
+                                "hc:internal-systems"
+                            ]
+                        }
+                    ],
+                    "AllowWithPersonRecordOwners": [
+                        {
+                            "RecordOwners": [
+                                "personId"
+                            ]
+                        }
+                    ]
+                }
+            },
+            "post": {
+                "tags": [
+                    "NotificationSmsConsent"
+                ],
+                "summary": "Sets SMS Consent for the specified Person",
+                "description": "**Authorization Policy:**<br />\r\nAllowed With Scope: hc:internal-systems<br />\r\nAllowed with Person Record Ownership<br />\r\n",
+                "operationId": "SetConsentByPerson",
+                "parameters": [
+                    {
+                        "name": "personId",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "x-hc-security": {
+                    "AllowedWithScopes": [
+                        {
+                            "Scopes": [
+                                "hc:internal-systems"
+                            ]
+                        }
+                    ],
+                    "AllowWithPersonRecordOwners": [
+                        {
+                            "RecordOwners": [
+                                "personId"
+                            ]
+                        }
+                    ]
+                }
+            },
+            "delete": {
+                "tags": [
+                    "NotificationSmsConsent"
+                ],
+                "summary": "Deletes the SMS Consent record (i.e. revokes consent) for the specified Person",
+                "description": "**Authorization Policy:**<br />\r\nAllowed With Scope: hc:internal-systems<br />\r\nAllowed with Person Record Ownership<br />\r\n",
+                "operationId": "RevokeConsentByPerson",
+                "parameters": [
+                    {
+                        "name": "personId",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "x-hc-security": {
+                    "AllowedWithScopes": [
+                        {
+                            "Scopes": [
+                                "hc:internal-systems"
+                            ]
+                        }
+                    ],
+                    "AllowWithPersonRecordOwners": [
+                        {
+                            "RecordOwners": [
+                                "personId"
+                            ]
+                        }
+                    ]
+                }
+            }
+        },
+        "/api/notification/sms-opt-in/{personId}": {
+            "post": {
+                "tags": [
+                    "NotificationSmsConsent"
+                ],
+                "summary": "Sets SMS Consent for the specified Person and enable default cell number to receive SMS",
+                "description": "**Authorization Policy:**<br />\r\nAllowed With Scope: hc:internal-systems<br />\r\nAllowed With Permission: Update Person Contact Data<br />\r\n<br />\r\n**Data Access:**<br />\r\nTrusted (internal) application access to notification.\r\nor\r\nWRITE Access to person contact data",
+                "operationId": "SmsOptIn",
+                "parameters": [
+                    {
+                        "name": "personId",
+                        "in": "path",
+                        "description": "Person Unique ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "churchEntityId",
+                        "in": "query",
+                        "description": "Church Entity ID",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "sourceType",
+                        "in": "query",
+                        "schema": {
+                            "$ref": "#/components/schemas/Notification_Model_NotificationSourceType"
+                        }
+                    },
+                    {
+                        "name": "sourceId",
+                        "in": "query",
+                        "description": "Source ID",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "x-hc-security": {
+                    "AllowedWithScopes": [
+                        {
+                            "Scopes": [
+                                "hc:internal-systems"
+                            ]
+                        }
+                    ],
+                    "AllowedWithPermissions": [
+                        {
+                            "Permissions": [
+                                "Update Person Contact Data"
+                            ]
+                        }
+                    ]
+                }
+            }
+        },
+        "/api/notification/sms-consent-request/{personId}": {
+            "post": {
+                "tags": [
+                    "NotificationSmsConsent"
+                ],
+                "summary": "Requests a new SMS Consent solicitation email for the specified Person (containing a link with a one-time use verification token)",
+                "description": "**Authorization Policy:**<br />\r\nAllowed With Scope: hc:internal-systems<br />\r\nAllowed with Person Record Ownership<br />\r\n",
+                "operationId": "SendSmsConsentRequest",
+                "parameters": [
+                    {
+                        "name": "personId",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "sendRequestEvenIfPreviouslyConsented",
+                        "in": "query",
+                        "description": "",
+                        "schema": {
+                            "type": "boolean",
+                            "default": false
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "x-hc-security": {
+                    "AllowedWithScopes": [
+                        {
+                            "Scopes": [
+                                "hc:internal-systems"
+                            ]
+                        }
+                    ],
+                    "AllowWithPersonRecordOwners": [
+                        {
+                            "RecordOwners": [
+                                "personId"
+                            ]
+                        }
+                    ]
+                }
+            }
+        },
+        "/api/notification/sms-consent-request-retry": {
+            "post": {
+                "tags": [
+                    "NotificationSmsConsent"
+                ],
+                "summary": "Allows the caller to submit a prior verification token for an SMS Consent solicitation \"workflow\" and request a new email with a new verification token",
+                "description": "**Authorization Policy:**<br />\r\nAnonymous Access Allowed<br />\r\n<br />\r\n**More Info:**<br />\r\nIntended for the use case of an expired verification token.  This allows us to improve the UI/UX a bit and help the user out.",
+                "operationId": "RetrySmsConsentRequest",
+                "requestBody": {
+                    "description": "",
+                    "content": {
+                        "application/json-patch+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Notification_SmsConsentRequestFullfillmentViewModel"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Notification_SmsConsentRequestFullfillmentViewModel"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Notification_SmsConsentRequestFullfillmentViewModel"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Notification_SmsConsentRequestFullfillmentViewModel"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "x-hc-security": {
+                    "AllowAnonymous": true
+                }
+            }
+        },
+        "/api/notification/sms-consent-request-verification": {
+            "get": {
+                "tags": [
+                    "NotificationSmsConsent"
+                ],
+                "summary": "Validates (verifies) a verification token for an SMS Consent solicition \"workflow\" without consuming the token and recording consent",
+                "description": "**Authorization Policy:**<br />\r\nAnonymous Access Allowed<br />\r\n",
+                "operationId": "VerifySmsConsentRequestToken",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "query",
+                        "description": "",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "x-hc-security": {
+                    "AllowAnonymous": true
+                }
+            },
+            "post": {
+                "tags": [
+                    "NotificationSmsConsent"
+                ],
+                "summary": "Validates (verifies) a verification token for an SMS Consent solicition \"workflow\" and records consent and consumes the token",
+                "description": "**Authorization Policy:**<br />\r\nAnonymous Access Allowed<br />\r\n",
+                "operationId": "VerifySmsConsentRequestAndSetConsent",
+                "requestBody": {
+                    "description": "",
+                    "content": {
+                        "application/json-patch+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Notification_SmsConsentRequestFullfillmentViewModel"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Notification_SmsConsentRequestFullfillmentViewModel"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Notification_SmsConsentRequestFullfillmentViewModel"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Notification_SmsConsentRequestFullfillmentViewModel"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "x-hc-security": {
+                    "AllowAnonymous": true
+                }
+            }
+        },
+        "/api/notification-hub/install": {
+            "post": {
+                "tags": [
+                    "PushNotificationHub"
+                ],
+                "summary": "",
+                "description": "**Authorization Policy:**<br />\r\nAnonymous Access Allowed<br />\r\n",
+                "operationId": "CreateInstallation",
+                "requestBody": {
+                    "description": "",
+                    "content": {
+                        "application/json-patch+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Notification_App_PushNotificationRegistationViewModel"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Notification_App_PushNotificationRegistationViewModel"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Notification_App_PushNotificationRegistationViewModel"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Notification_App_PushNotificationRegistationViewModel"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "x-hc-security": {
+                    "AllowAnonymous": true
+                }
+            }
+        },
+        "/api/notification-hub/update/{id}": {
+            "put": {
+                "tags": [
+                    "PushNotificationHub"
+                ],
+                "summary": "",
+                "description": "**Authorization Policy:**<br />\r\nAnonymous Access Allowed<br />\r\n",
+                "operationId": "UpdateInstallation",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "",
+                    "content": {
+                        "application/json-patch+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Notification_App_PushNotificationRegistationViewModel"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Notification_App_PushNotificationRegistationViewModel"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Notification_App_PushNotificationRegistationViewModel"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Notification_App_PushNotificationRegistationViewModel"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "x-hc-security": {
+                    "AllowAnonymous": true
+                }
+            }
+        },
+        "/api/notification-hub/uninstall/{id}": {
+            "delete": {
+                "tags": [
+                    "PushNotificationHub"
+                ],
+                "summary": "",
+                "description": "**Authorization Policy:**<br />\r\nAnonymous Access Allowed<br />\r\n",
+                "operationId": "Uninstall",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "x-hc-security": {
+                    "AllowAnonymous": true
+                }
+            }
+        },
+        "/api/notification-hub/push-notification": {
+            "post": {
+                "tags": [
+                    "PushNotificationHub"
+                ],
+                "description": "**Authorization Policy:**<br />\r\nAllowed With Scope: hc:internal-systems<br />\r\n",
+                "operationId": "PushNotification",
+                "requestBody": {
+                    "content": {
+                        "application/json-patch+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Notification_App_PushMessage"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Notification_App_PushMessage"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Notification_App_PushMessage"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Notification_App_PushMessage"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "x-hc-security": {
+                    "AllowedWithScopes": [
+                        {
+                            "Scopes": [
+                                "hc:internal-systems"
+                            ]
+                        }
+                    ]
+                }
+            }
+        },
+        "/api/version": {
+            "get": {
+                "tags": [
+                    "Version"
+                ],
+                "operationId": "Get",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Notification_App_DevicePlatform": {
+                "enum": [
+                    "Android",
+                    "iOS"
+                ],
+                "type": "string"
+            },
+            "Notification_App_NotificationSmsConfigurationViewModel": {
+                "type": "object",
+                "properties": {
+                    "churchEntityId": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "smsCodeType": {
+                        "$ref": "#/components/schemas/Notification_Model_SmsCodeType"
+                    },
+                    "code": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "entityType": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "entityId": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    },
+                    "order": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "Notification_App_PushMessage": {
+                "type": "object",
+                "properties": {
+                    "devicePlatform": {
+                        "$ref": "#/components/schemas/Notification_App_DevicePlatform"
+                    },
+                    "title": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "subTitle": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "body": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "action": {
+                        "$ref": "#/components/schemas/Notification_Model_Action"
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "Notification_App_PushNotificationRegistationViewModel": {
+                "required": [
+                    "deviceHandle",
+                    "deviceId"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    },
+                    "devicePlatform": {
+                        "$ref": "#/components/schemas/Notification_App_DevicePlatform"
+                    },
+                    "deviceHandle": {
+                        "maxLength": 300,
+                        "type": "string"
+                    },
+                    "deviceId": {
+                        "maxLength": 100,
+                        "type": "string"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "Notification_Dto_NotificationSmsStatus": {
+                "enum": [
+                    "Available",
+                    "PersonNotFound",
+                    "NoCellPhone",
+                    "NoEmergencyContactCellPhone",
+                    "HasNotConsented",
+                    "DoNotTextIsSet",
+                    "StopWasSent",
+                    "PersonIsDeceased",
+                    "NotInWhiteList",
+                    "Failed"
+                ],
+                "type": "string"
+            },
+            "Notification_Dto_PersonSmsStatus": {
+                "type": "object",
+                "properties": {
+                    "personId": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "status": {
+                        "$ref": "#/components/schemas/Notification_Dto_NotificationSmsStatus"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "Notification_Dto_PersonSmsStatuses": {
+                "type": "object",
+                "properties": {
+                    "hasSmsConfigurationError": {
+                        "type": "boolean"
+                    },
+                    "statuses": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Notification_Dto_PersonSmsStatus"
+                        },
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "Notification_Model_Action": {
+                "type": "object",
+                "properties": {
+                    "source": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "type": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "uri": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "Notification_Model_NotificationChannelType": {
+                "enum": [
+                    "All",
+                    "Email",
+                    "Sms",
+                    "App",
+                    "Push"
+                ],
+                "type": "string"
+            },
+            "Notification_Model_NotificationLabelType": {
+                "enum": [
+                    "None",
+                    "Favorite"
+                ],
+                "type": "string"
+            },
+            "Notification_Model_NotificationSourceType": {
+                "enum": [
+                    "Unknown",
+                    "FlowWorkItemAssigned",
+                    "FlowWorkItemReassigned",
+                    "FlowWorkItemCommented",
+                    "FlowWorkItemOverdue",
+                    "FlowWorkItemBlocked",
+                    "MinistryMemberInterested",
+                    "MinistryMemberStatusChanged",
+                    "MinistryMemberNoteCreated",
+                    "MinistryMember",
+                    "DeliveryResult",
+                    "ServingOpportunityVolunteer",
+                    "ServingOpportunityVolunteerInterested",
+                    "DebugEmail",
+                    "VerificationEmail",
+                    "AddedToMinistryAsLeader",
+                    "WorkflowCommunication",
+                    "ReminderNotification",
+                    "EventAttendee",
+                    "WorkflowTaskEscalated",
+                    "WorkflowTaskCommented",
+                    "WorkflowTaskReassigned",
+                    "WorkflowTaskBlocked",
+                    "WorkflowTasksPastDueDigest",
+                    "WorkflowTasksDueTodayDigest",
+                    "WorkflowTasksNewlyCreatedOrAssignedDigest",
+                    "MemberEngagementStartOfService",
+                    "MemberEngagementDailyVerse",
+                    "MemberEngagementMilestoneAchieved",
+                    "MemberEngagementCustomPastorMessage",
+                    "InviteAndNotifyMinistry",
+                    "SystemCommunication",
+                    "MinistryMemberSms",
+                    "SmsConsentRequest",
+                    "EventCheckInVolunteer",
+                    "GivingCommunication",
+                    "EventContact",
+                    "EventCheckInAttendee",
+                    "ServingOpportunityVolunteerSms",
+                    "ServingOpportunityVolunteerUnscheduled",
+                    "MemberEngagementDailyDevotional",
+                    "MyFollowUpsManualCommunication"
+                ],
+                "type": "string"
+            },
+            "Notification_Model_NotificationSourceTypeCategory": {
+                "enum": [
+                    "Discipleship",
+                    "Events",
+                    "Ministry",
+                    "System",
+                    "Workflow",
+                    "MemberEngagement",
+                    "Giving"
+                ],
+                "type": "string"
+            },
+            "Notification_Model_NotificationStatusType": {
+                "enum": [
+                    "Unprocessed",
+                    "Pending",
+                    "Running",
+                    "Succeeded",
+                    "Failed",
+                    "Skipped"
+                ],
+                "type": "string"
+            },
+            "Notification_Model_SmsCodeType": {
+                "enum": [
+                    "ShortCode",
+                    "LongCode"
+                ],
+                "type": "string"
+            },
+            "Notification_NotificationPreferenceChannelViewModel": {
+                "type": "object",
+                "properties": {
+                    "notificationChannelType": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "notificationChannelTypeName": {
+                        "type": "string",
+                        "nullable": true,
+                        "readOnly": true
+                    },
+                    "value": {
+                        "type": "boolean",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "Notification_NotificationPreferenceViewModel": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "personId": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    },
+                    "pushNotificationRegistrationId": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    },
+                    "sourceType": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "sourceTypeName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "sourceTypeDescription": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "order": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "channels": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Notification_NotificationPreferenceChannelViewModel"
+                        },
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "Notification_NotificationRecipientViewModel": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "personId": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    },
+                    "pushNotificationRegistrationId": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    },
+                    "channel": {
+                        "$ref": "#/components/schemas/Notification_Model_NotificationChannelType"
+                    },
+                    "status": {
+                        "$ref": "#/components/schemas/Notification_Model_NotificationStatusType"
+                    },
+                    "error": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "isViewed": {
+                        "type": "boolean"
+                    },
+                    "retryCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "person": {
+                        "$ref": "#/components/schemas/Notification_PersonLiteViewModel"
+                    },
+                    "mergeVariableReplacements": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "Notification_NotificationSenderContactViewModel": {
+                "type": "object",
+                "properties": {
+                    "senderIdentifier": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "senderName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "replyIdentifier": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "reportPersonId": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    },
+                    "ccToSender": {
+                        "type": "boolean"
+                    },
+                    "person": {
+                        "$ref": "#/components/schemas/Notification_PersonLiteViewModel"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "Notification_NotificationStatusViewModel": {
+                "type": "object",
+                "properties": {
+                    "ids": {
+                        "type": "array",
+                        "items": {
+                            "type": "integer",
+                            "format": "int32"
+                        },
+                        "nullable": true
+                    },
+                    "isViewed": {
+                        "type": "boolean"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "Notification_NotificationViewModel": {
+                "required": [
+                    "body",
+                    "sourceId",
+                    "summary"
+                ],
+                "type": "object",
+                "properties": {
+                    "attachments": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "nullable": true
+                    },
+                    "id": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "churchEntityId": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    },
+                    "sourceId": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "sourceId2": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    },
+                    "sourceId3": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    },
+                    "groupId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "sourceType": {
+                        "$ref": "#/components/schemas/Notification_Model_NotificationSourceType"
+                    },
+                    "summary": {
+                        "type": "string"
+                    },
+                    "body": {
+                        "type": "string"
+                    },
+                    "label": {
+                        "$ref": "#/components/schemas/Notification_Model_NotificationLabelType"
+                    },
+                    "payload": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "createDate": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "recipients": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Notification_NotificationRecipientViewModel"
+                        },
+                        "nullable": true
+                    },
+                    "senderContact": {
+                        "$ref": "#/components/schemas/Notification_NotificationSenderContactViewModel"
+                    },
+                    "allFailed": {
+                        "type": "boolean"
+                    },
+                    "allSkipped": {
+                        "type": "boolean"
+                    },
+                    "category": {
+                        "$ref": "#/components/schemas/Notification_Model_NotificationSourceTypeCategory"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "Notification_PersonLiteViewModel": {
+                "required": [
+                    "email",
+                    "firstName",
+                    "lastName"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    },
+                    "firstName": {
+                        "type": "string"
+                    },
+                    "lastName": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "pattern": "(?:[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*)@(?:(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-zA-Z0-9-]*[a-zA-Z0-9]:(?:|\\\\)+)\\])",
+                        "type": "string"
+                    },
+                    "emailVerifyDate": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "isEmailVerified": {
+                        "type": "boolean"
+                    },
+                    "sourceClientId": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "Notification_SmsConsentRequestFullfillmentViewModel": {
+                "type": "object",
+                "properties": {
+                    "token": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            }
+        }
+    }
+}

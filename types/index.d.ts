@@ -4,6 +4,7 @@ export declare enum HttpClient {
     NODE = 'node',
     AXIOS = 'axios',
     ANGULAR = 'angular',
+    SADDLEBACK = 'saddleback',
 }
 
 export declare enum Indent {
@@ -15,7 +16,7 @@ export declare enum Indent {
 export type Options = {
     input: string | Record<string, any>;
     output: string;
-    httpClient?: HttpClient | 'fetch' | 'xhr' | 'node' | 'axios' | 'angular';
+    httpClient?: HttpClient | 'fetch' | 'xhr' | 'node' | 'axios' | 'angular' | 'saddleback';
     clientName?: string;
     useOptions?: boolean;
     useUnionTypes?: boolean;
@@ -33,6 +34,8 @@ export type CustomConfig = Options & {
     filterMethod: 'greedy' | 'ascetic';
     filterArray: string[];
     input: string;
+    additionalModelFileExtension?: boolean;
+    additionalServiceFileExtension?: boolean;
 };
 
 export declare function generate(options: Options): Promise<void>;

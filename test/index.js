@@ -59,14 +59,12 @@ const generateRealWorldSpecs = async () => {
 const main = async () => {
     // await generate('./test/spec/v2.json', './test/generated/v2/');
     // await generate('./test/spec/v3.json', './test/generated/v3/');
-    await OpenAPI.generateCustomSpec({
-        input: './test/spec/saddlebackApi.json',
-        output: './test/generated/saddleback/',
+    const config = {
         httpClient: 'axios',
         clientName: 'TestAxiosClassName',
         useOptions: true,
         useUnionTypes: false,
-        exportCore: true,
+        exportCore: false,
         exportServices: true,
         exportModels: true,
         exportSchemas: false,
@@ -74,7 +72,30 @@ const main = async () => {
         postfix: '',
         filterMethod: 'greedy',
         filterArray: ['/api/agreement', '/api/agreement/{id}', '/api/share-page/compare-results'],
+        additionalModelFileExtension: false,
+        additionalServiceFileExtension: false,
+    };
+    await OpenAPI.generateCustomSpec({
+        input: './test/spec/saddlebackCoreApi.json',
+        output: './test/new/saddleback/core',
+        ...config,
     });
+    await OpenAPI.generateCustomSpec({
+        input: './test/spec/saddlebackEventApi.json',
+        output: './test/new/saddleback/event',
+        ...config,
+    });
+    await OpenAPI.generateCustomSpec({
+        input: './test/spec/saddlebackWebAppApi.json',
+        output: './test/new/saddleback/web',
+        ...config,
+    });
+    await OpenAPI.generateCustomSpec({
+        input: './test/spec/saddlebackWorkflowApi.json',
+        output: './test/new/saddleback/workflow',
+        ...config,
+    });
+
     // await generateRealWorldSpecs();
 };
 

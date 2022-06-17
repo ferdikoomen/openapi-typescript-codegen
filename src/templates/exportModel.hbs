@@ -3,7 +3,7 @@
 {{#if imports}}
 
 {{#each imports}}
-import type { {{{this}}} } from './{{{this}}}.models';
+import type { {{{this}}} } from './{{{this}}}{{#if ../additionalModelFileExtension}}.models{{/if}}';
 {{/each}}
 {{/if}}
 

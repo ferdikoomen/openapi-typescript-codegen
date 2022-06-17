@@ -1,7 +1,7 @@
 import { resolve } from 'path';
 
 import type { Client } from '../client/interfaces/Client';
-import type { HttpClient } from '../HttpClient';
+import { HttpClient } from '../HttpClient';
 import type { Indent } from '../Indent';
 import { mkdir, rmdir } from './fileSystem';
 import { isDefined } from './isDefined';
@@ -30,6 +30,8 @@ import { writeSaddlebackClientServices } from './writeSaddlebackClientServices';
  * @param exportSchemas Generate schemas
  * @param indent Indentation options (4, 2 or tab)
  * @param postfix Service name postfix
+ * @param additionalModelFileExtension Add file extension for models *.models.*
+ * @param additionalServiceFileExtension Add file extension for service *.service.*
  * @param clientName Custom client class name
  * @param request Path to custom request file
  */
@@ -46,6 +48,8 @@ export const writeClient = async (
     exportSchemas: boolean,
     indent: Indent,
     postfix: string,
+    additionalModelFileExtension: boolean,
+    additionalServiceFileExtension: boolean,
     clientName?: string,
     request?: string
 ): Promise<void> => {
@@ -54,7 +58,6 @@ export const writeClient = async (
     const outputPathModels = resolve(outputPath, 'models');
     const outputPathSchemas = resolve(outputPath, 'schemas');
     const outputPathServices = resolve(outputPath, 'services');
-    const outputPathSaddlebackServices = resolve(outputPath, 'saddlebackServices');
 
     if (!isSubDirectory(process.cwd(), output)) {
         throw new Error(`Output folder is not a subdirectory of the current working directory`);
@@ -69,17 +72,35 @@ export const writeClient = async (
     if (exportServices) {
         await rmdir(outputPathServices);
         await mkdir(outputPathServices);
-        await writeClientServices(
-            client.services,
-            templates,
-            outputPathServices,
-            httpClient,
-            useUnionTypes,
-            useOptions,
-            indent,
-            postfix,
-            clientName
-        );
+        if (httpClient === HttpClient.SADDLEBACK) {
+            await writeSaddlebackClientServices(
+                client.services,
+                templates,
+                outputPathServices,
+                httpClient,
+                useUnionTypes,
+                useOptions,
+                indent,
+                postfix,
+                additionalModelFileExtension,
+                additionalServiceFileExtension,
+                clientName
+            );
+        } else {
+            await writeClientServices(
+                client.services,
+                templates,
+                outputPathServices,
+                httpClient,
+                useUnionTypes,
+                useOptions,
+                indent,
+                postfix,
+                additionalModelFileExtension,
+                additionalServiceFileExtension,
+                clientName
+            );
+        }
     }
 
     if (exportSchemas) {
@@ -91,7 +112,16 @@ export const writeClient = async (
     if (exportModels) {
         await rmdir(outputPathModels);
         await mkdir(outputPathModels);
-        await writeClientModels(client.models, templates, outputPathModels, httpClient, useUnionTypes, indent);
+        await writeClientModels(
+            client.models,
+            templates,
+            outputPathModels,
+            httpClient,
+            useUnionTypes,
+            indent,
+            additionalModelFileExtension,
+            additionalServiceFileExtension
+        );
     }
 
     if (isDefined(clientName)) {
@@ -110,23 +140,6 @@ export const writeClient = async (
             exportServices,
             exportModels,
             exportSchemas,
-            postfix,
-            clientName
-        );
-    }
-
-    if (true) {
-        await rmdir(outputPathSaddlebackServices);
-        await mkdir(outputPathSaddlebackServices);
-
-        await writeSaddlebackClientServices(
-            client.services,
-            templates,
-            outputPathSaddlebackServices,
-            httpClient,
-            useUnionTypes,
-            useOptions,
-            indent,
             postfix,
             clientName
         );

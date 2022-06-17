@@ -19,6 +19,8 @@ import type { Templates } from './registerHandlebarTemplates';
  * @param useOptions Use options or arguments functions
  * @param indent Indentation options (4, 2 or tab)
  * @param postfix Service name postfix
+ * @param additionalModelFileExtension Add file extension for models *.models.*
+ * @param additionalServiceFileExtension Add file extension for service *.service.*
  * @param clientName Custom client class name
  */
 export const writeClientServices = async (
@@ -30,10 +32,15 @@ export const writeClientServices = async (
     useOptions: boolean,
     indent: Indent,
     postfix: string,
+    additionalModelFileExtension: boolean,
+    additionalServiceFileExtension: boolean,
     clientName?: string
 ): Promise<void> => {
     for (const service of services) {
-        const file = resolve(outputPath, `${service.name}${postfix}.service.ts`);
+        const file = resolve(
+            outputPath,
+            `${service.name}${postfix}${additionalServiceFileExtension ? '.service' : ''}.ts`
+        );
         const templateResult = templates.exports.service({
             ...service,
             httpClient,
@@ -41,6 +48,8 @@ export const writeClientServices = async (
             useOptions,
             postfix,
             exportClient: isDefined(clientName),
+            additionalModelFileExtension,
+            additionalServiceFileExtension,
         });
         await writeFile(file, i(f(templateResult), indent));
     }

@@ -24,7 +24,8 @@ export type Options = {
     postfix?: string;
     request?: string;
     write?: boolean;
-    exportModelsFileExtension?: string;
+    additionalModelFileExtension?: boolean;
+    additionalServiceFileExtension?: boolean;
 };
 /**
  * Generate the OpenAPI client. This method will read the OpenAPI specification and based on the
@@ -44,7 +45,8 @@ export type Options = {
  * @param postfix Service name postfix
  * @param request Path to custom request file
  * @param write Write the files to disk (true or false)
- * @param exportModelsFileExtension File extension for models .ts as default
+ * @param additionalModelFileExtension Add file extension for models *.models.*
+ * @param additionalServiceFileExtension Add file extension for service *.service.*
  */
 export const generate = async ({
     input,
@@ -61,6 +63,8 @@ export const generate = async ({
     postfix = 'Service',
     request,
     write = true,
+    additionalModelFileExtension = false,
+    additionalServiceFileExtension = false,
 }: Options): Promise<void> => {
     const openApi = isString(input) ? await getOpenApiSpec(input) : input;
     const openApiVersion = getOpenApiVersion(openApi);
@@ -88,6 +92,8 @@ export const generate = async ({
                 exportSchemas,
                 indent,
                 postfix,
+                additionalModelFileExtension,
+                additionalServiceFileExtension,
                 clientName,
                 request
             );
@@ -111,6 +117,8 @@ export const generate = async ({
                 exportSchemas,
                 indent,
                 postfix,
+                additionalModelFileExtension,
+                additionalServiceFileExtension,
                 clientName,
                 request
             );

@@ -13,6 +13,8 @@ type Config = Options & {
     filterArray: string[];
     input: string;
     useSaddlebackServices?: boolean;
+    additionalModelFileExtension?: boolean;
+    additionalServiceFileExtension?: boolean;
 };
 
 export const generateCustomSpec = async (config: Config) => {

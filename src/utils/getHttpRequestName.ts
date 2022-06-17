@@ -16,5 +16,7 @@ export const getHttpRequestName = (httpClient: HttpClient): string => {
             return 'AxiosHttpRequest';
         case HttpClient.ANGULAR:
             return 'AngularHttpRequest';
+        case HttpClient.SADDLEBACK:
+            return 'AxiosHttpRequest';
     }
 };
