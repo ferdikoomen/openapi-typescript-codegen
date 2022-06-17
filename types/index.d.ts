@@ -31,9 +31,6 @@ export type Options = {
 };
 
 export type CustomConfig = Options & {
-    filterMethod: 'greedy' | 'ascetic';
-    filterArray: string[];
-    input: string;
     additionalModelFileExtension?: boolean;
     additionalServiceFileExtension?: boolean;
 };
