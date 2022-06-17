@@ -36,13 +36,13 @@ export type CustomConfig = Options & {
 };
 
 export declare function generate(options: Options): Promise<void>;
-export declare function generateCustomSpec(config: CustomConfig): Promise<void>;
+export declare function generateSaddlebackSpec(config: CustomConfig): Promise<void>;
 
 declare type OpenAPI = {
     HttpClient: HttpClient;
     Indent: Indent;
     generate: typeof generate;
-    generateCustomSpec: typeof generateCustomSpec;
+    generateCustomSpec: typeof generateSaddlebackSpec;
 };
 
 export default OpenAPI;

@@ -6,8 +6,8 @@ type Config = Options & {
     additionalServiceFileExtension?: boolean;
 };
 
-export const generateCustomSpec = async (config: Config) => {
-    await generate({ ...config, input: listWithRequiredPaths });
+export const generateSaddlebackSpec = async (config: Config) => {
+    await generate({ ...config });
 };
 
-export default generateCustomSpec;
+export default generateSaddlebackSpec;

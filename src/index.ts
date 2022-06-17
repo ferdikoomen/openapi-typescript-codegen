@@ -1,9 +1,9 @@
 import { generate } from './generate';
-import { generateCustomSpec } from './generateCustomSpec';
+import { generateSaddlebackSpec } from './generateSaddlebackSpec';
 import { HttpClient } from './HttpClient';
 import { Indent } from './Indent';
 
-export { generateCustomSpec };
+export { generateSaddlebackSpec };
 export { generate };
 export { HttpClient } from './HttpClient';
 export { Indent } from './Indent';
@@ -11,5 +11,5 @@ export { Indent } from './Indent';
 export default {
     HttpClient,
     generate,
-    generateCustomSpec,
+    generateSaddlebackSpec,
 };
