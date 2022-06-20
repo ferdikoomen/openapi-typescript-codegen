@@ -18,12 +18,13 @@ const params = program
 
 const OpenAPI = require(path.resolve(__dirname, '../dist/index.js'));
 const config = require(path.resolve(params.config || `./openapi.config.json`));
+const generateSaddlebackSpec = require('../src/generateSaddlebackSpec');
 
 if (OpenAPI) {
-    OpenAPI.generateCustomSpec({
+    OpenAPI.generateSaddlebackSpec({
+        ...config,
         input: params.input,
         output: params.output,
-        ...config,
     })
         .then(() => {
             process.exit(0);

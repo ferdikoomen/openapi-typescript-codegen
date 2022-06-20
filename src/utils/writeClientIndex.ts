@@ -22,6 +22,8 @@ import { HttpClient } from '../HttpClient';
  * @param exportSchemas Generate schemas
  * @param postfix Service name postfix
  * @param httpClient The selected httpClient (fetch, xhr, node or axios)
+ * @param additionalModelFileExtension Add file extension for models *.models.*
+ * @param additionalServiceFileExtension Add file extension for service *.service.*
  * @param clientName Custom client class name
  */
 export const writeClientIndex = async (
@@ -35,6 +37,8 @@ export const writeClientIndex = async (
     exportSchemas: boolean,
     postfix: string,
     httpClient: HttpClient,
+    additionalModelFileExtension: boolean,
+    additionalServiceFileExtension: boolean,
     clientName?: string
 ): Promise<void> => {
     const templateResult = templates.index({
@@ -51,6 +55,8 @@ export const writeClientIndex = async (
         services: sortServicesByName(client.services),
         exportClient: isDefined(clientName),
         httpClient,
+        additionalModelFileExtension,
+        additionalServiceFileExtension,
     });
 
     await writeFile(resolve(outputPath, 'index.ts'), templateResult);

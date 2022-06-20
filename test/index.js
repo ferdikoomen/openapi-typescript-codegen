@@ -70,8 +70,8 @@ const main = async () => {
         exportSchemas: false,
         indent: '4',
         postfix: '',
-        additionalModelFileExtension: false,
-        additionalServiceFileExtension: false,
+        additionalModelFileExtension: true,
+        additionalServiceFileExtension: true,
         removeLodashPrefixes: true,
     };
     await OpenAPI.generateSaddlebackSpec({
