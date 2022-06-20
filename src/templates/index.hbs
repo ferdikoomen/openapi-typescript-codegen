@@ -41,7 +41,11 @@ export { ${{{name}}} } from './schemas/${{{name}}}';
 {{#if services}}
 
 {{#each services}}
+{{#equals @root.httpClient 'saddleback'}}
+export * as fetch{{{name}}}{{{@root.postfix}}} from './services/{{{name}}}{{{@root.postfix}}}{{#if ../additionalServiceFileExtension}}.service{{/if}}';
+{{else}}
 export { {{{name}}}{{{@root.postfix}}} } from './services/{{{name}}}{{{@root.postfix}}}{{#if ../additionalServiceFileExtension}}.service{{/if}}';
+{{/equals}}
 {{/each}}
 {{/if}}
 {{/if}}

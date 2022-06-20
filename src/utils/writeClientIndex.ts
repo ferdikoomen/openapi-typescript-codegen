@@ -6,6 +6,7 @@ import { isDefined } from './isDefined';
 import { Templates } from './registerHandlebarTemplates';
 import { sortModelsByName } from './sortModelsByName';
 import { sortServicesByName } from './sortServicesByName';
+import { HttpClient } from '../HttpClient';
 
 /**
  * Generate the OpenAPI client index file using the Handlebar template and write it to disk.
@@ -20,6 +21,7 @@ import { sortServicesByName } from './sortServicesByName';
  * @param exportModels Generate models
  * @param exportSchemas Generate schemas
  * @param postfix Service name postfix
+ * @param httpClient The selected httpClient (fetch, xhr, node or axios)
  * @param clientName Custom client class name
  */
 export const writeClientIndex = async (
@@ -32,6 +34,7 @@ export const writeClientIndex = async (
     exportModels: boolean,
     exportSchemas: boolean,
     postfix: string,
+    httpClient: HttpClient,
     clientName?: string
 ): Promise<void> => {
     const templateResult = templates.index({
@@ -47,6 +50,7 @@ export const writeClientIndex = async (
         models: sortModelsByName(client.models),
         services: sortServicesByName(client.services),
         exportClient: isDefined(clientName),
+        httpClient,
     });
 
     await writeFile(resolve(outputPath, 'index.ts'), templateResult);

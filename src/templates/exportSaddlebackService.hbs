@@ -51,7 +51,9 @@ export const fetch{{{../name}}}{{pascalCase name}} = async ({{> saddlebackParame
 		contentType: '{{{parametersBody.mediaType}}}',
 {{/if}}
 {{/if}}
+{{#if parameters}}
 		...config,
+{{/if}}
 	});
 
 	try {

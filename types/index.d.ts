@@ -31,8 +31,10 @@ export type Options = {
 };
 
 export type CustomConfig = Options & {
+    useSaddlebackServices?: boolean;
     additionalModelFileExtension?: boolean;
     additionalServiceFileExtension?: boolean;
+    removeLodashPrefixes?: boolean;
 };
 
 export declare function generate(options: Options): Promise<void>;

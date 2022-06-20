@@ -141,6 +141,7 @@ export const writeClient = async (
             exportModels,
             exportSchemas,
             postfix,
+            httpClient,
             clientName
         );
     }

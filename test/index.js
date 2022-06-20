@@ -60,8 +60,8 @@ const main = async () => {
     // await generate('./test/spec/v2.json', './test/generated/v2/');
     // await generate('./test/spec/v3.json', './test/generated/v3/');
     const config = {
-        httpClient: 'axios',
-        clientName: 'TestAxiosClassName',
+        httpClient: 'saddleback',
+        clientName: '',
         useOptions: true,
         useUnionTypes: false,
         exportCore: false,
@@ -70,27 +70,26 @@ const main = async () => {
         exportSchemas: false,
         indent: '4',
         postfix: '',
-        filterMethod: 'greedy',
-        filterArray: ['/api/agreement', '/api/agreement/{id}', '/api/share-page/compare-results'],
         additionalModelFileExtension: false,
         additionalServiceFileExtension: false,
+        removeLodashPrefixes: true,
     };
-    await OpenAPI.generateCustomSpec({
+    await OpenAPI.generateSaddlebackSpec({
         input: './test/spec/saddlebackCoreApi.json',
         output: './test/new/saddleback/core',
         ...config,
     });
-    await OpenAPI.generateCustomSpec({
+    await OpenAPI.generateSaddlebackSpec({
         input: './test/spec/saddlebackEventApi.json',
         output: './test/new/saddleback/event',
         ...config,
     });
-    await OpenAPI.generateCustomSpec({
+    await OpenAPI.generateSaddlebackSpec({
         input: './test/spec/saddlebackWebAppApi.json',
         output: './test/new/saddleback/web',
         ...config,
     });
-    await OpenAPI.generateCustomSpec({
+    await OpenAPI.generateSaddlebackSpec({
         input: './test/spec/saddlebackWorkflowApi.json',
         output: './test/new/saddleback/workflow',
         ...config,

@@ -1,5 +1,7 @@
 {
     "compilerOptions": {
+        "baseUrl": "./src",
+        "jsx": "react",
         "outDir": "./dist",
         "target": "es2019",
         "module": "commonjs",
