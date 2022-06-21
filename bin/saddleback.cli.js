@@ -18,10 +18,24 @@ const params = program
 
 const OpenAPI = require(path.resolve(__dirname, '../dist/index.js'));
 const config = require(path.resolve(params.config || `./openapi.config.json`));
-const generateSaddlebackSpec = require('../src/generateSaddlebackSpec');
 
 if (OpenAPI) {
     OpenAPI.generateSaddlebackSpec({
+        httpClient: 'saddleback',
+        clientName: '',
+        useOptions: true,
+        useUnionTypes: false,
+        exportCore: false,
+        exportServices: true,
+        exportModels: true,
+        exportSchemas: false,
+        indent: '4',
+        postfix: '',
+        request: '',
+        write: true,
+        additionalModelFileExtension: true,
+        additionalServiceFileExtension: true,
+        removeLodashPrefixes: true,
         ...config,
         input: params.input,
         output: params.output,

@@ -31,7 +31,6 @@ export type Options = {
 };
 
 export type CustomConfig = Options & {
-    useSaddlebackServices?: boolean;
     additionalModelFileExtension?: boolean;
     additionalServiceFileExtension?: boolean;
     removeLodashPrefixes?: boolean;
