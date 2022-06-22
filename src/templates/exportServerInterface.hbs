@@ -32,7 +32,7 @@ export interface I{{{name}}}{{{@root.postfix}}} {
 	{{/each}}
 	 * @throws ApiError
 	 */
-	 {{{name}}}(req: {{{@root.serverReqTypeName}}}<{{#hasNonBodyParams this}}{{{pascalCase name}}}Params{{else}}never{{/hasNonBodyParams}}{{#if parametersBody}}, {{{parametersBody.type}}}{{/if}}>): {{{@root.serverResTypeName}}}<{{>result}}>;
+	 {{{name}}}(req: {{{@root.serverReqTypeName}}}<{{#hasNonBodyParams this}}{{{pascalCase name}}}Params{{else}}never{{/hasNonBodyParams}}{{#if parametersBody}}, {{{parametersBody.type}}}{{/if}}>): Promise<{{{@root.serverResTypeName}}}<{{>result}}>>;
 
 	{{/each}}
 }

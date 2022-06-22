@@ -15,16 +15,16 @@ export class RouteHandler {
     {{/each}}
   ) { }
 
-  private applyTransforms(req, reply, handlerFunc) {
+  private async applyTransforms(req, reply, handlerFunc) {
     const transformedRequest = transformRequest(req);
-    const handlerResponse = handlerFunc(transformedRequest);
+    const handlerResponse = await handlerFunc(transformedRequest);
     const transformedResponse = transformResponse(handlerResponse, reply);
     return transformedResponse;
   }
 
 {{#each services}}
 {{#each operations}}
-  {{{name}}} = (req, reply) => this.applyTransforms(req, reply, this.{{{camelCase service}}}.{{{name}}});
+  {{{name}}} = async (req, reply) => await this.applyTransforms(req, reply, this.{{{camelCase service}}}.{{{name}}});
 {{/each}}
 {{/each}}
 }
