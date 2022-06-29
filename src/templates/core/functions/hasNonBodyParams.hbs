@@ -1,3 +1,4 @@
 const hasNonBodyParams = (op: any): boolean => {
-  op.parameters && op.parameters.length > 0 && !op.parametersBody;
+  op.parameters
+  && op.parameters.filter(param => param.in !== 'body').length > 0
 };
