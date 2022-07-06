@@ -4,6 +4,7 @@ import { EOL } from 'os';
 
 import type { Enum } from '../client/interfaces/Enum';
 import type { Model } from '../client/interfaces/Model';
+import { OperationParameter } from '../client/interfaces/OperationParameter';
 import type { HttpClient } from '../HttpClient';
 import { unique } from './unique';
 
@@ -104,4 +105,17 @@ export const registerHandlebarHelpers = (root: {
     Handlebars.registerHelper('camelCase', function (value: string): string {
         return camelCase(value);
     });
+
+    Handlebars.registerHelper(
+        'onceInList',
+        function (this: any, list: OperationParameter[], name: string, options: Handlebars.HelperOptions): string {
+            const firstIndex = list.findIndex(param => param.name === name);
+
+            if (firstIndex === options.data.index || !list.slice(firstIndex + 1).some(param => param.name === name)) {
+                return options.fn(this);
+            } else {
+                return options.inverse(this);
+            }
+        }
+    );
 };
