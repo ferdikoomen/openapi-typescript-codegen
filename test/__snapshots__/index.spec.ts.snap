@@ -539,6 +539,57 @@ export const request = <T>(config: OpenAPIConfig, options: ApiRequestOptions): C
 "
 `;
 
+exports[`v2 should generate: ./test/generated/v2/core/utils/OmitReadonly.ts 1`] = `
+"/**
+ * The contents of this file are inspired from https://github.com/ts-essentials/ts-essentials#ReadonlyKeys
+ *
+ * The MIT License
+ *
+ * Copyright (c) 2018-2019 Chris Kaczor (github.com/krzkaczor)
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the \\"Software\\"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED \\"AS IS\\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ * */
+
+type Writable<T> = { -readonly [P in keyof T]: T[P] };
+
+type IsEqualConsideringWritability<X, Y> = (<T>() => T extends X ? 1 : 2) extends <T>() => T extends Y ? 1 : 2
+    ? true
+    : false;
+
+type IsFullyWritable<T extends object> = IsEqualConsideringWritability<
+    { [Q in keyof T]: T[Q] },
+    Writable<{ [Q in keyof T]: T[Q] }>
+>;
+
+/** Gets keys of an object which are readonly */
+type ReadonlyKeys<T extends object> = {
+    [P in keyof T]-?: IsFullyWritable<Pick<T, P>> extends true ? never : P;
+}[keyof T];
+
+/**
+ * Exclude keys of an object which are readonly
+ * In case of union types containing types not extending object, type is inferred as-is
+ * */
+export declare type OmitReadonly<T> = T extends object ? Omit<T, ReadonlyKeys<T>> : T;
+"
+`;
+
 exports[`v2 should generate: ./test/generated/v2/index.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
@@ -2250,6 +2301,7 @@ exports[`v2 should generate: ./test/generated/v2/services/CollectionFormatServic
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+import { OmitReadonly } from '../core/utils/OmitReadonly';
 
 export class CollectionFormatService {
 
@@ -2294,6 +2346,7 @@ import type { ModelWithString } from '../models/ModelWithString';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+import { OmitReadonly } from '../core/utils/OmitReadonly';
 
 export class ComplexService {
 
@@ -2338,6 +2391,7 @@ exports[`v2 should generate: ./test/generated/v2/services/DefaultService.ts 1`] 
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+import { OmitReadonly } from '../core/utils/OmitReadonly';
 
 export class DefaultService {
 
@@ -2364,6 +2418,7 @@ import type { ModelWithString } from '../models/ModelWithString';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+import { OmitReadonly } from '../core/utils/OmitReadonly';
 
 export class DefaultsService {
 
@@ -2410,7 +2465,7 @@ export class DefaultsService {
         parameterNumber: number = 123,
         parameterBoolean: boolean = true,
         parameterEnum: 'Success' | 'Warning' | 'Error' = 'Success',
-        parameterModel: ModelWithString = {
+        parameterModel: OmitReadonly<ModelWithString> = {
             \\"prop\\": \\"Hello World!\\"
         },
     ): CancelablePromise<void> {
@@ -2475,6 +2530,7 @@ exports[`v2 should generate: ./test/generated/v2/services/DescriptionsService.ts
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+import { OmitReadonly } from '../core/utils/OmitReadonly';
 
 export class DescriptionsService {
 
@@ -2523,6 +2579,7 @@ exports[`v2 should generate: ./test/generated/v2/services/DuplicateService.ts 1`
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+import { OmitReadonly } from '../core/utils/OmitReadonly';
 
 export class DuplicateService {
 
@@ -2577,6 +2634,7 @@ exports[`v2 should generate: ./test/generated/v2/services/ErrorService.ts 1`] = 
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+import { OmitReadonly } from '../core/utils/OmitReadonly';
 
 export class ErrorService {
 
@@ -2614,6 +2672,7 @@ exports[`v2 should generate: ./test/generated/v2/services/HeaderService.ts 1`] =
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+import { OmitReadonly } from '../core/utils/OmitReadonly';
 
 export class HeaderService {
 
@@ -2644,6 +2703,7 @@ exports[`v2 should generate: ./test/generated/v2/services/MultipleTags1Service.t
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+import { OmitReadonly } from '../core/utils/OmitReadonly';
 
 export class MultipleTags1Service {
 
@@ -2680,6 +2740,7 @@ exports[`v2 should generate: ./test/generated/v2/services/MultipleTags2Service.t
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+import { OmitReadonly } from '../core/utils/OmitReadonly';
 
 export class MultipleTags2Service {
 
@@ -2716,6 +2777,7 @@ exports[`v2 should generate: ./test/generated/v2/services/MultipleTags3Service.t
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+import { OmitReadonly } from '../core/utils/OmitReadonly';
 
 export class MultipleTags3Service {
 
@@ -2741,6 +2803,7 @@ exports[`v2 should generate: ./test/generated/v2/services/NoContentService.ts 1`
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+import { OmitReadonly } from '../core/utils/OmitReadonly';
 
 export class NoContentService {
 
@@ -2766,6 +2829,7 @@ exports[`v2 should generate: ./test/generated/v2/services/ParametersService.ts 1
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+import { OmitReadonly } from '../core/utils/OmitReadonly';
 
 export class ParametersService {
 
@@ -2861,6 +2925,7 @@ import type { ModelWithString } from '../models/ModelWithString';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+import { OmitReadonly } from '../core/utils/OmitReadonly';
 
 export class ResponseService {
 
@@ -2925,6 +2990,7 @@ exports[`v2 should generate: ./test/generated/v2/services/SimpleService.ts 1`] =
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+import { OmitReadonly } from '../core/utils/OmitReadonly';
 
 export class SimpleService {
 
@@ -3009,6 +3075,7 @@ exports[`v2 should generate: ./test/generated/v2/services/TypesService.ts 1`] = 
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+import { OmitReadonly } from '../core/utils/OmitReadonly';
 
 export class TypesService {
 
@@ -3595,6 +3662,57 @@ export const request = <T>(config: OpenAPIConfig, options: ApiRequestOptions): C
         }
     });
 };
+"
+`;
+
+exports[`v3 should generate: ./test/generated/v3/core/utils/OmitReadonly.ts 1`] = `
+"/**
+ * The contents of this file are inspired from https://github.com/ts-essentials/ts-essentials#ReadonlyKeys
+ *
+ * The MIT License
+ *
+ * Copyright (c) 2018-2019 Chris Kaczor (github.com/krzkaczor)
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the \\"Software\\"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED \\"AS IS\\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ * */
+
+type Writable<T> = { -readonly [P in keyof T]: T[P] };
+
+type IsEqualConsideringWritability<X, Y> = (<T>() => T extends X ? 1 : 2) extends <T>() => T extends Y ? 1 : 2
+    ? true
+    : false;
+
+type IsFullyWritable<T extends object> = IsEqualConsideringWritability<
+    { [Q in keyof T]: T[Q] },
+    Writable<{ [Q in keyof T]: T[Q] }>
+>;
+
+/** Gets keys of an object which are readonly */
+type ReadonlyKeys<T extends object> = {
+    [P in keyof T]-?: IsFullyWritable<Pick<T, P>> extends true ? never : P;
+}[keyof T];
+
+/**
+ * Exclude keys of an object which are readonly
+ * In case of union types containing types not extending object, type is inferred as-is
+ * */
+export declare type OmitReadonly<T> = T extends object ? Omit<T, ReadonlyKeys<T>> : T;
 "
 `;
 
@@ -6122,6 +6240,7 @@ exports[`v3 should generate: ./test/generated/v3/services/CollectionFormatServic
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+import { OmitReadonly } from '../core/utils/OmitReadonly';
 
 export class CollectionFormatService {
 
@@ -6169,6 +6288,7 @@ import type { ModelWithString } from '../models/ModelWithString';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+import { OmitReadonly } from '../core/utils/OmitReadonly';
 
 export class ComplexService {
 
@@ -6246,6 +6366,7 @@ exports[`v3 should generate: ./test/generated/v3/services/DefaultService.ts 1`] 
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+import { OmitReadonly } from '../core/utils/OmitReadonly';
 
 export class DefaultService {
 
@@ -6272,6 +6393,7 @@ import type { ModelWithString } from '../models/ModelWithString';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+import { OmitReadonly } from '../core/utils/OmitReadonly';
 
 export class DefaultsService {
 
@@ -6318,7 +6440,7 @@ export class DefaultsService {
         parameterNumber: number = 123,
         parameterBoolean: boolean = true,
         parameterEnum: 'Success' | 'Warning' | 'Error' = 'Success',
-        parameterModel: ModelWithString = {
+        parameterModel: OmitReadonly<ModelWithString> = {
             \\"prop\\": \\"Hello World!\\"
         },
     ): CancelablePromise<void> {
@@ -6385,6 +6507,7 @@ import type { DeprecatedModel } from '../models/DeprecatedModel';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+import { OmitReadonly } from '../core/utils/OmitReadonly';
 
 export class DeprecatedService {
 
@@ -6394,7 +6517,7 @@ export class DeprecatedService {
      * @throws ApiError
      */
     public static deprecatedCall(
-        parameter: DeprecatedModel | null,
+        parameter: OmitReadonly<DeprecatedModel | null>,
     ): CancelablePromise<void> {
         return __request(OpenAPI, {
             method: 'POST',
@@ -6416,6 +6539,7 @@ exports[`v3 should generate: ./test/generated/v3/services/DescriptionsService.ts
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+import { OmitReadonly } from '../core/utils/OmitReadonly';
 
 export class DescriptionsService {
 
@@ -6464,6 +6588,7 @@ exports[`v3 should generate: ./test/generated/v3/services/DuplicateService.ts 1`
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+import { OmitReadonly } from '../core/utils/OmitReadonly';
 
 export class DuplicateService {
 
@@ -6518,6 +6643,7 @@ exports[`v3 should generate: ./test/generated/v3/services/ErrorService.ts 1`] = 
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+import { OmitReadonly } from '../core/utils/OmitReadonly';
 
 export class ErrorService {
 
@@ -6557,6 +6683,7 @@ import type { ModelWithString } from '../models/ModelWithString';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+import { OmitReadonly } from '../core/utils/OmitReadonly';
 
 export class FormDataService {
 
@@ -6567,7 +6694,7 @@ export class FormDataService {
      */
     public static postApiFormData(
         parameter?: string,
-        formData?: ModelWithString,
+        formData?: OmitReadonly<ModelWithString>,
     ): CancelablePromise<void> {
         return __request(OpenAPI, {
             method: 'POST',
@@ -6591,6 +6718,7 @@ exports[`v3 should generate: ./test/generated/v3/services/HeaderService.ts 1`] =
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+import { OmitReadonly } from '../core/utils/OmitReadonly';
 
 export class HeaderService {
 
@@ -6623,6 +6751,7 @@ import type { ModelWithString } from '../models/ModelWithString';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+import { OmitReadonly } from '../core/utils/OmitReadonly';
 
 export class MultipartService {
 
@@ -6672,6 +6801,7 @@ exports[`v3 should generate: ./test/generated/v3/services/MultipleTags1Service.t
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+import { OmitReadonly } from '../core/utils/OmitReadonly';
 
 export class MultipleTags1Service {
 
@@ -6708,6 +6838,7 @@ exports[`v3 should generate: ./test/generated/v3/services/MultipleTags2Service.t
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+import { OmitReadonly } from '../core/utils/OmitReadonly';
 
 export class MultipleTags2Service {
 
@@ -6744,6 +6875,7 @@ exports[`v3 should generate: ./test/generated/v3/services/MultipleTags3Service.t
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+import { OmitReadonly } from '../core/utils/OmitReadonly';
 
 export class MultipleTags3Service {
 
@@ -6769,6 +6901,7 @@ exports[`v3 should generate: ./test/generated/v3/services/NoContentService.ts 1`
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+import { OmitReadonly } from '../core/utils/OmitReadonly';
 
 export class NoContentService {
 
@@ -6797,6 +6930,7 @@ import type { Pageable } from '../models/Pageable';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+import { OmitReadonly } from '../core/utils/OmitReadonly';
 
 export class ParametersService {
 
@@ -6815,7 +6949,7 @@ export class ParametersService {
         parameterForm: string | null,
         parameterCookie: string | null,
         parameterPath: string | null,
-        requestBody: ModelWithString | null,
+        requestBody: OmitReadonly<ModelWithString | null>,
     ): CancelablePromise<void> {
         return __request(OpenAPI, {
             method: 'POST',
@@ -6857,7 +6991,7 @@ export class ParametersService {
         parameterQuery: string | null,
         parameterForm: string | null,
         parameterCookie: string | null,
-        requestBody: ModelWithString | null,
+        requestBody: OmitReadonly<ModelWithString | null>,
         parameterPath1?: string,
         parameterPath2?: string,
         parameterPath3?: string,
@@ -6915,8 +7049,8 @@ export class ParametersService {
      * @throws ApiError
      */
     public static postCallWithOptionalParam(
-        parameter: Pageable,
-        requestBody?: ModelWithString,
+        parameter: OmitReadonly<Pageable>,
+        requestBody?: OmitReadonly<ModelWithString>,
     ): CancelablePromise<void> {
         return __request(OpenAPI, {
             method: 'POST',
@@ -6942,6 +7076,7 @@ import type { ModelWithString } from '../models/ModelWithString';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+import { OmitReadonly } from '../core/utils/OmitReadonly';
 
 export class RequestBodyService {
 
@@ -6952,7 +7087,7 @@ export class RequestBodyService {
      */
     public static postApiRequestBody(
         parameter?: string,
-        requestBody?: ModelWithString,
+        requestBody?: OmitReadonly<ModelWithString>,
     ): CancelablePromise<void> {
         return __request(OpenAPI, {
             method: 'POST',
@@ -6980,6 +7115,7 @@ import type { ModelWithString } from '../models/ModelWithString';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+import { OmitReadonly } from '../core/utils/OmitReadonly';
 
 export class ResponseService {
 
@@ -7044,6 +7180,7 @@ exports[`v3 should generate: ./test/generated/v3/services/SimpleService.ts 1`] =
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+import { OmitReadonly } from '../core/utils/OmitReadonly';
 
 export class SimpleService {
 
@@ -7128,6 +7265,7 @@ exports[`v3 should generate: ./test/generated/v3/services/TypesService.ts 1`] = 
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+import { OmitReadonly } from '../core/utils/OmitReadonly';
 
 export class TypesService {
 
@@ -7185,6 +7323,7 @@ exports[`v3 should generate: ./test/generated/v3/services/UploadService.ts 1`] =
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
+import { OmitReadonly } from '../core/utils/OmitReadonly';
 
 export class UploadService {
 

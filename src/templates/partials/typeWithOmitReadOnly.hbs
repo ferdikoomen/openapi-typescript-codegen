@@ -1,0 +1,13 @@
+{{#equals export "reference"}}
+{{#equals httpMethod "POST"~}}
+	OmitReadonly<{{>type}}>
+{{~else equals  httpMethod "PUT"~}}
+	OmitReadonly<{{>type}}>
+{{~else equals  httpMethod "PATCH"~}}
+	OmitReadonly<{{>type}}>
+{{else}}
+	{{~>type}}
+{{~/equals}}
+{{~else}}
+	{{~>type}}
+{{~/equals}}

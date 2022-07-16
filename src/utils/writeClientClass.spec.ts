@@ -33,6 +33,9 @@ describe('writeClientClass', () => {
                 request: () => 'request',
                 baseHttpRequest: () => 'baseHttpRequest',
                 httpRequest: () => 'httpRequest',
+                utils: {
+                    omitReadonly: () => 'omitReadonly',
+                },
             },
         };
 

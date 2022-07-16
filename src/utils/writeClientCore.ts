@@ -14,6 +14,7 @@ import type { Templates } from './registerHandlebarTemplates';
  * @param client Client object, containing, models, schemas and services
  * @param templates The loaded handlebar templates
  * @param outputPath Directory to write the generated files to
+ * @param outputUtilsPath Directory to write the generated util files to
  * @param httpClient The selected httpClient (fetch, xhr, node or axios)
  * @param indent Indentation options (4, 2 or tab)
  * @param clientName Custom client class name
@@ -23,6 +24,7 @@ export const writeClientCore = async (
     client: Client,
     templates: Templates,
     outputPath: string,
+    outputUtilsPath: string,
     httpClient: HttpClient,
     indent: Indent,
     clientName?: string,
@@ -43,6 +45,7 @@ export const writeClientCore = async (
     await writeFile(resolve(outputPath, 'ApiResult.ts'), i(templates.core.apiResult(context), indent));
     await writeFile(resolve(outputPath, 'CancelablePromise.ts'), i(templates.core.cancelablePromise(context), indent));
     await writeFile(resolve(outputPath, 'request.ts'), i(templates.core.request(context), indent));
+    await writeFile(resolve(outputUtilsPath, 'OmitReadonly.ts'), i(templates.core.utils.omitReadonly(context), indent));
 
     if (isDefined(clientName)) {
         await writeFile(resolve(outputPath, 'BaseHttpRequest.ts'), i(templates.core.baseHttpRequest(context), indent));
