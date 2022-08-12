@@ -104,4 +104,8 @@ export const registerHandlebarHelpers = (root: {
     Handlebars.registerHelper('camelCase', function (value: string): string {
         return camelCase(value);
     });
+
+    Handlebars.registerHelper('unquote', function (value: string): string {
+        return value.replace(/[']/g, '');
+    });
 };

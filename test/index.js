@@ -9,6 +9,7 @@ const generate = async (input, output) => {
         output,
         httpClient: OpenAPI.HttpClient.FETCH,
         useOptions: true,
+        useTypeGuards: false,
         useUnionTypes: false,
         exportCore: true,
         exportSchemas: true,

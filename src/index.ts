@@ -18,6 +18,7 @@ export type Options = {
     httpClient?: HttpClient;
     clientName?: string;
     useOptions?: boolean;
+    useTypeGuards?: boolean;
     useUnionTypes?: boolean;
     exportCore?: boolean;
     exportServices?: boolean;
@@ -38,6 +39,7 @@ export type Options = {
  * @param httpClient The selected httpClient (fetch, xhr, node or axios)
  * @param clientName Custom client class name
  * @param useOptions Use options or arguments functions
+ * @param useTypeGuards Use runtime schema validation
  * @param useUnionTypes Use union types instead of enums
  * @param exportCore Generate core client classes
  * @param exportServices Generate services
@@ -54,6 +56,7 @@ export const generate = async ({
     httpClient = HttpClient.FETCH,
     clientName,
     useOptions = false,
+    useTypeGuards = false,
     useUnionTypes = false,
     exportCore = true,
     exportServices = true,
@@ -68,6 +71,7 @@ export const generate = async ({
     const openApiVersion = getOpenApiVersion(openApi);
     const templates = registerHandlebarTemplates({
         httpClient,
+        useTypeGuards,
         useUnionTypes,
         useOptions,
     });
@@ -83,6 +87,7 @@ export const generate = async ({
                 output,
                 httpClient,
                 useOptions,
+                useTypeGuards,
                 useUnionTypes,
                 exportCore,
                 exportServices,
@@ -106,6 +111,7 @@ export const generate = async ({
                 output,
                 httpClient,
                 useOptions,
+                useTypeGuards,
                 useUnionTypes,
                 exportCore,
                 exportServices,

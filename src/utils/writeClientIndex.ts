@@ -14,6 +14,7 @@ import { sortServicesByName } from './sortServicesByName';
  * @param client Client object, containing, models, schemas and services
  * @param templates The loaded handlebar templates
  * @param outputPath Directory to write the generated files to
+ * @param useTypeGuards Use runtime schema validation
  * @param useUnionTypes Use union types instead of enums
  * @param exportCore Generate core
  * @param exportServices Generate services
@@ -26,6 +27,7 @@ export const writeClientIndex = async (
     client: Client,
     templates: Templates,
     outputPath: string,
+    useTypeGuards: boolean,
     useUnionTypes: boolean,
     exportCore: boolean,
     exportServices: boolean,
@@ -39,6 +41,7 @@ export const writeClientIndex = async (
         exportServices,
         exportModels,
         exportSchemas,
+        useTypeGuards,
         useUnionTypes,
         postfix,
         clientName,
