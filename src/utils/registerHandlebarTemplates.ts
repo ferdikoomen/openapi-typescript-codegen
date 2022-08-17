@@ -83,6 +83,10 @@ import partialTypeInterface from '../templates/partials/typeInterface.hbs';
 import partialTypeIntersection from '../templates/partials/typeIntersection.hbs';
 import partialTypeReference from '../templates/partials/typeReference.hbs';
 import partialTypeUnion from '../templates/partials/typeUnion.hbs';
+import partialValidate from '../templates/partials/validate.hbs';
+import partialValidateArray from '../templates/partials/validateArray.hbs';
+import partialValidateGeneric from '../templates/partials/validateGeneric.hbs';
+import partialValidateReference from '../templates/partials/validateReference.hbs';
 import { registerHandlebarHelpers } from './registerHandlebarHelpers';
 
 export interface Templates {
@@ -112,6 +116,7 @@ export interface Templates {
 export const registerHandlebarTemplates = (root: {
     httpClient: HttpClient;
     useOptions: boolean;
+    useTypeGuards: boolean;
     useUnionTypes: boolean;
 }): Templates => {
     registerHandlebarHelpers(root);
@@ -164,6 +169,10 @@ export const registerHandlebarTemplates = (root: {
     Handlebars.registerPartial('typeReference', Handlebars.template(partialTypeReference));
     Handlebars.registerPartial('typeUnion', Handlebars.template(partialTypeUnion));
     Handlebars.registerPartial('typeIntersection', Handlebars.template(partialTypeIntersection));
+    Handlebars.registerPartial('validate', Handlebars.template(partialValidate));
+    Handlebars.registerPartial('validateArray', Handlebars.template(partialValidateArray));
+    Handlebars.registerPartial('validateGeneric', Handlebars.template(partialValidateGeneric));
+    Handlebars.registerPartial('validateReference', Handlebars.template(partialValidateReference));
     Handlebars.registerPartial('base', Handlebars.template(partialBase));
 
     // Generic functions used in 'request' file @see src/templates/core/request.hbs for more info

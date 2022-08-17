@@ -4,6 +4,9 @@
 
 {{#each imports}}
 import type { {{{this}}} } from './{{{this}}}';
+{{#if @root.useTypeGuards}}
+import { is{{{this}}} } from './{{{this}}}';
+{{/if}}
 {{/each}}
 {{/if}}
 

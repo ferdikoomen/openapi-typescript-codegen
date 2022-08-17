@@ -45,3 +45,13 @@ export namespace {{{name}}} {
 }
 {{/unless}}
 {{/if}}
+{{#if @root.useTypeGuards}}
+
+export function is{{{name}}}(value: any): value is {{{name}}} {
+	return (value != null
+	{{#each properties}}
+	&& {{>validate}}
+	{{/each}}
+	);
+}
+{{/if}}

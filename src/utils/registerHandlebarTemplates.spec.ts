@@ -6,6 +6,7 @@ describe('registerHandlebarTemplates', () => {
         const templates = registerHandlebarTemplates({
             httpClient: HttpClient.FETCH,
             useOptions: false,
+            useTypeGuards: false,
             useUnionTypes: false,
         });
         expect(templates.index).toBeDefined();

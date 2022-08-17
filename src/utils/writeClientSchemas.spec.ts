@@ -51,7 +51,7 @@ describe('writeClientSchemas', () => {
             },
         };
 
-        await writeClientSchemas(models, templates, '/', HttpClient.FETCH, false, Indent.SPACE_4);
+        await writeClientSchemas(models, templates, '/', HttpClient.FETCH, false, false, Indent.SPACE_4);
 
         expect(writeFile).toBeCalledWith('/$User.ts', `schema${EOL}`);
     });

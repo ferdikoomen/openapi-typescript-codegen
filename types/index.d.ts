@@ -18,6 +18,7 @@ export type Options = {
     httpClient?: HttpClient | 'fetch' | 'xhr' | 'node' | 'axios' | 'angular';
     clientName?: string;
     useOptions?: boolean;
+    useTypeGuards?: boolean;
     useUnionTypes?: boolean;
     exportCore?: boolean;
     exportServices?: boolean;

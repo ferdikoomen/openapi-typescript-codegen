@@ -1,0 +1,22 @@
+(
+{{#equals export 'interface'}}
+// interface
+{{else equals export 'reference'}}
+{{>validateReference}}
+{{else equals export 'enum'}}
+// enum
+{{else equals export 'array'}}
+{{>validateArray value="value['{{{unquote name}}}']"}}
+{{else equals export 'dictionary'}}
+// dictionary
+{{else equals export 'one-of'}}
+// one-of
+{{else equals export 'any-of'}}
+// any-of
+{{else equals export 'all-of'}}
+// all-of
+{{else}}
+{{>validateGeneric}}
+{{/equals}}
+{{#unless isRequired}} || value['{{{unquote name}}}'] == undefined{{/unless}}{{#if isNullable}} || value['{{{unquote name}}}'] == null{{/if}}
+)
