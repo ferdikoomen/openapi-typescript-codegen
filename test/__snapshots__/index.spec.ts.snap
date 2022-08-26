@@ -4,8 +4,8 @@ exports[`v2 should generate: ./test/generated/v2/core/ApiError.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { ApiRequestOptions } from './ApiRequestOptions';
-import type { ApiResult } from './ApiResult';
+import type { ApiRequestOptions } from './ApiRequestOptions.js';
+import type { ApiResult } from './ApiResult.js';
 
 export class ApiError extends Error {
     public readonly url: string;
@@ -198,7 +198,7 @@ exports[`v2 should generate: ./test/generated/v2/core/OpenAPI.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { ApiRequestOptions } from './ApiRequestOptions';
+import type { ApiRequestOptions } from './ApiRequestOptions.js';
 
 type Resolver<T> = (options: ApiRequestOptions) => Promise<T>;
 type Headers = Record<string, string>;
@@ -233,12 +233,12 @@ exports[`v2 should generate: ./test/generated/v2/core/request.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import { ApiError } from './ApiError';
-import type { ApiRequestOptions } from './ApiRequestOptions';
-import type { ApiResult } from './ApiResult';
-import { CancelablePromise } from './CancelablePromise';
-import type { OnCancel } from './CancelablePromise';
-import type { OpenAPIConfig } from './OpenAPI';
+import { ApiError } from './ApiError.js';
+import type { ApiRequestOptions } from './ApiRequestOptions.js';
+import type { ApiResult } from './ApiResult.js';
+import { CancelablePromise } from './CancelablePromise.js';
+import type { OnCancel } from './CancelablePromise.js';
+import type { OpenAPIConfig } from './OpenAPI.js';
 
 const isDefined = <T>(value: T | null | undefined): value is Exclude<T, null | undefined> => {
     return value !== undefined && value !== null;
@@ -543,10 +543,10 @@ exports[`v2 should generate: ./test/generated/v2/index.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export { ApiError } from './core/ApiError';
-export { CancelablePromise, CancelError } from './core/CancelablePromise';
-export { OpenAPI } from './core/OpenAPI';
-export type { OpenAPIConfig } from './core/OpenAPI';
+export { ApiError } from './core/ApiError.js';
+export { CancelablePromise, CancelError } from './core/CancelablePromise.js';
+export { OpenAPI } from './core/OpenAPI.js';
+export type { OpenAPIConfig } from './core/OpenAPI.js';
 
 export type { ArrayWithArray } from './models/ArrayWithArray';
 export type { ArrayWithBooleans } from './models/ArrayWithBooleans';
@@ -2247,9 +2247,9 @@ exports[`v2 should generate: ./test/generated/v2/services/CollectionFormatServic
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { CancelablePromise } from '../core/CancelablePromise';
-import { OpenAPI } from '../core/OpenAPI';
-import { request as __request } from '../core/request';
+import type { CancelablePromise } from '../core/CancelablePromise.js';
+import { OpenAPI } from '../core/OpenAPI.js';
+import { request as __request } from '../core/request.js';
 
 export class CollectionFormatService {
 
@@ -2291,9 +2291,9 @@ exports[`v2 should generate: ./test/generated/v2/services/ComplexService.ts 1`] 
 /* eslint-disable */
 import type { ModelWithString } from '../models/ModelWithString';
 
-import type { CancelablePromise } from '../core/CancelablePromise';
-import { OpenAPI } from '../core/OpenAPI';
-import { request as __request } from '../core/request';
+import type { CancelablePromise } from '../core/CancelablePromise.js';
+import { OpenAPI } from '../core/OpenAPI.js';
+import { request as __request } from '../core/request.js';
 
 export class ComplexService {
 
@@ -2335,9 +2335,9 @@ exports[`v2 should generate: ./test/generated/v2/services/DefaultService.ts 1`] 
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { CancelablePromise } from '../core/CancelablePromise';
-import { OpenAPI } from '../core/OpenAPI';
-import { request as __request } from '../core/request';
+import type { CancelablePromise } from '../core/CancelablePromise.js';
+import { OpenAPI } from '../core/OpenAPI.js';
+import { request as __request } from '../core/request.js';
 
 export class DefaultService {
 
@@ -2361,9 +2361,9 @@ exports[`v2 should generate: ./test/generated/v2/services/DefaultsService.ts 1`]
 /* eslint-disable */
 import type { ModelWithString } from '../models/ModelWithString';
 
-import type { CancelablePromise } from '../core/CancelablePromise';
-import { OpenAPI } from '../core/OpenAPI';
-import { request as __request } from '../core/request';
+import type { CancelablePromise } from '../core/CancelablePromise.js';
+import { OpenAPI } from '../core/OpenAPI.js';
+import { request as __request } from '../core/request.js';
 
 export class DefaultsService {
 
@@ -2472,9 +2472,9 @@ exports[`v2 should generate: ./test/generated/v2/services/DescriptionsService.ts
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { CancelablePromise } from '../core/CancelablePromise';
-import { OpenAPI } from '../core/OpenAPI';
-import { request as __request } from '../core/request';
+import type { CancelablePromise } from '../core/CancelablePromise.js';
+import { OpenAPI } from '../core/OpenAPI.js';
+import { request as __request } from '../core/request.js';
 
 export class DescriptionsService {
 
@@ -2520,9 +2520,9 @@ exports[`v2 should generate: ./test/generated/v2/services/DuplicateService.ts 1`
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { CancelablePromise } from '../core/CancelablePromise';
-import { OpenAPI } from '../core/OpenAPI';
-import { request as __request } from '../core/request';
+import type { CancelablePromise } from '../core/CancelablePromise.js';
+import { OpenAPI } from '../core/OpenAPI.js';
+import { request as __request } from '../core/request.js';
 
 export class DuplicateService {
 
@@ -2574,9 +2574,9 @@ exports[`v2 should generate: ./test/generated/v2/services/ErrorService.ts 1`] = 
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { CancelablePromise } from '../core/CancelablePromise';
-import { OpenAPI } from '../core/OpenAPI';
-import { request as __request } from '../core/request';
+import type { CancelablePromise } from '../core/CancelablePromise.js';
+import { OpenAPI } from '../core/OpenAPI.js';
+import { request as __request } from '../core/request.js';
 
 export class ErrorService {
 
@@ -2611,9 +2611,9 @@ exports[`v2 should generate: ./test/generated/v2/services/HeaderService.ts 1`] =
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { CancelablePromise } from '../core/CancelablePromise';
-import { OpenAPI } from '../core/OpenAPI';
-import { request as __request } from '../core/request';
+import type { CancelablePromise } from '../core/CancelablePromise.js';
+import { OpenAPI } from '../core/OpenAPI.js';
+import { request as __request } from '../core/request.js';
 
 export class HeaderService {
 
@@ -2641,9 +2641,9 @@ exports[`v2 should generate: ./test/generated/v2/services/MultipleTags1Service.t
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { CancelablePromise } from '../core/CancelablePromise';
-import { OpenAPI } from '../core/OpenAPI';
-import { request as __request } from '../core/request';
+import type { CancelablePromise } from '../core/CancelablePromise.js';
+import { OpenAPI } from '../core/OpenAPI.js';
+import { request as __request } from '../core/request.js';
 
 export class MultipleTags1Service {
 
@@ -2677,9 +2677,9 @@ exports[`v2 should generate: ./test/generated/v2/services/MultipleTags2Service.t
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { CancelablePromise } from '../core/CancelablePromise';
-import { OpenAPI } from '../core/OpenAPI';
-import { request as __request } from '../core/request';
+import type { CancelablePromise } from '../core/CancelablePromise.js';
+import { OpenAPI } from '../core/OpenAPI.js';
+import { request as __request } from '../core/request.js';
 
 export class MultipleTags2Service {
 
@@ -2713,9 +2713,9 @@ exports[`v2 should generate: ./test/generated/v2/services/MultipleTags3Service.t
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { CancelablePromise } from '../core/CancelablePromise';
-import { OpenAPI } from '../core/OpenAPI';
-import { request as __request } from '../core/request';
+import type { CancelablePromise } from '../core/CancelablePromise.js';
+import { OpenAPI } from '../core/OpenAPI.js';
+import { request as __request } from '../core/request.js';
 
 export class MultipleTags3Service {
 
@@ -2738,9 +2738,9 @@ exports[`v2 should generate: ./test/generated/v2/services/NoContentService.ts 1`
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { CancelablePromise } from '../core/CancelablePromise';
-import { OpenAPI } from '../core/OpenAPI';
-import { request as __request } from '../core/request';
+import type { CancelablePromise } from '../core/CancelablePromise.js';
+import { OpenAPI } from '../core/OpenAPI.js';
+import { request as __request } from '../core/request.js';
 
 export class NoContentService {
 
@@ -2763,9 +2763,9 @@ exports[`v2 should generate: ./test/generated/v2/services/ParametersService.ts 1
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { CancelablePromise } from '../core/CancelablePromise';
-import { OpenAPI } from '../core/OpenAPI';
-import { request as __request } from '../core/request';
+import type { CancelablePromise } from '../core/CancelablePromise.js';
+import { OpenAPI } from '../core/OpenAPI.js';
+import { request as __request } from '../core/request.js';
 
 export class ParametersService {
 
@@ -2858,9 +2858,9 @@ import type { ModelThatExtends } from '../models/ModelThatExtends';
 import type { ModelThatExtendsExtends } from '../models/ModelThatExtendsExtends';
 import type { ModelWithString } from '../models/ModelWithString';
 
-import type { CancelablePromise } from '../core/CancelablePromise';
-import { OpenAPI } from '../core/OpenAPI';
-import { request as __request } from '../core/request';
+import type { CancelablePromise } from '../core/CancelablePromise.js';
+import { OpenAPI } from '../core/OpenAPI.js';
+import { request as __request } from '../core/request.js';
 
 export class ResponseService {
 
@@ -2922,9 +2922,9 @@ exports[`v2 should generate: ./test/generated/v2/services/SimpleService.ts 1`] =
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { CancelablePromise } from '../core/CancelablePromise';
-import { OpenAPI } from '../core/OpenAPI';
-import { request as __request } from '../core/request';
+import type { CancelablePromise } from '../core/CancelablePromise.js';
+import { OpenAPI } from '../core/OpenAPI.js';
+import { request as __request } from '../core/request.js';
 
 export class SimpleService {
 
@@ -3006,9 +3006,9 @@ exports[`v2 should generate: ./test/generated/v2/services/TypesService.ts 1`] = 
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { CancelablePromise } from '../core/CancelablePromise';
-import { OpenAPI } from '../core/OpenAPI';
-import { request as __request } from '../core/request';
+import type { CancelablePromise } from '../core/CancelablePromise.js';
+import { OpenAPI } from '../core/OpenAPI.js';
+import { request as __request } from '../core/request.js';
 
 export class TypesService {
 
@@ -3063,8 +3063,8 @@ exports[`v3 should generate: ./test/generated/v3/core/ApiError.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { ApiRequestOptions } from './ApiRequestOptions';
-import type { ApiResult } from './ApiResult';
+import type { ApiRequestOptions } from './ApiRequestOptions.js';
+import type { ApiResult } from './ApiResult.js';
 
 export class ApiError extends Error {
     public readonly url: string;
@@ -3257,7 +3257,7 @@ exports[`v3 should generate: ./test/generated/v3/core/OpenAPI.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { ApiRequestOptions } from './ApiRequestOptions';
+import type { ApiRequestOptions } from './ApiRequestOptions.js';
 
 type Resolver<T> = (options: ApiRequestOptions) => Promise<T>;
 type Headers = Record<string, string>;
@@ -3292,12 +3292,12 @@ exports[`v3 should generate: ./test/generated/v3/core/request.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import { ApiError } from './ApiError';
-import type { ApiRequestOptions } from './ApiRequestOptions';
-import type { ApiResult } from './ApiResult';
-import { CancelablePromise } from './CancelablePromise';
-import type { OnCancel } from './CancelablePromise';
-import type { OpenAPIConfig } from './OpenAPI';
+import { ApiError } from './ApiError.js';
+import type { ApiRequestOptions } from './ApiRequestOptions.js';
+import type { ApiResult } from './ApiResult.js';
+import { CancelablePromise } from './CancelablePromise.js';
+import type { OnCancel } from './CancelablePromise.js';
+import type { OpenAPIConfig } from './OpenAPI.js';
 
 const isDefined = <T>(value: T | null | undefined): value is Exclude<T, null | undefined> => {
     return value !== undefined && value !== null;
@@ -3602,10 +3602,10 @@ exports[`v3 should generate: ./test/generated/v3/index.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export { ApiError } from './core/ApiError';
-export { CancelablePromise, CancelError } from './core/CancelablePromise';
-export { OpenAPI } from './core/OpenAPI';
-export type { OpenAPIConfig } from './core/OpenAPI';
+export { ApiError } from './core/ApiError.js';
+export { CancelablePromise, CancelError } from './core/CancelablePromise.js';
+export { OpenAPI } from './core/OpenAPI.js';
+export type { OpenAPIConfig } from './core/OpenAPI.js';
 
 export type { ArrayWithArray } from './models/ArrayWithArray';
 export type { ArrayWithBooleans } from './models/ArrayWithBooleans';
@@ -6119,9 +6119,9 @@ exports[`v3 should generate: ./test/generated/v3/services/CollectionFormatServic
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { CancelablePromise } from '../core/CancelablePromise';
-import { OpenAPI } from '../core/OpenAPI';
-import { request as __request } from '../core/request';
+import type { CancelablePromise } from '../core/CancelablePromise.js';
+import { OpenAPI } from '../core/OpenAPI.js';
+import { request as __request } from '../core/request.js';
 
 export class CollectionFormatService {
 
@@ -6166,9 +6166,9 @@ import type { ModelWithDictionary } from '../models/ModelWithDictionary';
 import type { ModelWithEnum } from '../models/ModelWithEnum';
 import type { ModelWithString } from '../models/ModelWithString';
 
-import type { CancelablePromise } from '../core/CancelablePromise';
-import { OpenAPI } from '../core/OpenAPI';
-import { request as __request } from '../core/request';
+import type { CancelablePromise } from '../core/CancelablePromise.js';
+import { OpenAPI } from '../core/OpenAPI.js';
+import { request as __request } from '../core/request.js';
 
 export class ComplexService {
 
@@ -6243,9 +6243,9 @@ exports[`v3 should generate: ./test/generated/v3/services/DefaultService.ts 1`] 
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { CancelablePromise } from '../core/CancelablePromise';
-import { OpenAPI } from '../core/OpenAPI';
-import { request as __request } from '../core/request';
+import type { CancelablePromise } from '../core/CancelablePromise.js';
+import { OpenAPI } from '../core/OpenAPI.js';
+import { request as __request } from '../core/request.js';
 
 export class DefaultService {
 
@@ -6269,9 +6269,9 @@ exports[`v3 should generate: ./test/generated/v3/services/DefaultsService.ts 1`]
 /* eslint-disable */
 import type { ModelWithString } from '../models/ModelWithString';
 
-import type { CancelablePromise } from '../core/CancelablePromise';
-import { OpenAPI } from '../core/OpenAPI';
-import { request as __request } from '../core/request';
+import type { CancelablePromise } from '../core/CancelablePromise.js';
+import { OpenAPI } from '../core/OpenAPI.js';
+import { request as __request } from '../core/request.js';
 
 export class DefaultsService {
 
@@ -6382,9 +6382,9 @@ exports[`v3 should generate: ./test/generated/v3/services/DeprecatedService.ts 1
 /* eslint-disable */
 import type { DeprecatedModel } from '../models/DeprecatedModel';
 
-import type { CancelablePromise } from '../core/CancelablePromise';
-import { OpenAPI } from '../core/OpenAPI';
-import { request as __request } from '../core/request';
+import type { CancelablePromise } from '../core/CancelablePromise.js';
+import { OpenAPI } from '../core/OpenAPI.js';
+import { request as __request } from '../core/request.js';
 
 export class DeprecatedService {
 
@@ -6413,9 +6413,9 @@ exports[`v3 should generate: ./test/generated/v3/services/DescriptionsService.ts
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { CancelablePromise } from '../core/CancelablePromise';
-import { OpenAPI } from '../core/OpenAPI';
-import { request as __request } from '../core/request';
+import type { CancelablePromise } from '../core/CancelablePromise.js';
+import { OpenAPI } from '../core/OpenAPI.js';
+import { request as __request } from '../core/request.js';
 
 export class DescriptionsService {
 
@@ -6461,9 +6461,9 @@ exports[`v3 should generate: ./test/generated/v3/services/DuplicateService.ts 1`
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { CancelablePromise } from '../core/CancelablePromise';
-import { OpenAPI } from '../core/OpenAPI';
-import { request as __request } from '../core/request';
+import type { CancelablePromise } from '../core/CancelablePromise.js';
+import { OpenAPI } from '../core/OpenAPI.js';
+import { request as __request } from '../core/request.js';
 
 export class DuplicateService {
 
@@ -6515,9 +6515,9 @@ exports[`v3 should generate: ./test/generated/v3/services/ErrorService.ts 1`] = 
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { CancelablePromise } from '../core/CancelablePromise';
-import { OpenAPI } from '../core/OpenAPI';
-import { request as __request } from '../core/request';
+import type { CancelablePromise } from '../core/CancelablePromise.js';
+import { OpenAPI } from '../core/OpenAPI.js';
+import { request as __request } from '../core/request.js';
 
 export class ErrorService {
 
@@ -6554,9 +6554,9 @@ exports[`v3 should generate: ./test/generated/v3/services/FormDataService.ts 1`]
 /* eslint-disable */
 import type { ModelWithString } from '../models/ModelWithString';
 
-import type { CancelablePromise } from '../core/CancelablePromise';
-import { OpenAPI } from '../core/OpenAPI';
-import { request as __request } from '../core/request';
+import type { CancelablePromise } from '../core/CancelablePromise.js';
+import { OpenAPI } from '../core/OpenAPI.js';
+import { request as __request } from '../core/request.js';
 
 export class FormDataService {
 
@@ -6588,9 +6588,9 @@ exports[`v3 should generate: ./test/generated/v3/services/HeaderService.ts 1`] =
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { CancelablePromise } from '../core/CancelablePromise';
-import { OpenAPI } from '../core/OpenAPI';
-import { request as __request } from '../core/request';
+import type { CancelablePromise } from '../core/CancelablePromise.js';
+import { OpenAPI } from '../core/OpenAPI.js';
+import { request as __request } from '../core/request.js';
 
 export class HeaderService {
 
@@ -6620,9 +6620,9 @@ exports[`v3 should generate: ./test/generated/v3/services/MultipartService.ts 1`
 /* eslint-disable */
 import type { ModelWithString } from '../models/ModelWithString';
 
-import type { CancelablePromise } from '../core/CancelablePromise';
-import { OpenAPI } from '../core/OpenAPI';
-import { request as __request } from '../core/request';
+import type { CancelablePromise } from '../core/CancelablePromise.js';
+import { OpenAPI } from '../core/OpenAPI.js';
+import { request as __request } from '../core/request.js';
 
 export class MultipartService {
 
@@ -6669,9 +6669,9 @@ exports[`v3 should generate: ./test/generated/v3/services/MultipleTags1Service.t
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { CancelablePromise } from '../core/CancelablePromise';
-import { OpenAPI } from '../core/OpenAPI';
-import { request as __request } from '../core/request';
+import type { CancelablePromise } from '../core/CancelablePromise.js';
+import { OpenAPI } from '../core/OpenAPI.js';
+import { request as __request } from '../core/request.js';
 
 export class MultipleTags1Service {
 
@@ -6705,9 +6705,9 @@ exports[`v3 should generate: ./test/generated/v3/services/MultipleTags2Service.t
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { CancelablePromise } from '../core/CancelablePromise';
-import { OpenAPI } from '../core/OpenAPI';
-import { request as __request } from '../core/request';
+import type { CancelablePromise } from '../core/CancelablePromise.js';
+import { OpenAPI } from '../core/OpenAPI.js';
+import { request as __request } from '../core/request.js';
 
 export class MultipleTags2Service {
 
@@ -6741,9 +6741,9 @@ exports[`v3 should generate: ./test/generated/v3/services/MultipleTags3Service.t
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { CancelablePromise } from '../core/CancelablePromise';
-import { OpenAPI } from '../core/OpenAPI';
-import { request as __request } from '../core/request';
+import type { CancelablePromise } from '../core/CancelablePromise.js';
+import { OpenAPI } from '../core/OpenAPI.js';
+import { request as __request } from '../core/request.js';
 
 export class MultipleTags3Service {
 
@@ -6766,9 +6766,9 @@ exports[`v3 should generate: ./test/generated/v3/services/NoContentService.ts 1`
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { CancelablePromise } from '../core/CancelablePromise';
-import { OpenAPI } from '../core/OpenAPI';
-import { request as __request } from '../core/request';
+import type { CancelablePromise } from '../core/CancelablePromise.js';
+import { OpenAPI } from '../core/OpenAPI.js';
+import { request as __request } from '../core/request.js';
 
 export class NoContentService {
 
@@ -6794,9 +6794,9 @@ exports[`v3 should generate: ./test/generated/v3/services/ParametersService.ts 1
 import type { ModelWithString } from '../models/ModelWithString';
 import type { Pageable } from '../models/Pageable';
 
-import type { CancelablePromise } from '../core/CancelablePromise';
-import { OpenAPI } from '../core/OpenAPI';
-import { request as __request } from '../core/request';
+import type { CancelablePromise } from '../core/CancelablePromise.js';
+import { OpenAPI } from '../core/OpenAPI.js';
+import { request as __request } from '../core/request.js';
 
 export class ParametersService {
 
@@ -6939,9 +6939,9 @@ exports[`v3 should generate: ./test/generated/v3/services/RequestBodyService.ts 
 /* eslint-disable */
 import type { ModelWithString } from '../models/ModelWithString';
 
-import type { CancelablePromise } from '../core/CancelablePromise';
-import { OpenAPI } from '../core/OpenAPI';
-import { request as __request } from '../core/request';
+import type { CancelablePromise } from '../core/CancelablePromise.js';
+import { OpenAPI } from '../core/OpenAPI.js';
+import { request as __request } from '../core/request.js';
 
 export class RequestBodyService {
 
@@ -6977,9 +6977,9 @@ import type { ModelThatExtends } from '../models/ModelThatExtends';
 import type { ModelThatExtendsExtends } from '../models/ModelThatExtendsExtends';
 import type { ModelWithString } from '../models/ModelWithString';
 
-import type { CancelablePromise } from '../core/CancelablePromise';
-import { OpenAPI } from '../core/OpenAPI';
-import { request as __request } from '../core/request';
+import type { CancelablePromise } from '../core/CancelablePromise.js';
+import { OpenAPI } from '../core/OpenAPI.js';
+import { request as __request } from '../core/request.js';
 
 export class ResponseService {
 
@@ -7041,9 +7041,9 @@ exports[`v3 should generate: ./test/generated/v3/services/SimpleService.ts 1`] =
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { CancelablePromise } from '../core/CancelablePromise';
-import { OpenAPI } from '../core/OpenAPI';
-import { request as __request } from '../core/request';
+import type { CancelablePromise } from '../core/CancelablePromise.js';
+import { OpenAPI } from '../core/OpenAPI.js';
+import { request as __request } from '../core/request.js';
 
 export class SimpleService {
 
@@ -7125,9 +7125,9 @@ exports[`v3 should generate: ./test/generated/v3/services/TypesService.ts 1`] = 
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { CancelablePromise } from '../core/CancelablePromise';
-import { OpenAPI } from '../core/OpenAPI';
-import { request as __request } from '../core/request';
+import type { CancelablePromise } from '../core/CancelablePromise.js';
+import { OpenAPI } from '../core/OpenAPI.js';
+import { request as __request } from '../core/request.js';
 
 export class TypesService {
 
@@ -7182,9 +7182,9 @@ exports[`v3 should generate: ./test/generated/v3/services/UploadService.ts 1`] =
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { CancelablePromise } from '../core/CancelablePromise';
-import { OpenAPI } from '../core/OpenAPI';
-import { request as __request } from '../core/request';
+import type { CancelablePromise } from '../core/CancelablePromise.js';
+import { OpenAPI } from '../core/OpenAPI.js';
+import { request as __request } from '../core/request.js';
 
 export class UploadService {
 
