@@ -1,3 +1,4 @@
+import { Enum } from '../../../client/interfaces/Enum';
 import type { Model } from '../../../client/interfaces/Model';
 import { getPattern } from '../../../utils/getPattern';
 import type { OpenApi } from '../interfaces/OpenApi';
@@ -68,6 +69,7 @@ export const getModel = (
             model.base = 'string';
             model.enum.push(...extendedEnumerators);
             model.default = getModelDefault(definition, model);
+
             return model;
         }
     }
@@ -118,7 +120,39 @@ export const getModel = (
         }
     }
 
-    if (definition.oneOf?.length) {
+    if (
+        definition.oneOf?.length &&
+        (definition.type === 'integer' || definition.type === 'string') &&
+        (typeof definition.oneOf?.at(0)?.const === 'number' || typeof definition.oneOf?.at(0)?.const === 'string')
+    ) {
+        const enumerator: Enum[] = definition.oneOf.reduce((acc, item) => {
+            if (typeof item.const === 'number') {
+                acc.push({
+                    value: String(item.const),
+                    name: `${item.title}` || `'_${item.const}'`,
+                    type: 'number',
+                    description: item.description || item.title || null,
+                });
+            } else {
+                acc.push({
+                    value: `'${item.const}'`,
+                    name: `${item.title}` || `'${item.const}'`,
+                    type: 'string',
+                    description: item.description || item.title || null,
+                });
+            }
+            return acc;
+        }, [] as Enum[]);
+        if (enumerator.length) {
+            model.export = 'enum';
+            model.type = 'string';
+            model.base = 'string';
+            model.enum.push(...enumerator);
+            model.default = getModelDefault(definition, model);
+
+            return model;
+        }
+    } else if (definition.oneOf?.length) {
         const composition = getModelComposition(openApi, definition, definition.oneOf, 'one-of', getModel);
         model.export = composition.type;
         model.imports.push(...composition.imports);
