@@ -1629,8 +1629,8 @@
                 ]
             },
             "EnumViaOneOfString": {
-                "description": "OpenApi 3.1 style numeric enum",
-                "type": "integer",
+                "description": "OpenApi 3.1 style titled enum",
+                "type": "string",
                 "oneOf": [
                     {
                         "const": "SUCCESS",
