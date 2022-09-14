@@ -9,6 +9,7 @@ import { getModelComposition } from './getModelComposition';
 import { getModelDefault } from './getModelDefault';
 import { getModelProperties } from './getModelProperties';
 import { getType } from './getType';
+import { getOneOfEnum } from "./getOneOfEnum";
 
 export const getModel = (
     openApi: OpenApi,
@@ -125,24 +126,7 @@ export const getModel = (
         (definition.type === 'integer' || definition.type === 'string') &&
         (typeof definition.oneOf?.at(0)?.const === 'number' || typeof definition.oneOf?.at(0)?.const === 'string')
     ) {
-        const enumerator: Enum[] = definition.oneOf.reduce((acc, item) => {
-            if (typeof item.const === 'number') {
-                acc.push({
-                    value: String(item.const),
-                    name: `${item.title}` || `'_${item.const}'`,
-                    type: 'number',
-                    description: item.description || item.title || null,
-                });
-            } else {
-                acc.push({
-                    value: `'${item.const}'`,
-                    name: `${item.title}` || `'${item.const}'`,
-                    type: 'string',
-                    description: item.description || item.title || null,
-                });
-            }
-            return acc;
-        }, [] as Enum[]);
+        const enumerator: Enum[] = getOneOfEnum(definition.oneOf);
         if (enumerator.length) {
             model.export = 'enum';
             model.type = 'string';
