@@ -1,5 +1,16 @@
 # OpenAPI Typescript Codegen
 
+Fork ([diff](https://github.com/ferdikoomen/openapi-typescript-codegen/compare/master...mb21:openapi-typescript-codegen:generate-custom))
+which exports a `generateCustom` function that can be used like:
+
+```js
+require('openapi-typescript-codegen').generateCustom('api.yaml', 'outputDir/', 'serviceTemplate.hbs')
+```
+
+To release a new version, run `npm run release` and push everything, including the `dist/index.js` file to GitHub.
+
+---
+
 [![NPM][npm-image]][npm-url]
 [![License][license-image]][license-url]
 [![Coverage][coverage-image]][coverage-url]

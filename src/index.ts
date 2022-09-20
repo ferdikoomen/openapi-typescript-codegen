@@ -9,6 +9,7 @@ import { postProcessClient } from './utils/postProcessClient';
 import { registerHandlebarTemplates } from './utils/registerHandlebarTemplates';
 import { writeClient } from './utils/writeClient';
 
+export { generateCustom } from './generateCustom';
 export { HttpClient } from './HttpClient';
 export { Indent } from './Indent';
 
