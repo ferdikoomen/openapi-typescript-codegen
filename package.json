@@ -121,5 +121,8 @@
     },
     "resolutions": {
         "node-fetch": "2.6.7"
+    },
+    "volta": {
+        "node": "16.17.0"
     }
 }
