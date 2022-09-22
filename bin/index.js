@@ -23,6 +23,7 @@ const params = program
     .option('--indent <value>', 'Indentation options [4, 2, tabs]', '4')
     .option('--postfix <value>', 'Service name postfix', 'Service')
     .option('--request <value>', 'Path to custom request file')
+    .option('--serviceTemplate <value>', 'Path to custom service handlebars template to generate the service files')
     .parse(process.argv)
     .opts();
 
@@ -43,6 +44,7 @@ if (OpenAPI) {
         indent: params.indent,
         postfix: params.postfix,
         request: params.request,
+        serviceTemplate: params.serviceTemplate,
     })
         .then(() => {
             process.exit(0);
