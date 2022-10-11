@@ -11,6 +11,11 @@ import type { Observable } from 'rxjs';
 {{/if}}
 
 {{/equals}}
+
+{{#equals @root.httpClient 'axios'}}
+import type { AxiosRequestConfig } from 'axios';
+{{/equals}}
+
 {{#if imports}}
 {{#each imports}}
 import type { {{{this}}} } from '../models/{{{this}}}';
@@ -81,8 +86,13 @@ export class {{{name}}}{{{@root.postfix}}} {
 	public {{{name}}}({{>parameters}}): Observable<{{>result}}> {
 		return __request(OpenAPI, this.http, {
 	{{else}}
+	{{#equals @root.httpClient 'axios'}}
+	public static {{{name}}}({{>parameters}}, additionalOptions: AxiosRequestConfig): CancelablePromise<{{>result}}> {
+		return __request(OpenAPI, {
+	{{else}}
 	public static {{{name}}}({{>parameters}}): CancelablePromise<{{>result}}> {
 		return __request(OpenAPI, {
+	{{/equals}}
 	{{/equals}}
 	{{/if}}
 			method: '{{{method}}}',
@@ -143,7 +153,11 @@ export class {{{name}}}{{{@root.postfix}}} {
 				{{/each}}
 			},
 			{{/if}}
+		{{#equals @root.httpClient 'axios'}}
+		}, additionalOptions);
+		{{else}}
 		});
+		{{/equals}}
 	}
 
 	{{/each}}
