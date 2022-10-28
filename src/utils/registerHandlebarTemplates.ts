@@ -1,4 +1,4 @@
-import Handlebars from 'handlebars/runtime';
+import HandlebarsRuntime from 'handlebars/runtime';
 
 import { HttpClient } from '../HttpClient';
 import templateClient from '../templates/client.hbs';
@@ -113,7 +113,10 @@ export const registerHandlebarTemplates = (root: {
     httpClient: HttpClient;
     useOptions: boolean;
     useUnionTypes: boolean;
+    handlebars?: typeof HandlebarsRuntime;
 }): Templates => {
+    const Handlebars = root.handlebars || HandlebarsRuntime;
+
     registerHandlebarHelpers(root);
 
     // Main templates (entry points for the files we write to disk)
