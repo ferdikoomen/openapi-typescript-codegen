@@ -16,13 +16,13 @@
 {{/if}}
  */
 {{/ifdef}}
-{{{name}}}{{>isRequired}}: {{>type}},
+{{{name}}}{{>isRequired}}: {{>typeWithOmitReadOnly httpMethod=../method}},
 {{/each}}
 }
 {{~else}}
 
 {{#each parameters}}
-{{{name}}}{{>isRequired}}: {{>type}}{{#if default}} = {{{default}}}{{/if}},
+{{{name}}}{{>isRequired}}: {{>typeWithOmitReadOnly httpMethod=../method}}{{#if default}} = {{{default}}}{{/if}},
 {{/each}}
 {{/if}}
 {{/if}}
