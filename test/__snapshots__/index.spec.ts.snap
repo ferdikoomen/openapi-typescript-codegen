@@ -3646,6 +3646,8 @@ export type { DictionaryWithProperties } from './models/DictionaryWithProperties
 export type { DictionaryWithReference } from './models/DictionaryWithReference';
 export type { DictionaryWithString } from './models/DictionaryWithString';
 export type { EnumFromDescription } from './models/EnumFromDescription';
+export { EnumViaOneOfNumeric } from './models/EnumViaOneOfNumeric';
+export { EnumViaOneOfString } from './models/EnumViaOneOfString';
 export { EnumWithExtensions } from './models/EnumWithExtensions';
 export { EnumWithNumbers } from './models/EnumWithNumbers';
 export { EnumWithStrings } from './models/EnumWithStrings';
@@ -3711,6 +3713,8 @@ export { $DictionaryWithProperties } from './schemas/$DictionaryWithProperties';
 export { $DictionaryWithReference } from './schemas/$DictionaryWithReference';
 export { $DictionaryWithString } from './schemas/$DictionaryWithString';
 export { $EnumFromDescription } from './schemas/$EnumFromDescription';
+export { $EnumViaOneOfNumeric } from './schemas/$EnumViaOneOfNumeric';
+export { $EnumViaOneOfString } from './schemas/$EnumViaOneOfString';
 export { $EnumWithExtensions } from './schemas/$EnumWithExtensions';
 export { $EnumWithNumbers } from './schemas/$EnumWithNumbers';
 export { $EnumWithStrings } from './schemas/$EnumWithStrings';
@@ -4254,6 +4258,82 @@ export type EnumFromDescription = number;
 "
 `;
 
+exports[`v3 should generate: ./test/generated/v3/models/EnumLike.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+
+/**
+ * OpenApi 3.1 style numeric enum
+ */
+export enum EnumLike {
+    /**
+    * Success
+    * /
+    SUCCESS = 0,
+    /**
+     * Warning
+     */
+    'WARNING' = 1,
+    /**
+     * Error
+     */
+    'ERROR' = 3,
+};
+
+"
+`;
+
+exports[`v3 should generate: ./test/generated/v3/models/EnumViaOneOfNumeric.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+
+/**
+ * OpenApi 3.1 style numeric enum
+ */
+export enum EnumViaOneOfNumeric {
+    /**
+     * Success
+     */
+    SUCCESS = 0,
+    /**
+     * Warning
+     */
+    WARNING = 1,
+    /**
+     * Error
+     */
+    ERROR = 3,
+}
+"
+`;
+
+exports[`v3 should generate: ./test/generated/v3/models/EnumViaOneOfString.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+
+/**
+ * OpenApi 3.1 style numeric enum
+ */
+export enum EnumViaOneOfString {
+    /**
+     * Success
+     */
+    SUCCESS = 'SUCCESS',
+    /**
+     * Warning
+     */
+    WARNING = 'SUCCESS',
+    /**
+     * Error
+     */
+    ERROR = 'SUCCESS',
+}
+"
+`;
+
 exports[`v3 should generate: ./test/generated/v3/models/EnumWithExtensions.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
@@ -4288,6 +4368,7 @@ exports[`v3 should generate: ./test/generated/v3/models/EnumWithNumbers.ts 1`] =
  * This is a simple enum with numbers
  */
 export enum EnumWithNumbers {
+    '_0' = 0,
     '_1' = 1,
     '_2' = 2,
     '_3' = 3,
@@ -5451,6 +5532,26 @@ exports[`v3 should generate: ./test/generated/v3/schemas/$EnumFromDescription.ts
 export const $EnumFromDescription = {
     type: 'number',
     description: \`Success=1,Warning=2,Error=3\`,
+} as const;
+"
+`;
+
+exports[`v3 should generate: ./test/generated/v3/schemas/$EnumViaOneOfNumeric.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+export const $EnumViaOneOfNumeric = {
+    type: 'Enum',
+} as const;
+"
+`;
+
+exports[`v3 should generate: ./test/generated/v3/schemas/$EnumViaOneOfString.ts 1`] = `
+"/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+export const $EnumViaOneOfString = {
+    type: 'Enum',
 } as const;
 "
 `;

@@ -1567,6 +1567,7 @@
             "EnumWithNumbers": {
                 "description": "This is a simple enum with numbers",
                 "enum": [
+                    0,
                     1,
                     2,
                     3,
@@ -1604,6 +1605,48 @@
                     "Used when the status of something is successful",
                     "Used when the status of something has a warning",
                     "Used when the status of something has an error"
+                ]
+            },
+            "EnumViaOneOfNumeric": {
+                "description": "OpenApi 3.1 style numeric enum",
+                "type": "integer",
+                "oneOf": [
+                    {
+                        "const": 0,
+                        "title": "SUCCESS",
+                        "description": "Success"
+                    },
+                    {
+                        "const": 1,
+                        "title": "WARNING",
+                        "description": "Warning"
+                    },
+                    {
+                        "const": 3,
+                        "title": "ERROR",
+                        "description": "Error"
+                    }
+                ]
+            },
+            "EnumViaOneOfString": {
+                "description": "OpenApi 3.1 style titled enum",
+                "type": "string",
+                "oneOf": [
+                    {
+                        "const": "SUCCESS",
+                        "title": "SUCCESS",
+                        "description": "Success"
+                    },
+                    {
+                        "const": "SUCCESS",
+                        "title": "WARNING",
+                        "description": "Warning"
+                    },
+                    {
+                        "const": "SUCCESS",
+                        "title": "ERROR",
+                        "description": "Error"
+                    }
                 ]
             },
             "ArrayWithNumbers": {

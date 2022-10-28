@@ -1,3 +1,4 @@
+import { Enum } from '../../../client/interfaces/Enum';
 import type { Model } from '../../../client/interfaces/Model';
 import { getPattern } from '../../../utils/getPattern';
 import type { OpenApi } from '../interfaces/OpenApi';
@@ -8,6 +9,7 @@ import { getModelComposition } from './getModelComposition';
 import { getModelDefault } from './getModelDefault';
 import { getModelProperties } from './getModelProperties';
 import { getType } from './getType';
+import { getOneOfEnum } from "./getOneOfEnum";
 
 export const getModel = (
     openApi: OpenApi,
@@ -68,6 +70,7 @@ export const getModel = (
             model.base = 'string';
             model.enum.push(...extendedEnumerators);
             model.default = getModelDefault(definition, model);
+
             return model;
         }
     }
@@ -118,7 +121,22 @@ export const getModel = (
         }
     }
 
-    if (definition.oneOf?.length) {
+    if (
+        definition.oneOf?.length &&
+        (definition.type === 'integer' || definition.type === 'string') &&
+        (typeof definition.oneOf?.at(0)?.const === 'number' || typeof definition.oneOf?.at(0)?.const === 'string')
+    ) {
+        const enumerator: Enum[] = getOneOfEnum(definition.oneOf);
+        if (enumerator.length) {
+            model.export = 'enum';
+            model.type = 'string';
+            model.base = 'string';
+            model.enum.push(...enumerator);
+            model.default = getModelDefault(definition, model);
+
+            return model;
+        }
+    } else if (definition.oneOf?.length) {
         const composition = getModelComposition(openApi, definition, definition.oneOf, 'one-of', getModel);
         model.export = composition.type;
         model.imports.push(...composition.imports);
