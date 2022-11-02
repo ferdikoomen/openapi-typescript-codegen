@@ -1,4 +1,5 @@
 {{>header}}
+
 import axios from 'axios';
 import type { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import FormData from 'form-data';
@@ -100,16 +101,16 @@ const jar = new CookieJar();
 axios.interceptors.response.use((response) => {
   if (Array.isArray(response.headers["set-cookie"])) {
     response.headers["set-cookie"].forEach((c) => {
-      jar.setCookie(new URL(response.config.url), c);
+      jar.setCookie(new URL(response.config.url!), c);
     });
   }
   return response;
 });
 
 axios.interceptors.request.use(function (config) {
-  const cookies = jar.getCookies(new URL(config.url));
+  const cookies = jar.getCookies(new URL(config.url!));
 
-  if (cookies?.length > 0) {
+  if (cookies?.length > 0 && config.headers) {
     config.headers.cookie = cookies.map((cookie) => `${cookie.name}=${cookie.value}`).join("; ");
   }
   return config;
@@ -196,10 +197,10 @@ export const request = <T>(config: OpenAPIConfig, options: ApiRequestOptions): C
 
 				catchErrorCodes(options, result);
 
-                // Attach the response headers to the output. This is a hack to fix
-                // https://github.com/ferdikoomen/openapi-typescript-codegen/issues/1295
-                const out = result.body;
-                out["__headers"] = response.headers;
+				// Attach the response headers to the output. This is a hack to fix
+				// https://github.com/ferdikoomen/openapi-typescript-codegen/issues/1295
+				const out = result.body;
+				out["__headers"] = response.headers;
 
 				resolve(out);
 			}
