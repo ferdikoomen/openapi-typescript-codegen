@@ -1,3 +1,7 @@
+*.swp
+/*.tgz
+release.zip
+release.tar.gz
 dist/
 node_modules
 npm-debug.log*

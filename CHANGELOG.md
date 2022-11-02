@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.24.0] - 2022-11-02
+Custom release from Aptos, the CHANGELOG has forked at this point.
+- Generated code now attaches headers to output of `request`
+
 ## [0.23.0] - 2022-06-02
 ### Fixed
 - Upgraded dependencies

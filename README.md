@@ -93,3 +93,24 @@ Support
 [downloads-image]: http://img.shields.io/npm/dm/openapi-typescript-codegen.svg
 [build-url]: https://circleci.com/gh/ferdikoomen/openapi-typescript-codegen/tree/master
 [build-image]: https://circleci.com/gh/ferdikoomen/openapi-typescript-codegen/tree/master.svg?style=svg
+
+## Release instructions
+This is for the aptos-labs fork.
+
+First, build and bundle the release:
+```
+yarn pack
+```
+
+Make a release on GH:
+```
+gh release create
+```
+Follow the information on https://github.com/aptos-labs/openapi-typescript-codegen/releases/tag/v0.24.0 as a guide.
+
+Upload the release asset:
+```
+gh release upload v0.24.0 openapi-typescript-codegen-v0.24.0.tgz
+```
+
+
