@@ -22,6 +22,7 @@ import { sortServicesByName } from './sortServicesByName';
  * @param clientName Custom client class name
  * @param indent Indentation options (4, 2 or tab)
  * @param postfix Service name postfix
+ * @param coreLocation The location of the core packages
  */
 export const writeClientClass = async (
     client: Client,
@@ -30,7 +31,8 @@ export const writeClientClass = async (
     httpClient: HttpClient,
     clientName: string,
     indent: Indent,
-    postfix: string
+    postfix: string,
+    coreLocation: string
 ): Promise<void> => {
     const templateResult = templates.client({
         clientName,
@@ -41,6 +43,7 @@ export const writeClientClass = async (
         models: sortModelsByName(client.models),
         services: sortServicesByName(client.services),
         httpRequest: getHttpRequestName(httpClient),
+        coreLocation,
     });
 
     await writeFile(resolve(outputPath, `${clientName}.ts`), i(f(templateResult), indent));

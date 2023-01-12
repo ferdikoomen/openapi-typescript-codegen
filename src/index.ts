@@ -1,7 +1,9 @@
+import { resolve } from 'path';
 import { HttpClient } from './HttpClient';
 import { Indent } from './Indent';
 import { parse as parseV2 } from './openApi/v2';
 import { parse as parseV3 } from './openApi/v3';
+import { generateCoreLocationFromOutput } from './utils/generateCoreLocation';
 import { getOpenApiSpec } from './utils/getOpenApiSpec';
 import { getOpenApiVersion, OpenApiVersion } from './utils/getOpenApiVersion';
 import { isString } from './utils/isString';
@@ -28,6 +30,7 @@ export type Options = {
     postfixModels?: string;
     request?: string;
     write?: boolean;
+    coreLocation?: string;
 };
 
 /**
@@ -49,6 +52,7 @@ export type Options = {
  * @param postfixModels Model name postfix
  * @param request Path to custom request file
  * @param write Write the files to disk (true or false)
+ * @param coreLocation The location of an alternative core package to be used when creating multiple APIs forces exportCore = false
  */
 export const generate = async ({
     input,
@@ -66,6 +70,7 @@ export const generate = async ({
     postfixModels = '',
     request,
     write = true,
+    coreLocation = undefined,
 }: Options): Promise<void> => {
     const openApi = isString(input) ? await getOpenApiSpec(input) : input;
     const openApiVersion = getOpenApiVersion(openApi);
@@ -75,6 +80,12 @@ export const generate = async ({
         useOptions,
     });
 
+    if (coreLocation && coreLocation !== '') {
+        exportCore = false;
+        coreLocation = generateCoreLocationFromOutput(coreLocation, output);
+    } else {
+        coreLocation = '../core';
+    }
     switch (openApiVersion) {
         case OpenApiVersion.V2: {
             const client = parseV2(openApi);
@@ -94,6 +105,7 @@ export const generate = async ({
                 indent,
                 postfixServices,
                 postfixModels,
+                coreLocation,
                 clientName,
                 request
             );
@@ -118,6 +130,7 @@ export const generate = async ({
                 indent,
                 postfixServices,
                 postfixModels,
+                coreLocation,
                 clientName,
                 request
             );

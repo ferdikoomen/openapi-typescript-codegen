@@ -19,6 +19,7 @@ import type { Templates } from './registerHandlebarTemplates';
  * @param useOptions Use options or arguments functions
  * @param indent Indentation options (4, 2 or tab)
  * @param postfix Service name postfix
+ * @param coreLocation The location of the core packages
  * @param clientName Custom client class name
  */
 export const writeClientServices = async (
@@ -30,6 +31,7 @@ export const writeClientServices = async (
     useOptions: boolean,
     indent: Indent,
     postfix: string,
+    coreLocation: string,
     clientName?: string
 ): Promise<void> => {
     for (const service of services) {
@@ -41,6 +43,7 @@ export const writeClientServices = async (
             useOptions,
             postfix,
             exportClient: isDefined(clientName),
+            coreLocation,
         });
         await writeFile(file, i(f(templateResult), indent));
     }

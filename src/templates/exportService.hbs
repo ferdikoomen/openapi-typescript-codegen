@@ -18,17 +18,17 @@ import type { {{{this}}} } from '../models/{{{this}}}';
 
 {{/if}}
 {{#notEquals @root.httpClient 'angular'}}
-import type { CancelablePromise } from '../core/CancelablePromise';
+import type { CancelablePromise } from '{{{coreLocation}}}/CancelablePromise';
 {{/notEquals}}
 {{#if @root.exportClient}}
 {{#equals @root.httpClient 'angular'}}
-import { BaseHttpRequest } from '../core/BaseHttpRequest';
+import { BaseHttpRequest } from '{{{coreLocation}}}/BaseHttpRequest';
 {{else}}
-import type { BaseHttpRequest } from '../core/BaseHttpRequest';
+import type { BaseHttpRequest } from '{{{coreLocation}}}/BaseHttpRequest';
 {{/equals}}
 {{else}}
-import { OpenAPI } from '../core/OpenAPI';
-import { request as __request } from '../core/request';
+import { OpenAPI } from '{{{coreLocation}}}/OpenAPI';
+import { request as __request } from '{{{coreLocation}}}/request';
 {{/if}}
 
 {{#equals @root.httpClient 'angular'}}

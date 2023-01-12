@@ -46,3 +46,26 @@ describe('v3', () => {
         });
     });
 });
+
+describe('v3WithCustomCoreLocation', () => {
+    it('should generate', async () => {
+        await generate({
+            input: './test/spec/v3.json',
+            output: './test/generated/v3WithCustomCoreLocation/',
+            httpClient: HttpClient.FETCH,
+            useOptions: false,
+            useUnionTypes: false,
+            exportCore: true,
+            exportSchemas: true,
+            exportModels: true,
+            exportServices: true,
+            postfixModels: 'Dto',
+            coreLocation: './test/generated/bin/core',
+        });
+
+        sync('./test/generated/v3WithCustomCoreLocation/**/*.ts').forEach(file => {
+            const content = readFileSync(file, 'utf8').toString();
+            expect(content).toMatchSnapshot(file);
+        });
+    });
+});

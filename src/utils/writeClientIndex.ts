@@ -21,6 +21,7 @@ import { sortServicesByName } from './sortServicesByName';
  * @param exportSchemas Generate schemas
  * @param postfixServices Service name postfix
  * @param postfixModels Model name postfix
+ * @param coreLocation The location of the core packages
  * @param clientName Custom client class name
  */
 export const writeClientIndex = async (
@@ -34,6 +35,7 @@ export const writeClientIndex = async (
     exportSchemas: boolean,
     postfixServices: string,
     postfixModels: string,
+    coreLocation: string,
     clientName?: string
 ): Promise<void> => {
     const templateResult = templates.index({
@@ -50,6 +52,7 @@ export const writeClientIndex = async (
         models: sortModelsByName(client.models),
         services: sortServicesByName(client.services),
         exportClient: isDefined(clientName),
+        coreLocation,
     });
 
     await writeFile(resolve(outputPath, 'index.ts'), templateResult);

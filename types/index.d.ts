@@ -28,6 +28,7 @@ export type Options = {
     postfixModels?: string;
     request?: string;
     write?: boolean;
+    coreLocation?: string;
 };
 
 export declare function generate(options: Options): Promise<void>;
