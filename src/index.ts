@@ -10,6 +10,7 @@ import { isString } from './utils/isString';
 import { postProcessClient } from './utils/postProcessClient';
 import { registerHandlebarTemplates } from './utils/registerHandlebarTemplates';
 import { writeClient } from './utils/writeClient';
+import { getServices } from './openApi/v3/parser/getServices';
 
 export { HttpClient } from './HttpClient';
 export { Indent } from './Indent';
@@ -142,4 +143,5 @@ export const generate = async ({
 export default {
     HttpClient,
     generate,
+    getServices,
 };
