@@ -30,7 +30,8 @@ import { writeClientServices } from './writeClientServices';
  * @param indent Indentation options (4, 2 or tab)
  * @param postfixServices Service name postfix
  * @param postfixModels Model name postfix
- * @param coreLocation The location of the core packages
+ * @param coreLocationSameLevel The location of the core packages
+ * @param coreLocationUpALevel The location of the core packages
  * @param clientName Custom client class name
  * @param request Path to custom request file
  */
@@ -48,7 +49,8 @@ export const writeClient = async (
     indent: Indent,
     postfixServices: string,
     postfixModels: string,
-    coreLocation: string,
+    coreLocationSameLevel: string,
+    coreLocationUpALevel: string,
     clientName?: string,
     request?: string
 ): Promise<void> => {
@@ -80,7 +82,8 @@ export const writeClient = async (
             useOptions,
             indent,
             postfixServices,
-            coreLocation,
+            coreLocationSameLevel,
+            coreLocationUpALevel,
             clientName
         );
     }
@@ -95,7 +98,8 @@ export const writeClient = async (
             httpClient,
             useUnionTypes,
             indent,
-            coreLocation
+            coreLocationSameLevel,
+            coreLocationUpALevel
         );
     }
 
@@ -109,7 +113,8 @@ export const writeClient = async (
             httpClient,
             useUnionTypes,
             indent,
-            coreLocation
+            coreLocationSameLevel,
+            coreLocationUpALevel
         );
     }
 
@@ -123,7 +128,8 @@ export const writeClient = async (
             clientName,
             indent,
             postfixServices,
-            coreLocation
+            coreLocationSameLevel,
+            coreLocationUpALevel
         );
     }
 
@@ -140,7 +146,8 @@ export const writeClient = async (
             exportSchemas,
             postfixServices,
             postfixModels,
-            coreLocation,
+            coreLocationSameLevel,
+            coreLocationUpALevel,
             clientName
         );
     }

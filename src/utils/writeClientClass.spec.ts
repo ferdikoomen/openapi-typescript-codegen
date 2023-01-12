@@ -44,7 +44,8 @@ describe('writeClientClass', () => {
             'AppClient',
             Indent.SPACE_4,
             '',
-            '../core'
+            '../core',
+            './core'
         );
 
         expect(writeFile).toBeCalled();

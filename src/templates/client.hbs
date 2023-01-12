@@ -4,14 +4,14 @@
 import { NgModule} from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
-import { AngularHttpRequest } from './core/AngularHttpRequest';
-import { BaseHttpRequest } from './core/BaseHttpRequest';
-import type { OpenAPIConfig } from './core/OpenAPI';
-import { OpenAPI } from './core/OpenAPI';
+import { AngularHttpRequest } from '{{{coreLocationSameLevel}}}/AngularHttpRequest';
+import { BaseHttpRequest } from '{{{coreLocationSameLevel}}}/BaseHttpRequest';
+import type { OpenAPIConfig } from '{{{coreLocationSameLevel}}}/OpenAPI';
+import { OpenAPI } from '{{{coreLocationSameLevel}}}/OpenAPI';
 {{else}}
-import type { BaseHttpRequest } from './core/BaseHttpRequest';
-import type { OpenAPIConfig } from './core/OpenAPI';
-import { {{{httpRequest}}} } from './core/{{{httpRequest}}}';
+import type { BaseHttpRequest } from '{{{coreLocationSameLevel}}}/BaseHttpRequest';
+import type { OpenAPIConfig } from '{{{coreLocationSameLevel}}}/OpenAPI';
+import { {{{httpRequest}}} } from '{{{coreLocationSameLevel}}}/{{{httpRequest}}}';
 {{/equals}}
 
 {{#if services}}

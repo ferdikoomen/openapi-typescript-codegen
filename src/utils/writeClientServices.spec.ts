@@ -48,7 +48,8 @@ describe('writeClientServices', () => {
             false,
             Indent.SPACE_4,
             'Service',
-            '../core'
+            '../core',
+            './core'
         );
 
         expect(writeFile).toBeCalledWith('/UserService.ts', `service${EOL}`);
