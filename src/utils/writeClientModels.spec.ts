@@ -51,7 +51,7 @@ describe('writeClientModels', () => {
             },
         };
 
-        await writeClientModels(models, templates, '/', HttpClient.FETCH, false, Indent.SPACE_4, '../core');
+        await writeClientModels(models, templates, '/', HttpClient.FETCH, false, Indent.SPACE_4, '../core', './core');
 
         expect(writeFile).toBeCalledWith('/User.ts', `model${EOL}`);
     });

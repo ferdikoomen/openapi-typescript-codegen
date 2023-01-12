@@ -16,7 +16,8 @@ import type { Templates } from './registerHandlebarTemplates';
  * @param httpClient The selected httpClient (fetch, xhr, node or axios)
  * @param useUnionTypes Use union types instead of enums
  * @param indent Indentation options (4, 2 or tab)
- * @param coreLocation The location of the core packages
+ * @param coreLocationSameLevel The location of the core packages
+ * @param coreLocationUpALevel The location of the core packages
  */
 export const writeClientSchemas = async (
     models: Model[],
@@ -25,7 +26,8 @@ export const writeClientSchemas = async (
     httpClient: HttpClient,
     useUnionTypes: boolean,
     indent: Indent,
-    coreLocation: string
+    coreLocationSameLevel: string,
+    coreLocationUpALevel: string
 ): Promise<void> => {
     for (const model of models) {
         const file = resolve(outputPath, `$${model.name}.ts`);
@@ -33,7 +35,8 @@ export const writeClientSchemas = async (
             ...model,
             httpClient,
             useUnionTypes,
-            coreLocation,
+            coreLocationSameLevel,
+            coreLocationUpALevel,
         });
         await writeFile(file, i(f(templateResult), indent));
     }

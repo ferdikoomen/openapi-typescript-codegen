@@ -3,7 +3,10 @@ import { HttpClient } from './HttpClient';
 import { Indent } from './Indent';
 import { parse as parseV2 } from './openApi/v2';
 import { parse as parseV3 } from './openApi/v3';
-import { generateCoreLocationFromOutput } from './utils/generateCoreLocation';
+import {
+    generateCoreLocationSameLevelFromOutput,
+    generateCoreLocationUpLevelFromOutput,
+} from './utils/generateCoreLocation';
 import { getOpenApiSpec } from './utils/getOpenApiSpec';
 import { getOpenApiVersion, OpenApiVersion } from './utils/getOpenApiVersion';
 import { isString } from './utils/isString';
@@ -81,12 +84,17 @@ export const generate = async ({
         useOptions,
     });
 
+    let coreLocationSameLevel;
+    let coreLocationUpALevel;
     if (coreLocation && coreLocation !== '') {
         exportCore = false;
-        coreLocation = generateCoreLocationFromOutput(coreLocation, output);
+        coreLocationSameLevel = generateCoreLocationSameLevelFromOutput(coreLocation, output);
+        coreLocationUpALevel = generateCoreLocationUpLevelFromOutput(coreLocation, output);
     } else {
-        coreLocation = '../core';
+        coreLocationUpALevel = '../core';
+        coreLocationSameLevel = './core';
     }
+
     switch (openApiVersion) {
         case OpenApiVersion.V2: {
             const client = parseV2(openApi);
@@ -106,7 +114,8 @@ export const generate = async ({
                 indent,
                 postfixServices,
                 postfixModels,
-                coreLocation,
+                coreLocationSameLevel,
+                coreLocationUpALevel,
                 clientName,
                 request
             );
@@ -131,7 +140,8 @@ export const generate = async ({
                 indent,
                 postfixServices,
                 postfixModels,
-                coreLocation,
+                coreLocationSameLevel,
+                coreLocationUpALevel,
                 clientName,
                 request
             );

@@ -1,6 +1,6 @@
 {
     "name": "@formatsocial/openapi-typescript-codegen",
-    "version": "0.23.0",
+    "version": "0.25.0",
     "description": "Library that generates Typescript clients based on the OpenAPI specification.",
     "author": "Ferdi Koomen",
     "repository": {

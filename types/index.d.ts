@@ -31,7 +31,25 @@ export type Options = {
     coreLocation?: string;
 };
 
+export interface OpenApi {}
+export interface Service {
+    name: string;
+    operations: Operation[];
+    imports: string[];
+}
+export interface Operation {
+    service: string;
+    name: string;
+    summary: string | null;
+    description: string | null;
+    deprecated: boolean;
+    method: string;
+    path: string;
+    responseHeader: string | null;
+}
+
 export declare function generate(options: Options): Promise<void>;
+export declare function getServices(openApi: OpenApi): Service[];
 
 declare type OpenAPI = {
     HttpClient: HttpClient;
