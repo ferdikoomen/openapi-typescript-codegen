@@ -6,7 +6,10 @@
     "homepage": "https://github.com/ferdikoomen/openapi-typescript-codegen",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/ferdikoomen/openapi-typescript-codegen.git"
+        "url": "https://github.com/formatsocial/openapi-typescript-codegen.git"
+    },
+    "publishConfig": {
+        "registry": "https://npm.pkg.github.com/formatsocial"
     },
     "bugs": {
         "url": "https://github.com/ferdikoomen/openapi-typescript-codegen/issues"
