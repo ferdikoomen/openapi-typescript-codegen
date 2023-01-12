@@ -11,6 +11,7 @@ jobs:
         env:
             GITHUB_TOKEN_CI_CD: ${{ secrets.GH_ACCESS_TOKEN }}
         steps:
+            - uses: actions/checkout@v3
             - uses: actions/setup-node@v3
               with:
                   node-version: '16.x'
@@ -29,13 +30,3 @@ jobs:
               run: make publish-node
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-            - name: Report Status
-              if: always()
-              uses: ravsamhq/notify-slack-action@v1
-              with:
-                  notification_title: 'OpenAPI typescript gen - ${GITHUB_REF_NAME}'
-                  status: ${{ job.status }}
-                  footer: '<{run_url}|View Run>'
-              env:
-                  SLACK_WEBHOOK_URL: ${{ secrets.SLACK_TOKEN }}
