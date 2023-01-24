@@ -7,7 +7,7 @@ const { program } = require('commander');
 const pkg = require('../package.json');
 
 const params = program
-    .name('openapi')
+    .name(pkg.name)
     .usage('[options]')
     .version(pkg.version)
     .requiredOption('-i, --input <value>', 'OpenAPI specification, can be a path, url or string content (required)')
