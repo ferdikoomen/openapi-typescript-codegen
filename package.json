@@ -34,7 +34,7 @@
     "main": "dist/index.js",
     "types": "types/index.d.ts",
     "bin": {
-        "openapi": "bin/index.js"
+        "openapi-typescript-codegen": "bin/index.js"
     },
     "files": [
         "bin/index.js",
