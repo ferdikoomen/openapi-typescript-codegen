@@ -31,9 +31,9 @@ npm install openapi-typescript-codegen --save-dev
 ## Usage
 
 ```
-$ openapi --help
+$ openapi-typescript-codegen --help
 
-  Usage: openapi [options]
+  Usage: openapi-typescript-codegen [options]
 
   Options:
     -V, --version             output the version number
@@ -54,8 +54,8 @@ $ openapi --help
     -h, --help                display help for command
 
   Examples
-    $ openapi --input ./spec.json --output ./generated
-    $ openapi --input ./spec.json --output ./generated --client xhr
+    $ openapi-typescript-codegen --input ./spec.json --output ./generated
+    $ openapi-typescript-codegen --input ./spec.json --output ./generated --client xhr
 ```
 
 Documentation
