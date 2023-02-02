@@ -5,16 +5,44 @@ export const getQueryString = (params: Record<string, any>): string => {
 		qs.push(`${encodeURIComponent(key)}=${encodeURIComponent(String(value))}`);
 	};
 
-	const process = (key: string, value: any) => {
+	const process = (key: string, value: any, style = 'form', explode = true) => {
 		if (isDefined(value)) {
-			if (Array.isArray(value)) {
-				value.forEach(v => {
-					process(key, v);
-				});
+			if (value instanceof SerializableParameter) {
+				process(
+					value.parameterName,
+					value.parameterValue,
+					value.style || style,
+					value.explode !== null ? value.explode : explode,
+				);
+			} else if (Array.isArray(value)) {
+				if (!explode && style === 'form') {
+					append(key, value.join(','));
+				} else if (!explode && style === 'spaceDelimited') {
+					append(key, value.join(' '));
+				} else if (!explode && style === 'pipeDelimited') {
+					append(key, value.join('|'));
+				} else {
+					value.forEach(v => {
+						process(key, v);
+					});
+				}
 			} else if (typeof value === 'object') {
-				Object.entries(value).forEach(([k, v]) => {
-					process(`${key}[${k}]`, v);
-				});
+				if (style === 'form') {
+					if (explode) {
+						Object.entries(value).forEach(([k, v]) => {
+							append(k, v);
+						});
+					} else {
+						append(
+							key,
+							Object.entries(value).map(([k, v]) => `${k},${v}`).join(',')
+						);
+					}
+				} else {
+					Object.entries(value).forEach(([k, v]) => {
+						process(`${key}[${k}]`, v);
+					});
+				}
 			} else {
 				append(key, value);
 			}

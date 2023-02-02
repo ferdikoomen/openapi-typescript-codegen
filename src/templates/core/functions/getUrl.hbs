@@ -5,7 +5,53 @@ const getUrl = (config: OpenAPIConfig, options: ApiRequestOptions): string => {
 		.replace('{api-version}', config.VERSION)
 		.replace(/{(.*?)}/g, (substring: string, group: string) => {
 			if (options.path?.hasOwnProperty(group)) {
-				return encoder(String(options.path[group]));
+				const item = options.path[group];
+				if (!(item instanceof SerializableParameter)) {
+					return encoder(String(item));
+				}
+
+				const style = item.style || 'simple';
+				const explode = item.explode || false;
+				const name = item.parameterName;
+				const value = item.parameterValue;
+
+				if (Array.isArray(value)) {
+					if (style === 'label') {
+						return encoder(`.${value.join(explode ? '.' : ',')}`);
+					} else if (style === 'matrix') {
+						if (!explode) {
+							return encoder(`;${name}=${value.join(',')}`);
+						}
+
+						return encoder(`;${value.map((v) => `${name}=${v}`).join(';')}`);
+					} else {
+						return encoder(value.join(','));
+					}
+				} else if (typeof value === 'object') {
+					const entries = Object.entries(value);
+					if (style === 'simple' && explode) {
+						return encoder(entries.map(([k, v]) => `${k}=${v}`).join(','));
+					} else if (style === 'label') {
+						return encoder(`.${entries.map(([k, v]) => `${k},${v}`).join(explode ? '.' : ',')}`);
+					} else if (style === 'matrix') {
+						if (!explode) {
+							return encoder(`;${name}=${entries.map(([k, v]) => `${k},${v}`).join(',')}`);
+						}
+
+						return encoder(`;${entries.map(([k, v]) => `${k}=${v}`).join(';')}`);
+					}
+
+					return encoder(entries.map(([k, v]) => `${k},${v}`).join(','));
+				} else {
+					const stringVal = String(value);
+					if (style === 'label') {
+						return encoder(`.${stringVal}`);
+					} else if (style === 'matrix') {
+						return encoder(`;${name}=${stringVal}`);
+					} else {
+						return encoder(stringVal);
+					}
+				}
 			}
 			return substring;
 		});

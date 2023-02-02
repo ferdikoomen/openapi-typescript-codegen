@@ -43,6 +43,8 @@ export const getOperationParameter = (openApi: OpenApi, parameter: OpenApiParame
         enums: [],
         properties: [],
         mediaType: null,
+        explode: null,
+        style: null,
     };
 
     if (parameter.$ref) {

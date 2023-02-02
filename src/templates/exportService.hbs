@@ -30,6 +30,7 @@ import type { BaseHttpRequest } from '../core/BaseHttpRequest';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 {{/if}}
+import { SerializableParameter } from '../core/SerializableParameter';
 
 {{#equals @root.httpClient 'angular'}}
 @Injectable({
@@ -92,7 +93,7 @@ export class {{{name}}}{{{@root.postfix}}} {
 			{{#if parametersPath}}
 			path: {
 				{{#each parametersPath}}
-				'{{{prop}}}': {{{name}}},
+				'{{{prop}}}': new SerializableParameter('{{{prop}}}', '{{{style}}}', {{#if explode}}true{{else}}false{{/if}}, {{{name}}}),
 				{{/each}}
 			},
 			{{/if}}
@@ -106,14 +107,14 @@ export class {{{name}}}{{{@root.postfix}}} {
 			{{#if parametersHeader}}
 			headers: {
 				{{#each parametersHeader}}
-				'{{{prop}}}': {{{name}}},
+				'{{{prop}}}': new SerializableParameter('{{{prop}}}', '{{{style}}}', {{#if explode}}true{{else}}false{{/if}}, {{{name}}}),
 				{{/each}}
 			},
 			{{/if}}
 			{{#if parametersQuery}}
 			query: {
 				{{#each parametersQuery}}
-				'{{{prop}}}': {{{name}}},
+				'{{{prop}}}': new SerializableParameter('{{{prop}}}', '{{{style}}}', {{#if explode}}true{{else}}false{{/if}}, {{{name}}}),
 				{{/each}}
 			},
 			{{/if}}
