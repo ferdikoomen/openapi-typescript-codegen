@@ -30,7 +30,7 @@ export const getOperationParameter = (openApi: OpenApi, parameter: OpenApiParame
         enums: [],
         properties: [],
         mediaType: null,
-        explode: parameter.explode || null,
+        explode: typeof parameter.explode === 'boolean' ? parameter.explode : null,
         style: (parameter.style as OperationParameter['style']) || null,
     };
 
