@@ -7413,6 +7413,96 @@ export class ParametersService {
             mediaType: 'application/json',
         });
     }
+    /**
+     * @param unstyled Unstyled path parameter
+     * @param simple Simple path parameter
+     * @param simpleExploded Simple & exploded path parameter
+     * @param label Label path parameter
+     * @param labelExploded Label & exploded path parameter
+     * @param matrix Matrix path parameter
+     * @param matrixExploded Matrix & exploded path parameter
+     * @throws ApiError
+     */
+    public static getCallWithStyledPathParameters(
+        unstyled: any,
+        simple: any,
+        simpleExploded: any,
+        label: any,
+        labelExploded: any,
+        matrix: any,
+        matrixExploded: any,
+    ): CancelablePromise<void> {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/api/v{api-version}/parameters/{unstyled}/{simple}/{simpleExploded}/{label}/{labelExploded}/{matrix}/{matrixExploded}',
+            path: {
+                'unstyled': new SerializableParameter('unstyled', '', false, unstyled),
+                'simple': new SerializableParameter('simple', 'simple', false, simple),
+                'simpleExploded': new SerializableParameter('simpleExploded', 'simple', true, simpleExploded),
+                'label': new SerializableParameter('label', 'label', false, label),
+                'labelExploded': new SerializableParameter('labelExploded', 'label', true, labelExploded),
+                'matrix': new SerializableParameter('matrix', 'matrix', false, matrix),
+                'matrixExploded': new SerializableParameter('matrixExploded', 'matrix', true, matrixExploded),
+            },
+        });
+    }
+    /**
+     * @param unstyled Unstyled query parameter
+     * @param form Form query parameter
+     * @param formExploded Form & exploded query parameter
+     * @param spaceDelimited SpaceDelimited query parameter
+     * @param spaceDelimitedExploded SpaceDelimited & exploded query parameter
+     * @param pipeDelimited PipeDelimited query parameter
+     * @param pipeDelimitedExploded PipeDelimited & exploded query parameter
+     * @param deepObject DeepObject query parameter
+     * @throws ApiError
+     */
+    public static getCallWithStyledQueryParameters(
+        unstyled?: any,
+        form?: any,
+        formExploded?: any,
+        spaceDelimited?: any,
+        spaceDelimitedExploded?: any,
+        pipeDelimited?: any,
+        pipeDelimitedExploded?: any,
+        deepObject?: any,
+    ): CancelablePromise<void> {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/api/v{api-version}/parameters/styledQuery',
+            query: {
+                'unstyled': new SerializableParameter('unstyled', '', false, unstyled),
+                'form': new SerializableParameter('form', 'form', false, form),
+                'formExploded': new SerializableParameter('formExploded', 'form', true, formExploded),
+                'spaceDelimited': new SerializableParameter('spaceDelimited', 'spaceDelimited', false, spaceDelimited),
+                'spaceDelimitedExploded': new SerializableParameter('spaceDelimitedExploded', 'spaceDelimited', true, spaceDelimitedExploded),
+                'pipeDelimited': new SerializableParameter('pipeDelimited', 'pipeDelimited', false, pipeDelimited),
+                'pipeDelimitedExploded': new SerializableParameter('pipeDelimitedExploded', 'pipeDelimited', true, pipeDelimitedExploded),
+                'deepObject': new SerializableParameter('deepObject', 'deepObject', true, deepObject),
+            },
+        });
+    }
+    /**
+     * @param unstyled Unstyled header parameter
+     * @param simple Simple header parameter
+     * @param simpleExploded Simple & exploded header parameter
+     * @throws ApiError
+     */
+    public static getCallWithStyledHeaderParameters(
+        unstyled?: any,
+        simple?: any,
+        simpleExploded?: any,
+    ): CancelablePromise<void> {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/api/v{api-version}/parameters/styledHeader',
+            headers: {
+                'unstyled': new SerializableParameter('unstyled', '', false, unstyled),
+                'simple': new SerializableParameter('simple', 'simple', false, simple),
+                'simpleExploded': new SerializableParameter('simpleExploded', 'simple', true, simpleExploded),
+            },
+        });
+    }
 }
 "
 `;
