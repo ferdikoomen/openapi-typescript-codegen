@@ -17,7 +17,7 @@ const serializeHeaders = (headers?: Record<string, any>): Record<string, any> | 
 		if (Array.isArray(value)) {
 			out[hKey] = value.join(',');
 		} else if (typeof value === 'object') {
-			if (explode) {
+			if (!explode) {
 				out[hKey] = Object.entries(value).map(([k, v]) => `${k},${v}`).join(',');
 				return;
 			}
