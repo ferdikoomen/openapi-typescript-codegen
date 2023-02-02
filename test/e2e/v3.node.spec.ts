@@ -147,6 +147,6 @@ describe('v3.node', () => {
             size: 1,
             sort: ['location'],
         })) as Promise<any>;
-        expect((result as any).query).toStrictEqual({ parameter: { page: '0', size: '1', sort: 'location' } });
+        expect((result as any).query).toStrictEqual({ page: '0', size: '1', sort: 'location' });
     });
 });
