@@ -1,9 +1,9 @@
-const serializeHeaders = (headers?: Record<string, any>): Record<string, string> | undefined => {
+const serializeHeaders = (headers?: Record<string, any>): Record<string, any> | undefined => {
 	if (!headers) {
 		return headers;
 	}
 
-	const out = {};
+	const out: Record<string, any> = {};
 
 	Object.entries(headers).forEach(([hKey, hValue]) => {
 		if (!(hValue instanceof SerializableParameter)) {
