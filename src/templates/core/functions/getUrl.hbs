@@ -32,7 +32,11 @@ const getUrl = (config: OpenAPIConfig, options: ApiRequestOptions): string => {
 					if (style === 'simple' && explode) {
 						return encoder(entries.map(([k, v]) => `${k}=${v}`).join(','));
 					} else if (style === 'label') {
-						return encoder(`.${entries.map(([k, v]) => `${k},${v}`).join(explode ? '.' : ',')}`);
+						if (!explode) {
+							return encoder(`.${entries.map(([k, v]) => `${k},${v}`).join(',')}`);
+						}
+
+						return encoder(`.${entries.map(([k, v]) => `${k}=${v}`).join('.')}`);
 					} else if (style === 'matrix') {
 						if (!explode) {
 							return encoder(`;${name}=${entries.map(([k, v]) => `${k},${v}`).join(',')}`);
