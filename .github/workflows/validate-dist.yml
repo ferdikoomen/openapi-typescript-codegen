@@ -1,0 +1,16 @@
+name: Build and validate dist files
+
+on: pull_request
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+        - uses: actions/checkout@v3
+        - uses: actions/setup-node@v3
+        - name: Install node modules
+          run: npm install
+        - name: Build
+          run: npm run build
+        - name: Check that new build is the one committed
+          run: git diff --exit-code
