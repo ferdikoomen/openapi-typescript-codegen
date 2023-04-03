@@ -1,6 +1,7 @@
 import { resolve } from 'path';
 
 import type { Client } from '../client/interfaces/Client';
+import { Case } from '../Case';
 import type { HttpClient } from '../HttpClient';
 import type { Indent } from '../Indent';
 import { mkdir, rmdir } from './fileSystem';
@@ -30,6 +31,7 @@ import { writeClientServices } from './writeClientServices';
  * @param indent Indentation options (4, 2 or tab)
  * @param postfixServices Service name postfix
  * @param postfixModels Model name postfix
+ * @param transformModelCase Transform model case (camel, snake)
  * @param clientName Custom client class name
  * @param request Path to custom request file
  */
@@ -47,6 +49,7 @@ export const writeClient = async (
     indent: Indent,
     postfixServices: string,
     postfixModels: string,
+    transformModelCase: Case,
     clientName?: string,
     request?: string
 ): Promise<void> => {
@@ -91,7 +94,15 @@ export const writeClient = async (
     if (exportModels) {
         await rmdir(outputPathModels);
         await mkdir(outputPathModels);
-        await writeClientModels(client.models, templates, outputPathModels, httpClient, useUnionTypes, indent);
+        await writeClientModels(
+            client.models,
+            templates,
+            outputPathModels,
+            httpClient,
+            useUnionTypes,
+            indent,
+            transformModelCase
+        );
     }
 
     if (isDefined(clientName)) {

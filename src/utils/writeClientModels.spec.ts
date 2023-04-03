@@ -1,6 +1,7 @@
 import { EOL } from 'os';
 import { resolve } from 'path';
 
+import { Case } from '../Case';
 import type { Model } from '../client/interfaces/Model';
 import { HttpClient } from '../HttpClient';
 import { Indent } from '../Indent';
@@ -52,7 +53,7 @@ describe('writeClientModels', () => {
             },
         };
 
-        await writeClientModels(models, templates, '/', HttpClient.FETCH, false, Indent.SPACE_4);
+        await writeClientModels(models, templates, '/', HttpClient.FETCH, false, Indent.SPACE_4, Case.NONE);
 
         expect(writeFile).toBeCalledWith(resolve('/', '/User.ts'), `model${EOL}`);
     });
