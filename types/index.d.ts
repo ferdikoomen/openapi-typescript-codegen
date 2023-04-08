@@ -19,6 +19,7 @@ export type Options = {
     clientName?: string;
     useOptions?: boolean;
     useUnionTypes?: boolean;
+    useNullForNoContent?: boolean;
     exportCore?: boolean;
     exportServices?: boolean;
     exportModels?: boolean;
