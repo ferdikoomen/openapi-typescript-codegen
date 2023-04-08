@@ -26,7 +26,8 @@ export const writeClientCore = async (
     httpClient: HttpClient,
     indent: Indent,
     clientName?: string,
-    request?: string
+    request?: string,
+    useNullForNoContent: boolean,
 ): Promise<void> => {
     const httpRequest = getHttpRequestName(httpClient);
     const context = {
@@ -35,6 +36,7 @@ export const writeClientCore = async (
         httpRequest,
         server: client.server,
         version: client.version,
+        useNullForNoContent,
     };
 
     await writeFile(resolve(outputPath, 'OpenAPI.ts'), i(templates.core.settings(context), indent));

@@ -15,5 +15,9 @@ const getResponseBody = (xhr: XMLHttpRequest): any => {
 			console.error(error);
 		}
 	}
+	{{#if @root.useNullForNoContent}}
+	return null;
+	{{else}}
 	return undefined;
+	{{/if}}
 };

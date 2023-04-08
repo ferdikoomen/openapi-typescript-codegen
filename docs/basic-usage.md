@@ -13,6 +13,7 @@ $ openapi --help
     --name <value>            Custom client class name
     --useOptions              Use options instead of arguments
     --useUnionTypes           Use union types instead of enums
+    --useNullForNoContent     Use null for returning instead of undefined if a response returns 204 no content
     --exportCore <value>      Write core files to disk (default: true)
     --exportServices <value>  Write services to disk (default: true)
     --exportModels <value>    Write models to disk (default: true)

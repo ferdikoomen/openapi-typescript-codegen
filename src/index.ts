@@ -19,6 +19,7 @@ export type Options = {
     clientName?: string;
     useOptions?: boolean;
     useUnionTypes?: boolean;
+    useNullForNoContent?: boolean;
     exportCore?: boolean;
     exportServices?: boolean;
     exportModels?: boolean;
@@ -40,6 +41,7 @@ export type Options = {
  * @param clientName Custom client class name
  * @param useOptions Use options or arguments functions
  * @param useUnionTypes Use union types instead of enums
+ * @param useNullForNoContent Use null for no content responses
  * @param exportCore Generate core client classes
  * @param exportServices Generate services
  * @param exportModels Generate models
@@ -57,6 +59,7 @@ export const generate = async ({
     clientName,
     useOptions = false,
     useUnionTypes = false,
+    useNullForNoContent = false,
     exportCore = true,
     exportServices = true,
     exportModels = true,
@@ -72,6 +75,7 @@ export const generate = async ({
     const templates = registerHandlebarTemplates({
         httpClient,
         useUnionTypes,
+        useNullForNoContent,
         useOptions,
     });
 
@@ -87,6 +91,7 @@ export const generate = async ({
                 httpClient,
                 useOptions,
                 useUnionTypes,
+                useNullForNoContent,
                 exportCore,
                 exportServices,
                 exportModels,
@@ -111,6 +116,7 @@ export const generate = async ({
                 httpClient,
                 useOptions,
                 useUnionTypes,
+                useNullForNoContent,
                 exportCore,
                 exportServices,
                 exportModels,

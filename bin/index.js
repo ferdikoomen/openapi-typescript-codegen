@@ -16,6 +16,7 @@ const params = program
     .option('--name <value>', 'Custom client class name')
     .option('--useOptions', 'Use options instead of arguments')
     .option('--useUnionTypes', 'Use union types instead of enums')
+    .option('--useNullForNoContent', 'Use null for returning instead of undefined if a response returns 204 no content')
     .option('--exportCore <value>', 'Write core files to disk', true)
     .option('--exportServices <value>', 'Write services to disk', true)
     .option('--exportModels <value>', 'Write models to disk', true)
@@ -38,6 +39,7 @@ if (OpenAPI) {
         clientName: params.name,
         useOptions: params.useOptions,
         useUnionTypes: params.useUnionTypes,
+        useNullForNoContent: params.useNullForNoContent,
         exportCore: JSON.parse(params.exportCore) === true,
         exportServices: JSON.parse(params.exportServices) === true,
         exportModels: JSON.parse(params.exportModels) === true,

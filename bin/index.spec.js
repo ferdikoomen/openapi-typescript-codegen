@@ -24,6 +24,7 @@ describe('bin', () => {
             'fetch',
             '--useOptions',
             '--useUnionTypes',
+            '--useNullForNoContent',
             '--exportCore',
             'true',
             '--exportServices',
