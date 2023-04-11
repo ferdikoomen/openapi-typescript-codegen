@@ -23,7 +23,8 @@ const params = program
     .option('--exportIndex <value>', 'Write Index to disk', true)
     .option('--exportSchemas <value>', 'Write schemas to disk', false)
     .option('--indent <value>', 'Indentation options [4, 2, tabs]', '4')
-    .option('--postfix <value>', 'Service name postfix', 'Service')
+    .option('--postfixServices <value>', 'Service name postfix', 'Service')
+    .option('--postfixModels <value>', 'Model name postfix')
     .option('--request <value>', 'Path to custom request file')
     .option('--serviceTemplate <value>', 'Path to custom service handlebars template to generate the service files')
     .option('--clientTemplate <value>', 'Path to custom client handlebars template to generate the client file')
@@ -48,7 +49,8 @@ if (OpenAPI) {
         exportIndex: JSON.parse(params.exportIndex) === true,
         exportSchemas: JSON.parse(params.exportSchemas) === true,
         indent: params.indent,
-        postfix: params.postfix,
+        postfixServices: params.postfixServices,
+        postfixModels: params.postfixModels,
         request: params.request,
         serviceTemplate: params.serviceTemplate,
         clientTemplate: params.clientTemplate,
