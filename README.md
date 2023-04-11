@@ -1,19 +1,5 @@
 # OpenAPI Typescript Codegen
 
-Fork ([diff](https://github.com/ferdikoomen/openapi-typescript-codegen/compare/master...mb21:openapi-typescript-codegen:generate-custom))
-which adds a `--serviceTemplate` option.
-
-Can be used in another project by adding to `package.json`::
-
-```json
-"openapi-typescript-codegen": "https://github.com/mb21/openapi-typescript-codegen.git#generate-custom",
-```
-
-To release a new version, run `npm run release` and push everything, including the `dist/index.js` file to GitHub. Then, in the project using it, delete the
-`openapi-typescript-codegen` entry in the `package-lock.json` and run `npm install` to install the new version.
-
----
-
 [![NPM][npm-image]][npm-url]
 [![License][license-image]][license-url]
 [![Coverage][coverage-image]][coverage-url]
@@ -64,7 +50,9 @@ $ openapi --help
     --postfixServices         Service name postfix (default: "Service")
     --postfixModels           Model name postfix
     --request <value>         Path to custom request file
-    --serviceTemplate         Path to custom service handlebars template to generate the service files
+    --serviceTemplate <value> Path to custom service handlebars template to generate the service files
+    --clientTemplate <value>  Path to custom client handlebars template to generate the client file
+    --indexTemplate <value>   Path to custom index handlebars template to generate the index file
     -h, --help                display help for command
 
   Examples

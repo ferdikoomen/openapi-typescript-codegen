@@ -147,7 +147,7 @@ export const generate = async ({
         }
     }
 
-    if (serviceTemplate) {
+    if (serviceTemplate)
         await writeClientServicesCustomTemplate(
             clientFinal,
             output,
@@ -160,8 +160,8 @@ export const generate = async ({
             exportClient,
             clientName
         );
-    }
-    if (clientTemplate) {
+
+    if (clientTemplate)
         await writeClientClassCustomTemplate(
             clientFinal,
             output,
@@ -173,8 +173,8 @@ export const generate = async ({
             clientTemplate,
             clientName
         );
-    }
-    if (indexTemplate) {
+
+    if (indexTemplate)
         await writeClientIndexCustomTemplate(
             clientFinal,
             output,
@@ -192,7 +192,6 @@ export const generate = async ({
             exportClient,
             clientName
         );
-    }
 };
 
 export default {
