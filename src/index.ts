@@ -155,7 +155,7 @@ export const generate = async ({
             useOptions,
             useUnionTypes,
             indent,
-            postfix,
+            postfixServices,
             serviceTemplate,
             exportClient,
             clientName
@@ -169,7 +169,7 @@ export const generate = async ({
             useOptions,
             useUnionTypes,
             indent,
-            postfix,
+            postfixServices,
             clientTemplate,
             clientName
         );
@@ -182,7 +182,8 @@ export const generate = async ({
             useOptions,
             useUnionTypes,
             indent,
-            postfix,
+            postfixServices,
+            postfixModels,
             indexTemplate,
             exportCore,
             exportServices,
