@@ -2,13 +2,14 @@ import { mkdir, readFile, remove } from 'fs-extra';
 import Handlebars from 'handlebars';
 import { resolve } from 'path';
 
-import { Client } from '../client/interfaces/Client';
-import { HttpClient } from '../HttpClient';
-import { Indent } from '../Indent';
-import { writeFile } from './fileSystem';
-import { formatCode } from './formatCode';
-import { formatIndentation } from './formatIndentation';
-import { registerHandlebarTemplates } from './registerHandlebarTemplates';
+import { Client } from '../../client/interfaces/Client';
+import { HttpClient } from '../../HttpClient';
+import { Indent } from '../../Indent';
+import { writeFile } from '../fileSystem';
+import { formatCode as f } from '../formatCode';
+import { formatIndentation as i } from '../formatIndentation';
+import { isDefined } from '../isDefined.js';
+import { registerHandlebarTemplates } from '../registerHandlebarTemplates';
 
 export const writeClientServicesCustomTemplate = async (
     client: Client,
@@ -18,7 +19,9 @@ export const writeClientServicesCustomTemplate = async (
     useUnionTypes: boolean,
     indent: Indent,
     postfix: string,
-    templatePath: string
+    templatePath: string,
+    exportClient: boolean,
+    clientName?: string
 ) => {
     registerHandlebarTemplates({
         httpClient,
@@ -45,7 +48,8 @@ export const writeClientServicesCustomTemplate = async (
             useUnionTypes,
             useOptions,
             postfix,
+            exportClient: isDefined(clientName) && exportClient,
         });
-        await writeFile(file, formatIndentation(formatCode(templateResult), indent));
+        await writeFile(file, i(f(templateResult), indent));
     }
 };

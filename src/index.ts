@@ -8,7 +8,9 @@ import { isString } from './utils/isString';
 import { postProcessClient } from './utils/postProcessClient';
 import { registerHandlebarTemplates } from './utils/registerHandlebarTemplates';
 import { writeClient } from './utils/writeClient';
-import { writeClientServicesCustomTemplate } from './utils/writeClientServicesCustomTemplate';
+import { writeClientClassCustomTemplate } from './utils/writeClientCustomTemplate/clientClass';
+import { writeClientIndexCustomTemplate } from './utils/writeClientCustomTemplate/index';
+import { writeClientServicesCustomTemplate } from './utils/writeClientCustomTemplate/services';
 
 export { HttpClient } from './HttpClient';
 export { Indent } from './Indent';
@@ -23,11 +25,15 @@ export type Options = {
     exportCore?: boolean;
     exportServices?: boolean;
     exportModels?: boolean;
+    exportClient?: boolean;
+    exportIndex?: boolean;
     exportSchemas?: boolean;
     indent?: Indent;
     postfix?: string;
     request?: string;
     serviceTemplate?: string;
+    clientTemplate?: string;
+    indexTemplate?: string;
     write?: boolean;
 };
 
@@ -60,11 +66,15 @@ export const generate = async ({
     exportCore = true,
     exportServices = true,
     exportModels = true,
+    exportClient = true,
+    exportIndex = true,
     exportSchemas = false,
     indent = Indent.SPACE_4,
     postfix = 'Service',
     request,
     serviceTemplate,
+    clientTemplate,
+    indexTemplate,
     write = true,
 }: Options): Promise<void> => {
     const openApi = isString(input) ? await getOpenApiSpec(input) : input;
@@ -75,9 +85,9 @@ export const generate = async ({
         useOptions,
     });
 
-    if (serviceTemplate) {
-        exportServices = false;
-    }
+    if (serviceTemplate) exportServices = false;
+    if (clientTemplate) exportClient = false;
+    if (indexTemplate) exportIndex = false;
 
     let clientFinal;
     switch (openApiVersion) {
@@ -95,6 +105,8 @@ export const generate = async ({
                 exportCore,
                 exportServices,
                 exportModels,
+                exportClient,
+                exportIndex,
                 exportSchemas,
                 indent,
                 postfix,
@@ -118,6 +130,8 @@ export const generate = async ({
                 exportCore,
                 exportServices,
                 exportModels,
+                exportClient,
+                exportIndex,
                 exportSchemas,
                 indent,
                 postfix,
@@ -137,7 +151,40 @@ export const generate = async ({
             useUnionTypes,
             indent,
             postfix,
-            serviceTemplate
+            serviceTemplate,
+            exportClient,
+            clientName
+        );
+    }
+    if (clientTemplate) {
+        await writeClientClassCustomTemplate(
+            clientFinal,
+            output,
+            httpClient,
+            useOptions,
+            useUnionTypes,
+            indent,
+            postfix,
+            clientTemplate,
+            clientName
+        );
+    }
+    if (indexTemplate) {
+        await writeClientIndexCustomTemplate(
+            clientFinal,
+            output,
+            httpClient,
+            useOptions,
+            useUnionTypes,
+            indent,
+            postfix,
+            indexTemplate,
+            exportCore,
+            exportServices,
+            exportModels,
+            exportSchemas,
+            exportClient,
+            clientName
         );
     }
 };

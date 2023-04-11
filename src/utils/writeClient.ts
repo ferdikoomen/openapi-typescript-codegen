@@ -42,6 +42,8 @@ export const writeClient = async (
     exportCore: boolean,
     exportServices: boolean,
     exportModels: boolean,
+    exportClient: boolean,
+    exportIndex: boolean,
     exportSchemas: boolean,
     indent: Indent,
     postfix: string,
@@ -92,12 +94,12 @@ export const writeClient = async (
         await writeClientModels(client.models, templates, outputPathModels, httpClient, useUnionTypes, indent);
     }
 
-    if (isDefined(clientName)) {
+    if (isDefined(clientName) && exportClient) {
         await mkdir(outputPath);
         await writeClientClass(client, templates, outputPath, httpClient, clientName, indent, postfix);
     }
 
-    if (exportCore || exportServices || exportSchemas || exportModels) {
+    if ((exportCore || exportServices || exportSchemas || exportModels) && exportIndex) {
         await mkdir(outputPath);
         await writeClientIndex(
             client,

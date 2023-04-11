@@ -19,11 +19,15 @@ const params = program
     .option('--exportCore <value>', 'Write core files to disk', true)
     .option('--exportServices <value>', 'Write services to disk', true)
     .option('--exportModels <value>', 'Write models to disk', true)
+    .option('--exportClient <value>', 'Write main Client file to disk', true)
+    .option('--exportIndex <value>', 'Write Index to disk', true)
     .option('--exportSchemas <value>', 'Write schemas to disk', false)
     .option('--indent <value>', 'Indentation options [4, 2, tabs]', '4')
     .option('--postfix <value>', 'Service name postfix', 'Service')
     .option('--request <value>', 'Path to custom request file')
     .option('--serviceTemplate <value>', 'Path to custom service handlebars template to generate the service files')
+    .option('--clientTemplate <value>', 'Path to custom client handlebars template to generate the client file')
+    .option('--indexTemplate <value>', 'Path to custom index handlebars template to generate the index file')
     .parse(process.argv)
     .opts();
 
@@ -40,11 +44,15 @@ if (OpenAPI) {
         exportCore: JSON.parse(params.exportCore) === true,
         exportServices: JSON.parse(params.exportServices) === true,
         exportModels: JSON.parse(params.exportModels) === true,
+        exportClient: JSON.parse(params.exportClient) === true,
+        exportIndex: JSON.parse(params.exportIndex) === true,
         exportSchemas: JSON.parse(params.exportSchemas) === true,
         indent: params.indent,
         postfix: params.postfix,
         request: params.request,
         serviceTemplate: params.serviceTemplate,
+        clientTemplate: params.clientTemplate,
+        indexTemplate: params.indexTemplate,
     })
         .then(() => {
             process.exit(0);
