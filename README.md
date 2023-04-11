@@ -17,6 +17,7 @@ To release a new version, run `npm run release` and push everything, including t
 [![NPM][npm-image]][npm-url]
 [![License][license-image]][license-url]
 [![Coverage][coverage-image]][coverage-url]
+[![Coverage][coverage-image]][coverage-url]
 [![Downloads][downloads-image]][downloads-url]
 [![Build][build-image]][build-url]
 
@@ -69,6 +70,21 @@ $ openapi --help
   Examples
     $ openapi --input ./spec.json --output ./generated
     $ openapi --input ./spec.json --output ./generated --client xhr
+```
+
+## Docker usage
+
+To build the Docker container, execute the following command:
+
+```
+docker build . --tag openapi-typescript-codegen
+```
+
+After this is done, you can execute the CLI commands:
+
+```
+docker run openapi-typescript-codegen --help
+docker run openapi-typescript-codegen --input sample.yaml --output client
 ```
 
 Documentation
