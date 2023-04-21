@@ -42,9 +42,8 @@ export const writeClientIndexCustomTemplate = async (
 
     const indexTemplate = Handlebars.compile(await readFile(templatePath, 'utf8'));
 
-    const dir = resolve(outputPath);
+    const dir = resolve(outputPath, 'index.ts');
     await remove(dir);
-    await mkdir(dir);
 
     const templateResult = indexTemplate({
         serviceBaseUrl: client.server,
