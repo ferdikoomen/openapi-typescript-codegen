@@ -1,4 +1,4 @@
-import { mkdir, readFile, remove } from 'fs-extra';
+import { readFile, remove } from 'fs-extra';
 import Handlebars from 'handlebars';
 import { resolve } from 'path';
 

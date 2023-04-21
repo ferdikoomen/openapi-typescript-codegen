@@ -1,4 +1,4 @@
-import { mkdir, readFile, remove } from 'fs-extra';
+import { readFile, remove } from 'fs-extra';
 import Handlebars from 'handlebars';
 import { resolve } from 'path';
 
@@ -36,9 +36,8 @@ export const writeClientClassCustomTemplate = async (
 
     const clientClassTemplate = Handlebars.compile(await readFile(templatePath, 'utf8'));
 
-    const clientClassDir = resolve(outputPath, 'clientClass');
-    await remove(clientClassDir);
-    await mkdir(clientClassDir);
+    const clientClassFile = resolve(outputPath, `${clientName}.ts`);
+    await remove(clientClassFile);
 
     const templateResult = clientClassTemplate({
         clientName,
