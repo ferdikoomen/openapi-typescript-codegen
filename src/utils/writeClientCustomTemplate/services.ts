@@ -18,9 +18,12 @@ export const writeClientServicesCustomTemplate = async (
     useOptions: boolean,
     useUnionTypes: boolean,
     indent: Indent,
-    postfix: string,
+    postfixServices: string,
+    postfixModels: string,
     templatePath: string,
     exportClient: boolean,
+    exportModels: boolean,
+    exportSchemas: boolean,
     clientName?: string
 ) => {
     registerHandlebarTemplates({
@@ -40,15 +43,18 @@ export const writeClientServicesCustomTemplate = async (
     await mkdir(servicesDir);
 
     for (const service of client.services) {
-        const file = resolve(outputPath, `services/${service.name}${postfix}.ts`);
+        const file = resolve(outputPath, `services/${service.name}${postfixServices}.ts`);
         const templateResult = serviceTemplate({
             ...service,
             serviceBaseUrl: client.server,
             httpClient,
             useUnionTypes,
             useOptions,
-            postfix,
+            postfixServices,
+            postfixModels,
             exportClient: isDefined(clientName) && exportClient,
+            exportModels,
+            exportSchemas,
         });
         await writeFile(file, i(f(templateResult), indent));
     }
