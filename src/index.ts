@@ -88,10 +88,6 @@ export const generate = async ({
         useOptions,
     });
 
-    if (serviceTemplate) exportServices = false;
-    if (clientTemplate) exportClient = false;
-    if (indexTemplate) exportIndex = false;
-
     let clientFinal;
     switch (openApiVersion) {
         case OpenApiVersion.V2: {
