@@ -1,4 +1,5 @@
-const getResponseBody = <T>(response: HttpResponse<T>): T | {{#if @root.useNullForNoContent}}null{{else}}undefined{{/if}} => {
+export const getResponseBody = <T>(response: HttpResponse<T>): T | {{#if @root.useNullForNoContent}}null{{else}}undefined{{/if}} => {
+
 	if (response.status !== 204 && response.body !== null) {
 		return response.body;
 	}
