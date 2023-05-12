@@ -6,6 +6,8 @@ import {
   {{{transformResFuncName}}} as transformResponse
 } from '{{{transformFuncPath}}}';
 import { inject, injectable } from 'tsyringe';
+import { ErrorResponse } from '@digital/domain/models/api/error-response';
+import { IcHttpResponse } from '@digital/ic-digital-core';
 
 @injectable()
 export class RouteHandler {
@@ -17,9 +19,21 @@ export class RouteHandler {
 
   private async applyTransforms(req, reply, handlerFunc) {
     const transformedRequest = transformRequest(req);
-    const handlerResponse = await handlerFunc(transformedRequest);
-    const transformedResponse = transformResponse(handlerResponse, reply);
-    return transformedResponse;
+
+    try {
+      const handlerResponse = await handlerFunc(transformedRequest);
+      const transformedResponse = transformResponse(handlerResponse, reply);
+      return transformedResponse;
+    } catch (e) {
+      const error = e as IcHttpResponse<any>;
+
+      throw {
+        timestamp: new Date().toISOString(),
+        message: error?.message,
+        body: error?.body || {},
+        statusCode: error?.status
+      } as ErrorResponse;
+    }
   }
 
 {{#each services}}
