@@ -1,6 +1,6 @@
 {
     "name": "@yrefaeli/openapi-typescript-codegen",
-    "version": "0.2.10",
+    "version": "0.2.11",
     "description": "Library that generates Typescript clients based on the OpenAPI specification.",
     "author": "Yon Refaeli",
     "homepage": "https://github.com/yrefaeli/openapi-typescript-codegen",
