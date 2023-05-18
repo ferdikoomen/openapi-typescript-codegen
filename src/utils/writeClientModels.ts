@@ -1,6 +1,7 @@
 import { resolve } from 'path';
 
 import type { Model } from '../client/interfaces/Model';
+import { Case, convertModelNames } from '../Case';
 import type { HttpClient } from '../HttpClient';
 import type { Indent } from '../Indent';
 import { writeFile } from './fileSystem';
@@ -23,12 +24,14 @@ export const writeClientModels = async (
     outputPath: string,
     httpClient: HttpClient,
     useUnionTypes: boolean,
-    indent: Indent
+    indent: Indent,
+    transformModelCase: Case
 ): Promise<void> => {
     for (const model of models) {
+        const newModel = transformModelCase === Case.NONE ? model : convertModelNames(model, transformModelCase);
         const file = resolve(outputPath, `${model.name}.ts`);
         const templateResult = templates.exports.model({
-            ...model,
+            ...newModel,
             httpClient,
             useUnionTypes,
         });
