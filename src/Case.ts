@@ -1,3 +1,4 @@
+import { Enum } from './client/interfaces/Enum';
 import { Model } from './client/interfaces/Model';
 
 export enum Case {
@@ -23,16 +24,19 @@ const transforms = {
 // A recursive function that looks at the models and their properties and
 // converts each property name using the provided transform function.
 export const convertModelNames = (model: Model, type: Exclude<Case, Case.NONE>): Model => {
-    if (!model.properties.length) {
-        return {
-            ...model,
-            name: transforms[type](model.name),
-        };
-    }
     return {
         ...model,
-        properties: model.properties.map(property => {
-            return convertModelNames(property, type);
-        }),
+        name: transforms[type](model.name),
+        link: model.link ? convertModelNames(model.link, type) : null,
+        enum: model.enum.map(modelEnum => convertEnumName(modelEnum, type)),
+        enums: model.enums.map(property => convertModelNames(property, type)),
+        properties: model.properties.map(property => convertModelNames(property, type)),
+    };
+};
+
+const convertEnumName = (modelEnum: Enum, type: Exclude<Case, Case.NONE>): Enum => {
+    return {
+        ...modelEnum,
+        name: transforms[type](modelEnum.name),
     };
 };
