@@ -50,6 +50,7 @@ $ openapi --help
     --postfixServices         Service name postfix (default: "Service")
     --postfixModels           Model name postfix
     --request <value>         Path to custom request file
+    --transformCase <value>   Transforms field names to specified case [camel, snake] (default: none)
     -h, --help                display help for command
 
   Examples

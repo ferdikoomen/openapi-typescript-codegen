@@ -17,7 +17,7 @@ import type { Templates } from './registerHandlebarTemplates';
  * @param httpClient The selected httpClient (fetch, xhr, node or axios)
  * @param useUnionTypes Use union types instead of enums
  * @param indent Indentation options (4, 2 or tab)
- * @param transformModelCase Transform model case (camel, snake)
+ * @param transformCase Transform model case (camel, snake)
  */
 export const writeClientModels = async (
     models: Model[],
@@ -26,10 +26,10 @@ export const writeClientModels = async (
     httpClient: HttpClient,
     useUnionTypes: boolean,
     indent: Indent,
-    transformModelCase: Case
+    transformCase: Case
 ): Promise<void> => {
     for (const model of models) {
-        const newModel = transformModelCase === Case.NONE ? model : convertModelNames(model, transformModelCase);
+        const newModel = transformCase === Case.NONE ? model : convertModelNames(model, transformCase);
         const file = resolve(outputPath, `${model.name}.ts`);
         const templateResult = templates.exports.model({
             ...newModel,

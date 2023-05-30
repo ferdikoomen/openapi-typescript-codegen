@@ -27,7 +27,7 @@ export type Options = {
     indent?: Indent;
     postfixServices?: string;
     postfixModels?: string;
-    transformModelCase?: Case;
+    transformCase?: Case;
     request?: string;
     write?: boolean;
 };
@@ -49,7 +49,7 @@ export type Options = {
  * @param indent Indentation options (4, 2 or tab)
  * @param postfixServices Service name postfix
  * @param postfixModels Model name postfix
- * @param transformModelCase Transform model case (camel, snake)
+ * @param transformCase Transform case (camel, snake)
  * @param request Path to custom request file
  * @param write Write the files to disk (true or false)
  */
@@ -67,7 +67,7 @@ export const generate = async ({
     indent = Indent.SPACE_4,
     postfixServices = 'Service',
     postfixModels = '',
-    transformModelCase = Case.NONE,
+    transformCase = Case.NONE,
     request,
     write = true,
 }: Options): Promise<void> => {
@@ -98,7 +98,7 @@ export const generate = async ({
                 indent,
                 postfixServices,
                 postfixModels,
-                transformModelCase,
+                transformCase,
                 clientName,
                 request
             );
@@ -123,7 +123,7 @@ export const generate = async ({
                 indent,
                 postfixServices,
                 postfixModels,
-                transformModelCase,
+                transformCase,
                 clientName,
                 request
             );
