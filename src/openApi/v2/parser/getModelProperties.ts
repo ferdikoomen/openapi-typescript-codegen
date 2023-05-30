@@ -18,7 +18,6 @@ export const getModelProperties = (openApi: OpenApi, definition: OpenApiSchema, 
             const propertyRequired = !!definition.required?.includes(propertyName);
             if (property.$ref) {
                 const model = getType(property.$ref);
-                console.log(model);
                 models.push({
                     name: escapeName(propertyName),
                     export: 'reference',
