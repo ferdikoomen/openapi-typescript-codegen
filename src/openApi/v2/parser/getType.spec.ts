@@ -51,25 +51,25 @@ describe('getType', () => {
 
     it('should support dot', () => {
         const type = getType('#/definitions/model.000');
-        expect(type.type).toEqual('model_000');
-        expect(type.base).toEqual('model_000');
+        expect(type.type).toEqual('Model000');
+        expect(type.base).toEqual('Model000');
         expect(type.template).toEqual(null);
-        expect(type.imports).toEqual(['model_000']);
+        expect(type.imports).toEqual(['Model000']);
     });
 
     it('should support dashes', () => {
         const type = getType('#/definitions/some_special-schema');
-        expect(type.type).toEqual('some_special_schema');
-        expect(type.base).toEqual('some_special_schema');
+        expect(type.type).toEqual('SomeSpecialSchema');
+        expect(type.base).toEqual('SomeSpecialSchema');
         expect(type.template).toEqual(null);
-        expect(type.imports).toEqual(['some_special_schema']);
+        expect(type.imports).toEqual(['SomeSpecialSchema']);
     });
 
     it('should support dollar sign', () => {
         const type = getType('#/definitions/$some+special+schema');
-        expect(type.type).toEqual('$some_special_schema');
-        expect(type.base).toEqual('$some_special_schema');
+        expect(type.type).toEqual('$SomeSpecialSchema');
+        expect(type.base).toEqual('$SomeSpecialSchema');
         expect(type.template).toEqual(null);
-        expect(type.imports).toEqual(['$some_special_schema']);
+        expect(type.imports).toEqual(['$SomeSpecialSchema']);
     });
 });
