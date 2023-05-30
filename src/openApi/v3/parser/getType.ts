@@ -1,5 +1,6 @@
 import type { Type } from '../../../client/interfaces/Type';
 import { isDefined } from '../../../utils/isDefined';
+import { toPascalCase } from '../../../utils/toPascalCase';
 import { getMappedType } from './getMappedType';
 import { stripNamespace } from './stripNamespace';
 
@@ -71,7 +72,7 @@ export const getType = (type: string | string[] = 'any', format?: string): Type 
     }
 
     if (typeWithoutNamespace) {
-        const type = encode(typeWithoutNamespace);
+        const type = toPascalCase(encode(typeWithoutNamespace));
         result.type = type;
         result.base = type;
         result.imports.push(type);
