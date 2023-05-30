@@ -1,5 +1,6 @@
 import type { Model } from '../../../client/interfaces/Model';
 import { getPattern } from '../../../utils/getPattern';
+import { toPascalCase } from '../../../utils/toPascalCase';
 import type { OpenApi } from '../interfaces/OpenApi';
 import type { OpenApiSchema } from '../interfaces/OpenApiSchema';
 import { escapeName } from './escapeName';
@@ -17,11 +18,12 @@ export const getModelProperties = (openApi: OpenApi, definition: OpenApiSchema, 
             const propertyRequired = !!definition.required?.includes(propertyName);
             if (property.$ref) {
                 const model = getType(property.$ref);
+                console.log(model);
                 models.push({
                     name: escapeName(propertyName),
                     export: 'reference',
-                    type: model.type,
-                    base: model.base,
+                    type: toPascalCase(model.type),
+                    base: toPascalCase(model.base),
                     template: model.template,
                     link: null,
                     description: property.description || null,
@@ -43,7 +45,7 @@ export const getModelProperties = (openApi: OpenApi, definition: OpenApiSchema, 
                     maxProperties: property.maxProperties,
                     minProperties: property.minProperties,
                     pattern: getPattern(property.pattern),
-                    imports: model.imports,
+                    imports: model.imports.map(toPascalCase),
                     enum: [],
                     enums: [],
                     properties: [],

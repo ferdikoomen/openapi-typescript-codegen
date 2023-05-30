@@ -1,5 +1,6 @@
 import type { Model } from '../../../client/interfaces/Model';
 import { getPattern } from '../../../utils/getPattern';
+import { toPascalCase } from '../../../utils/toPascalCase';
 import type { OpenApi } from '../interfaces/OpenApi';
 import type { OpenApiSchema } from '../interfaces/OpenApiSchema';
 import { extendEnum } from './extendEnum';
@@ -49,10 +50,10 @@ export const getModel = (
     if (definition.$ref) {
         const definitionRef = getType(definition.$ref);
         model.export = 'reference';
-        model.type = definitionRef.type;
-        model.base = definitionRef.base;
+        model.type = toPascalCase(definitionRef.type);
+        model.base = toPascalCase(definitionRef.base);
         model.template = definitionRef.template;
-        model.imports.push(...definitionRef.imports);
+        model.imports.push(...definitionRef.imports.map(toPascalCase));
         return model;
     }
 
@@ -72,10 +73,10 @@ export const getModel = (
         if (definition.items.$ref) {
             const arrayItems = getType(definition.items.$ref);
             model.export = 'array';
-            model.type = arrayItems.type;
-            model.base = arrayItems.base;
+            model.type = toPascalCase(arrayItems.type);
+            model.base = toPascalCase(arrayItems.base);
             model.template = arrayItems.template;
-            model.imports.push(...arrayItems.imports);
+            model.imports.push(...arrayItems.imports.map(toPascalCase));
             return model;
         } else {
             const arrayItems = getModel(openApi, definition.items);
@@ -93,10 +94,10 @@ export const getModel = (
         if (definition.additionalProperties.$ref) {
             const additionalProperties = getType(definition.additionalProperties.$ref);
             model.export = 'dictionary';
-            model.type = additionalProperties.type;
-            model.base = additionalProperties.base;
+            model.type = toPascalCase(additionalProperties.type);
+            model.base = toPascalCase(additionalProperties.base);
             model.template = additionalProperties.template;
-            model.imports.push(...additionalProperties.imports);
+            model.imports.push(...additionalProperties.imports.map(toPascalCase));
             return model;
         } else {
             const additionalProperties = getModel(openApi, definition.additionalProperties);
