@@ -1,6 +1,6 @@
 export const getHeaders = (config: OpenAPIConfig, options: ApiRequestOptions): Observable<HttpHeaders> => {
 	return forkJoin({
-		token: resolve(options, config.TOKEN),
+		token: resolve(options, options?.params?.authToken || config.TOKEN),
 		username: resolve(options, config.USERNAME),
 		password: resolve(options, config.PASSWORD),
 		additionalHeaders: resolve(options, config.HEADERS),
