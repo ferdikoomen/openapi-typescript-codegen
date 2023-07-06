@@ -59,6 +59,12 @@ export const getModel = (
         return model;
     }
 
+    // Rewrite const to be single-value enums for the sake of processing
+    if (definition.const) {
+        definition.enum = [definition.const];
+        definition.const = undefined;
+    }
+
     if (definition.enum && definition.type !== 'boolean') {
         const enumerators = getEnum(definition.enum);
         const extendedEnumerators = extendEnum(enumerators, definition);
