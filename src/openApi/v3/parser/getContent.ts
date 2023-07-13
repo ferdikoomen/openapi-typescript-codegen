@@ -1,8 +1,9 @@
-import { isDefined } from '../../../utils/isDefined';
 import type { Dictionary } from '../../../utils/types';
 import type { OpenApi } from '../interfaces/OpenApi';
 import type { OpenApiMediaType } from '../interfaces/OpenApiMediaType';
 import type { OpenApiSchema } from '../interfaces/OpenApiSchema';
+
+import { isDefined } from '../../../utils/isDefined';
 
 export interface Content {
     mediaType: string;
@@ -27,7 +28,7 @@ export const getContent = (openApi: OpenApi, content: Dictionary<OpenApiMediaTyp
             const cleanMediaType = mediaType.split(';')[0].trim();
             return BASIC_MEDIA_TYPES.includes(cleanMediaType);
         })
-        .find(mediaType => isDefined(content[mediaType]?.schema));
+        .find(mediaType => isDefined(content[mediaType].schema));
     if (basicMediaTypeWithSchema) {
         return {
             mediaType: basicMediaTypeWithSchema,
@@ -35,7 +36,7 @@ export const getContent = (openApi: OpenApi, content: Dictionary<OpenApiMediaTyp
         };
     }
 
-    const firstMediaTypeWithSchema = Object.keys(content).find(mediaType => isDefined(content[mediaType]?.schema));
+    const firstMediaTypeWithSchema = Object.keys(content).find(mediaType => isDefined(content[mediaType].schema));
     if (firstMediaTypeWithSchema) {
         return {
             mediaType: firstMediaTypeWithSchema,

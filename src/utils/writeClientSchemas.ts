@@ -1,12 +1,13 @@
-import { resolve } from 'path';
-
 import type { Model } from '../client/interfaces/Model';
 import type { HttpClient } from '../HttpClient';
 import type { Indent } from '../Indent';
+import type { Templates } from './registerHandlebarTemplates';
+
+import { resolve } from 'path';
+
 import { writeFile } from './fileSystem';
 import { formatCode as f } from './formatCode';
 import { formatIndentation as i } from './formatIndentation';
-import type { Templates } from './registerHandlebarTemplates';
 
 /**
  * Generate Schemas using the Handlebar template and write to disk.

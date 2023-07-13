@@ -1,13 +1,14 @@
-import { resolve } from 'path';
-
 import type { Client } from '../client/interfaces/Client';
 import type { HttpClient } from '../HttpClient';
 import type { Indent } from '../Indent';
+import type { Templates } from './registerHandlebarTemplates';
+
+import { resolve } from 'path';
+
 import { copyFile, exists, writeFile } from './fileSystem';
 import { formatIndentation as i } from './formatIndentation';
 import { getHttpRequestName } from './getHttpRequestName';
 import { isDefined } from './isDefined';
-import type { Templates } from './registerHandlebarTemplates';
 
 /**
  * Generate OpenAPI core files, this includes the basic boilerplate code to handle requests.

@@ -1,10 +1,11 @@
 import type { Model } from '../../../client/interfaces/Model';
-import { findOneOfParentDiscriminator, mapPropertyValue } from '../../../utils/discriminator';
-import { getPattern } from '../../../utils/getPattern';
 import type { OpenApi } from '../interfaces/OpenApi';
 import type { OpenApiSchema } from '../interfaces/OpenApiSchema';
-import { escapeName } from './escapeName';
 import type { getModel } from './getModel';
+
+import { findOneOfParentDiscriminator, mapPropertyValue } from '../../../utils/discriminator';
+import { getPattern } from '../../../utils/getPattern';
+import { escapeName } from './escapeName';
 import { getType } from './getType';
 
 // Fix for circular dependency
@@ -56,7 +57,7 @@ export const getModelProperties = (
                 minProperties: property.minProperties,
                 pattern: getPattern(property.pattern),
             };
-            if (parent && discriminator?.propertyName == propertyName) {
+            if (parent && discriminator?.propertyName === propertyName) {
                 models.push({
                     export: 'reference',
                     type: 'string',

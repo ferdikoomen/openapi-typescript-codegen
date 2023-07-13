@@ -3,6 +3,7 @@ import type { ModelComposition } from '../../../client/interfaces/ModelCompositi
 import type { OpenApi } from '../interfaces/OpenApi';
 import type { OpenApiSchema } from '../interfaces/OpenApiSchema';
 import type { getModel } from './getModel';
+
 import { getModelProperties } from './getModelProperties';
 import { getRequiredPropertiesFromComposition } from './getRequiredPropertiesFromComposition';
 
@@ -26,7 +27,7 @@ export const getModelComposition = (
     const properties: Model[] = [];
 
     definitions
-        .map(definition => getModel(openApi, definition))
+        .map(def => getModel(openApi, def))
         .filter(model => {
             const hasProperties = model.properties.length;
             const hasEnums = model.enums.length;

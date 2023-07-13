@@ -1,6 +1,8 @@
 import { HttpClient } from './HttpClient';
 import { Indent } from './Indent';
 import { parse as parseV2 } from './openApi/v2';
+import { OpenApi as OpenApiV2 } from './openApi/v2/interfaces/OpenApi';
+import { OpenApi as OpenApiV3 } from './openApi/v3/interfaces/OpenApi';
 import { parse as parseV3 } from './openApi/v3';
 import { getOpenApiSpec } from './utils/getOpenApiSpec';
 import { getOpenApiVersion, OpenApiVersion } from './utils/getOpenApiVersion';
@@ -8,12 +10,13 @@ import { isString } from './utils/isString';
 import { postProcessClient } from './utils/postProcessClient';
 import { registerHandlebarTemplates } from './utils/registerHandlebarTemplates';
 import { writeClient } from './utils/writeClient';
+import { AnyOpenApi } from './openApi';
 
 export { HttpClient } from './HttpClient';
 export { Indent } from './Indent';
 
 export type Options = {
-    input: string | Record<string, any>;
+    input: string | AnyOpenApi;
     output: string;
     httpClient?: HttpClient;
     clientName?: string;
@@ -77,7 +80,7 @@ export const generate = async ({
 
     switch (openApiVersion) {
         case OpenApiVersion.V2: {
-            const client = parseV2(openApi);
+            const client = parseV2(openApi as OpenApiV2);
             const clientFinal = postProcessClient(client);
             if (!write) break;
             await writeClient(
@@ -101,7 +104,7 @@ export const generate = async ({
         }
 
         case OpenApiVersion.V3: {
-            const client = parseV3(openApi);
+            const client = parseV3(openApi as OpenApiV3);
             const clientFinal = postProcessClient(client);
             if (!write) break;
             await writeClient(

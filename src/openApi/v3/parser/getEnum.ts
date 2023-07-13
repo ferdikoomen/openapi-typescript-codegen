@@ -6,7 +6,7 @@ export const getEnum = (values?: (string | number)[]): Enum[] => {
             .filter((value, index, arr) => {
                 return arr.indexOf(value) === index;
             })
-            .filter((value: any) => {
+            .filter((value: unknown) => {
                 return typeof value === 'number' || typeof value === 'string';
             })
             .map(value => {

@@ -1,4 +1,4 @@
-export const isEqual = (a: any, b: any): boolean => {
+export const isEqual = (a: unknown, b: unknown): boolean => {
     if (a === b) {
         return true;
     }
@@ -27,6 +27,7 @@ export const isEqual = (a: any, b: any): boolean => {
             if (!Object.prototype.hasOwnProperty.call(b, key)) {
                 return false;
             }
+            // @ts-ignore
             if (!isEqual(a[key], b[key])) {
                 return false;
             }
@@ -34,5 +35,6 @@ export const isEqual = (a: any, b: any): boolean => {
         return true;
     }
 
+    // eslint-disable-next-line no-self-compare
     return a !== a && b !== b;
 };

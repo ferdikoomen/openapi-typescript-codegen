@@ -2,6 +2,7 @@ import type { OperationResponse } from '../../../client/interfaces/OperationResp
 import type { OpenApi } from '../interfaces/OpenApi';
 import type { OpenApiResponse } from '../interfaces/OpenApiResponse';
 import type { OpenApiResponses } from '../interfaces/OpenApiResponses';
+
 import { getOperationResponse } from './getOperationResponse';
 import { getOperationResponseCode } from './getOperationResponseCode';
 import { getRef } from './getRef';
@@ -26,6 +27,8 @@ export const getOperationResponses = (openApi: OpenApi, responses: OpenApiRespon
 
     // Sort the responses to 2XX success codes come before 4XX and 5XX error codes.
     return operationResponses.sort((a, b): number => {
-        return a.code < b.code ? -1 : a.code > b.code ? 1 : 0;
+        if (a.code < b.code) return -1;
+        if (a.code > b.code) return 1;
+        return 0;
     });
 };

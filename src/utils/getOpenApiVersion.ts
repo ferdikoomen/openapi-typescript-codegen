@@ -1,3 +1,8 @@
+import { OpenApi as OpenApiV2 } from '../openApi/v2/interfaces/OpenApi';
+import { OpenApi as OpenApiV3 } from '../openApi/v3/interfaces/OpenApi';
+
+type OpenApiInput = Pick<OpenApiV2, 'swagger'> | Pick<OpenApiV3, 'openapi'>;
+
 export enum OpenApiVersion {
     V2 = 2,
     V3 = 3,
@@ -9,8 +14,8 @@ export enum OpenApiVersion {
  * an incompatible type. Or if the type is missing...
  * @param openApi The loaded spec (can be any object)
  */
-export const getOpenApiVersion = (openApi: any): OpenApiVersion => {
-    const info: any = openApi.swagger || openApi.openapi;
+export const getOpenApiVersion = (openApi: OpenApiInput): OpenApiVersion => {
+    const info = 'swagger' in openApi ? openApi.swagger : openApi.openapi;
     if (typeof info === 'string') {
         const c = info.charAt(0);
         const v = Number.parseInt(c);

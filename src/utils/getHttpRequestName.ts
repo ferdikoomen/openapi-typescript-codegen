@@ -17,4 +17,5 @@ export const getHttpRequestName = (httpClient: HttpClient): string => {
         case HttpClient.ANGULAR:
             return 'AngularHttpRequest';
     }
+    throw new Error('Unknown Http client type');
 };

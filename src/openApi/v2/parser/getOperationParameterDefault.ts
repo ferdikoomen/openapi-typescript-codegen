@@ -18,11 +18,13 @@ export const getOperationParameterDefault = (
     switch (type) {
         case 'int':
         case 'integer':
-        case 'number':
-            if (operationParameter.export === 'enum' && operationParameter.enum?.[parameter.default]) {
-                return operationParameter.enum[parameter.default].value;
+        case 'number': {
+            const paramDefault = parameter.default as number;
+            if (operationParameter.export === 'enum' && operationParameter.enum[paramDefault]) {
+                return operationParameter.enum[paramDefault].value;
             }
-            return parameter.default;
+            return paramDefault.toString();
+        }
 
         case 'boolean':
             return JSON.stringify(parameter.default);

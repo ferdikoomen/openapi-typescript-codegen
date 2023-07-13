@@ -1,4 +1,5 @@
 import type { Model } from '../client/interfaces/Model';
+
 import { sortModelsByName } from './sortModelsByName';
 
 describe('sortModelsByName', () => {

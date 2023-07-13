@@ -1,5 +1,6 @@
 import type { Client } from '../../client/interfaces/Client';
 import type { OpenApi } from './interfaces/OpenApi';
+
 import { getModels } from './parser/getModels';
 import { getServer } from './parser/getServer';
 import { getServices } from './parser/getServices';

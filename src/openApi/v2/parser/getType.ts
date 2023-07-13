@@ -1,4 +1,5 @@
 import type { Type } from '../../../client/interfaces/Type';
+
 import { getMappedType } from './getMappedType';
 import { stripNamespace } from './stripNamespace';
 
@@ -56,10 +57,10 @@ export const getType = (type: string = 'any', format?: string): Type => {
     }
 
     if (typeWithoutNamespace) {
-        const type = encode(typeWithoutNamespace);
-        result.type = type;
-        result.base = type;
-        result.imports.push(type);
+        const localType = encode(typeWithoutNamespace);
+        result.type = localType;
+        result.base = localType;
+        result.imports.push(localType);
         return result;
     }
 

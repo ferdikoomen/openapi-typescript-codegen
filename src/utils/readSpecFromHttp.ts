@@ -15,7 +15,7 @@ export const readSpecFromHttp = async (url: string): Promise<string> => {
                 resolve(body);
             });
             response.on('error', () => {
-                reject(`Could not read OpenApi spec: "${url}"`);
+                reject(new Error(`Could not read OpenApi spec: "${url}"`));
             });
         });
     });

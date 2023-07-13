@@ -46,13 +46,13 @@ export interface OpenApiSchema extends OpenApiReference, WithEnumExtension {
         | 'date'
         | 'date-time'
         | 'password';
-    default?: any;
+    default?: unknown;
     nullable?: boolean;
     discriminator?: OpenApiDiscriminator;
     readOnly?: boolean;
     writeOnly?: boolean;
     xml?: OpenApiXml;
     externalDocs?: OpenApiExternalDocs;
-    example?: any;
+    example?: unknown;
     deprecated?: boolean;
 }

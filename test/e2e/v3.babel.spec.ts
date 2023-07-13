@@ -112,7 +112,6 @@ describe('v3.babel', () => {
                     body: error.body,
                 });
             }
-            return;
         });
 
         expect(error).toBe(
@@ -148,7 +147,6 @@ describe('v3.babel', () => {
                     body: error.body,
                 });
             }
-            return;
         });
         expect(error).toBe(
             JSON.stringify({

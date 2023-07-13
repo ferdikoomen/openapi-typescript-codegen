@@ -1,10 +1,11 @@
+import type { Model } from '../client/interfaces/Model';
+import type { Templates } from './registerHandlebarTemplates';
+
 import { EOL } from 'os';
 
-import type { Model } from '../client/interfaces/Model';
 import { HttpClient } from '../HttpClient';
 import { Indent } from '../Indent';
 import { writeFile } from './fileSystem';
-import type { Templates } from './registerHandlebarTemplates';
 import { writeClientModels } from './writeClientModels';
 
 jest.mock('./fileSystem');

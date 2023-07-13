@@ -1,8 +1,9 @@
 import type { Client } from '../client/interfaces/Client';
+import type { Templates } from './registerHandlebarTemplates';
+
 import { HttpClient } from '../HttpClient';
 import { Indent } from '../Indent';
 import { mkdir, rmdir, writeFile } from './fileSystem';
-import type { Templates } from './registerHandlebarTemplates';
 import { writeClient } from './writeClient';
 
 jest.mock('./fileSystem');

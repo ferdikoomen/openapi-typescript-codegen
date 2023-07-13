@@ -1,8 +1,9 @@
 {
     "compilerOptions": {
+        "allowJs": true,
         "outDir": "./dist",
         "target": "es2019",
-        "module": "commonjs",
+        "module": "esnext",
         "moduleResolution": "node",
         "lib": ["es2019", "dom"],
         "types": ["jest", "node"],
@@ -18,16 +19,9 @@
         "experimentalDecorators": true
     },
 
-    "files": [
-        "./src/typings/hbs.d.ts"
-    ],
+    "files": ["./src/typings/hbs.d.ts"],
 
-    "include": [
-        "./src/**/*.ts"
-    ],
+    "include": ["./src/**/*.ts", "./types/**.ts"],
 
-    "exclude": [
-        "node_modules",
-        "**/__mocks__"
-    ]
+    "exclude": ["dist", "node_modules", "**/__mocks__"]
 }

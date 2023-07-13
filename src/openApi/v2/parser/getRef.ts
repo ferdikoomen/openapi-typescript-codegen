@@ -11,16 +11,17 @@ export const getRef = <T>(openApi: OpenApi, item: T & OpenApiReference): T => {
         const paths = item.$ref
             .replace(/^#/g, '')
             .split('/')
-            .filter(item => item);
+            .filter(i => i);
 
         // Try to find the reference by walking down the path,
         // if we cannot find it, then we throw an error.
-        let result: any = openApi;
+        let result = openApi;
         paths.forEach(path => {
             const decodedPath = decodeURIComponent(
                 path.replace(ESCAPED_REF_SLASH, '/').replace(ESCAPED_REF_TILDE, '~')
             );
             if (result.hasOwnProperty(decodedPath)) {
+                // @ts-ignore
                 result = result[decodedPath];
             } else {
                 throw new Error(`Could not find reference: "${item.$ref}"`);

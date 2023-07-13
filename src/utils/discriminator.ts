@@ -1,8 +1,9 @@
 import type { Model } from '../client/interfaces/Model';
 import type { OpenApi } from '../openApi/v3/interfaces/OpenApi';
 import type { OpenApiDiscriminator } from '../openApi/v3/interfaces/OpenApiDiscriminator';
-import { stripNamespace } from '../openApi/v3/parser/stripNamespace';
 import type { Dictionary } from './types';
+
+import { stripNamespace } from '../openApi/v3/parser/stripNamespace';
 
 const inverseDictionary = (map: Dictionary<string>): Dictionary<string> => {
     const m2: Dictionary<string> = {};
@@ -20,7 +21,7 @@ export const findOneOfParentDiscriminator = (openApi: OpenApi, parent?: Model): 
                 if (
                     schema.discriminator &&
                     schema.oneOf?.length &&
-                    schema.oneOf.some(definition => definition.$ref && stripNamespace(definition.$ref) == parent.name)
+                    schema.oneOf.some(definition => definition.$ref && stripNamespace(definition.$ref) === parent.name)
                 ) {
                     return schema.discriminator;
                 }
@@ -33,7 +34,7 @@ export const findOneOfParentDiscriminator = (openApi: OpenApi, parent?: Model): 
 export const mapPropertyValue = (discriminator: OpenApiDiscriminator, parent: Model): string => {
     if (discriminator.mapping) {
         const mapping = inverseDictionary(discriminator.mapping);
-        const key = Object.keys(mapping).find(item => stripNamespace(item) == parent.name);
+        const key = Object.keys(mapping).find(item => stripNamespace(item) === parent.name);
         if (key && mapping[key]) {
             return mapping[key];
         }

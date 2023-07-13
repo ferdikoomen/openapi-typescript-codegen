@@ -1,0 +1,32 @@
+{
+    "parser": "@typescript-eslint/parser",
+    "extends": ["plugin:@typescript-eslint/recommended", "plugin:prettier/recommended", "prettier"],
+    "env": {
+        "es6": true,
+        "node": true,
+        "jest": true
+    },
+    "plugins": ["simple-import-sort"],
+    "rules": {
+        "@typescript-eslint/no-explicit-any": 0,
+        "@typescript-eslint/no-inferrable-types": 0,
+        "@typescript-eslint/no-non-null-assertion": 0,
+        "@typescript-eslint/no-var-requires": 0,
+        "@typescript-eslint/ban-ts-ignore": 0,
+        "@typescript-eslint/ban-ts-comment": 0,
+        "@typescript-eslint/explicit-function-return-type": 0,
+        "@typescript-eslint/explicit-module-boundary-types": 0,
+        "sort-imports": "off",
+        "import/order": "off",
+        "simple-import-sort/imports": "error",
+        "simple-import-sort/exports": "error",
+        "prettier/prettier": ["error"],
+        "n/global-require": "off",
+        "n/no-missing-require": "off",
+        "n/no-unsupported-features/node-builtins": "off",
+        "n/no-unsupported-features/es-syntax": "off",
+        "consistent-return": "off",
+        "@typescript-eslint/no-shadow": "off",
+        "no-console": "off"
+    }
+}

@@ -1,4 +1,5 @@
 import type { Model } from '../client/interfaces/Model';
+
 import { postProcessModelEnum } from './postProcessModelEnum';
 import { postProcessModelEnums } from './postProcessModelEnums';
 import { postProcessModelImports } from './postProcessModelImports';

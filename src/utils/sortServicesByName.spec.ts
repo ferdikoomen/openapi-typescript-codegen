@@ -1,4 +1,5 @@
 import type { Service } from '../client/interfaces/Service';
+
 import { sortServicesByName } from './sortServicesByName';
 
 describe('sortServicesByName', () => {

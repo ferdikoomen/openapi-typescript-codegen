@@ -108,7 +108,6 @@ describe('v3.xhr', () => {
                     body: error.body,
                 });
             }
-            return;
         });
         expect(error).toBe(
             JSON.stringify({
@@ -141,7 +140,6 @@ describe('v3.xhr', () => {
                     body: error.body,
                 });
             }
-            return;
         });
         expect(error).toBe(
             JSON.stringify({

@@ -1,7 +1,8 @@
 'use strict';
 
-const OpenAPI = require('../');
 const fetch = require('node-fetch');
+
+const OpenAPI = require('../');
 
 const generate = async (input, output) => {
     await OpenAPI.generate({
@@ -43,7 +44,7 @@ const generateRealWorldSpecs = async () => {
         return {
             name: name
                 .replace(/^[^a-zA-Z]+/g, '')
-                .replace(/[^\w\-]+/g, '-')
+                .replace(/[^\w-]+/g, '-')
                 .trim()
                 .toLowerCase(),
             url: latestVersion.swaggerYamlUrl || latestVersion.swaggerUrl,

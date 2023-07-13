@@ -120,7 +120,6 @@ describe('client.babel', () => {
                     body: error.body,
                 });
             }
-            return;
         });
         expect(error).toBe(
             JSON.stringify({
@@ -156,7 +155,6 @@ describe('client.babel', () => {
                     body: error.body,
                 });
             }
-            return;
         });
         expect(error).toBe(
             JSON.stringify({

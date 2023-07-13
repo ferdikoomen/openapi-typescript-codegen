@@ -10,7 +10,7 @@ export const getOperationName = (url: string, method: string, operationId?: stri
         return camelCase(
             operationId
                 .replace(/^[^a-zA-Z]+/g, '')
-                .replace(/[^\w\-]+/g, '-')
+                .replace(/[^\w-]+/g, '-')
                 .trim()
         );
     }

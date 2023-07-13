@@ -13,6 +13,7 @@ export const formatIndentation = (s: string, indent: Indent): string => {
             case Indent.TAB:
                 return line; // Default output is tab formatted
         }
+        throw new Error('Unknonwn Intent type');
     });
     // Make sure we have a blank line at the end
     const content = lines.join(EOL);

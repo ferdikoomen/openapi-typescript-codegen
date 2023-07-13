@@ -1,5 +1,6 @@
 import type { Operation } from '../client/interfaces/Operation';
 import type { Service } from '../client/interfaces/Service';
+
 import { flatMap } from './flatMap';
 
 export const postProcessServiceOperations = (service: Service): Operation[] => {

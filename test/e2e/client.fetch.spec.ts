@@ -116,7 +116,6 @@ describe('client.fetch', () => {
                     body: error.body,
                 });
             }
-            return;
         });
 
         expect(error).toBe(
@@ -151,7 +150,6 @@ describe('client.fetch', () => {
                     body: error.body,
                 });
             }
-            return;
         });
         expect(error).toBe(
             JSON.stringify({

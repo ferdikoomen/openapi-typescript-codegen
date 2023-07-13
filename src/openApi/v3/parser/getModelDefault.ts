@@ -15,11 +15,13 @@ export const getModelDefault = (definition: OpenApiSchema, model?: Model): strin
     switch (type) {
         case 'int':
         case 'integer':
-        case 'number':
-            if (model?.export === 'enum' && model.enum?.[definition.default]) {
-                return model.enum[definition.default].value;
+        case 'number': {
+            const defDefault = definition.default as number;
+            if (model?.export === 'enum' && model.enum[defDefault]) {
+                return model.enum[defDefault].value;
             }
-            return definition.default;
+            return defDefault.toString();
+        }
 
         case 'boolean':
             return JSON.stringify(definition.default);

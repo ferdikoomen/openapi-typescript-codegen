@@ -1,12 +1,13 @@
-import { resolve } from 'path';
-
 import type { Client } from '../client/interfaces/Client';
 import type { HttpClient } from '../HttpClient';
 import type { Indent } from '../Indent';
+import type { Templates } from './registerHandlebarTemplates';
+
+import { resolve } from 'path';
+
 import { mkdir, rmdir } from './fileSystem';
 import { isDefined } from './isDefined';
 import { isSubDirectory } from './isSubdirectory';
-import type { Templates } from './registerHandlebarTemplates';
 import { writeClientClass } from './writeClientClass';
 import { writeClientCore } from './writeClientCore';
 import { writeClientIndex } from './writeClientIndex';

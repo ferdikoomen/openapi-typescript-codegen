@@ -29,7 +29,7 @@ const evaluate = async (fn: EvaluateFn) => {
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 const exposeFunction = async (name: string, fn: Function) => {
-    return await _page.exposeFunction(name, fn);
+    await _page.exposeFunction(name, fn);
 };
 
 export default {

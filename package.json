@@ -31,6 +31,9 @@
             "email": "info@madebyferdi.com"
         }
     ],
+    "engines": {
+        "node": ">=16.14.0"
+    },
     "main": "dist/index.js",
     "types": "types/index.d.ts",
     "bin": {
@@ -43,21 +46,15 @@
     ],
     "scripts": {
         "clean": "rimraf ./dist ./test/generated ./test/e2e/generated ./samples/generated ./coverage ./node_modules/.cache",
-        "build": "rollup --config --environment NODE_ENV:development",
-        "build:watch": "rollup --config --environment NODE_ENV:development --watch",
-        "release": "rollup --config --environment NODE_ENV:production",
-        "validate": "tsc --project tsconfig.json --noEmit",
+        "build": "rollup --config --environment NODE_ENV:production",
+        "typecheck": "tsc --project tsconfig.json --noEmit",
         "run": "node ./test/index.js",
-        "test": "jest --selectProjects UNIT",
+        "test:unit": "jest --coverage --selectProjects UNIT",
         "test:update": "jest --selectProjects UNIT --updateSnapshot",
-        "test:watch": "jest --selectProjects UNIT --watch",
-        "test:coverage": "jest --selectProjects UNIT --coverage",
-        "test:e2e": "jest --selectProjects E2E --runInBand --verbose",
+        "test:e2e": "jest --selectProjects E2E --runInBand",
         "eslint": "eslint .",
         "eslint:fix": "eslint . --fix",
-        "prepare": "npm run clean && npm run release",
-        "codecov": "codecov --token=66c30c23-8954-4892-bef9-fbaed0a2e42b",
-        "docker": "docker build -t eeelenbaas/openapi-typescript-codegen ."
+        "codecov": "codecov --token=66c30c23-8954-4892-bef9-fbaed0a2e42b"
     },
     "dependencies": {
         "camelcase": "^6.3.0",
@@ -82,6 +79,7 @@
         "@babel/core": "7.22.8",
         "@babel/preset-env": "7.22.7",
         "@babel/preset-typescript": "7.22.5",
+        "@logux/eslint-config": "49.0.0",
         "@rollup/plugin-commonjs": "25.0.2",
         "@rollup/plugin-node-resolve": "15.1.0",
         "@rollup/plugin-typescript": "11.1.2",
@@ -101,8 +99,16 @@
         "cross-spawn": "7.0.3",
         "eslint": "8.44.0",
         "eslint-config-prettier": "8.8.0",
+        "eslint-config-standard": "17.1.0",
+        "eslint-plugin-import": "2.27.5",
+        "eslint-plugin-n": "15.6.1",
+        "eslint-plugin-perfectionist": "1.1.0",
+        "eslint-plugin-prefer-let": "3.0.1",
         "eslint-plugin-prettier": "4.2.1",
+        "eslint-plugin-promise": "6.1.1",
+        "eslint-plugin-security": "^1.7.1",
         "eslint-plugin-simple-import-sort": "10.0.0",
+        "eslint-plugin-unicorn": "^47.0.0",
         "express": "4.18.2",
         "form-data": "4.0.0",
         "glob": "10.3.3",
@@ -121,7 +127,7 @@
         "typescript": "5.1.6",
         "zone.js": "0.13.1"
     },
-    "overrides" : {
+    "overrides": {
         "node-fetch": "2.6.9",
         "rollup": "3.26.1",
         "typescript": "5.1.6"

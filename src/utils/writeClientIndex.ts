@@ -1,6 +1,7 @@
+import type { Client } from '../client/interfaces/Client';
+
 import { resolve } from 'path';
 
-import type { Client } from '../client/interfaces/Client';
 import { writeFile } from './fileSystem';
 import { isDefined } from './isDefined';
 import { Templates } from './registerHandlebarTemplates';

@@ -1,4 +1,5 @@
 import type { Model } from '../client/interfaces/Model';
+
 import { getModelNames } from './getModelNames';
 
 describe('getModelNames', () => {

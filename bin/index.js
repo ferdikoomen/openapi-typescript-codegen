@@ -4,6 +4,7 @@
 
 const path = require('path');
 const { program } = require('commander');
+
 const pkg = require('../package.json');
 
 const params = program

@@ -2,6 +2,7 @@ import type { Operation } from '../../../client/interfaces/Operation';
 import type { OperationParameters } from '../../../client/interfaces/OperationParameters';
 import type { OpenApi } from '../interfaces/OpenApi';
 import type { OpenApiOperation } from '../interfaces/OpenApiOperation';
+
 import { getOperationErrors } from './getOperationErrors';
 import { getOperationName } from './getOperationName';
 import { getOperationParameters } from './getOperationParameters';
@@ -58,6 +59,7 @@ export const getOperation = (
     }
 
     // Parse the operation responses.
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     if (op.responses) {
         const operationResponses = getOperationResponses(openApi, op.responses);
         const operationResults = getOperationResults(operationResponses);

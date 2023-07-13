@@ -116,7 +116,6 @@ describe('client.xhr', () => {
                     body: error.body,
                 });
             }
-            return;
         });
         expect(error).toBe(
             JSON.stringify({
@@ -150,7 +149,6 @@ describe('client.xhr', () => {
                     body: error.body,
                 });
             }
-            return;
         });
         expect(error).toBe(
             JSON.stringify({

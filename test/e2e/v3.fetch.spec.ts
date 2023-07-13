@@ -108,7 +108,6 @@ describe('v3.fetch', () => {
                     body: error.body,
                 });
             }
-            return;
         });
 
         expect(error).toBe(
@@ -142,7 +141,6 @@ describe('v3.fetch', () => {
                     body: error.body,
                 });
             }
-            return;
         });
         expect(error).toBe(
             JSON.stringify({

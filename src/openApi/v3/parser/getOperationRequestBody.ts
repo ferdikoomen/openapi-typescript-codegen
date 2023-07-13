@@ -1,7 +1,8 @@
 import type { OperationParameter } from '../../../client/interfaces/OperationParameter';
-import { getPattern } from '../../../utils/getPattern';
 import type { OpenApi } from '../interfaces/OpenApi';
 import type { OpenApiRequestBody } from '../interfaces/OpenApiRequestBody';
+
+import { getPattern } from '../../../utils/getPattern';
 import { getContent } from './getContent';
 import { getModel } from './getModel';
 import { getType } from './getType';
@@ -29,6 +30,7 @@ export const getOperationRequestBody = (openApi: OpenApi, body: OpenApiRequestBo
         mediaType: null,
     };
 
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     if (body.content) {
         const content = getContent(openApi, body.content);
         if (content) {
