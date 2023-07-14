@@ -21,6 +21,8 @@ describe('writeClient', () => {
             index: () => 'index',
             client: () => 'client',
             exports: {
+                pathname: () => 'pathname',
+                pathnameIndex: () => 'pathnameIndex',
                 model: () => 'model',
                 schema: () => 'schema',
                 service: () => 'service',
@@ -42,7 +44,6 @@ describe('writeClient', () => {
             templates,
             './dist',
             HttpClient.FETCH,
-            false,
             false,
             true,
             true,

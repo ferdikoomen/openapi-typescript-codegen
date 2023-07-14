@@ -11,7 +11,6 @@ $ openapi --help
     -o, --output <value>      Output directory (required)
     -c, --client <value>      HTTP client to generate [fetch, xhr, node, axios, angular] (default: "fetch")
     --name <value>            Custom client class name
-    --useOptions              Use options instead of arguments
     --useUnionTypes           Use union types instead of enums
     --exportCore <value>      Write core files to disk (default: true)
     --exportServices <value>  Write services to disk (default: true)

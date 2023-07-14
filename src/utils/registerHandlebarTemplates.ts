@@ -55,6 +55,8 @@ import xhrSendRequest from '../templates/core/xhr/sendRequest.hbs';
 import templateExportModel from '../templates/exportModel.hbs';
 import templateExportSchema from '../templates/exportSchema.hbs';
 import templateExportService from '../templates/exportService.hbs';
+import templateExportPathname from '../templates/exportPathnames.hbs';
+import templateExportPathnameIndex from '../templates/exportPathnamesIndex.hbs';
 import templateIndex from '../templates/index.hbs';
 import partialBase from '../templates/partials/base.hbs';
 import partialExportComposition from '../templates/partials/exportComposition.hbs';
@@ -89,6 +91,8 @@ export interface Templates {
     index: Handlebars.TemplateDelegate;
     client: Handlebars.TemplateDelegate;
     exports: {
+        pathname: Handlebars.TemplateDelegate;
+        pathnameIndex: Handlebars.TemplateDelegate;
         model: Handlebars.TemplateDelegate;
         schema: Handlebars.TemplateDelegate;
         service: Handlebars.TemplateDelegate;
@@ -109,11 +113,7 @@ export interface Templates {
  * Read all the Handlebar templates that we need and return on wrapper object
  * so we can easily access the templates in out generator / write functions.
  */
-export const registerHandlebarTemplates = (root: {
-    httpClient: HttpClient;
-    useOptions: boolean;
-    useUnionTypes: boolean;
-}): Templates => {
+export const registerHandlebarTemplates = (root: { httpClient: HttpClient; useUnionTypes: boolean }): Templates => {
     registerHandlebarHelpers(root);
 
     // Main templates (entry points for the files we write to disk)
@@ -122,6 +122,8 @@ export const registerHandlebarTemplates = (root: {
         client: Handlebars.template(templateClient),
         exports: {
             model: Handlebars.template(templateExportModel),
+            pathname: Handlebars.template(templateExportPathname),
+            pathnameIndex: Handlebars.template(templateExportPathnameIndex),
             schema: Handlebars.template(templateExportSchema),
             service: Handlebars.template(templateExportService),
         },

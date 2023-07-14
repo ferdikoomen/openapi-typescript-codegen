@@ -24,6 +24,8 @@ describe('writeClientServices', () => {
             index: () => 'index',
             client: () => 'client',
             exports: {
+                pathname: () => 'pathname',
+                pathnameIndex: () => 'pathnameIndex',
                 model: () => 'model',
                 schema: () => 'schema',
                 service: () => 'service',
@@ -40,7 +42,7 @@ describe('writeClientServices', () => {
             },
         };
 
-        await writeClientServices(services, templates, '/', HttpClient.FETCH, false, false, Indent.SPACE_4, 'Service');
+        await writeClientServices(services, templates, '/', HttpClient.FETCH, false, Indent.SPACE_4, 'Service');
 
         expect(writeFile).toBeCalledWith('/UserService.ts', `service${EOL}`);
     });

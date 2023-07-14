@@ -1,0 +1,17 @@
+{{>header}}
+
+{{#each operations}}
+/**
+{{#if deprecated}}
+	* @deprecated
+{{/if}}
+{{#if summary}}
+	* {{{escapeComment summary}}}
+{{/if}}
+{{#if description}}
+	* {{{escapeComment description}}}
+{{/if}}
+	* @throws ApiError
+*/
+export const {{{name}}} = '{{path}}'
+{{/each}}

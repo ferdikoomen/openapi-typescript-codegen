@@ -58,13 +58,6 @@ export class {{{name}}}{{{@root.postfix}}} {
 	{{#if description}}
 	 * {{{escapeComment description}}}
 	{{/if}}
-	{{#unless @root.useOptions}}
-	{{#if parameters}}
-	{{#each parameters}}
-	 * @param {{{name}}} {{#if description}}{{{escapeComment description}}}{{/if}}
-	{{/each}}
-	{{/if}}
-	{{/unless}}
 	{{#each results}}
 	 * @returns {{{type}}} {{#if description}}{{{escapeComment description}}}{{/if}}
 	{{/each}}

@@ -23,6 +23,8 @@ describe('writeClientCore', () => {
             index: () => 'index',
             client: () => 'client',
             exports: {
+                pathname: () => 'pathname',
+                pathnameIndex: () => 'pathnameIndex',
                 model: () => 'model',
                 schema: () => 'schema',
                 service: () => 'service',

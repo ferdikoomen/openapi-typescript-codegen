@@ -40,16 +40,14 @@ $ openapi --help
     -o, --output <value>      Output directory (required)
     -c, --client <value>      HTTP client to generate [fetch, xhr, node, axios, angular] (default: "fetch")
     --name <value>            Custom client class name
-    --useOptions              Use options instead of arguments
-    --useUnionTypes           Use union types instead of enums
+    --useUnionTypes           Use union types instead of enums (default: true)
     --exportCore <value>      Write core files to disk (default: true)
     --exportServices <value>  Write services to disk (default: true)
-    --exportModels <value>    Write models to disk (default: true)
     --exportSchemas <value>   Write schemas to disk (default: false)
     --indent <value>          Indentation options [4, 2, tab] (default: "4")
     --postfixServices         Service name postfix (default: "Service")
     --postfixModels           Model name postfix
-    --request <value>         Path to custom request file
+    --factories <value>       Path to file with factories
     -h, --help                display help for command
 
   Examples
@@ -77,7 +75,6 @@ Documentation
 - [Basic usage](docs/basic-usage.md)
 - [OpenAPI object](docs/openapi-object.md)
 - [Client instances](docs/client-instances.md) `--name`
-- [Argument vs. Object style](docs/arguments-vs-object-style.md) `--useOptions`
 - [Enums vs. Union types](docs/enum-vs-union-types.md) `--useUnionTypes`
 - [Runtime schemas](docs/runtime-schemas.md) `--exportSchemas`
 - [Enum with custom names and descriptions](docs/custom-enums.md)

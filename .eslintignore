@@ -7,3 +7,4 @@ node_modules
 __mocks__
 coverage
 jest.config.ts
+tmp

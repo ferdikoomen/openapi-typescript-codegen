@@ -7,7 +7,6 @@ describe('registerHandlebarHelpers', () => {
     it('should register the helpers', () => {
         registerHandlebarHelpers({
             httpClient: HttpClient.FETCH,
-            useOptions: false,
             useUnionTypes: false,
         });
         const helpers = Object.keys(Handlebars.helpers);

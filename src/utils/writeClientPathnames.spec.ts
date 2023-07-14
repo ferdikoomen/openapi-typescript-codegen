@@ -1,34 +1,21 @@
-import type { Model } from '../client/interfaces/Model';
+import type { Service } from '../client/interfaces/Service';
 import type { Templates } from './registerHandlebarTemplates';
 
 import { EOL } from 'os';
 
-import { HttpClient } from '../HttpClient';
 import { Indent } from '../Indent';
 import { writeFile } from './fileSystem';
-import { writeClientSchemas } from './writeClientSchemas';
+import { writeClientPathnames } from './writeClientPathnames';
 
 jest.mock('./fileSystem');
 
-describe('writeClientSchemas', () => {
+describe('writeClientPathnames', () => {
     it('should write to filesystem', async () => {
-        const models: Model[] = [
+        const services: Service[] = [
             {
-                export: 'interface',
                 name: 'User',
-                type: 'User',
-                base: 'User',
-                template: null,
-                link: null,
-                description: null,
-                isDefinition: true,
-                isReadOnly: false,
-                isRequired: false,
-                isNullable: false,
+                operations: [],
                 imports: [],
-                enum: [],
-                enums: [],
-                properties: [],
             },
         ];
 
@@ -54,8 +41,9 @@ describe('writeClientSchemas', () => {
             },
         };
 
-        await writeClientSchemas(models, templates, '/', HttpClient.FETCH, false, Indent.SPACE_4);
+        await writeClientPathnames(services, templates, '/', Indent.SPACE_4);
 
-        expect(writeFile).toBeCalledWith('/$User.ts', `schema${EOL}`);
+        expect(writeFile).toBeCalledWith('/User.ts', `pathname${EOL}`);
+        expect(writeFile).toBeCalledWith('/index.ts', `pathnameIndex${EOL}`);
     });
 });

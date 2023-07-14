@@ -14,6 +14,7 @@ import { writeClientIndex } from './writeClientIndex';
 import { writeClientModels } from './writeClientModels';
 import { writeClientSchemas } from './writeClientSchemas';
 import { writeClientServices } from './writeClientServices';
+import { writeClientPathnames } from './writeClientPathnames';
 
 /**
  * Write our OpenAPI client, using the given templates at the given output
@@ -21,7 +22,6 @@ import { writeClientServices } from './writeClientServices';
  * @param templates Templates wrapper with all loaded Handlebars templates
  * @param output The relative location of the output directory
  * @param httpClient The selected httpClient (fetch, xhr, node or axios)
- * @param useOptions Use options or arguments functions
  * @param useUnionTypes Use union types instead of enums
  * @param exportCore Generate core client classes
  * @param exportServices Generate services
@@ -39,7 +39,6 @@ export const writeClient = async (
     templates: Templates,
     output: string,
     httpClient: HttpClient,
-    useOptions: boolean,
     useUnionTypes: boolean,
     exportCore: boolean,
     exportServices: boolean,
@@ -53,6 +52,7 @@ export const writeClient = async (
 ): Promise<void> => {
     const outputPath = resolve(process.cwd(), output);
     const outputPathCore = resolve(outputPath, 'core');
+    const outputPathPathnames = resolve(outputPath, 'pathnames');
     const outputPathModels = resolve(outputPath, 'models');
     const outputPathSchemas = resolve(outputPath, 'schemas');
     const outputPathServices = resolve(outputPath, 'services');
@@ -68,6 +68,10 @@ export const writeClient = async (
     }
 
     if (exportServices) {
+        await rmdir(outputPathPathnames);
+        await mkdir(outputPathPathnames);
+        await writeClientPathnames(client.services, templates, outputPathPathnames, indent);
+
         await rmdir(outputPathServices);
         await mkdir(outputPathServices);
         await writeClientServices(
@@ -76,7 +80,6 @@ export const writeClient = async (
             outputPathServices,
             httpClient,
             useUnionTypes,
-            useOptions,
             indent,
             postfixServices,
             clientName

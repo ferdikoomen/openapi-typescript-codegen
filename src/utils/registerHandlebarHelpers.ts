@@ -8,11 +8,7 @@ import { EOL } from 'os';
 
 import { unique } from './unique';
 
-export const registerHandlebarHelpers = (root: {
-    httpClient: HttpClient;
-    useOptions: boolean;
-    useUnionTypes: boolean;
-}): void => {
+export const registerHandlebarHelpers = (root: { httpClient: HttpClient; useUnionTypes: boolean }): void => {
     Handlebars.registerHelper('ifdef', function (this: unknown, ...args): string {
         const options = args.pop();
         if (!args.every(value => !value)) {
@@ -103,5 +99,9 @@ export const registerHandlebarHelpers = (root: {
 
     Handlebars.registerHelper('camelCase', (value: string): string => {
         return camelCase(value);
+    });
+
+    Handlebars.registerHelper('capitalize', (value: string): string => {
+        return value.charAt(0).toUpperCase() + value.slice(1);
     });
 };

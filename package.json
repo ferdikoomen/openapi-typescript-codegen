@@ -1,15 +1,15 @@
 {
-    "name": "openapi-typescript-codegen",
-    "version": "0.25.0",
+    "name": "yobta-openapi-typescript-codegen",
+    "version": "0.26.0",
     "description": "Library that generates Typescript clients based on the OpenAPI specification.",
-    "author": "Ferdi Koomen",
-    "homepage": "https://github.com/ferdikoomen/openapi-typescript-codegen",
+    "author": "Ferdi Koomen, Pavel Brylev",
+    "homepage": "https://github.com/yobta/generator",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/ferdikoomen/openapi-typescript-codegen.git"
+        "url": "git+https://github.com/yobta/generator.git"
     },
     "bugs": {
-        "url": "https://github.com/ferdikoomen/openapi-typescript-codegen/issues"
+        "url": "https://github.com/yobta/generator/issues"
     },
     "type": "module",
     "exports": {
@@ -31,8 +31,8 @@
     ],
     "maintainers": [
         {
-            "name": "Ferdi Koomen",
-            "email": "info@madebyferdi.com"
+            "name": "Pavel Brylev",
+            "email": "pavel@cytlex.com"
         }
     ],
     "engines": {
