@@ -1,11 +1,13 @@
-import {
-    copyFile as __copyFile,
-    mkdirp as __mkdirp,
-    pathExists as __pathExists,
-    readFile as __readFile,
-    remove as __remove,
-    writeFile as __writeFile,
-} from 'fs-extra';
+import fsExtra from 'fs-extra';
+
+const {
+    copyFile: __copyFile,
+    mkdirp: __mkdirp,
+    pathExists: __pathExists,
+    readFile: __readFile,
+    remove: __remove,
+    writeFile: __writeFile,
+} = fsExtra;
 
 // Export calls (needed for mocking)
 export const readFile = __readFile;

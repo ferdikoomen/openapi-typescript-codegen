@@ -6,10 +6,13 @@ const config: Config = {
             displayName: 'UNIT',
             testEnvironment: 'node',
             testMatch: ['<rootDir>/src/**/*.spec.ts', '<rootDir>/test/index.spec.ts', '<rootDir>/bin/index.spec.js'],
-            moduleFileExtensions: ['js', 'ts', 'd.ts'],
             moduleNameMapper: {
                 '\\.hbs$': '<rootDir>/src/templates/__mocks__/index.ts',
             },
+            transform: {
+                '^.+\\.(t|m?j)s$': 'babel-jest',
+            },
+            moduleFileExtensions: ['js', 'ts', 'd.ts', 'mjs'],
         },
         {
             displayName: 'E2E',
@@ -35,6 +38,10 @@ const config: Config = {
                 '<rootDir>/test/e2e/client.angular.spec.ts',
             ],
             modulePathIgnorePatterns: ['<rootDir>/test/e2e/generated'],
+            transform: {
+                '^.+\\.(t|m?j)s$': 'babel-jest',
+            },
+            moduleFileExtensions: ['js', 'ts', 'd.ts', 'mjs'],
         },
     ],
     collectCoverageFrom: ['<rootDir>/src/**/*.ts', '!<rootDir>/src/**/*.d.ts', '!<rootDir>/bin', '!<rootDir>/dist'],

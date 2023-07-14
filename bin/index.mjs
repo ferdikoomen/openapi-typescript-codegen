@@ -2,10 +2,16 @@
 
 'use strict';
 
-const path = require('path');
-const { program } = require('commander');
+import path from 'path';
+import { program } from 'commander';
 
+import { createRequire } from "module";
+import { fileURLToPath } from 'url';
+
+const require = createRequire(import.meta.url);
 const pkg = require('../package.json');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const params = program
     .name('openapi')
@@ -28,7 +34,8 @@ const params = program
     .parse(process.argv)
     .opts();
 
-const OpenAPI = require(path.resolve(__dirname, '../dist/index.js'));
+
+const OpenAPI = await import('../dist/index.mjs');
 
 if (OpenAPI) {
     OpenAPI.generate({

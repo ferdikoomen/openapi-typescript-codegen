@@ -68,8 +68,8 @@ export default {
     input: './src/index.ts',
     output: {
         exports: 'named',
-        file: './dist/index.js',
-        format: 'cjs',
+        file: './dist/index.mjs',
+        format: 'es',
     },
     external: ['camelcase', 'commander', 'fs-extra', 'handlebars', 'json-schema-ref-parser'],
     plugins: getPlugins(),

@@ -1,8 +1,8 @@
 'use strict';
 
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
-const OpenAPI = require('../');
+import OpenAPI from '../dist/index.mjs';
 
 const generate = async (input, output) => {
     await OpenAPI.generate({

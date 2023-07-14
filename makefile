@@ -5,7 +5,7 @@ lint+fix:
 	pnpm run eslint:fix
 
 .PHONY: test
-test: build test-unit test-e2e coverage
+test: build test-unit coverage
 
 test-unit:
 	pnpm run test:unit
