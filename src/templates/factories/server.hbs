@@ -5,8 +5,8 @@ export type ServerResolverConfig = {
 	method: string;
 }
 
-export type ServerRequestOptions = ConstructorParameters<typeof Request>[1]
+export type ServerRequestOptions = Omit<RequestInit, "method" | "body">
 
 export interface ServerResolverFactory<Input, Output> {
-	(config: ServerResolverConfig): (input: Input, options: ServerRequestOptions) => Promise<Output>
+	(config: ServerResolverConfig): (input: Input, options?: ServerRequestOptions) => Promise<Output>
 }
