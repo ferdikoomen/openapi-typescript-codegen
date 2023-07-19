@@ -1,0 +1,12 @@
+{{>header}}
+
+export interface ServerResolverConfig {
+	path: string;
+	method: string;
+}
+
+export interface ServerRequestParams extends Partial<Request> {}
+
+export interface ServerResolverFactory<Input, Output> {
+	(config: ServerResolverConfig): (input: Input, options: ServerRequestParams) => Promise<Output>
+}

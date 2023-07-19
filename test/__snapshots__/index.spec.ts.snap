@@ -236,6 +236,63 @@ export const OpenAPI: OpenAPIConfig = {
 "
 `;
 
+exports[`v2 should generate: test/generated/v2/factories/createClientResolver.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+export interface ClientResolverConfig {
+    path: string;
+    method: string;
+}
+
+export interface ClientRequestParams extends Partial<Request> {}
+
+export interface ClientResolverFactory<Input, Output> {
+    (config: ClientResolverConfig): (input: Input, options: ClientRequestParams) => Promise<Output>
+}
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/factories/createHook.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+export const hookSample = () => {} // TODO
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/factories/createServerResolver.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+export interface ServerResolverConfig {
+    path: string;
+    method: string;
+}
+
+export interface ServerRequestParams extends Partial<Request> {}
+
+export interface ServerResolverFactory<Input, Output> {
+    (config: ServerResolverConfig): (input: Input, options: ServerRequestParams) => Promise<Output>
+}
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/factories/index.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+export * from './createServerResolver'
+export * from './createClientResolver'
+export * from './createHook'
+
+"
+`;
+
 exports[`v2 should generate: test/generated/v2/index.ts 1`] = `
 "/* generated using openapi-typescript-codegen -- do no edit */
 /* istanbul ignore file */
