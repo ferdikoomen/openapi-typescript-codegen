@@ -20,7 +20,6 @@ export type Options = {
     useUnionTypes?: boolean;
     exportCore?: boolean;
     exportServices?: boolean;
-    exportModels?: boolean;
     exportSchemas?: boolean;
     indent?: Indent | '4' | '2' | 'tab';
     postfixServices?: string;

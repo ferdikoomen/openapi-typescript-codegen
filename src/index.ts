@@ -18,6 +18,7 @@ export { Indent } from './Indent';
 export type Options = {
     input: string | AnyOpenApi;
     output?: string;
+    factories: string;
     httpClient?: HttpClient;
     clientName?: string;
     useUnionTypes?: boolean;
@@ -81,7 +82,6 @@ export const generate = async ({
                 useUnionTypes,
                 exportCore,
                 exportServices,
-                true,
                 exportSchemas,
                 indent,
                 postfixServices,
@@ -103,7 +103,6 @@ export const generate = async ({
                 useUnionTypes,
                 exportCore,
                 exportServices,
-                true,
                 exportSchemas,
                 indent,
                 postfixServices,

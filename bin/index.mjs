@@ -2,16 +2,12 @@
 
 'use strict';
 
-import path from 'path';
 import { program } from 'commander';
 
 import { createRequire } from "module";
-import { fileURLToPath } from 'url';
 
 const require = createRequire(import.meta.url);
 const pkg = require('../package.json');
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 const params = program
     .name('openapi')
@@ -44,12 +40,10 @@ if (OpenAPI) {
         useUnionTypes: params.useUnionTypes,
         exportCore: JSON.parse(params.exportCore) === true,
         exportServices: JSON.parse(params.exportServices) === true,
-        exportModels: true,
         exportSchemas: JSON.parse(params.exportSchemas) === true,
         indent: params.indent,
         postfixServices: params.postfixServices,
         postfixModels: params.postfixModels,
-        request: params.request,
     })
         .then(() => {
             process.exit(0);

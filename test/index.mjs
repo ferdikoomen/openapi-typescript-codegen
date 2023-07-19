@@ -12,7 +12,6 @@ const generate = async (input, output) => {
         useUnionTypes: false,
         exportCore: true,
         exportSchemas: true,
-        exportModels: true,
         exportServices: true,
         // clientName: 'Demo',
         // indent: OpenAPI.Indent.SPACE_2,
