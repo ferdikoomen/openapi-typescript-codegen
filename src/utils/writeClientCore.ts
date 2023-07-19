@@ -5,7 +5,7 @@ import type { Templates } from './registerHandlebarTemplates';
 
 import { resolve } from 'path';
 
-import { copyFile, exists, writeFile } from './fileSystem';
+import { writeFile } from './fileSystem';
 import { formatIndentation as i } from './formatIndentation';
 import { getHttpRequestName } from './getHttpRequestName';
 import { isDefined } from './isDefined';
@@ -18,7 +18,6 @@ import { isDefined } from './isDefined';
  * @param httpClient The selected httpClient (fetch, xhr, node or axios)
  * @param indent Indentation options (4, 2 or tab)
  * @param clientName Custom client class name
- * @param request Path to custom request file
  */
 export const writeClientCore = async (
     client: Client,
@@ -26,8 +25,7 @@ export const writeClientCore = async (
     outputPath: string,
     httpClient: HttpClient,
     indent: Indent,
-    clientName?: string,
-    request?: string
+    clientName?: string
 ): Promise<void> => {
     const httpRequest = getHttpRequestName(httpClient);
     const context = {
@@ -43,19 +41,9 @@ export const writeClientCore = async (
     await writeFile(resolve(outputPath, 'ApiRequestOptions.ts'), i(templates.core.apiRequestOptions(context), indent));
     await writeFile(resolve(outputPath, 'ApiResult.ts'), i(templates.core.apiResult(context), indent));
     await writeFile(resolve(outputPath, 'CancelablePromise.ts'), i(templates.core.cancelablePromise(context), indent));
-    await writeFile(resolve(outputPath, 'request.ts'), i(templates.core.request(context), indent));
 
     if (isDefined(clientName)) {
         await writeFile(resolve(outputPath, 'BaseHttpRequest.ts'), i(templates.core.baseHttpRequest(context), indent));
         await writeFile(resolve(outputPath, `${httpRequest}.ts`), i(templates.core.httpRequest(context), indent));
-    }
-
-    if (request) {
-        const requestFile = resolve(process.cwd(), request);
-        const requestFileExists = await exists(requestFile);
-        if (!requestFileExists) {
-            throw new Error(`Custom request file "${requestFile}" does not exists`);
-        }
-        await copyFile(requestFile, resolve(outputPath, 'request.ts'));
     }
 };

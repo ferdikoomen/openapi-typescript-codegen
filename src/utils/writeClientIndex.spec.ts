@@ -31,13 +31,12 @@ describe('writeClientIndex', () => {
                 apiRequestOptions: () => 'apiRequestOptions',
                 apiResult: () => 'apiResult',
                 cancelablePromise: () => 'cancelablePromise',
-                request: () => 'request',
                 baseHttpRequest: () => 'baseHttpRequest',
                 httpRequest: () => 'httpRequest',
             },
         };
 
-        await writeClientIndex(client, templates, '/', true, true, true, true, true, 'Service', '');
+        await writeClientIndex(client, templates, '/', true, true, true, true, 'Service', '');
 
         expect(writeFile).toBeCalledWith('/index.ts', 'index');
     });

@@ -12,7 +12,6 @@ describe('v2', () => {
             useUnionTypes: false,
             exportCore: true,
             exportSchemas: true,
-            exportModels: true,
             exportServices: true,
         });
 
@@ -32,7 +31,6 @@ describe('v3', () => {
             useUnionTypes: false,
             exportCore: true,
             exportSchemas: true,
-            exportModels: true,
             exportServices: true,
         });
 

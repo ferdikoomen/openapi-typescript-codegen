@@ -25,7 +25,6 @@ import { writeClientPathnames } from './writeClientPathnames';
  * @param useUnionTypes Use union types instead of enums
  * @param exportCore Generate core client classes
  * @param exportServices Generate services
- * @param exportModels Generate models
  * @param exportSchemas Generate schemas
  * @param exportSchemas Generate schemas
  * @param indent Indentation options (4, 2 or tab)
@@ -42,13 +41,11 @@ export const writeClient = async (
     useUnionTypes: boolean,
     exportCore: boolean,
     exportServices: boolean,
-    exportModels: boolean,
     exportSchemas: boolean,
     indent: Indent,
     postfixServices: string,
     postfixModels: string,
-    clientName?: string,
-    request?: string
+    clientName?: string
 ): Promise<void> => {
     const outputPath = resolve(process.cwd(), output);
     const outputPathCore = resolve(outputPath, 'core');
@@ -64,7 +61,7 @@ export const writeClient = async (
     if (exportCore) {
         await rmdir(outputPathCore);
         await mkdir(outputPathCore);
-        await writeClientCore(client, templates, outputPathCore, httpClient, indent, clientName, request);
+        await writeClientCore(client, templates, outputPathCore, httpClient, indent, clientName);
     }
 
     if (exportServices) {
@@ -92,31 +89,26 @@ export const writeClient = async (
         await writeClientSchemas(client.models, templates, outputPathSchemas, httpClient, useUnionTypes, indent);
     }
 
-    if (exportModels) {
-        await rmdir(outputPathModels);
-        await mkdir(outputPathModels);
-        await writeClientModels(client.models, templates, outputPathModels, httpClient, useUnionTypes, indent);
-    }
+    await rmdir(outputPathModels);
+    await mkdir(outputPathModels);
+    await writeClientModels(client.models, templates, outputPathModels, httpClient, useUnionTypes, indent);
 
     if (isDefined(clientName)) {
         await mkdir(outputPath);
         await writeClientClass(client, templates, outputPath, httpClient, clientName, indent, postfixServices);
     }
 
-    if (exportCore || exportServices || exportSchemas || exportModels) {
-        await mkdir(outputPath);
-        await writeClientIndex(
-            client,
-            templates,
-            outputPath,
-            useUnionTypes,
-            exportCore,
-            exportServices,
-            exportModels,
-            exportSchemas,
-            postfixServices,
-            postfixModels,
-            clientName
-        );
-    }
+    await mkdir(outputPath);
+    await writeClientIndex(
+        client,
+        templates,
+        outputPath,
+        useUnionTypes,
+        exportCore,
+        exportServices,
+        exportSchemas,
+        postfixServices,
+        postfixModels,
+        clientName
+    );
 };

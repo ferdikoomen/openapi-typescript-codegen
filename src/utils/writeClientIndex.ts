@@ -18,7 +18,6 @@ import { sortServicesByName } from './sortServicesByName';
  * @param useUnionTypes Use union types instead of enums
  * @param exportCore Generate core
  * @param exportServices Generate services
- * @param exportModels Generate models
  * @param exportSchemas Generate schemas
  * @param postfixServices Service name postfix
  * @param postfixModels Model name postfix
@@ -31,7 +30,6 @@ export const writeClientIndex = async (
     useUnionTypes: boolean,
     exportCore: boolean,
     exportServices: boolean,
-    exportModels: boolean,
     exportSchemas: boolean,
     postfixServices: string,
     postfixModels: string,
@@ -40,7 +38,6 @@ export const writeClientIndex = async (
     const templateResult = templates.index({
         exportCore,
         exportServices,
-        exportModels,
         exportSchemas,
         useUnionTypes,
         postfixServices,
