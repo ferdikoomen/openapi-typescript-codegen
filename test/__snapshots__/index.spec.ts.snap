@@ -286,9 +286,9 @@ exports[`v2 should generate: test/generated/v2/factories/index.ts 1`] = `
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export * from './createServerResolver'
-export * from './createClientResolver'
-export * from './createHook'
+export * from './createServerResolver.js'
+export * from './createClientResolver.js'
+export * from './createHook.js'
 
 "
 `;
