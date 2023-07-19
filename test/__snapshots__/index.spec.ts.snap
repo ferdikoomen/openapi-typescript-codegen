@@ -241,15 +241,15 @@ exports[`v2 should generate: test/generated/v2/factories/createClientResolver.ts
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export interface ClientResolverConfig {
+export type ClientResolverConfig = {
     path: string;
     method: string;
 }
 
-export interface ClientRequestParams extends Partial<Request> {}
+export type ClientRequestOptions = ConstructorParameters<typeof Request>[1]
 
 export interface ClientResolverFactory<Input, Output> {
-    (config: ClientResolverConfig): (input: Input, options: ClientRequestParams) => Promise<Output>
+    (config: ClientResolverConfig): (input: Input, options: ClientRequestOptions) => Promise<Output>
 }
 "
 `;
@@ -259,7 +259,18 @@ exports[`v2 should generate: test/generated/v2/factories/createHook.ts 1`] = `
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export const hookSample = () => {} // TODO
+export type HookConfig = {
+    path: string;
+    method: string;
+}
+
+export type HookOptions = ConstructorParameters<typeof Request>[1]
+
+export type HookResult<Data> = [Data | undefined, { version?: number; isLoading: boolean }]
+
+export interface HookFactory<Input, Output> {
+    (config: HookConfig): (input: Input, options: HookOptions) => HookResult<Output>
+}
 "
 `;
 
@@ -268,15 +279,15 @@ exports[`v2 should generate: test/generated/v2/factories/createServerResolver.ts
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export interface ServerResolverConfig {
+export type ServerResolverConfig = {
     path: string;
     method: string;
 }
 
-export interface ServerRequestParams extends Partial<Request> {}
+export type ServerRequestOptions = ConstructorParameters<typeof Request>[1]
 
 export interface ServerResolverFactory<Input, Output> {
-    (config: ServerResolverConfig): (input: Input, options: ServerRequestParams) => Promise<Output>
+    (config: ServerResolverConfig): (input: Input, options: ServerRequestOptions) => Promise<Output>
 }
 "
 `;
