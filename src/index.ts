@@ -18,7 +18,6 @@ export { Indent } from './Indent';
 export type Options = {
     input: string | AnyOpenApi;
     output?: string;
-    factories: string;
     httpClient?: HttpClient;
     clientName?: string;
     useUnionTypes?: boolean;

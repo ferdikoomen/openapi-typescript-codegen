@@ -35,7 +35,6 @@ describe('writeClientPathnames', () => {
                 apiRequestOptions: () => 'apiRequestOptions',
                 apiResult: () => 'apiResult',
                 cancelablePromise: () => 'cancelablePromise',
-                request: () => 'request',
                 baseHttpRequest: () => 'baseHttpRequest',
                 httpRequest: () => 'httpRequest',
             },
