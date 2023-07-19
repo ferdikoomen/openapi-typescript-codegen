@@ -15,12 +15,14 @@ import { writeClientModels } from './writeClientModels';
 import { writeClientSchemas } from './writeClientSchemas';
 import { writeClientServices } from './writeClientServices';
 import { writeClientPathnames } from './writeClientPathnames';
+import { writeClientFactories } from './writeClientFactories';
 
 /**
  * Write our OpenAPI client, using the given templates at the given output
  * @param client Client object with all the models, services, etc.
  * @param templates Templates wrapper with all loaded Handlebars templates
  * @param output The relative location of the output directory
+ * @param factories The relative location of the factories file
  * @param httpClient The selected httpClient (fetch, xhr, node or axios)
  * @param useUnionTypes Use union types instead of enums
  * @param exportCore Generate core client classes
@@ -37,6 +39,7 @@ export const writeClient = async (
     client: Client,
     templates: Templates,
     output: string,
+    factories: string,
     httpClient: HttpClient,
     useUnionTypes: boolean,
     exportCore: boolean,
@@ -53,10 +56,15 @@ export const writeClient = async (
     const outputPathModels = resolve(outputPath, 'models');
     const outputPathSchemas = resolve(outputPath, 'schemas');
     const outputPathServices = resolve(outputPath, 'services');
+    const outputPathFactories = resolve(outputPath, 'factories');
 
     if (!isSubDirectory(process.cwd(), output)) {
         throw new Error(`Output folder is not a subdirectory of the current working directory`);
     }
+
+    await rmdir(outputPathFactories);
+    await mkdir(outputPathFactories);
+    await writeClientFactories(templates, outputPathFactories, indent);
 
     if (exportCore) {
         await rmdir(outputPathCore);

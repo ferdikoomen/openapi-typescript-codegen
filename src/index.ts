@@ -18,6 +18,7 @@ export { Indent } from './Indent';
 export type Options = {
     input: string | AnyOpenApi;
     output?: string;
+    factories: string;
     httpClient?: HttpClient;
     clientName?: string;
     useUnionTypes?: boolean;
@@ -36,6 +37,7 @@ export type Options = {
  * service layer, etc.
  * @param input The relative location of the OpenAPI spec
  * @param output The relative location of the output directory
+ * @param factories The relative location of the the fifle with factories (createServerResolver, createClientResolver, createHook)
  * @param httpClient The selected httpClient (fetch, xhr, node or axios)
  * @param clientName Custom client class name
  * @param useUnionTypes Use union types instead of enums
@@ -50,6 +52,7 @@ export type Options = {
 export const generate = async ({
     input,
     output = 'generated/open-api',
+    factories,
     httpClient = HttpClient.FETCH,
     clientName,
     useUnionTypes = true,
@@ -77,6 +80,7 @@ export const generate = async ({
                 clientFinal,
                 templates,
                 output,
+                factories,
                 httpClient,
                 useUnionTypes,
                 exportCore,
@@ -98,6 +102,7 @@ export const generate = async ({
                 clientFinal,
                 templates,
                 output,
+                factories,
                 httpClient,
                 useUnionTypes,
                 exportCore,

@@ -5,6 +5,7 @@ describe('index', () => {
         await OpenAPI.generate({
             input: './test/spec/v2.json',
             output: './generated/v2/',
+            factories: './factories.ts',
             write: false,
         });
     });
@@ -13,6 +14,7 @@ describe('index', () => {
         await OpenAPI.generate({
             input: './test/spec/v3.json',
             output: './generated/v3/',
+            factories: './factories.ts',
             write: false,
         });
     });
@@ -21,6 +23,7 @@ describe('index', () => {
         await OpenAPI.generate({
             input: 'https://raw.githubusercontent.com/ferdikoomen/openapi-typescript-codegen/master/test/spec/v2.json',
             output: './generated/v2-downloaded/',
+            factories: './factories.ts',
             write: false,
         });
     });
@@ -29,6 +32,7 @@ describe('index', () => {
         await OpenAPI.generate({
             input: 'https://raw.githubusercontent.com/ferdikoomen/openapi-typescript-codegen/master/test/spec/v3.json',
             output: './generated/v3-downloaded/',
+            factories: './factories.ts',
             write: false,
         });
     });

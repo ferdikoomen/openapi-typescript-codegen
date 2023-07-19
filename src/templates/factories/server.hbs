@@ -1,0 +1,12 @@
+{{>header}}
+
+export type ServerResolverConfig = {
+	path: string;
+	method: string;
+}
+
+export type ServerRequestOptions = Omit<RequestInit, "method" | "body">
+
+export interface ServerResolverFactory<Input, Output> {
+	(config: ServerResolverConfig): (input: Input, options?: ServerRequestOptions) => Promise<Output>
+}

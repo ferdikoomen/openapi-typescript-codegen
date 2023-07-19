@@ -24,13 +24,13 @@ export const writeClientPathnames = async (
     const writedFiles = [];
     for (const service of services) {
         const file = resolve(outputPath, `${service.name}.ts`);
-        const templateResult = templates.exports.pathname(service);
+        const templateResult = templates.exports.pathnames.pathname(service);
         await writeFile(file, i(f(templateResult), indent));
         writedFiles.push({ fileName: service.name });
     }
     if (writedFiles.length) {
         const file = resolve(outputPath, 'index.ts');
-        const templateResult = templates.exports.pathnameIndex({ writedFiles });
+        const templateResult = templates.exports.pathnames.index({ writedFiles });
         await writeFile(file, i(f(templateResult), indent));
     }
 };

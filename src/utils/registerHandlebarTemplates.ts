@@ -54,8 +54,12 @@ import xhrSendRequest from '../templates/core/xhr/sendRequest.hbs';
 import templateExportModel from '../templates/exportModel.hbs';
 import templateExportSchema from '../templates/exportSchema.hbs';
 import templateExportService from '../templates/exportService.hbs';
-import templateExportPathname from '../templates/exportPathnames.hbs';
-import templateExportPathnameIndex from '../templates/exportPathnamesIndex.hbs';
+import templatePathname from '../templates/pathnames/pathname.hbs';
+import templatePathnameIndex from '../templates/pathnames/index.hbs';
+import templateFactoryServer from '../templates/factories/server.hbs';
+import templateFactoryClient from '../templates/factories/client.hbs';
+import templateFactoryHooks from '../templates/factories/hooks.hbs';
+import templateFactoryIndex from '../templates/factories/index.hbs';
 import templateIndex from '../templates/index.hbs';
 import partialBase from '../templates/partials/base.hbs';
 import partialExportComposition from '../templates/partials/exportComposition.hbs';
@@ -90,8 +94,16 @@ export interface Templates {
     index: Handlebars.TemplateDelegate;
     client: Handlebars.TemplateDelegate;
     exports: {
-        pathname: Handlebars.TemplateDelegate;
-        pathnameIndex: Handlebars.TemplateDelegate;
+        pathnames: {
+            pathname: Handlebars.TemplateDelegate;
+            index: Handlebars.TemplateDelegate;
+        };
+        factories: {
+            serverResolver: Handlebars.TemplateDelegate;
+            clientResolver: Handlebars.TemplateDelegate;
+            hook: Handlebars.TemplateDelegate;
+            index: Handlebars.TemplateDelegate;
+        };
         model: Handlebars.TemplateDelegate;
         schema: Handlebars.TemplateDelegate;
         service: Handlebars.TemplateDelegate;
@@ -119,9 +131,17 @@ export const registerHandlebarTemplates = (root: { httpClient: HttpClient; useUn
         index: Handlebars.template(templateIndex),
         client: Handlebars.template(templateClient),
         exports: {
+            pathnames: {
+                pathname: Handlebars.template(templatePathname),
+                index: Handlebars.template(templatePathnameIndex),
+            },
+            factories: {
+                serverResolver: Handlebars.template(templateFactoryServer),
+                clientResolver: Handlebars.template(templateFactoryClient),
+                hook: Handlebars.template(templateFactoryHooks),
+                index: Handlebars.template(templateFactoryIndex),
+            },
             model: Handlebars.template(templateExportModel),
-            pathname: Handlebars.template(templateExportPathname),
-            pathnameIndex: Handlebars.template(templateExportPathnameIndex),
             schema: Handlebars.template(templateExportSchema),
             service: Handlebars.template(templateExportService),
         },

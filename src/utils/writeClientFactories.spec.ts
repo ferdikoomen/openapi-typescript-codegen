@@ -1,22 +1,15 @@
-import type { Client } from '../client/interfaces/Client';
 import type { Templates } from './registerHandlebarTemplates';
 
-import { HttpClient } from '../HttpClient';
+import { EOL } from 'os';
+
+import { writeFile } from './fileSystem';
+import { writeClientFactories } from './writeClientFactories';
 import { Indent } from '../Indent';
-import { mkdir, rmdir, writeFile } from './fileSystem';
-import { writeClient } from './writeClient';
 
 jest.mock('./fileSystem');
 
-describe('writeClient', () => {
+describe('writeClientFactories', () => {
     it('should write to filesystem', async () => {
-        const client: Client = {
-            server: 'http://localhost:8080',
-            version: 'v1',
-            models: [],
-            services: [],
-        };
-
         const templates: Templates = {
             index: () => 'index',
             client: () => 'client',
@@ -46,23 +39,11 @@ describe('writeClient', () => {
             },
         };
 
-        await writeClient(
-            client,
-            templates,
-            './dist',
-            './factories.ts',
-            HttpClient.FETCH,
-            false,
-            true,
-            true,
-            true,
-            Indent.SPACE_4,
-            'Service',
-            'AppClient'
-        );
+        await writeClientFactories(templates, '/', Indent.SPACE_4);
 
-        expect(rmdir).toBeCalled();
-        expect(mkdir).toBeCalled();
-        expect(writeFile).toBeCalled();
+        expect(writeFile).toBeCalledWith('/createServerResolver.ts', `serverResolver${EOL}`);
+        expect(writeFile).toBeCalledWith('/createClientResolver.ts', `clientResolver${EOL}`);
+        expect(writeFile).toBeCalledWith('/createHook.ts', `hook${EOL}`);
+        expect(writeFile).toBeCalledWith('/index.ts', `factoriesIndex${EOL}`);
     });
 });

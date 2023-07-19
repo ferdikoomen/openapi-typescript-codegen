@@ -36,8 +36,16 @@ describe('writeClientSchemas', () => {
             index: () => 'index',
             client: () => 'client',
             exports: {
-                pathname: () => 'pathname',
-                pathnameIndex: () => 'pathnameIndex',
+                pathnames: {
+                    pathname: () => 'pathname',
+                    index: () => 'pathnameIndex',
+                },
+                factories: {
+                    serverResolver: () => 'serverResolver',
+                    clientResolver: () => 'clientResolver',
+                    hook: () => 'hook',
+                    index: () => 'factoriesIndex',
+                },
                 model: () => 'model',
                 schema: () => 'schema',
                 service: () => 'service',

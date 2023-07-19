@@ -35,6 +35,7 @@ if (OpenAPI) {
     OpenAPI.generate({
         input: params.input,
         output: params.output,
+        factories: params.factories,
         httpClient: params.client,
         clientName: params.name,
         useUnionTypes: params.useUnionTypes,

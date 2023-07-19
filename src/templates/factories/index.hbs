@@ -1,0 +1,5 @@
+{{>header}}
+
+{{#each resolvers}}
+export * from './{{{name}}}.js'
+{{/each}}

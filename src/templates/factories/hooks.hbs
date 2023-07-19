@@ -1,0 +1,14 @@
+{{>header}}
+
+export type HookConfig = {
+	path: string;
+	method: string;
+}
+
+export type HookOptions = Omit<RequestInit, "method" | "body">
+
+export type HookResult<Data> = [Data | undefined, { version?: number; isLoading: boolean }]
+
+export interface HookFactory<Input, Output> {
+	(config: HookConfig): (input: Input, options?: HookOptions) => HookResult<Output>
+}
