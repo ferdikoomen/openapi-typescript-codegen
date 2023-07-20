@@ -64,6 +64,10 @@ export const generate = async ({
     postfixModels = '',
     write = true,
 }: Options): Promise<void> => {
+    if (!factories) {
+        throw new Error(`Argument 'factories' is require`);
+    }
+
     const openApi = isString(input) ? await getOpenApiSpec(input) : input;
     const openApiVersion = getOpenApiVersion(openApi);
     const templates = registerHandlebarTemplates({

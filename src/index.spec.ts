@@ -36,4 +36,14 @@ describe('index', () => {
             write: false,
         });
     });
+    it('it should throw error without `factories` param', async () => {
+        await expect(
+            // @ts-ignore
+            OpenAPI.generate({
+                input: './test/spec/v3.json',
+                output: './generated/v3-downloaded/',
+                write: false,
+            })
+        ).rejects.toThrowError('');
+    });
 });

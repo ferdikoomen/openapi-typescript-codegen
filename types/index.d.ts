@@ -15,6 +15,7 @@ export declare enum Indent {
 export type Options = {
     input: string | Record<string, unknown>;
     output: string;
+    factories: string;
     httpClient?: HttpClient | 'fetch' | 'xhr' | 'node' | 'axios' | 'angular';
     clientName?: string;
     useUnionTypes?: boolean;
@@ -24,7 +25,6 @@ export type Options = {
     indent?: Indent | '4' | '2' | 'tab';
     postfixServices?: string;
     postfixModels?: string;
-    request?: string;
     write?: boolean;
 };
 

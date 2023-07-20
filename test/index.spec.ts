@@ -8,6 +8,7 @@ describe('v2', () => {
         await generate({
             input: './test/spec/v2.json',
             output: './test/generated/v2/',
+            factories: 'factories-module',
             httpClient: HttpClient.FETCH,
             useUnionTypes: false,
             exportCore: true,
@@ -27,6 +28,7 @@ describe('v3', () => {
         await generate({
             input: './test/spec/v3.json',
             output: './test/generated/v3/',
+            factories: 'factories-module',
             httpClient: HttpClient.FETCH,
             useUnionTypes: false,
             exportCore: true,
