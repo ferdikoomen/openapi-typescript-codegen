@@ -13,7 +13,6 @@ import { writeClientCore } from './writeClientCore';
 import { writeClientIndex } from './writeClientIndex';
 import { writeClientModels } from './writeClientModels';
 import { writeClientSchemas } from './writeClientSchemas';
-import { writeClientServices } from './writeClientServices';
 import { writeClientPathnames } from './writeClientPathnames';
 import { writeClientFactories } from './writeClientFactories';
 import { writeClientServers } from './writeClientServers';
@@ -29,7 +28,6 @@ import { writeClientClients } from './writeClientClients';
  * @param useUnionTypes Use union types instead of enums
  * @param exportCore Generate core client classes
  * @param exportServices Generate services
- * @param exportSchemas Generate schemas
  * @param exportSchemas Generate schemas
  * @param indent Indentation options (4, 2 or tab)
  * @param postfixServices Service name postfix
@@ -59,7 +57,6 @@ export const writeClient = async (
     const outputPathClient = resolve(outputPath, 'client');
     const outputPathModels = resolve(outputPath, 'models');
     const outputPathSchemas = resolve(outputPath, 'schemas');
-    const outputPathServices = resolve(outputPath, 'services');
     const outputPathFactories = resolve(outputPath, 'factories');
     const absoluteFactoriesFile = resolve(process.cwd(), factories);
 
@@ -89,19 +86,6 @@ export const writeClient = async (
         await rmdir(outputPathClient);
         await mkdir(outputPathClient);
         await writeClientClients(client.services, absoluteFactoriesFile, templates, outputPathClient, indent);
-
-        await rmdir(outputPathServices);
-        await mkdir(outputPathServices);
-        await writeClientServices(
-            client.services,
-            templates,
-            outputPathServices,
-            httpClient,
-            useUnionTypes,
-            indent,
-            postfixServices,
-            clientName
-        );
     }
 
     if (exportSchemas) {
