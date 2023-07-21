@@ -65,6 +65,8 @@ import templateServerResolver from '../templates/server/resolver.hbs';
 import templateServerIndex from '../templates/server/index.hbs';
 import templateClientResolver from '../templates/client/resolver.hbs';
 import templateClientIndex from '../templates/client/index.hbs';
+import templateHookResolver from '../templates/hook/resolver.hbs';
+import templateHookIndex from '../templates/hook/index.hbs';
 import templateIndex from '../templates/index.hbs';
 import partialBase from '../templates/partials/base.hbs';
 import partialExportComposition from '../templates/partials/exportComposition.hbs';
@@ -119,6 +121,10 @@ export interface Templates {
             resolver: Handlebars.TemplateDelegate;
             index: Handlebars.TemplateDelegate;
         };
+        hook: {
+            resolver: Handlebars.TemplateDelegate;
+            index: Handlebars.TemplateDelegate;
+        };
         model: Handlebars.TemplateDelegate;
         schema: Handlebars.TemplateDelegate;
         service: Handlebars.TemplateDelegate;
@@ -164,6 +170,10 @@ export const registerHandlebarTemplates = (root: { httpClient: HttpClient; useUn
             client: {
                 resolver: Handlebars.template(templateClientResolver),
                 index: Handlebars.template(templateClientIndex),
+            },
+            hook: {
+                resolver: Handlebars.template(templateHookResolver),
+                index: Handlebars.template(templateHookIndex),
             },
             model: Handlebars.template(templateExportModel),
             schema: Handlebars.template(templateExportSchema),

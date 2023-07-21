@@ -1,0 +1,8 @@
+{{>header}}
+
+import * as Types from '../factories/types.js';
+import { createHook } from '{{{factories}}}'
+
+{{#each service.operations}}
+export const {{{name}}} = createHook<Types.{{{@root.service.name}}}{{{capitalize name}}}Input, Types.{{{@root.service.name}}}{{{capitalize name}}}Output>({ path: '{{{path}}}', method: '{{{method}}}' });
+{{/each}}

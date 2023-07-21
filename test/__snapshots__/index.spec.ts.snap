@@ -1030,6 +1030,255 @@ export type ErrorTestErrorCodeOutput = any;
 "
 `;
 
+exports[`v2 should generate: test/generated/v2/hook/CollectionFormat.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import * as Types from '../factories/types.js';
+import { createHook } from '../../../../factories-module'
+
+export const collectionFormat = createHook<Types.CollectionFormatCollectionFormatInput, Types.CollectionFormatCollectionFormatOutput>({ path: '/api/v{api-version}/collectionFormat', method: 'GET' });
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/hook/Complex.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import * as Types from '../factories/types.js';
+import { createHook } from '../../../../factories-module'
+
+export const complexTypes = createHook<Types.ComplexComplexTypesInput, Types.ComplexComplexTypesOutput>({ path: '/api/v{api-version}/complex', method: 'GET' });
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/hook/Default.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import * as Types from '../factories/types.js';
+import { createHook } from '../../../../factories-module'
+
+export const serviceWithEmptyTag = createHook<Types.DefaultServiceWithEmptyTagInput, Types.DefaultServiceWithEmptyTagOutput>({ path: '/api/v{api-version}/no-tag', method: 'GET' });
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/hook/Defaults.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import * as Types from '../factories/types.js';
+import { createHook } from '../../../../factories-module'
+
+export const callWithDefaultParameters = createHook<Types.DefaultsCallWithDefaultParametersInput, Types.DefaultsCallWithDefaultParametersOutput>({ path: '/api/v{api-version}/defaults', method: 'GET' });
+export const callWithDefaultOptionalParameters = createHook<Types.DefaultsCallWithDefaultOptionalParametersInput, Types.DefaultsCallWithDefaultOptionalParametersOutput>({ path: '/api/v{api-version}/defaults', method: 'POST' });
+export const callToTestOrderOfParams = createHook<Types.DefaultsCallToTestOrderOfParamsInput, Types.DefaultsCallToTestOrderOfParamsOutput>({ path: '/api/v{api-version}/defaults', method: 'PUT' });
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/hook/Descriptions.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import * as Types from '../factories/types.js';
+import { createHook } from '../../../../factories-module'
+
+export const callWithDescriptions = createHook<Types.DescriptionsCallWithDescriptionsInput, Types.DescriptionsCallWithDescriptionsOutput>({ path: '/api/v{api-version}/descriptions/', method: 'POST' });
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/hook/Duplicate.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import * as Types from '../factories/types.js';
+import { createHook } from '../../../../factories-module'
+
+export const duplicateName = createHook<Types.DuplicateDuplicateNameInput, Types.DuplicateDuplicateNameOutput>({ path: '/api/v{api-version}/duplicate', method: 'GET' });
+export const duplicateName1 = createHook<Types.DuplicateDuplicateName1Input, Types.DuplicateDuplicateName1Output>({ path: '/api/v{api-version}/duplicate', method: 'POST' });
+export const duplicateName2 = createHook<Types.DuplicateDuplicateName2Input, Types.DuplicateDuplicateName2Output>({ path: '/api/v{api-version}/duplicate', method: 'PUT' });
+export const duplicateName3 = createHook<Types.DuplicateDuplicateName3Input, Types.DuplicateDuplicateName3Output>({ path: '/api/v{api-version}/duplicate', method: 'DELETE' });
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/hook/Error.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import * as Types from '../factories/types.js';
+import { createHook } from '../../../../factories-module'
+
+export const testErrorCode = createHook<Types.ErrorTestErrorCodeInput, Types.ErrorTestErrorCodeOutput>({ path: '/api/v{api-version}/error', method: 'POST' });
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/hook/Header.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import * as Types from '../factories/types.js';
+import { createHook } from '../../../../factories-module'
+
+export const callWithResultFromHeader = createHook<Types.HeaderCallWithResultFromHeaderInput, Types.HeaderCallWithResultFromHeaderOutput>({ path: '/api/v{api-version}/header', method: 'POST' });
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/hook/MultipleTags1.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import * as Types from '../factories/types.js';
+import { createHook } from '../../../../factories-module'
+
+export const dummyA = createHook<Types.MultipleTags1DummyAInput, Types.MultipleTags1DummyAOutput>({ path: '/api/v{api-version}/multiple-tags/a', method: 'GET' });
+export const dummyB = createHook<Types.MultipleTags1DummyBInput, Types.MultipleTags1DummyBOutput>({ path: '/api/v{api-version}/multiple-tags/b', method: 'GET' });
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/hook/MultipleTags2.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import * as Types from '../factories/types.js';
+import { createHook } from '../../../../factories-module'
+
+export const dummyA = createHook<Types.MultipleTags2DummyAInput, Types.MultipleTags2DummyAOutput>({ path: '/api/v{api-version}/multiple-tags/a', method: 'GET' });
+export const dummyB = createHook<Types.MultipleTags2DummyBInput, Types.MultipleTags2DummyBOutput>({ path: '/api/v{api-version}/multiple-tags/b', method: 'GET' });
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/hook/MultipleTags3.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import * as Types from '../factories/types.js';
+import { createHook } from '../../../../factories-module'
+
+export const dummyB = createHook<Types.MultipleTags3DummyBInput, Types.MultipleTags3DummyBOutput>({ path: '/api/v{api-version}/multiple-tags/b', method: 'GET' });
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/hook/NoContent.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import * as Types from '../factories/types.js';
+import { createHook } from '../../../../factories-module'
+
+export const callWithNoContentResponse = createHook<Types.NoContentCallWithNoContentResponseInput, Types.NoContentCallWithNoContentResponseOutput>({ path: '/api/v{api-version}/no-content', method: 'GET' });
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/hook/Parameters.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import * as Types from '../factories/types.js';
+import { createHook } from '../../../../factories-module'
+
+export const callWithParameters = createHook<Types.ParametersCallWithParametersInput, Types.ParametersCallWithParametersOutput>({ path: '/api/v{api-version}/parameters/{parameterPath}', method: 'POST' });
+export const callWithWeirdParameterNames = createHook<Types.ParametersCallWithWeirdParameterNamesInput, Types.ParametersCallWithWeirdParameterNamesOutput>({ path: '/api/v{api-version}/parameters/{parameter.path.1}/{parameter-path-2}/{PARAMETER-PATH-3}', method: 'POST' });
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/hook/Response.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import * as Types from '../factories/types.js';
+import { createHook } from '../../../../factories-module'
+
+export const callWithResponse = createHook<Types.ResponseCallWithResponseInput, Types.ResponseCallWithResponseOutput>({ path: '/api/v{api-version}/response', method: 'GET' });
+export const callWithDuplicateResponses = createHook<Types.ResponseCallWithDuplicateResponsesInput, Types.ResponseCallWithDuplicateResponsesOutput>({ path: '/api/v{api-version}/response', method: 'POST' });
+export const callWithResponses = createHook<Types.ResponseCallWithResponsesInput, Types.ResponseCallWithResponsesOutput>({ path: '/api/v{api-version}/response', method: 'PUT' });
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/hook/Simple.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import * as Types from '../factories/types.js';
+import { createHook } from '../../../../factories-module'
+
+export const getCallWithoutParametersAndResponse = createHook<Types.SimpleGetCallWithoutParametersAndResponseInput, Types.SimpleGetCallWithoutParametersAndResponseOutput>({ path: '/api/v{api-version}/simple', method: 'GET' });
+export const putCallWithoutParametersAndResponse = createHook<Types.SimplePutCallWithoutParametersAndResponseInput, Types.SimplePutCallWithoutParametersAndResponseOutput>({ path: '/api/v{api-version}/simple', method: 'PUT' });
+export const postCallWithoutParametersAndResponse = createHook<Types.SimplePostCallWithoutParametersAndResponseInput, Types.SimplePostCallWithoutParametersAndResponseOutput>({ path: '/api/v{api-version}/simple', method: 'POST' });
+export const deleteCallWithoutParametersAndResponse = createHook<Types.SimpleDeleteCallWithoutParametersAndResponseInput, Types.SimpleDeleteCallWithoutParametersAndResponseOutput>({ path: '/api/v{api-version}/simple', method: 'DELETE' });
+export const optionsCallWithoutParametersAndResponse = createHook<Types.SimpleOptionsCallWithoutParametersAndResponseInput, Types.SimpleOptionsCallWithoutParametersAndResponseOutput>({ path: '/api/v{api-version}/simple', method: 'OPTIONS' });
+export const headCallWithoutParametersAndResponse = createHook<Types.SimpleHeadCallWithoutParametersAndResponseInput, Types.SimpleHeadCallWithoutParametersAndResponseOutput>({ path: '/api/v{api-version}/simple', method: 'HEAD' });
+export const patchCallWithoutParametersAndResponse = createHook<Types.SimplePatchCallWithoutParametersAndResponseInput, Types.SimplePatchCallWithoutParametersAndResponseOutput>({ path: '/api/v{api-version}/simple', method: 'PATCH' });
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/hook/Types.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import * as Types from '../factories/types.js';
+import { createHook } from '../../../../factories-module'
+
+export const types = createHook<Types.TypesTypesInput, Types.TypesTypesOutput>({ path: '/api/v{api-version}/types', method: 'GET' });
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/hook/index.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+export * as Default from './Default.js'
+export * as Simple from './Simple.js'
+export * as Descriptions from './Descriptions.js'
+export * as Parameters from './Parameters.js'
+export * as Defaults from './Defaults.js'
+export * as Duplicate from './Duplicate.js'
+export * as NoContent from './NoContent.js'
+export * as MultipleTags1 from './MultipleTags1.js'
+export * as MultipleTags2 from './MultipleTags2.js'
+export * as MultipleTags3 from './MultipleTags3.js'
+export * as Response from './Response.js'
+export * as CollectionFormat from './CollectionFormat.js'
+export * as Types from './Types.js'
+export * as Complex from './Complex.js'
+export * as Header from './Header.js'
+export * as Error from './Error.js'
+
+"
+`;
+
 exports[`v2 should generate: test/generated/v2/index.ts 1`] = `
 "/* generated using openapi-typescript-codegen -- do no edit */
 /* istanbul ignore file */
@@ -1141,6 +1390,7 @@ export { $SimpleStringWithPattern } from './schemas/$SimpleStringWithPattern';
 export * as pathnames from './pathnames'
 export * as server from './server'
 export * as client from './client'
+export * as hook from './hook'
 "
 `;
 
@@ -3633,5 +3883,6 @@ export { $SimpleStringWithPattern } from './schemas/$SimpleStringWithPattern';
 export * as pathnames from './pathnames'
 export * as server from './server'
 export * as client from './client'
+export * as hook from './hook'
 "
 `;

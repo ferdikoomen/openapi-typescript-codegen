@@ -17,6 +17,7 @@ import { writeClientPathnames } from './writeClientPathnames';
 import { writeClientFactories } from './writeClientFactories';
 import { writeClientServers } from './writeClientServers';
 import { writeClientClients } from './writeClientClients';
+import { writeClientHooks } from './writeClientHooks';
 
 /**
  * Write our OpenAPI client, using the given templates at the given output
@@ -55,6 +56,7 @@ export const writeClient = async (
     const outputPathPathnames = resolve(outputPath, 'pathnames');
     const outputPathServer = resolve(outputPath, 'server');
     const outputPathClient = resolve(outputPath, 'client');
+    const outputPathHook = resolve(outputPath, 'hook');
     const outputPathModels = resolve(outputPath, 'models');
     const outputPathSchemas = resolve(outputPath, 'schemas');
     const outputPathFactories = resolve(outputPath, 'factories');
@@ -86,6 +88,10 @@ export const writeClient = async (
         await rmdir(outputPathClient);
         await mkdir(outputPathClient);
         await writeClientClients(client.services, absoluteFactoriesFile, templates, outputPathClient, indent);
+
+        await rmdir(outputPathHook);
+        await mkdir(outputPathHook);
+        await writeClientHooks(client.services, absoluteFactoriesFile, templates, outputPathHook, indent);
     }
 
     if (exportSchemas) {
