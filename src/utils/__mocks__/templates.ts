@@ -19,6 +19,10 @@ export const templates: Templates = {
             resolver: () => 'sererResolver',
             index: () => 'serverIndex',
         },
+        client: {
+            resolver: () => 'clientResolver',
+            index: () => 'clientIndex',
+        },
         model: () => 'model',
         schema: () => 'schema',
         service: () => 'service',

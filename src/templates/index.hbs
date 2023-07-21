@@ -42,5 +42,7 @@ export { ${{{name}}} } from './schemas/${{{name}}}';
 export { {{{name}}}{{{@root.postfixServices}}} } from './services/{{{name}}}{{{@root.postfixServices}}}';
 {{/each}}
 export * as pathnames from './pathnames'
+export * as server from './server'
+export * as client from './client'
 {{/if}}
 {{/if}}

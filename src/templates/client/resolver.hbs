@@ -1,7 +1,7 @@
 {{>header}}
 
 import * as Types from '../factories/types.js';
-import { createServerResolver } from '{{{factories}}}'
+import { createClientResolver } from '{{{factories}}}'
 
 {{#each service.operations}}
 /**
@@ -18,5 +18,5 @@ import { createServerResolver } from '{{{factories}}}'
 	 * @returns {{{type}}} {{#if description}}{{{escapeComment description}}}{{/if}}
 {{/each}}
 */
-export const {{{name}}} = createServerResolver<Types.{{{@root.service.name}}}{{{capitalize name}}}Input, Types.{{{@root.service.name}}}{{{capitalize name}}}Output>({ path: '{{{path}}}', method: '{{{method}}}' });
+export const {{{name}}} = createClientResolver<Types.{{{@root.service.name}}}{{{capitalize name}}}Input, Types.{{{@root.service.name}}}{{{capitalize name}}}Output>({ path: '{{{path}}}', method: '{{{method}}}' });
 {{/each}}

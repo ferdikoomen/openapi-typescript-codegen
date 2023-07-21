@@ -1,5 +1,337 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`v2 should generate: test/generated/v2/client/CollectionFormat.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import * as Types from '../factories/types.js';
+import { createClientResolver } from '../../../../factories-module'
+
+/**
+ */
+export const collectionFormat = createClientResolver<Types.CollectionFormatCollectionFormatInput, Types.CollectionFormatCollectionFormatOutput>({ path: '/api/v{api-version}/collectionFormat', method: 'GET' });
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/client/Complex.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import * as Types from '../factories/types.js';
+import { createClientResolver } from '../../../../factories-module'
+
+/**
+ * @returns ModelWithString Successful response
+ */
+export const complexTypes = createClientResolver<Types.ComplexComplexTypesInput, Types.ComplexComplexTypesOutput>({ path: '/api/v{api-version}/complex', method: 'GET' });
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/client/Default.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import * as Types from '../factories/types.js';
+import { createClientResolver } from '../../../../factories-module'
+
+/**
+ */
+export const serviceWithEmptyTag = createClientResolver<Types.DefaultServiceWithEmptyTagInput, Types.DefaultServiceWithEmptyTagOutput>({ path: '/api/v{api-version}/no-tag', method: 'GET' });
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/client/Defaults.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import * as Types from '../factories/types.js';
+import { createClientResolver } from '../../../../factories-module'
+
+/**
+ */
+export const callWithDefaultParameters = createClientResolver<Types.DefaultsCallWithDefaultParametersInput, Types.DefaultsCallWithDefaultParametersOutput>({ path: '/api/v{api-version}/defaults', method: 'GET' });
+/**
+ */
+export const callWithDefaultOptionalParameters = createClientResolver<Types.DefaultsCallWithDefaultOptionalParametersInput, Types.DefaultsCallWithDefaultOptionalParametersOutput>({ path: '/api/v{api-version}/defaults', method: 'POST' });
+/**
+ */
+export const callToTestOrderOfParams = createClientResolver<Types.DefaultsCallToTestOrderOfParamsInput, Types.DefaultsCallToTestOrderOfParamsOutput>({ path: '/api/v{api-version}/defaults', method: 'PUT' });
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/client/Descriptions.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import * as Types from '../factories/types.js';
+import { createClientResolver } from '../../../../factories-module'
+
+/**
+ */
+export const callWithDescriptions = createClientResolver<Types.DescriptionsCallWithDescriptionsInput, Types.DescriptionsCallWithDescriptionsOutput>({ path: '/api/v{api-version}/descriptions/', method: 'POST' });
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/client/Duplicate.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import * as Types from '../factories/types.js';
+import { createClientResolver } from '../../../../factories-module'
+
+/**
+ */
+export const duplicateName = createClientResolver<Types.DuplicateDuplicateNameInput, Types.DuplicateDuplicateNameOutput>({ path: '/api/v{api-version}/duplicate', method: 'GET' });
+/**
+ */
+export const duplicateName1 = createClientResolver<Types.DuplicateDuplicateName1Input, Types.DuplicateDuplicateName1Output>({ path: '/api/v{api-version}/duplicate', method: 'POST' });
+/**
+ */
+export const duplicateName2 = createClientResolver<Types.DuplicateDuplicateName2Input, Types.DuplicateDuplicateName2Output>({ path: '/api/v{api-version}/duplicate', method: 'PUT' });
+/**
+ */
+export const duplicateName3 = createClientResolver<Types.DuplicateDuplicateName3Input, Types.DuplicateDuplicateName3Output>({ path: '/api/v{api-version}/duplicate', method: 'DELETE' });
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/client/Error.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import * as Types from '../factories/types.js';
+import { createClientResolver } from '../../../../factories-module'
+
+/**
+ * @returns any Custom message: Successful response
+ */
+export const testErrorCode = createClientResolver<Types.ErrorTestErrorCodeInput, Types.ErrorTestErrorCodeOutput>({ path: '/api/v{api-version}/error', method: 'POST' });
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/client/Header.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import * as Types from '../factories/types.js';
+import { createClientResolver } from '../../../../factories-module'
+
+/**
+ * @returns string Successful response
+ */
+export const callWithResultFromHeader = createClientResolver<Types.HeaderCallWithResultFromHeaderInput, Types.HeaderCallWithResultFromHeaderOutput>({ path: '/api/v{api-version}/header', method: 'POST' });
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/client/MultipleTags1.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import * as Types from '../factories/types.js';
+import { createClientResolver } from '../../../../factories-module'
+
+/**
+ * @returns void
+ */
+export const dummyA = createClientResolver<Types.MultipleTags1DummyAInput, Types.MultipleTags1DummyAOutput>({ path: '/api/v{api-version}/multiple-tags/a', method: 'GET' });
+/**
+ * @returns void
+ */
+export const dummyB = createClientResolver<Types.MultipleTags1DummyBInput, Types.MultipleTags1DummyBOutput>({ path: '/api/v{api-version}/multiple-tags/b', method: 'GET' });
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/client/MultipleTags2.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import * as Types from '../factories/types.js';
+import { createClientResolver } from '../../../../factories-module'
+
+/**
+ * @returns void
+ */
+export const dummyA = createClientResolver<Types.MultipleTags2DummyAInput, Types.MultipleTags2DummyAOutput>({ path: '/api/v{api-version}/multiple-tags/a', method: 'GET' });
+/**
+ * @returns void
+ */
+export const dummyB = createClientResolver<Types.MultipleTags2DummyBInput, Types.MultipleTags2DummyBOutput>({ path: '/api/v{api-version}/multiple-tags/b', method: 'GET' });
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/client/MultipleTags3.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import * as Types from '../factories/types.js';
+import { createClientResolver } from '../../../../factories-module'
+
+/**
+ * @returns void
+ */
+export const dummyB = createClientResolver<Types.MultipleTags3DummyBInput, Types.MultipleTags3DummyBOutput>({ path: '/api/v{api-version}/multiple-tags/b', method: 'GET' });
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/client/NoContent.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import * as Types from '../factories/types.js';
+import { createClientResolver } from '../../../../factories-module'
+
+/**
+ * @returns void
+ */
+export const callWithNoContentResponse = createClientResolver<Types.NoContentCallWithNoContentResponseInput, Types.NoContentCallWithNoContentResponseOutput>({ path: '/api/v{api-version}/no-content', method: 'GET' });
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/client/Parameters.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import * as Types from '../factories/types.js';
+import { createClientResolver } from '../../../../factories-module'
+
+/**
+ */
+export const callWithParameters = createClientResolver<Types.ParametersCallWithParametersInput, Types.ParametersCallWithParametersOutput>({ path: '/api/v{api-version}/parameters/{parameterPath}', method: 'POST' });
+/**
+ */
+export const callWithWeirdParameterNames = createClientResolver<Types.ParametersCallWithWeirdParameterNamesInput, Types.ParametersCallWithWeirdParameterNamesOutput>({ path: '/api/v{api-version}/parameters/{parameter.path.1}/{parameter-path-2}/{PARAMETER-PATH-3}', method: 'POST' });
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/client/Response.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import * as Types from '../factories/types.js';
+import { createClientResolver } from '../../../../factories-module'
+
+/**
+ * @returns ModelWithString Message for default response
+ */
+export const callWithResponse = createClientResolver<Types.ResponseCallWithResponseInput, Types.ResponseCallWithResponseOutput>({ path: '/api/v{api-version}/response', method: 'GET' });
+/**
+ * @returns ModelWithString Message for default response
+ */
+export const callWithDuplicateResponses = createClientResolver<Types.ResponseCallWithDuplicateResponsesInput, Types.ResponseCallWithDuplicateResponsesOutput>({ path: '/api/v{api-version}/response', method: 'POST' });
+/**
+ * @returns any Message for 200 response
+ * @returns ModelWithString Message for default response
+ * @returns ModelThatExtends Message for 201 response
+ * @returns ModelThatExtendsExtends Message for 202 response
+ */
+export const callWithResponses = createClientResolver<Types.ResponseCallWithResponsesInput, Types.ResponseCallWithResponsesOutput>({ path: '/api/v{api-version}/response', method: 'PUT' });
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/client/Simple.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import * as Types from '../factories/types.js';
+import { createClientResolver } from '../../../../factories-module'
+
+/**
+ */
+export const getCallWithoutParametersAndResponse = createClientResolver<Types.SimpleGetCallWithoutParametersAndResponseInput, Types.SimpleGetCallWithoutParametersAndResponseOutput>({ path: '/api/v{api-version}/simple', method: 'GET' });
+/**
+ */
+export const putCallWithoutParametersAndResponse = createClientResolver<Types.SimplePutCallWithoutParametersAndResponseInput, Types.SimplePutCallWithoutParametersAndResponseOutput>({ path: '/api/v{api-version}/simple', method: 'PUT' });
+/**
+ */
+export const postCallWithoutParametersAndResponse = createClientResolver<Types.SimplePostCallWithoutParametersAndResponseInput, Types.SimplePostCallWithoutParametersAndResponseOutput>({ path: '/api/v{api-version}/simple', method: 'POST' });
+/**
+ */
+export const deleteCallWithoutParametersAndResponse = createClientResolver<Types.SimpleDeleteCallWithoutParametersAndResponseInput, Types.SimpleDeleteCallWithoutParametersAndResponseOutput>({ path: '/api/v{api-version}/simple', method: 'DELETE' });
+/**
+ */
+export const optionsCallWithoutParametersAndResponse = createClientResolver<Types.SimpleOptionsCallWithoutParametersAndResponseInput, Types.SimpleOptionsCallWithoutParametersAndResponseOutput>({ path: '/api/v{api-version}/simple', method: 'OPTIONS' });
+/**
+ */
+export const headCallWithoutParametersAndResponse = createClientResolver<Types.SimpleHeadCallWithoutParametersAndResponseInput, Types.SimpleHeadCallWithoutParametersAndResponseOutput>({ path: '/api/v{api-version}/simple', method: 'HEAD' });
+/**
+ */
+export const patchCallWithoutParametersAndResponse = createClientResolver<Types.SimplePatchCallWithoutParametersAndResponseInput, Types.SimplePatchCallWithoutParametersAndResponseOutput>({ path: '/api/v{api-version}/simple', method: 'PATCH' });
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/client/Types.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import * as Types from '../factories/types.js';
+import { createClientResolver } from '../../../../factories-module'
+
+/**
+ * @returns number Response is a simple number
+ * @returns string Response is a simple string
+ * @returns boolean Response is a simple boolean
+ * @returns any Response is a simple object
+ */
+export const types = createClientResolver<Types.TypesTypesInput, Types.TypesTypesOutput>({ path: '/api/v{api-version}/types', method: 'GET' });
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/client/index.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+export * as Default from './Default.js'
+export * as Simple from './Simple.js'
+export * as Descriptions from './Descriptions.js'
+export * as Parameters from './Parameters.js'
+export * as Defaults from './Defaults.js'
+export * as Duplicate from './Duplicate.js'
+export * as NoContent from './NoContent.js'
+export * as MultipleTags1 from './MultipleTags1.js'
+export * as MultipleTags2 from './MultipleTags2.js'
+export * as MultipleTags3 from './MultipleTags3.js'
+export * as Response from './Response.js'
+export * as CollectionFormat from './CollectionFormat.js'
+export * as Types from './Types.js'
+export * as Complex from './Complex.js'
+export * as Header from './Header.js'
+export * as Error from './Error.js'
+
+"
+`;
+
 exports[`v2 should generate: test/generated/v2/core/ApiError.ts 1`] = `
 "/* generated using openapi-typescript-codegen -- do no edit */
 /* istanbul ignore file */
@@ -823,6 +1155,8 @@ export { ResponseService } from './services/ResponseService';
 export { SimpleService } from './services/SimpleService';
 export { TypesService } from './services/TypesService';
 export * as pathnames from './pathnames'
+export * as server from './server'
+export * as client from './client'
 "
 `;
 
@@ -2839,7 +3173,6 @@ import * as Types from '../factories/types.js';
 import { createServerResolver } from '../../../../factories-module'
 
 /**
- * @throws ApiError
  */
 export const collectionFormat = createServerResolver<Types.CollectionFormatCollectionFormatInput, Types.CollectionFormatCollectionFormatOutput>({ path: '/api/v{api-version}/collectionFormat', method: 'GET' });
 
@@ -2855,7 +3188,7 @@ import * as Types from '../factories/types.js';
 import { createServerResolver } from '../../../../factories-module'
 
 /**
- * @throws ApiError
+ * @returns ModelWithString Successful response
  */
 export const complexTypes = createServerResolver<Types.ComplexComplexTypesInput, Types.ComplexComplexTypesOutput>({ path: '/api/v{api-version}/complex', method: 'GET' });
 
@@ -2871,7 +3204,6 @@ import * as Types from '../factories/types.js';
 import { createServerResolver } from '../../../../factories-module'
 
 /**
- * @throws ApiError
  */
 export const serviceWithEmptyTag = createServerResolver<Types.DefaultServiceWithEmptyTagInput, Types.DefaultServiceWithEmptyTagOutput>({ path: '/api/v{api-version}/no-tag', method: 'GET' });
 
@@ -2887,15 +3219,12 @@ import * as Types from '../factories/types.js';
 import { createServerResolver } from '../../../../factories-module'
 
 /**
- * @throws ApiError
  */
 export const callWithDefaultParameters = createServerResolver<Types.DefaultsCallWithDefaultParametersInput, Types.DefaultsCallWithDefaultParametersOutput>({ path: '/api/v{api-version}/defaults', method: 'GET' });
 /**
- * @throws ApiError
  */
 export const callWithDefaultOptionalParameters = createServerResolver<Types.DefaultsCallWithDefaultOptionalParametersInput, Types.DefaultsCallWithDefaultOptionalParametersOutput>({ path: '/api/v{api-version}/defaults', method: 'POST' });
 /**
- * @throws ApiError
  */
 export const callToTestOrderOfParams = createServerResolver<Types.DefaultsCallToTestOrderOfParamsInput, Types.DefaultsCallToTestOrderOfParamsOutput>({ path: '/api/v{api-version}/defaults', method: 'PUT' });
 
@@ -2911,7 +3240,6 @@ import * as Types from '../factories/types.js';
 import { createServerResolver } from '../../../../factories-module'
 
 /**
- * @throws ApiError
  */
 export const callWithDescriptions = createServerResolver<Types.DescriptionsCallWithDescriptionsInput, Types.DescriptionsCallWithDescriptionsOutput>({ path: '/api/v{api-version}/descriptions/', method: 'POST' });
 
@@ -2927,19 +3255,15 @@ import * as Types from '../factories/types.js';
 import { createServerResolver } from '../../../../factories-module'
 
 /**
- * @throws ApiError
  */
 export const duplicateName = createServerResolver<Types.DuplicateDuplicateNameInput, Types.DuplicateDuplicateNameOutput>({ path: '/api/v{api-version}/duplicate', method: 'GET' });
 /**
- * @throws ApiError
  */
 export const duplicateName1 = createServerResolver<Types.DuplicateDuplicateName1Input, Types.DuplicateDuplicateName1Output>({ path: '/api/v{api-version}/duplicate', method: 'POST' });
 /**
- * @throws ApiError
  */
 export const duplicateName2 = createServerResolver<Types.DuplicateDuplicateName2Input, Types.DuplicateDuplicateName2Output>({ path: '/api/v{api-version}/duplicate', method: 'PUT' });
 /**
- * @throws ApiError
  */
 export const duplicateName3 = createServerResolver<Types.DuplicateDuplicateName3Input, Types.DuplicateDuplicateName3Output>({ path: '/api/v{api-version}/duplicate', method: 'DELETE' });
 
@@ -2955,7 +3279,7 @@ import * as Types from '../factories/types.js';
 import { createServerResolver } from '../../../../factories-module'
 
 /**
- * @throws ApiError
+ * @returns any Custom message: Successful response
  */
 export const testErrorCode = createServerResolver<Types.ErrorTestErrorCodeInput, Types.ErrorTestErrorCodeOutput>({ path: '/api/v{api-version}/error', method: 'POST' });
 
@@ -2971,7 +3295,7 @@ import * as Types from '../factories/types.js';
 import { createServerResolver } from '../../../../factories-module'
 
 /**
- * @throws ApiError
+ * @returns string Successful response
  */
 export const callWithResultFromHeader = createServerResolver<Types.HeaderCallWithResultFromHeaderInput, Types.HeaderCallWithResultFromHeaderOutput>({ path: '/api/v{api-version}/header', method: 'POST' });
 
@@ -2987,11 +3311,11 @@ import * as Types from '../factories/types.js';
 import { createServerResolver } from '../../../../factories-module'
 
 /**
- * @throws ApiError
+ * @returns void
  */
 export const dummyA = createServerResolver<Types.MultipleTags1DummyAInput, Types.MultipleTags1DummyAOutput>({ path: '/api/v{api-version}/multiple-tags/a', method: 'GET' });
 /**
- * @throws ApiError
+ * @returns void
  */
 export const dummyB = createServerResolver<Types.MultipleTags1DummyBInput, Types.MultipleTags1DummyBOutput>({ path: '/api/v{api-version}/multiple-tags/b', method: 'GET' });
 
@@ -3007,11 +3331,11 @@ import * as Types from '../factories/types.js';
 import { createServerResolver } from '../../../../factories-module'
 
 /**
- * @throws ApiError
+ * @returns void
  */
 export const dummyA = createServerResolver<Types.MultipleTags2DummyAInput, Types.MultipleTags2DummyAOutput>({ path: '/api/v{api-version}/multiple-tags/a', method: 'GET' });
 /**
- * @throws ApiError
+ * @returns void
  */
 export const dummyB = createServerResolver<Types.MultipleTags2DummyBInput, Types.MultipleTags2DummyBOutput>({ path: '/api/v{api-version}/multiple-tags/b', method: 'GET' });
 
@@ -3027,7 +3351,7 @@ import * as Types from '../factories/types.js';
 import { createServerResolver } from '../../../../factories-module'
 
 /**
- * @throws ApiError
+ * @returns void
  */
 export const dummyB = createServerResolver<Types.MultipleTags3DummyBInput, Types.MultipleTags3DummyBOutput>({ path: '/api/v{api-version}/multiple-tags/b', method: 'GET' });
 
@@ -3043,7 +3367,7 @@ import * as Types from '../factories/types.js';
 import { createServerResolver } from '../../../../factories-module'
 
 /**
- * @throws ApiError
+ * @returns void
  */
 export const callWithNoContentResponse = createServerResolver<Types.NoContentCallWithNoContentResponseInput, Types.NoContentCallWithNoContentResponseOutput>({ path: '/api/v{api-version}/no-content', method: 'GET' });
 
@@ -3059,11 +3383,9 @@ import * as Types from '../factories/types.js';
 import { createServerResolver } from '../../../../factories-module'
 
 /**
- * @throws ApiError
  */
 export const callWithParameters = createServerResolver<Types.ParametersCallWithParametersInput, Types.ParametersCallWithParametersOutput>({ path: '/api/v{api-version}/parameters/{parameterPath}', method: 'POST' });
 /**
- * @throws ApiError
  */
 export const callWithWeirdParameterNames = createServerResolver<Types.ParametersCallWithWeirdParameterNamesInput, Types.ParametersCallWithWeirdParameterNamesOutput>({ path: '/api/v{api-version}/parameters/{parameter.path.1}/{parameter-path-2}/{PARAMETER-PATH-3}', method: 'POST' });
 
@@ -3079,15 +3401,18 @@ import * as Types from '../factories/types.js';
 import { createServerResolver } from '../../../../factories-module'
 
 /**
- * @throws ApiError
+ * @returns ModelWithString Message for default response
  */
 export const callWithResponse = createServerResolver<Types.ResponseCallWithResponseInput, Types.ResponseCallWithResponseOutput>({ path: '/api/v{api-version}/response', method: 'GET' });
 /**
- * @throws ApiError
+ * @returns ModelWithString Message for default response
  */
 export const callWithDuplicateResponses = createServerResolver<Types.ResponseCallWithDuplicateResponsesInput, Types.ResponseCallWithDuplicateResponsesOutput>({ path: '/api/v{api-version}/response', method: 'POST' });
 /**
- * @throws ApiError
+ * @returns any Message for 200 response
+ * @returns ModelWithString Message for default response
+ * @returns ModelThatExtends Message for 201 response
+ * @returns ModelThatExtendsExtends Message for 202 response
  */
 export const callWithResponses = createServerResolver<Types.ResponseCallWithResponsesInput, Types.ResponseCallWithResponsesOutput>({ path: '/api/v{api-version}/response', method: 'PUT' });
 
@@ -3103,31 +3428,24 @@ import * as Types from '../factories/types.js';
 import { createServerResolver } from '../../../../factories-module'
 
 /**
- * @throws ApiError
  */
 export const getCallWithoutParametersAndResponse = createServerResolver<Types.SimpleGetCallWithoutParametersAndResponseInput, Types.SimpleGetCallWithoutParametersAndResponseOutput>({ path: '/api/v{api-version}/simple', method: 'GET' });
 /**
- * @throws ApiError
  */
 export const putCallWithoutParametersAndResponse = createServerResolver<Types.SimplePutCallWithoutParametersAndResponseInput, Types.SimplePutCallWithoutParametersAndResponseOutput>({ path: '/api/v{api-version}/simple', method: 'PUT' });
 /**
- * @throws ApiError
  */
 export const postCallWithoutParametersAndResponse = createServerResolver<Types.SimplePostCallWithoutParametersAndResponseInput, Types.SimplePostCallWithoutParametersAndResponseOutput>({ path: '/api/v{api-version}/simple', method: 'POST' });
 /**
- * @throws ApiError
  */
 export const deleteCallWithoutParametersAndResponse = createServerResolver<Types.SimpleDeleteCallWithoutParametersAndResponseInput, Types.SimpleDeleteCallWithoutParametersAndResponseOutput>({ path: '/api/v{api-version}/simple', method: 'DELETE' });
 /**
- * @throws ApiError
  */
 export const optionsCallWithoutParametersAndResponse = createServerResolver<Types.SimpleOptionsCallWithoutParametersAndResponseInput, Types.SimpleOptionsCallWithoutParametersAndResponseOutput>({ path: '/api/v{api-version}/simple', method: 'OPTIONS' });
 /**
- * @throws ApiError
  */
 export const headCallWithoutParametersAndResponse = createServerResolver<Types.SimpleHeadCallWithoutParametersAndResponseInput, Types.SimpleHeadCallWithoutParametersAndResponseOutput>({ path: '/api/v{api-version}/simple', method: 'HEAD' });
 /**
- * @throws ApiError
  */
 export const patchCallWithoutParametersAndResponse = createServerResolver<Types.SimplePatchCallWithoutParametersAndResponseInput, Types.SimplePatchCallWithoutParametersAndResponseOutput>({ path: '/api/v{api-version}/simple', method: 'PATCH' });
 
@@ -3143,7 +3461,10 @@ import * as Types from '../factories/types.js';
 import { createServerResolver } from '../../../../factories-module'
 
 /**
- * @throws ApiError
+ * @returns number Response is a simple number
+ * @returns string Response is a simple string
+ * @returns boolean Response is a simple boolean
+ * @returns any Response is a simple object
  */
 export const types = createServerResolver<Types.TypesTypesInput, Types.TypesTypesOutput>({ path: '/api/v{api-version}/types', method: 'GET' });
 
@@ -4368,5 +4689,7 @@ export { SimpleService } from './services/SimpleService';
 export { TypesService } from './services/TypesService';
 export { UploadService } from './services/UploadService';
 export * as pathnames from './pathnames'
+export * as server from './server'
+export * as client from './client'
 "
 `;

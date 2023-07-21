@@ -17,6 +17,7 @@ import { writeClientServices } from './writeClientServices';
 import { writeClientPathnames } from './writeClientPathnames';
 import { writeClientFactories } from './writeClientFactories';
 import { writeClientServers } from './writeClientServers';
+import { writeClientClients } from './writeClientClients';
 
 /**
  * Write our OpenAPI client, using the given templates at the given output
@@ -55,6 +56,7 @@ export const writeClient = async (
     const outputPathCore = resolve(outputPath, 'core');
     const outputPathPathnames = resolve(outputPath, 'pathnames');
     const outputPathServer = resolve(outputPath, 'server');
+    const outputPathClient = resolve(outputPath, 'client');
     const outputPathModels = resolve(outputPath, 'models');
     const outputPathSchemas = resolve(outputPath, 'schemas');
     const outputPathServices = resolve(outputPath, 'services');
@@ -69,6 +71,10 @@ export const writeClient = async (
     await mkdir(outputPathFactories);
     await writeClientFactories(client.services, templates, outputPathFactories, indent);
 
+    await rmdir(outputPathPathnames);
+    await mkdir(outputPathPathnames);
+    await writeClientPathnames(client.services, templates, outputPathPathnames, indent);
+
     if (exportCore) {
         await rmdir(outputPathCore);
         await mkdir(outputPathCore);
@@ -76,13 +82,13 @@ export const writeClient = async (
     }
 
     if (exportServices) {
-        await rmdir(outputPathPathnames);
-        await mkdir(outputPathPathnames);
-        await writeClientPathnames(client.services, templates, outputPathPathnames, indent);
-
         await rmdir(outputPathServer);
         await mkdir(outputPathServer);
         await writeClientServers(client.services, absoluteFactoriesFile, templates, outputPathServer, indent);
+
+        await rmdir(outputPathClient);
+        await mkdir(outputPathClient);
+        await writeClientClients(client.services, absoluteFactoriesFile, templates, outputPathClient, indent);
 
         await rmdir(outputPathServices);
         await mkdir(outputPathServices);
