@@ -243,13 +243,13 @@ exports[`v2 should generate: test/generated/v2/factories/createClientResolver.ts
 /* eslint-disable */
 export type ClientResolverConfig = {
     path: string;
-    method: string;
+    method: 'GET' | 'PUT' | 'POST' | 'DELETE' | 'OPTIONS' | 'HEAD' | 'PATCH';
 }
 
 export type ClientRequestOptions = Omit<RequestInit, "method" | "body">
 
-export interface ClientResolverFactory<Input, Output> {
-    (config: ClientResolverConfig): (input: Input, options?: ClientRequestOptions) => Promise<Output>
+export interface ClientResolverFactory {
+    <Input, Output>(config: ClientResolverConfig): (input: Input, options?: ClientRequestOptions) => Promise<Output>
 }
 "
 `;
@@ -261,15 +261,15 @@ exports[`v2 should generate: test/generated/v2/factories/createHook.ts 1`] = `
 /* eslint-disable */
 export type HookConfig = {
     path: string;
-    method: string;
+    method: 'GET' | 'PUT' | 'POST' | 'DELETE' | 'OPTIONS' | 'HEAD' | 'PATCH';
 }
 
 export type HookOptions = Omit<RequestInit, "method" | "body">
 
 export type HookResult<Data> = [Data | undefined, { version?: number; isLoading: boolean }]
 
-export interface HookFactory<Input, Output> {
-    (config: HookConfig): (input: Input, options?: HookOptions) => HookResult<Output>
+export interface HookFactory {
+    <Input, Output>(config: HookConfig): (input: Input, options?: HookOptions) => HookResult<Output>
 }
 "
 `;
@@ -281,13 +281,13 @@ exports[`v2 should generate: test/generated/v2/factories/createServerResolver.ts
 /* eslint-disable */
 export type ServerResolverConfig = {
     path: string;
-    method: string;
+    method: 'GET' | 'PUT' | 'POST' | 'DELETE' | 'OPTIONS' | 'HEAD' | 'PATCH';
 }
 
 export type ServerRequestOptions = Omit<RequestInit, "method" | "body">
 
-export interface ServerResolverFactory<Input, Output> {
-    (config: ServerResolverConfig): (input: Input, options?: ServerRequestOptions) => Promise<Output>
+export interface ServerResolverFactory {
+    <Input, Output>(config: ServerResolverConfig): (input: Input, options?: ServerRequestOptions) => Promise<Output>
 }
 "
 `;
@@ -297,9 +297,403 @@ exports[`v2 should generate: test/generated/v2/factories/index.ts 1`] = `
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+export * from './types.js'
 export * from './createServerResolver.js'
 export * from './createClientResolver.js'
 export * from './createHook.js'
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/factories/types.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+
+
+export type DefaultServiceWithEmptyTagInput = undefined
+;
+export type DefaultServiceWithEmptyTagOutput = void;
+
+
+
+export type SimpleGetCallWithoutParametersAndResponseInput = undefined
+;
+export type SimpleGetCallWithoutParametersAndResponseOutput = void;
+export type SimplePutCallWithoutParametersAndResponseInput = undefined
+;
+export type SimplePutCallWithoutParametersAndResponseOutput = void;
+export type SimplePostCallWithoutParametersAndResponseInput = undefined
+;
+export type SimplePostCallWithoutParametersAndResponseOutput = void;
+export type SimpleDeleteCallWithoutParametersAndResponseInput = undefined
+;
+export type SimpleDeleteCallWithoutParametersAndResponseOutput = void;
+export type SimpleOptionsCallWithoutParametersAndResponseInput = undefined
+;
+export type SimpleOptionsCallWithoutParametersAndResponseOutput = void;
+export type SimpleHeadCallWithoutParametersAndResponseInput = undefined
+;
+export type SimpleHeadCallWithoutParametersAndResponseOutput = void;
+export type SimplePatchCallWithoutParametersAndResponseInput = undefined
+;
+export type SimplePatchCallWithoutParametersAndResponseOutput = void;
+
+
+
+export type DescriptionsCallWithDescriptionsInput = {
+    /**
+     * Testing multiline comments in string: First line
+     * Second line
+     *
+     * Fourth line
+     */
+    parameterWithBreaks?: string,
+    /**
+     * Testing backticks in string: \`backticks\` and \`\`\`multiple backticks\`\`\` should work
+     */
+    parameterWithBackticks?: string,
+    /**
+     * Testing slashes in string: \\backwards\\\\\\ and /forwards/// should work
+     */
+    parameterWithSlashes?: string,
+    /**
+     * Testing expression placeholders in string: \${expression} should work
+     */
+    parameterWithExpressionPlaceholders?: string,
+    /**
+     * Testing quotes in string: 'single quote''' and "double quotes""" should work
+     */
+    parameterWithQuotes?: string,
+    /**
+     * Testing reserved characters in string: * inline * and ** inline ** should work
+     */
+    parameterWithReservedCharacters?: string,
+}
+;
+export type DescriptionsCallWithDescriptionsOutput = void;
+
+
+
+export type ParametersCallWithParametersInput = {
+    /**
+     * This is the parameter that goes into the header
+     */
+    parameterHeader: string,
+    /**
+     * This is the parameter that goes into the query params
+     */
+    parameterQuery: string,
+    /**
+     * This is the parameter that goes into the form data
+     */
+    parameterForm: string,
+    /**
+     * This is the parameter that is sent as request body
+     */
+    parameterBody: string,
+    /**
+     * This is the parameter that goes into the path
+     */
+    parameterPath: string,
+}
+;
+export type ParametersCallWithParametersOutput = void;
+export type ParametersCallWithWeirdParameterNamesInput = {
+    /**
+     * This is the parameter that goes into the request header
+     */
+    parameterHeader: string,
+    /**
+     * This is the parameter that goes into the request query params
+     */
+    parameterQuery: string,
+    /**
+     * This is the parameter that goes into the request form data
+     */
+    parameterForm: string,
+    /**
+     * This is the parameter that is sent as request body
+     */
+    parameterBody: string,
+    /**
+     * This is the parameter that goes into the path
+     */
+    parameterPath1?: string,
+    /**
+     * This is the parameter that goes into the path
+     */
+    parameterPath2?: string,
+    /**
+     * This is the parameter that goes into the path
+     */
+    parameterPath3?: string,
+    /**
+     * This is the parameter with a reserved keyword
+     */
+    _default?: string,
+}
+;
+export type ParametersCallWithWeirdParameterNamesOutput = void;
+
+
+import type { ModelWithString } from '../models/ModelWithString';
+
+export type DefaultsCallWithDefaultParametersInput = {
+    /**
+     * This is a simple string with default value
+     */
+    parameterString?: string,
+    /**
+     * This is a simple number with default value
+     */
+    parameterNumber?: number,
+    /**
+     * This is a simple boolean with default value
+     */
+    parameterBoolean?: boolean,
+    /**
+     * This is a simple enum with default value
+     */
+    parameterEnum?: 'Success' | 'Warning' | 'Error',
+    /**
+     * This is a simple model with default value
+     */
+    parameterModel?: ModelWithString,
+}
+;
+export type DefaultsCallWithDefaultParametersOutput = void;
+export type DefaultsCallWithDefaultOptionalParametersInput = {
+    /**
+     * This is a simple string that is optional with default value
+     */
+    parameterString?: string,
+    /**
+     * This is a simple number that is optional with default value
+     */
+    parameterNumber?: number,
+    /**
+     * This is a simple boolean that is optional with default value
+     */
+    parameterBoolean?: boolean,
+    /**
+     * This is a simple enum that is optional with default value
+     */
+    parameterEnum?: 'Success' | 'Warning' | 'Error',
+    /**
+     * This is a simple model that is optional with default value
+     */
+    parameterModel?: ModelWithString,
+}
+;
+export type DefaultsCallWithDefaultOptionalParametersOutput = void;
+export type DefaultsCallToTestOrderOfParamsInput = {
+    /**
+     * This is a string with no default
+     */
+    parameterStringWithNoDefault: string,
+    /**
+     * This is a optional string with default
+     */
+    parameterOptionalStringWithDefault?: string,
+    /**
+     * This is a optional string with empty default
+     */
+    parameterOptionalStringWithEmptyDefault?: string,
+    /**
+     * This is a optional string with no default
+     */
+    parameterOptionalStringWithNoDefault?: string,
+    /**
+     * This is a string with default
+     */
+    parameterStringWithDefault?: string,
+    /**
+     * This is a string with empty default
+     */
+    parameterStringWithEmptyDefault?: string,
+    /**
+     * This is a string that can be null with no default
+     */
+    parameterStringNullableWithNoDefault?: string | null,
+    /**
+     * This is a string that can be null with default
+     */
+    parameterStringNullableWithDefault?: string | null,
+}
+;
+export type DefaultsCallToTestOrderOfParamsOutput = void;
+
+
+
+export type DuplicateDuplicateNameInput = undefined
+;
+export type DuplicateDuplicateNameOutput = void;
+export type DuplicateDuplicateName1Input = undefined
+;
+export type DuplicateDuplicateName1Output = void;
+export type DuplicateDuplicateName2Input = undefined
+;
+export type DuplicateDuplicateName2Output = void;
+export type DuplicateDuplicateName3Input = undefined
+;
+export type DuplicateDuplicateName3Output = void;
+
+
+
+export type NoContentCallWithNoContentResponseInput = undefined
+;
+export type NoContentCallWithNoContentResponseOutput = void;
+
+
+
+export type MultipleTags1DummyAInput = undefined
+;
+export type MultipleTags1DummyAOutput = void;
+export type MultipleTags1DummyBInput = undefined
+;
+export type MultipleTags1DummyBOutput = void;
+
+
+
+export type MultipleTags2DummyAInput = undefined
+;
+export type MultipleTags2DummyAOutput = void;
+export type MultipleTags2DummyBInput = undefined
+;
+export type MultipleTags2DummyBOutput = void;
+
+
+
+export type MultipleTags3DummyBInput = undefined
+;
+export type MultipleTags3DummyBOutput = void;
+
+
+import type { ModelThatExtends } from '../models/ModelThatExtends';
+import type { ModelThatExtendsExtends } from '../models/ModelThatExtendsExtends';
+import type { ModelWithString } from '../models/ModelWithString';
+
+export type ResponseCallWithResponseInput = undefined
+;
+export type ResponseCallWithResponseOutput = ModelWithString;
+export type ResponseCallWithDuplicateResponsesInput = undefined
+;
+export type ResponseCallWithDuplicateResponsesOutput = ModelWithString;
+export type ResponseCallWithResponsesInput = undefined
+;
+export type ResponseCallWithResponsesOutput = {
+    readonly '@namespace.string'?: string;
+    readonly '@namespace.integer'?: number;
+    readonly value?: Array<ModelWithString>;
+} | ModelWithString | ModelThatExtends | ModelThatExtendsExtends;
+
+
+
+export type CollectionFormatCollectionFormatInput = {
+    /**
+     * This is an array parameter that is sent as csv format (comma-separated values)
+     */
+    parameterArrayCsv: Array<string>,
+    /**
+     * This is an array parameter that is sent as ssv format (space-separated values)
+     */
+    parameterArraySsv: Array<string>,
+    /**
+     * This is an array parameter that is sent as tsv format (tab-separated values)
+     */
+    parameterArrayTsv: Array<string>,
+    /**
+     * This is an array parameter that is sent as pipes format (pipe-separated values)
+     */
+    parameterArrayPipes: Array<string>,
+    /**
+     * This is an array parameter that is sent as multi format (multiple parameter instances)
+     */
+    parameterArrayMulti: Array<string>,
+}
+;
+export type CollectionFormatCollectionFormatOutput = void;
+
+
+
+export type TypesTypesInput = {
+    /**
+     * This is an array parameter
+     */
+    parameterArray: Array<string>,
+    /**
+     * This is a dictionary parameter
+     */
+    parameterDictionary: Record<string, string>,
+    /**
+     * This is an enum parameter
+     */
+    parameterEnum: 'Success' | 'Warning' | 'Error',
+    /**
+     * This is a number parameter
+     */
+    parameterNumber?: number,
+    /**
+     * This is a string parameter
+     */
+    parameterString?: string,
+    /**
+     * This is a boolean parameter
+     */
+    parameterBoolean?: boolean,
+    /**
+     * This is an object parameter
+     */
+    parameterObject?: any,
+    /**
+     * This is a number parameter
+     */
+    id?: number,
+}
+;
+export type TypesTypesOutput = number | string | boolean | any;
+
+
+import type { ModelWithString } from '../models/ModelWithString';
+
+export type ComplexComplexTypesInput = {
+    /**
+     * Parameter containing object
+     */
+    parameterObject: {
+        first?: {
+            second?: {
+                third?: string;
+            };
+        };
+    },
+    /**
+     * Parameter containing reference
+     */
+    parameterReference: ModelWithString,
+}
+;
+export type ComplexComplexTypesOutput = Array<ModelWithString>;
+
+
+
+export type HeaderCallWithResultFromHeaderInput = undefined
+;
+export type HeaderCallWithResultFromHeaderOutput = string;
+
+
+
+export type ErrorTestErrorCodeInput = {
+    /**
+     * Status code to return
+     */
+    status: string,
+}
+;
+export type ErrorTestErrorCodeOutput = any;
+
 
 "
 `;
@@ -1546,22 +1940,22 @@ exports[`v2 should generate: test/generated/v2/pathnames/index.ts 1`] = `
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export * as Default from './Default'
-export * as Simple from './Simple'
-export * as Descriptions from './Descriptions'
-export * as Parameters from './Parameters'
-export * as Defaults from './Defaults'
-export * as Duplicate from './Duplicate'
-export * as NoContent from './NoContent'
-export * as MultipleTags1 from './MultipleTags1'
-export * as MultipleTags2 from './MultipleTags2'
-export * as MultipleTags3 from './MultipleTags3'
-export * as Response from './Response'
-export * as CollectionFormat from './CollectionFormat'
-export * as Types from './Types'
-export * as Complex from './Complex'
-export * as Header from './Header'
-export * as Error from './Error'
+export * as Default from './Default.js'
+export * as Simple from './Simple.js'
+export * as Descriptions from './Descriptions.js'
+export * as Parameters from './Parameters.js'
+export * as Defaults from './Defaults.js'
+export * as Duplicate from './Duplicate.js'
+export * as NoContent from './NoContent.js'
+export * as MultipleTags1 from './MultipleTags1.js'
+export * as MultipleTags2 from './MultipleTags2.js'
+export * as MultipleTags3 from './MultipleTags3.js'
+export * as Response from './Response.js'
+export * as CollectionFormat from './CollectionFormat.js'
+export * as Types from './Types.js'
+export * as Complex from './Complex.js'
+export * as Header from './Header.js'
+export * as Error from './Error.js'
 
 "
 `;
@@ -2436,6 +2830,351 @@ export const $SimpleStringWithPattern = {
 "
 `;
 
+exports[`v2 should generate: test/generated/v2/server/CollectionFormat.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import * as Types from '../factories/types.js';
+import { createServerResolver } from '../../../../factories-module'
+
+/**
+ * @throws ApiError
+ */
+export const collectionFormat = createServerResolver<Types.CollectionFormatCollectionFormatInput, Types.CollectionFormatCollectionFormatOutput>({ path: '/api/v{api-version}/collectionFormat', method: 'GET' });
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/server/Complex.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import * as Types from '../factories/types.js';
+import { createServerResolver } from '../../../../factories-module'
+
+/**
+ * @throws ApiError
+ */
+export const complexTypes = createServerResolver<Types.ComplexComplexTypesInput, Types.ComplexComplexTypesOutput>({ path: '/api/v{api-version}/complex', method: 'GET' });
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/server/Default.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import * as Types from '../factories/types.js';
+import { createServerResolver } from '../../../../factories-module'
+
+/**
+ * @throws ApiError
+ */
+export const serviceWithEmptyTag = createServerResolver<Types.DefaultServiceWithEmptyTagInput, Types.DefaultServiceWithEmptyTagOutput>({ path: '/api/v{api-version}/no-tag', method: 'GET' });
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/server/Defaults.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import * as Types from '../factories/types.js';
+import { createServerResolver } from '../../../../factories-module'
+
+/**
+ * @throws ApiError
+ */
+export const callWithDefaultParameters = createServerResolver<Types.DefaultsCallWithDefaultParametersInput, Types.DefaultsCallWithDefaultParametersOutput>({ path: '/api/v{api-version}/defaults', method: 'GET' });
+/**
+ * @throws ApiError
+ */
+export const callWithDefaultOptionalParameters = createServerResolver<Types.DefaultsCallWithDefaultOptionalParametersInput, Types.DefaultsCallWithDefaultOptionalParametersOutput>({ path: '/api/v{api-version}/defaults', method: 'POST' });
+/**
+ * @throws ApiError
+ */
+export const callToTestOrderOfParams = createServerResolver<Types.DefaultsCallToTestOrderOfParamsInput, Types.DefaultsCallToTestOrderOfParamsOutput>({ path: '/api/v{api-version}/defaults', method: 'PUT' });
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/server/Descriptions.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import * as Types from '../factories/types.js';
+import { createServerResolver } from '../../../../factories-module'
+
+/**
+ * @throws ApiError
+ */
+export const callWithDescriptions = createServerResolver<Types.DescriptionsCallWithDescriptionsInput, Types.DescriptionsCallWithDescriptionsOutput>({ path: '/api/v{api-version}/descriptions/', method: 'POST' });
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/server/Duplicate.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import * as Types from '../factories/types.js';
+import { createServerResolver } from '../../../../factories-module'
+
+/**
+ * @throws ApiError
+ */
+export const duplicateName = createServerResolver<Types.DuplicateDuplicateNameInput, Types.DuplicateDuplicateNameOutput>({ path: '/api/v{api-version}/duplicate', method: 'GET' });
+/**
+ * @throws ApiError
+ */
+export const duplicateName1 = createServerResolver<Types.DuplicateDuplicateName1Input, Types.DuplicateDuplicateName1Output>({ path: '/api/v{api-version}/duplicate', method: 'POST' });
+/**
+ * @throws ApiError
+ */
+export const duplicateName2 = createServerResolver<Types.DuplicateDuplicateName2Input, Types.DuplicateDuplicateName2Output>({ path: '/api/v{api-version}/duplicate', method: 'PUT' });
+/**
+ * @throws ApiError
+ */
+export const duplicateName3 = createServerResolver<Types.DuplicateDuplicateName3Input, Types.DuplicateDuplicateName3Output>({ path: '/api/v{api-version}/duplicate', method: 'DELETE' });
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/server/Error.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import * as Types from '../factories/types.js';
+import { createServerResolver } from '../../../../factories-module'
+
+/**
+ * @throws ApiError
+ */
+export const testErrorCode = createServerResolver<Types.ErrorTestErrorCodeInput, Types.ErrorTestErrorCodeOutput>({ path: '/api/v{api-version}/error', method: 'POST' });
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/server/Header.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import * as Types from '../factories/types.js';
+import { createServerResolver } from '../../../../factories-module'
+
+/**
+ * @throws ApiError
+ */
+export const callWithResultFromHeader = createServerResolver<Types.HeaderCallWithResultFromHeaderInput, Types.HeaderCallWithResultFromHeaderOutput>({ path: '/api/v{api-version}/header', method: 'POST' });
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/server/MultipleTags1.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import * as Types from '../factories/types.js';
+import { createServerResolver } from '../../../../factories-module'
+
+/**
+ * @throws ApiError
+ */
+export const dummyA = createServerResolver<Types.MultipleTags1DummyAInput, Types.MultipleTags1DummyAOutput>({ path: '/api/v{api-version}/multiple-tags/a', method: 'GET' });
+/**
+ * @throws ApiError
+ */
+export const dummyB = createServerResolver<Types.MultipleTags1DummyBInput, Types.MultipleTags1DummyBOutput>({ path: '/api/v{api-version}/multiple-tags/b', method: 'GET' });
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/server/MultipleTags2.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import * as Types from '../factories/types.js';
+import { createServerResolver } from '../../../../factories-module'
+
+/**
+ * @throws ApiError
+ */
+export const dummyA = createServerResolver<Types.MultipleTags2DummyAInput, Types.MultipleTags2DummyAOutput>({ path: '/api/v{api-version}/multiple-tags/a', method: 'GET' });
+/**
+ * @throws ApiError
+ */
+export const dummyB = createServerResolver<Types.MultipleTags2DummyBInput, Types.MultipleTags2DummyBOutput>({ path: '/api/v{api-version}/multiple-tags/b', method: 'GET' });
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/server/MultipleTags3.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import * as Types from '../factories/types.js';
+import { createServerResolver } from '../../../../factories-module'
+
+/**
+ * @throws ApiError
+ */
+export const dummyB = createServerResolver<Types.MultipleTags3DummyBInput, Types.MultipleTags3DummyBOutput>({ path: '/api/v{api-version}/multiple-tags/b', method: 'GET' });
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/server/NoContent.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import * as Types from '../factories/types.js';
+import { createServerResolver } from '../../../../factories-module'
+
+/**
+ * @throws ApiError
+ */
+export const callWithNoContentResponse = createServerResolver<Types.NoContentCallWithNoContentResponseInput, Types.NoContentCallWithNoContentResponseOutput>({ path: '/api/v{api-version}/no-content', method: 'GET' });
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/server/Parameters.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import * as Types from '../factories/types.js';
+import { createServerResolver } from '../../../../factories-module'
+
+/**
+ * @throws ApiError
+ */
+export const callWithParameters = createServerResolver<Types.ParametersCallWithParametersInput, Types.ParametersCallWithParametersOutput>({ path: '/api/v{api-version}/parameters/{parameterPath}', method: 'POST' });
+/**
+ * @throws ApiError
+ */
+export const callWithWeirdParameterNames = createServerResolver<Types.ParametersCallWithWeirdParameterNamesInput, Types.ParametersCallWithWeirdParameterNamesOutput>({ path: '/api/v{api-version}/parameters/{parameter.path.1}/{parameter-path-2}/{PARAMETER-PATH-3}', method: 'POST' });
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/server/Response.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import * as Types from '../factories/types.js';
+import { createServerResolver } from '../../../../factories-module'
+
+/**
+ * @throws ApiError
+ */
+export const callWithResponse = createServerResolver<Types.ResponseCallWithResponseInput, Types.ResponseCallWithResponseOutput>({ path: '/api/v{api-version}/response', method: 'GET' });
+/**
+ * @throws ApiError
+ */
+export const callWithDuplicateResponses = createServerResolver<Types.ResponseCallWithDuplicateResponsesInput, Types.ResponseCallWithDuplicateResponsesOutput>({ path: '/api/v{api-version}/response', method: 'POST' });
+/**
+ * @throws ApiError
+ */
+export const callWithResponses = createServerResolver<Types.ResponseCallWithResponsesInput, Types.ResponseCallWithResponsesOutput>({ path: '/api/v{api-version}/response', method: 'PUT' });
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/server/Simple.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import * as Types from '../factories/types.js';
+import { createServerResolver } from '../../../../factories-module'
+
+/**
+ * @throws ApiError
+ */
+export const getCallWithoutParametersAndResponse = createServerResolver<Types.SimpleGetCallWithoutParametersAndResponseInput, Types.SimpleGetCallWithoutParametersAndResponseOutput>({ path: '/api/v{api-version}/simple', method: 'GET' });
+/**
+ * @throws ApiError
+ */
+export const putCallWithoutParametersAndResponse = createServerResolver<Types.SimplePutCallWithoutParametersAndResponseInput, Types.SimplePutCallWithoutParametersAndResponseOutput>({ path: '/api/v{api-version}/simple', method: 'PUT' });
+/**
+ * @throws ApiError
+ */
+export const postCallWithoutParametersAndResponse = createServerResolver<Types.SimplePostCallWithoutParametersAndResponseInput, Types.SimplePostCallWithoutParametersAndResponseOutput>({ path: '/api/v{api-version}/simple', method: 'POST' });
+/**
+ * @throws ApiError
+ */
+export const deleteCallWithoutParametersAndResponse = createServerResolver<Types.SimpleDeleteCallWithoutParametersAndResponseInput, Types.SimpleDeleteCallWithoutParametersAndResponseOutput>({ path: '/api/v{api-version}/simple', method: 'DELETE' });
+/**
+ * @throws ApiError
+ */
+export const optionsCallWithoutParametersAndResponse = createServerResolver<Types.SimpleOptionsCallWithoutParametersAndResponseInput, Types.SimpleOptionsCallWithoutParametersAndResponseOutput>({ path: '/api/v{api-version}/simple', method: 'OPTIONS' });
+/**
+ * @throws ApiError
+ */
+export const headCallWithoutParametersAndResponse = createServerResolver<Types.SimpleHeadCallWithoutParametersAndResponseInput, Types.SimpleHeadCallWithoutParametersAndResponseOutput>({ path: '/api/v{api-version}/simple', method: 'HEAD' });
+/**
+ * @throws ApiError
+ */
+export const patchCallWithoutParametersAndResponse = createServerResolver<Types.SimplePatchCallWithoutParametersAndResponseInput, Types.SimplePatchCallWithoutParametersAndResponseOutput>({ path: '/api/v{api-version}/simple', method: 'PATCH' });
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/server/Types.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import * as Types from '../factories/types.js';
+import { createServerResolver } from '../../../../factories-module'
+
+/**
+ * @throws ApiError
+ */
+export const types = createServerResolver<Types.TypesTypesInput, Types.TypesTypesOutput>({ path: '/api/v{api-version}/types', method: 'GET' });
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/server/index.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+export * as Default from './Default.js'
+export * as Simple from './Simple.js'
+export * as Descriptions from './Descriptions.js'
+export * as Parameters from './Parameters.js'
+export * as Defaults from './Defaults.js'
+export * as Duplicate from './Duplicate.js'
+export * as NoContent from './NoContent.js'
+export * as MultipleTags1 from './MultipleTags1.js'
+export * as MultipleTags2 from './MultipleTags2.js'
+export * as MultipleTags3 from './MultipleTags3.js'
+export * as Response from './Response.js'
+export * as CollectionFormat from './CollectionFormat.js'
+export * as Types from './Types.js'
+export * as Complex from './Complex.js'
+export * as Header from './Header.js'
+export * as Error from './Error.js'
+
+"
+`;
+
 exports[`v2 should generate: test/generated/v2/services/CollectionFormatService.ts 1`] = `
 "/* generated using openapi-typescript-codegen -- do no edit */
 /* istanbul ignore file */
@@ -2478,6 +3217,7 @@ export class CollectionFormatService {
          */
         parameterArrayMulti: Array<string>,
     }
+
 ): CancelablePromise<void> {
     return __request(OpenAPI, {
         method: 'GET',
@@ -2532,6 +3272,7 @@ export class ComplexService {
          */
         parameterReference: ModelWithString,
     }
+
 ): CancelablePromise<Array<ModelWithString>> {
     return __request(OpenAPI, {
         method: 'GET',
@@ -2622,6 +3363,7 @@ export class DefaultsService {
          */
         parameterModel?: ModelWithString,
     }
+
 ): CancelablePromise<void> {
     return __request(OpenAPI, {
         method: 'GET',
@@ -2669,6 +3411,7 @@ public static callWithDefaultOptionalParameters({
      */
     parameterModel?: ModelWithString,
 }
+
 ): CancelablePromise<void> {
     return __request(OpenAPI, {
         method: 'POST',
@@ -2729,6 +3472,7 @@ public static callToTestOrderOfParams({
      */
     parameterStringNullableWithDefault?: string | null,
 }
+
 ): CancelablePromise<void> {
     return __request(OpenAPI, {
         method: 'PUT',
@@ -2800,6 +3544,7 @@ export class DescriptionsService {
          */
         parameterWithReservedCharacters?: string,
     }
+
 ): CancelablePromise<void> {
     return __request(OpenAPI, {
         method: 'POST',
@@ -2897,6 +3642,7 @@ export class ErrorService {
          */
         status: string,
     }
+
 ): CancelablePromise<any> {
     return __request(OpenAPI, {
         method: 'POST',
@@ -3116,6 +3862,7 @@ export class ParametersService {
          */
         parameterPath: string,
     }
+
 ): CancelablePromise<void> {
     return __request(OpenAPI, {
         method: 'POST',
@@ -3182,6 +3929,7 @@ public static callWithWeirdParameterNames({
      */
     _default?: string,
 }
+
 ): CancelablePromise<void> {
     return __request(OpenAPI, {
         method: 'POST',
@@ -3424,6 +4172,7 @@ export class TypesService {
          */
         id?: number,
     }
+
 ): CancelablePromise<number | string | boolean | any> {
     return __request(OpenAPI, {
         method: 'GET',
