@@ -1,8 +1,8 @@
 import type { Client } from '../client/interfaces/Client';
-import type { Templates } from './registerHandlebarTemplates';
 
 import { EOL } from 'os';
 
+import { templates } from './__mocks__/templates';
 import { HttpClient } from '../HttpClient';
 import { Indent } from '../Indent';
 import { writeFile } from './fileSystem';
@@ -17,35 +17,6 @@ describe('writeClientCore', () => {
             version: '1.0',
             models: [],
             services: [],
-        };
-
-        const templates: Templates = {
-            index: () => 'index',
-            client: () => 'client',
-            exports: {
-                pathnames: {
-                    pathname: () => 'pathname',
-                    index: () => 'pathnameIndex',
-                },
-                factories: {
-                    serverResolver: () => 'serverResolver',
-                    clientResolver: () => 'clientResolver',
-                    hook: () => 'hook',
-                    index: () => 'factoriesIndex',
-                },
-                model: () => 'model',
-                schema: () => 'schema',
-                service: () => 'service',
-            },
-            core: {
-                settings: () => 'settings',
-                apiError: () => 'apiError',
-                apiRequestOptions: () => 'apiRequestOptions',
-                apiResult: () => 'apiResult',
-                cancelablePromise: () => 'cancelablePromise',
-                baseHttpRequest: () => 'baseHttpRequest',
-                httpRequest: () => 'httpRequest',
-            },
         };
 
         await writeClientCore(client, templates, '/', HttpClient.FETCH, Indent.SPACE_4);

@@ -1,45 +1,23 @@
-import type { Templates } from './registerHandlebarTemplates';
-
 import { EOL } from 'os';
 
+import { templates } from './__mocks__/templates';
 import { writeFile } from './fileSystem';
 import { writeClientFactories } from './writeClientFactories';
 import { Indent } from '../Indent';
+import { Service } from '../client/interfaces/Service';
 
 jest.mock('./fileSystem');
 
 describe('writeClientFactories', () => {
     it('should write to filesystem', async () => {
-        const templates: Templates = {
-            index: () => 'index',
-            client: () => 'client',
-            exports: {
-                pathnames: {
-                    pathname: () => 'pathname',
-                    index: () => 'pathnameIndex',
-                },
-                factories: {
-                    serverResolver: () => 'serverResolver',
-                    clientResolver: () => 'clientResolver',
-                    hook: () => 'hook',
-                    index: () => 'factoriesIndex',
-                },
-                model: () => 'model',
-                schema: () => 'schema',
-                service: () => 'service',
+        const services: Service[] = [
+            {
+                name: 'User',
+                operations: [],
+                imports: [],
             },
-            core: {
-                settings: () => 'settings',
-                apiError: () => 'apiError',
-                apiRequestOptions: () => 'apiRequestOptions',
-                apiResult: () => 'apiResult',
-                cancelablePromise: () => 'cancelablePromise',
-                baseHttpRequest: () => 'baseHttpRequest',
-                httpRequest: () => 'httpRequest',
-            },
-        };
-
-        await writeClientFactories(templates, '/', Indent.SPACE_4);
+        ];
+        await writeClientFactories(services, templates, '/', Indent.SPACE_4);
 
         expect(writeFile).toBeCalledWith('/createServerResolver.ts', `serverResolver${EOL}`);
         expect(writeFile).toBeCalledWith('/createClientResolver.ts', `clientResolver${EOL}`);
