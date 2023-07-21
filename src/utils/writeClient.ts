@@ -16,6 +16,7 @@ import { writeClientSchemas } from './writeClientSchemas';
 import { writeClientServices } from './writeClientServices';
 import { writeClientPathnames } from './writeClientPathnames';
 import { writeClientFactories } from './writeClientFactories';
+import { writeClientServers } from './writeClientServers';
 
 /**
  * Write our OpenAPI client, using the given templates at the given output
@@ -53,10 +54,12 @@ export const writeClient = async (
     const outputPath = resolve(process.cwd(), output);
     const outputPathCore = resolve(outputPath, 'core');
     const outputPathPathnames = resolve(outputPath, 'pathnames');
+    const outputPathServer = resolve(outputPath, 'server');
     const outputPathModels = resolve(outputPath, 'models');
     const outputPathSchemas = resolve(outputPath, 'schemas');
     const outputPathServices = resolve(outputPath, 'services');
     const outputPathFactories = resolve(outputPath, 'factories');
+    const absoluteFactoriesFile = resolve(process.cwd(), factories);
 
     if (!isSubDirectory(process.cwd(), output)) {
         throw new Error(`Output folder is not a subdirectory of the current working directory`);
@@ -64,7 +67,7 @@ export const writeClient = async (
 
     await rmdir(outputPathFactories);
     await mkdir(outputPathFactories);
-    await writeClientFactories(templates, outputPathFactories, indent);
+    await writeClientFactories(client.services, templates, outputPathFactories, indent);
 
     if (exportCore) {
         await rmdir(outputPathCore);
@@ -76,6 +79,10 @@ export const writeClient = async (
         await rmdir(outputPathPathnames);
         await mkdir(outputPathPathnames);
         await writeClientPathnames(client.services, templates, outputPathPathnames, indent);
+
+        await rmdir(outputPathServer);
+        await mkdir(outputPathServer);
+        await writeClientServers(client.services, absoluteFactoriesFile, templates, outputPathServer, indent);
 
         await rmdir(outputPathServices);
         await mkdir(outputPathServices);

@@ -2,11 +2,11 @@
 
 export type ClientResolverConfig = {
 	path: string;
-	method: string;
+	method: 'GET' | 'PUT' | 'POST' | 'DELETE' | 'OPTIONS' | 'HEAD' | 'PATCH';
 }
 
 export type ClientRequestOptions = Omit<RequestInit, "method" | "body">
 
-export interface ClientResolverFactory<Input, Output> {
-	(config: ClientResolverConfig): (input: Input, options?: ClientRequestOptions) => Promise<Output>
+export interface ClientResolverFactory {
+	<Input, Output>(config: ClientResolverConfig): (input: Input, options?: ClientRequestOptions) => Promise<Output>
 }

@@ -1,0 +1,20 @@
+{{>header}}
+
+import * as Types from '../factories/types.js';
+import { createServerResolver } from '{{{factories}}}'
+
+{{#each service.operations}}
+/**
+{{#if deprecated}}
+	* @deprecated
+{{/if}}
+{{#if summary}}
+	* {{{escapeComment summary}}}
+{{/if}}
+{{#if description}}
+	* {{{escapeComment description}}}
+{{/if}}
+	* @throws ApiError
+*/
+export const {{{name}}} = createServerResolver<Types.{{{@root.service.name}}}{{{capitalize name}}}Input, Types.{{{@root.service.name}}}{{{capitalize name}}}Output>({ path: '{{{path}}}', method: '{{{method}}}' });
+{{/each}}

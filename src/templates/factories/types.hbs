@@ -1,0 +1,16 @@
+{{>header}}
+
+{{#each services}}
+
+{{#if imports}}
+{{#each imports}}
+import type { {{{this}}} } from '../models/{{{this}}}';
+{{/each}}
+{{/if}}
+
+{{#each operations}}
+export type {{{../name}}}{{capitalize name}}Input = {{>parametersType}};
+export type {{{../name}}}{{capitalize name}}Output = {{>result}};
+{{/each}}
+
+{{/each}}
