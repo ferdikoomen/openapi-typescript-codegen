@@ -2808,7 +2808,7 @@ import { request as __request } from '../core/request';
 export class MultipleTags1Service {
 
     /**
-     * @returns void
+     * @returns void Success
      * @throws ApiError
      */
     public static dummyA(): CancelablePromise<void> {
@@ -2819,7 +2819,7 @@ export class MultipleTags1Service {
     }
 
     /**
-     * @returns void
+     * @returns void Success
      * @throws ApiError
      */
     public static dummyB(): CancelablePromise<void> {
@@ -2845,7 +2845,7 @@ import { request as __request } from '../core/request';
 export class MultipleTags2Service {
 
     /**
-     * @returns void
+     * @returns void Success
      * @throws ApiError
      */
     public static dummyA(): CancelablePromise<void> {
@@ -2856,7 +2856,7 @@ export class MultipleTags2Service {
     }
 
     /**
-     * @returns void
+     * @returns void Success
      * @throws ApiError
      */
     public static dummyB(): CancelablePromise<void> {
@@ -2882,7 +2882,7 @@ import { request as __request } from '../core/request';
 export class MultipleTags3Service {
 
     /**
-     * @returns void
+     * @returns void Success
      * @throws ApiError
      */
     public static dummyB(): CancelablePromise<void> {
@@ -2908,13 +2908,25 @@ import { request as __request } from '../core/request';
 export class NoContentService {
 
     /**
-     * @returns void
+     * @returns void Success
      * @throws ApiError
      */
     public static callWithNoContentResponse(): CancelablePromise<void> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/api/v{api-version}/no-content',
+        });
+    }
+
+    /**
+     * @returns any Response is a simple number
+     * @returns void Success
+     * @throws ApiError
+     */
+    public static callWithResponseAndNoContentResponse(): CancelablePromise<any | void> {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/api/v{api-version}/multiple-tags/response-and-no-content',
         });
     }
 
@@ -3028,6 +3040,18 @@ import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 
 export class ResponseService {
+
+    /**
+     * @returns any Response is a simple number
+     * @returns void Success
+     * @throws ApiError
+     */
+    public static callWithResponseAndNoContentResponse(): CancelablePromise<any | void> {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/api/v{api-version}/multiple-tags/response-and-no-content',
+        });
+    }
 
     /**
      * @returns ModelWithString Message for default response
@@ -7157,7 +7181,7 @@ import { request as __request } from '../core/request';
 export class MultipleTags1Service {
 
     /**
-     * @returns void
+     * @returns void Success
      * @throws ApiError
      */
     public static dummyA(): CancelablePromise<void> {
@@ -7168,7 +7192,7 @@ export class MultipleTags1Service {
     }
 
     /**
-     * @returns void
+     * @returns void Success
      * @throws ApiError
      */
     public static dummyB(): CancelablePromise<void> {
@@ -7194,7 +7218,7 @@ import { request as __request } from '../core/request';
 export class MultipleTags2Service {
 
     /**
-     * @returns void
+     * @returns void Success
      * @throws ApiError
      */
     public static dummyA(): CancelablePromise<void> {
@@ -7205,7 +7229,7 @@ export class MultipleTags2Service {
     }
 
     /**
-     * @returns void
+     * @returns void Success
      * @throws ApiError
      */
     public static dummyB(): CancelablePromise<void> {
@@ -7231,7 +7255,7 @@ import { request as __request } from '../core/request';
 export class MultipleTags3Service {
 
     /**
-     * @returns void
+     * @returns void Success
      * @throws ApiError
      */
     public static dummyB(): CancelablePromise<void> {
@@ -7257,13 +7281,25 @@ import { request as __request } from '../core/request';
 export class NoContentService {
 
     /**
-     * @returns void
+     * @returns void Success
      * @throws ApiError
      */
     public static callWithNoContentResponse(): CancelablePromise<void> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/api/v{api-version}/no-content',
+        });
+    }
+
+    /**
+     * @returns number Response is a simple number
+     * @returns void Success
+     * @throws ApiError
+     */
+    public static callWithResponseAndNoContentResponse(): CancelablePromise<number | void> {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/api/v{api-version}/multiple-tags/response-and-no-content',
         });
     }
 
@@ -7469,6 +7505,18 @@ import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 
 export class ResponseService {
+
+    /**
+     * @returns number Response is a simple number
+     * @returns void Success
+     * @throws ApiError
+     */
+    public static callWithResponseAndNoContentResponse(): CancelablePromise<number | void> {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/api/v{api-version}/multiple-tags/response-and-no-content',
+        });
+    }
 
     /**
      * @returns ModelWithString
