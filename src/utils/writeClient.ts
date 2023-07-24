@@ -18,6 +18,7 @@ import { writeClientFactories } from './writeClientFactories';
 import { writeClientServers } from './writeClientServers';
 import { writeClientClients } from './writeClientClients';
 import { writeClientHooks } from './writeClientHooks';
+import { writeClientUtil } from './writeClientUtil';
 
 /**
  * Write our OpenAPI client, using the given templates at the given output
@@ -60,6 +61,7 @@ export const writeClient = async (
     const outputPathModels = resolve(outputPath, 'models');
     const outputPathSchemas = resolve(outputPath, 'schemas');
     const outputPathFactories = resolve(outputPath, 'factories');
+    const outputPathUtil = resolve(outputPath, 'util');
     const absoluteFactoriesFile = resolve(process.cwd(), factories);
 
     if (!isSubDirectory(process.cwd(), output)) {
@@ -108,6 +110,10 @@ export const writeClient = async (
         await mkdir(outputPath);
         await writeClientClass(client, templates, outputPath, httpClient, clientName, indent, postfixServices);
     }
+
+    await rmdir(outputPathUtil);
+    await mkdir(outputPathUtil);
+    await writeClientUtil(templates, outputPathUtil, indent);
 
     await mkdir(outputPath);
     await writeClientIndex(
