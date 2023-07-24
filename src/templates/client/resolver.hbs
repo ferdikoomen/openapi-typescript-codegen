@@ -18,5 +18,7 @@ import { createClientResolver } from '{{{factories}}}'
 	 * @returns {{{type}}} {{#if description}}{{{escapeComment description}}}{{/if}}
 {{/each}}
 */
-export const {{{name}}} = createClientResolver<Types.{{{@root.service.name}}}{{{capitalize name}}}Input, Types.{{{@root.service.name}}}{{{capitalize name}}}Output>({ path: '{{{path}}}', method: '{{{method}}}' });
+export const {{{name}}} = createClientResolver<Types.{{{@root.service.name}}}{{{capitalize name}}}Input, Types.{{{@root.service.name}}}{{{capitalize name}}}Output>({
+	path: '{{{path}}}', method: '{{{method}}}'{{#if parametersBody}}{{#if parametersBody.mediaType}}, mediaType: '{{{parametersBody.mediaType}}}'{{/if}}{{/if}}
+});
 {{/each}}

@@ -1,12 +1,15 @@
 {{>header}}
 
+import { CancelablePromise } from '../core/CancelablePromise'
+
 export type ClientResolverConfig = {
 	path: string;
 	method: 'GET' | 'PUT' | 'POST' | 'DELETE' | 'OPTIONS' | 'HEAD' | 'PATCH';
+	mediaType?: string;
 }
 
 export type ClientRequestOptions = Omit<RequestInit, "method" | "body">
 
 export interface ClientResolverFactory {
-	<Input, Output>(config: ClientResolverConfig): (input: Input, options?: ClientRequestOptions) => Promise<Output>
+	<Input, Output>(config: ClientResolverConfig): (input: Input, options?: ClientRequestOptions) => CancelablePromise<Output>
 }
