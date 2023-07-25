@@ -637,18 +637,10 @@ exports[`v2 should generate: test/generated/v2/factories/createClientResolver.ts
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import { CancelablePromise } from '../core/CancelablePromise'
-
-export type ClientResolverConfig = {
-    path: string;
-    method: 'GET' | 'PUT' | 'POST' | 'DELETE' | 'OPTIONS' | 'HEAD' | 'PATCH';
-    mediaType?: string;
-}
-
-export type ClientRequestOptions = Omit<RequestInit, "method" | "body">
+import { SchemaConfig, RequestInput, SchemaOptions, RequestOutput } from './types'
 
 export interface ClientResolverFactory {
-    <Input, Output>(config: ClientResolverConfig): (input: Input, options?: ClientRequestOptions) => CancelablePromise<Output>
+    <Input extends RequestInput, Output extends RequestOutput>(config: SchemaConfig): (input: Input, options?: SchemaOptions) => Promise<Output>
 }
 "
 `;
@@ -658,18 +650,12 @@ exports[`v2 should generate: test/generated/v2/factories/createHook.ts 1`] = `
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export type HookConfig = {
-    path: string;
-    method: 'GET' | 'PUT' | 'POST' | 'DELETE' | 'OPTIONS' | 'HEAD' | 'PATCH';
-    mediaType?: string;
-}
+import { SchemaConfig, RequestInput, SchemaOptions, RequestOutput } from './types'
 
-export type HookOptions = Omit<RequestInit, "method" | "body">
-
-export type HookResult<Data> = [Data | undefined, { version?: number; isLoading: boolean }]
+export type HookResult<Data = RequestOutput> = [Data | undefined, { version?: number; isLoading: boolean }]
 
 export interface HookFactory {
-    <Input, Output>(config: HookConfig): (input: Input, options?: HookOptions) => HookResult<Output>
+    <Input extends RequestInput, Output = RequestOutput>(config: SchemaConfig): (input: Input, options?: SchemaOptions) => HookResult<Output>
 }
 "
 `;
@@ -679,18 +665,10 @@ exports[`v2 should generate: test/generated/v2/factories/createServerResolver.ts
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import { CancelablePromise } from '../core/CancelablePromise'
-
-export type ServerResolverConfig = {
-    path: string;
-    method: 'GET' | 'PUT' | 'POST' | 'DELETE' | 'OPTIONS' | 'HEAD' | 'PATCH';
-    mediaType?: string;
-}
-
-export type ServerRequestOptions = Omit<RequestInit, "method" | "body">
+import { SchemaConfig, RequestInput, SchemaOptions, RequestOutput } from './types'
 
 export interface ServerResolverFactory {
-    <Input, Output>(config: ServerResolverConfig): (input: Input, options?: ServerRequestOptions) => CancelablePromise<Output>
+    <Input extends RequestInput, Output extends RequestOutput>(config: SchemaConfig): (input: Input, options?: SchemaOptions) => Promise<Output>
 }
 "
 `;
@@ -1098,6 +1076,21 @@ export type ErrorTestErrorCodeInput = {
 export type ErrorTestErrorCodeOutput = any;
 
 
+export type SchemaConfig = {
+    path: string;
+    method: 'GET' | 'PUT' | 'POST' | 'DELETE' | 'OPTIONS' | 'HEAD' | 'PATCH';
+    mediaType?: string;
+}
+
+export type SchemaOptions = Omit<RequestInit, "method" | "body">
+
+export type RequestInput = {
+    formData?: Record<string, unknown>;
+    requestBody?: string | Blob | File | Record<string, unknown>;
+    [key: string]: unknown;
+} | undefined;
+
+export type RequestOutput = unknown;
 "
 `;
 
@@ -3932,6 +3925,8 @@ export * as error from './Error'
 exports[`v2 should generate: test/generated/v2/util/createRequestParams.ts 1`] = `
 "/* eslint-disable @typescript-eslint/no-unused-vars */
 
+import { SchemaConfig, RequestInput, SchemaOptions } from '../factories/types'
+
 // region helpers
 export const isDefined = <T>(value: T | null | undefined): value is Exclude<T, null | undefined> => {
     return value !== undefined && value !== null;
@@ -3949,7 +3944,7 @@ export const isBlob = (value: unknown): value is Blob => {
         typeof value.constructor === 'function' &&
         typeof value.constructor.name === 'string' &&
         /^(Blob|File)$/.test(value.constructor.name) &&
-        /^(Blob|File)$/.test((value as Record<string, string>)[Symbol.toStringTag.toString()])
+        /^(Blob|File)$/.test((value as Record<string, string>)[Symbol.toStringTag as unknown as string])
     );
 };
 export const isFormData = (value: unknown): value is FormData => {
@@ -3992,20 +3987,23 @@ export const getQueryString = (params: Record<string, unknown>, handledParams: R
 
     return '';
 };
-export const getUrl = (args: CreateRequestParamsArgs): string => {
-    const handledUrlParams: Record<string, boolean> = {};
-    const url = args.path.replace(/{(.*?)}/g, (substring: string, group: string) => {
+export const getUrl = (config: SchemaConfig, input: RequestInput): string => {
+    const handledUrlParams: Record<string, boolean> = {
+        formData: true,
+        requestBody: true
+    };
+    const url = config.path.replace(/{(.*?)}/g, (substring: string, group: string) => {
         // eslint-disable-next-line no-prototype-builtins
-        if (args.input?.hasOwnProperty(group)) {
+        if (input?.hasOwnProperty(group)) {
             handledUrlParams[group] = true;
-            return encodeURI(String(args.input[group]));
+            return encodeURI(String(input[group]));
         }
         return substring;
     });
 
-    return \`\${url}\${getQueryString(args.input || {}, handledUrlParams)}\`;
+    return \`\${url}\${getQueryString(input || {}, handledUrlParams)}\`;
 };
-export const getFormData = ({ input }: CreateRequestParamsArgs): FormData | undefined => {
+export const getFormData = (input: RequestInput): FormData | undefined => {
     if (input?.formData) {
         const formData = new FormData();
 
@@ -4033,29 +4031,29 @@ export const getFormData = ({ input }: CreateRequestParamsArgs): FormData | unde
     }
     return undefined;
 };
-export const getRequestBody = ({ input }: CreateRequestParamsArgs): RequestInit['body'] => {
+export const getRequestBody = (input: RequestInput): RequestInit['body'] => {
     if (input?.requestBody === undefined) return undefined;
     if (isBlob(input.requestBody) || isString(input.requestBody) || isFormData(input.requestBody)) {
         return input.requestBody;
     }
     return JSON.stringify(input.requestBody);
 };
-export const getHeaders = (args: CreateRequestParamsArgs): Headers => {
+export const getHeaders = (config: SchemaConfig, input: RequestInput, options?: SchemaOptions): Headers => {
     const headers = Object.entries({
         Accept: 'application/json',
-        ...args.options?.headers,
+        ...options?.headers,
     })
     .filter(([_, value]) => isDefined(value))
     .reduce((acc, [key, value]) => ({ ...acc, [key]: String(value) }), {} as Record<string, string>);
 
-    if (args.input?.body) {
-        if (args.mediaType) {
-            headers['Content-Type'] = args.mediaType;
-        } else if (isBlob(args.input.body)) {
-            headers['Content-Type'] = args.input.body.type || 'application/octet-stream';
-        } else if (isString(args.input.body)) {
+    if (input?.requestBody) {
+        if (config.mediaType) {
+            headers['Content-Type'] = config.mediaType;
+        } else if (isBlob(input.requestBody)) {
+            headers['Content-Type'] = input.requestBody.type || 'application/octet-stream';
+        } else if (isString(input.requestBody)) {
             headers['Content-Type'] = 'text/plain';
-        } else if (!isFormData(args.input.body)) {
+        } else if (!isFormData(input.requestBody)) {
             headers['Content-Type'] = 'application/json';
         }
     }
@@ -4065,25 +4063,13 @@ export const getHeaders = (args: CreateRequestParamsArgs): Headers => {
 
 // endregion
 
-type CreateRequestParamsArgs = {
-    path: string;
-    method: 'GET' | 'PUT' | 'POST' | 'DELETE' | 'OPTIONS' | 'HEAD' | 'PATCH';
-    mediaType?: string;
-    input?: {
-        formData?: FormData;
-        requestBody?: string | Blob | File | Record<string, unknown>;
-        [ket: string]: unknown;
-    };
-    options?: Omit<RequestInit, 'method' | 'body'>;
-};
-
-export const createRequestParams = (args: CreateRequestParamsArgs): [RequestInfo, RequestInit] => {
-    const url = getUrl(args);
+export const createRequestParams = <Input extends RequestInput>(config: SchemaConfig, input: Input, options?: SchemaOptions): [RequestInfo, RequestInit] => {
+    const url = getUrl(config, input);
     const init: RequestInit = {
-        ...args.options,
-        method: args.method,
-        body: getRequestBody(args) ?? getFormData(args),
-        headers: getHeaders(args),
+        ...options,
+        method: config.method,
+        body: getRequestBody(input) ?? getFormData(input),
+        headers: getHeaders(config, input, options),
     };
 
     return [url, init];

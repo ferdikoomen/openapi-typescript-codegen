@@ -10,8 +10,6 @@
         "import/extensions": "off",
         "prefer-let/prefer-let": "off",
         "prefer-const": "error",
-        "no-prototype-builtins": "off",
-        "no-unused-vars": ["error", { "argsIgnorePattern": "^_", "caughtErrorsIgnorePattern": "^_" }],
-        "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_", "caughtErrorsIgnorePattern": "^_" }]
+        "no-prototype-builtins": "off"
     }
 }
