@@ -1,5 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
+import { SchemaConfig, RequestInput, SchemaOptions } from '../factories/types'
+
 // region helpers
 export const isDefined = <T>(value: T | null | undefined): value is Exclude<T, null | undefined> => {
     return value !== undefined && value !== null;
@@ -17,7 +19,7 @@ export const isBlob = (value: unknown): value is Blob => {
         typeof value.constructor === 'function' &&
         typeof value.constructor.name === 'string' &&
         /^(Blob|File)$/.test(value.constructor.name) &&
-        /^(Blob|File)$/.test((value as Record<string, string>)[Symbol.toStringTag.toString()])
+        /^(Blob|File)$/.test((value as Record<string, string>)[Symbol.toStringTag as unknown as string])
     );
 };
 export const isFormData = (value: unknown): value is FormData => {
@@ -60,20 +62,23 @@ export const getQueryString = (params: Record<string, unknown>, handledParams: R
 
     return '';
 };
-export const getUrl = (args: CreateRequestParamsArgs): string => {
-    const handledUrlParams: Record<string, boolean> = {};
-    const url = args.path.replace(/{(.*?)}/g, (substring: string, group: string) => {
+export const getUrl = (config: SchemaConfig, input: RequestInput): string => {
+    const handledUrlParams: Record<string, boolean> = {
+        formData: true,
+        requestBody: true
+    };
+    const url = config.path.replace(/{(.*?)}/g, (substring: string, group: string) => {
         // eslint-disable-next-line no-prototype-builtins
-        if (args.input?.hasOwnProperty(group)) {
+        if (input?.hasOwnProperty(group)) {
             handledUrlParams[group] = true;
-            return encodeURI(String(args.input[group]));
+            return encodeURI(String(input[group]));
         }
         return substring;
     });
 
-    return `${url}${getQueryString(args.input || {}, handledUrlParams)}`;
+    return `${url}${getQueryString(input || {}, handledUrlParams)}`;
 };
-export const getFormData = ({ input }: CreateRequestParamsArgs): FormData | undefined => {
+export const getFormData = (input: RequestInput): FormData | undefined => {
     if (input?.formData) {
         const formData = new FormData();
 
@@ -101,29 +106,29 @@ export const getFormData = ({ input }: CreateRequestParamsArgs): FormData | unde
     }
     return undefined;
 };
-export const getRequestBody = ({ input }: CreateRequestParamsArgs): RequestInit['body'] => {
+export const getRequestBody = (input: RequestInput): RequestInit['body'] => {
     if (input?.requestBody === undefined) return undefined;
     if (isBlob(input.requestBody) || isString(input.requestBody) || isFormData(input.requestBody)) {
         return input.requestBody;
     }
     return JSON.stringify(input.requestBody);
 };
-export const getHeaders = (args: CreateRequestParamsArgs): Headers => {
+export const getHeaders = (config: SchemaConfig, input: RequestInput, options?: SchemaOptions): Headers => {
     const headers = Object.entries({
         Accept: 'application/json',
-        ...args.options?.headers,
+        ...options?.headers,
     })
         .filter(([_, value]) => isDefined(value))
         .reduce((acc, [key, value]) => ({ ...acc, [key]: String(value) }), {} as Record<string, string>);
 
-    if (args.input?.body) {
-        if (args.mediaType) {
-            headers['Content-Type'] = args.mediaType;
-        } else if (isBlob(args.input.body)) {
-            headers['Content-Type'] = args.input.body.type || 'application/octet-stream';
-        } else if (isString(args.input.body)) {
+    if (input?.requestBody) {
+        if (config.mediaType) {
+            headers['Content-Type'] = config.mediaType;
+        } else if (isBlob(input.requestBody)) {
+            headers['Content-Type'] = input.requestBody.type || 'application/octet-stream';
+        } else if (isString(input.requestBody)) {
             headers['Content-Type'] = 'text/plain';
-        } else if (!isFormData(args.input.body)) {
+        } else if (!isFormData(input.requestBody)) {
             headers['Content-Type'] = 'application/json';
         }
     }
@@ -133,25 +138,13 @@ export const getHeaders = (args: CreateRequestParamsArgs): Headers => {
 
 // endregion
 
-type CreateRequestParamsArgs = {
-    path: string;
-    method: 'GET' | 'PUT' | 'POST' | 'DELETE' | 'OPTIONS' | 'HEAD' | 'PATCH';
-    mediaType?: string;
-    input?: {
-        formData?: FormData;
-        requestBody?: string | Blob | File | Record<string, unknown>;
-        [ket: string]: unknown;
-    };
-    options?: Omit<RequestInit, 'method' | 'body'>;
-};
-
-export const createRequestParams = (args: CreateRequestParamsArgs): [RequestInfo, RequestInit] => {
-    const url = getUrl(args);
+export const createRequestParams = <Input extends RequestInput>(config: SchemaConfig, input: Input, options?: SchemaOptions): [RequestInfo, RequestInit] => {
+    const url = getUrl(config, input);
     const init: RequestInit = {
-        ...args.options,
-        method: args.method,
-        body: getRequestBody(args) ?? getFormData(args),
-        headers: getHeaders(args),
+        ...options,
+        method: config.method,
+        body: getRequestBody(input) ?? getFormData(input),
+        headers: getHeaders(config, input, options),
     };
 
     return [url, init];
