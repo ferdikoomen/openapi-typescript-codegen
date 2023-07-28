@@ -89,6 +89,11 @@ export class {{{name}}}{{{@root.postfix}}} {
 	{{/if}}
 			method: '{{{method}}}',
 			url: '{{{path}}}',
+			{{#if server}}
+			server: '{{{server}}}',
+			{{else if ../server}}
+			server: '{{{../server}}}',
+			{{/if}}
 			{{#if parametersPath}}
 			path: {
 				{{#each parametersPath}}

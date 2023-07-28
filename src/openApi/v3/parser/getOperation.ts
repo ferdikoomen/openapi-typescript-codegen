@@ -10,6 +10,7 @@ import { getOperationRequestBody } from './getOperationRequestBody';
 import { getOperationResponseHeader } from './getOperationResponseHeader';
 import { getOperationResponses } from './getOperationResponses';
 import { getOperationResults } from './getOperationResults';
+import { getOperationServer } from './getServer';
 import { getRef } from './getRef';
 import { getServiceName } from './getServiceName';
 import { sortByRequired } from './sortByRequired';
@@ -24,6 +25,7 @@ export const getOperation = (
 ): Operation => {
     const serviceName = getServiceName(tag);
     const operationName = getOperationName(url, method, op.operationId);
+    const server = getOperationServer(op);
 
     // Create a new operation object for this method.
     const operation: Operation = {
@@ -34,6 +36,7 @@ export const getOperation = (
         deprecated: op.deprecated === true,
         method: method.toUpperCase(),
         path: url,
+        server: server,
         parameters: [...pathParams.parameters],
         parametersPath: [...pathParams.parametersPath],
         parametersQuery: [...pathParams.parametersQuery],
