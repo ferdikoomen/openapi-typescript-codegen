@@ -5,13 +5,13 @@ export { {{{clientName}}} } from './{{{clientName}}}';
 
 {{/if}}
 {{#if @root.exportCore}}
-export { ApiError } from './core/ApiError';
+export { ApiError } from './core/ApiError.js';
 {{#if @root.exportClient}}
-export { BaseHttpRequest } from './core/BaseHttpRequest';
+export { BaseHttpRequest } from './core/BaseHttpRequest.js';
 {{/if}}
-export { CancelablePromise, CancelError } from './core/CancelablePromise';
-export { OpenAPI } from './core/OpenAPI';
-export type { OpenAPIConfig } from './core/OpenAPI';
+export { CancelablePromise, CancelError } from './core/CancelablePromise.js';
+export { OpenAPI } from './core/OpenAPI.js';
+export type { OpenAPIConfig } from './core/OpenAPI.js';
 {{/if}}
 {{#if @root.exportModels}}
 {{#if models}}
