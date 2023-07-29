@@ -1,5 +1,5 @@
 {{>header}}
 
 {{#each writedFiles}}
-export * as {{fileName}} from './{{fileName}}.js'
+export * as {{camelCase fileName}} from './{{fileName}}'
 {{/each}}

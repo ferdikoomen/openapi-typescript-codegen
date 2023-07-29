@@ -96,6 +96,7 @@ import partialTypeInterface from '../templates/partials/typeInterface.hbs';
 import partialTypeIntersection from '../templates/partials/typeIntersection.hbs';
 import partialTypeReference from '../templates/partials/typeReference.hbs';
 import partialTypeUnion from '../templates/partials/typeUnion.hbs';
+import createRequestParams from '../templates/util/createRequestParams.hbs';
 import { registerHandlebarHelpers } from './registerHandlebarHelpers';
 
 export interface Templates {
@@ -128,6 +129,9 @@ export interface Templates {
         model: Handlebars.TemplateDelegate;
         schema: Handlebars.TemplateDelegate;
         service: Handlebars.TemplateDelegate;
+    };
+    util: {
+        createRequestParams: Handlebars.TemplateDelegate;
     };
     core: {
         settings: Handlebars.TemplateDelegate;
@@ -178,6 +182,9 @@ export const registerHandlebarTemplates = (root: { httpClient: HttpClient; useUn
             model: Handlebars.template(templateExportModel),
             schema: Handlebars.template(templateExportSchema),
             service: Handlebars.template(templateExportService),
+        },
+        util: {
+            createRequestParams: Handlebars.template(createRequestParams),
         },
         core: {
             settings: Handlebars.template(templateCoreSettings),
