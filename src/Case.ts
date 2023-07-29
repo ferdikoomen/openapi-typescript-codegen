@@ -25,18 +25,18 @@ const transforms = {
 
 // A recursive function that looks at the models and their properties and
 // converts each property name using the provided transform function.
-export const convertModelNames = <T extends Model | OperationResponse>(model: T, type: Exclude<Case, Case.NONE>): T => {
+export const convertModelCase = <T extends Model | OperationResponse>(model: T, type: Exclude<Case, Case.NONE>): T => {
     return {
         ...model,
         name: transforms[type](model.name),
-        link: model.link ? convertModelNames(model.link, type) : null,
-        enum: model.enum.map(modelEnum => convertEnumName(modelEnum, type)),
-        enums: model.enums.map(property => convertModelNames(property, type)),
-        properties: model.properties.map(property => convertModelNames(property, type)),
+        link: model.link ? convertModelCase(model.link, type) : null,
+        enum: model.enum.map(modelEnum => convertEnumCase(modelEnum, type)),
+        enums: model.enums.map(property => convertModelCase(property, type)),
+        properties: model.properties.map(property => convertModelCase(property, type)),
     };
 };
 
-const convertEnumName = (modelEnum: Enum, type: Exclude<Case, Case.NONE>): Enum => {
+const convertEnumCase = (modelEnum: Enum, type: Exclude<Case, Case.NONE>): Enum => {
     return {
         ...modelEnum,
         name: transforms[type](modelEnum.name),
@@ -48,7 +48,7 @@ export const convertServiceCase = (service: Service, type: Exclude<Case, Case.NO
         ...service,
         operations: service.operations.map(op => ({
             ...op,
-            results: op.results.map(results => convertModelNames(results, type)),
+            results: op.results.map(results => convertModelCase(results, type)),
         })),
     };
 };
