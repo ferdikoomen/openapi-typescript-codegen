@@ -10,7 +10,7 @@ export enum Case {
 }
 // Convert a string from snake case to camel case.
 const toCamelCase = (str: string): string => {
-    return str.replace(/_([a-z])/g, match => match[1].toUpperCase());
+    return str.replace(/_([a-z0-9])/g, match => match[1].toUpperCase());
 };
 
 // Convert a string from camel case or pascal case to snake case.
