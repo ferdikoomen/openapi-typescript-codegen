@@ -1,6 +1,5 @@
 import type { Enum } from '../client/interfaces/Enum';
 import type { Model } from '../client/interfaces/Model';
-import type { HttpClient } from '../HttpClient';
 
 import camelCase from 'camelcase';
 import Handlebars from 'handlebars/runtime';
@@ -8,7 +7,7 @@ import { EOL } from 'os';
 
 import { unique } from './unique';
 
-export const registerHandlebarHelpers = (root: { httpClient: HttpClient; useUnionTypes: boolean }): void => {
+export const registerHandlebarHelpers = (root: { useUnionTypes: boolean }): void => {
     Handlebars.registerHelper('ifdef', function (this: unknown, ...args): string {
         const options = args.pop();
         if (!args.every(value => !value)) {

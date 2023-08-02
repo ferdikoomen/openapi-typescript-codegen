@@ -32,15 +32,6 @@ export const templates: Templates = {
         service: () => 'service',
     },
     util: {
-        createRequestParams: ()=> 'createRequestParams content'
-    },
-    core: {
-        settings: () => 'settings',
-        apiError: () => 'apiError',
-        apiRequestOptions: () => 'apiRequestOptions',
-        apiResult: () => 'apiResult',
-        cancelablePromise: () => 'cancelablePromise',
-        baseHttpRequest: () => 'baseHttpRequest',
-        httpRequest: () => 'httpRequest',
+        createRequestParams: () => 'createRequestParams content',
     },
 };

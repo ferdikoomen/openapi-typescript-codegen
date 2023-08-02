@@ -1,7 +1,7 @@
 import { readFileSync } from 'fs';
 import { sync } from 'glob';
 
-import { generate, HttpClient } from '../';
+import { generate } from '../';
 
 describe('v2', () => {
     it('should generate', async () => {
@@ -9,9 +9,7 @@ describe('v2', () => {
             input: './test/spec/v2.json',
             output: './test/generated/v2/',
             factories: 'factories-module',
-            httpClient: HttpClient.FETCH,
             useUnionTypes: false,
-            exportCore: true,
             exportSchemas: true,
             exportServices: true,
         });
@@ -29,9 +27,7 @@ describe('v3', () => {
             input: './test/spec/v3.json',
             output: './test/generated/v3/',
             factories: 'factories-module',
-            httpClient: HttpClient.FETCH,
             useUnionTypes: false,
-            exportCore: true,
             exportSchemas: true,
             exportServices: true,
         });

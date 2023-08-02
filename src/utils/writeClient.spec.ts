@@ -1,7 +1,6 @@
 import type { Client } from '../client/interfaces/Client';
 
 import { templates } from './__mocks__/templates';
-import { HttpClient } from '../HttpClient';
 import { Indent } from '../Indent';
 import { mkdir, rmdir, writeFile } from './fileSystem';
 import { writeClient } from './writeClient';
@@ -17,20 +16,7 @@ describe('writeClient', () => {
             services: [],
         };
 
-        await writeClient(
-            client,
-            templates,
-            './dist',
-            './factories.ts',
-            HttpClient.FETCH,
-            false,
-            true,
-            true,
-            true,
-            Indent.SPACE_4,
-            'Service',
-            'AppClient'
-        );
+        await writeClient(client, templates, './dist', './factories.ts', false, true, true, Indent.SPACE_4, 'Model');
 
         expect(rmdir).toBeCalled();
         expect(mkdir).toBeCalled();
