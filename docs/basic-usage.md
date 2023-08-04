@@ -9,29 +9,25 @@ $ openapi --help
     -V, --version             output the version number
     -i, --input <value>       OpenAPI specification, can be a path, url or string content (required)
     -o, --output <value>      Output directory (required)
-    -c, --client <value>      HTTP client to generate [fetch, xhr, node, axios, angular] (default: "fetch")
-    --name <value>            Custom client class name
-    --useUnionTypes           Use union types instead of enums
-    --exportCore <value>      Write core files to disk (default: true)
-    --exportServices <value>  Write services to disk (default: true)
+    -f, --factories <value>   Path to file with factories functions (required)
+    --useUnionTypes <value>   Use union types instead of enums (default: true)
     --exportSchemas <value>   Write schemas to disk (default: false)
     --indent <value>          Indentation options [4, 2, tab] (default: "4")
-    --postfixServices         Service name postfix (default: "Service")
     --postfixModels           Model name postfix
-    --request <value>         Path to custom request file
     -h, --help                display help for command
 
   Examples
-    $ openapi --input ./spec.json --output ./generated
+    $ openapi --input ./spec.json --output ./generated --factories some/dir/factories-file.ts
 ```
 
 ## Example
 
 **package.json**
+
 ```json
 {
     "scripts": {
-        "generate": "openapi --input ./spec.json --output ./generated"
+        "generate": "openapi --input ./spec.json --output ./generated --factories some/dir/factories-file.ts"
     }
 }
 ```
@@ -39,7 +35,7 @@ $ openapi --help
 **NPX**
 
 ```
-npx openapi-typescript-codegen --input ./spec.json --output ./generated
+npx @yobta/generator --input ./spec.json --output ./generated --factories some/dir/factories-file.ts
 ```
 
 **Node.js**
@@ -50,11 +46,13 @@ const OpenAPI = require('openapi-typescript-codegen');
 OpenAPI.generate({
     input: './spec.json',
     output: './generated',
+    factories: './factories.ts',
 });
 
 // Or by providing the content of the spec directly 🚀
 OpenAPI.generate({
     input: require('./spec.json'),
     output: './generated',
+    factories: './factories.ts',
 });
 ```

@@ -1,13 +1,15 @@
 # Enums vs. Union types
 
-**Flag:**  `--useUnionTypes`
+**Flag:** `--useUnionTypes`
 
 The OpenAPI spec allows you to define [enums](https://swagger.io/docs/specification/data-models/enums/) inside the
-data model. By default, we convert these enums definitions to [TypeScript enums](https://www.typescriptlang.org/docs/handbook/enums.html).
-However, these enums are merged inside the namespace of the model, this is unsupported by Babel, [see docs](https://babeljs.io/docs/en/babel-plugin-transform-typescript#impartial-namespace-support).
-Because we also want to support projects that use Babel [@babel/plugin-transform-typescript](https://babeljs.io/docs/en/babel-plugin-transform-typescript),
-we offer the flag `--useUnionTypes` to generate [union types](https://www.typescriptlang.org/docs/handbook/unions-and-intersections.html#union-types)
-instead of the traditional enums. The difference can be seen below:
+data model. By default, we convert these enums definitions to [union types](https://www.typescriptlang.org/docs/handbook/unions-and-intersections.html#union-types).
+
+Order to drop to support projects that use Babel [@babel/plugin-transform-typescript](https://babeljs.io/docs/en/babel-plugin-transform-typescript),
+we offer the flag `--useUnionTypes false` to generate [TypeScript enums](https://www.typescriptlang.org/docs/handbook/enums.html).
+These enums are merged inside the namespace of the model, this is unsupported by Babel, [see docs](https://babeljs.io/docs/en/babel-plugin-transform-typescript#impartial-namespace-support).
+
+The difference can be seen below:
 
 **Enums:**
 
