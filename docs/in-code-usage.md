@@ -30,6 +30,8 @@ export const createHook: HookFactory = config => (input, options) => {
 };
 ```
 
+Some project file:
+
 ```typescript
 import { Listing } from './generated/client';
 
