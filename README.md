@@ -48,6 +48,7 @@ $ openapi --help
 # Documentation
 
 -   [Basic usage](docs/basic-usage.md)
+-   [Usage In Code](docs/in-code-usage.md)
 -   [Enums vs. Union types](docs/enum-vs-union-types.md) `--useUnionTypes`
 -   [Runtime schemas](docs/runtime-schemas.md) `--exportSchemas`
 -   [Enum with custom names and descriptions](docs/custom-enums.md)
