@@ -1,5 +1,7 @@
 {{>header}}
 
+import type { AxiosRequestConfig } from 'axios';
+
 export class CancelError extends Error {
 
 	constructor(message: string) {
@@ -24,6 +26,7 @@ export class CancelablePromise<T> implements Promise<T> {
 	#isResolved: boolean;
 	#isRejected: boolean;
 	#isCancelled: boolean;
+	#axiosConfig?: AxiosRequestConfig;
 	readonly #cancelHandlers: (() => void)[];
 	readonly #promise: Promise<T>;
 	#resolve?: (value: T | PromiseLike<T>) => void;
@@ -33,7 +36,8 @@ export class CancelablePromise<T> implements Promise<T> {
 		executor: (
 			resolve: (value: T | PromiseLike<T>) => void,
 			reject: (reason?: any) => void,
-			onCancel: OnCancel
+			onCancel: OnCancel,
+			axiosConfig?: AxiosRequestConfig
 		) => void
 	) {
 		this.#isResolved = false;
@@ -79,7 +83,9 @@ export class CancelablePromise<T> implements Promise<T> {
 				get: (): boolean => this.#isCancelled,
 			});
 
-			return executor(onResolve, onReject, onCancel as OnCancel);
+			const axiosConfig: AxiosRequestConfig = this.#axiosConfig || {};
+
+			return executor(onResolve, onReject, onCancel as OnCancel, axiosConfig);
 		});
 	}
 
@@ -121,6 +127,11 @@ export class CancelablePromise<T> implements Promise<T> {
 		}
 		this.#cancelHandlers.length = 0;
 		if (this.#reject) this.#reject(new CancelError('Request aborted'));
+	}
+
+	public axiosConfig(axiosConfig: AxiosRequestConfig): this {
+		this.#axiosConfig = axiosConfig;
+		return this;
 	}
 
 	public get isCancelled(): boolean {

@@ -71,7 +71,7 @@ import type { OpenAPIConfig } from './OpenAPI';
  * @throws ApiError
  */
 export const request = <T>(config: OpenAPIConfig, options: ApiRequestOptions, axiosClient: AxiosInstance = axios): CancelablePromise<T> => {
-	return new CancelablePromise(async (resolve, reject, onCancel) => {
+	return new CancelablePromise(async (resolve, reject, onCancel, axiosConfig) => {
 		try {
 			const url = getUrl(config, options);
 			const formData = getFormData(options);

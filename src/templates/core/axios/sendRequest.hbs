@@ -6,7 +6,8 @@ export const sendRequest = async <T>(
 	formData: FormData | undefined,
 	headers: Record<string, string>,
 	onCancel: OnCancel,
-	axiosClient: AxiosInstance
+	axiosClient: AxiosInstance,
+	axiosConfig: AxiosRequestConfig,
 ): Promise<AxiosResponse<T>> => {
 	const source = axios.CancelToken.source();
 
@@ -17,6 +18,7 @@ export const sendRequest = async <T>(
 		method: options.method,
 		withCredentials: config.WITH_CREDENTIALS,
 		cancelToken: source.token,
+		...axiosConfig,
 	};
 
 	onCancel(() => source.cancel('The user aborted a request.'));
