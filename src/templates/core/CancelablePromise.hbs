@@ -26,11 +26,11 @@ export class CancelablePromise<T> implements Promise<T> {
 	#isResolved: boolean;
 	#isRejected: boolean;
 	#isCancelled: boolean;
-	#axiosConfig?: AxiosRequestConfig;
 	readonly #cancelHandlers: (() => void)[];
 	readonly #promise: Promise<T>;
 	#resolve?: (value: T | PromiseLike<T>) => void;
 	#reject?: (reason?: any) => void;
+	#axiosConfig?: AxiosRequestConfig = {};
 
 	constructor(
 		executor: (
@@ -83,7 +83,7 @@ export class CancelablePromise<T> implements Promise<T> {
 				get: (): boolean => this.#isCancelled,
 			});
 
-			const axiosConfig: AxiosRequestConfig = this.#axiosConfig || {};
+			const axiosConfig: AxiosRequestConfig = this.#axiosConfig;
 
 			return executor(onResolve, onReject, onCancel as OnCancel, axiosConfig);
 		});
@@ -130,7 +130,7 @@ export class CancelablePromise<T> implements Promise<T> {
 	}
 
 	public axiosConfig(axiosConfig: AxiosRequestConfig): this {
-		this.#axiosConfig = axiosConfig;
+		Object.assign(this.#axiosConfig as object, axiosConfig);
 		return this;
 	}
 

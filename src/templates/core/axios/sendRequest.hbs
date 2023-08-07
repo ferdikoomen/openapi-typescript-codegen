@@ -7,7 +7,7 @@ export const sendRequest = async <T>(
 	headers: Record<string, string>,
 	onCancel: OnCancel,
 	axiosClient: AxiosInstance,
-	axiosConfig: AxiosRequestConfig,
+	axiosConfig?: AxiosRequestConfig,
 ): Promise<AxiosResponse<T>> => {
 	const source = axios.CancelToken.source();
 
