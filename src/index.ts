@@ -14,6 +14,7 @@ import { AnyOpenApi } from './openApi';
 
 export { HttpClient } from './HttpClient';
 export { Indent } from './Indent';
+export { createRequestParams } from './utils/createRequestParams';
 
 export type Options = {
     input: string | AnyOpenApi;

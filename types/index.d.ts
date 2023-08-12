@@ -35,3 +35,7 @@ declare type OpenAPI = {
 };
 
 export default OpenAPI;
+
+export * from './factories';
+
+export * from '../src/utils/createRequestParams';

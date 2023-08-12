@@ -22,12 +22,7 @@ export const writeClientFactories = async (
     indent: Indent
 ): Promise<void> => {
     const extension = 'ts';
-    const resolvers = [
-        { name: 'types', template: templates.exports.factories.types, context: { services } },
-        { name: 'createServerResolver', template: templates.exports.factories.serverResolver, context: {} },
-        { name: 'createClientResolver', template: templates.exports.factories.clientResolver, context: {} },
-        { name: 'createHook', template: templates.exports.factories.hook, context: {} },
-    ];
+    const resolvers = [{ name: 'types', template: templates.exports.factories.types, context: { services } }];
     const index = [{ name: 'index', template: templates.exports.factories.index, context: { resolvers, extension } }];
 
     for (const file of [...resolvers, ...index]) {

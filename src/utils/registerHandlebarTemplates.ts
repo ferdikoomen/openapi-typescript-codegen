@@ -49,9 +49,6 @@ import templateExportService from '../templates/exportService.hbs';
 import templatePathname from '../templates/pathnames/pathname.hbs';
 import templatePathnameIndex from '../templates/pathnames/index.hbs';
 import templateFactoryTypes from '../templates/factories/types.hbs';
-import templateFactoryServer from '../templates/factories/server.hbs';
-import templateFactoryClient from '../templates/factories/client.hbs';
-import templateFactoryHooks from '../templates/factories/hooks.hbs';
 import templateFactoryIndex from '../templates/factories/index.hbs';
 import templateServerResolver from '../templates/server/resolver.hbs';
 import templateServerIndex from '../templates/server/index.hbs';
@@ -101,9 +98,6 @@ export interface Templates {
         };
         factories: {
             types: Handlebars.TemplateDelegate;
-            serverResolver: Handlebars.TemplateDelegate;
-            clientResolver: Handlebars.TemplateDelegate;
-            hook: Handlebars.TemplateDelegate;
             index: Handlebars.TemplateDelegate;
         };
         server: {
@@ -145,9 +139,6 @@ export const registerHandlebarTemplates = (root: { useUnionTypes: boolean }): Te
             },
             factories: {
                 types: Handlebars.template(templateFactoryTypes),
-                serverResolver: Handlebars.template(templateFactoryServer),
-                clientResolver: Handlebars.template(templateFactoryClient),
-                hook: Handlebars.template(templateFactoryHooks),
                 index: Handlebars.template(templateFactoryIndex),
             },
             server: {

@@ -10,9 +10,6 @@ export const templates: Templates = {
         },
         factories: {
             types: () => 'factoriesTypes',
-            serverResolver: () => 'serverResolver',
-            clientResolver: () => 'clientResolver',
-            hook: () => 'hook',
             index: () => 'factoriesIndex',
         },
         server: {
