@@ -1,12 +1,10 @@
 import Handlebars from 'handlebars/runtime';
 
-import { HttpClient } from '../HttpClient';
 import { registerHandlebarHelpers } from './registerHandlebarHelpers';
 
 describe('registerHandlebarHelpers', () => {
     it('should register the helpers', () => {
         registerHandlebarHelpers({
-            httpClient: HttpClient.FETCH,
             useUnionTypes: false,
         });
         const helpers = Object.keys(Handlebars.helpers);

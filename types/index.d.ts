@@ -19,11 +19,9 @@ export type Options = {
     httpClient?: HttpClient | 'fetch' | 'xhr' | 'node' | 'axios' | 'angular';
     clientName?: string;
     useUnionTypes?: boolean;
-    exportCore?: boolean;
     exportServices?: boolean;
     exportSchemas?: boolean;
     indent?: Indent | '4' | '2' | 'tab';
-    postfixServices?: string;
     postfixModels?: string;
     write?: boolean;
 };

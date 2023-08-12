@@ -18,13 +18,10 @@ describe('bin', () => {
             '--input', './test/spec/v3.json',
             '--output', './test/generated/bin',
             '--factories', './factories',
-            '--client', 'fetch',
             '--useUnionTypes',
-            '--exportCore', 'true',
             '--exportServices', 'true',
             '--exportSchemas', 'true',
             '--indent', '4',
-            '--postfixServices', 'Service',
             '--postfixModels', 'Dto',
         ]);
         expect(result.stdout.toString()).toBe('');

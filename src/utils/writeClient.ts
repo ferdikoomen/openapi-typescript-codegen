@@ -1,15 +1,11 @@
 import type { Client } from '../client/interfaces/Client';
-import type { HttpClient } from '../HttpClient';
 import type { Indent } from '../Indent';
 import type { Templates } from './registerHandlebarTemplates';
 
 import { resolve } from 'path';
 
 import { mkdir, rmdir } from './fileSystem';
-import { isDefined } from './isDefined';
 import { isSubDirectory } from './isSubdirectory';
-import { writeClientClass } from './writeClientClass';
-import { writeClientCore } from './writeClientCore';
 import { writeClientIndex } from './writeClientIndex';
 import { writeClientModels } from './writeClientModels';
 import { writeClientSchemas } from './writeClientSchemas';
@@ -26,15 +22,11 @@ import { writeClientUtil } from './writeClientUtil';
  * @param templates Templates wrapper with all loaded Handlebars templates
  * @param output The relative location of the output directory
  * @param factories The relative location of the factories file
- * @param httpClient The selected httpClient (fetch, xhr, node or axios)
  * @param useUnionTypes Use union types instead of enums
- * @param exportCore Generate core client classes
  * @param exportServices Generate services
  * @param exportSchemas Generate schemas
  * @param indent Indentation options (4, 2 or tab)
- * @param postfixServices Service name postfix
  * @param postfixModels Model name postfix
- * @param clientName Custom client class name
  * @param request Path to custom request file
  */
 export const writeClient = async (
@@ -42,18 +34,13 @@ export const writeClient = async (
     templates: Templates,
     output: string,
     factories: string,
-    httpClient: HttpClient,
     useUnionTypes: boolean,
-    exportCore: boolean,
     exportServices: boolean,
     exportSchemas: boolean,
     indent: Indent,
-    postfixServices: string,
-    postfixModels: string,
-    clientName?: string
+    postfixModels: string
 ): Promise<void> => {
     const outputPath = resolve(process.cwd(), output);
-    const outputPathCore = resolve(outputPath, 'core');
     const outputPathPathnames = resolve(outputPath, 'pathnames');
     const outputPathServer = resolve(outputPath, 'server');
     const outputPathClient = resolve(outputPath, 'client');
@@ -76,12 +63,6 @@ export const writeClient = async (
     await mkdir(outputPathPathnames);
     await writeClientPathnames(client.services, templates, outputPathPathnames, indent);
 
-    if (exportCore) {
-        await rmdir(outputPathCore);
-        await mkdir(outputPathCore);
-        await writeClientCore(client, templates, outputPathCore, httpClient, indent, clientName);
-    }
-
     if (exportServices) {
         await rmdir(outputPathServer);
         await mkdir(outputPathServer);
@@ -99,33 +80,17 @@ export const writeClient = async (
     if (exportSchemas) {
         await rmdir(outputPathSchemas);
         await mkdir(outputPathSchemas);
-        await writeClientSchemas(client.models, templates, outputPathSchemas, httpClient, useUnionTypes, indent);
+        await writeClientSchemas(client.models, templates, outputPathSchemas, useUnionTypes, indent);
     }
 
     await rmdir(outputPathModels);
     await mkdir(outputPathModels);
-    await writeClientModels(client.models, templates, outputPathModels, httpClient, useUnionTypes, indent);
-
-    if (isDefined(clientName)) {
-        await mkdir(outputPath);
-        await writeClientClass(client, templates, outputPath, httpClient, clientName, indent, postfixServices);
-    }
+    await writeClientModels(client.models, templates, outputPathModels, useUnionTypes, indent);
 
     await rmdir(outputPathUtil);
     await mkdir(outputPathUtil);
     await writeClientUtil(templates, outputPathUtil, indent);
 
     await mkdir(outputPath);
-    await writeClientIndex(
-        client,
-        templates,
-        outputPath,
-        useUnionTypes,
-        exportCore,
-        exportServices,
-        exportSchemas,
-        postfixServices,
-        postfixModels,
-        clientName
-    );
+    await writeClientIndex(client, templates, outputPath, useUnionTypes, exportServices, exportSchemas, postfixModels);
 };

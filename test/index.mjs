@@ -7,9 +7,7 @@ const generate = async (input, output) => {
         input,
         output,
         factories: './factories.ts',
-        httpClient: OpenAPI.HttpClient.FETCH,
         useUnionTypes: false,
-        exportCore: true,
         exportSchemas: true,
         exportServices: true,
     });

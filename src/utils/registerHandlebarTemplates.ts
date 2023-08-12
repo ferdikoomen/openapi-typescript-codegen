@@ -1,6 +1,5 @@
 import Handlebars from 'handlebars/runtime';
 
-import { HttpClient } from '../HttpClient';
 import templateClient from '../templates/client.hbs';
 import angularGetHeaders from '../templates/core/angular/getHeaders.hbs';
 import angularGetRequestBody from '../templates/core/angular/getRequestBody.hbs';
@@ -8,17 +7,12 @@ import angularGetResponseBody from '../templates/core/angular/getResponseBody.hb
 import angularGetResponseHeader from '../templates/core/angular/getResponseHeader.hbs';
 import angularRequest from '../templates/core/angular/request.hbs';
 import angularSendRequest from '../templates/core/angular/sendRequest.hbs';
-import templateCoreApiError from '../templates/core/ApiError.hbs';
-import templateCoreApiRequestOptions from '../templates/core/ApiRequestOptions.hbs';
-import templateCoreApiResult from '../templates/core/ApiResult.hbs';
 import axiosGetHeaders from '../templates/core/axios/getHeaders.hbs';
 import axiosGetRequestBody from '../templates/core/axios/getRequestBody.hbs';
 import axiosGetResponseBody from '../templates/core/axios/getResponseBody.hbs';
 import axiosGetResponseHeader from '../templates/core/axios/getResponseHeader.hbs';
 import axiosRequest from '../templates/core/axios/request.hbs';
 import axiosSendRequest from '../templates/core/axios/sendRequest.hbs';
-import templateCoreBaseHttpRequest from '../templates/core/BaseHttpRequest.hbs';
-import templateCancelablePromise from '../templates/core/CancelablePromise.hbs';
 import fetchGetHeaders from '../templates/core/fetch/getHeaders.hbs';
 import fetchGetRequestBody from '../templates/core/fetch/getRequestBody.hbs';
 import fetchGetResponseBody from '../templates/core/fetch/getResponseBody.hbs';
@@ -37,14 +31,12 @@ import functionIsString from '../templates/core/functions/isString.hbs';
 import functionIsStringWithValue from '../templates/core/functions/isStringWithValue.hbs';
 import functionIsSuccess from '../templates/core/functions/isSuccess.hbs';
 import functionResolve from '../templates/core/functions/resolve.hbs';
-import templateCoreHttpRequest from '../templates/core/HttpRequest.hbs';
 import nodeGetHeaders from '../templates/core/node/getHeaders.hbs';
 import nodeGetRequestBody from '../templates/core/node/getRequestBody.hbs';
 import nodeGetResponseBody from '../templates/core/node/getResponseBody.hbs';
 import nodeGetResponseHeader from '../templates/core/node/getResponseHeader.hbs';
 import nodeRequest from '../templates/core/node/request.hbs';
 import nodeSendRequest from '../templates/core/node/sendRequest.hbs';
-import templateCoreSettings from '../templates/core/OpenAPI.hbs';
 import xhrGetHeaders from '../templates/core/xhr/getHeaders.hbs';
 import xhrGetRequestBody from '../templates/core/xhr/getRequestBody.hbs';
 import xhrGetResponseBody from '../templates/core/xhr/getResponseBody.hbs';
@@ -133,22 +125,13 @@ export interface Templates {
     util: {
         createRequestParams: Handlebars.TemplateDelegate;
     };
-    core: {
-        settings: Handlebars.TemplateDelegate;
-        apiError: Handlebars.TemplateDelegate;
-        apiRequestOptions: Handlebars.TemplateDelegate;
-        apiResult: Handlebars.TemplateDelegate;
-        cancelablePromise: Handlebars.TemplateDelegate;
-        baseHttpRequest: Handlebars.TemplateDelegate;
-        httpRequest: Handlebars.TemplateDelegate;
-    };
 }
 
 /**
  * Read all the Handlebar templates that we need and return on wrapper object
  * so we can easily access the templates in out generator / write functions.
  */
-export const registerHandlebarTemplates = (root: { httpClient: HttpClient; useUnionTypes: boolean }): Templates => {
+export const registerHandlebarTemplates = (root: { useUnionTypes: boolean }): Templates => {
     registerHandlebarHelpers(root);
 
     // Main templates (entry points for the files we write to disk)
@@ -185,15 +168,6 @@ export const registerHandlebarTemplates = (root: { httpClient: HttpClient; useUn
         },
         util: {
             createRequestParams: Handlebars.template(createRequestParams),
-        },
-        core: {
-            settings: Handlebars.template(templateCoreSettings),
-            apiError: Handlebars.template(templateCoreApiError),
-            apiRequestOptions: Handlebars.template(templateCoreApiRequestOptions),
-            apiResult: Handlebars.template(templateCoreApiResult),
-            cancelablePromise: Handlebars.template(templateCancelablePromise),
-            baseHttpRequest: Handlebars.template(templateCoreBaseHttpRequest),
-            httpRequest: Handlebars.template(templateCoreHttpRequest),
         },
     };
 

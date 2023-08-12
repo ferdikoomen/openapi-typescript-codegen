@@ -3,7 +3,6 @@ import type { Model } from '../client/interfaces/Model';
 import { EOL } from 'os';
 
 import { templates } from './__mocks__/templates';
-import { HttpClient } from '../HttpClient';
 import { Indent } from '../Indent';
 import { writeFile } from './fileSystem';
 import { writeClientSchemas } from './writeClientSchemas';
@@ -32,7 +31,7 @@ describe('writeClientSchemas', () => {
             },
         ];
 
-        await writeClientSchemas(models, templates, '/', HttpClient.FETCH, false, Indent.SPACE_4);
+        await writeClientSchemas(models, templates, '/', false, Indent.SPACE_4);
 
         expect(writeFile).toBeCalledWith('/$User.ts', `schema${EOL}`);
     });

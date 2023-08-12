@@ -22,11 +22,9 @@ export type Options = {
     httpClient?: HttpClient;
     clientName?: string;
     useUnionTypes?: boolean;
-    exportCore?: boolean;
     exportServices?: boolean;
     exportSchemas?: boolean;
     indent?: Indent;
-    postfixServices?: string;
     postfixModels?: string;
     write?: boolean;
 };
@@ -38,14 +36,10 @@ export type Options = {
  * @param input The relative location of the OpenAPI spec
  * @param output The relative location of the output directory
  * @param factories The relative location of the the fifle with factories (createServerResolver, createClientResolver, createHook)
- * @param httpClient The selected httpClient (fetch, xhr, node or axios)
- * @param clientName Custom client class name
  * @param useUnionTypes Use union types instead of enums
- * @param exportCore Generate core client classes
  * @param exportServices Generate services
  * @param exportSchemas Generate schemas
  * @param indent Indentation options (4, 2 or tab)
- * @param postfixServices Service name postfix
  * @param postfixModels Model name postfix
  * @param write Write the files to disk (true or false)
  */
@@ -53,14 +47,10 @@ export const generate = async ({
     input,
     output = 'generated/open-api',
     factories,
-    httpClient = HttpClient.FETCH,
-    clientName,
     useUnionTypes = true,
-    exportCore = true,
     exportServices = true,
     exportSchemas = false,
     indent = Indent.SPACE_4,
-    postfixServices = 'Service',
     postfixModels = '',
     write = true,
 }: Options): Promise<void> => {
@@ -71,7 +61,6 @@ export const generate = async ({
     const openApi = isString(input) ? await getOpenApiSpec(input) : input;
     const openApiVersion = getOpenApiVersion(openApi);
     const templates = registerHandlebarTemplates({
-        httpClient,
         useUnionTypes,
     });
 
@@ -85,15 +74,11 @@ export const generate = async ({
                 templates,
                 output,
                 factories,
-                httpClient,
                 useUnionTypes,
-                exportCore,
                 exportServices,
                 exportSchemas,
                 indent,
-                postfixServices,
-                postfixModels,
-                clientName
+                postfixModels
             );
             break;
         }
@@ -107,15 +92,11 @@ export const generate = async ({
                 templates,
                 output,
                 factories,
-                httpClient,
                 useUnionTypes,
-                exportCore,
                 exportServices,
                 exportSchemas,
                 indent,
-                postfixServices,
-                postfixModels,
-                clientName
+                postfixModels
             );
             break;
         }
