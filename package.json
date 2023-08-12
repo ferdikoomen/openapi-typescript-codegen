@@ -1,6 +1,6 @@
 {
     "name": "@yobta/generator",
-    "version": "0.26.0",
+    "version": "0.26.1",
     "description": "Library that generates Typescript clients based on the OpenAPI specification.",
     "author": "Ferdi Koomen, Pavel Brylev",
     "homepage": "https://github.com/yobta/generator",
@@ -41,7 +41,7 @@
     "main": "dist/index.mjs",
     "types": "types/index.d.ts",
     "bin": {
-        "openapi": "bin/index.mjs"
+        "generate-yobta": "bin/index.mjs"
     },
     "files": [
         "bin/index.js",

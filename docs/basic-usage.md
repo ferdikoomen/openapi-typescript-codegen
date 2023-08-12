@@ -1,9 +1,9 @@
 # Basic usage
 
 ```
-$ openapi --help
+$ generate-yobta --help
 
-  Usage: openapi [options]
+  Usage: generate-yobta [options]
 
   Options:
     -V, --version             output the version number
@@ -17,7 +17,7 @@ $ openapi --help
     -h, --help                display help for command
 
   Examples
-    $ openapi --input ./spec.json --output ./generated --factories some/dir/factories-file.ts
+    $ generate-yobta --input ./spec.json --output ./generated --factories some/dir/factories-file.ts
 ```
 
 ## Example
@@ -27,7 +27,7 @@ $ openapi --help
 ```json
 {
     "scripts": {
-        "generate": "openapi --input ./spec.json --output ./generated --factories some/dir/factories-file.ts"
+        "generate": "generate-yobta --input ./spec.json --output ./generated --factories some/dir/factories-file.ts"
     }
 }
 ```
@@ -41,16 +41,16 @@ npx @yobta/generator --input ./spec.json --output ./generated --factories some/d
 **Node.js**
 
 ```javascript
-const OpenAPI = require('openapi-typescript-codegen');
+const GenerateYobta = require('@yobta/generator');
 
-OpenAPI.generate({
+GenerateYobta.generate({
     input: './spec.json',
     output: './generated',
     factories: './factories.ts',
 });
 
 // Or by providing the content of the spec directly 🚀
-OpenAPI.generate({
+GenerateYobta.generate({
     input: require('./spec.json'),
     output: './generated',
     factories: './factories.ts',

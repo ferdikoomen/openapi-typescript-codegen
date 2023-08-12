@@ -4,7 +4,7 @@
 
 import { program } from 'commander';
 
-import { createRequire } from "module";
+import { createRequire } from 'module';
 
 const require = createRequire(import.meta.url);
 const pkg = require('../package.json');
@@ -24,12 +24,7 @@ const params = program
     .parse(process.argv)
     .opts();
 
-
 const OpenAPI = await import('../dist/index.mjs');
-
-console.log({
-    useUnionTypes: JSON.parse(params.useUnionTypes) !== false,
-});
 
 if (OpenAPI) {
     OpenAPI.generate({

@@ -22,7 +22,7 @@
 
     "files": ["./src/typings/hbs.d.ts"],
 
-    "include": ["./src/**/*.ts", "./types/**.ts"],
+    "include": ["./src/**/*.ts", "./types/**/*.ts"],
 
     "exclude": ["dist", "node_modules", "**/__mocks__"]
 }

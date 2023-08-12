@@ -19,9 +19,6 @@ describe('writeClientFactories', () => {
         ];
         await writeClientFactories(services, templates, '/', Indent.SPACE_4);
 
-        expect(writeFile).toBeCalledWith('/createServerResolver.ts', `serverResolver${EOL}`);
-        expect(writeFile).toBeCalledWith('/createClientResolver.ts', `clientResolver${EOL}`);
-        expect(writeFile).toBeCalledWith('/createHook.ts', `hook${EOL}`);
         expect(writeFile).toBeCalledWith('/index.ts', `factoriesIndex${EOL}`);
     });
 });

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-import { SchemaConfig, RequestInput, SchemaOptions } from '../factories/types'
+import { SchemaConfig, RequestInput, SchemaOptions } from '../../types';
 
 // region helpers
 export const isDefined = <T>(value: T | null | undefined): value is Exclude<T, null | undefined> => {
@@ -65,7 +65,7 @@ export const getQueryString = (params: Record<string, unknown>, handledParams: R
 export const getUrl = (config: SchemaConfig, input: RequestInput): string => {
     const handledUrlParams: Record<string, boolean> = {
         formData: true,
-        requestBody: true
+        requestBody: true,
     };
     const url = config.path.replace(/{(.*?)}/g, (substring: string, group: string) => {
         // eslint-disable-next-line no-prototype-builtins
@@ -138,7 +138,11 @@ export const getHeaders = (config: SchemaConfig, input: RequestInput, options?: 
 
 // endregion
 
-export const createRequestParams = <Input extends RequestInput>(config: SchemaConfig, input: Input, options?: SchemaOptions): [RequestInfo, RequestInit] => {
+export const createRequestParams = <Input extends RequestInput>(
+    config: SchemaConfig,
+    input: Input,
+    options?: SchemaOptions
+): [RequestInfo, RequestInit] => {
     const url = getUrl(config, input);
     const init: RequestInit = {
         ...options,

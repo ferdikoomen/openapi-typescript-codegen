@@ -49,9 +49,6 @@ import templateExportService from '../templates/exportService.hbs';
 import templatePathname from '../templates/pathnames/pathname.hbs';
 import templatePathnameIndex from '../templates/pathnames/index.hbs';
 import templateFactoryTypes from '../templates/factories/types.hbs';
-import templateFactoryServer from '../templates/factories/server.hbs';
-import templateFactoryClient from '../templates/factories/client.hbs';
-import templateFactoryHooks from '../templates/factories/hooks.hbs';
 import templateFactoryIndex from '../templates/factories/index.hbs';
 import templateServerResolver from '../templates/server/resolver.hbs';
 import templateServerIndex from '../templates/server/index.hbs';
@@ -88,7 +85,6 @@ import partialTypeInterface from '../templates/partials/typeInterface.hbs';
 import partialTypeIntersection from '../templates/partials/typeIntersection.hbs';
 import partialTypeReference from '../templates/partials/typeReference.hbs';
 import partialTypeUnion from '../templates/partials/typeUnion.hbs';
-import createRequestParams from '../templates/util/createRequestParams.hbs';
 import { registerHandlebarHelpers } from './registerHandlebarHelpers';
 
 export interface Templates {
@@ -101,9 +97,6 @@ export interface Templates {
         };
         factories: {
             types: Handlebars.TemplateDelegate;
-            serverResolver: Handlebars.TemplateDelegate;
-            clientResolver: Handlebars.TemplateDelegate;
-            hook: Handlebars.TemplateDelegate;
             index: Handlebars.TemplateDelegate;
         };
         server: {
@@ -121,9 +114,6 @@ export interface Templates {
         model: Handlebars.TemplateDelegate;
         schema: Handlebars.TemplateDelegate;
         service: Handlebars.TemplateDelegate;
-    };
-    util: {
-        createRequestParams: Handlebars.TemplateDelegate;
     };
 }
 
@@ -145,9 +135,6 @@ export const registerHandlebarTemplates = (root: { useUnionTypes: boolean }): Te
             },
             factories: {
                 types: Handlebars.template(templateFactoryTypes),
-                serverResolver: Handlebars.template(templateFactoryServer),
-                clientResolver: Handlebars.template(templateFactoryClient),
-                hook: Handlebars.template(templateFactoryHooks),
                 index: Handlebars.template(templateFactoryIndex),
             },
             server: {
@@ -165,9 +152,6 @@ export const registerHandlebarTemplates = (root: { useUnionTypes: boolean }): Te
             model: Handlebars.template(templateExportModel),
             schema: Handlebars.template(templateExportSchema),
             service: Handlebars.template(templateExportService),
-        },
-        util: {
-            createRequestParams: Handlebars.template(createRequestParams),
         },
     };
 

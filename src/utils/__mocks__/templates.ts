@@ -10,9 +10,6 @@ export const templates: Templates = {
         },
         factories: {
             types: () => 'factoriesTypes',
-            serverResolver: () => 'serverResolver',
-            clientResolver: () => 'clientResolver',
-            hook: () => 'hook',
             index: () => 'factoriesIndex',
         },
         server: {
@@ -30,8 +27,5 @@ export const templates: Templates = {
         model: () => 'model',
         schema: () => 'schema',
         service: () => 'service',
-    },
-    util: {
-        createRequestParams: () => 'createRequestParams content',
     },
 };

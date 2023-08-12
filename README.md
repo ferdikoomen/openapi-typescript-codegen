@@ -26,9 +26,9 @@ npm install @yobta/generator --save-dev
 ## Usage
 
 ```
-$ openapi --help
+$ generate-yobta --help
 
-  Usage: openapi [options]
+  Usage: generate-yobta [options]
 
   Options:
     -V, --version             output the version number
@@ -42,7 +42,7 @@ $ openapi --help
     -h, --help                display help for command
 
   Examples
-    $ openapi --input ./spec.json --output ./generated --factories ./src/fatories
+    $ generate-yobta --input ./spec.json --output ./generated --factories ./src/factories
 ```
 
 # Documentation
