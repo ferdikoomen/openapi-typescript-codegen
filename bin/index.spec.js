@@ -18,7 +18,7 @@ describe('bin', () => {
             '--input', './test/spec/v3.json',
             '--output', './test/generated/bin',
             '--factories', './factories',
-            '--useUnionTypes',
+            '--useUnionTypes', 'true',
             '--exportServices', 'true',
             '--exportSchemas', 'true',
             '--indent', '4',

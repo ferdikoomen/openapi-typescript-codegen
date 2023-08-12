@@ -3,14 +3,13 @@
 ## Example
 
 ```bash
-  $ openapi --input ./spec.json --output ./generated --factories some/dir/factories.ts
+  $ generate-yobta --input ./spec.json --output ./generated --factories some/dir/factories.ts
 ```
 
 some/dir/factories.ts
 
 ```typescript
-import { ServerResolverFactory, ClientResolverFactory, HookFactory, HookResult } from './generated/factories';
-import { createRequestParams } from './generated/util/createRequestParams';
+import { ServerResolverFactory, ClientResolverFactory, HookFactory, HookResult, createRequestParams } from '@yobta/generator';
 
 export const createServerResolver: ServerResolverFactory = config => async (input, options) => {
     const [url, init] = createRequestParams(config, input, options);

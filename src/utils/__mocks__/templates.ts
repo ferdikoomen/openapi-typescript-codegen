@@ -28,7 +28,4 @@ export const templates: Templates = {
         schema: () => 'schema',
         service: () => 'service',
     },
-    util: {
-        createRequestParams: () => 'createRequestParams content',
-    },
 };
