@@ -1,7 +1,7 @@
 import type { Client } from '../client/interfaces/Client';
 
-import { postProcessModel } from './postProcessModel';
-import { postProcessService } from './postProcessService';
+import { postProcessModel } from './postProcessModel.js';
+import { postProcessService } from './postProcessService.js';
 
 /**
  * Post process client
