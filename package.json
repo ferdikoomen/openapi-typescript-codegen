@@ -46,7 +46,7 @@
     "files": [
         "bin/index.js",
         "dist/index.js",
-        "types/index.d.ts"
+        "types/**/*.d.ts"
     ],
     "scripts": {
         "clean": "rimraf ./dist ./test/generated ./test/e2e/generated ./samples/generated ./coverage ./node_modules/.cache",
