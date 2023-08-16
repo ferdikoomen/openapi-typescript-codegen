@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-import { SchemaConfig, RequestInput, SchemaOptions } from '../../types';
+import type { SchemaConfig, RequestInput, SchemaOptions } from '../../types';
 
 // region helpers
 export const isDefined = <T>(value: T | null | undefined): value is Exclude<T, null | undefined> => {

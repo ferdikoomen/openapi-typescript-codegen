@@ -1,19 +1,19 @@
 import type { Client } from '../client/interfaces/Client';
 import type { Indent } from '../Indent';
-import type { Templates } from './registerHandlebarTemplates';
+import type { Templates } from './registerHandlebarTemplates.js';
 
 import { resolve } from 'path';
 
-import { mkdir, rmdir } from './fileSystem';
-import { isSubDirectory } from './isSubdirectory';
-import { writeClientIndex } from './writeClientIndex';
-import { writeClientModels } from './writeClientModels';
-import { writeClientSchemas } from './writeClientSchemas';
-import { writeClientPathnames } from './writeClientPathnames';
-import { writeClientFactories } from './writeClientFactories';
-import { writeClientServers } from './writeClientServers';
-import { writeClientClients } from './writeClientClients';
-import { writeClientHooks } from './writeClientHooks';
+import { mkdir, rmdir } from './fileSystem.js';
+import { isSubDirectory } from './isSubdirectory.js';
+import { writeClientIndex } from './writeClientIndex.js';
+import { writeClientModels } from './writeClientModels.js';
+import { writeClientSchemas } from './writeClientSchemas.js';
+import { writeClientPathnames } from './writeClientPathnames.js';
+import { writeClientFactories } from './writeClientFactories.js';
+import { writeClientServers } from './writeClientServers.js';
+import { writeClientClients } from './writeClientClients.js';
+import { writeClientHooks } from './writeClientHooks.js';
 
 /**
  * Write our OpenAPI client, using the given templates at the given output

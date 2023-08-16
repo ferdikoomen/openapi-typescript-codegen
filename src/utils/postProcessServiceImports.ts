@@ -1,7 +1,7 @@
 import type { Service } from '../client/interfaces/Service';
 
-import { sort } from './sort';
-import { unique } from './unique';
+import { sort } from './sort.js';
+import { unique } from './unique.js';
 
 /**
  * Set unique imports, sorted by name

@@ -3,14 +3,14 @@ import type { OpenApi } from '../interfaces/OpenApi';
 import type { OpenApiParameter } from '../interfaces/OpenApiParameter';
 import type { OpenApiSchema } from '../interfaces/OpenApiSchema';
 
-import { getPattern } from '../../../utils/getPattern';
-import { extendEnum } from './extendEnum';
-import { getEnum } from './getEnum';
-import { getModel } from './getModel';
-import { getOperationParameterDefault } from './getOperationParameterDefault';
-import { getOperationParameterName } from './getOperationParameterName';
-import { getRef } from './getRef';
-import { getType } from './getType';
+import { getPattern } from '../../../utils/getPattern.js';
+import { extendEnum } from './extendEnum.js';
+import { getEnum } from './getEnum.js';
+import { getModel } from './getModel.js';
+import { getOperationParameterDefault } from './getOperationParameterDefault.js';
+import { getOperationParameterName } from './getOperationParameterName.js';
+import { getRef } from './getRef.js';
+import { getType } from './getType.js';
 
 export const getOperationParameter = (openApi: OpenApi, parameter: OpenApiParameter): OperationParameter => {
     const operationParameter: OperationParameter = {

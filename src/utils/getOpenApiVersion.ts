@@ -1,5 +1,5 @@
-import { OpenApi as OpenApiV2 } from '../openApi/v2/interfaces/OpenApi';
-import { OpenApi as OpenApiV3 } from '../openApi/v3/interfaces/OpenApi';
+import { OpenApi as OpenApiV2 } from '../openApi/v2/interfaces/OpenApi.js';
+import { OpenApi as OpenApiV3 } from '../openApi/v3/interfaces/OpenApi.js';
 
 type OpenApiInput = Pick<OpenApiV2, 'swagger'> | Pick<OpenApiV3, 'openapi'>;
 

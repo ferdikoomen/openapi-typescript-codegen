@@ -3,7 +3,7 @@ import type { OpenApi } from '../interfaces/OpenApi';
 import type { OpenApiMediaType } from '../interfaces/OpenApiMediaType';
 import type { OpenApiSchema } from '../interfaces/OpenApiSchema';
 
-import { isDefined } from '../../../utils/isDefined';
+import { isDefined } from '../../../utils/isDefined.js';
 
 export interface Content {
     mediaType: string;

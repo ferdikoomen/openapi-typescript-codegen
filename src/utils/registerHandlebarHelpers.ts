@@ -2,10 +2,10 @@ import type { Enum } from '../client/interfaces/Enum';
 import type { Model } from '../client/interfaces/Model';
 
 import camelCase from 'camelcase';
-import Handlebars from 'handlebars/runtime';
+import Handlebars from 'handlebars';
 import { EOL } from 'os';
 
-import { unique } from './unique';
+import { unique } from './unique.js';
 
 export const registerHandlebarHelpers = (root: { useUnionTypes: boolean }): void => {
     Handlebars.registerHelper('ifdef', function (this: unknown, ...args): string {

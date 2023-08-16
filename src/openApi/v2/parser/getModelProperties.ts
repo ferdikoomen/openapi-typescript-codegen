@@ -3,9 +3,9 @@ import type { OpenApi } from '../interfaces/OpenApi';
 import type { OpenApiSchema } from '../interfaces/OpenApiSchema';
 import type { getModel } from './getModel';
 
-import { escapeName } from './escapeName';
-import { getPattern } from '../../../utils/getPattern';
-import { getType } from './getType';
+import { escapeName } from './escapeName.js';
+import { getPattern } from '../../../utils/getPattern.js';
+import { getType } from './getType.js';
 
 // Fix for circular dependency
 export type GetModelFn = typeof getModel;

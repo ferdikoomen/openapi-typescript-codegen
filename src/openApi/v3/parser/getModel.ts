@@ -2,13 +2,13 @@ import type { Model } from '../../../client/interfaces/Model';
 import type { OpenApi } from '../interfaces/OpenApi';
 import type { OpenApiSchema } from '../interfaces/OpenApiSchema';
 
-import { getPattern } from '../../../utils/getPattern';
-import { extendEnum } from './extendEnum';
-import { getEnum } from './getEnum';
-import { getModelComposition } from './getModelComposition';
-import { getModelDefault } from './getModelDefault';
-import { getModelProperties } from './getModelProperties';
-import { getType } from './getType';
+import { getPattern } from '../../../utils/getPattern.js';
+import { extendEnum } from './extendEnum.js';
+import { getEnum } from './getEnum.js';
+import { getModelComposition } from './getModelComposition.js';
+import { getModelDefault } from './getModelDefault.js';
+import { getModelProperties } from './getModelProperties.js';
+import { getType } from './getType.js';
 
 export const getModel = (
     openApi: OpenApi,

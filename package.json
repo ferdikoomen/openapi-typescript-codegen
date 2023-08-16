@@ -50,7 +50,8 @@
     ],
     "scripts": {
         "clean": "rimraf ./dist ./test/generated ./test/e2e/generated ./samples/generated ./coverage ./node_modules/.cache",
-        "build": "rollup --config --environment NODE_ENV:production",
+        "copy-templates": "mkdir -p ./dist && cp -r ./src/templates ./dist",
+        "build": "tsc",
         "typecheck": "tsc --project tsconfig.json --noEmit",
         "run": "node ./test/index.mjs",
         "test:unit": "jest --coverage --selectProjects UNIT",

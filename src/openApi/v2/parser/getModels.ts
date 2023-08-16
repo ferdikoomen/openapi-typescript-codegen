@@ -1,9 +1,9 @@
 import type { Model } from '../../../client/interfaces/Model';
 import type { OpenApi } from '../interfaces/OpenApi';
 
-import { reservedWords } from '../../../utils/reservedWords';
-import { getModel } from './getModel';
-import { getType } from './getType';
+import { reservedWords } from '../../../utils/reservedWords.js';
+import { getModel } from './getModel.js';
+import { getType } from './getType.js';
 
 export const getModels = (openApi: OpenApi): Model[] => {
     const models: Model[] = [];

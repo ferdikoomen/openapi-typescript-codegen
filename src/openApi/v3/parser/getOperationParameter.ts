@@ -3,12 +3,12 @@ import type { OpenApi } from '../interfaces/OpenApi';
 import type { OpenApiParameter } from '../interfaces/OpenApiParameter';
 import type { OpenApiSchema } from '../interfaces/OpenApiSchema';
 
-import { getPattern } from '../../../utils/getPattern';
-import { getModel } from './getModel';
-import { getModelDefault } from './getModelDefault';
-import { getOperationParameterName } from './getOperationParameterName';
-import { getRef } from './getRef';
-import { getType } from './getType';
+import { getPattern } from '../../../utils/getPattern.js';
+import { getModel } from './getModel.js';
+import { getModelDefault } from './getModelDefault.js';
+import { getOperationParameterName } from './getOperationParameterName.js';
+import { getRef } from './getRef.js';
+import { getType } from './getType.js';
 
 export const getOperationParameter = (openApi: OpenApi, parameter: OpenApiParameter): OperationParameter => {
     const operationParameter: OperationParameter = {

@@ -23,9 +23,12 @@ typecheck:
 clean:
 	pnpm run clean
 
+copy-templates:
+	pnpm run copy-templates
+
 check: typecheck lint test
 
-build: typecheck clean
+build: typecheck clean copy-templates
 	pnpm run build
 	pnpm run run
 

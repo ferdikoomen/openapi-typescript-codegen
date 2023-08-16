@@ -1,7 +1,7 @@
 import type { Enum } from '../../../client/interfaces/Enum';
 import type { WithEnumExtension } from '../interfaces/Extensions/WithEnumExtension';
 
-import { isString } from '../../../utils/isString';
+import { isString } from '../../../utils/isString.js';
 
 /**
  * Extend the enum with the x-enum properties. This adds the capability

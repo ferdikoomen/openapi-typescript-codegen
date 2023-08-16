@@ -3,10 +3,10 @@ import type { Templates } from './registerHandlebarTemplates';
 
 import { resolve } from 'path';
 
-import { writeFile } from './fileSystem';
-import { formatCode as f } from './formatCode';
-import { formatIndentation as i } from './formatIndentation';
-import { Service } from '../client/interfaces/Service';
+import { writeFile } from './fileSystem.js';
+import { formatCode as f } from './formatCode.js';
+import { formatIndentation as i } from './formatIndentation.js';
+import { Service } from '../client/interfaces/Service.js';
 
 /**
  * Generate Services using the Handlebar template and write to disk.

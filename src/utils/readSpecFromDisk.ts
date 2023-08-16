@@ -1,6 +1,6 @@
 import { resolve } from 'path';
 
-import { exists, readFile } from './fileSystem';
+import { exists, readFile } from './fileSystem.js';
 
 /**
  * Check if given file exists and try to read the content as string.

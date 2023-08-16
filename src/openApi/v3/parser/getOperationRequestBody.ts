@@ -2,10 +2,10 @@ import type { OperationParameter } from '../../../client/interfaces/OperationPar
 import type { OpenApi } from '../interfaces/OpenApi';
 import type { OpenApiRequestBody } from '../interfaces/OpenApiRequestBody';
 
-import { getPattern } from '../../../utils/getPattern';
-import { getContent } from './getContent';
-import { getModel } from './getModel';
-import { getType } from './getType';
+import { getPattern } from '../../../utils/getPattern.js';
+import { getContent } from './getContent.js';
+import { getModel } from './getModel.js';
+import { getType } from './getType.js';
 
 export const getOperationRequestBody = (openApi: OpenApi, body: OpenApiRequestBody): OperationParameter => {
     const requestBody: OperationParameter = {

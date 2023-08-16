@@ -1,9 +1,9 @@
 import type { Service } from '../../../client/interfaces/Service';
 import type { OpenApi } from '../interfaces/OpenApi';
 
-import { unique } from '../../../utils/unique';
-import { getOperation } from './getOperation';
-import { getOperationParameters } from './getOperationParameters';
+import { unique } from '../../../utils/unique.js';
+import { getOperation } from './getOperation.js';
+import { getOperationParameters } from './getOperationParameters.js';
 
 /**
  * Get the OpenAPI services

@@ -1,7 +1,7 @@
 import type { Model } from '../client/interfaces/Model';
 
-import { sort } from './sort';
-import { unique } from './unique';
+import { sort } from './sort.js';
+import { unique } from './unique.js';
 
 /**
  * Set unique imports, sorted by name

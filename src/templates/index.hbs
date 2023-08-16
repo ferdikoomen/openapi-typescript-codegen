@@ -25,6 +25,7 @@ export { ${{{name}}} } from './schemas/${{{name}}}';
 {{#if @root.exportServices}}
 {{#if services}}
 
+export * from './factories'
 export * as pathnames from './pathnames'
 export * as server from './server'
 export * as client from './client'

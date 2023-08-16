@@ -2,10 +2,10 @@ import type { Client } from '../client/interfaces/Client';
 
 import { resolve } from 'path';
 
-import { writeFile } from './fileSystem';
-import { Templates } from './registerHandlebarTemplates';
-import { sortModelsByName } from './sortModelsByName';
-import { sortServicesByName } from './sortServicesByName';
+import { writeFile } from './fileSystem.js';
+import { Templates } from './registerHandlebarTemplates.js';
+import { sortModelsByName } from './sortModelsByName.js';
+import { sortServicesByName } from './sortServicesByName.js';
 
 /**
  * Generate the OpenAPI client index file using the Handlebar template and write it to disk.

@@ -1,7 +1,7 @@
 import type { Service } from '../client/interfaces/Service';
 
-import { postProcessServiceImports } from './postProcessServiceImports';
-import { postProcessServiceOperations } from './postProcessServiceOperations';
+import { postProcessServiceImports } from './postProcessServiceImports.js';
+import { postProcessServiceOperations } from './postProcessServiceOperations.js';
 
 export const postProcessService = (service: Service): Service => {
     const clone = { ...service };
