@@ -1,8 +1,10 @@
 import path from 'path';
 import fs from 'fs';
 import handlebars from 'handlebars';
+import { fileURLToPath } from 'url';
 
-const basePath = path.resolve('templates');
+const __dirname = fileURLToPath(new URL('.', import.meta.url));
+const basePath = path.join(__dirname, '../templates');
 const getTemplatePath = (realativePath: string): string => path.join(basePath, realativePath);
 
 const templatesData = [

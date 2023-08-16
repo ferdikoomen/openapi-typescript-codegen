@@ -21,10 +21,8 @@ clean:
 	pnpm run clean
 
 copy-templates:
-	rm -rf ./templates
-	mkdir -p templates
-	cp -r ./src/templates/ ./
-	rm -rf ./templates/__mocks__
+	mkdir -p ./dist/templates
+	cp -r ./src/templates/ ./dist/
 
 check: typecheck lint test
 
@@ -35,3 +33,4 @@ build: typecheck clean copy-templates
 i:
 	rm -rf node_modules
 	pnpm i
+

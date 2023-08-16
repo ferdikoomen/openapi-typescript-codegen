@@ -18,6 +18,7 @@ specifiers:
   '@typescript-eslint/parser': 5.62.0
   abort-controller: 3.0.0
   axios: 1.4.0
+  babel-plugin-transform-import-meta: 2.2.1
   camelcase: ^6.3.0
   codecov: 3.8.3
   commander: ^11.0.0
@@ -44,7 +45,7 @@ specifiers:
   prettier: 2.8.8
   rimraf: 5.0.1
   ts-jest: 29.1.1
-  ts-node: ^10.9.1
+  ts-node: 10.9.1
   typescript: 5.1.6
 
 dependencies:
@@ -72,6 +73,7 @@ devDependencies:
   '@typescript-eslint/parser': 5.62.0_iqf7tbmerllfqanu4l3d6aqdn4
   abort-controller: 3.0.0
   axios: 1.4.0
+  babel-plugin-transform-import-meta: 2.2.1_@babel+core@7.22.8
   codecov: 3.8.3
   cross-spawn: 7.0.3
   eslint: 8.44.0
@@ -2625,6 +2627,16 @@ packages:
       '@babel/helper-define-polyfill-provider': 0.4.2_@babel+core@7.22.8
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /babel-plugin-transform-import-meta/2.2.1_@babel+core@7.22.8:
+    resolution: {integrity: sha512-AxNh27Pcg8Kt112RGa3Vod2QS2YXKKJ6+nSvRtv7qQTJAdx0MZa4UHZ4lnxHUWA2MNbLuZQv5FVab4P1CoLOWw==}
+    peerDependencies:
+      '@babel/core': ^7.10.0
+    dependencies:
+      '@babel/core': 7.22.8
+      '@babel/template': 7.22.5
+      tslib: 2.6.1
     dev: true
 
   /babel-preset-current-node-syntax/1.0.1_@babel+core@7.22.10:
@@ -5932,6 +5944,10 @@ packages:
 
   /tslib/1.14.1:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
+    dev: true
+
+  /tslib/2.6.1:
+    resolution: {integrity: sha512-t0hLfiEKfMUoqhG+U1oid7Pva4bbDPHYfJNiB7BiIjRkj1pyC++4N3huJfqY6aRH6VTB0rvtzQwjM4K6qpfOig==}
     dev: true
 
   /tsutils/3.21.0_typescript@5.1.6:
