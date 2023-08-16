@@ -1,9 +1,0 @@
-version: 2
-updates:
-    - package-ecosystem: npm
-      directory: '/'
-      schedule:
-          interval: 'daily'
-      ignore:
-          - dependency-name: 'camelcase'
-          - dependency-name: 'typescript'
