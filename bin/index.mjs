@@ -10,7 +10,7 @@ const require = createRequire(import.meta.url);
 const pkg = require('../package.json');
 
 const params = program
-    .name('openapi')
+    .name('generate-yobta')
     .usage('[options]')
     .version(pkg.version)
     .requiredOption('-i, --input <value>', 'OpenAPI specification, can be a path, url or string content (required)')

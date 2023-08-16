@@ -10,14 +10,16 @@ import { postProcessClient } from './utils/postProcessClient.js';
 import { registerHandlebarTemplates } from './utils/registerHandlebarTemplates.js';
 import { writeClient } from './utils/writeClient.js';
 import { AnyOpenApi } from './openApi';
+import { createRequestParams } from './utils/createRequestParams.js';
 
-export { createRequestParams } from './utils/createRequestParams.js';
+export * from './factories/index.js';
+export * from './Indent.js';
+export * from './utils/createRequestParams.js';
 
 export type Options = {
     input: string | AnyOpenApi;
     output?: string;
     factories: string;
-    clientName?: string;
     useUnionTypes?: boolean;
     exportServices?: boolean;
     exportSchemas?: boolean;
@@ -101,5 +103,7 @@ export const generate = async ({
 };
 
 export default {
+    Indent,
     generate,
+    createRequestParams,
 };

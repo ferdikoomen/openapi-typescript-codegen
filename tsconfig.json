@@ -8,7 +8,7 @@
         "moduleResolution": "node",
         "lib": ["es2019", "dom"],
         "types": ["jest", "node"],
-        "declaration": false,
+        "declaration": true,
         "declarationMap": false,
         "sourceMap": false,
         "noImplicitReturns": true,

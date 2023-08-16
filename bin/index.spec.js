@@ -4,9 +4,12 @@ describe('bin', () => {
     it('it should support minimal params', async () => {
         const result = crossSpawn.sync('node', [
             './bin/index.mjs',
-            '--input', './test/spec/v3.json',
-            '--output', './test/generated/bin',
-            '--factories', './test/generated/bin',
+            '--input',
+            './test/spec/v3.json',
+            '--output',
+            './test/generated/bin',
+            '--factories',
+            './test/generated/bin',
         ]);
         expect(result.stdout.toString()).toBe('');
         expect(result.stderr.toString()).toBe('');
@@ -15,14 +18,22 @@ describe('bin', () => {
     it('it should support all params', async () => {
         const result = crossSpawn.sync('node', [
             './bin/index.mjs',
-            '--input', './test/spec/v3.json',
-            '--output', './test/generated/bin',
-            '--factories', './factories',
-            '--useUnionTypes', 'true',
-            '--exportServices', 'true',
-            '--exportSchemas', 'true',
-            '--indent', '4',
-            '--postfixModels', 'Dto',
+            '--input',
+            './test/spec/v3.json',
+            '--output',
+            './test/generated/bin',
+            '--factories',
+            './factories',
+            '--useUnionTypes',
+            'true',
+            '--exportServices',
+            'true',
+            '--exportSchemas',
+            'true',
+            '--indent',
+            '4',
+            '--postfixModels',
+            'Dto',
         ]);
         expect(result.stdout.toString()).toBe('');
         expect(result.stderr.toString()).toBe('');
@@ -37,9 +48,12 @@ describe('bin', () => {
     it('it should throw error with wrong params', async () => {
         const result = crossSpawn.sync('node', [
             './bin/index.mjs',
-            '--input', './test/spec/v3.json',
-            '--output', './test/generated/bin',
-            '--factories', './factories',
+            '--input',
+            './test/spec/v3.json',
+            '--output',
+            './test/generated/bin',
+            '--factories',
+            './factories',
             '--unknown',
         ]);
         expect(result.stdout.toString()).toBe('');
@@ -48,7 +62,7 @@ describe('bin', () => {
 
     it('it should display help', async () => {
         const result = crossSpawn.sync('node', ['./bin/index.mjs', '--help']);
-        expect(result.stdout.toString()).toContain(`Usage: openapi [options]`);
+        expect(result.stdout.toString()).toContain(`Usage: generate-yobta [options]`);
         expect(result.stdout.toString()).toContain(`-i, --input <value>`);
         expect(result.stdout.toString()).toContain(`-o, --output <value>`);
         expect(result.stdout.toString()).toContain(`-f, --factories <value>`);
