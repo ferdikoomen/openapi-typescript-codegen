@@ -10,9 +10,6 @@ test: build test-unit coverage
 test-unit:
 	pnpm run test:unit
 
-test-e2e:
-	pnpm run test:e2e
-
 .PHONY: coverage
 coverage:
 	pnpm run codecov
