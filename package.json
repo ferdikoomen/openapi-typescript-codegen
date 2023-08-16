@@ -38,19 +38,20 @@
     "engines": {
         "node": ">=16.14.0"
     },
-    "main": "dist/index.mjs",
+    "main": "dist/index.js",
     "types": "types/index.d.ts",
     "bin": {
         "generate-yobta": "bin/index.mjs"
     },
     "files": [
-        "bin/index.js",
-        "dist/index.js",
+        "bin/index.mjs",
+        "dist/**/*.*",
+        "templates/**/*.*",
         "types/**/*.d.ts"
     ],
     "scripts": {
-        "clean": "rimraf ./dist ./test/generated ./samples/generated ./coverage ./node_modules/.cache",
-        "copy-templates": "mkdir -p ./dist && cp -r ./src/templates ./dist",
+        "clean": "rimraf ./dist ./test/generated ./templates ./samples/generated ./coverage ./node_modules/.cache",
+        "copy-templates": "cp -r ./src/templates ./",
         "build": "tsc",
         "typecheck": "tsc --project tsconfig.json --noEmit",
         "run": "node ./test/index.mjs",
@@ -68,6 +69,10 @@
         "json-schema-ref-parser": "^9.0.9"
     },
     "devDependencies": {
+        "@babel/cli": "7.22.6",
+        "@babel/core": "7.22.8",
+        "@babel/preset-env": "7.22.7",
+        "@babel/preset-typescript": "7.22.5",
         "@logux/eslint-config": "49.0.0",
         "@types/cross-spawn": "6.0.2",
         "@types/express": "4.17.17",
@@ -101,6 +106,8 @@
         "jest-cli": "29.6.1",
         "prettier": "2.8.8",
         "rimraf": "5.0.1",
+        "ts-jest": "29.1.1",
+        "ts-node": "^10.9.1",
         "typescript": "5.1.6"
     },
     "overrides": {

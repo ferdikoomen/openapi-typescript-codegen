@@ -8,6 +8,7 @@ const config: Config = {
             testMatch: ['<rootDir>/src/**/*.spec.ts', '<rootDir>/test/index.spec.ts', '<rootDir>/bin/index.spec.js'],
             moduleNameMapper: {
                 '\\.hbs$': '<rootDir>/src/templates/__mocks__/index.ts',
+                '(.*)\\.js$': '$1',
             },
             transform: {
                 '^.+\\.(t|m?j)s$': 'babel-jest',
