@@ -21,13 +21,16 @@ clean:
 	pnpm run clean
 
 copy-templates:
-	pnpm run copy-templates
+	rm -rf ./templates
+	mkdir -p templates
+	cp -r ./src/templates/ ./
+	rm -rf ./templates/__mocks__
 
 check: typecheck lint test
 
 build: typecheck clean copy-templates
 	pnpm run build
-	pnpm run run
+	rm -rf ./dist/*.spec.js ./dist/**/*.spec.js ./dist/**/__mocks__
 
 i:
 	rm -rf node_modules

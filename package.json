@@ -1,6 +1,6 @@
 {
     "name": "@yobta/generator",
-    "version": "0.26.1",
+    "version": "0.26.2",
     "description": "Library that generates Typescript clients based on the OpenAPI specification.",
     "author": "Ferdi Koomen, Pavel Brylev",
     "homepage": "https://github.com/yobta/generator",
@@ -45,13 +45,12 @@
     },
     "files": [
         "bin/index.mjs",
-        "dist/**/*.*",
-        "templates/**/*.*",
+        "dist/**/*.js",
+        "templates/**/*.hbs",
         "types/**/*.d.ts"
     ],
     "scripts": {
         "clean": "rimraf ./dist ./test/generated ./templates ./samples/generated ./coverage ./node_modules/.cache",
-        "copy-templates": "cp -r ./src/templates ./",
         "build": "tsc",
         "typecheck": "tsc --project tsconfig.json --noEmit",
         "run": "node ./test/index.mjs",
@@ -59,8 +58,7 @@
         "test:update": "jest --selectProjects UNIT --updateSnapshot",
         "eslint": "eslint .",
         "eslint:fix": "eslint . --fix",
-        "codecov": "codecov --token=66c30c23-8954-4892-bef9-fbaed0a2e42b",
-        "postinstall": "npm run build"
+        "codecov": "codecov --token=66c30c23-8954-4892-bef9-fbaed0a2e42b"
     },
     "dependencies": {
         "camelcase": "^6.3.0",
