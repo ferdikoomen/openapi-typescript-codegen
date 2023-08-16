@@ -7,7 +7,6 @@ import { precompiledTemplates } from './precompileTemplates.js';
 
 export interface Templates {
     index: TemplateDelegate;
-    client: TemplateDelegate;
     exports: {
         pathnames: {
             pathname: TemplateDelegate;
@@ -31,7 +30,6 @@ export interface Templates {
         };
         model: TemplateDelegate;
         schema: TemplateDelegate;
-        service: TemplateDelegate;
     };
 }
 
@@ -45,7 +43,6 @@ export const registerHandlebarTemplates = (root: { useUnionTypes: boolean }): Te
     // Main templates (entry points for the files we write to disk)
     const templates: Templates = {
         index: handlebars.template(precompiledTemplates.templateIndex),
-        client: handlebars.template(precompiledTemplates.templateClient),
         exports: {
             pathnames: {
                 pathname: handlebars.template(precompiledTemplates.templatePathname),
@@ -69,7 +66,6 @@ export const registerHandlebarTemplates = (root: { useUnionTypes: boolean }): Te
             },
             model: handlebars.template(precompiledTemplates.templateExportModel),
             schema: handlebars.template(precompiledTemplates.templateExportSchema),
-            service: handlebars.template(precompiledTemplates.templateExportService),
         },
     };
 

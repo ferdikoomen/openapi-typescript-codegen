@@ -8,10 +8,8 @@ const basePath = path.resolve(__dirname, '../templates');
 const getTemplatePath = (realativePath: string): string => path.join(basePath, realativePath);
 
 const templatesData = [
-    { name: 'templateClient', filePath: 'client.hbs' },
     { name: 'templateExportModel', filePath: 'exportModel.hbs' },
     { name: 'templateExportSchema', filePath: 'exportSchema.hbs' },
-    { name: 'templateExportService', filePath: 'exportService.hbs' },
     { name: 'templatePathname', filePath: 'pathnames/pathname.hbs' },
     { name: 'templatePathnameIndex', filePath: 'pathnames/index.hbs' },
     { name: 'templateFactoryTypes', filePath: 'factories/types.hbs' },

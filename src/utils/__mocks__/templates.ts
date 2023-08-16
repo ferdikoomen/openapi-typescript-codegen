@@ -2,7 +2,6 @@ import type { Templates } from '../registerHandlebarTemplates';
 
 export const templates: Templates = {
     index: () => 'index',
-    client: () => 'client',
     exports: {
         pathnames: {
             pathname: () => 'pathname',
@@ -26,6 +25,5 @@ export const templates: Templates = {
         },
         model: () => 'model',
         schema: () => 'schema',
-        service: () => 'service',
     },
 };
