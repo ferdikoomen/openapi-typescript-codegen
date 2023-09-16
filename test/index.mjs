@@ -1,6 +1,6 @@
 'use strict';
 
-import OpenAPI from '../dist/index.mjs';
+import OpenAPI from '../dist/index.js';
 
 const generate = async (input, output) => {
     await OpenAPI.generate({

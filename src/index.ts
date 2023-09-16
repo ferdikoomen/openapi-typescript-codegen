@@ -1,27 +1,25 @@
-import { HttpClient } from './HttpClient';
-import { Indent } from './Indent';
-import { parse as parseV2 } from './openApi/v2';
-import { OpenApi as OpenApiV2 } from './openApi/v2/interfaces/OpenApi';
-import { OpenApi as OpenApiV3 } from './openApi/v3/interfaces/OpenApi';
-import { parse as parseV3 } from './openApi/v3';
-import { getOpenApiSpec } from './utils/getOpenApiSpec';
-import { getOpenApiVersion, OpenApiVersion } from './utils/getOpenApiVersion';
-import { isString } from './utils/isString';
-import { postProcessClient } from './utils/postProcessClient';
-import { registerHandlebarTemplates } from './utils/registerHandlebarTemplates';
-import { writeClient } from './utils/writeClient';
+import { Indent } from './Indent.js';
+import { parse as parseV2 } from './openApi/v2/index.js';
+import { OpenApi as OpenApiV2 } from './openApi/v2/interfaces/OpenApi.js';
+import { OpenApi as OpenApiV3 } from './openApi/v3/interfaces/OpenApi.js';
+import { parse as parseV3 } from './openApi/v3/index.js';
+import { getOpenApiSpec } from './utils/getOpenApiSpec.js';
+import { getOpenApiVersion, OpenApiVersion } from './utils/getOpenApiVersion.js';
+import { isString } from './utils/isString.js';
+import { postProcessClient } from './utils/postProcessClient.js';
+import { registerHandlebarTemplates } from './utils/registerHandlebarTemplates.js';
+import { writeClient } from './utils/writeClient.js';
 import { AnyOpenApi } from './openApi';
+import { createRequestParams } from './utils/createRequestParams.js';
 
-export { HttpClient } from './HttpClient';
-export { Indent } from './Indent';
-export { createRequestParams } from './utils/createRequestParams';
+export * from './factories/index.js';
+export * from './Indent.js';
+export * from './utils/createRequestParams.js';
 
 export type Options = {
     input: string | AnyOpenApi;
     output?: string;
     factories: string;
-    httpClient?: HttpClient;
-    clientName?: string;
     useUnionTypes?: boolean;
     exportServices?: boolean;
     exportSchemas?: boolean;
@@ -105,6 +103,7 @@ export const generate = async ({
 };
 
 export default {
-    HttpClient,
+    Indent,
     generate,
+    createRequestParams,
 };

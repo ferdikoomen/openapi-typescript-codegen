@@ -3,10 +3,10 @@ import type { OpenApi } from '../interfaces/OpenApi';
 import type { OpenApiSchema } from '../interfaces/OpenApiSchema';
 import type { getModel } from './getModel';
 
-import { findOneOfParentDiscriminator, mapPropertyValue } from '../../../utils/discriminator';
-import { getPattern } from '../../../utils/getPattern';
-import { escapeName } from './escapeName';
-import { getType } from './getType';
+import { findOneOfParentDiscriminator, mapPropertyValue } from '../../../utils/discriminator.js';
+import { getPattern } from '../../../utils/getPattern.js';
+import { escapeName } from './escapeName.js';
+import { getType } from './getType.js';
 
 // Fix for circular dependency
 export type GetModelFn = typeof getModel;

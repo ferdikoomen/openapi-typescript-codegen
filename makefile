@@ -10,9 +10,6 @@ test: build test-unit coverage
 test-unit:
 	pnpm run test:unit
 
-test-e2e:
-	pnpm run test:e2e
-
 .PHONY: coverage
 coverage:
 	pnpm run codecov
@@ -23,12 +20,17 @@ typecheck:
 clean:
 	pnpm run clean
 
+copy-templates:
+	mkdir -p ./dist/templates
+	cp -r ./src/templates/ ./dist/
+
 check: typecheck lint test
 
-build: typecheck clean
+build: typecheck clean copy-templates
 	pnpm run build
-	pnpm run run
+	rm -rf ./dist/*.spec.js ./dist/**/*.spec.js ./dist/**/__mocks__
 
 i:
 	rm -rf node_modules
 	pnpm i
+

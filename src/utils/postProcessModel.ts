@@ -1,8 +1,8 @@
 import type { Model } from '../client/interfaces/Model';
 
-import { postProcessModelEnum } from './postProcessModelEnum';
-import { postProcessModelEnums } from './postProcessModelEnums';
-import { postProcessModelImports } from './postProcessModelImports';
+import { postProcessModelEnum } from './postProcessModelEnum.js';
+import { postProcessModelEnums } from './postProcessModelEnums.js';
+import { postProcessModelImports } from './postProcessModelImports.js';
 
 /**
  * Post processes the model.

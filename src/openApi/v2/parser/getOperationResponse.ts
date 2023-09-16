@@ -3,10 +3,10 @@ import type { OpenApi } from '../interfaces/OpenApi';
 import type { OpenApiResponse } from '../interfaces/OpenApiResponse';
 import type { OpenApiSchema } from '../interfaces/OpenApiSchema';
 
-import { getPattern } from '../../../utils/getPattern';
-import { getModel } from './getModel';
-import { getRef } from './getRef';
-import { getType } from './getType';
+import { getPattern } from '../../../utils/getPattern.js';
+import { getModel } from './getModel.js';
+import { getRef } from './getRef.js';
+import { getType } from './getType.js';
 
 export const getOperationResponse = (
     openApi: OpenApi,

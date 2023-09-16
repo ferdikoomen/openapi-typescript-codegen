@@ -3,7 +3,7 @@ import type { OpenApi } from '../openApi/v3/interfaces/OpenApi';
 import type { OpenApiDiscriminator } from '../openApi/v3/interfaces/OpenApiDiscriminator';
 import type { Dictionary } from './types';
 
-import { stripNamespace } from '../openApi/v3/parser/stripNamespace';
+import { stripNamespace } from '../openApi/v3/parser/stripNamespace.js';
 
 const inverseDictionary = (map: Dictionary<string>): Dictionary<string> => {
     const m2: Dictionary<string> = {};

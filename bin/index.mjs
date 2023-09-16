@@ -10,7 +10,7 @@ const require = createRequire(import.meta.url);
 const pkg = require('../package.json');
 
 const params = program
-    .name('openapi')
+    .name('generate-yobta')
     .usage('[options]')
     .version(pkg.version)
     .requiredOption('-i, --input <value>', 'OpenAPI specification, can be a path, url or string content (required)')
@@ -24,7 +24,7 @@ const params = program
     .parse(process.argv)
     .opts();
 
-const OpenAPI = await import('../dist/index.mjs');
+const OpenAPI = await import('../dist/index.js');
 
 if (OpenAPI) {
     OpenAPI.generate({

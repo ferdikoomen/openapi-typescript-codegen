@@ -4,8 +4,8 @@ import type { OpenApi } from '../interfaces/OpenApi';
 import type { OpenApiSchema } from '../interfaces/OpenApiSchema';
 import type { getModel } from './getModel';
 
-import { getModelProperties } from './getModelProperties';
-import { getRequiredPropertiesFromComposition } from './getRequiredPropertiesFromComposition';
+import { getModelProperties } from './getModelProperties.js';
+import { getRequiredPropertiesFromComposition } from './getRequiredPropertiesFromComposition.js';
 
 // Fix for circular dependency
 export type GetModelFn = typeof getModel;

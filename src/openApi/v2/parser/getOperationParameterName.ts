@@ -1,6 +1,6 @@
 import camelCase from 'camelcase';
 
-import { reservedWords } from '../../../utils/reservedWords';
+import { reservedWords } from '../../../utils/reservedWords.js';
 
 /**
  * Replaces any invalid characters from a parameter name.

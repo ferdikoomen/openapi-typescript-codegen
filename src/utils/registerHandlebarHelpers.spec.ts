@@ -1,6 +1,6 @@
-import Handlebars from 'handlebars/runtime';
+import Handlebars from 'handlebars';
 
-import { registerHandlebarHelpers } from './registerHandlebarHelpers';
+import { registerHandlebarHelpers } from './registerHandlebarHelpers.js';
 
 describe('registerHandlebarHelpers', () => {
     it('should register the helpers', () => {

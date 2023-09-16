@@ -1,4 +1,4 @@
-import { getOperationResponseCode } from './getOperationResponseCode';
+import { getOperationResponseCode } from './getOperationResponseCode.js';
 
 describe('getOperationResponseCode', () => {
     it('should produce correct result', () => {

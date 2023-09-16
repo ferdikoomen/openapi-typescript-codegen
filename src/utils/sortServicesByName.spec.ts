@@ -1,6 +1,6 @@
 import type { Service } from '../client/interfaces/Service';
 
-import { sortServicesByName } from './sortServicesByName';
+import { sortServicesByName } from './sortServicesByName.js';
 
 describe('sortServicesByName', () => {
     it('should return sorted list', () => {

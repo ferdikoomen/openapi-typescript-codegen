@@ -3,9 +3,9 @@ import type { OpenApi } from '../interfaces/OpenApi';
 import type { OpenApiResponse } from '../interfaces/OpenApiResponse';
 import type { OpenApiResponses } from '../interfaces/OpenApiResponses';
 
-import { getOperationResponse } from './getOperationResponse';
-import { getOperationResponseCode } from './getOperationResponseCode';
-import { getRef } from './getRef';
+import { getOperationResponse } from './getOperationResponse.js';
+import { getOperationResponseCode } from './getOperationResponseCode.js';
+import { getRef } from './getRef.js';
 
 export const getOperationResponses = (openApi: OpenApi, responses: OpenApiResponses): OperationResponse[] => {
     const operationResponses: OperationResponse[] = [];

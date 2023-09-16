@@ -4,16 +4,16 @@ import type { OpenApi } from '../interfaces/OpenApi';
 import type { OpenApiOperation } from '../interfaces/OpenApiOperation';
 import type { OpenApiRequestBody } from '../interfaces/OpenApiRequestBody';
 
-import { getOperationErrors } from './getOperationErrors';
-import { getOperationName } from './getOperationName';
-import { getOperationParameters } from './getOperationParameters';
-import { getOperationRequestBody } from './getOperationRequestBody';
-import { getOperationResponseHeader } from './getOperationResponseHeader';
-import { getOperationResponses } from './getOperationResponses';
-import { getOperationResults } from './getOperationResults';
-import { getRef } from './getRef';
-import { getServiceName } from './getServiceName';
-import { sortByRequired } from './sortByRequired';
+import { getOperationErrors } from './getOperationErrors.js';
+import { getOperationName } from './getOperationName.js';
+import { getOperationParameters } from './getOperationParameters.js';
+import { getOperationRequestBody } from './getOperationRequestBody.js';
+import { getOperationResponseHeader } from './getOperationResponseHeader.js';
+import { getOperationResponses } from './getOperationResponses.js';
+import { getOperationResults } from './getOperationResults.js';
+import { getRef } from './getRef.js';
+import { getServiceName } from './getServiceName.js';
+import { sortByRequired } from './sortByRequired.js';
 
 export const getOperation = (
     openApi: OpenApi,

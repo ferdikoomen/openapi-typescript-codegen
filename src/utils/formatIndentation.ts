@@ -1,6 +1,6 @@
 import { EOL } from 'os';
 
-import { Indent } from '../Indent';
+import { Indent } from '../Indent.js';
 
 export const formatIndentation = (s: string, indent: Indent): string => {
     let lines = s.split(EOL);

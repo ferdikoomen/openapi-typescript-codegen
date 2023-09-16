@@ -2,8 +2,8 @@ import type { OperationParameters } from '../../../client/interfaces/OperationPa
 import type { OpenApi } from '../interfaces/OpenApi';
 import type { OpenApiParameter } from '../interfaces/OpenApiParameter';
 
-import { getOperationParameter } from './getOperationParameter';
-import { getRef } from './getRef';
+import { getOperationParameter } from './getOperationParameter.js';
+import { getRef } from './getRef.js';
 
 export const getOperationParameters = (openApi: OpenApi, parameters: OpenApiParameter[]): OperationParameters => {
     const operationParameters: OperationParameters = {

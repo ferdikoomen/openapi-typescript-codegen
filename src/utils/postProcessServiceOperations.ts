@@ -1,7 +1,7 @@
 import type { Operation } from '../client/interfaces/Operation';
 import type { Service } from '../client/interfaces/Service';
 
-import { flatMap } from './flatMap';
+import { flatMap } from './flatMap.js';
 
 export const postProcessServiceOperations = (service: Service): Operation[] => {
     const names = new Map<string, number>();
