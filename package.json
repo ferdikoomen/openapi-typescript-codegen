@@ -13,7 +13,7 @@
     },
     "type": "module",
     "exports": {
-        ".": "./dist/index.mjs"
+        ".": "./dist/index.js"
     },
     "license": "MIT",
     "keywords": [
