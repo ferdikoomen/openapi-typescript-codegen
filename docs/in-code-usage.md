@@ -10,6 +10,7 @@ some/dir/factories.ts
 
 ```typescript
 import { ServerResolverFactory, ClientResolverFactory, HookFactory, HookResult, createRequestParams } from '@yobta/generator';
+import useSWR from 'swr'
 
 export const createServerResolver: ServerResolverFactory = config => async (input, options) => {
     const [url, init] = createRequestParams(config, input, options);
@@ -23,10 +24,10 @@ export const createClientResolver: ClientResolverFactory = config => async (inpu
     return response.json();
 };
 
-export const createHook: HookFactory = config => (input, options) => {
-    const [url, init] = createRequestParams(config, input, options);
-    return [{ url, init }, { isLoading: false }] as HookResult<any>;
-};
+export const createSwrHook: HookFactory = (config) => (input, options) => {
+  const [url, init] = createRequestParams(config, input, options)
+  return useSWR([url, init], fetch) as HookResult<any>
+}
 ```
 
 Some project file:
