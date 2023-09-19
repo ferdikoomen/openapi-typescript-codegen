@@ -18,6 +18,7 @@ import { sortServicesByName } from './sortServicesByName.js';
  * @param exportServices Generate services
  * @param exportSchemas Generate schemas
  * @param postfixModels Model name postfix
+ * @param allowImportingTsExtensions Generate .ts extentions on imports enstead .js
  */
 export const writeClientIndex = async (
     client: Client,
@@ -26,7 +27,8 @@ export const writeClientIndex = async (
     useUnionTypes: boolean,
     exportServices: boolean,
     exportSchemas: boolean,
-    postfixModels: string
+    postfixModels: string,
+    allowImportingTsExtensions: boolean
 ): Promise<void> => {
     const templateResult = templates.index({
         exportServices,
@@ -37,6 +39,7 @@ export const writeClientIndex = async (
         version: client.version,
         models: sortModelsByName(client.models),
         services: sortServicesByName(client.services),
+        allowImportingTsExtensions,
     });
 
     await writeFile(resolve(outputPath, 'index.ts'), templateResult);

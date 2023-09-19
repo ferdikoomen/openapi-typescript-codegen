@@ -60,7 +60,7 @@ export const writeClient = async (
 
     await rmdir(outputPathPathnames);
     await mkdir(outputPathPathnames);
-    await writeClientPathnames(client.services, templates, outputPathPathnames, indent);
+    await writeClientPathnames(client.services, templates, outputPathPathnames, indent, allowImportingTsExtensions);
 
     if (exportServices) {
         await rmdir(outputPathServer);
@@ -115,5 +115,14 @@ export const writeClient = async (
     );
 
     await mkdir(outputPath);
-    await writeClientIndex(client, templates, outputPath, useUnionTypes, exportServices, exportSchemas, postfixModels);
+    await writeClientIndex(
+        client,
+        templates,
+        outputPath,
+        useUnionTypes,
+        exportServices,
+        exportSchemas,
+        postfixModels,
+        allowImportingTsExtensions
+    );
 };
