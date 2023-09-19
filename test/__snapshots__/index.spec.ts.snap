@@ -1036,7 +1036,7 @@ exports[`v2 should generate: test/generated/v2/hook/CollectionFormat.ts 1`] = `
 import * as Types from '../factories/types.js';
 import { createSwrHook } from '../../../../factories-module'
 
-export const collectionFormat = createSwrHook<Types.CollectionFormatCollectionFormatInput, Types.CollectionFormatCollectionFormatOutput>({
+export const useCollectionFormat = createSwrHook<Types.CollectionFormatCollectionFormatInput, Types.CollectionFormatCollectionFormatOutput>({
     path: '/api/v{api-version}/collectionFormat', method: 'GET'
 });
 
@@ -1052,7 +1052,7 @@ exports[`v2 should generate: test/generated/v2/hook/Complex.ts 1`] = `
 import * as Types from '../factories/types.js';
 import { createSwrHook } from '../../../../factories-module'
 
-export const complexTypes = createSwrHook<Types.ComplexComplexTypesInput, Types.ComplexComplexTypesOutput>({
+export const useComplexTypes = createSwrHook<Types.ComplexComplexTypesInput, Types.ComplexComplexTypesOutput>({
     path: '/api/v{api-version}/complex', method: 'GET'
 });
 
@@ -1068,7 +1068,7 @@ exports[`v2 should generate: test/generated/v2/hook/Default.ts 1`] = `
 import * as Types from '../factories/types.js';
 import { createSwrHook } from '../../../../factories-module'
 
-export const serviceWithEmptyTag = createSwrHook<Types.DefaultServiceWithEmptyTagInput, Types.DefaultServiceWithEmptyTagOutput>({
+export const useServiceWithEmptyTag = createSwrHook<Types.DefaultServiceWithEmptyTagInput, Types.DefaultServiceWithEmptyTagOutput>({
     path: '/api/v{api-version}/no-tag', method: 'GET'
 });
 
@@ -1084,13 +1084,13 @@ exports[`v2 should generate: test/generated/v2/hook/Defaults.ts 1`] = `
 import * as Types from '../factories/types.js';
 import { createSwrHook } from '../../../../factories-module'
 
-export const callWithDefaultParameters = createSwrHook<Types.DefaultsCallWithDefaultParametersInput, Types.DefaultsCallWithDefaultParametersOutput>({
+export const useCallWithDefaultParameters = createSwrHook<Types.DefaultsCallWithDefaultParametersInput, Types.DefaultsCallWithDefaultParametersOutput>({
     path: '/api/v{api-version}/defaults', method: 'GET'
 });
-export const callWithDefaultOptionalParameters = createSwrHook<Types.DefaultsCallWithDefaultOptionalParametersInput, Types.DefaultsCallWithDefaultOptionalParametersOutput>({
+export const useCallWithDefaultOptionalParameters = createSwrHook<Types.DefaultsCallWithDefaultOptionalParametersInput, Types.DefaultsCallWithDefaultOptionalParametersOutput>({
     path: '/api/v{api-version}/defaults', method: 'POST'
 });
-export const callToTestOrderOfParams = createSwrHook<Types.DefaultsCallToTestOrderOfParamsInput, Types.DefaultsCallToTestOrderOfParamsOutput>({
+export const useCallToTestOrderOfParams = createSwrHook<Types.DefaultsCallToTestOrderOfParamsInput, Types.DefaultsCallToTestOrderOfParamsOutput>({
     path: '/api/v{api-version}/defaults', method: 'PUT'
 });
 
@@ -1106,7 +1106,7 @@ exports[`v2 should generate: test/generated/v2/hook/Descriptions.ts 1`] = `
 import * as Types from '../factories/types.js';
 import { createSwrHook } from '../../../../factories-module'
 
-export const callWithDescriptions = createSwrHook<Types.DescriptionsCallWithDescriptionsInput, Types.DescriptionsCallWithDescriptionsOutput>({
+export const useCallWithDescriptions = createSwrHook<Types.DescriptionsCallWithDescriptionsInput, Types.DescriptionsCallWithDescriptionsOutput>({
     path: '/api/v{api-version}/descriptions/', method: 'POST'
 });
 
@@ -1122,16 +1122,16 @@ exports[`v2 should generate: test/generated/v2/hook/Duplicate.ts 1`] = `
 import * as Types from '../factories/types.js';
 import { createSwrHook } from '../../../../factories-module'
 
-export const duplicateName = createSwrHook<Types.DuplicateDuplicateNameInput, Types.DuplicateDuplicateNameOutput>({
+export const useDuplicateName = createSwrHook<Types.DuplicateDuplicateNameInput, Types.DuplicateDuplicateNameOutput>({
     path: '/api/v{api-version}/duplicate', method: 'GET'
 });
-export const duplicateName1 = createSwrHook<Types.DuplicateDuplicateName1Input, Types.DuplicateDuplicateName1Output>({
+export const useDuplicateName1 = createSwrHook<Types.DuplicateDuplicateName1Input, Types.DuplicateDuplicateName1Output>({
     path: '/api/v{api-version}/duplicate', method: 'POST'
 });
-export const duplicateName2 = createSwrHook<Types.DuplicateDuplicateName2Input, Types.DuplicateDuplicateName2Output>({
+export const useDuplicateName2 = createSwrHook<Types.DuplicateDuplicateName2Input, Types.DuplicateDuplicateName2Output>({
     path: '/api/v{api-version}/duplicate', method: 'PUT'
 });
-export const duplicateName3 = createSwrHook<Types.DuplicateDuplicateName3Input, Types.DuplicateDuplicateName3Output>({
+export const useDuplicateName3 = createSwrHook<Types.DuplicateDuplicateName3Input, Types.DuplicateDuplicateName3Output>({
     path: '/api/v{api-version}/duplicate', method: 'DELETE'
 });
 
@@ -1147,7 +1147,7 @@ exports[`v2 should generate: test/generated/v2/hook/Error.ts 1`] = `
 import * as Types from '../factories/types.js';
 import { createSwrHook } from '../../../../factories-module'
 
-export const testErrorCode = createSwrHook<Types.ErrorTestErrorCodeInput, Types.ErrorTestErrorCodeOutput>({
+export const useTestErrorCode = createSwrHook<Types.ErrorTestErrorCodeInput, Types.ErrorTestErrorCodeOutput>({
     path: '/api/v{api-version}/error', method: 'POST'
 });
 
@@ -1163,7 +1163,7 @@ exports[`v2 should generate: test/generated/v2/hook/Header.ts 1`] = `
 import * as Types from '../factories/types.js';
 import { createSwrHook } from '../../../../factories-module'
 
-export const callWithResultFromHeader = createSwrHook<Types.HeaderCallWithResultFromHeaderInput, Types.HeaderCallWithResultFromHeaderOutput>({
+export const useCallWithResultFromHeader = createSwrHook<Types.HeaderCallWithResultFromHeaderInput, Types.HeaderCallWithResultFromHeaderOutput>({
     path: '/api/v{api-version}/header', method: 'POST'
 });
 
@@ -1179,10 +1179,10 @@ exports[`v2 should generate: test/generated/v2/hook/MultipleTags1.ts 1`] = `
 import * as Types from '../factories/types.js';
 import { createSwrHook } from '../../../../factories-module'
 
-export const dummyA = createSwrHook<Types.MultipleTags1DummyAInput, Types.MultipleTags1DummyAOutput>({
+export const useDummyA = createSwrHook<Types.MultipleTags1DummyAInput, Types.MultipleTags1DummyAOutput>({
     path: '/api/v{api-version}/multiple-tags/a', method: 'GET'
 });
-export const dummyB = createSwrHook<Types.MultipleTags1DummyBInput, Types.MultipleTags1DummyBOutput>({
+export const useDummyB = createSwrHook<Types.MultipleTags1DummyBInput, Types.MultipleTags1DummyBOutput>({
     path: '/api/v{api-version}/multiple-tags/b', method: 'GET'
 });
 
@@ -1198,10 +1198,10 @@ exports[`v2 should generate: test/generated/v2/hook/MultipleTags2.ts 1`] = `
 import * as Types from '../factories/types.js';
 import { createSwrHook } from '../../../../factories-module'
 
-export const dummyA = createSwrHook<Types.MultipleTags2DummyAInput, Types.MultipleTags2DummyAOutput>({
+export const useDummyA = createSwrHook<Types.MultipleTags2DummyAInput, Types.MultipleTags2DummyAOutput>({
     path: '/api/v{api-version}/multiple-tags/a', method: 'GET'
 });
-export const dummyB = createSwrHook<Types.MultipleTags2DummyBInput, Types.MultipleTags2DummyBOutput>({
+export const useDummyB = createSwrHook<Types.MultipleTags2DummyBInput, Types.MultipleTags2DummyBOutput>({
     path: '/api/v{api-version}/multiple-tags/b', method: 'GET'
 });
 
@@ -1217,7 +1217,7 @@ exports[`v2 should generate: test/generated/v2/hook/MultipleTags3.ts 1`] = `
 import * as Types from '../factories/types.js';
 import { createSwrHook } from '../../../../factories-module'
 
-export const dummyB = createSwrHook<Types.MultipleTags3DummyBInput, Types.MultipleTags3DummyBOutput>({
+export const useDummyB = createSwrHook<Types.MultipleTags3DummyBInput, Types.MultipleTags3DummyBOutput>({
     path: '/api/v{api-version}/multiple-tags/b', method: 'GET'
 });
 
@@ -1233,7 +1233,7 @@ exports[`v2 should generate: test/generated/v2/hook/NoContent.ts 1`] = `
 import * as Types from '../factories/types.js';
 import { createSwrHook } from '../../../../factories-module'
 
-export const callWithNoContentResponse = createSwrHook<Types.NoContentCallWithNoContentResponseInput, Types.NoContentCallWithNoContentResponseOutput>({
+export const useCallWithNoContentResponse = createSwrHook<Types.NoContentCallWithNoContentResponseInput, Types.NoContentCallWithNoContentResponseOutput>({
     path: '/api/v{api-version}/no-content', method: 'GET'
 });
 
@@ -1249,10 +1249,10 @@ exports[`v2 should generate: test/generated/v2/hook/Parameters.ts 1`] = `
 import * as Types from '../factories/types.js';
 import { createSwrHook } from '../../../../factories-module'
 
-export const callWithParameters = createSwrHook<Types.ParametersCallWithParametersInput, Types.ParametersCallWithParametersOutput>({
+export const useCallWithParameters = createSwrHook<Types.ParametersCallWithParametersInput, Types.ParametersCallWithParametersOutput>({
     path: '/api/v{api-version}/parameters/{parameterPath}', method: 'POST'
 });
-export const callWithWeirdParameterNames = createSwrHook<Types.ParametersCallWithWeirdParameterNamesInput, Types.ParametersCallWithWeirdParameterNamesOutput>({
+export const useCallWithWeirdParameterNames = createSwrHook<Types.ParametersCallWithWeirdParameterNamesInput, Types.ParametersCallWithWeirdParameterNamesOutput>({
     path: '/api/v{api-version}/parameters/{parameter.path.1}/{parameter-path-2}/{PARAMETER-PATH-3}', method: 'POST'
 });
 
@@ -1268,13 +1268,13 @@ exports[`v2 should generate: test/generated/v2/hook/Response.ts 1`] = `
 import * as Types from '../factories/types.js';
 import { createSwrHook } from '../../../../factories-module'
 
-export const callWithResponse = createSwrHook<Types.ResponseCallWithResponseInput, Types.ResponseCallWithResponseOutput>({
+export const useCallWithResponse = createSwrHook<Types.ResponseCallWithResponseInput, Types.ResponseCallWithResponseOutput>({
     path: '/api/v{api-version}/response', method: 'GET'
 });
-export const callWithDuplicateResponses = createSwrHook<Types.ResponseCallWithDuplicateResponsesInput, Types.ResponseCallWithDuplicateResponsesOutput>({
+export const useCallWithDuplicateResponses = createSwrHook<Types.ResponseCallWithDuplicateResponsesInput, Types.ResponseCallWithDuplicateResponsesOutput>({
     path: '/api/v{api-version}/response', method: 'POST'
 });
-export const callWithResponses = createSwrHook<Types.ResponseCallWithResponsesInput, Types.ResponseCallWithResponsesOutput>({
+export const useCallWithResponses = createSwrHook<Types.ResponseCallWithResponsesInput, Types.ResponseCallWithResponsesOutput>({
     path: '/api/v{api-version}/response', method: 'PUT'
 });
 
@@ -1290,25 +1290,25 @@ exports[`v2 should generate: test/generated/v2/hook/Simple.ts 1`] = `
 import * as Types from '../factories/types.js';
 import { createSwrHook } from '../../../../factories-module'
 
-export const getCallWithoutParametersAndResponse = createSwrHook<Types.SimpleGetCallWithoutParametersAndResponseInput, Types.SimpleGetCallWithoutParametersAndResponseOutput>({
+export const useGetCallWithoutParametersAndResponse = createSwrHook<Types.SimpleGetCallWithoutParametersAndResponseInput, Types.SimpleGetCallWithoutParametersAndResponseOutput>({
     path: '/api/v{api-version}/simple', method: 'GET'
 });
-export const putCallWithoutParametersAndResponse = createSwrHook<Types.SimplePutCallWithoutParametersAndResponseInput, Types.SimplePutCallWithoutParametersAndResponseOutput>({
+export const usePutCallWithoutParametersAndResponse = createSwrHook<Types.SimplePutCallWithoutParametersAndResponseInput, Types.SimplePutCallWithoutParametersAndResponseOutput>({
     path: '/api/v{api-version}/simple', method: 'PUT'
 });
-export const postCallWithoutParametersAndResponse = createSwrHook<Types.SimplePostCallWithoutParametersAndResponseInput, Types.SimplePostCallWithoutParametersAndResponseOutput>({
+export const usePostCallWithoutParametersAndResponse = createSwrHook<Types.SimplePostCallWithoutParametersAndResponseInput, Types.SimplePostCallWithoutParametersAndResponseOutput>({
     path: '/api/v{api-version}/simple', method: 'POST'
 });
-export const deleteCallWithoutParametersAndResponse = createSwrHook<Types.SimpleDeleteCallWithoutParametersAndResponseInput, Types.SimpleDeleteCallWithoutParametersAndResponseOutput>({
+export const useDeleteCallWithoutParametersAndResponse = createSwrHook<Types.SimpleDeleteCallWithoutParametersAndResponseInput, Types.SimpleDeleteCallWithoutParametersAndResponseOutput>({
     path: '/api/v{api-version}/simple', method: 'DELETE'
 });
-export const optionsCallWithoutParametersAndResponse = createSwrHook<Types.SimpleOptionsCallWithoutParametersAndResponseInput, Types.SimpleOptionsCallWithoutParametersAndResponseOutput>({
+export const useOptionsCallWithoutParametersAndResponse = createSwrHook<Types.SimpleOptionsCallWithoutParametersAndResponseInput, Types.SimpleOptionsCallWithoutParametersAndResponseOutput>({
     path: '/api/v{api-version}/simple', method: 'OPTIONS'
 });
-export const headCallWithoutParametersAndResponse = createSwrHook<Types.SimpleHeadCallWithoutParametersAndResponseInput, Types.SimpleHeadCallWithoutParametersAndResponseOutput>({
+export const useHeadCallWithoutParametersAndResponse = createSwrHook<Types.SimpleHeadCallWithoutParametersAndResponseInput, Types.SimpleHeadCallWithoutParametersAndResponseOutput>({
     path: '/api/v{api-version}/simple', method: 'HEAD'
 });
-export const patchCallWithoutParametersAndResponse = createSwrHook<Types.SimplePatchCallWithoutParametersAndResponseInput, Types.SimplePatchCallWithoutParametersAndResponseOutput>({
+export const usePatchCallWithoutParametersAndResponse = createSwrHook<Types.SimplePatchCallWithoutParametersAndResponseInput, Types.SimplePatchCallWithoutParametersAndResponseOutput>({
     path: '/api/v{api-version}/simple', method: 'PATCH'
 });
 
@@ -1324,7 +1324,7 @@ exports[`v2 should generate: test/generated/v2/hook/Types.ts 1`] = `
 import * as Types from '../factories/types.js';
 import { createSwrHook } from '../../../../factories-module'
 
-export const types = createSwrHook<Types.TypesTypesInput, Types.TypesTypesOutput>({
+export const useTypes = createSwrHook<Types.TypesTypesInput, Types.TypesTypesOutput>({
     path: '/api/v{api-version}/types', method: 'GET'
 });
 
