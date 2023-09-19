@@ -1087,31 +1087,6 @@ import { createSwrHook } from '../../../../factories-module.js'
 export const useCallWithDefaultParameters = createSwrHook<Types.DefaultsCallWithDefaultParametersInput, Types.DefaultsCallWithDefaultParametersOutput>({
     path: '/api/v{api-version}/defaults', method: 'GET'
 });
-<<<<<<< HEAD
-=======
-export const callWithDefaultOptionalParameters = createSwrHook<Types.DefaultsCallWithDefaultOptionalParametersInput, Types.DefaultsCallWithDefaultOptionalParametersOutput>({
-    path: '/api/v{api-version}/defaults', method: 'POST'
-});
-export const callToTestOrderOfParams = createSwrHook<Types.DefaultsCallToTestOrderOfParamsInput, Types.DefaultsCallToTestOrderOfParamsOutput>({
-    path: '/api/v{api-version}/defaults', method: 'PUT'
-});
-
-"
-`;
-
-exports[`v2 should generate: test/generated/v2/hook/Descriptions.ts 1`] = `
-"/* generated using openapi-typescript-codegen -- do no edit */
-/* istanbul ignore file */
-/* tslint:disable */
-/* eslint-disable */
-
-import * as Types from '../factories/types.js';
-import { createSwrHook } from '../../../../factories-module.js'
-
-export const callWithDescriptions = createSwrHook<Types.DescriptionsCallWithDescriptionsInput, Types.DescriptionsCallWithDescriptionsOutput>({
-    path: '/api/v{api-version}/descriptions/', method: 'POST'
-});
->>>>>>> c22c3bd (clients)
 
 "
 `;
@@ -1128,50 +1103,6 @@ import { createSwrHook } from '../../../../factories-module.js'
 export const useDuplicateName = createSwrHook<Types.DuplicateDuplicateNameInput, Types.DuplicateDuplicateNameOutput>({
     path: '/api/v{api-version}/duplicate', method: 'GET'
 });
-<<<<<<< HEAD
-=======
-export const duplicateName1 = createSwrHook<Types.DuplicateDuplicateName1Input, Types.DuplicateDuplicateName1Output>({
-    path: '/api/v{api-version}/duplicate', method: 'POST'
-});
-export const duplicateName2 = createSwrHook<Types.DuplicateDuplicateName2Input, Types.DuplicateDuplicateName2Output>({
-    path: '/api/v{api-version}/duplicate', method: 'PUT'
-});
-export const duplicateName3 = createSwrHook<Types.DuplicateDuplicateName3Input, Types.DuplicateDuplicateName3Output>({
-    path: '/api/v{api-version}/duplicate', method: 'DELETE'
-});
-
-"
-`;
-
-exports[`v2 should generate: test/generated/v2/hook/Error.ts 1`] = `
-"/* generated using openapi-typescript-codegen -- do no edit */
-/* istanbul ignore file */
-/* tslint:disable */
-/* eslint-disable */
-
-import * as Types from '../factories/types.js';
-import { createSwrHook } from '../../../../factories-module.js'
-
-export const testErrorCode = createSwrHook<Types.ErrorTestErrorCodeInput, Types.ErrorTestErrorCodeOutput>({
-    path: '/api/v{api-version}/error', method: 'POST'
-});
-
-"
-`;
-
-exports[`v2 should generate: test/generated/v2/hook/Header.ts 1`] = `
-"/* generated using openapi-typescript-codegen -- do no edit */
-/* istanbul ignore file */
-/* tslint:disable */
-/* eslint-disable */
-
-import * as Types from '../factories/types.js';
-import { createSwrHook } from '../../../../factories-module.js'
-
-export const callWithResultFromHeader = createSwrHook<Types.HeaderCallWithResultFromHeaderInput, Types.HeaderCallWithResultFromHeaderOutput>({
-    path: '/api/v{api-version}/header', method: 'POST'
-});
->>>>>>> c22c3bd (clients)
 
 "
 `;
@@ -1246,28 +1177,6 @@ export const useCallWithNoContentResponse = createSwrHook<Types.NoContentCallWit
 "
 `;
 
-<<<<<<< HEAD
-=======
-exports[`v2 should generate: test/generated/v2/hook/Parameters.ts 1`] = `
-"/* generated using openapi-typescript-codegen -- do no edit */
-/* istanbul ignore file */
-/* tslint:disable */
-/* eslint-disable */
-
-import * as Types from '../factories/types.js';
-import { createSwrHook } from '../../../../factories-module.js'
-
-export const callWithParameters = createSwrHook<Types.ParametersCallWithParametersInput, Types.ParametersCallWithParametersOutput>({
-    path: '/api/v{api-version}/parameters/{parameterPath}', method: 'POST'
-});
-export const callWithWeirdParameterNames = createSwrHook<Types.ParametersCallWithWeirdParameterNamesInput, Types.ParametersCallWithWeirdParameterNamesOutput>({
-    path: '/api/v{api-version}/parameters/{parameter.path.1}/{parameter-path-2}/{PARAMETER-PATH-3}', method: 'POST'
-});
-
-"
-`;
-
->>>>>>> c22c3bd (clients)
 exports[`v2 should generate: test/generated/v2/hook/Response.ts 1`] = `
 "/* generated using openapi-typescript-codegen -- do no edit */
 /* istanbul ignore file */
@@ -1322,24 +1231,8 @@ exports[`v2 should generate: test/generated/v2/hook/index.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 
-<<<<<<< HEAD
-export * as default from './Default'
-export * as simple from './Simple'
-export * as defaults from './Defaults'
-export * as duplicate from './Duplicate'
-export * as noContent from './NoContent'
-export * as multipleTags1 from './MultipleTags1'
-export * as multipleTags2 from './MultipleTags2'
-export * as multipleTags3 from './MultipleTags3'
-export * as response from './Response'
-export * as collectionFormat from './CollectionFormat'
-export * as types from './Types'
-export * as complex from './Complex'
-=======
 export * as default from './Default.js'
 export * as simple from './Simple.js'
-export * as descriptions from './Descriptions.js'
-export * as parameters from './Parameters.js'
 export * as defaults from './Defaults.js'
 export * as duplicate from './Duplicate.js'
 export * as noContent from './NoContent.js'
@@ -1350,9 +1243,6 @@ export * as response from './Response.js'
 export * as collectionFormat from './CollectionFormat.js'
 export * as types from './Types.js'
 export * as complex from './Complex.js'
-export * as header from './Header.js'
-export * as error from './Error.js'
->>>>>>> 49aff7a (hooks)
 
 "
 `;
