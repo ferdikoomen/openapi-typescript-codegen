@@ -15,19 +15,22 @@ import { formatIndentation as i } from './formatIndentation.js';
  * @param outputPath Directory to write the generated files to
  * @param useUnionTypes Use union types instead of enums
  * @param indent Indentation options (4, 2 or tab)
+ * @param allowImportingTsExtensions Generate .ts extentions on imports enstead .js
  */
 export const writeClientModels = async (
     models: Model[],
     templates: Templates,
     outputPath: string,
     useUnionTypes: boolean,
-    indent: Indent
+    indent: Indent,
+    allowImportingTsExtensions: boolean
 ): Promise<void> => {
     for (const model of models) {
         const file = resolve(outputPath, `${model.name}.ts`);
         const templateResult = templates.exports.model({
             ...model,
             useUnionTypes,
+            allowImportingTsExtensions,
         });
         await writeFile(file, i(f(templateResult), indent));
     }

@@ -105,7 +105,14 @@ export const writeClient = async (
 
     await rmdir(outputPathModels);
     await mkdir(outputPathModels);
-    await writeClientModels(client.models, templates, outputPathModels, useUnionTypes, indent);
+    await writeClientModels(
+        client.models,
+        templates,
+        outputPathModels,
+        useUnionTypes,
+        indent,
+        allowImportingTsExtensions
+    );
 
     await mkdir(outputPath);
     await writeClientIndex(client, templates, outputPath, useUnionTypes, exportServices, exportSchemas, postfixModels);
