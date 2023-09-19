@@ -19,7 +19,7 @@ describe('writeClientPathnames', () => {
             },
         ];
 
-        await writeClientPathnames(services, templates, '/', Indent.SPACE_4);
+        await writeClientPathnames(services, templates, '/', Indent.SPACE_4, false);
 
         expect(writeFile).toBeCalledWith('/User.ts', `pathname${EOL}`);
         expect(writeFile).toBeCalledWith('/index.ts', `pathnameIndex${EOL}`);
