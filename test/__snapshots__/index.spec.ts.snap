@@ -1322,6 +1322,7 @@ exports[`v2 should generate: test/generated/v2/hook/index.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 
+<<<<<<< HEAD
 export * as default from './Default'
 export * as simple from './Simple'
 export * as defaults from './Defaults'
@@ -1334,6 +1335,24 @@ export * as response from './Response'
 export * as collectionFormat from './CollectionFormat'
 export * as types from './Types'
 export * as complex from './Complex'
+=======
+export * as default from './Default.js'
+export * as simple from './Simple.js'
+export * as descriptions from './Descriptions.js'
+export * as parameters from './Parameters.js'
+export * as defaults from './Defaults.js'
+export * as duplicate from './Duplicate.js'
+export * as noContent from './NoContent.js'
+export * as multipleTags1 from './MultipleTags1.js'
+export * as multipleTags2 from './MultipleTags2.js'
+export * as multipleTags3 from './MultipleTags3.js'
+export * as response from './Response.js'
+export * as collectionFormat from './CollectionFormat.js'
+export * as types from './Types.js'
+export * as complex from './Complex.js'
+export * as header from './Header.js'
+export * as error from './Error.js'
+>>>>>>> 49aff7a (hooks)
 
 "
 `;

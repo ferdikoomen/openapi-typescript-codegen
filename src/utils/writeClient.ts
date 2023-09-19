@@ -87,7 +87,14 @@ export const writeClient = async (
 
         await rmdir(outputPathHook);
         await mkdir(outputPathHook);
-        await writeClientHooks(client.services, absoluteFactoriesFile, templates, outputPathHook, indent);
+        await writeClientHooks(
+            client.services,
+            absoluteFactoriesFile,
+            templates,
+            outputPathHook,
+            indent,
+            allowImportingTsExtensions
+        );
     }
 
     if (exportSchemas) {

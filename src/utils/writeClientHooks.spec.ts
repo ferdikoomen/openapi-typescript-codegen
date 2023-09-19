@@ -40,7 +40,7 @@ describe('writeClientHooks', () => {
             },
         ];
 
-        await writeClientHooks(services, './factories.ts', templates, '/', Indent.SPACE_4);
+        await writeClientHooks(services, './factories.ts', templates, '/', Indent.SPACE_4, false);
 
         expect(writeFile).toBeCalledWith('/User.ts', `hookResolver${EOL}`);
         expect(writeFile).toBeCalledWith('/index.ts', `hookIndex${EOL}`);
