@@ -21,8 +21,8 @@ clean:
 	pnpm run clean
 
 copy-templates:
-	mkdir -p ./dist
-	cp -R ./src/templates ./dist
+	mkdir -p ./dist/templates
+	cp -r ./src/templates/ ./dist/templates/
 
 check: typecheck lint test
 
