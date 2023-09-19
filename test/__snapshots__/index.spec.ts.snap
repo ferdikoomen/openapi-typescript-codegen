@@ -615,7 +615,7 @@ export type ParametersCallWithWeirdParameterNamesInput = {
 export type ParametersCallWithWeirdParameterNamesOutput = void;
 
 
-import type { ModelWithString } from '../models/ModelWithString';
+import type { ModelWithString } from '../models/ModelWithString.js';
 
 export type DefaultsCallWithDefaultParametersInput = {
     /**
@@ -816,9 +816,9 @@ export type MultipleTags3DummyBOutput = void
 ;
 
 
-import type { ModelThatExtends } from '../models/ModelThatExtends';
-import type { ModelThatExtendsExtends } from '../models/ModelThatExtendsExtends';
-import type { ModelWithString } from '../models/ModelWithString';
+import type { ModelThatExtends } from '../models/ModelThatExtends.js';
+import type { ModelThatExtendsExtends } from '../models/ModelThatExtendsExtends.js';
+import type { ModelWithString } from '../models/ModelWithString.js';
 
 export type ResponseCallWithResponseInput = undefined
 ;
@@ -962,7 +962,7 @@ export type TypesTypesOutput = number
 | any;
 
 
-import type { ModelWithString } from '../models/ModelWithString';
+import type { ModelWithString } from '../models/ModelWithString.js';
 
 export type ComplexComplexTypesInput = {
     /**
@@ -4370,22 +4370,22 @@ exports[`v2 should generate: test/generated/v2/server/index.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 
-export * as default from './Default'
-export * as simple from './Simple'
-export * as descriptions from './Descriptions'
-export * as parameters from './Parameters'
-export * as defaults from './Defaults'
-export * as duplicate from './Duplicate'
-export * as noContent from './NoContent'
-export * as multipleTags1 from './MultipleTags1'
-export * as multipleTags2 from './MultipleTags2'
-export * as multipleTags3 from './MultipleTags3'
-export * as response from './Response'
-export * as collectionFormat from './CollectionFormat'
-export * as types from './Types'
-export * as complex from './Complex'
-export * as header from './Header'
-export * as error from './Error'
+export * as default from './Default.js'
+export * as simple from './Simple.js'
+export * as descriptions from './Descriptions.js'
+export * as parameters from './Parameters.js'
+export * as defaults from './Defaults.js'
+export * as duplicate from './Duplicate.js'
+export * as noContent from './NoContent.js'
+export * as multipleTags1 from './MultipleTags1.js'
+export * as multipleTags2 from './MultipleTags2.js'
+export * as multipleTags3 from './MultipleTags3.js'
+export * as response from './Response.js'
+export * as collectionFormat from './CollectionFormat.js'
+export * as types from './Types.js'
+export * as complex from './Complex.js'
+export * as header from './Header.js'
+export * as error from './Error.js'
 
 "
 `;
