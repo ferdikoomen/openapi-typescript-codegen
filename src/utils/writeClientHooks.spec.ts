@@ -14,7 +14,28 @@ describe('writeClientHooks', () => {
         const services: Service[] = [
             {
                 name: 'User',
-                operations: [],
+                operations: [
+                    {
+                        service: 'service',
+                        name: 'name',
+                        summary: 'summary',
+                        description: 'description',
+                        deprecated: false,
+                        method: 'GET',
+                        path: 'path',
+                        errors: [],
+                        results: [],
+                        responseHeader: 'responseHeader',
+                        imports: [],
+                        parameters: [],
+                        parametersPath: [],
+                        parametersQuery: [],
+                        parametersForm: [],
+                        parametersCookie: [],
+                        parametersHeader: [],
+                        parametersBody: null,
+                    },
+                ],
                 imports: [],
             },
         ];

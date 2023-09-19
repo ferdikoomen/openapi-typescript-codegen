@@ -25,9 +25,11 @@ export const writeClientHooks = async (
 ): Promise<void> => {
     const writedFiles = [];
     for (const service of services) {
+        const getOperations = service.operations.filter(operation => operation.method === 'GET');
+        if (!getOperations.length) continue;
         const file = resolve(outputPath, `${service.name}.ts`);
         const templateResult = templates.exports.hook.resolver({
-            service,
+            service: { ...service, operations: getOperations },
             factories: relative(outputPath, factories),
         });
         await writeFile(file, i(f(templateResult), indent));
