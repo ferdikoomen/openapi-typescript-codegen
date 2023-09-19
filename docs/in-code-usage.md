@@ -9,7 +9,7 @@
 some/dir/factories.ts
 
 ```typescript
-import { ServerResolverFactory, ClientResolverFactory, HookFactory, HookResult, createRequestParams } from '@yobta/generator';
+import { ServerResolverFactory, ClientResolverFactory, HookFactory, createRequestParams } from '@yobta/generator';
 import useSWR from 'swr'
 
 export const createServerResolver: ServerResolverFactory = config => async (input, options) => {
@@ -26,7 +26,7 @@ export const createClientResolver: ClientResolverFactory = config => async (inpu
 
 export const createSwrHook: HookFactory = (config) => (input, options) => {
   const [url, init] = createRequestParams(config, input, options)
-  return useSWR([url, init], fetch) as HookResult<any>
+  return useSWR([url, init]);
 }
 ```
 
