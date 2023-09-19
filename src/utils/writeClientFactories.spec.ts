@@ -17,7 +17,7 @@ describe('writeClientFactories', () => {
                 imports: [],
             },
         ];
-        await writeClientFactories(services, templates, '/', Indent.SPACE_4);
+        await writeClientFactories(services, templates, '/', Indent.SPACE_4, false);
 
         expect(writeFile).toBeCalledWith('/index.ts', `factoriesIndex${EOL}`);
     });

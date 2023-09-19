@@ -4,7 +4,7 @@
 
 {{#if imports}}
 {{#each imports}}
-import type { {{{this}}} } from '../models/{{{this}}}';
+import type { {{{this}}} } from '../models/{{{this}}}{{>tsExtention}}';
 {{/each}}
 {{/if}}
 

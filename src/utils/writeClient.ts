@@ -26,7 +26,7 @@ import { writeClientHooks } from './writeClientHooks.js';
  * @param exportSchemas Generate schemas
  * @param indent Indentation options (4, 2 or tab)
  * @param postfixModels Model name postfix
- * @param request Path to custom request file
+ * @param allowImportingTsExtensions Generate .ts extentions on imports enstead .js
  */
 export const writeClient = async (
     client: Client,
@@ -37,7 +37,8 @@ export const writeClient = async (
     exportServices: boolean,
     exportSchemas: boolean,
     indent: Indent,
-    postfixModels: string
+    postfixModels: string,
+    allowImportingTsExtensions: boolean
 ): Promise<void> => {
     const outputPath = resolve(process.cwd(), output);
     const outputPathPathnames = resolve(outputPath, 'pathnames');
@@ -55,7 +56,7 @@ export const writeClient = async (
 
     await rmdir(outputPathFactories);
     await mkdir(outputPathFactories);
-    await writeClientFactories(client.services, templates, outputPathFactories, indent);
+    await writeClientFactories(client.services, templates, outputPathFactories, indent, allowImportingTsExtensions);
 
     await rmdir(outputPathPathnames);
     await mkdir(outputPathPathnames);
@@ -64,7 +65,14 @@ export const writeClient = async (
     if (exportServices) {
         await rmdir(outputPathServer);
         await mkdir(outputPathServer);
-        await writeClientServers(client.services, absoluteFactoriesFile, templates, outputPathServer, indent);
+        await writeClientServers(
+            client.services,
+            absoluteFactoriesFile,
+            templates,
+            outputPathServer,
+            indent,
+            allowImportingTsExtensions
+        );
 
         await rmdir(outputPathClient);
         await mkdir(outputPathClient);

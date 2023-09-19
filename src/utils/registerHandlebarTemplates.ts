@@ -98,6 +98,7 @@ export const registerHandlebarTemplates = (root: { useUnionTypes: boolean }): Te
     handlebars.registerPartial('typeUnion', handlebars.template(precompiledTemplates.partialTypeUnion));
     handlebars.registerPartial('typeIntersection', handlebars.template(precompiledTemplates.partialTypeIntersection));
     handlebars.registerPartial('base', handlebars.template(precompiledTemplates.partialBase));
+    handlebars.registerPartial('tsExtention', handlebars.template(precompiledTemplates.partialTsExtention));
 
     return templates;
 };

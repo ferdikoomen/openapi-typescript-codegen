@@ -21,6 +21,7 @@ const params = program
     .option('--exportSchemas <value>', 'Write schemas to disk', false)
     .option('--indent <value>', 'Indentation options [4, 2, tabs]', '4')
     .option('--postfixModels <value>', 'Model name postfix')
+    .option('--allowImportingTsExtensions', 'Generate .ts extentions on imports enstead .js', false)
     .parse(process.argv)
     .opts();
 
@@ -36,6 +37,7 @@ if (OpenAPI) {
         exportSchemas: JSON.parse(params.exportSchemas) === true,
         indent: params.indent,
         postfixModels: params.postfixModels,
+        allowImportingTsExtensions: params.allowImportingTsExtensions,
     })
         .then(() => {
             process.exit(0);

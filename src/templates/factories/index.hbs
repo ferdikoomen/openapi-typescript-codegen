@@ -1,5 +1,5 @@
 {{>header}}
 
 {{#each resolvers}}
-export * from './{{{name}}}.js'
+export * from './{{{name}}}{{>tsExtention}}'
 {{/each}}
