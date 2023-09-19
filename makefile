@@ -22,7 +22,7 @@ clean:
 
 copy-templates:
 	mkdir -p ./dist/templates
-	cp -r ./src/templates/ ./dist/templates/
+	cp -a ./src/templates/. ./dist/templates
 
 check: typecheck lint test
 
