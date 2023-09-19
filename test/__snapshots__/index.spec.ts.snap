@@ -7,7 +7,7 @@ exports[`v2 should generate: test/generated/v2/client/CollectionFormat.ts 1`] = 
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createClientResolver } from '../../../../factories-module'
+import { createClientResolver } from '../../../../factories-module.js'
 
 /**
  */
@@ -25,7 +25,7 @@ exports[`v2 should generate: test/generated/v2/client/Complex.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createClientResolver } from '../../../../factories-module'
+import { createClientResolver } from '../../../../factories-module.js'
 
 /**
  * @returns ModelWithString Successful response
@@ -44,7 +44,7 @@ exports[`v2 should generate: test/generated/v2/client/Default.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createClientResolver } from '../../../../factories-module'
+import { createClientResolver } from '../../../../factories-module.js'
 
 /**
  */
@@ -62,7 +62,7 @@ exports[`v2 should generate: test/generated/v2/client/Defaults.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createClientResolver } from '../../../../factories-module'
+import { createClientResolver } from '../../../../factories-module.js'
 
 /**
  */
@@ -90,7 +90,7 @@ exports[`v2 should generate: test/generated/v2/client/Descriptions.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createClientResolver } from '../../../../factories-module'
+import { createClientResolver } from '../../../../factories-module.js'
 
 /**
  */
@@ -108,7 +108,7 @@ exports[`v2 should generate: test/generated/v2/client/Duplicate.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createClientResolver } from '../../../../factories-module'
+import { createClientResolver } from '../../../../factories-module.js'
 
 /**
  */
@@ -141,7 +141,7 @@ exports[`v2 should generate: test/generated/v2/client/Error.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createClientResolver } from '../../../../factories-module'
+import { createClientResolver } from '../../../../factories-module.js'
 
 /**
  * @returns any Custom message: Successful response
@@ -160,7 +160,7 @@ exports[`v2 should generate: test/generated/v2/client/Header.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createClientResolver } from '../../../../factories-module'
+import { createClientResolver } from '../../../../factories-module.js'
 
 /**
  * @returns string Successful response
@@ -179,7 +179,7 @@ exports[`v2 should generate: test/generated/v2/client/MultipleTags1.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createClientResolver } from '../../../../factories-module'
+import { createClientResolver } from '../../../../factories-module.js'
 
 /**
  * @returns void
@@ -204,7 +204,7 @@ exports[`v2 should generate: test/generated/v2/client/MultipleTags2.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createClientResolver } from '../../../../factories-module'
+import { createClientResolver } from '../../../../factories-module.js'
 
 /**
  * @returns void
@@ -229,7 +229,7 @@ exports[`v2 should generate: test/generated/v2/client/MultipleTags3.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createClientResolver } from '../../../../factories-module'
+import { createClientResolver } from '../../../../factories-module.js'
 
 /**
  * @returns void
@@ -248,7 +248,7 @@ exports[`v2 should generate: test/generated/v2/client/NoContent.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createClientResolver } from '../../../../factories-module'
+import { createClientResolver } from '../../../../factories-module.js'
 
 /**
  * @returns void
@@ -267,7 +267,7 @@ exports[`v2 should generate: test/generated/v2/client/Parameters.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createClientResolver } from '../../../../factories-module'
+import { createClientResolver } from '../../../../factories-module.js'
 
 /**
  */
@@ -290,7 +290,7 @@ exports[`v2 should generate: test/generated/v2/client/Response.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createClientResolver } from '../../../../factories-module'
+import { createClientResolver } from '../../../../factories-module.js'
 
 /**
  * @returns ModelWithString Message for default response
@@ -324,7 +324,7 @@ exports[`v2 should generate: test/generated/v2/client/Simple.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createClientResolver } from '../../../../factories-module'
+import { createClientResolver } from '../../../../factories-module.js'
 
 /**
  */
@@ -372,7 +372,7 @@ exports[`v2 should generate: test/generated/v2/client/Types.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createClientResolver } from '../../../../factories-module'
+import { createClientResolver } from '../../../../factories-module.js'
 
 /**
  * @returns number Response is a simple number
@@ -393,22 +393,22 @@ exports[`v2 should generate: test/generated/v2/client/index.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 
-export * as default from './Default'
-export * as simple from './Simple'
-export * as descriptions from './Descriptions'
-export * as parameters from './Parameters'
-export * as defaults from './Defaults'
-export * as duplicate from './Duplicate'
-export * as noContent from './NoContent'
-export * as multipleTags1 from './MultipleTags1'
-export * as multipleTags2 from './MultipleTags2'
-export * as multipleTags3 from './MultipleTags3'
-export * as response from './Response'
-export * as collectionFormat from './CollectionFormat'
-export * as types from './Types'
-export * as complex from './Complex'
-export * as header from './Header'
-export * as error from './Error'
+export * as default from './Default.js'
+export * as simple from './Simple.js'
+export * as descriptions from './Descriptions.js'
+export * as parameters from './Parameters.js'
+export * as defaults from './Defaults.js'
+export * as duplicate from './Duplicate.js'
+export * as noContent from './NoContent.js'
+export * as multipleTags1 from './MultipleTags1.js'
+export * as multipleTags2 from './MultipleTags2.js'
+export * as multipleTags3 from './MultipleTags3.js'
+export * as response from './Response.js'
+export * as collectionFormat from './CollectionFormat.js'
+export * as types from './Types.js'
+export * as complex from './Complex.js'
+export * as header from './Header.js'
+export * as error from './Error.js'
 
 "
 `;
@@ -1034,7 +1034,7 @@ exports[`v2 should generate: test/generated/v2/hook/CollectionFormat.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createSwrHook } from '../../../../factories-module'
+import { createSwrHook } from '../../../../factories-module.js'
 
 export const useCollectionFormat = createSwrHook<Types.CollectionFormatCollectionFormatInput, Types.CollectionFormatCollectionFormatOutput>({
     path: '/api/v{api-version}/collectionFormat', method: 'GET'
@@ -1050,7 +1050,7 @@ exports[`v2 should generate: test/generated/v2/hook/Complex.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createSwrHook } from '../../../../factories-module'
+import { createSwrHook } from '../../../../factories-module.js'
 
 export const useComplexTypes = createSwrHook<Types.ComplexComplexTypesInput, Types.ComplexComplexTypesOutput>({
     path: '/api/v{api-version}/complex', method: 'GET'
@@ -1066,7 +1066,7 @@ exports[`v2 should generate: test/generated/v2/hook/Default.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createSwrHook } from '../../../../factories-module'
+import { createSwrHook } from '../../../../factories-module.js'
 
 export const useServiceWithEmptyTag = createSwrHook<Types.DefaultServiceWithEmptyTagInput, Types.DefaultServiceWithEmptyTagOutput>({
     path: '/api/v{api-version}/no-tag', method: 'GET'
@@ -1082,11 +1082,36 @@ exports[`v2 should generate: test/generated/v2/hook/Defaults.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createSwrHook } from '../../../../factories-module'
+import { createSwrHook } from '../../../../factories-module.js'
 
 export const useCallWithDefaultParameters = createSwrHook<Types.DefaultsCallWithDefaultParametersInput, Types.DefaultsCallWithDefaultParametersOutput>({
     path: '/api/v{api-version}/defaults', method: 'GET'
 });
+<<<<<<< HEAD
+=======
+export const callWithDefaultOptionalParameters = createSwrHook<Types.DefaultsCallWithDefaultOptionalParametersInput, Types.DefaultsCallWithDefaultOptionalParametersOutput>({
+    path: '/api/v{api-version}/defaults', method: 'POST'
+});
+export const callToTestOrderOfParams = createSwrHook<Types.DefaultsCallToTestOrderOfParamsInput, Types.DefaultsCallToTestOrderOfParamsOutput>({
+    path: '/api/v{api-version}/defaults', method: 'PUT'
+});
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/hook/Descriptions.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+
+import * as Types from '../factories/types.js';
+import { createSwrHook } from '../../../../factories-module.js'
+
+export const callWithDescriptions = createSwrHook<Types.DescriptionsCallWithDescriptionsInput, Types.DescriptionsCallWithDescriptionsOutput>({
+    path: '/api/v{api-version}/descriptions/', method: 'POST'
+});
+>>>>>>> c22c3bd (clients)
 
 "
 `;
@@ -1098,11 +1123,55 @@ exports[`v2 should generate: test/generated/v2/hook/Duplicate.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createSwrHook } from '../../../../factories-module'
+import { createSwrHook } from '../../../../factories-module.js'
 
 export const useDuplicateName = createSwrHook<Types.DuplicateDuplicateNameInput, Types.DuplicateDuplicateNameOutput>({
     path: '/api/v{api-version}/duplicate', method: 'GET'
 });
+<<<<<<< HEAD
+=======
+export const duplicateName1 = createSwrHook<Types.DuplicateDuplicateName1Input, Types.DuplicateDuplicateName1Output>({
+    path: '/api/v{api-version}/duplicate', method: 'POST'
+});
+export const duplicateName2 = createSwrHook<Types.DuplicateDuplicateName2Input, Types.DuplicateDuplicateName2Output>({
+    path: '/api/v{api-version}/duplicate', method: 'PUT'
+});
+export const duplicateName3 = createSwrHook<Types.DuplicateDuplicateName3Input, Types.DuplicateDuplicateName3Output>({
+    path: '/api/v{api-version}/duplicate', method: 'DELETE'
+});
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/hook/Error.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+
+import * as Types from '../factories/types.js';
+import { createSwrHook } from '../../../../factories-module.js'
+
+export const testErrorCode = createSwrHook<Types.ErrorTestErrorCodeInput, Types.ErrorTestErrorCodeOutput>({
+    path: '/api/v{api-version}/error', method: 'POST'
+});
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/hook/Header.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+
+import * as Types from '../factories/types.js';
+import { createSwrHook } from '../../../../factories-module.js'
+
+export const callWithResultFromHeader = createSwrHook<Types.HeaderCallWithResultFromHeaderInput, Types.HeaderCallWithResultFromHeaderOutput>({
+    path: '/api/v{api-version}/header', method: 'POST'
+});
+>>>>>>> c22c3bd (clients)
 
 "
 `;
@@ -1114,7 +1183,7 @@ exports[`v2 should generate: test/generated/v2/hook/MultipleTags1.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createSwrHook } from '../../../../factories-module'
+import { createSwrHook } from '../../../../factories-module.js'
 
 export const useDummyA = createSwrHook<Types.MultipleTags1DummyAInput, Types.MultipleTags1DummyAOutput>({
     path: '/api/v{api-version}/multiple-tags/a', method: 'GET'
@@ -1133,7 +1202,7 @@ exports[`v2 should generate: test/generated/v2/hook/MultipleTags2.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createSwrHook } from '../../../../factories-module'
+import { createSwrHook } from '../../../../factories-module.js'
 
 export const useDummyA = createSwrHook<Types.MultipleTags2DummyAInput, Types.MultipleTags2DummyAOutput>({
     path: '/api/v{api-version}/multiple-tags/a', method: 'GET'
@@ -1152,7 +1221,7 @@ exports[`v2 should generate: test/generated/v2/hook/MultipleTags3.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createSwrHook } from '../../../../factories-module'
+import { createSwrHook } from '../../../../factories-module.js'
 
 export const useDummyB = createSwrHook<Types.MultipleTags3DummyBInput, Types.MultipleTags3DummyBOutput>({
     path: '/api/v{api-version}/multiple-tags/b', method: 'GET'
@@ -1168,7 +1237,7 @@ exports[`v2 should generate: test/generated/v2/hook/NoContent.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createSwrHook } from '../../../../factories-module'
+import { createSwrHook } from '../../../../factories-module.js'
 
 export const useCallWithNoContentResponse = createSwrHook<Types.NoContentCallWithNoContentResponseInput, Types.NoContentCallWithNoContentResponseOutput>({
     path: '/api/v{api-version}/no-content', method: 'GET'
@@ -1177,6 +1246,28 @@ export const useCallWithNoContentResponse = createSwrHook<Types.NoContentCallWit
 "
 `;
 
+<<<<<<< HEAD
+=======
+exports[`v2 should generate: test/generated/v2/hook/Parameters.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+
+import * as Types from '../factories/types.js';
+import { createSwrHook } from '../../../../factories-module.js'
+
+export const callWithParameters = createSwrHook<Types.ParametersCallWithParametersInput, Types.ParametersCallWithParametersOutput>({
+    path: '/api/v{api-version}/parameters/{parameterPath}', method: 'POST'
+});
+export const callWithWeirdParameterNames = createSwrHook<Types.ParametersCallWithWeirdParameterNamesInput, Types.ParametersCallWithWeirdParameterNamesOutput>({
+    path: '/api/v{api-version}/parameters/{parameter.path.1}/{parameter-path-2}/{PARAMETER-PATH-3}', method: 'POST'
+});
+
+"
+`;
+
+>>>>>>> c22c3bd (clients)
 exports[`v2 should generate: test/generated/v2/hook/Response.ts 1`] = `
 "/* generated using openapi-typescript-codegen -- do no edit */
 /* istanbul ignore file */
@@ -1184,7 +1275,7 @@ exports[`v2 should generate: test/generated/v2/hook/Response.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createSwrHook } from '../../../../factories-module'
+import { createSwrHook } from '../../../../factories-module.js'
 
 export const useCallWithResponse = createSwrHook<Types.ResponseCallWithResponseInput, Types.ResponseCallWithResponseOutput>({
     path: '/api/v{api-version}/response', method: 'GET'
@@ -1200,7 +1291,7 @@ exports[`v2 should generate: test/generated/v2/hook/Simple.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createSwrHook } from '../../../../factories-module'
+import { createSwrHook } from '../../../../factories-module.js'
 
 export const useGetCallWithoutParametersAndResponse = createSwrHook<Types.SimpleGetCallWithoutParametersAndResponseInput, Types.SimpleGetCallWithoutParametersAndResponseOutput>({
     path: '/api/v{api-version}/simple', method: 'GET'
@@ -1216,7 +1307,7 @@ exports[`v2 should generate: test/generated/v2/hook/Types.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createSwrHook } from '../../../../factories-module'
+import { createSwrHook } from '../../../../factories-module.js'
 
 export const useTypes = createSwrHook<Types.TypesTypesInput, Types.TypesTypesOutput>({
     path: '/api/v{api-version}/types', method: 'GET'
@@ -3984,7 +4075,7 @@ exports[`v2 should generate: test/generated/v2/server/CollectionFormat.ts 1`] = 
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createServerResolver } from '../../../../factories-module'
+import { createServerResolver } from '../../../../factories-module.js'
 
 /**
  */
@@ -4002,7 +4093,7 @@ exports[`v2 should generate: test/generated/v2/server/Complex.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createServerResolver } from '../../../../factories-module'
+import { createServerResolver } from '../../../../factories-module.js'
 
 /**
  * @returns ModelWithString Successful response
@@ -4021,7 +4112,7 @@ exports[`v2 should generate: test/generated/v2/server/Default.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createServerResolver } from '../../../../factories-module'
+import { createServerResolver } from '../../../../factories-module.js'
 
 /**
  */
@@ -4039,7 +4130,7 @@ exports[`v2 should generate: test/generated/v2/server/Defaults.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createServerResolver } from '../../../../factories-module'
+import { createServerResolver } from '../../../../factories-module.js'
 
 /**
  */
@@ -4067,7 +4158,7 @@ exports[`v2 should generate: test/generated/v2/server/Descriptions.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createServerResolver } from '../../../../factories-module'
+import { createServerResolver } from '../../../../factories-module.js'
 
 /**
  */
@@ -4085,7 +4176,7 @@ exports[`v2 should generate: test/generated/v2/server/Duplicate.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createServerResolver } from '../../../../factories-module'
+import { createServerResolver } from '../../../../factories-module.js'
 
 /**
  */
@@ -4118,7 +4209,7 @@ exports[`v2 should generate: test/generated/v2/server/Error.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createServerResolver } from '../../../../factories-module'
+import { createServerResolver } from '../../../../factories-module.js'
 
 /**
  * @returns any Custom message: Successful response
@@ -4137,7 +4228,7 @@ exports[`v2 should generate: test/generated/v2/server/Header.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createServerResolver } from '../../../../factories-module'
+import { createServerResolver } from '../../../../factories-module.js'
 
 /**
  * @returns string Successful response
@@ -4156,7 +4247,7 @@ exports[`v2 should generate: test/generated/v2/server/MultipleTags1.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createServerResolver } from '../../../../factories-module'
+import { createServerResolver } from '../../../../factories-module.js'
 
 /**
  * @returns void
@@ -4181,7 +4272,7 @@ exports[`v2 should generate: test/generated/v2/server/MultipleTags2.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createServerResolver } from '../../../../factories-module'
+import { createServerResolver } from '../../../../factories-module.js'
 
 /**
  * @returns void
@@ -4206,7 +4297,7 @@ exports[`v2 should generate: test/generated/v2/server/MultipleTags3.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createServerResolver } from '../../../../factories-module'
+import { createServerResolver } from '../../../../factories-module.js'
 
 /**
  * @returns void
@@ -4225,7 +4316,7 @@ exports[`v2 should generate: test/generated/v2/server/NoContent.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createServerResolver } from '../../../../factories-module'
+import { createServerResolver } from '../../../../factories-module.js'
 
 /**
  * @returns void
@@ -4244,7 +4335,7 @@ exports[`v2 should generate: test/generated/v2/server/Parameters.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createServerResolver } from '../../../../factories-module'
+import { createServerResolver } from '../../../../factories-module.js'
 
 /**
  */
@@ -4267,7 +4358,7 @@ exports[`v2 should generate: test/generated/v2/server/Response.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createServerResolver } from '../../../../factories-module'
+import { createServerResolver } from '../../../../factories-module.js'
 
 /**
  * @returns ModelWithString Message for default response
@@ -4301,7 +4392,7 @@ exports[`v2 should generate: test/generated/v2/server/Simple.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createServerResolver } from '../../../../factories-module'
+import { createServerResolver } from '../../../../factories-module.js'
 
 /**
  */
@@ -4349,7 +4440,7 @@ exports[`v2 should generate: test/generated/v2/server/Types.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createServerResolver } from '../../../../factories-module'
+import { createServerResolver } from '../../../../factories-module.js'
 
 /**
  * @returns number Response is a simple number

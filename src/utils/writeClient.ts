@@ -76,7 +76,14 @@ export const writeClient = async (
 
         await rmdir(outputPathClient);
         await mkdir(outputPathClient);
-        await writeClientClients(client.services, absoluteFactoriesFile, templates, outputPathClient, indent);
+        await writeClientClients(
+            client.services,
+            absoluteFactoriesFile,
+            templates,
+            outputPathClient,
+            indent,
+            allowImportingTsExtensions
+        );
 
         await rmdir(outputPathHook);
         await mkdir(outputPathHook);

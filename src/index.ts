@@ -61,7 +61,7 @@ export const generate = async ({
     }
 
     const extention = allowImportingTsExtensions ? '.ts' : '.js';
-    const factories = factoriesRaw.replace(/\.[^.]+$/, extention);
+    const factories = factoriesRaw.replace(/\.(ts|js)$/, '') + extention;
 
     const openApi = isString(input) ? await getOpenApiSpec(input) : input;
     const openApiVersion = getOpenApiVersion(openApi);

@@ -19,7 +19,7 @@ describe('writeClientClients', () => {
             },
         ];
 
-        await writeClientClients(services, './factories.ts', templates, '/', Indent.SPACE_4);
+        await writeClientClients(services, './factories.ts', templates, '/', Indent.SPACE_4, false);
 
         expect(writeFile).toBeCalledWith('/User.ts', `clientResolver${EOL}`);
         expect(writeFile).toBeCalledWith('/index.ts', `clientIndex${EOL}`);
