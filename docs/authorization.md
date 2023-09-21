@@ -22,3 +22,22 @@ const getToken = async () => {
 
 OpenAPI.TOKEN = getToken;
 ```
+
+Also, you can pass `TOKEN` or any OpenAPI configuration params to method call.
+```typescript
+const organizations = new OrganizationsService();
+OpenAPI.BASE = 'https://example.com/api';
+
+express.use(async (req, res) => {
+    const response = await organizations.createOrganization(
+        {
+            name: 'OrgName',
+            description: 'OrgDescription',
+        },
+        {
+            TOKEN: getToken(req)
+        }
+    );
+    res.send(response);
+})
+```

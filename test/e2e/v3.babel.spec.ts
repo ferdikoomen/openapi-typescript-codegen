@@ -14,6 +14,7 @@ describe('v3.babel', () => {
         compileWithBabel('v3/babel');
         await server.start('v3/babel');
         await browser.start();
+        await browser.exposeFunction('tokenRequest', jest.fn().mockResolvedValue('MY_TOKEN'));
     }, 30000);
 
     afterAll(async () => {
@@ -22,13 +23,25 @@ describe('v3.babel', () => {
     });
 
     it('requests token', async () => {
-        await browser.exposeFunction('tokenRequest', jest.fn().mockResolvedValue('MY_TOKEN'));
         const result = await browser.evaluate(async () => {
             const { OpenAPI, SimpleService } = (window as any).api;
             OpenAPI.TOKEN = (window as any).tokenRequest;
             OpenAPI.USERNAME = undefined;
             OpenAPI.PASSWORD = undefined;
             return await SimpleService.getCallWithoutParametersAndResponse();
+        });
+        expect(result.headers.authorization).toBe('Bearer MY_TOKEN');
+    });
+
+    it('overrides token', async () => {
+        const result = await browser.evaluate(async () => {
+            const { OpenAPI, SimpleService } = (window as any).api;
+            OpenAPI.TOKEN = 'BAD_TOKEN';
+            OpenAPI.USERNAME = undefined;
+            OpenAPI.PASSWORD = undefined;
+            return await SimpleService.getCallWithoutParametersAndResponse({
+                TOKEN: (window as any).tokenRequest,
+            });
         });
         expect(result.headers.authorization).toBe('Bearer MY_TOKEN');
     });

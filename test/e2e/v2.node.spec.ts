@@ -24,6 +24,17 @@ describe('v2.node', () => {
         expect(result.headers.authorization).toBe('Bearer MY_TOKEN');
     });
 
+    it('overrides token', async () => {
+        const { OpenAPI, SimpleService } = require('./generated/v2/node/index.js');
+        const tokenRequest = jest.fn().mockResolvedValue('MY_TOKEN');
+        OpenAPI.TOKEN = 'BAD_TOKEN';
+        const result = await SimpleService.getCallWithoutParametersAndResponse({
+            TOKEN: tokenRequest,
+        });
+        expect(tokenRequest.mock.calls.length).toBe(1);
+        expect(result.headers.authorization).toBe('Bearer MY_TOKEN');
+    });
+
     it('supports complex params', async () => {
         const { ComplexService } = require('./generated/v2/node/index.js');
         const result = await ComplexService.complexTypes({

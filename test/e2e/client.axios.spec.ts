@@ -28,6 +28,21 @@ describe('client.axios', () => {
         expect(result.headers.authorization).toBe('Bearer MY_TOKEN');
     });
 
+    it('overrides token', async () => {
+        const { ApiClient } = require('./generated/client/axios/index.js');
+        const tokenRequest = jest.fn().mockResolvedValue('MY_TOKEN');
+        const client = new ApiClient({
+            TOKEN: 'BAD_TOKEN',
+            USERNAME: undefined,
+            PASSWORD: undefined,
+        });
+        const result = await client.simple.getCallWithoutParametersAndResponse({
+            TOKEN: tokenRequest,
+        });
+        expect(tokenRequest.mock.calls.length).toBe(1);
+        expect(result.headers.authorization).toBe('Bearer MY_TOKEN');
+    });
+
     it('uses credentials', async () => {
         const { ApiClient } = require('./generated/client/axios/index.js');
         const client = new ApiClient({

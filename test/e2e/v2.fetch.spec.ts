@@ -14,6 +14,7 @@ describe('v2.fetch', () => {
         compileWithTypescript('v2/fetch');
         await server.start('v2/fetch');
         await browser.start();
+        await browser.exposeFunction('tokenRequest', jest.fn().mockResolvedValue('MY_TOKEN'));
     }, 30000);
 
     afterAll(async () => {
@@ -22,11 +23,19 @@ describe('v2.fetch', () => {
     });
 
     it('requests token', async () => {
-        await browser.exposeFunction('tokenRequest', jest.fn().mockResolvedValue('MY_TOKEN'));
         const result = await browser.evaluate(async () => {
             const { OpenAPI, SimpleService } = (window as any).api;
             OpenAPI.TOKEN = (window as any).tokenRequest;
             return await SimpleService.getCallWithoutParametersAndResponse();
+        });
+        expect(result.headers.authorization).toBe('Bearer MY_TOKEN');
+    });
+
+    it('overrides token', async () => {
+        const result = await browser.evaluate(async () => {
+            const { OpenAPI, SimpleService } = (window as any).api;
+            OpenAPI.TOKEN = 'BAD_TOKEN';
+            return await SimpleService.getCallWithoutParametersAndResponse({ TOKEN: (window as any).tokenRequest });
         });
         expect(result.headers.authorization).toBe('Bearer MY_TOKEN');
     });

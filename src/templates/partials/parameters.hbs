@@ -1,5 +1,5 @@
 {{#if parameters}}
-{{#if @root.useOptions~}}
+{{#if @root.useOptions}}
 {
 {{#each parameters}}
 {{{name}}}{{#if default}} = {{{default}}}{{/if}},
@@ -18,9 +18,8 @@
 {{/ifdef}}
 {{{name}}}{{>isRequired}}: {{>type}},
 {{/each}}
-}
-{{~else}}
-
+},
+{{else}}
 {{#each parameters}}
 {{{name}}}{{>isRequired}}: {{>type}}{{#if default}} = {{{default}}}{{/if}},
 {{/each}}
