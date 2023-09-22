@@ -7,7 +7,7 @@ exports[`v2 should generate: test/generated/v2/client/CollectionFormat.ts 1`] = 
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createClientResolver } from '../../../../factories-module'
+import { createClientResolver } from '../../../../factories-module.js'
 
 /**
  */
@@ -25,7 +25,7 @@ exports[`v2 should generate: test/generated/v2/client/Complex.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createClientResolver } from '../../../../factories-module'
+import { createClientResolver } from '../../../../factories-module.js'
 
 /**
  * @returns ModelWithString Successful response
@@ -44,7 +44,7 @@ exports[`v2 should generate: test/generated/v2/client/Default.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createClientResolver } from '../../../../factories-module'
+import { createClientResolver } from '../../../../factories-module.js'
 
 /**
  */
@@ -62,7 +62,7 @@ exports[`v2 should generate: test/generated/v2/client/Defaults.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createClientResolver } from '../../../../factories-module'
+import { createClientResolver } from '../../../../factories-module.js'
 
 /**
  */
@@ -90,7 +90,7 @@ exports[`v2 should generate: test/generated/v2/client/Descriptions.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createClientResolver } from '../../../../factories-module'
+import { createClientResolver } from '../../../../factories-module.js'
 
 /**
  */
@@ -108,7 +108,7 @@ exports[`v2 should generate: test/generated/v2/client/Duplicate.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createClientResolver } from '../../../../factories-module'
+import { createClientResolver } from '../../../../factories-module.js'
 
 /**
  */
@@ -141,7 +141,7 @@ exports[`v2 should generate: test/generated/v2/client/Error.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createClientResolver } from '../../../../factories-module'
+import { createClientResolver } from '../../../../factories-module.js'
 
 /**
  * @returns any Custom message: Successful response
@@ -160,7 +160,7 @@ exports[`v2 should generate: test/generated/v2/client/Header.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createClientResolver } from '../../../../factories-module'
+import { createClientResolver } from '../../../../factories-module.js'
 
 /**
  * @returns string Successful response
@@ -179,7 +179,7 @@ exports[`v2 should generate: test/generated/v2/client/MultipleTags1.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createClientResolver } from '../../../../factories-module'
+import { createClientResolver } from '../../../../factories-module.js'
 
 /**
  * @returns void
@@ -204,7 +204,7 @@ exports[`v2 should generate: test/generated/v2/client/MultipleTags2.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createClientResolver } from '../../../../factories-module'
+import { createClientResolver } from '../../../../factories-module.js'
 
 /**
  * @returns void
@@ -229,7 +229,7 @@ exports[`v2 should generate: test/generated/v2/client/MultipleTags3.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createClientResolver } from '../../../../factories-module'
+import { createClientResolver } from '../../../../factories-module.js'
 
 /**
  * @returns void
@@ -248,7 +248,7 @@ exports[`v2 should generate: test/generated/v2/client/NoContent.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createClientResolver } from '../../../../factories-module'
+import { createClientResolver } from '../../../../factories-module.js'
 
 /**
  * @returns void
@@ -267,7 +267,7 @@ exports[`v2 should generate: test/generated/v2/client/Parameters.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createClientResolver } from '../../../../factories-module'
+import { createClientResolver } from '../../../../factories-module.js'
 
 /**
  */
@@ -290,7 +290,7 @@ exports[`v2 should generate: test/generated/v2/client/Response.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createClientResolver } from '../../../../factories-module'
+import { createClientResolver } from '../../../../factories-module.js'
 
 /**
  * @returns ModelWithString Message for default response
@@ -324,7 +324,7 @@ exports[`v2 should generate: test/generated/v2/client/Simple.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createClientResolver } from '../../../../factories-module'
+import { createClientResolver } from '../../../../factories-module.js'
 
 /**
  */
@@ -372,7 +372,7 @@ exports[`v2 should generate: test/generated/v2/client/Types.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createClientResolver } from '../../../../factories-module'
+import { createClientResolver } from '../../../../factories-module.js'
 
 /**
  * @returns number Response is a simple number
@@ -393,22 +393,22 @@ exports[`v2 should generate: test/generated/v2/client/index.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 
-export * as default from './Default'
-export * as simple from './Simple'
-export * as descriptions from './Descriptions'
-export * as parameters from './Parameters'
-export * as defaults from './Defaults'
-export * as duplicate from './Duplicate'
-export * as noContent from './NoContent'
-export * as multipleTags1 from './MultipleTags1'
-export * as multipleTags2 from './MultipleTags2'
-export * as multipleTags3 from './MultipleTags3'
-export * as response from './Response'
-export * as collectionFormat from './CollectionFormat'
-export * as types from './Types'
-export * as complex from './Complex'
-export * as header from './Header'
-export * as error from './Error'
+export * as default from './Default.js'
+export * as simple from './Simple.js'
+export * as descriptions from './Descriptions.js'
+export * as parameters from './Parameters.js'
+export * as defaults from './Defaults.js'
+export * as duplicate from './Duplicate.js'
+export * as noContent from './NoContent.js'
+export * as multipleTags1 from './MultipleTags1.js'
+export * as multipleTags2 from './MultipleTags2.js'
+export * as multipleTags3 from './MultipleTags3.js'
+export * as response from './Response.js'
+export * as collectionFormat from './CollectionFormat.js'
+export * as types from './Types.js'
+export * as complex from './Complex.js'
+export * as header from './Header.js'
+export * as error from './Error.js'
 
 "
 `;
@@ -615,7 +615,7 @@ export type ParametersCallWithWeirdParameterNamesInput = {
 export type ParametersCallWithWeirdParameterNamesOutput = void;
 
 
-import type { ModelWithString } from '../models/ModelWithString';
+import type { ModelWithString } from '../models/ModelWithString.js';
 
 export type DefaultsCallWithDefaultParametersInput = {
     /**
@@ -816,9 +816,9 @@ export type MultipleTags3DummyBOutput = void
 ;
 
 
-import type { ModelThatExtends } from '../models/ModelThatExtends';
-import type { ModelThatExtendsExtends } from '../models/ModelThatExtendsExtends';
-import type { ModelWithString } from '../models/ModelWithString';
+import type { ModelThatExtends } from '../models/ModelThatExtends.js';
+import type { ModelThatExtendsExtends } from '../models/ModelThatExtendsExtends.js';
+import type { ModelWithString } from '../models/ModelWithString.js';
 
 export type ResponseCallWithResponseInput = undefined
 ;
@@ -962,7 +962,7 @@ export type TypesTypesOutput = number
 | any;
 
 
-import type { ModelWithString } from '../models/ModelWithString';
+import type { ModelWithString } from '../models/ModelWithString.js';
 
 export type ComplexComplexTypesInput = {
     /**
@@ -1034,7 +1034,7 @@ exports[`v2 should generate: test/generated/v2/hook/CollectionFormat.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createSwrHook } from '../../../../factories-module'
+import { createSwrHook } from '../../../../factories-module.js'
 
 export const useCollectionFormat = createSwrHook<Types.CollectionFormatCollectionFormatInput, Types.CollectionFormatCollectionFormatOutput>({
     path: '/api/v{api-version}/collectionFormat', method: 'GET'
@@ -1050,7 +1050,7 @@ exports[`v2 should generate: test/generated/v2/hook/Complex.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createSwrHook } from '../../../../factories-module'
+import { createSwrHook } from '../../../../factories-module.js'
 
 export const useComplexTypes = createSwrHook<Types.ComplexComplexTypesInput, Types.ComplexComplexTypesOutput>({
     path: '/api/v{api-version}/complex', method: 'GET'
@@ -1066,7 +1066,7 @@ exports[`v2 should generate: test/generated/v2/hook/Default.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createSwrHook } from '../../../../factories-module'
+import { createSwrHook } from '../../../../factories-module.js'
 
 export const useServiceWithEmptyTag = createSwrHook<Types.DefaultServiceWithEmptyTagInput, Types.DefaultServiceWithEmptyTagOutput>({
     path: '/api/v{api-version}/no-tag', method: 'GET'
@@ -1082,7 +1082,7 @@ exports[`v2 should generate: test/generated/v2/hook/Defaults.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createSwrHook } from '../../../../factories-module'
+import { createSwrHook } from '../../../../factories-module.js'
 
 export const useCallWithDefaultParameters = createSwrHook<Types.DefaultsCallWithDefaultParametersInput, Types.DefaultsCallWithDefaultParametersOutput>({
     path: '/api/v{api-version}/defaults', method: 'GET'
@@ -1098,7 +1098,7 @@ exports[`v2 should generate: test/generated/v2/hook/Duplicate.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createSwrHook } from '../../../../factories-module'
+import { createSwrHook } from '../../../../factories-module.js'
 
 export const useDuplicateName = createSwrHook<Types.DuplicateDuplicateNameInput, Types.DuplicateDuplicateNameOutput>({
     path: '/api/v{api-version}/duplicate', method: 'GET'
@@ -1114,7 +1114,7 @@ exports[`v2 should generate: test/generated/v2/hook/MultipleTags1.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createSwrHook } from '../../../../factories-module'
+import { createSwrHook } from '../../../../factories-module.js'
 
 export const useDummyA = createSwrHook<Types.MultipleTags1DummyAInput, Types.MultipleTags1DummyAOutput>({
     path: '/api/v{api-version}/multiple-tags/a', method: 'GET'
@@ -1133,7 +1133,7 @@ exports[`v2 should generate: test/generated/v2/hook/MultipleTags2.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createSwrHook } from '../../../../factories-module'
+import { createSwrHook } from '../../../../factories-module.js'
 
 export const useDummyA = createSwrHook<Types.MultipleTags2DummyAInput, Types.MultipleTags2DummyAOutput>({
     path: '/api/v{api-version}/multiple-tags/a', method: 'GET'
@@ -1152,7 +1152,7 @@ exports[`v2 should generate: test/generated/v2/hook/MultipleTags3.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createSwrHook } from '../../../../factories-module'
+import { createSwrHook } from '../../../../factories-module.js'
 
 export const useDummyB = createSwrHook<Types.MultipleTags3DummyBInput, Types.MultipleTags3DummyBOutput>({
     path: '/api/v{api-version}/multiple-tags/b', method: 'GET'
@@ -1168,7 +1168,7 @@ exports[`v2 should generate: test/generated/v2/hook/NoContent.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createSwrHook } from '../../../../factories-module'
+import { createSwrHook } from '../../../../factories-module.js'
 
 export const useCallWithNoContentResponse = createSwrHook<Types.NoContentCallWithNoContentResponseInput, Types.NoContentCallWithNoContentResponseOutput>({
     path: '/api/v{api-version}/no-content', method: 'GET'
@@ -1184,7 +1184,7 @@ exports[`v2 should generate: test/generated/v2/hook/Response.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createSwrHook } from '../../../../factories-module'
+import { createSwrHook } from '../../../../factories-module.js'
 
 export const useCallWithResponse = createSwrHook<Types.ResponseCallWithResponseInput, Types.ResponseCallWithResponseOutput>({
     path: '/api/v{api-version}/response', method: 'GET'
@@ -1200,7 +1200,7 @@ exports[`v2 should generate: test/generated/v2/hook/Simple.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createSwrHook } from '../../../../factories-module'
+import { createSwrHook } from '../../../../factories-module.js'
 
 export const useGetCallWithoutParametersAndResponse = createSwrHook<Types.SimpleGetCallWithoutParametersAndResponseInput, Types.SimpleGetCallWithoutParametersAndResponseOutput>({
     path: '/api/v{api-version}/simple', method: 'GET'
@@ -1216,7 +1216,7 @@ exports[`v2 should generate: test/generated/v2/hook/Types.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createSwrHook } from '../../../../factories-module'
+import { createSwrHook } from '../../../../factories-module.js'
 
 export const useTypes = createSwrHook<Types.TypesTypesInput, Types.TypesTypesOutput>({
     path: '/api/v{api-version}/types', method: 'GET'
@@ -1231,18 +1231,18 @@ exports[`v2 should generate: test/generated/v2/hook/index.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 
-export * as default from './Default'
-export * as simple from './Simple'
-export * as defaults from './Defaults'
-export * as duplicate from './Duplicate'
-export * as noContent from './NoContent'
-export * as multipleTags1 from './MultipleTags1'
-export * as multipleTags2 from './MultipleTags2'
-export * as multipleTags3 from './MultipleTags3'
-export * as response from './Response'
-export * as collectionFormat from './CollectionFormat'
-export * as types from './Types'
-export * as complex from './Complex'
+export * as default from './Default.js'
+export * as simple from './Simple.js'
+export * as defaults from './Defaults.js'
+export * as duplicate from './Duplicate.js'
+export * as noContent from './NoContent.js'
+export * as multipleTags1 from './MultipleTags1.js'
+export * as multipleTags2 from './MultipleTags2.js'
+export * as multipleTags3 from './MultipleTags3.js'
+export * as response from './Response.js'
+export * as collectionFormat from './CollectionFormat.js'
+export * as types from './Types.js'
+export * as complex from './Complex.js'
 
 "
 `;
@@ -1254,103 +1254,103 @@ exports[`v2 should generate: test/generated/v2/index.ts 1`] = `
 /* eslint-disable */
 
 
-export type { _default } from './models/_default';
-export type { ArrayWithArray } from './models/ArrayWithArray';
-export type { ArrayWithBooleans } from './models/ArrayWithBooleans';
-export type { ArrayWithNumbers } from './models/ArrayWithNumbers';
-export type { ArrayWithProperties } from './models/ArrayWithProperties';
-export type { ArrayWithReferences } from './models/ArrayWithReferences';
-export type { ArrayWithStrings } from './models/ArrayWithStrings';
-export type { CommentWithBackticks } from './models/CommentWithBackticks';
-export type { CommentWithBreaks } from './models/CommentWithBreaks';
-export type { CommentWithExpressionPlaceholders } from './models/CommentWithExpressionPlaceholders';
-export type { CommentWithQuotes } from './models/CommentWithQuotes';
-export type { CommentWithReservedCharacters } from './models/CommentWithReservedCharacters';
-export type { CommentWithSlashes } from './models/CommentWithSlashes';
-export type { Date } from './models/Date';
-export type { DictionaryWithArray } from './models/DictionaryWithArray';
-export type { DictionaryWithDictionary } from './models/DictionaryWithDictionary';
-export type { DictionaryWithProperties } from './models/DictionaryWithProperties';
-export type { DictionaryWithReference } from './models/DictionaryWithReference';
-export type { DictionaryWithString } from './models/DictionaryWithString';
-export type { EnumFromDescription } from './models/EnumFromDescription';
-export { EnumWithExtensions } from './models/EnumWithExtensions';
-export { EnumWithNumbers } from './models/EnumWithNumbers';
-export { EnumWithStrings } from './models/EnumWithStrings';
-export type { ModelThatExtends } from './models/ModelThatExtends';
-export type { ModelThatExtendsExtends } from './models/ModelThatExtendsExtends';
-export type { ModelWithArray } from './models/ModelWithArray';
-export type { ModelWithBoolean } from './models/ModelWithBoolean';
-export type { ModelWithCircularReference } from './models/ModelWithCircularReference';
-export type { ModelWithDictionary } from './models/ModelWithDictionary';
-export type { ModelWithDuplicateImports } from './models/ModelWithDuplicateImports';
-export type { ModelWithDuplicateProperties } from './models/ModelWithDuplicateProperties';
-export { ModelWithEnum } from './models/ModelWithEnum';
-export type { ModelWithEnumFromDescription } from './models/ModelWithEnumFromDescription';
-export type { ModelWithInteger } from './models/ModelWithInteger';
-export type { ModelWithNestedEnums } from './models/ModelWithNestedEnums';
-export type { ModelWithNestedProperties } from './models/ModelWithNestedProperties';
-export type { ModelWithNullableString } from './models/ModelWithNullableString';
-export type { ModelWithOrderedProperties } from './models/ModelWithOrderedProperties';
-export type { ModelWithPattern } from './models/ModelWithPattern';
-export type { ModelWithProperties } from './models/ModelWithProperties';
-export type { ModelWithReference } from './models/ModelWithReference';
-export type { ModelWithString } from './models/ModelWithString';
-export type { SimpleBoolean } from './models/SimpleBoolean';
-export type { SimpleFile } from './models/SimpleFile';
-export type { SimpleInteger } from './models/SimpleInteger';
-export type { SimpleReference } from './models/SimpleReference';
-export type { SimpleString } from './models/SimpleString';
-export type { SimpleStringWithPattern } from './models/SimpleStringWithPattern';
+export type { _default } from './models/_default.js';
+export type { ArrayWithArray } from './models/ArrayWithArray.js';
+export type { ArrayWithBooleans } from './models/ArrayWithBooleans.js';
+export type { ArrayWithNumbers } from './models/ArrayWithNumbers.js';
+export type { ArrayWithProperties } from './models/ArrayWithProperties.js';
+export type { ArrayWithReferences } from './models/ArrayWithReferences.js';
+export type { ArrayWithStrings } from './models/ArrayWithStrings.js';
+export type { CommentWithBackticks } from './models/CommentWithBackticks.js';
+export type { CommentWithBreaks } from './models/CommentWithBreaks.js';
+export type { CommentWithExpressionPlaceholders } from './models/CommentWithExpressionPlaceholders.js';
+export type { CommentWithQuotes } from './models/CommentWithQuotes.js';
+export type { CommentWithReservedCharacters } from './models/CommentWithReservedCharacters.js';
+export type { CommentWithSlashes } from './models/CommentWithSlashes.js';
+export type { Date } from './models/Date.js';
+export type { DictionaryWithArray } from './models/DictionaryWithArray.js';
+export type { DictionaryWithDictionary } from './models/DictionaryWithDictionary.js';
+export type { DictionaryWithProperties } from './models/DictionaryWithProperties.js';
+export type { DictionaryWithReference } from './models/DictionaryWithReference.js';
+export type { DictionaryWithString } from './models/DictionaryWithString.js';
+export type { EnumFromDescription } from './models/EnumFromDescription.js';
+export { EnumWithExtensions } from './models/EnumWithExtensions.js';
+export { EnumWithNumbers } from './models/EnumWithNumbers.js';
+export { EnumWithStrings } from './models/EnumWithStrings.js';
+export type { ModelThatExtends } from './models/ModelThatExtends.js';
+export type { ModelThatExtendsExtends } from './models/ModelThatExtendsExtends.js';
+export type { ModelWithArray } from './models/ModelWithArray.js';
+export type { ModelWithBoolean } from './models/ModelWithBoolean.js';
+export type { ModelWithCircularReference } from './models/ModelWithCircularReference.js';
+export type { ModelWithDictionary } from './models/ModelWithDictionary.js';
+export type { ModelWithDuplicateImports } from './models/ModelWithDuplicateImports.js';
+export type { ModelWithDuplicateProperties } from './models/ModelWithDuplicateProperties.js';
+export { ModelWithEnum } from './models/ModelWithEnum.js';
+export type { ModelWithEnumFromDescription } from './models/ModelWithEnumFromDescription.js';
+export type { ModelWithInteger } from './models/ModelWithInteger.js';
+export type { ModelWithNestedEnums } from './models/ModelWithNestedEnums.js';
+export type { ModelWithNestedProperties } from './models/ModelWithNestedProperties.js';
+export type { ModelWithNullableString } from './models/ModelWithNullableString.js';
+export type { ModelWithOrderedProperties } from './models/ModelWithOrderedProperties.js';
+export type { ModelWithPattern } from './models/ModelWithPattern.js';
+export type { ModelWithProperties } from './models/ModelWithProperties.js';
+export type { ModelWithReference } from './models/ModelWithReference.js';
+export type { ModelWithString } from './models/ModelWithString.js';
+export type { SimpleBoolean } from './models/SimpleBoolean.js';
+export type { SimpleFile } from './models/SimpleFile.js';
+export type { SimpleInteger } from './models/SimpleInteger.js';
+export type { SimpleReference } from './models/SimpleReference.js';
+export type { SimpleString } from './models/SimpleString.js';
+export type { SimpleStringWithPattern } from './models/SimpleStringWithPattern.js';
 
-export { $_default } from './schemas/$_default';
-export { $ArrayWithArray } from './schemas/$ArrayWithArray';
-export { $ArrayWithBooleans } from './schemas/$ArrayWithBooleans';
-export { $ArrayWithNumbers } from './schemas/$ArrayWithNumbers';
-export { $ArrayWithProperties } from './schemas/$ArrayWithProperties';
-export { $ArrayWithReferences } from './schemas/$ArrayWithReferences';
-export { $ArrayWithStrings } from './schemas/$ArrayWithStrings';
-export { $CommentWithBackticks } from './schemas/$CommentWithBackticks';
-export { $CommentWithBreaks } from './schemas/$CommentWithBreaks';
-export { $CommentWithExpressionPlaceholders } from './schemas/$CommentWithExpressionPlaceholders';
-export { $CommentWithQuotes } from './schemas/$CommentWithQuotes';
-export { $CommentWithReservedCharacters } from './schemas/$CommentWithReservedCharacters';
-export { $CommentWithSlashes } from './schemas/$CommentWithSlashes';
-export { $Date } from './schemas/$Date';
-export { $DictionaryWithArray } from './schemas/$DictionaryWithArray';
-export { $DictionaryWithDictionary } from './schemas/$DictionaryWithDictionary';
-export { $DictionaryWithProperties } from './schemas/$DictionaryWithProperties';
-export { $DictionaryWithReference } from './schemas/$DictionaryWithReference';
-export { $DictionaryWithString } from './schemas/$DictionaryWithString';
-export { $EnumFromDescription } from './schemas/$EnumFromDescription';
-export { $EnumWithExtensions } from './schemas/$EnumWithExtensions';
-export { $EnumWithNumbers } from './schemas/$EnumWithNumbers';
-export { $EnumWithStrings } from './schemas/$EnumWithStrings';
-export { $ModelThatExtends } from './schemas/$ModelThatExtends';
-export { $ModelThatExtendsExtends } from './schemas/$ModelThatExtendsExtends';
-export { $ModelWithArray } from './schemas/$ModelWithArray';
-export { $ModelWithBoolean } from './schemas/$ModelWithBoolean';
-export { $ModelWithCircularReference } from './schemas/$ModelWithCircularReference';
-export { $ModelWithDictionary } from './schemas/$ModelWithDictionary';
-export { $ModelWithDuplicateImports } from './schemas/$ModelWithDuplicateImports';
-export { $ModelWithDuplicateProperties } from './schemas/$ModelWithDuplicateProperties';
-export { $ModelWithEnum } from './schemas/$ModelWithEnum';
-export { $ModelWithEnumFromDescription } from './schemas/$ModelWithEnumFromDescription';
-export { $ModelWithInteger } from './schemas/$ModelWithInteger';
-export { $ModelWithNestedEnums } from './schemas/$ModelWithNestedEnums';
-export { $ModelWithNestedProperties } from './schemas/$ModelWithNestedProperties';
-export { $ModelWithNullableString } from './schemas/$ModelWithNullableString';
-export { $ModelWithOrderedProperties } from './schemas/$ModelWithOrderedProperties';
-export { $ModelWithPattern } from './schemas/$ModelWithPattern';
-export { $ModelWithProperties } from './schemas/$ModelWithProperties';
-export { $ModelWithReference } from './schemas/$ModelWithReference';
-export { $ModelWithString } from './schemas/$ModelWithString';
-export { $SimpleBoolean } from './schemas/$SimpleBoolean';
-export { $SimpleFile } from './schemas/$SimpleFile';
-export { $SimpleInteger } from './schemas/$SimpleInteger';
-export { $SimpleReference } from './schemas/$SimpleReference';
-export { $SimpleString } from './schemas/$SimpleString';
-export { $SimpleStringWithPattern } from './schemas/$SimpleStringWithPattern';
+export { $_default } from './schemas/$_default.js';
+export { $ArrayWithArray } from './schemas/$ArrayWithArray.js';
+export { $ArrayWithBooleans } from './schemas/$ArrayWithBooleans.js';
+export { $ArrayWithNumbers } from './schemas/$ArrayWithNumbers.js';
+export { $ArrayWithProperties } from './schemas/$ArrayWithProperties.js';
+export { $ArrayWithReferences } from './schemas/$ArrayWithReferences.js';
+export { $ArrayWithStrings } from './schemas/$ArrayWithStrings.js';
+export { $CommentWithBackticks } from './schemas/$CommentWithBackticks.js';
+export { $CommentWithBreaks } from './schemas/$CommentWithBreaks.js';
+export { $CommentWithExpressionPlaceholders } from './schemas/$CommentWithExpressionPlaceholders.js';
+export { $CommentWithQuotes } from './schemas/$CommentWithQuotes.js';
+export { $CommentWithReservedCharacters } from './schemas/$CommentWithReservedCharacters.js';
+export { $CommentWithSlashes } from './schemas/$CommentWithSlashes.js';
+export { $Date } from './schemas/$Date.js';
+export { $DictionaryWithArray } from './schemas/$DictionaryWithArray.js';
+export { $DictionaryWithDictionary } from './schemas/$DictionaryWithDictionary.js';
+export { $DictionaryWithProperties } from './schemas/$DictionaryWithProperties.js';
+export { $DictionaryWithReference } from './schemas/$DictionaryWithReference.js';
+export { $DictionaryWithString } from './schemas/$DictionaryWithString.js';
+export { $EnumFromDescription } from './schemas/$EnumFromDescription.js';
+export { $EnumWithExtensions } from './schemas/$EnumWithExtensions.js';
+export { $EnumWithNumbers } from './schemas/$EnumWithNumbers.js';
+export { $EnumWithStrings } from './schemas/$EnumWithStrings.js';
+export { $ModelThatExtends } from './schemas/$ModelThatExtends.js';
+export { $ModelThatExtendsExtends } from './schemas/$ModelThatExtendsExtends.js';
+export { $ModelWithArray } from './schemas/$ModelWithArray.js';
+export { $ModelWithBoolean } from './schemas/$ModelWithBoolean.js';
+export { $ModelWithCircularReference } from './schemas/$ModelWithCircularReference.js';
+export { $ModelWithDictionary } from './schemas/$ModelWithDictionary.js';
+export { $ModelWithDuplicateImports } from './schemas/$ModelWithDuplicateImports.js';
+export { $ModelWithDuplicateProperties } from './schemas/$ModelWithDuplicateProperties.js';
+export { $ModelWithEnum } from './schemas/$ModelWithEnum.js';
+export { $ModelWithEnumFromDescription } from './schemas/$ModelWithEnumFromDescription.js';
+export { $ModelWithInteger } from './schemas/$ModelWithInteger.js';
+export { $ModelWithNestedEnums } from './schemas/$ModelWithNestedEnums.js';
+export { $ModelWithNestedProperties } from './schemas/$ModelWithNestedProperties.js';
+export { $ModelWithNullableString } from './schemas/$ModelWithNullableString.js';
+export { $ModelWithOrderedProperties } from './schemas/$ModelWithOrderedProperties.js';
+export { $ModelWithPattern } from './schemas/$ModelWithPattern.js';
+export { $ModelWithProperties } from './schemas/$ModelWithProperties.js';
+export { $ModelWithReference } from './schemas/$ModelWithReference.js';
+export { $ModelWithString } from './schemas/$ModelWithString.js';
+export { $SimpleBoolean } from './schemas/$SimpleBoolean.js';
+export { $SimpleFile } from './schemas/$SimpleFile.js';
+export { $SimpleInteger } from './schemas/$SimpleInteger.js';
+export { $SimpleReference } from './schemas/$SimpleReference.js';
+export { $SimpleString } from './schemas/$SimpleString.js';
+export { $SimpleStringWithPattern } from './schemas/$SimpleStringWithPattern.js';
 
 export * from './factories'
 export * as pathnames from './pathnames'
@@ -1385,7 +1385,7 @@ exports[`v2 should generate: test/generated/v2/models/ArrayWithArray.ts 1`] = `
 /* eslint-disable */
 
 
-import type { ModelWithString } from './ModelWithString';
+import type { ModelWithString } from './ModelWithString.js';
 
 /**
  * This is a simple array containing an array
@@ -1468,7 +1468,7 @@ exports[`v2 should generate: test/generated/v2/models/ArrayWithReferences.ts 1`]
 /* eslint-disable */
 
 
-import type { ModelWithString } from './ModelWithString';
+import type { ModelWithString } from './ModelWithString.js';
 
 /**
  * This is a simple array with references
@@ -1626,7 +1626,7 @@ exports[`v2 should generate: test/generated/v2/models/DictionaryWithArray.ts 1`]
 /* eslint-disable */
 
 
-import type { ModelWithString } from './ModelWithString';
+import type { ModelWithString } from './ModelWithString.js';
 
 /**
  * This is a complex dictionary
@@ -1692,7 +1692,7 @@ exports[`v2 should generate: test/generated/v2/models/DictionaryWithReference.ts
 /* eslint-disable */
 
 
-import type { ModelWithString } from './ModelWithString';
+import type { ModelWithString } from './ModelWithString.js';
 
 /**
  * This is a string reference
@@ -1825,7 +1825,7 @@ exports[`v2 should generate: test/generated/v2/models/ModelThatExtends.ts 1`] = 
 /* eslint-disable */
 
 
-import type { ModelWithString } from './ModelWithString';
+import type { ModelWithString } from './ModelWithString.js';
 
 /**
  * This is a model that extends another model
@@ -1858,8 +1858,8 @@ exports[`v2 should generate: test/generated/v2/models/ModelThatExtendsExtends.ts
 /* eslint-disable */
 
 
-import type { ModelThatExtends } from './ModelThatExtends';
-import type { ModelWithString } from './ModelWithString';
+import type { ModelThatExtends } from './ModelThatExtends.js';
+import type { ModelWithString } from './ModelWithString.js';
 
 /**
  * This is a model that extends another model
@@ -1894,7 +1894,7 @@ exports[`v2 should generate: test/generated/v2/models/ModelWithArray.ts 1`] = `
 /* eslint-disable */
 
 
-import type { ModelWithString } from './ModelWithString';
+import type { ModelWithString } from './ModelWithString.js';
 
 /**
  * This is a model with one property containing an array
@@ -1995,7 +1995,7 @@ exports[`v2 should generate: test/generated/v2/models/ModelWithDuplicateImports.
 /* eslint-disable */
 
 
-import type { ModelWithString } from './ModelWithString';
+import type { ModelWithString } from './ModelWithString.js';
 
 /**
  * This is a model with duplicated imports
@@ -2028,7 +2028,7 @@ exports[`v2 should generate: test/generated/v2/models/ModelWithDuplicateProperti
 /* eslint-disable */
 
 
-import type { ModelWithString } from './ModelWithString';
+import type { ModelWithString } from './ModelWithString.js';
 
 /**
  * This is a model with duplicated properties
@@ -2354,7 +2354,7 @@ exports[`v2 should generate: test/generated/v2/models/ModelWithProperties.ts 1`]
 /* eslint-disable */
 
 
-import type { ModelWithString } from './ModelWithString';
+import type { ModelWithString } from './ModelWithString.js';
 
 /**
  * This is a model with one nested property
@@ -2427,7 +2427,7 @@ exports[`v2 should generate: test/generated/v2/models/ModelWithReference.ts 1`] 
 /* eslint-disable */
 
 
-import type { ModelWithProperties } from './ModelWithProperties';
+import type { ModelWithProperties } from './ModelWithProperties.js';
 
 /**
  * This is a model with one property containing a reference
@@ -2525,7 +2525,7 @@ exports[`v2 should generate: test/generated/v2/models/SimpleReference.ts 1`] = `
 /* eslint-disable */
 
 
-import type { ModelWithString } from './ModelWithString';
+import type { ModelWithString } from './ModelWithString.js';
 
 /**
  * This is a simple reference
@@ -2865,22 +2865,22 @@ exports[`v2 should generate: test/generated/v2/pathnames/index.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 
-export * as Default from './Default'
-export * as Simple from './Simple'
-export * as Descriptions from './Descriptions'
-export * as Parameters from './Parameters'
-export * as Defaults from './Defaults'
-export * as Duplicate from './Duplicate'
-export * as NoContent from './NoContent'
-export * as MultipleTags1 from './MultipleTags1'
-export * as MultipleTags2 from './MultipleTags2'
-export * as MultipleTags3 from './MultipleTags3'
-export * as Response from './Response'
-export * as CollectionFormat from './CollectionFormat'
-export * as Types from './Types'
-export * as Complex from './Complex'
-export * as Header from './Header'
-export * as Error from './Error'
+export * as Default from './Default.js'
+export * as Simple from './Simple.js'
+export * as Descriptions from './Descriptions.js'
+export * as Parameters from './Parameters.js'
+export * as Defaults from './Defaults.js'
+export * as Duplicate from './Duplicate.js'
+export * as NoContent from './NoContent.js'
+export * as MultipleTags1 from './MultipleTags1.js'
+export * as MultipleTags2 from './MultipleTags2.js'
+export * as MultipleTags3 from './MultipleTags3.js'
+export * as Response from './Response.js'
+export * as CollectionFormat from './CollectionFormat.js'
+export * as Types from './Types.js'
+export * as Complex from './Complex.js'
+export * as Header from './Header.js'
+export * as Error from './Error.js'
 
 "
 `;
@@ -3984,7 +3984,7 @@ exports[`v2 should generate: test/generated/v2/server/CollectionFormat.ts 1`] = 
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createServerResolver } from '../../../../factories-module'
+import { createServerResolver } from '../../../../factories-module.js'
 
 /**
  */
@@ -4002,7 +4002,7 @@ exports[`v2 should generate: test/generated/v2/server/Complex.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createServerResolver } from '../../../../factories-module'
+import { createServerResolver } from '../../../../factories-module.js'
 
 /**
  * @returns ModelWithString Successful response
@@ -4021,7 +4021,7 @@ exports[`v2 should generate: test/generated/v2/server/Default.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createServerResolver } from '../../../../factories-module'
+import { createServerResolver } from '../../../../factories-module.js'
 
 /**
  */
@@ -4039,7 +4039,7 @@ exports[`v2 should generate: test/generated/v2/server/Defaults.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createServerResolver } from '../../../../factories-module'
+import { createServerResolver } from '../../../../factories-module.js'
 
 /**
  */
@@ -4067,7 +4067,7 @@ exports[`v2 should generate: test/generated/v2/server/Descriptions.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createServerResolver } from '../../../../factories-module'
+import { createServerResolver } from '../../../../factories-module.js'
 
 /**
  */
@@ -4085,7 +4085,7 @@ exports[`v2 should generate: test/generated/v2/server/Duplicate.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createServerResolver } from '../../../../factories-module'
+import { createServerResolver } from '../../../../factories-module.js'
 
 /**
  */
@@ -4118,7 +4118,7 @@ exports[`v2 should generate: test/generated/v2/server/Error.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createServerResolver } from '../../../../factories-module'
+import { createServerResolver } from '../../../../factories-module.js'
 
 /**
  * @returns any Custom message: Successful response
@@ -4137,7 +4137,7 @@ exports[`v2 should generate: test/generated/v2/server/Header.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createServerResolver } from '../../../../factories-module'
+import { createServerResolver } from '../../../../factories-module.js'
 
 /**
  * @returns string Successful response
@@ -4156,7 +4156,7 @@ exports[`v2 should generate: test/generated/v2/server/MultipleTags1.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createServerResolver } from '../../../../factories-module'
+import { createServerResolver } from '../../../../factories-module.js'
 
 /**
  * @returns void
@@ -4181,7 +4181,7 @@ exports[`v2 should generate: test/generated/v2/server/MultipleTags2.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createServerResolver } from '../../../../factories-module'
+import { createServerResolver } from '../../../../factories-module.js'
 
 /**
  * @returns void
@@ -4206,7 +4206,7 @@ exports[`v2 should generate: test/generated/v2/server/MultipleTags3.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createServerResolver } from '../../../../factories-module'
+import { createServerResolver } from '../../../../factories-module.js'
 
 /**
  * @returns void
@@ -4225,7 +4225,7 @@ exports[`v2 should generate: test/generated/v2/server/NoContent.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createServerResolver } from '../../../../factories-module'
+import { createServerResolver } from '../../../../factories-module.js'
 
 /**
  * @returns void
@@ -4244,7 +4244,7 @@ exports[`v2 should generate: test/generated/v2/server/Parameters.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createServerResolver } from '../../../../factories-module'
+import { createServerResolver } from '../../../../factories-module.js'
 
 /**
  */
@@ -4267,7 +4267,7 @@ exports[`v2 should generate: test/generated/v2/server/Response.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createServerResolver } from '../../../../factories-module'
+import { createServerResolver } from '../../../../factories-module.js'
 
 /**
  * @returns ModelWithString Message for default response
@@ -4301,7 +4301,7 @@ exports[`v2 should generate: test/generated/v2/server/Simple.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createServerResolver } from '../../../../factories-module'
+import { createServerResolver } from '../../../../factories-module.js'
 
 /**
  */
@@ -4349,7 +4349,7 @@ exports[`v2 should generate: test/generated/v2/server/Types.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createServerResolver } from '../../../../factories-module'
+import { createServerResolver } from '../../../../factories-module.js'
 
 /**
  * @returns number Response is a simple number
@@ -4370,22 +4370,22 @@ exports[`v2 should generate: test/generated/v2/server/index.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 
-export * as default from './Default'
-export * as simple from './Simple'
-export * as descriptions from './Descriptions'
-export * as parameters from './Parameters'
-export * as defaults from './Defaults'
-export * as duplicate from './Duplicate'
-export * as noContent from './NoContent'
-export * as multipleTags1 from './MultipleTags1'
-export * as multipleTags2 from './MultipleTags2'
-export * as multipleTags3 from './MultipleTags3'
-export * as response from './Response'
-export * as collectionFormat from './CollectionFormat'
-export * as types from './Types'
-export * as complex from './Complex'
-export * as header from './Header'
-export * as error from './Error'
+export * as default from './Default.js'
+export * as simple from './Simple.js'
+export * as descriptions from './Descriptions.js'
+export * as parameters from './Parameters.js'
+export * as defaults from './Defaults.js'
+export * as duplicate from './Duplicate.js'
+export * as noContent from './NoContent.js'
+export * as multipleTags1 from './MultipleTags1.js'
+export * as multipleTags2 from './MultipleTags2.js'
+export * as multipleTags3 from './MultipleTags3.js'
+export * as response from './Response.js'
+export * as collectionFormat from './CollectionFormat.js'
+export * as types from './Types.js'
+export * as complex from './Complex.js'
+export * as header from './Header.js'
+export * as error from './Error.js'
 
 "
 `;
@@ -4397,145 +4397,145 @@ exports[`v3 should generate: test/generated/v3/index.ts 1`] = `
 /* eslint-disable */
 
 
-export type { _default } from './models/_default';
-export type { ArrayWithArray } from './models/ArrayWithArray';
-export type { ArrayWithBooleans } from './models/ArrayWithBooleans';
-export type { ArrayWithNumbers } from './models/ArrayWithNumbers';
-export type { ArrayWithProperties } from './models/ArrayWithProperties';
-export type { ArrayWithReferences } from './models/ArrayWithReferences';
-export type { ArrayWithStrings } from './models/ArrayWithStrings';
-export type { CommentWithBackticks } from './models/CommentWithBackticks';
-export type { CommentWithBreaks } from './models/CommentWithBreaks';
-export type { CommentWithExpressionPlaceholders } from './models/CommentWithExpressionPlaceholders';
-export type { CommentWithQuotes } from './models/CommentWithQuotes';
-export type { CommentWithReservedCharacters } from './models/CommentWithReservedCharacters';
-export type { CommentWithSlashes } from './models/CommentWithSlashes';
-export type { CompositionBaseModel } from './models/CompositionBaseModel';
-export type { CompositionExtendedModel } from './models/CompositionExtendedModel';
-export type { CompositionWithAllOfAndNullable } from './models/CompositionWithAllOfAndNullable';
-export type { CompositionWithAnyOf } from './models/CompositionWithAnyOf';
-export type { CompositionWithAnyOfAndNullable } from './models/CompositionWithAnyOfAndNullable';
-export type { CompositionWithAnyOfAnonymous } from './models/CompositionWithAnyOfAnonymous';
-export type { CompositionWithOneOf } from './models/CompositionWithOneOf';
-export type { CompositionWithOneOfAndComplexArrayDictionary } from './models/CompositionWithOneOfAndComplexArrayDictionary';
-export type { CompositionWithOneOfAndNullable } from './models/CompositionWithOneOfAndNullable';
-export type { CompositionWithOneOfAndSimpleArrayDictionary } from './models/CompositionWithOneOfAndSimpleArrayDictionary';
-export type { CompositionWithOneOfAndSimpleDictionary } from './models/CompositionWithOneOfAndSimpleDictionary';
-export type { CompositionWithOneOfAnonymous } from './models/CompositionWithOneOfAnonymous';
-export type { CompositionWithOneOfDiscriminator } from './models/CompositionWithOneOfDiscriminator';
-export type { DeprecatedModel } from './models/DeprecatedModel';
-export type { DictionaryWithArray } from './models/DictionaryWithArray';
-export type { DictionaryWithDictionary } from './models/DictionaryWithDictionary';
-export type { DictionaryWithProperties } from './models/DictionaryWithProperties';
-export type { DictionaryWithReference } from './models/DictionaryWithReference';
-export type { DictionaryWithString } from './models/DictionaryWithString';
-export type { EnumFromDescription } from './models/EnumFromDescription';
-export { EnumWithExtensions } from './models/EnumWithExtensions';
-export { EnumWithNumbers } from './models/EnumWithNumbers';
-export { EnumWithStrings } from './models/EnumWithStrings';
-export type { File } from './models/File';
-export type { FreeFormObjectWithAdditionalPropertiesEqEmptyObject } from './models/FreeFormObjectWithAdditionalPropertiesEqEmptyObject';
-export type { FreeFormObjectWithAdditionalPropertiesEqTrue } from './models/FreeFormObjectWithAdditionalPropertiesEqTrue';
-export type { FreeFormObjectWithoutAdditionalProperties } from './models/FreeFormObjectWithoutAdditionalProperties';
-export type { ModelCircle } from './models/ModelCircle';
-export type { ModelSquare } from './models/ModelSquare';
-export type { ModelThatExtends } from './models/ModelThatExtends';
-export type { ModelThatExtendsExtends } from './models/ModelThatExtendsExtends';
-export type { ModelWithArray } from './models/ModelWithArray';
-export type { ModelWithBoolean } from './models/ModelWithBoolean';
-export type { ModelWithCircularReference } from './models/ModelWithCircularReference';
-export type { ModelWithDictionary } from './models/ModelWithDictionary';
-export type { ModelWithDuplicateImports } from './models/ModelWithDuplicateImports';
-export type { ModelWithDuplicateProperties } from './models/ModelWithDuplicateProperties';
-export { ModelWithEnum } from './models/ModelWithEnum';
-export type { ModelWithEnumFromDescription } from './models/ModelWithEnumFromDescription';
-export type { ModelWithInteger } from './models/ModelWithInteger';
-export type { ModelWithNestedEnums } from './models/ModelWithNestedEnums';
-export type { ModelWithNestedProperties } from './models/ModelWithNestedProperties';
-export type { ModelWithNullableString } from './models/ModelWithNullableString';
-export type { ModelWithOrderedProperties } from './models/ModelWithOrderedProperties';
-export type { ModelWithPattern } from './models/ModelWithPattern';
-export type { ModelWithProperties } from './models/ModelWithProperties';
-export type { ModelWithReference } from './models/ModelWithReference';
-export type { ModelWithString } from './models/ModelWithString';
-export type { Pageable } from './models/Pageable';
-export type { SimpleBoolean } from './models/SimpleBoolean';
-export type { SimpleFile } from './models/SimpleFile';
-export type { SimpleInteger } from './models/SimpleInteger';
-export type { SimpleParameter } from './models/SimpleParameter';
-export type { SimpleReference } from './models/SimpleReference';
-export type { SimpleString } from './models/SimpleString';
-export type { SimpleStringWithPattern } from './models/SimpleStringWithPattern';
+export type { _default } from './models/_default.js';
+export type { ArrayWithArray } from './models/ArrayWithArray.js';
+export type { ArrayWithBooleans } from './models/ArrayWithBooleans.js';
+export type { ArrayWithNumbers } from './models/ArrayWithNumbers.js';
+export type { ArrayWithProperties } from './models/ArrayWithProperties.js';
+export type { ArrayWithReferences } from './models/ArrayWithReferences.js';
+export type { ArrayWithStrings } from './models/ArrayWithStrings.js';
+export type { CommentWithBackticks } from './models/CommentWithBackticks.js';
+export type { CommentWithBreaks } from './models/CommentWithBreaks.js';
+export type { CommentWithExpressionPlaceholders } from './models/CommentWithExpressionPlaceholders.js';
+export type { CommentWithQuotes } from './models/CommentWithQuotes.js';
+export type { CommentWithReservedCharacters } from './models/CommentWithReservedCharacters.js';
+export type { CommentWithSlashes } from './models/CommentWithSlashes.js';
+export type { CompositionBaseModel } from './models/CompositionBaseModel.js';
+export type { CompositionExtendedModel } from './models/CompositionExtendedModel.js';
+export type { CompositionWithAllOfAndNullable } from './models/CompositionWithAllOfAndNullable.js';
+export type { CompositionWithAnyOf } from './models/CompositionWithAnyOf.js';
+export type { CompositionWithAnyOfAndNullable } from './models/CompositionWithAnyOfAndNullable.js';
+export type { CompositionWithAnyOfAnonymous } from './models/CompositionWithAnyOfAnonymous.js';
+export type { CompositionWithOneOf } from './models/CompositionWithOneOf.js';
+export type { CompositionWithOneOfAndComplexArrayDictionary } from './models/CompositionWithOneOfAndComplexArrayDictionary.js';
+export type { CompositionWithOneOfAndNullable } from './models/CompositionWithOneOfAndNullable.js';
+export type { CompositionWithOneOfAndSimpleArrayDictionary } from './models/CompositionWithOneOfAndSimpleArrayDictionary.js';
+export type { CompositionWithOneOfAndSimpleDictionary } from './models/CompositionWithOneOfAndSimpleDictionary.js';
+export type { CompositionWithOneOfAnonymous } from './models/CompositionWithOneOfAnonymous.js';
+export type { CompositionWithOneOfDiscriminator } from './models/CompositionWithOneOfDiscriminator.js';
+export type { DeprecatedModel } from './models/DeprecatedModel.js';
+export type { DictionaryWithArray } from './models/DictionaryWithArray.js';
+export type { DictionaryWithDictionary } from './models/DictionaryWithDictionary.js';
+export type { DictionaryWithProperties } from './models/DictionaryWithProperties.js';
+export type { DictionaryWithReference } from './models/DictionaryWithReference.js';
+export type { DictionaryWithString } from './models/DictionaryWithString.js';
+export type { EnumFromDescription } from './models/EnumFromDescription.js';
+export { EnumWithExtensions } from './models/EnumWithExtensions.js';
+export { EnumWithNumbers } from './models/EnumWithNumbers.js';
+export { EnumWithStrings } from './models/EnumWithStrings.js';
+export type { File } from './models/File.js';
+export type { FreeFormObjectWithAdditionalPropertiesEqEmptyObject } from './models/FreeFormObjectWithAdditionalPropertiesEqEmptyObject.js';
+export type { FreeFormObjectWithAdditionalPropertiesEqTrue } from './models/FreeFormObjectWithAdditionalPropertiesEqTrue.js';
+export type { FreeFormObjectWithoutAdditionalProperties } from './models/FreeFormObjectWithoutAdditionalProperties.js';
+export type { ModelCircle } from './models/ModelCircle.js';
+export type { ModelSquare } from './models/ModelSquare.js';
+export type { ModelThatExtends } from './models/ModelThatExtends.js';
+export type { ModelThatExtendsExtends } from './models/ModelThatExtendsExtends.js';
+export type { ModelWithArray } from './models/ModelWithArray.js';
+export type { ModelWithBoolean } from './models/ModelWithBoolean.js';
+export type { ModelWithCircularReference } from './models/ModelWithCircularReference.js';
+export type { ModelWithDictionary } from './models/ModelWithDictionary.js';
+export type { ModelWithDuplicateImports } from './models/ModelWithDuplicateImports.js';
+export type { ModelWithDuplicateProperties } from './models/ModelWithDuplicateProperties.js';
+export { ModelWithEnum } from './models/ModelWithEnum.js';
+export type { ModelWithEnumFromDescription } from './models/ModelWithEnumFromDescription.js';
+export type { ModelWithInteger } from './models/ModelWithInteger.js';
+export type { ModelWithNestedEnums } from './models/ModelWithNestedEnums.js';
+export type { ModelWithNestedProperties } from './models/ModelWithNestedProperties.js';
+export type { ModelWithNullableString } from './models/ModelWithNullableString.js';
+export type { ModelWithOrderedProperties } from './models/ModelWithOrderedProperties.js';
+export type { ModelWithPattern } from './models/ModelWithPattern.js';
+export type { ModelWithProperties } from './models/ModelWithProperties.js';
+export type { ModelWithReference } from './models/ModelWithReference.js';
+export type { ModelWithString } from './models/ModelWithString.js';
+export type { Pageable } from './models/Pageable.js';
+export type { SimpleBoolean } from './models/SimpleBoolean.js';
+export type { SimpleFile } from './models/SimpleFile.js';
+export type { SimpleInteger } from './models/SimpleInteger.js';
+export type { SimpleParameter } from './models/SimpleParameter.js';
+export type { SimpleReference } from './models/SimpleReference.js';
+export type { SimpleString } from './models/SimpleString.js';
+export type { SimpleStringWithPattern } from './models/SimpleStringWithPattern.js';
 
-export { $_default } from './schemas/$_default';
-export { $ArrayWithArray } from './schemas/$ArrayWithArray';
-export { $ArrayWithBooleans } from './schemas/$ArrayWithBooleans';
-export { $ArrayWithNumbers } from './schemas/$ArrayWithNumbers';
-export { $ArrayWithProperties } from './schemas/$ArrayWithProperties';
-export { $ArrayWithReferences } from './schemas/$ArrayWithReferences';
-export { $ArrayWithStrings } from './schemas/$ArrayWithStrings';
-export { $CommentWithBackticks } from './schemas/$CommentWithBackticks';
-export { $CommentWithBreaks } from './schemas/$CommentWithBreaks';
-export { $CommentWithExpressionPlaceholders } from './schemas/$CommentWithExpressionPlaceholders';
-export { $CommentWithQuotes } from './schemas/$CommentWithQuotes';
-export { $CommentWithReservedCharacters } from './schemas/$CommentWithReservedCharacters';
-export { $CommentWithSlashes } from './schemas/$CommentWithSlashes';
-export { $CompositionBaseModel } from './schemas/$CompositionBaseModel';
-export { $CompositionExtendedModel } from './schemas/$CompositionExtendedModel';
-export { $CompositionWithAllOfAndNullable } from './schemas/$CompositionWithAllOfAndNullable';
-export { $CompositionWithAnyOf } from './schemas/$CompositionWithAnyOf';
-export { $CompositionWithAnyOfAndNullable } from './schemas/$CompositionWithAnyOfAndNullable';
-export { $CompositionWithAnyOfAnonymous } from './schemas/$CompositionWithAnyOfAnonymous';
-export { $CompositionWithOneOf } from './schemas/$CompositionWithOneOf';
-export { $CompositionWithOneOfAndComplexArrayDictionary } from './schemas/$CompositionWithOneOfAndComplexArrayDictionary';
-export { $CompositionWithOneOfAndNullable } from './schemas/$CompositionWithOneOfAndNullable';
-export { $CompositionWithOneOfAndSimpleArrayDictionary } from './schemas/$CompositionWithOneOfAndSimpleArrayDictionary';
-export { $CompositionWithOneOfAndSimpleDictionary } from './schemas/$CompositionWithOneOfAndSimpleDictionary';
-export { $CompositionWithOneOfAnonymous } from './schemas/$CompositionWithOneOfAnonymous';
-export { $CompositionWithOneOfDiscriminator } from './schemas/$CompositionWithOneOfDiscriminator';
-export { $DeprecatedModel } from './schemas/$DeprecatedModel';
-export { $DictionaryWithArray } from './schemas/$DictionaryWithArray';
-export { $DictionaryWithDictionary } from './schemas/$DictionaryWithDictionary';
-export { $DictionaryWithProperties } from './schemas/$DictionaryWithProperties';
-export { $DictionaryWithReference } from './schemas/$DictionaryWithReference';
-export { $DictionaryWithString } from './schemas/$DictionaryWithString';
-export { $EnumFromDescription } from './schemas/$EnumFromDescription';
-export { $EnumWithExtensions } from './schemas/$EnumWithExtensions';
-export { $EnumWithNumbers } from './schemas/$EnumWithNumbers';
-export { $EnumWithStrings } from './schemas/$EnumWithStrings';
-export { $File } from './schemas/$File';
-export { $FreeFormObjectWithAdditionalPropertiesEqEmptyObject } from './schemas/$FreeFormObjectWithAdditionalPropertiesEqEmptyObject';
-export { $FreeFormObjectWithAdditionalPropertiesEqTrue } from './schemas/$FreeFormObjectWithAdditionalPropertiesEqTrue';
-export { $FreeFormObjectWithoutAdditionalProperties } from './schemas/$FreeFormObjectWithoutAdditionalProperties';
-export { $ModelCircle } from './schemas/$ModelCircle';
-export { $ModelSquare } from './schemas/$ModelSquare';
-export { $ModelThatExtends } from './schemas/$ModelThatExtends';
-export { $ModelThatExtendsExtends } from './schemas/$ModelThatExtendsExtends';
-export { $ModelWithArray } from './schemas/$ModelWithArray';
-export { $ModelWithBoolean } from './schemas/$ModelWithBoolean';
-export { $ModelWithCircularReference } from './schemas/$ModelWithCircularReference';
-export { $ModelWithDictionary } from './schemas/$ModelWithDictionary';
-export { $ModelWithDuplicateImports } from './schemas/$ModelWithDuplicateImports';
-export { $ModelWithDuplicateProperties } from './schemas/$ModelWithDuplicateProperties';
-export { $ModelWithEnum } from './schemas/$ModelWithEnum';
-export { $ModelWithEnumFromDescription } from './schemas/$ModelWithEnumFromDescription';
-export { $ModelWithInteger } from './schemas/$ModelWithInteger';
-export { $ModelWithNestedEnums } from './schemas/$ModelWithNestedEnums';
-export { $ModelWithNestedProperties } from './schemas/$ModelWithNestedProperties';
-export { $ModelWithNullableString } from './schemas/$ModelWithNullableString';
-export { $ModelWithOrderedProperties } from './schemas/$ModelWithOrderedProperties';
-export { $ModelWithPattern } from './schemas/$ModelWithPattern';
-export { $ModelWithProperties } from './schemas/$ModelWithProperties';
-export { $ModelWithReference } from './schemas/$ModelWithReference';
-export { $ModelWithString } from './schemas/$ModelWithString';
-export { $Pageable } from './schemas/$Pageable';
-export { $SimpleBoolean } from './schemas/$SimpleBoolean';
-export { $SimpleFile } from './schemas/$SimpleFile';
-export { $SimpleInteger } from './schemas/$SimpleInteger';
-export { $SimpleParameter } from './schemas/$SimpleParameter';
-export { $SimpleReference } from './schemas/$SimpleReference';
-export { $SimpleString } from './schemas/$SimpleString';
-export { $SimpleStringWithPattern } from './schemas/$SimpleStringWithPattern';
+export { $_default } from './schemas/$_default.js';
+export { $ArrayWithArray } from './schemas/$ArrayWithArray.js';
+export { $ArrayWithBooleans } from './schemas/$ArrayWithBooleans.js';
+export { $ArrayWithNumbers } from './schemas/$ArrayWithNumbers.js';
+export { $ArrayWithProperties } from './schemas/$ArrayWithProperties.js';
+export { $ArrayWithReferences } from './schemas/$ArrayWithReferences.js';
+export { $ArrayWithStrings } from './schemas/$ArrayWithStrings.js';
+export { $CommentWithBackticks } from './schemas/$CommentWithBackticks.js';
+export { $CommentWithBreaks } from './schemas/$CommentWithBreaks.js';
+export { $CommentWithExpressionPlaceholders } from './schemas/$CommentWithExpressionPlaceholders.js';
+export { $CommentWithQuotes } from './schemas/$CommentWithQuotes.js';
+export { $CommentWithReservedCharacters } from './schemas/$CommentWithReservedCharacters.js';
+export { $CommentWithSlashes } from './schemas/$CommentWithSlashes.js';
+export { $CompositionBaseModel } from './schemas/$CompositionBaseModel.js';
+export { $CompositionExtendedModel } from './schemas/$CompositionExtendedModel.js';
+export { $CompositionWithAllOfAndNullable } from './schemas/$CompositionWithAllOfAndNullable.js';
+export { $CompositionWithAnyOf } from './schemas/$CompositionWithAnyOf.js';
+export { $CompositionWithAnyOfAndNullable } from './schemas/$CompositionWithAnyOfAndNullable.js';
+export { $CompositionWithAnyOfAnonymous } from './schemas/$CompositionWithAnyOfAnonymous.js';
+export { $CompositionWithOneOf } from './schemas/$CompositionWithOneOf.js';
+export { $CompositionWithOneOfAndComplexArrayDictionary } from './schemas/$CompositionWithOneOfAndComplexArrayDictionary.js';
+export { $CompositionWithOneOfAndNullable } from './schemas/$CompositionWithOneOfAndNullable.js';
+export { $CompositionWithOneOfAndSimpleArrayDictionary } from './schemas/$CompositionWithOneOfAndSimpleArrayDictionary.js';
+export { $CompositionWithOneOfAndSimpleDictionary } from './schemas/$CompositionWithOneOfAndSimpleDictionary.js';
+export { $CompositionWithOneOfAnonymous } from './schemas/$CompositionWithOneOfAnonymous.js';
+export { $CompositionWithOneOfDiscriminator } from './schemas/$CompositionWithOneOfDiscriminator.js';
+export { $DeprecatedModel } from './schemas/$DeprecatedModel.js';
+export { $DictionaryWithArray } from './schemas/$DictionaryWithArray.js';
+export { $DictionaryWithDictionary } from './schemas/$DictionaryWithDictionary.js';
+export { $DictionaryWithProperties } from './schemas/$DictionaryWithProperties.js';
+export { $DictionaryWithReference } from './schemas/$DictionaryWithReference.js';
+export { $DictionaryWithString } from './schemas/$DictionaryWithString.js';
+export { $EnumFromDescription } from './schemas/$EnumFromDescription.js';
+export { $EnumWithExtensions } from './schemas/$EnumWithExtensions.js';
+export { $EnumWithNumbers } from './schemas/$EnumWithNumbers.js';
+export { $EnumWithStrings } from './schemas/$EnumWithStrings.js';
+export { $File } from './schemas/$File.js';
+export { $FreeFormObjectWithAdditionalPropertiesEqEmptyObject } from './schemas/$FreeFormObjectWithAdditionalPropertiesEqEmptyObject.js';
+export { $FreeFormObjectWithAdditionalPropertiesEqTrue } from './schemas/$FreeFormObjectWithAdditionalPropertiesEqTrue.js';
+export { $FreeFormObjectWithoutAdditionalProperties } from './schemas/$FreeFormObjectWithoutAdditionalProperties.js';
+export { $ModelCircle } from './schemas/$ModelCircle.js';
+export { $ModelSquare } from './schemas/$ModelSquare.js';
+export { $ModelThatExtends } from './schemas/$ModelThatExtends.js';
+export { $ModelThatExtendsExtends } from './schemas/$ModelThatExtendsExtends.js';
+export { $ModelWithArray } from './schemas/$ModelWithArray.js';
+export { $ModelWithBoolean } from './schemas/$ModelWithBoolean.js';
+export { $ModelWithCircularReference } from './schemas/$ModelWithCircularReference.js';
+export { $ModelWithDictionary } from './schemas/$ModelWithDictionary.js';
+export { $ModelWithDuplicateImports } from './schemas/$ModelWithDuplicateImports.js';
+export { $ModelWithDuplicateProperties } from './schemas/$ModelWithDuplicateProperties.js';
+export { $ModelWithEnum } from './schemas/$ModelWithEnum.js';
+export { $ModelWithEnumFromDescription } from './schemas/$ModelWithEnumFromDescription.js';
+export { $ModelWithInteger } from './schemas/$ModelWithInteger.js';
+export { $ModelWithNestedEnums } from './schemas/$ModelWithNestedEnums.js';
+export { $ModelWithNestedProperties } from './schemas/$ModelWithNestedProperties.js';
+export { $ModelWithNullableString } from './schemas/$ModelWithNullableString.js';
+export { $ModelWithOrderedProperties } from './schemas/$ModelWithOrderedProperties.js';
+export { $ModelWithPattern } from './schemas/$ModelWithPattern.js';
+export { $ModelWithProperties } from './schemas/$ModelWithProperties.js';
+export { $ModelWithReference } from './schemas/$ModelWithReference.js';
+export { $ModelWithString } from './schemas/$ModelWithString.js';
+export { $Pageable } from './schemas/$Pageable.js';
+export { $SimpleBoolean } from './schemas/$SimpleBoolean.js';
+export { $SimpleFile } from './schemas/$SimpleFile.js';
+export { $SimpleInteger } from './schemas/$SimpleInteger.js';
+export { $SimpleParameter } from './schemas/$SimpleParameter.js';
+export { $SimpleReference } from './schemas/$SimpleReference.js';
+export { $SimpleString } from './schemas/$SimpleString.js';
+export { $SimpleStringWithPattern } from './schemas/$SimpleStringWithPattern.js';
 
 export * from './factories'
 export * as pathnames from './pathnames'

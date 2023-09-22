@@ -49,6 +49,7 @@ const templatesData = [
     { name: 'partialTypeIntersection', filePath: 'partials/typeIntersection.hbs' },
     { name: 'partialTypeReference', filePath: 'partials/typeReference.hbs' },
     { name: 'partialTypeUnion', filePath: 'partials/typeUnion.hbs' },
+    { name: 'partialTsExtention', filePath: 'partials/tsExtention.hbs' },
 ];
 
 export const precompiledTemplates = templatesData.reduce((acc, { name, filePath }) => {

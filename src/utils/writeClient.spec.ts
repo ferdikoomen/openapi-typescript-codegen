@@ -16,7 +16,18 @@ describe('writeClient', () => {
             services: [],
         };
 
-        await writeClient(client, templates, './dist', './factories.ts', false, true, true, Indent.SPACE_4, 'Model');
+        await writeClient(
+            client,
+            templates,
+            './dist',
+            './factories.ts',
+            false,
+            true,
+            true,
+            Indent.SPACE_4,
+            'Model',
+            false
+        );
 
         expect(rmdir).toBeCalled();
         expect(mkdir).toBeCalled();

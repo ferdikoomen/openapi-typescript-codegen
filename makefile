@@ -26,6 +26,7 @@ copy-templates:
 
 check: typecheck lint test
 
+.PHONY: build
 build: typecheck clean copy-templates
 	pnpm run build
 	rm -rf ./dist/*.spec.js ./dist/**/*.spec.js ./dist/**/__mocks__

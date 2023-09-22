@@ -25,6 +25,7 @@ export type Options = {
     exportSchemas?: boolean;
     indent?: Indent;
     postfixModels?: string;
+    allowImportingTsExtensions?: boolean;
     write?: boolean;
 };
 
@@ -40,22 +41,27 @@ export type Options = {
  * @param exportSchemas Generate schemas
  * @param indent Indentation options (4, 2 or tab)
  * @param postfixModels Model name postfix
+ * @param allowImportingTsExtensions (Generate .ts extentions on imports enstead .js)
  * @param write Write the files to disk (true or false)
  */
 export const generate = async ({
     input,
     output = 'generated/open-api',
-    factories,
+    factories: factoriesRaw,
     useUnionTypes = true,
     exportServices = true,
     exportSchemas = false,
     indent = Indent.SPACE_4,
     postfixModels = '',
+    allowImportingTsExtensions = false,
     write = true,
 }: Options): Promise<void> => {
-    if (!factories) {
+    if (!factoriesRaw) {
         throw new Error(`Argument 'factories' is require`);
     }
+
+    const extention = allowImportingTsExtensions ? '.ts' : '.js';
+    const factories = factoriesRaw.replace(/\.(ts|js)$/, '') + extention;
 
     const openApi = isString(input) ? await getOpenApiSpec(input) : input;
     const openApiVersion = getOpenApiVersion(openApi);
@@ -77,7 +83,8 @@ export const generate = async ({
                 exportServices,
                 exportSchemas,
                 indent,
-                postfixModels
+                postfixModels,
+                allowImportingTsExtensions
             );
             break;
         }
@@ -95,7 +102,8 @@ export const generate = async ({
                 exportServices,
                 exportSchemas,
                 indent,
-                postfixModels
+                postfixModels,
+                allowImportingTsExtensions
             );
             break;
         }

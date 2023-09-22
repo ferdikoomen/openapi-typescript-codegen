@@ -34,6 +34,7 @@ describe('bin', () => {
             '4',
             '--postfixModels',
             'Dto',
+            '--allowImportingTsExtensions',
         ]);
         expect(result.stdout.toString()).toBe('');
         expect(result.stderr.toString()).toBe('');

@@ -14,12 +14,14 @@ import { formatIndentation as i } from './formatIndentation.js';
  * @param templates The loaded handlebar templates
  * @param outputPath Directory to write the generated files to
  * @param indent Indentation options (4, 2 or tab)
+ * @param allowImportingTsExtensions Generate .ts extentions on imports enstead .js
  */
 export const writeClientPathnames = async (
     services: Service[],
     templates: Templates,
     outputPath: string,
-    indent: Indent
+    indent: Indent,
+    allowImportingTsExtensions: boolean
 ): Promise<void> => {
     const writedFiles = [];
     for (const service of services) {
@@ -30,7 +32,7 @@ export const writeClientPathnames = async (
     }
     if (writedFiles.length) {
         const file = resolve(outputPath, 'index.ts');
-        const templateResult = templates.exports.pathnames.index({ writedFiles });
+        const templateResult = templates.exports.pathnames.index({ writedFiles, allowImportingTsExtensions });
         await writeFile(file, i(f(templateResult), indent));
     }
 };

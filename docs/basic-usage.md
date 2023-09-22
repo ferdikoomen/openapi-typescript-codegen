@@ -14,6 +14,7 @@ $ generate-yobta --help
     --exportSchemas <value>   Write schemas to disk (default: false)
     --indent <value>          Indentation options [4, 2, tab] (default: "4")
     --postfixModels           Model name postfix
+    --allowImportingTsExtensions  Generate .ts extentions on imports enstead .js (default: false)
     -h, --help                display help for command
 
   Examples
