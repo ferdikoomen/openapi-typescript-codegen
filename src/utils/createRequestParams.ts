@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-import type { SchemaConfig, RequestInput, SchemaOptions } from '../factories';
+import type { EndpointConfig, RequestInput, SchemaOptions } from '../factories';
 
 import qs from 'query-string';
 
@@ -33,7 +33,7 @@ const isFormData = (value: unknown): value is FormData => {
 
 // region main
 
-const getUrl = (config: SchemaConfig, { formData, requestBody, ...params }: RequestInput = {}): string => {
+const getUrl = (config: EndpointConfig, { formData, requestBody, ...params }: RequestInput = {}): string => {
     const searchParams = qs.stringify(params);
     return [config.path, searchParams].filter(Boolean).join('?');
 };
@@ -77,7 +77,7 @@ const getRequestBody = ({ requestBody }: RequestInput = {}): BodyInit | undefine
     return JSON.stringify(requestBody);
 };
 
-const getHeaders = (config: SchemaConfig, input: RequestInput = {}, options?: SchemaOptions): Headers => {
+const getHeaders = (config: EndpointConfig, input: RequestInput = {}, options?: SchemaOptions): Headers => {
     const headers = Object.entries({
         Accept: 'application/json',
         ...options?.headers,
@@ -103,7 +103,7 @@ const getHeaders = (config: SchemaConfig, input: RequestInput = {}, options?: Sc
 // endregion
 
 export const createRequestParams = <Input extends RequestInput>(
-    config: SchemaConfig,
+    config: EndpointConfig,
     input?: Input,
     options?: SchemaOptions
 ): [RequestInfo, RequestInit] => {
