@@ -10,5 +10,3 @@ export type RequestInput =
     | { formData: Record<string, string | Blob>; requestBody?: never }
     | { requestBody: BodyInit; formData?: never }
     | Record<string | number, unknown>;
-
-export type RequestOutput = unknown;
