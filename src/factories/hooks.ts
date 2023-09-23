@@ -1,11 +1,11 @@
 import { SWRResponse } from 'swr';
 
-import { EndpointConfig, RequestInput, SchemaOptions, RequestOutput } from './commons';
+import { EndpointConfig, RequestInput, SchemaOptions } from './commons';
 
-export type HookResult<Data extends RequestOutput = RequestOutput> = SWRResponse<Data>;
+export type HookResult<Data> = SWRResponse<Data>;
 
 export interface HookFactory {
-    <Input extends RequestInput, Output extends RequestOutput = RequestOutput>(config: EndpointConfig): (
+    <Input extends RequestInput, Output>(config: EndpointConfig): (
         input: Input,
         options?: SchemaOptions
     ) => HookResult<Output>;
