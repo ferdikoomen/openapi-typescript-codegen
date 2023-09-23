@@ -65,7 +65,8 @@
         "commander": "^11.0.0",
         "fs-extra": "^11.1.1",
         "handlebars": "^4.7.7",
-        "json-schema-ref-parser": "^9.0.9"
+        "json-schema-ref-parser": "^9.0.9",
+        "query-string": "^8.1.0"
     },
     "devDependencies": {
         "@babel/cli": "7.22.6",
