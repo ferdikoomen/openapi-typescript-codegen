@@ -24,9 +24,9 @@ export const createClientResolver: ClientResolverFactory = config => async (inpu
     return response.json();
 };
 
-export const createSwrHook: HookFactory = (config) => (input, options) => {
-  const [url, init] = createRequestParams(config, input, options)
-  return useSWR([url, init]);
+export const createSwrHook: HookFactory = (config) => (input, swrConfig, fetchConfig) => {
+  const [url, init] = createRequestParams(config, input, fetchConfig)
+  return useSWR([url, init], swrConfig);
 }
 ```
 
