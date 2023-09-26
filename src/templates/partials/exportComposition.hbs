@@ -13,7 +13,6 @@ export type {{{name}}} = {{>type parent=name}};
 {{#unless @root.useUnionTypes}}
 
 export namespace {{{name}}} {
-
 	{{#each enums}}
 	{{#ifdef description deprecated}}
 	/**

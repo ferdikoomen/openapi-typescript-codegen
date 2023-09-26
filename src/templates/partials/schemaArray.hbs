@@ -1,4 +1,4 @@
-{
+{{#if @root}}{
 	type: 'array',
 {{#if link}}
 	contains: {{>schema link}},
@@ -16,4 +16,4 @@
 {{#if isNullable}}
 	isNullable: {{{isNullable}}},
 {{/if}}
-}
+}{{/if~}}

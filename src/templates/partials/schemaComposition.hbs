@@ -1,4 +1,4 @@
-{
+{{#if @root}}{
 	type: '{{export}}',
 {{#if description}}
 	description: `{{{escapeDescription description}}}`,
@@ -13,4 +13,4 @@
 {{#if isNullable}}
 	isNullable: {{{isNullable}}},
 {{/if}}
-}
+}{{/if~}}

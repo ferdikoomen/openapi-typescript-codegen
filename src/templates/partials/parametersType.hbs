@@ -1,4 +1,4 @@
-{{#if parameters}}
+{{~#if parameters~}}
 {
 {{#each parameters}}
 {{#ifdef description deprecated}}
@@ -11,9 +11,9 @@
 {{/if}}
  */
 {{/ifdef}}
-{{{name}}}{{>isRequired}}: {{>type}},
+{{~name~}}{{~>isRequired ~}}: {{>type~}};
 {{/each}}
 }
-{{else}}
+{{~else~}}
 undefined
-{{/if}}
+{{~/if~}}

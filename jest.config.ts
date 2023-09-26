@@ -1,5 +1,7 @@
 import type { Config } from 'jest';
 
+import * as path from 'path';
+
 const config: Config = {
     projects: [
         {
@@ -13,6 +15,7 @@ const config: Config = {
             transform: {
                 '^.+\\.(t|m?j)s$': 'babel-jest',
             },
+            transformIgnorePatterns: [`${path.join(__dirname, '../..')}node_modules/.pnpm/(?!(query-string))`],
             moduleFileExtensions: ['js', 'ts', 'd.ts', 'mjs'],
         },
     ],
