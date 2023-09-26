@@ -18,7 +18,7 @@ const params = program
     .option('-o, --output <value>', 'Output directory (default ./generated/open-api)')
     .option('--useUnionTypes <value>', 'Use union types instead of enums', true)
     .option('--exportServices <value>', 'Write services to disk', true)
-    .option('--exportSchemas <value>', 'Write schemas to disk', false)
+    .option('--exportSchemas', 'Write schemas to disk', false)
     .option('--indent <value>', 'Indentation options [4, 2, tabs]', '4')
     .option('--postfixModels <value>', 'Model name postfix')
     .option('--allowImportingTsExtensions', 'Generate .ts extentions on imports enstead .js', false)

@@ -1,11 +1,10 @@
 {{>header}}
 
-{{#if imports}}
-
+{{#if imports~}}
 {{#each imports}}
 import type { {{{this}}} } from './{{{this}}}{{>tsExtention}}';
 {{/each}}
-{{/if}}
+{{/if~}}
 
 {{#equals export 'interface'}}
 {{>exportInterface}}
@@ -17,7 +16,7 @@ import type { {{{this}}} } from './{{{this}}}{{>tsExtention}}';
 {{>exportComposition}}
 {{else equals export 'enum'}}
 {{#if @root.useUnionTypes}}
-{{>exportType}}
+{{~>exportType~}}
 {{else}}
 {{>exportEnum}}
 {{/if}}

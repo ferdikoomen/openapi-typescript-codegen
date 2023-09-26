@@ -7,12 +7,13 @@ exports[`v2 should generate: test/generated/v2/client/CollectionFormat.ts 1`] = 
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createClientResolver } from '../../../../factories-module.js'
+import { createClientResolver } from '../../../../factories-module.js';
 
 /**
  */
 export const collectionFormat = createClientResolver<Types.CollectionFormatCollectionFormatInput, Types.CollectionFormatCollectionFormatOutput>({
-    path: '/api/v{api-version}/collectionFormat', method: 'GET'
+    path: '/api/v{api-version}/collectionFormat',
+    method: 'GET',
 });
 
 "
@@ -25,13 +26,14 @@ exports[`v2 should generate: test/generated/v2/client/Complex.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createClientResolver } from '../../../../factories-module.js'
+import { createClientResolver } from '../../../../factories-module.js';
 
 /**
  * @returns ModelWithString Successful response
  */
 export const complexTypes = createClientResolver<Types.ComplexComplexTypesInput, Types.ComplexComplexTypesOutput>({
-    path: '/api/v{api-version}/complex', method: 'GET'
+    path: '/api/v{api-version}/complex',
+    method: 'GET',
 });
 
 "
@@ -44,12 +46,13 @@ exports[`v2 should generate: test/generated/v2/client/Default.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createClientResolver } from '../../../../factories-module.js'
+import { createClientResolver } from '../../../../factories-module.js';
 
 /**
  */
 export const serviceWithEmptyTag = createClientResolver<Types.DefaultServiceWithEmptyTagInput, Types.DefaultServiceWithEmptyTagOutput>({
-    path: '/api/v{api-version}/no-tag', method: 'GET'
+    path: '/api/v{api-version}/no-tag',
+    method: 'GET',
 });
 
 "
@@ -62,22 +65,25 @@ exports[`v2 should generate: test/generated/v2/client/Defaults.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createClientResolver } from '../../../../factories-module.js'
+import { createClientResolver } from '../../../../factories-module.js';
 
 /**
  */
 export const callWithDefaultParameters = createClientResolver<Types.DefaultsCallWithDefaultParametersInput, Types.DefaultsCallWithDefaultParametersOutput>({
-    path: '/api/v{api-version}/defaults', method: 'GET'
+    path: '/api/v{api-version}/defaults',
+    method: 'GET',
 });
 /**
  */
 export const callWithDefaultOptionalParameters = createClientResolver<Types.DefaultsCallWithDefaultOptionalParametersInput, Types.DefaultsCallWithDefaultOptionalParametersOutput>({
-    path: '/api/v{api-version}/defaults', method: 'POST'
+    path: '/api/v{api-version}/defaults',
+    method: 'POST',
 });
 /**
  */
 export const callToTestOrderOfParams = createClientResolver<Types.DefaultsCallToTestOrderOfParamsInput, Types.DefaultsCallToTestOrderOfParamsOutput>({
-    path: '/api/v{api-version}/defaults', method: 'PUT'
+    path: '/api/v{api-version}/defaults',
+    method: 'PUT',
 });
 
 "
@@ -90,12 +96,13 @@ exports[`v2 should generate: test/generated/v2/client/Descriptions.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createClientResolver } from '../../../../factories-module.js'
+import { createClientResolver } from '../../../../factories-module.js';
 
 /**
  */
 export const callWithDescriptions = createClientResolver<Types.DescriptionsCallWithDescriptionsInput, Types.DescriptionsCallWithDescriptionsOutput>({
-    path: '/api/v{api-version}/descriptions/', method: 'POST'
+    path: '/api/v{api-version}/descriptions/',
+    method: 'POST',
 });
 
 "
@@ -108,27 +115,31 @@ exports[`v2 should generate: test/generated/v2/client/Duplicate.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createClientResolver } from '../../../../factories-module.js'
+import { createClientResolver } from '../../../../factories-module.js';
 
 /**
  */
 export const duplicateName = createClientResolver<Types.DuplicateDuplicateNameInput, Types.DuplicateDuplicateNameOutput>({
-    path: '/api/v{api-version}/duplicate', method: 'GET'
+    path: '/api/v{api-version}/duplicate',
+    method: 'GET',
 });
 /**
  */
 export const duplicateName1 = createClientResolver<Types.DuplicateDuplicateName1Input, Types.DuplicateDuplicateName1Output>({
-    path: '/api/v{api-version}/duplicate', method: 'POST'
+    path: '/api/v{api-version}/duplicate',
+    method: 'POST',
 });
 /**
  */
 export const duplicateName2 = createClientResolver<Types.DuplicateDuplicateName2Input, Types.DuplicateDuplicateName2Output>({
-    path: '/api/v{api-version}/duplicate', method: 'PUT'
+    path: '/api/v{api-version}/duplicate',
+    method: 'PUT',
 });
 /**
  */
 export const duplicateName3 = createClientResolver<Types.DuplicateDuplicateName3Input, Types.DuplicateDuplicateName3Output>({
-    path: '/api/v{api-version}/duplicate', method: 'DELETE'
+    path: '/api/v{api-version}/duplicate',
+    method: 'DELETE',
 });
 
 "
@@ -141,13 +152,14 @@ exports[`v2 should generate: test/generated/v2/client/Error.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createClientResolver } from '../../../../factories-module.js'
+import { createClientResolver } from '../../../../factories-module.js';
 
 /**
  * @returns any Custom message: Successful response
  */
 export const testErrorCode = createClientResolver<Types.ErrorTestErrorCodeInput, Types.ErrorTestErrorCodeOutput>({
-    path: '/api/v{api-version}/error', method: 'POST'
+    path: '/api/v{api-version}/error',
+    method: 'POST',
 });
 
 "
@@ -160,13 +172,14 @@ exports[`v2 should generate: test/generated/v2/client/Header.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createClientResolver } from '../../../../factories-module.js'
+import { createClientResolver } from '../../../../factories-module.js';
 
 /**
  * @returns string Successful response
  */
 export const callWithResultFromHeader = createClientResolver<Types.HeaderCallWithResultFromHeaderInput, Types.HeaderCallWithResultFromHeaderOutput>({
-    path: '/api/v{api-version}/header', method: 'POST'
+    path: '/api/v{api-version}/header',
+    method: 'POST',
 });
 
 "
@@ -179,19 +192,21 @@ exports[`v2 should generate: test/generated/v2/client/MultipleTags1.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createClientResolver } from '../../../../factories-module.js'
+import { createClientResolver } from '../../../../factories-module.js';
 
 /**
  * @returns void
  */
 export const dummyA = createClientResolver<Types.MultipleTags1DummyAInput, Types.MultipleTags1DummyAOutput>({
-    path: '/api/v{api-version}/multiple-tags/a', method: 'GET'
+    path: '/api/v{api-version}/multiple-tags/a',
+    method: 'GET',
 });
 /**
  * @returns void
  */
 export const dummyB = createClientResolver<Types.MultipleTags1DummyBInput, Types.MultipleTags1DummyBOutput>({
-    path: '/api/v{api-version}/multiple-tags/b', method: 'GET'
+    path: '/api/v{api-version}/multiple-tags/b',
+    method: 'GET',
 });
 
 "
@@ -204,19 +219,21 @@ exports[`v2 should generate: test/generated/v2/client/MultipleTags2.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createClientResolver } from '../../../../factories-module.js'
+import { createClientResolver } from '../../../../factories-module.js';
 
 /**
  * @returns void
  */
 export const dummyA = createClientResolver<Types.MultipleTags2DummyAInput, Types.MultipleTags2DummyAOutput>({
-    path: '/api/v{api-version}/multiple-tags/a', method: 'GET'
+    path: '/api/v{api-version}/multiple-tags/a',
+    method: 'GET',
 });
 /**
  * @returns void
  */
 export const dummyB = createClientResolver<Types.MultipleTags2DummyBInput, Types.MultipleTags2DummyBOutput>({
-    path: '/api/v{api-version}/multiple-tags/b', method: 'GET'
+    path: '/api/v{api-version}/multiple-tags/b',
+    method: 'GET',
 });
 
 "
@@ -229,13 +246,14 @@ exports[`v2 should generate: test/generated/v2/client/MultipleTags3.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createClientResolver } from '../../../../factories-module.js'
+import { createClientResolver } from '../../../../factories-module.js';
 
 /**
  * @returns void
  */
 export const dummyB = createClientResolver<Types.MultipleTags3DummyBInput, Types.MultipleTags3DummyBOutput>({
-    path: '/api/v{api-version}/multiple-tags/b', method: 'GET'
+    path: '/api/v{api-version}/multiple-tags/b',
+    method: 'GET',
 });
 
 "
@@ -248,13 +266,14 @@ exports[`v2 should generate: test/generated/v2/client/NoContent.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createClientResolver } from '../../../../factories-module.js'
+import { createClientResolver } from '../../../../factories-module.js';
 
 /**
  * @returns void
  */
 export const callWithNoContentResponse = createClientResolver<Types.NoContentCallWithNoContentResponseInput, Types.NoContentCallWithNoContentResponseOutput>({
-    path: '/api/v{api-version}/no-content', method: 'GET'
+    path: '/api/v{api-version}/no-content',
+    method: 'GET',
 });
 
 "
@@ -267,17 +286,19 @@ exports[`v2 should generate: test/generated/v2/client/Parameters.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createClientResolver } from '../../../../factories-module.js'
+import { createClientResolver } from '../../../../factories-module.js';
 
 /**
  */
 export const callWithParameters = createClientResolver<Types.ParametersCallWithParametersInput, Types.ParametersCallWithParametersOutput>({
-    path: '/api/v{api-version}/parameters/{parameterPath}', method: 'POST'
+    path: '/api/v{api-version}/parameters/{parameterPath}',
+    method: 'POST',
 });
 /**
  */
 export const callWithWeirdParameterNames = createClientResolver<Types.ParametersCallWithWeirdParameterNamesInput, Types.ParametersCallWithWeirdParameterNamesOutput>({
-    path: '/api/v{api-version}/parameters/{parameter.path.1}/{parameter-path-2}/{PARAMETER-PATH-3}', method: 'POST'
+    path: '/api/v{api-version}/parameters/{parameter.path.1}/{parameter-path-2}/{PARAMETER-PATH-3}',
+    method: 'POST',
 });
 
 "
@@ -290,19 +311,21 @@ exports[`v2 should generate: test/generated/v2/client/Response.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createClientResolver } from '../../../../factories-module.js'
+import { createClientResolver } from '../../../../factories-module.js';
 
 /**
  * @returns ModelWithString Message for default response
  */
 export const callWithResponse = createClientResolver<Types.ResponseCallWithResponseInput, Types.ResponseCallWithResponseOutput>({
-    path: '/api/v{api-version}/response', method: 'GET'
+    path: '/api/v{api-version}/response',
+    method: 'GET',
 });
 /**
  * @returns ModelWithString Message for default response
  */
 export const callWithDuplicateResponses = createClientResolver<Types.ResponseCallWithDuplicateResponsesInput, Types.ResponseCallWithDuplicateResponsesOutput>({
-    path: '/api/v{api-version}/response', method: 'POST'
+    path: '/api/v{api-version}/response',
+    method: 'POST',
 });
 /**
  * @returns any Message for 200 response
@@ -311,7 +334,8 @@ export const callWithDuplicateResponses = createClientResolver<Types.ResponseCal
  * @returns ModelThatExtendsExtends Message for 202 response
  */
 export const callWithResponses = createClientResolver<Types.ResponseCallWithResponsesInput, Types.ResponseCallWithResponsesOutput>({
-    path: '/api/v{api-version}/response', method: 'PUT'
+    path: '/api/v{api-version}/response',
+    method: 'PUT',
 });
 
 "
@@ -324,42 +348,49 @@ exports[`v2 should generate: test/generated/v2/client/Simple.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createClientResolver } from '../../../../factories-module.js'
+import { createClientResolver } from '../../../../factories-module.js';
 
 /**
  */
 export const getCallWithoutParametersAndResponse = createClientResolver<Types.SimpleGetCallWithoutParametersAndResponseInput, Types.SimpleGetCallWithoutParametersAndResponseOutput>({
-    path: '/api/v{api-version}/simple', method: 'GET'
+    path: '/api/v{api-version}/simple',
+    method: 'GET',
 });
 /**
  */
 export const putCallWithoutParametersAndResponse = createClientResolver<Types.SimplePutCallWithoutParametersAndResponseInput, Types.SimplePutCallWithoutParametersAndResponseOutput>({
-    path: '/api/v{api-version}/simple', method: 'PUT'
+    path: '/api/v{api-version}/simple',
+    method: 'PUT',
 });
 /**
  */
 export const postCallWithoutParametersAndResponse = createClientResolver<Types.SimplePostCallWithoutParametersAndResponseInput, Types.SimplePostCallWithoutParametersAndResponseOutput>({
-    path: '/api/v{api-version}/simple', method: 'POST'
+    path: '/api/v{api-version}/simple',
+    method: 'POST',
 });
 /**
  */
 export const deleteCallWithoutParametersAndResponse = createClientResolver<Types.SimpleDeleteCallWithoutParametersAndResponseInput, Types.SimpleDeleteCallWithoutParametersAndResponseOutput>({
-    path: '/api/v{api-version}/simple', method: 'DELETE'
+    path: '/api/v{api-version}/simple',
+    method: 'DELETE',
 });
 /**
  */
 export const optionsCallWithoutParametersAndResponse = createClientResolver<Types.SimpleOptionsCallWithoutParametersAndResponseInput, Types.SimpleOptionsCallWithoutParametersAndResponseOutput>({
-    path: '/api/v{api-version}/simple', method: 'OPTIONS'
+    path: '/api/v{api-version}/simple',
+    method: 'OPTIONS',
 });
 /**
  */
 export const headCallWithoutParametersAndResponse = createClientResolver<Types.SimpleHeadCallWithoutParametersAndResponseInput, Types.SimpleHeadCallWithoutParametersAndResponseOutput>({
-    path: '/api/v{api-version}/simple', method: 'HEAD'
+    path: '/api/v{api-version}/simple',
+    method: 'HEAD',
 });
 /**
  */
 export const patchCallWithoutParametersAndResponse = createClientResolver<Types.SimplePatchCallWithoutParametersAndResponseInput, Types.SimplePatchCallWithoutParametersAndResponseOutput>({
-    path: '/api/v{api-version}/simple', method: 'PATCH'
+    path: '/api/v{api-version}/simple',
+    method: 'PATCH',
 });
 
 "
@@ -372,7 +403,7 @@ exports[`v2 should generate: test/generated/v2/client/Types.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createClientResolver } from '../../../../factories-module.js'
+import { createClientResolver } from '../../../../factories-module.js';
 
 /**
  * @returns number Response is a simple number
@@ -381,7 +412,8 @@ import { createClientResolver } from '../../../../factories-module.js'
  * @returns any Response is a simple object
  */
 export const types = createClientResolver<Types.TypesTypesInput, Types.TypesTypesOutput>({
-    path: '/api/v{api-version}/types', method: 'GET'
+    path: '/api/v{api-version}/types',
+    method: 'GET',
 });
 
 "
@@ -393,22 +425,22 @@ exports[`v2 should generate: test/generated/v2/client/index.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 
-export * as default from './Default.js'
-export * as simple from './Simple.js'
-export * as descriptions from './Descriptions.js'
-export * as parameters from './Parameters.js'
-export * as defaults from './Defaults.js'
-export * as duplicate from './Duplicate.js'
-export * as noContent from './NoContent.js'
-export * as multipleTags1 from './MultipleTags1.js'
-export * as multipleTags2 from './MultipleTags2.js'
-export * as multipleTags3 from './MultipleTags3.js'
-export * as response from './Response.js'
-export * as collectionFormat from './CollectionFormat.js'
-export * as types from './Types.js'
-export * as complex from './Complex.js'
-export * as header from './Header.js'
-export * as error from './Error.js'
+export * as default from './Default.js';
+export * as simple from './Simple.js';
+export * as descriptions from './Descriptions.js';
+export * as parameters from './Parameters.js';
+export * as defaults from './Defaults.js';
+export * as duplicate from './Duplicate.js';
+export * as noContent from './NoContent.js';
+export * as multipleTags1 from './MultipleTags1.js';
+export * as multipleTags2 from './MultipleTags2.js';
+export * as multipleTags3 from './MultipleTags3.js';
+export * as response from './Response.js';
+export * as collectionFormat from './CollectionFormat.js';
+export * as types from './Types.js';
+export * as complex from './Complex.js';
+export * as header from './Header.js';
+export * as error from './Error.js';
 
 "
 `;
@@ -419,7 +451,7 @@ exports[`v2 should generate: test/generated/v2/factories/index.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 
-export * from './types.js'
+export * from './types.js';
 
 "
 `;
@@ -430,37 +462,23 @@ exports[`v2 should generate: test/generated/v2/factories/types.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 
-
-
-export type DefaultServiceWithEmptyTagInput = undefined
-;
+export type DefaultServiceWithEmptyTagInput = undefined;
 export type DefaultServiceWithEmptyTagOutput = void;
 
-
-
-export type SimpleGetCallWithoutParametersAndResponseInput = undefined
-;
+export type SimpleGetCallWithoutParametersAndResponseInput = undefined;
 export type SimpleGetCallWithoutParametersAndResponseOutput = void;
-export type SimplePutCallWithoutParametersAndResponseInput = undefined
-;
+export type SimplePutCallWithoutParametersAndResponseInput = undefined;
 export type SimplePutCallWithoutParametersAndResponseOutput = void;
-export type SimplePostCallWithoutParametersAndResponseInput = undefined
-;
+export type SimplePostCallWithoutParametersAndResponseInput = undefined;
 export type SimplePostCallWithoutParametersAndResponseOutput = void;
-export type SimpleDeleteCallWithoutParametersAndResponseInput = undefined
-;
+export type SimpleDeleteCallWithoutParametersAndResponseInput = undefined;
 export type SimpleDeleteCallWithoutParametersAndResponseOutput = void;
-export type SimpleOptionsCallWithoutParametersAndResponseInput = undefined
-;
+export type SimpleOptionsCallWithoutParametersAndResponseInput = undefined;
 export type SimpleOptionsCallWithoutParametersAndResponseOutput = void;
-export type SimpleHeadCallWithoutParametersAndResponseInput = undefined
-;
+export type SimpleHeadCallWithoutParametersAndResponseInput = undefined;
 export type SimpleHeadCallWithoutParametersAndResponseOutput = void;
-export type SimplePatchCallWithoutParametersAndResponseInput = undefined
-;
+export type SimplePatchCallWithoutParametersAndResponseInput = undefined;
 export type SimplePatchCallWithoutParametersAndResponseOutput = void;
-
-
 
 export type DescriptionsCallWithDescriptionsInput = {
     /**
@@ -469,559 +487,300 @@ export type DescriptionsCallWithDescriptionsInput = {
      *
      * Fourth line
      */
-    parameterWithBreaks?
-    : string
-
-    ,
+    parameterWithBreaks?: string;
     /**
      * Testing backticks in string: \`backticks\` and \`\`\`multiple backticks\`\`\` should work
      */
-    parameterWithBackticks?
-    : string
-
-    ,
+    parameterWithBackticks?: string;
     /**
      * Testing slashes in string: \\backwards\\\\\\ and /forwards/// should work
      */
-    parameterWithSlashes?
-    : string
-
-    ,
+    parameterWithSlashes?: string;
     /**
      * Testing expression placeholders in string: \${expression} should work
      */
-    parameterWithExpressionPlaceholders?
-    : string
-
-    ,
+    parameterWithExpressionPlaceholders?: string;
     /**
      * Testing quotes in string: 'single quote''' and "double quotes""" should work
      */
-    parameterWithQuotes?
-    : string
-
-    ,
+    parameterWithQuotes?: string;
     /**
      * Testing reserved characters in string: * inline * and ** inline ** should work
      */
-    parameterWithReservedCharacters?
-    : string
-
-    ,
-}
-;
+    parameterWithReservedCharacters?: string;
+};
 export type DescriptionsCallWithDescriptionsOutput = void;
-
-
 
 export type ParametersCallWithParametersInput = {
     /**
      * This is the parameter that goes into the header
      */
-    parameterHeader
-    : string
-
-    ,
+    parameterHeader: string;
     /**
      * This is the parameter that goes into the query params
      */
-    parameterQuery
-    : string
-
-    ,
+    parameterQuery: string;
     /**
      * This is the parameter that goes into the form data
      */
-    parameterForm
-    : string
-
-    ,
+    parameterForm: string;
     /**
      * This is the parameter that is sent as request body
      */
-    parameterBody
-    : string
-
-    ,
+    parameterBody: string;
     /**
      * This is the parameter that goes into the path
      */
-    parameterPath
-    : string
-
-    ,
-}
-;
+    parameterPath: string;
+};
 export type ParametersCallWithParametersOutput = void;
 export type ParametersCallWithWeirdParameterNamesInput = {
     /**
      * This is the parameter that goes into the request header
      */
-    parameterHeader
-    : string
-
-    ,
+    parameterHeader: string;
     /**
      * This is the parameter that goes into the request query params
      */
-    parameterQuery
-    : string
-
-    ,
+    parameterQuery: string;
     /**
      * This is the parameter that goes into the request form data
      */
-    parameterForm
-    : string
-
-    ,
+    parameterForm: string;
     /**
      * This is the parameter that is sent as request body
      */
-    parameterBody
-    : string
-
-    ,
+    parameterBody: string;
     /**
      * This is the parameter that goes into the path
      */
-    parameterPath1?
-    : string
-
-    ,
+    parameterPath1?: string;
     /**
      * This is the parameter that goes into the path
      */
-    parameterPath2?
-    : string
-
-    ,
+    parameterPath2?: string;
     /**
      * This is the parameter that goes into the path
      */
-    parameterPath3?
-    : string
-
-    ,
+    parameterPath3?: string;
     /**
      * This is the parameter with a reserved keyword
      */
-    _default?
-    : string
-
-    ,
-}
-;
+    _default?: string;
+};
 export type ParametersCallWithWeirdParameterNamesOutput = void;
 
-
 import type { ModelWithString } from '../models/ModelWithString.js';
-
 export type DefaultsCallWithDefaultParametersInput = {
     /**
      * This is a simple string with default value
      */
-    parameterString?
-    : string
-
-    ,
+    parameterString?: string;
     /**
      * This is a simple number with default value
      */
-    parameterNumber?
-    : number
-
-    ,
+    parameterNumber?: number;
     /**
      * This is a simple boolean with default value
      */
-    parameterBoolean?
-    : boolean
-
-    ,
+    parameterBoolean?: boolean;
     /**
      * This is a simple enum with default value
      */
-    parameterEnum?
-    : 'Success' | 'Warning' | 'Error'
-
-
-    ,
+    parameterEnum?: 'Success' | 'Warning' | 'Error';
     /**
      * This is a simple model with default value
      */
-    parameterModel?
-    : ModelWithString
-
-    ,
-}
-;
+    parameterModel?: ModelWithString;
+};
 export type DefaultsCallWithDefaultParametersOutput = void;
 export type DefaultsCallWithDefaultOptionalParametersInput = {
     /**
      * This is a simple string that is optional with default value
      */
-    parameterString?
-    : string
-
-    ,
+    parameterString?: string;
     /**
      * This is a simple number that is optional with default value
      */
-    parameterNumber?
-    : number
-
-    ,
+    parameterNumber?: number;
     /**
      * This is a simple boolean that is optional with default value
      */
-    parameterBoolean?
-    : boolean
-
-    ,
+    parameterBoolean?: boolean;
     /**
      * This is a simple enum that is optional with default value
      */
-    parameterEnum?
-    : 'Success' | 'Warning' | 'Error'
-
-
-    ,
+    parameterEnum?: 'Success' | 'Warning' | 'Error';
     /**
      * This is a simple model that is optional with default value
      */
-    parameterModel?
-    : ModelWithString
-
-    ,
-}
-;
+    parameterModel?: ModelWithString;
+};
 export type DefaultsCallWithDefaultOptionalParametersOutput = void;
 export type DefaultsCallToTestOrderOfParamsInput = {
     /**
      * This is a string with no default
      */
-    parameterStringWithNoDefault
-    : string
-
-    ,
+    parameterStringWithNoDefault: string;
     /**
      * This is a optional string with default
      */
-    parameterOptionalStringWithDefault?
-    : string
-
-    ,
+    parameterOptionalStringWithDefault?: string;
     /**
      * This is a optional string with empty default
      */
-    parameterOptionalStringWithEmptyDefault?
-    : string
-
-    ,
+    parameterOptionalStringWithEmptyDefault?: string;
     /**
      * This is a optional string with no default
      */
-    parameterOptionalStringWithNoDefault?
-    : string
-
-    ,
+    parameterOptionalStringWithNoDefault?: string;
     /**
      * This is a string with default
      */
-    parameterStringWithDefault?
-    : string
-
-    ,
+    parameterStringWithDefault?: string;
     /**
      * This is a string with empty default
      */
-    parameterStringWithEmptyDefault?
-    : string
-
-    ,
+    parameterStringWithEmptyDefault?: string;
     /**
      * This is a string that can be null with no default
      */
-    parameterStringNullableWithNoDefault?
-    : string | null
-
-    ,
+    parameterStringNullableWithNoDefault?: string | null;
     /**
      * This is a string that can be null with default
      */
-    parameterStringNullableWithDefault?
-    : string | null
-
-    ,
-}
-;
+    parameterStringNullableWithDefault?: string | null;
+};
 export type DefaultsCallToTestOrderOfParamsOutput = void;
 
-
-
-export type DuplicateDuplicateNameInput = undefined
-;
+export type DuplicateDuplicateNameInput = undefined;
 export type DuplicateDuplicateNameOutput = void;
-export type DuplicateDuplicateName1Input = undefined
-;
+export type DuplicateDuplicateName1Input = undefined;
 export type DuplicateDuplicateName1Output = void;
-export type DuplicateDuplicateName2Input = undefined
-;
+export type DuplicateDuplicateName2Input = undefined;
 export type DuplicateDuplicateName2Output = void;
-export type DuplicateDuplicateName3Input = undefined
-;
+export type DuplicateDuplicateName3Input = undefined;
 export type DuplicateDuplicateName3Output = void;
 
+export type NoContentCallWithNoContentResponseInput = undefined;
+export type NoContentCallWithNoContentResponseOutput = void;
 
+export type MultipleTags1DummyAInput = undefined;
+export type MultipleTags1DummyAOutput = void;
+export type MultipleTags1DummyBInput = undefined;
+export type MultipleTags1DummyBOutput = void;
 
-export type NoContentCallWithNoContentResponseInput = undefined
-;
-export type NoContentCallWithNoContentResponseOutput = void
+export type MultipleTags2DummyAInput = undefined;
+export type MultipleTags2DummyAOutput = void;
+export type MultipleTags2DummyBInput = undefined;
+export type MultipleTags2DummyBOutput = void;
 
-;
-
-
-
-export type MultipleTags1DummyAInput = undefined
-;
-export type MultipleTags1DummyAOutput = void
-
-;
-export type MultipleTags1DummyBInput = undefined
-;
-export type MultipleTags1DummyBOutput = void
-
-;
-
-
-
-export type MultipleTags2DummyAInput = undefined
-;
-export type MultipleTags2DummyAOutput = void
-
-;
-export type MultipleTags2DummyBInput = undefined
-;
-export type MultipleTags2DummyBOutput = void
-
-;
-
-
-
-export type MultipleTags3DummyBInput = undefined
-;
-export type MultipleTags3DummyBOutput = void
-
-;
-
+export type MultipleTags3DummyBInput = undefined;
+export type MultipleTags3DummyBOutput = void;
 
 import type { ModelThatExtends } from '../models/ModelThatExtends.js';
 import type { ModelThatExtendsExtends } from '../models/ModelThatExtendsExtends.js';
 import type { ModelWithString } from '../models/ModelWithString.js';
-
-export type ResponseCallWithResponseInput = undefined
-;
-export type ResponseCallWithResponseOutput = ModelWithString
-
-;
-export type ResponseCallWithDuplicateResponsesInput = undefined
-;
-export type ResponseCallWithDuplicateResponsesOutput = ModelWithString
-
-;
-export type ResponseCallWithResponsesInput = undefined
-;
+export type ResponseCallWithResponseInput = undefined;
+export type ResponseCallWithResponseOutput = ModelWithString;
+export type ResponseCallWithDuplicateResponsesInput = undefined;
+export type ResponseCallWithDuplicateResponsesOutput = ModelWithString;
+export type ResponseCallWithResponsesInput = undefined;
 export type ResponseCallWithResponsesOutput = {
-    readonly
-    '@namespace.string'?
-    : string
-
-    ;
-    readonly
-    '@namespace.integer'?
-    : number
-
-    ;
-    readonly
-    value?
-    : Array<ModelWithString>
-    ;
-}
-| ModelWithString
-
-| ModelThatExtends
-
-| ModelThatExtendsExtends
-
-;
-
-
+    readonly '@namespace.string'?: string;
+    readonly '@namespace.integer'?: number;
+    readonly value?: Array<ModelWithString>;
+} | ModelWithString | ModelThatExtends | ModelThatExtendsExtends;
 
 export type CollectionFormatCollectionFormatInput = {
     /**
      * This is an array parameter that is sent as csv format (comma-separated values)
      */
-    parameterArrayCsv
-    : Array<string>
-    ,
+    parameterArrayCsv: Array<string>;
     /**
      * This is an array parameter that is sent as ssv format (space-separated values)
      */
-    parameterArraySsv
-    : Array<string>
-    ,
+    parameterArraySsv: Array<string>;
     /**
      * This is an array parameter that is sent as tsv format (tab-separated values)
      */
-    parameterArrayTsv
-    : Array<string>
-    ,
+    parameterArrayTsv: Array<string>;
     /**
      * This is an array parameter that is sent as pipes format (pipe-separated values)
      */
-    parameterArrayPipes
-    : Array<string>
-    ,
+    parameterArrayPipes: Array<string>;
     /**
      * This is an array parameter that is sent as multi format (multiple parameter instances)
      */
-    parameterArrayMulti
-    : Array<string>
-    ,
-}
-;
+    parameterArrayMulti: Array<string>;
+};
 export type CollectionFormatCollectionFormatOutput = void;
-
-
 
 export type TypesTypesInput = {
     /**
      * This is an array parameter
      */
-    parameterArray
-    : Array<string>
-    ,
+    parameterArray: Array<string>;
     /**
      * This is a dictionary parameter
      */
-    parameterDictionary
-    : Record<string, string>
-    ,
+    parameterDictionary: Record<string, string>;
     /**
      * This is an enum parameter
      */
-    parameterEnum
-    : 'Success' | 'Warning' | 'Error'
-
-
-    ,
+    parameterEnum: 'Success' | 'Warning' | 'Error';
     /**
      * This is a number parameter
      */
-    parameterNumber?
-    : number
-
-    ,
+    parameterNumber?: number;
     /**
      * This is a string parameter
      */
-    parameterString?
-    : string
-
-    ,
+    parameterString?: string;
     /**
      * This is a boolean parameter
      */
-    parameterBoolean?
-    : boolean
-
-    ,
+    parameterBoolean?: boolean;
     /**
      * This is an object parameter
      */
-    parameterObject?
-    : any
-
-    ,
+    parameterObject?: any;
     /**
      * This is a number parameter
      */
-    id?
-    : number
-
-    ,
-}
-;
-export type TypesTypesOutput = number
-
-| string
-
-| boolean
-
-| any;
-
+    id?: number;
+};
+export type TypesTypesOutput = number | string | boolean | any;
 
 import type { ModelWithString } from '../models/ModelWithString.js';
-
 export type ComplexComplexTypesInput = {
     /**
      * Parameter containing object
      */
-    parameterObject
-    : {
-
-        first?
-        : {
-
-            second?
-            : {
-
-                third?
-                : string
-
-                ;
-            }
-            ;
-        }
-        ;
-    }
-    ,
+    parameterObject: {
+        first?: {
+            second?: {
+                third?: string;
+            };
+        };
+    };
     /**
      * Parameter containing reference
      */
-    parameterReference
-    : ModelWithString
+    parameterReference: ModelWithString;
+};
+export type ComplexComplexTypesOutput = Array<ModelWithString>;
 
-    ,
-}
-;
-export type ComplexComplexTypesOutput = Array<ModelWithString>
-;
-
-
-
-export type HeaderCallWithResultFromHeaderInput = undefined
-;
-export type HeaderCallWithResultFromHeaderOutput = string
-
-;
-
-
+export type HeaderCallWithResultFromHeaderInput = undefined;
+export type HeaderCallWithResultFromHeaderOutput = string;
 
 export type ErrorTestErrorCodeInput = {
     /**
      * Status code to return
      */
-    status
-    : string
-
-    ,
-}
-;
-export type ErrorTestErrorCodeOutput = any
-
-;
+    status: string;
+};
+export type ErrorTestErrorCodeOutput = any;
 
 
 "
@@ -1034,10 +793,11 @@ exports[`v2 should generate: test/generated/v2/hook/CollectionFormat.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createSwrHook } from '../../../../factories-module.js'
+import { createSwrHook } from '../../../../factories-module.js';
 
 export const useCollectionFormat = createSwrHook<Types.CollectionFormatCollectionFormatInput, Types.CollectionFormatCollectionFormatOutput>({
-    path: '/api/v{api-version}/collectionFormat', method: 'GET'
+    path: '/api/v{api-version}/collectionFormat',
+    method: 'GET',
 });
 
 "
@@ -1050,10 +810,11 @@ exports[`v2 should generate: test/generated/v2/hook/Complex.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createSwrHook } from '../../../../factories-module.js'
+import { createSwrHook } from '../../../../factories-module.js';
 
 export const useComplexTypes = createSwrHook<Types.ComplexComplexTypesInput, Types.ComplexComplexTypesOutput>({
-    path: '/api/v{api-version}/complex', method: 'GET'
+    path: '/api/v{api-version}/complex',
+    method: 'GET',
 });
 
 "
@@ -1066,10 +827,11 @@ exports[`v2 should generate: test/generated/v2/hook/Default.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createSwrHook } from '../../../../factories-module.js'
+import { createSwrHook } from '../../../../factories-module.js';
 
 export const useServiceWithEmptyTag = createSwrHook<Types.DefaultServiceWithEmptyTagInput, Types.DefaultServiceWithEmptyTagOutput>({
-    path: '/api/v{api-version}/no-tag', method: 'GET'
+    path: '/api/v{api-version}/no-tag',
+    method: 'GET',
 });
 
 "
@@ -1082,10 +844,11 @@ exports[`v2 should generate: test/generated/v2/hook/Defaults.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createSwrHook } from '../../../../factories-module.js'
+import { createSwrHook } from '../../../../factories-module.js';
 
 export const useCallWithDefaultParameters = createSwrHook<Types.DefaultsCallWithDefaultParametersInput, Types.DefaultsCallWithDefaultParametersOutput>({
-    path: '/api/v{api-version}/defaults', method: 'GET'
+    path: '/api/v{api-version}/defaults',
+    method: 'GET',
 });
 
 "
@@ -1098,10 +861,11 @@ exports[`v2 should generate: test/generated/v2/hook/Duplicate.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createSwrHook } from '../../../../factories-module.js'
+import { createSwrHook } from '../../../../factories-module.js';
 
 export const useDuplicateName = createSwrHook<Types.DuplicateDuplicateNameInput, Types.DuplicateDuplicateNameOutput>({
-    path: '/api/v{api-version}/duplicate', method: 'GET'
+    path: '/api/v{api-version}/duplicate',
+    method: 'GET',
 });
 
 "
@@ -1114,13 +878,15 @@ exports[`v2 should generate: test/generated/v2/hook/MultipleTags1.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createSwrHook } from '../../../../factories-module.js'
+import { createSwrHook } from '../../../../factories-module.js';
 
 export const useDummyA = createSwrHook<Types.MultipleTags1DummyAInput, Types.MultipleTags1DummyAOutput>({
-    path: '/api/v{api-version}/multiple-tags/a', method: 'GET'
+    path: '/api/v{api-version}/multiple-tags/a',
+    method: 'GET',
 });
 export const useDummyB = createSwrHook<Types.MultipleTags1DummyBInput, Types.MultipleTags1DummyBOutput>({
-    path: '/api/v{api-version}/multiple-tags/b', method: 'GET'
+    path: '/api/v{api-version}/multiple-tags/b',
+    method: 'GET',
 });
 
 "
@@ -1133,13 +899,15 @@ exports[`v2 should generate: test/generated/v2/hook/MultipleTags2.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createSwrHook } from '../../../../factories-module.js'
+import { createSwrHook } from '../../../../factories-module.js';
 
 export const useDummyA = createSwrHook<Types.MultipleTags2DummyAInput, Types.MultipleTags2DummyAOutput>({
-    path: '/api/v{api-version}/multiple-tags/a', method: 'GET'
+    path: '/api/v{api-version}/multiple-tags/a',
+    method: 'GET',
 });
 export const useDummyB = createSwrHook<Types.MultipleTags2DummyBInput, Types.MultipleTags2DummyBOutput>({
-    path: '/api/v{api-version}/multiple-tags/b', method: 'GET'
+    path: '/api/v{api-version}/multiple-tags/b',
+    method: 'GET',
 });
 
 "
@@ -1152,10 +920,11 @@ exports[`v2 should generate: test/generated/v2/hook/MultipleTags3.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createSwrHook } from '../../../../factories-module.js'
+import { createSwrHook } from '../../../../factories-module.js';
 
 export const useDummyB = createSwrHook<Types.MultipleTags3DummyBInput, Types.MultipleTags3DummyBOutput>({
-    path: '/api/v{api-version}/multiple-tags/b', method: 'GET'
+    path: '/api/v{api-version}/multiple-tags/b',
+    method: 'GET',
 });
 
 "
@@ -1168,10 +937,11 @@ exports[`v2 should generate: test/generated/v2/hook/NoContent.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createSwrHook } from '../../../../factories-module.js'
+import { createSwrHook } from '../../../../factories-module.js';
 
 export const useCallWithNoContentResponse = createSwrHook<Types.NoContentCallWithNoContentResponseInput, Types.NoContentCallWithNoContentResponseOutput>({
-    path: '/api/v{api-version}/no-content', method: 'GET'
+    path: '/api/v{api-version}/no-content',
+    method: 'GET',
 });
 
 "
@@ -1184,10 +954,11 @@ exports[`v2 should generate: test/generated/v2/hook/Response.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createSwrHook } from '../../../../factories-module.js'
+import { createSwrHook } from '../../../../factories-module.js';
 
 export const useCallWithResponse = createSwrHook<Types.ResponseCallWithResponseInput, Types.ResponseCallWithResponseOutput>({
-    path: '/api/v{api-version}/response', method: 'GET'
+    path: '/api/v{api-version}/response',
+    method: 'GET',
 });
 
 "
@@ -1200,10 +971,11 @@ exports[`v2 should generate: test/generated/v2/hook/Simple.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createSwrHook } from '../../../../factories-module.js'
+import { createSwrHook } from '../../../../factories-module.js';
 
 export const useGetCallWithoutParametersAndResponse = createSwrHook<Types.SimpleGetCallWithoutParametersAndResponseInput, Types.SimpleGetCallWithoutParametersAndResponseOutput>({
-    path: '/api/v{api-version}/simple', method: 'GET'
+    path: '/api/v{api-version}/simple',
+    method: 'GET',
 });
 
 "
@@ -1216,10 +988,11 @@ exports[`v2 should generate: test/generated/v2/hook/Types.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createSwrHook } from '../../../../factories-module.js'
+import { createSwrHook } from '../../../../factories-module.js';
 
 export const useTypes = createSwrHook<Types.TypesTypesInput, Types.TypesTypesOutput>({
-    path: '/api/v{api-version}/types', method: 'GET'
+    path: '/api/v{api-version}/types',
+    method: 'GET',
 });
 
 "
@@ -1231,18 +1004,18 @@ exports[`v2 should generate: test/generated/v2/hook/index.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 
-export * as default from './Default.js'
-export * as simple from './Simple.js'
-export * as defaults from './Defaults.js'
-export * as duplicate from './Duplicate.js'
-export * as noContent from './NoContent.js'
-export * as multipleTags1 from './MultipleTags1.js'
-export * as multipleTags2 from './MultipleTags2.js'
-export * as multipleTags3 from './MultipleTags3.js'
-export * as response from './Response.js'
-export * as collectionFormat from './CollectionFormat.js'
-export * as types from './Types.js'
-export * as complex from './Complex.js'
+export * as default from './Default.js';
+export * as simple from './Simple.js';
+export * as defaults from './Defaults.js';
+export * as duplicate from './Duplicate.js';
+export * as noContent from './NoContent.js';
+export * as multipleTags1 from './MultipleTags1.js';
+export * as multipleTags2 from './MultipleTags2.js';
+export * as multipleTags3 from './MultipleTags3.js';
+export * as response from './Response.js';
+export * as collectionFormat from './CollectionFormat.js';
+export * as types from './Types.js';
+export * as complex from './Complex.js';
 
 "
 `;
@@ -1252,7 +1025,6 @@ exports[`v2 should generate: test/generated/v2/index.ts 1`] = `
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 
 export type { _default } from './models/_default.js';
 export type { ArrayWithArray } from './models/ArrayWithArray.js';
@@ -1352,11 +1124,11 @@ export { $SimpleReference } from './schemas/$SimpleReference.js';
 export { $SimpleString } from './schemas/$SimpleString.js';
 export { $SimpleStringWithPattern } from './schemas/$SimpleStringWithPattern.js';
 
-export * from './factories'
-export * as pathnames from './pathnames'
-export * as server from './server'
-export * as client from './client'
-export * as hook from './hook'
+export * from './factories';
+export * as pathnames from './pathnames';
+export * as server from './server';
+export * as client from './client';
+export * as hook from './hook';
 "
 `;
 
@@ -1366,13 +1138,8 @@ exports[`v2 should generate: test/generated/v2/models/_default.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 
-
 export type _default = {
-
-    name?
-    : string
-
-    ;
+    name?: string;
 };
 
 "
@@ -1384,15 +1151,11 @@ exports[`v2 should generate: test/generated/v2/models/ArrayWithArray.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 
-
 import type { ModelWithString } from './ModelWithString.js';
-
 /**
  * This is a simple array containing an array
  */
-export type ArrayWithArray = Array<Array<ModelWithString>
->
-;
+export type ArrayWithArray = Array<Array<ModelWithString>>;
 
 "
 `;
@@ -1403,14 +1166,10 @@ exports[`v2 should generate: test/generated/v2/models/ArrayWithBooleans.ts 1`] =
 /* tslint:disable */
 /* eslint-disable */
 
-
 /**
  * This is a simple array with booleans
  */
-export type ArrayWithBooleans = Array<boolean
-
->
-;
+export type ArrayWithBooleans = Array<boolean>;
 
 "
 `;
@@ -1421,14 +1180,10 @@ exports[`v2 should generate: test/generated/v2/models/ArrayWithNumbers.ts 1`] = 
 /* tslint:disable */
 /* eslint-disable */
 
-
 /**
  * This is a simple array with numbers
  */
-export type ArrayWithNumbers = Array<number
-
->
-;
+export type ArrayWithNumbers = Array<number>;
 
 "
 `;
@@ -1439,24 +1194,13 @@ exports[`v2 should generate: test/generated/v2/models/ArrayWithProperties.ts 1`]
 /* tslint:disable */
 /* eslint-disable */
 
-
 /**
  * This is a simple array with properties
  */
 export type ArrayWithProperties = Array<{
-
-    foo?
-    : string
-
-    ;
-
-    bar?
-    : string
-
-    ;
-}
->
-;
+    foo?: string;
+    bar?: string;
+}>;
 
 "
 `;
@@ -1467,14 +1211,11 @@ exports[`v2 should generate: test/generated/v2/models/ArrayWithReferences.ts 1`]
 /* tslint:disable */
 /* eslint-disable */
 
-
 import type { ModelWithString } from './ModelWithString.js';
-
 /**
  * This is a simple array with references
  */
-export type ArrayWithReferences = Array<ModelWithString>
-;
+export type ArrayWithReferences = Array<ModelWithString>;
 
 "
 `;
@@ -1485,14 +1226,10 @@ exports[`v2 should generate: test/generated/v2/models/ArrayWithStrings.ts 1`] = 
 /* tslint:disable */
 /* eslint-disable */
 
-
 /**
  * This is a simple array with strings
  */
-export type ArrayWithStrings = Array<string
-
->
-;
+export type ArrayWithStrings = Array<string>;
 
 "
 `;
@@ -1503,13 +1240,10 @@ exports[`v2 should generate: test/generated/v2/models/CommentWithBackticks.ts 1`
 /* tslint:disable */
 /* eslint-disable */
 
-
 /**
  * Testing backticks in string: \`backticks\` and \`\`\`multiple backticks\`\`\` should work
  */
-export type CommentWithBackticks = number
-
-;
+export type CommentWithBackticks = number;
 
 "
 `;
@@ -1520,16 +1254,13 @@ exports[`v2 should generate: test/generated/v2/models/CommentWithBreaks.ts 1`] =
 /* tslint:disable */
 /* eslint-disable */
 
-
 /**
  * Testing multiline comments in string: First line
  * Second line
  *
  * Fourth line
  */
-export type CommentWithBreaks = number
-
-;
+export type CommentWithBreaks = number;
 
 "
 `;
@@ -1540,13 +1271,10 @@ exports[`v2 should generate: test/generated/v2/models/CommentWithExpressionPlace
 /* tslint:disable */
 /* eslint-disable */
 
-
 /**
  * Testing expression placeholders in string: \${expression} should work
  */
-export type CommentWithExpressionPlaceholders = number
-
-;
+export type CommentWithExpressionPlaceholders = number;
 
 "
 `;
@@ -1557,13 +1285,10 @@ exports[`v2 should generate: test/generated/v2/models/CommentWithQuotes.ts 1`] =
 /* tslint:disable */
 /* eslint-disable */
 
-
 /**
  * Testing quotes in string: 'single quote''' and "double quotes""" should work
  */
-export type CommentWithQuotes = number
-
-;
+export type CommentWithQuotes = number;
 
 "
 `;
@@ -1574,13 +1299,10 @@ exports[`v2 should generate: test/generated/v2/models/CommentWithReservedCharact
 /* tslint:disable */
 /* eslint-disable */
 
-
 /**
  * Testing reserved characters in string: * inline * and ** inline ** should work
  */
-export type CommentWithReservedCharacters = number
-
-;
+export type CommentWithReservedCharacters = number;
 
 "
 `;
@@ -1591,13 +1313,10 @@ exports[`v2 should generate: test/generated/v2/models/CommentWithSlashes.ts 1`] 
 /* tslint:disable */
 /* eslint-disable */
 
-
 /**
  * Testing slashes in string: \\backwards\\\\\\ and /forwards/// should work
  */
-export type CommentWithSlashes = number
-
-;
+export type CommentWithSlashes = number;
 
 "
 `;
@@ -1608,13 +1327,10 @@ exports[`v2 should generate: test/generated/v2/models/Date.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 
-
 /**
  * This is a type-only model that defines Date as a string
  */
-export type Date = string
-
-;
+export type Date = string;
 
 "
 `;
@@ -1625,15 +1341,11 @@ exports[`v2 should generate: test/generated/v2/models/DictionaryWithArray.ts 1`]
 /* tslint:disable */
 /* eslint-disable */
 
-
 import type { ModelWithString } from './ModelWithString.js';
-
 /**
  * This is a complex dictionary
  */
-export type DictionaryWithArray = Record<string, Array<ModelWithString>
->
-;
+export type DictionaryWithArray = Record<string, Array<ModelWithString>>;
 
 "
 `;
@@ -1644,15 +1356,10 @@ exports[`v2 should generate: test/generated/v2/models/DictionaryWithDictionary.t
 /* tslint:disable */
 /* eslint-disable */
 
-
 /**
  * This is a string dictionary
  */
-export type DictionaryWithDictionary = Record<string, Record<string, string
-
->
->
-;
+export type DictionaryWithDictionary = Record<string, Record<string, string>>;
 
 "
 `;
@@ -1663,24 +1370,13 @@ exports[`v2 should generate: test/generated/v2/models/DictionaryWithProperties.t
 /* tslint:disable */
 /* eslint-disable */
 
-
 /**
  * This is a complex dictionary
  */
 export type DictionaryWithProperties = Record<string, {
-
-    foo?
-    : string
-
-    ;
-
-    bar?
-    : string
-
-    ;
-}
->
-;
+    foo?: string;
+    bar?: string;
+}>;
 
 "
 `;
@@ -1691,14 +1387,11 @@ exports[`v2 should generate: test/generated/v2/models/DictionaryWithReference.ts
 /* tslint:disable */
 /* eslint-disable */
 
-
 import type { ModelWithString } from './ModelWithString.js';
-
 /**
  * This is a string reference
  */
-export type DictionaryWithReference = Record<string, ModelWithString>
-;
+export type DictionaryWithReference = Record<string, ModelWithString>;
 
 "
 `;
@@ -1709,14 +1402,10 @@ exports[`v2 should generate: test/generated/v2/models/DictionaryWithString.ts 1`
 /* tslint:disable */
 /* eslint-disable */
 
-
 /**
  * This is a string dictionary
  */
-export type DictionaryWithString = Record<string, string
-
->
-;
+export type DictionaryWithString = Record<string, string>;
 
 "
 `;
@@ -1727,13 +1416,10 @@ exports[`v2 should generate: test/generated/v2/models/EnumFromDescription.ts 1`]
 /* tslint:disable */
 /* eslint-disable */
 
-
 /**
  * Success=1,Warning=2,Error=3
  */
-export type EnumFromDescription = number
-
-;
+export type EnumFromDescription = number;
 
 "
 `;
@@ -1743,7 +1429,6 @@ exports[`v2 should generate: test/generated/v2/models/EnumWithExtensions.ts 1`] 
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 
 /**
  * This is a simple enum with numbers
@@ -1771,7 +1456,6 @@ exports[`v2 should generate: test/generated/v2/models/EnumWithNumbers.ts 1`] = `
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 
 /**
  * This is a simple enum with numbers
@@ -1803,7 +1487,6 @@ exports[`v2 should generate: test/generated/v2/models/EnumWithStrings.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 
-
 /**
  * This is a simple enum with strings
  */
@@ -1824,29 +1507,14 @@ exports[`v2 should generate: test/generated/v2/models/ModelThatExtends.ts 1`] = 
 /* tslint:disable */
 /* eslint-disable */
 
-
 import type { ModelWithString } from './ModelWithString.js';
-
 /**
  * This is a model that extends another model
  */
-export type ModelThatExtends = (ModelWithString
-
-& {
-
-    propExtendsA?
-    : string
-
-    ;
-
-    propExtendsB?
-    : ModelWithString
-
-    ;
-}
-)
-
-;
+export type ModelThatExtends = (ModelWithString & {
+    propExtendsA?: string;
+    propExtendsB?: ModelWithString;
+});
 
 "
 `;
@@ -1857,32 +1525,15 @@ exports[`v2 should generate: test/generated/v2/models/ModelThatExtendsExtends.ts
 /* tslint:disable */
 /* eslint-disable */
 
-
 import type { ModelThatExtends } from './ModelThatExtends.js';
 import type { ModelWithString } from './ModelWithString.js';
-
 /**
  * This is a model that extends another model
  */
-export type ModelThatExtendsExtends = (ModelWithString
-
-& ModelThatExtends
-
-& {
-
-    propExtendsC?
-    : string
-
-    ;
-
-    propExtendsD?
-    : ModelWithString
-
-    ;
-}
-)
-
-;
+export type ModelThatExtendsExtends = (ModelWithString & ModelThatExtends & {
+    propExtendsC?: string;
+    propExtendsD?: ModelWithString;
+});
 
 "
 `;
@@ -1893,29 +1544,14 @@ exports[`v2 should generate: test/generated/v2/models/ModelWithArray.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 
-
 import type { ModelWithString } from './ModelWithString.js';
-
 /**
  * This is a model with one property containing an array
  */
 export type ModelWithArray = {
-
-    prop?
-    : Array<ModelWithString>
-    ;
-
-    propWithFile?
-    : Array<Blob
-
-    >
-    ;
-
-    propWithNumber?
-    : Array<number
-
-    >
-    ;
+    prop?: Array<ModelWithString>;
+    propWithFile?: Array<Blob>;
+    propWithNumber?: Array<number>;
 };
 
 "
@@ -1927,7 +1563,6 @@ exports[`v2 should generate: test/generated/v2/models/ModelWithBoolean.ts 1`] = 
 /* tslint:disable */
 /* eslint-disable */
 
-
 /**
  * This is a model with one boolean property
  */
@@ -1935,11 +1570,7 @@ export type ModelWithBoolean = {
     /**
      * This is a simple boolean property
      */
-
-    prop?
-    : boolean
-
-    ;
+    prop?: boolean;
 };
 
 "
@@ -1951,16 +1582,11 @@ exports[`v2 should generate: test/generated/v2/models/ModelWithCircularReference
 /* tslint:disable */
 /* eslint-disable */
 
-
 /**
  * This is a model with one property containing a circular reference
  */
 export type ModelWithCircularReference = {
-
-    prop?
-    : ModelWithCircularReference
-
-    ;
+    prop?: ModelWithCircularReference;
 };
 
 "
@@ -1972,17 +1598,11 @@ exports[`v2 should generate: test/generated/v2/models/ModelWithDictionary.ts 1`]
 /* tslint:disable */
 /* eslint-disable */
 
-
 /**
  * This is a model with one property containing a dictionary
  */
 export type ModelWithDictionary = {
-
-    prop?
-    : Record<string, string
-
-    >
-    ;
+    prop?: Record<string, string>;
 };
 
 "
@@ -1994,28 +1614,14 @@ exports[`v2 should generate: test/generated/v2/models/ModelWithDuplicateImports.
 /* tslint:disable */
 /* eslint-disable */
 
-
 import type { ModelWithString } from './ModelWithString.js';
-
 /**
  * This is a model with duplicated imports
  */
 export type ModelWithDuplicateImports = {
-
-    propA?
-    : ModelWithString
-
-    ;
-
-    propB?
-    : ModelWithString
-
-    ;
-
-    propC?
-    : ModelWithString
-
-    ;
+    propA?: ModelWithString;
+    propB?: ModelWithString;
+    propC?: ModelWithString;
 };
 
 "
@@ -2027,18 +1633,12 @@ exports[`v2 should generate: test/generated/v2/models/ModelWithDuplicateProperti
 /* tslint:disable */
 /* eslint-disable */
 
-
 import type { ModelWithString } from './ModelWithString.js';
-
 /**
  * This is a model with duplicated properties
  */
 export type ModelWithDuplicateProperties = {
-
-    prop?
-    : ModelWithString
-
-    ;
+    prop?: ModelWithString;
 };
 
 "
@@ -2050,7 +1650,6 @@ exports[`v2 should generate: test/generated/v2/models/ModelWithEnum.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 
-
 /**
  * This is a model with one enum
  */
@@ -2058,29 +1657,15 @@ export type ModelWithEnum = {
     /**
      * This is a simple enum with strings
      */
-
-    test?
-    : ModelWithEnum.test
-
-
-    ;
+    test?: ModelWithEnum.test;
     /**
      * These are the HTTP error code enums
      */
-
-    statusCode?
-    : ModelWithEnum.statusCode
-
-
-    ;
+    statusCode?: ModelWithEnum.statusCode;
     /**
      * Simple boolean enum
      */
-
-    bool?
-    : boolean
-
-    ;
+    bool?: boolean;
 };
 
 export namespace ModelWithEnum {
@@ -2118,7 +1703,6 @@ exports[`v2 should generate: test/generated/v2/models/ModelWithEnumFromDescripti
 /* tslint:disable */
 /* eslint-disable */
 
-
 /**
  * This is a model with one enum
  */
@@ -2126,11 +1710,7 @@ export type ModelWithEnumFromDescription = {
     /**
      * Success=1,Warning=2,Error=3
      */
-
-    test?
-    : number
-
-    ;
+    test?: number;
 };
 
 "
@@ -2142,7 +1722,6 @@ exports[`v2 should generate: test/generated/v2/models/ModelWithInteger.ts 1`] = 
 /* tslint:disable */
 /* eslint-disable */
 
-
 /**
  * This is a model with one number property
  */
@@ -2150,11 +1729,7 @@ export type ModelWithInteger = {
     /**
      * This is a simple number property
      */
-
-    prop?
-    : number
-
-    ;
+    prop?: number;
 };
 
 "
@@ -2166,37 +1741,14 @@ exports[`v2 should generate: test/generated/v2/models/ModelWithNestedEnums.ts 1`
 /* tslint:disable */
 /* eslint-disable */
 
-
 /**
  * This is a model with nested enums
  */
 export type ModelWithNestedEnums = {
-
-    dictionaryWithEnum?
-    : Record<string, 'Success' | 'Warning' | 'Error'
-
-
-    >
-    ;
-
-    dictionaryWithEnumFromDescription?
-    : Record<string, number
-
-    >
-    ;
-
-    arrayWithEnum?
-    : Array<'Success' | 'Warning' | 'Error'
-
-
-    >
-    ;
-
-    arrayWithDescription?
-    : Array<number
-
-    >
-    ;
+    dictionaryWithEnum?: Record<string, 'Success' | 'Warning' | 'Error'>;
+    dictionaryWithEnumFromDescription?: Record<string, number>;
+    arrayWithEnum?: Array<'Success' | 'Warning' | 'Error'>;
+    arrayWithDescription?: Array<number>;
 };
 
 "
@@ -2208,26 +1760,15 @@ exports[`v2 should generate: test/generated/v2/models/ModelWithNestedProperties.
 /* tslint:disable */
 /* eslint-disable */
 
-
 /**
  * This is a model with one nested property
  */
 export type ModelWithNestedProperties = {
-    readonly
-    first
-    : {
-        readonly
-        second
-        : {
-            readonly
-            third
-            : string
-
-            ;
-        }
-        ;
-    }
-    ;
+    readonly first: {
+        readonly second: {
+            readonly third: string;
+        };
+    };
 };
 
 "
@@ -2239,7 +1780,6 @@ exports[`v2 should generate: test/generated/v2/models/ModelWithNullableString.ts
 /* tslint:disable */
 /* eslint-disable */
 
-
 /**
  * This is a model with one string property
  */
@@ -2247,19 +1787,11 @@ export type ModelWithNullableString = {
     /**
      * This is a simple string property
      */
-
-    nullableProp?
-    : string | null
-
-    ;
+    nullableProp?: string | null;
     /**
      * This is a simple string property
      */
-
-    nullableRequiredProp
-    : string | null
-
-    ;
+    nullableRequiredProp: string | null;
 };
 
 "
@@ -2271,26 +1803,13 @@ exports[`v2 should generate: test/generated/v2/models/ModelWithOrderedProperties
 /* tslint:disable */
 /* eslint-disable */
 
-
 /**
  * This is a model with ordered properties
  */
 export type ModelWithOrderedProperties = {
-
-    zebra?
-    : string
-
-    ;
-
-    apple?
-    : string
-
-    ;
-
-    hawaii?
-    : string
-
-    ;
+    zebra?: string;
+    apple?: string;
+    hawaii?: string;
 };
 
 "
@@ -2302,46 +1821,17 @@ exports[`v2 should generate: test/generated/v2/models/ModelWithPattern.ts 1`] = 
 /* tslint:disable */
 /* eslint-disable */
 
-
 /**
  * This is a model that contains a some patterns
  */
 export type ModelWithPattern = {
-
-    key
-    : string
-
-    ;
-
-    name
-    : string
-
-    ;
-    readonly
-    enabled?
-    : boolean
-
-    ;
-    readonly
-    modified?
-    : string
-
-    ;
-
-    id?
-    : string
-
-    ;
-
-    text?
-    : string
-
-    ;
-
-    patternWithSingleQuotes?
-    : string
-
-    ;
+    key: string;
+    name: string;
+    readonly enabled?: boolean;
+    readonly modified?: string;
+    id?: string;
+    text?: string;
+    patternWithSingleQuotes?: string;
 };
 
 "
@@ -2353,68 +1843,22 @@ exports[`v2 should generate: test/generated/v2/models/ModelWithProperties.ts 1`]
 /* tslint:disable */
 /* eslint-disable */
 
-
 import type { ModelWithString } from './ModelWithString.js';
-
 /**
  * This is a model with one nested property
  */
 export type ModelWithProperties = {
-
-    required
-    : string
-
-    ;
-    readonly
-    requiredAndReadOnly
-    : string
-
-    ;
-
-    string?
-    : string
-
-    ;
-
-    number?
-    : number
-
-    ;
-
-    boolean?
-    : boolean
-
-    ;
-
-    reference?
-    : ModelWithString
-
-    ;
-
-    'property with space'?
-    : string
-
-    ;
-
-    default?
-    : string
-
-    ;
-
-    try?
-    : string
-
-    ;
-    readonly
-    '@namespace.string'?
-    : string
-
-    ;
-    readonly
-    '@namespace.integer'?
-    : number
-
-    ;
+    required: string;
+    readonly requiredAndReadOnly: string;
+    string?: string;
+    number?: number;
+    boolean?: boolean;
+    reference?: ModelWithString;
+    'property with space'?: string;
+    default?: string;
+    try?: string;
+    readonly '@namespace.string'?: string;
+    readonly '@namespace.integer'?: number;
 };
 
 "
@@ -2426,18 +1870,12 @@ exports[`v2 should generate: test/generated/v2/models/ModelWithReference.ts 1`] 
 /* tslint:disable */
 /* eslint-disable */
 
-
 import type { ModelWithProperties } from './ModelWithProperties.js';
-
 /**
  * This is a model with one property containing a reference
  */
 export type ModelWithReference = {
-
-    prop?
-    : ModelWithProperties
-
-    ;
+    prop?: ModelWithProperties;
 };
 
 "
@@ -2449,7 +1887,6 @@ exports[`v2 should generate: test/generated/v2/models/ModelWithString.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 
-
 /**
  * This is a model with one string property
  */
@@ -2457,11 +1894,7 @@ export type ModelWithString = {
     /**
      * This is a simple string property
      */
-
-    prop?
-    : string
-
-    ;
+    prop?: string;
 };
 
 "
@@ -2473,13 +1906,10 @@ exports[`v2 should generate: test/generated/v2/models/SimpleBoolean.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 
-
 /**
  * This is a simple boolean
  */
-export type SimpleBoolean = boolean
-
-;
+export type SimpleBoolean = boolean;
 
 "
 `;
@@ -2490,13 +1920,10 @@ exports[`v2 should generate: test/generated/v2/models/SimpleFile.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 
-
 /**
  * This is a simple file
  */
-export type SimpleFile = Blob
-
-;
+export type SimpleFile = Blob;
 
 "
 `;
@@ -2507,13 +1934,10 @@ exports[`v2 should generate: test/generated/v2/models/SimpleInteger.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 
-
 /**
  * This is a simple number
  */
-export type SimpleInteger = number
-
-;
+export type SimpleInteger = number;
 
 "
 `;
@@ -2524,15 +1948,11 @@ exports[`v2 should generate: test/generated/v2/models/SimpleReference.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 
-
 import type { ModelWithString } from './ModelWithString.js';
-
 /**
  * This is a simple reference
  */
-export type SimpleReference = ModelWithString
-
-;
+export type SimpleReference = ModelWithString;
 
 "
 `;
@@ -2543,13 +1963,10 @@ exports[`v2 should generate: test/generated/v2/models/SimpleString.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 
-
 /**
  * This is a simple string
  */
-export type SimpleString = string
-
-;
+export type SimpleString = string;
 
 "
 `;
@@ -2560,13 +1977,10 @@ exports[`v2 should generate: test/generated/v2/models/SimpleStringWithPattern.ts
 /* tslint:disable */
 /* eslint-disable */
 
-
 /**
  * This is a simple string
  */
-export type SimpleStringWithPattern = string
-
-;
+export type SimpleStringWithPattern = string;
 
 "
 `;
@@ -2580,7 +1994,7 @@ exports[`v2 should generate: test/generated/v2/pathnames/CollectionFormat.ts 1`]
 /**
  * @throws ApiError
  */
-export const collectionFormat = '/api/v{api-version}/collectionFormat'
+export const collectionFormat = '/api/v{api-version}/collectionFormat';
 
 "
 `;
@@ -2594,7 +2008,7 @@ exports[`v2 should generate: test/generated/v2/pathnames/Complex.ts 1`] = `
 /**
  * @throws ApiError
  */
-export const complexTypes = '/api/v{api-version}/complex'
+export const complexTypes = '/api/v{api-version}/complex';
 
 "
 `;
@@ -2608,7 +2022,7 @@ exports[`v2 should generate: test/generated/v2/pathnames/Default.ts 1`] = `
 /**
  * @throws ApiError
  */
-export const serviceWithEmptyTag = '/api/v{api-version}/no-tag'
+export const serviceWithEmptyTag = '/api/v{api-version}/no-tag';
 
 "
 `;
@@ -2622,15 +2036,15 @@ exports[`v2 should generate: test/generated/v2/pathnames/Defaults.ts 1`] = `
 /**
  * @throws ApiError
  */
-export const callWithDefaultParameters = '/api/v{api-version}/defaults'
+export const callWithDefaultParameters = '/api/v{api-version}/defaults';
 /**
  * @throws ApiError
  */
-export const callWithDefaultOptionalParameters = '/api/v{api-version}/defaults'
+export const callWithDefaultOptionalParameters = '/api/v{api-version}/defaults';
 /**
  * @throws ApiError
  */
-export const callToTestOrderOfParams = '/api/v{api-version}/defaults'
+export const callToTestOrderOfParams = '/api/v{api-version}/defaults';
 
 "
 `;
@@ -2644,7 +2058,7 @@ exports[`v2 should generate: test/generated/v2/pathnames/Descriptions.ts 1`] = `
 /**
  * @throws ApiError
  */
-export const callWithDescriptions = '/api/v{api-version}/descriptions/'
+export const callWithDescriptions = '/api/v{api-version}/descriptions/';
 
 "
 `;
@@ -2658,19 +2072,19 @@ exports[`v2 should generate: test/generated/v2/pathnames/Duplicate.ts 1`] = `
 /**
  * @throws ApiError
  */
-export const duplicateName = '/api/v{api-version}/duplicate'
+export const duplicateName = '/api/v{api-version}/duplicate';
 /**
  * @throws ApiError
  */
-export const duplicateName1 = '/api/v{api-version}/duplicate'
+export const duplicateName1 = '/api/v{api-version}/duplicate';
 /**
  * @throws ApiError
  */
-export const duplicateName2 = '/api/v{api-version}/duplicate'
+export const duplicateName2 = '/api/v{api-version}/duplicate';
 /**
  * @throws ApiError
  */
-export const duplicateName3 = '/api/v{api-version}/duplicate'
+export const duplicateName3 = '/api/v{api-version}/duplicate';
 
 "
 `;
@@ -2684,7 +2098,7 @@ exports[`v2 should generate: test/generated/v2/pathnames/Error.ts 1`] = `
 /**
  * @throws ApiError
  */
-export const testErrorCode = '/api/v{api-version}/error'
+export const testErrorCode = '/api/v{api-version}/error';
 
 "
 `;
@@ -2698,7 +2112,7 @@ exports[`v2 should generate: test/generated/v2/pathnames/Header.ts 1`] = `
 /**
  * @throws ApiError
  */
-export const callWithResultFromHeader = '/api/v{api-version}/header'
+export const callWithResultFromHeader = '/api/v{api-version}/header';
 
 "
 `;
@@ -2712,11 +2126,11 @@ exports[`v2 should generate: test/generated/v2/pathnames/MultipleTags1.ts 1`] = 
 /**
  * @throws ApiError
  */
-export const dummyA = '/api/v{api-version}/multiple-tags/a'
+export const dummyA = '/api/v{api-version}/multiple-tags/a';
 /**
  * @throws ApiError
  */
-export const dummyB = '/api/v{api-version}/multiple-tags/b'
+export const dummyB = '/api/v{api-version}/multiple-tags/b';
 
 "
 `;
@@ -2730,11 +2144,11 @@ exports[`v2 should generate: test/generated/v2/pathnames/MultipleTags2.ts 1`] = 
 /**
  * @throws ApiError
  */
-export const dummyA = '/api/v{api-version}/multiple-tags/a'
+export const dummyA = '/api/v{api-version}/multiple-tags/a';
 /**
  * @throws ApiError
  */
-export const dummyB = '/api/v{api-version}/multiple-tags/b'
+export const dummyB = '/api/v{api-version}/multiple-tags/b';
 
 "
 `;
@@ -2748,7 +2162,7 @@ exports[`v2 should generate: test/generated/v2/pathnames/MultipleTags3.ts 1`] = 
 /**
  * @throws ApiError
  */
-export const dummyB = '/api/v{api-version}/multiple-tags/b'
+export const dummyB = '/api/v{api-version}/multiple-tags/b';
 
 "
 `;
@@ -2762,7 +2176,7 @@ exports[`v2 should generate: test/generated/v2/pathnames/NoContent.ts 1`] = `
 /**
  * @throws ApiError
  */
-export const callWithNoContentResponse = '/api/v{api-version}/no-content'
+export const callWithNoContentResponse = '/api/v{api-version}/no-content';
 
 "
 `;
@@ -2776,11 +2190,11 @@ exports[`v2 should generate: test/generated/v2/pathnames/Parameters.ts 1`] = `
 /**
  * @throws ApiError
  */
-export const callWithParameters = '/api/v{api-version}/parameters/{parameterPath}'
+export const callWithParameters = '/api/v{api-version}/parameters/{parameterPath}';
 /**
  * @throws ApiError
  */
-export const callWithWeirdParameterNames = '/api/v{api-version}/parameters/{parameter.path.1}/{parameter-path-2}/{PARAMETER-PATH-3}'
+export const callWithWeirdParameterNames = '/api/v{api-version}/parameters/{parameter.path.1}/{parameter-path-2}/{PARAMETER-PATH-3}';
 
 "
 `;
@@ -2794,15 +2208,15 @@ exports[`v2 should generate: test/generated/v2/pathnames/Response.ts 1`] = `
 /**
  * @throws ApiError
  */
-export const callWithResponse = '/api/v{api-version}/response'
+export const callWithResponse = '/api/v{api-version}/response';
 /**
  * @throws ApiError
  */
-export const callWithDuplicateResponses = '/api/v{api-version}/response'
+export const callWithDuplicateResponses = '/api/v{api-version}/response';
 /**
  * @throws ApiError
  */
-export const callWithResponses = '/api/v{api-version}/response'
+export const callWithResponses = '/api/v{api-version}/response';
 
 "
 `;
@@ -2816,31 +2230,31 @@ exports[`v2 should generate: test/generated/v2/pathnames/Simple.ts 1`] = `
 /**
  * @throws ApiError
  */
-export const getCallWithoutParametersAndResponse = '/api/v{api-version}/simple'
+export const getCallWithoutParametersAndResponse = '/api/v{api-version}/simple';
 /**
  * @throws ApiError
  */
-export const putCallWithoutParametersAndResponse = '/api/v{api-version}/simple'
+export const putCallWithoutParametersAndResponse = '/api/v{api-version}/simple';
 /**
  * @throws ApiError
  */
-export const postCallWithoutParametersAndResponse = '/api/v{api-version}/simple'
+export const postCallWithoutParametersAndResponse = '/api/v{api-version}/simple';
 /**
  * @throws ApiError
  */
-export const deleteCallWithoutParametersAndResponse = '/api/v{api-version}/simple'
+export const deleteCallWithoutParametersAndResponse = '/api/v{api-version}/simple';
 /**
  * @throws ApiError
  */
-export const optionsCallWithoutParametersAndResponse = '/api/v{api-version}/simple'
+export const optionsCallWithoutParametersAndResponse = '/api/v{api-version}/simple';
 /**
  * @throws ApiError
  */
-export const headCallWithoutParametersAndResponse = '/api/v{api-version}/simple'
+export const headCallWithoutParametersAndResponse = '/api/v{api-version}/simple';
 /**
  * @throws ApiError
  */
-export const patchCallWithoutParametersAndResponse = '/api/v{api-version}/simple'
+export const patchCallWithoutParametersAndResponse = '/api/v{api-version}/simple';
 
 "
 `;
@@ -2854,7 +2268,7 @@ exports[`v2 should generate: test/generated/v2/pathnames/Types.ts 1`] = `
 /**
  * @throws ApiError
  */
-export const types = '/api/v{api-version}/types'
+export const types = '/api/v{api-version}/types';
 
 "
 `;
@@ -2895,11 +2309,9 @@ export const $_default = {
     properties: {
         name: {
             type: 'string',
-        }
-        ,
+        },
     },
-}
-as const;
+} as const;
 
 "
 `;
@@ -2917,10 +2329,8 @@ export const $ArrayWithArray = {
         contains: {
             type: 'ModelWithString',
         },
-    }
-    ,
-}
-as const;
+    },
+} as const;
 
 "
 `;
@@ -2935,10 +2345,8 @@ export const $ArrayWithBooleans = {
     type: 'array',
     contains: {
         type: 'boolean',
-    }
-    ,
-}
-as const;
+    },
+} as const;
 
 "
 `;
@@ -2953,10 +2361,8 @@ export const $ArrayWithNumbers = {
     type: 'array',
     contains: {
         type: 'number',
-    }
-    ,
-}
-as const;
+    },
+} as const;
 
 "
 `;
@@ -2973,17 +2379,13 @@ export const $ArrayWithProperties = {
         properties: {
             foo: {
                 type: 'string',
-            }
-            ,
+            },
             bar: {
                 type: 'string',
-            }
-            ,
+            },
         },
-    }
-    ,
-}
-as const;
+    },
+} as const;
 
 "
 `;
@@ -2999,8 +2401,7 @@ export const $ArrayWithReferences = {
     contains: {
         type: 'ModelWithString',
     },
-}
-as const;
+} as const;
 
 "
 `;
@@ -3015,10 +2416,8 @@ export const $ArrayWithStrings = {
     type: 'array',
     contains: {
         type: 'string',
-    }
-    ,
-}
-as const;
+    },
+} as const;
 
 "
 `;
@@ -3032,8 +2431,7 @@ exports[`v2 should generate: test/generated/v2/schemas/$CommentWithBackticks.ts 
 export const $CommentWithBackticks = {
     type: 'number',
     description: \`Testing backticks in string: \\\`backticks\\\` and \\\`\\\`\\\`multiple backticks\\\`\\\`\\\` should work\`,
-}
-as const;
+} as const;
 
 "
 `;
@@ -3050,8 +2448,7 @@ export const $CommentWithBreaks = {
     Second line
 
     Fourth line\`,
-}
-as const;
+} as const;
 
 "
 `;
@@ -3065,8 +2462,7 @@ exports[`v2 should generate: test/generated/v2/schemas/$CommentWithExpressionPla
 export const $CommentWithExpressionPlaceholders = {
     type: 'number',
     description: \`Testing expression placeholders in string: \\\${expression} should work\`,
-}
-as const;
+} as const;
 
 "
 `;
@@ -3080,8 +2476,7 @@ exports[`v2 should generate: test/generated/v2/schemas/$CommentWithQuotes.ts 1`]
 export const $CommentWithQuotes = {
     type: 'number',
     description: \`Testing quotes in string: 'single quote''' and "double quotes""" should work\`,
-}
-as const;
+} as const;
 
 "
 `;
@@ -3095,8 +2490,7 @@ exports[`v2 should generate: test/generated/v2/schemas/$CommentWithReservedChara
 export const $CommentWithReservedCharacters = {
     type: 'number',
     description: \`Testing reserved characters in string: /* inline */ and /** inline **/ should work\`,
-}
-as const;
+} as const;
 
 "
 `;
@@ -3110,8 +2504,7 @@ exports[`v2 should generate: test/generated/v2/schemas/$CommentWithSlashes.ts 1`
 export const $CommentWithSlashes = {
     type: 'number',
     description: \`Testing slashes in string: \\\\backwards\\\\\\\\\\\\ and /forwards/// should work\`,
-}
-as const;
+} as const;
 
 "
 `;
@@ -3125,8 +2518,7 @@ exports[`v2 should generate: test/generated/v2/schemas/$Date.ts 1`] = `
 export const $Date = {
     type: 'string',
     description: \`This is a type-only model that defines Date as a string\`,
-}
-as const;
+} as const;
 
 "
 `;
@@ -3144,10 +2536,8 @@ export const $DictionaryWithArray = {
         contains: {
             type: 'ModelWithString',
         },
-    }
-    ,
-}
-as const;
+    },
+} as const;
 
 "
 `;
@@ -3164,12 +2554,9 @@ export const $DictionaryWithDictionary = {
         type: 'dictionary',
         contains: {
             type: 'string',
-        }
-        ,
-    }
-    ,
-}
-as const;
+        },
+    },
+} as const;
 
 "
 `;
@@ -3186,17 +2573,13 @@ export const $DictionaryWithProperties = {
         properties: {
             foo: {
                 type: 'string',
-            }
-            ,
+            },
             bar: {
                 type: 'string',
-            }
-            ,
+            },
         },
-    }
-    ,
-}
-as const;
+    },
+} as const;
 
 "
 `;
@@ -3212,8 +2595,7 @@ export const $DictionaryWithReference = {
     contains: {
         type: 'ModelWithString',
     },
-}
-as const;
+} as const;
 
 "
 `;
@@ -3228,10 +2610,8 @@ export const $DictionaryWithString = {
     type: 'dictionary',
     contains: {
         type: 'string',
-    }
-    ,
-}
-as const;
+    },
+} as const;
 
 "
 `;
@@ -3245,8 +2625,7 @@ exports[`v2 should generate: test/generated/v2/schemas/$EnumFromDescription.ts 1
 export const $EnumFromDescription = {
     type: 'number',
     description: \`Success=1,Warning=2,Error=3\`,
-}
-as const;
+} as const;
 
 "
 `;
@@ -3259,8 +2638,7 @@ exports[`v2 should generate: test/generated/v2/schemas/$EnumWithExtensions.ts 1`
 
 export const $EnumWithExtensions = {
     type: 'Enum',
-}
-as const;
+} as const;
 
 "
 `;
@@ -3273,8 +2651,7 @@ exports[`v2 should generate: test/generated/v2/schemas/$EnumWithNumbers.ts 1`] =
 
 export const $EnumWithNumbers = {
     type: 'Enum',
-}
-as const;
+} as const;
 
 "
 `;
@@ -3287,8 +2664,7 @@ exports[`v2 should generate: test/generated/v2/schemas/$EnumWithStrings.ts 1`] =
 
 export const $EnumWithStrings = {
     type: 'Enum',
-}
-as const;
+} as const;
 
 "
 `;
@@ -3304,22 +2680,17 @@ export const $ModelThatExtends = {
     description: \`This is a model that extends another model\`,
     contains: [{
         type: 'ModelWithString',
-    }
-    , {
+    }, {
         properties: {
             propExtendsA: {
                 type: 'string',
-            }
-            ,
+            },
             propExtendsB: {
                 type: 'ModelWithString',
-            }
-            ,
+            },
         },
-    }
-],
-}
-as const;
+    }],
+} as const;
 
 "
 `;
@@ -3335,25 +2706,19 @@ export const $ModelThatExtendsExtends = {
     description: \`This is a model that extends another model\`,
     contains: [{
         type: 'ModelWithString',
-    }
-    , {
+    }, {
         type: 'ModelThatExtends',
-    }
-    , {
+    }, {
         properties: {
             propExtendsC: {
                 type: 'string',
-            }
-            ,
+            },
             propExtendsD: {
                 type: 'ModelWithString',
-            }
-            ,
+            },
         },
-    }
-],
-}
-as const;
+    }],
+} as const;
 
 "
 `;
@@ -3372,27 +2737,21 @@ export const $ModelWithArray = {
             contains: {
                 type: 'ModelWithString',
             },
-        }
-        ,
+        },
         propWithFile: {
             type: 'array',
             contains: {
                 type: 'binary',
-            }
-            ,
-        }
-        ,
+            },
+        },
         propWithNumber: {
             type: 'array',
             contains: {
                 type: 'number',
-            }
-            ,
-        }
-        ,
+            },
+        },
     },
-}
-as const;
+} as const;
 
 "
 `;
@@ -3409,11 +2768,9 @@ export const $ModelWithBoolean = {
         prop: {
             type: 'boolean',
             description: \`This is a simple boolean property\`,
-        }
-        ,
+        },
     },
-}
-as const;
+} as const;
 
 "
 `;
@@ -3429,11 +2786,9 @@ export const $ModelWithCircularReference = {
     properties: {
         prop: {
             type: 'ModelWithCircularReference',
-        }
-        ,
+        },
     },
-}
-as const;
+} as const;
 
 "
 `;
@@ -3451,13 +2806,10 @@ export const $ModelWithDictionary = {
             type: 'dictionary',
             contains: {
                 type: 'string',
-            }
-            ,
-        }
-        ,
+            },
+        },
     },
-}
-as const;
+} as const;
 
 "
 `;
@@ -3473,19 +2825,15 @@ export const $ModelWithDuplicateImports = {
     properties: {
         propA: {
             type: 'ModelWithString',
-        }
-        ,
+        },
         propB: {
             type: 'ModelWithString',
-        }
-        ,
+        },
         propC: {
             type: 'ModelWithString',
-        }
-        ,
+        },
     },
-}
-as const;
+} as const;
 
 "
 `;
@@ -3501,11 +2849,9 @@ export const $ModelWithDuplicateProperties = {
     properties: {
         prop: {
             type: 'ModelWithString',
-        }
-        ,
+        },
     },
-}
-as const;
+} as const;
 
 "
 `;
@@ -3521,20 +2867,16 @@ export const $ModelWithEnum = {
     properties: {
         test: {
             type: 'Enum',
-        }
-        ,
+        },
         statusCode: {
             type: 'Enum',
-        }
-        ,
+        },
         bool: {
             type: 'boolean',
             description: \`Simple boolean enum\`,
-        }
-        ,
+        },
     },
-}
-as const;
+} as const;
 
 "
 `;
@@ -3551,11 +2893,9 @@ export const $ModelWithEnumFromDescription = {
         test: {
             type: 'number',
             description: \`Success=1,Warning=2,Error=3\`,
-        }
-        ,
+        },
     },
-}
-as const;
+} as const;
 
 "
 `;
@@ -3572,11 +2912,9 @@ export const $ModelWithInteger = {
         prop: {
             type: 'number',
             description: \`This is a simple number property\`,
-        }
-        ,
+        },
     },
-}
-as const;
+} as const;
 
 "
 `;
@@ -3594,39 +2932,30 @@ export const $ModelWithNestedEnums = {
             type: 'dictionary',
             contains: {
                 type: 'Enum',
-            }
-            ,
-        }
-        ,
+            },
+        },
         dictionaryWithEnumFromDescription: {
             type: 'dictionary',
             contains: {
                 type: 'number',
                 description: \`Success=1,Warning=2,Error=3\`,
-            }
-            ,
-        }
-        ,
+            },
+        },
         arrayWithEnum: {
             type: 'array',
             contains: {
                 type: 'Enum',
-            }
-            ,
-        }
-        ,
+            },
+        },
         arrayWithDescription: {
             type: 'array',
             contains: {
                 type: 'number',
                 description: \`Success=1,Warning=2,Error=3\`,
-            }
-            ,
-        }
-        ,
+            },
+        },
     },
-}
-as const;
+} as const;
 
 "
 `;
@@ -3648,21 +2977,17 @@ export const $ModelWithNestedProperties = {
                             type: 'string',
                             isReadOnly: true,
                             isRequired: true,
-                        }
-                        ,
+                        },
                     },
                     isReadOnly: true,
                     isRequired: true,
-                }
-                ,
+                },
             },
             isReadOnly: true,
             isRequired: true,
-        }
-        ,
+        },
     },
-}
-as const;
+} as const;
 
 "
 `;
@@ -3680,18 +3005,15 @@ export const $ModelWithNullableString = {
             type: 'string',
             description: \`This is a simple string property\`,
             isNullable: true,
-        }
-        ,
+        },
         nullableRequiredProp: {
             type: 'string',
             description: \`This is a simple string property\`,
             isRequired: true,
             isNullable: true,
-        }
-        ,
+        },
     },
-}
-as const;
+} as const;
 
 "
 `;
@@ -3707,19 +3029,15 @@ export const $ModelWithOrderedProperties = {
     properties: {
         zebra: {
             type: 'string',
-        }
-        ,
+        },
         apple: {
             type: 'string',
-        }
-        ,
+        },
         hawaii: {
             type: 'string',
-        }
-        ,
+        },
     },
-}
-as const;
+} as const;
 
 "
 `;
@@ -3738,43 +3056,35 @@ export const $ModelWithPattern = {
             isRequired: true,
             maxLength: 64,
             pattern: '^[a-zA-Z0-9_]*$',
-        }
-        ,
+        },
         name: {
             type: 'string',
             isRequired: true,
             maxLength: 255,
-        }
-        ,
+        },
         enabled: {
             type: 'boolean',
             isReadOnly: true,
-        }
-        ,
+        },
         modified: {
             type: 'string',
             isReadOnly: true,
             format: 'date-time',
-        }
-        ,
+        },
         id: {
             type: 'string',
             pattern: '^\\\\d{2}-\\\\d{3}-\\\\d{4}$',
-        }
-        ,
+        },
         text: {
             type: 'string',
             pattern: '^\\\\w+$',
-        }
-        ,
+        },
         patternWithSingleQuotes: {
             type: 'string',
             pattern: '^[a-zA-Z0-9\\']*$',
-        }
-        ,
+        },
     },
-}
-as const;
+} as const;
 
 "
 `;
@@ -3791,55 +3101,43 @@ export const $ModelWithProperties = {
         required: {
             type: 'string',
             isRequired: true,
-        }
-        ,
+        },
         requiredAndReadOnly: {
             type: 'string',
             isReadOnly: true,
             isRequired: true,
-        }
-        ,
+        },
         string: {
             type: 'string',
-        }
-        ,
+        },
         number: {
             type: 'number',
-        }
-        ,
+        },
         boolean: {
             type: 'boolean',
-        }
-        ,
+        },
         reference: {
             type: 'ModelWithString',
-        }
-        ,
+        },
         'property with space': {
             type: 'string',
-        }
-        ,
+        },
         default: {
             type: 'string',
-        }
-        ,
+        },
         try: {
             type: 'string',
-        }
-        ,
+        },
         '@namespace.string': {
             type: 'string',
             isReadOnly: true,
-        }
-        ,
+        },
         '@namespace.integer': {
             type: 'number',
             isReadOnly: true,
-        }
-        ,
+        },
     },
-}
-as const;
+} as const;
 
 "
 `;
@@ -3855,11 +3153,9 @@ export const $ModelWithReference = {
     properties: {
         prop: {
             type: 'ModelWithProperties',
-        }
-        ,
+        },
     },
-}
-as const;
+} as const;
 
 "
 `;
@@ -3876,11 +3172,9 @@ export const $ModelWithString = {
         prop: {
             type: 'string',
             description: \`This is a simple string property\`,
-        }
-        ,
+        },
     },
-}
-as const;
+} as const;
 
 "
 `;
@@ -3894,8 +3188,7 @@ exports[`v2 should generate: test/generated/v2/schemas/$SimpleBoolean.ts 1`] = `
 export const $SimpleBoolean = {
     type: 'boolean',
     description: \`This is a simple boolean\`,
-}
-as const;
+} as const;
 
 "
 `;
@@ -3909,8 +3202,7 @@ exports[`v2 should generate: test/generated/v2/schemas/$SimpleFile.ts 1`] = `
 export const $SimpleFile = {
     type: 'binary',
     description: \`This is a simple file\`,
-}
-as const;
+} as const;
 
 "
 `;
@@ -3924,8 +3216,7 @@ exports[`v2 should generate: test/generated/v2/schemas/$SimpleInteger.ts 1`] = `
 export const $SimpleInteger = {
     type: 'number',
     description: \`This is a simple number\`,
-}
-as const;
+} as const;
 
 "
 `;
@@ -3939,8 +3230,7 @@ exports[`v2 should generate: test/generated/v2/schemas/$SimpleReference.ts 1`] =
 export const $SimpleReference = {
     type: 'ModelWithString',
     description: \`This is a simple reference\`,
-}
-as const;
+} as const;
 
 "
 `;
@@ -3954,8 +3244,7 @@ exports[`v2 should generate: test/generated/v2/schemas/$SimpleString.ts 1`] = `
 export const $SimpleString = {
     type: 'string',
     description: \`This is a simple string\`,
-}
-as const;
+} as const;
 
 "
 `;
@@ -3971,8 +3260,7 @@ export const $SimpleStringWithPattern = {
     description: \`This is a simple string\`,
     maxLength: 64,
     pattern: '^[a-zA-Z0-9_]*$',
-}
-as const;
+} as const;
 
 "
 `;
@@ -3984,12 +3272,13 @@ exports[`v2 should generate: test/generated/v2/server/CollectionFormat.ts 1`] = 
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createServerResolver } from '../../../../factories-module.js'
+import { createServerResolver } from '../../../../factories-module.js';
 
 /**
  */
 export const collectionFormat = createServerResolver<Types.CollectionFormatCollectionFormatInput, Types.CollectionFormatCollectionFormatOutput>({
-    path: '/api/v{api-version}/collectionFormat', method: 'GET'
+    path: '/api/v{api-version}/collectionFormat',
+    method: 'GET',
 });
 
 "
@@ -4002,13 +3291,14 @@ exports[`v2 should generate: test/generated/v2/server/Complex.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createServerResolver } from '../../../../factories-module.js'
+import { createServerResolver } from '../../../../factories-module.js';
 
 /**
  * @returns ModelWithString Successful response
  */
 export const complexTypes = createServerResolver<Types.ComplexComplexTypesInput, Types.ComplexComplexTypesOutput>({
-    path: '/api/v{api-version}/complex', method: 'GET'
+    path: '/api/v{api-version}/complex',
+    method: 'GET',
 });
 
 "
@@ -4021,12 +3311,13 @@ exports[`v2 should generate: test/generated/v2/server/Default.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createServerResolver } from '../../../../factories-module.js'
+import { createServerResolver } from '../../../../factories-module.js';
 
 /**
  */
 export const serviceWithEmptyTag = createServerResolver<Types.DefaultServiceWithEmptyTagInput, Types.DefaultServiceWithEmptyTagOutput>({
-    path: '/api/v{api-version}/no-tag', method: 'GET'
+    path: '/api/v{api-version}/no-tag',
+    method: 'GET',
 });
 
 "
@@ -4039,22 +3330,25 @@ exports[`v2 should generate: test/generated/v2/server/Defaults.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createServerResolver } from '../../../../factories-module.js'
+import { createServerResolver } from '../../../../factories-module.js';
 
 /**
  */
 export const callWithDefaultParameters = createServerResolver<Types.DefaultsCallWithDefaultParametersInput, Types.DefaultsCallWithDefaultParametersOutput>({
-    path: '/api/v{api-version}/defaults', method: 'GET'
+    path: '/api/v{api-version}/defaults',
+    method: 'GET',
 });
 /**
  */
 export const callWithDefaultOptionalParameters = createServerResolver<Types.DefaultsCallWithDefaultOptionalParametersInput, Types.DefaultsCallWithDefaultOptionalParametersOutput>({
-    path: '/api/v{api-version}/defaults', method: 'POST'
+    path: '/api/v{api-version}/defaults',
+    method: 'POST',
 });
 /**
  */
 export const callToTestOrderOfParams = createServerResolver<Types.DefaultsCallToTestOrderOfParamsInput, Types.DefaultsCallToTestOrderOfParamsOutput>({
-    path: '/api/v{api-version}/defaults', method: 'PUT'
+    path: '/api/v{api-version}/defaults',
+    method: 'PUT',
 });
 
 "
@@ -4067,12 +3361,13 @@ exports[`v2 should generate: test/generated/v2/server/Descriptions.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createServerResolver } from '../../../../factories-module.js'
+import { createServerResolver } from '../../../../factories-module.js';
 
 /**
  */
 export const callWithDescriptions = createServerResolver<Types.DescriptionsCallWithDescriptionsInput, Types.DescriptionsCallWithDescriptionsOutput>({
-    path: '/api/v{api-version}/descriptions/', method: 'POST'
+    path: '/api/v{api-version}/descriptions/',
+    method: 'POST',
 });
 
 "
@@ -4085,27 +3380,31 @@ exports[`v2 should generate: test/generated/v2/server/Duplicate.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createServerResolver } from '../../../../factories-module.js'
+import { createServerResolver } from '../../../../factories-module.js';
 
 /**
  */
 export const duplicateName = createServerResolver<Types.DuplicateDuplicateNameInput, Types.DuplicateDuplicateNameOutput>({
-    path: '/api/v{api-version}/duplicate', method: 'GET'
+    path: '/api/v{api-version}/duplicate',
+    method: 'GET',
 });
 /**
  */
 export const duplicateName1 = createServerResolver<Types.DuplicateDuplicateName1Input, Types.DuplicateDuplicateName1Output>({
-    path: '/api/v{api-version}/duplicate', method: 'POST'
+    path: '/api/v{api-version}/duplicate',
+    method: 'POST',
 });
 /**
  */
 export const duplicateName2 = createServerResolver<Types.DuplicateDuplicateName2Input, Types.DuplicateDuplicateName2Output>({
-    path: '/api/v{api-version}/duplicate', method: 'PUT'
+    path: '/api/v{api-version}/duplicate',
+    method: 'PUT',
 });
 /**
  */
 export const duplicateName3 = createServerResolver<Types.DuplicateDuplicateName3Input, Types.DuplicateDuplicateName3Output>({
-    path: '/api/v{api-version}/duplicate', method: 'DELETE'
+    path: '/api/v{api-version}/duplicate',
+    method: 'DELETE',
 });
 
 "
@@ -4118,13 +3417,14 @@ exports[`v2 should generate: test/generated/v2/server/Error.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createServerResolver } from '../../../../factories-module.js'
+import { createServerResolver } from '../../../../factories-module.js';
 
 /**
  * @returns any Custom message: Successful response
  */
 export const testErrorCode = createServerResolver<Types.ErrorTestErrorCodeInput, Types.ErrorTestErrorCodeOutput>({
-    path: '/api/v{api-version}/error', method: 'POST'
+    path: '/api/v{api-version}/error',
+    method: 'POST',
 });
 
 "
@@ -4137,13 +3437,14 @@ exports[`v2 should generate: test/generated/v2/server/Header.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createServerResolver } from '../../../../factories-module.js'
+import { createServerResolver } from '../../../../factories-module.js';
 
 /**
  * @returns string Successful response
  */
 export const callWithResultFromHeader = createServerResolver<Types.HeaderCallWithResultFromHeaderInput, Types.HeaderCallWithResultFromHeaderOutput>({
-    path: '/api/v{api-version}/header', method: 'POST'
+    path: '/api/v{api-version}/header',
+    method: 'POST',
 });
 
 "
@@ -4156,19 +3457,21 @@ exports[`v2 should generate: test/generated/v2/server/MultipleTags1.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createServerResolver } from '../../../../factories-module.js'
+import { createServerResolver } from '../../../../factories-module.js';
 
 /**
  * @returns void
  */
 export const dummyA = createServerResolver<Types.MultipleTags1DummyAInput, Types.MultipleTags1DummyAOutput>({
-    path: '/api/v{api-version}/multiple-tags/a', method: 'GET'
+    path: '/api/v{api-version}/multiple-tags/a',
+    method: 'GET',
 });
 /**
  * @returns void
  */
 export const dummyB = createServerResolver<Types.MultipleTags1DummyBInput, Types.MultipleTags1DummyBOutput>({
-    path: '/api/v{api-version}/multiple-tags/b', method: 'GET'
+    path: '/api/v{api-version}/multiple-tags/b',
+    method: 'GET',
 });
 
 "
@@ -4181,19 +3484,21 @@ exports[`v2 should generate: test/generated/v2/server/MultipleTags2.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createServerResolver } from '../../../../factories-module.js'
+import { createServerResolver } from '../../../../factories-module.js';
 
 /**
  * @returns void
  */
 export const dummyA = createServerResolver<Types.MultipleTags2DummyAInput, Types.MultipleTags2DummyAOutput>({
-    path: '/api/v{api-version}/multiple-tags/a', method: 'GET'
+    path: '/api/v{api-version}/multiple-tags/a',
+    method: 'GET',
 });
 /**
  * @returns void
  */
 export const dummyB = createServerResolver<Types.MultipleTags2DummyBInput, Types.MultipleTags2DummyBOutput>({
-    path: '/api/v{api-version}/multiple-tags/b', method: 'GET'
+    path: '/api/v{api-version}/multiple-tags/b',
+    method: 'GET',
 });
 
 "
@@ -4206,13 +3511,14 @@ exports[`v2 should generate: test/generated/v2/server/MultipleTags3.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createServerResolver } from '../../../../factories-module.js'
+import { createServerResolver } from '../../../../factories-module.js';
 
 /**
  * @returns void
  */
 export const dummyB = createServerResolver<Types.MultipleTags3DummyBInput, Types.MultipleTags3DummyBOutput>({
-    path: '/api/v{api-version}/multiple-tags/b', method: 'GET'
+    path: '/api/v{api-version}/multiple-tags/b',
+    method: 'GET',
 });
 
 "
@@ -4225,13 +3531,14 @@ exports[`v2 should generate: test/generated/v2/server/NoContent.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createServerResolver } from '../../../../factories-module.js'
+import { createServerResolver } from '../../../../factories-module.js';
 
 /**
  * @returns void
  */
 export const callWithNoContentResponse = createServerResolver<Types.NoContentCallWithNoContentResponseInput, Types.NoContentCallWithNoContentResponseOutput>({
-    path: '/api/v{api-version}/no-content', method: 'GET'
+    path: '/api/v{api-version}/no-content',
+    method: 'GET',
 });
 
 "
@@ -4244,17 +3551,19 @@ exports[`v2 should generate: test/generated/v2/server/Parameters.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createServerResolver } from '../../../../factories-module.js'
+import { createServerResolver } from '../../../../factories-module.js';
 
 /**
  */
 export const callWithParameters = createServerResolver<Types.ParametersCallWithParametersInput, Types.ParametersCallWithParametersOutput>({
-    path: '/api/v{api-version}/parameters/{parameterPath}', method: 'POST'
+    path: '/api/v{api-version}/parameters/{parameterPath}',
+    method: 'POST',
 });
 /**
  */
 export const callWithWeirdParameterNames = createServerResolver<Types.ParametersCallWithWeirdParameterNamesInput, Types.ParametersCallWithWeirdParameterNamesOutput>({
-    path: '/api/v{api-version}/parameters/{parameter.path.1}/{parameter-path-2}/{PARAMETER-PATH-3}', method: 'POST'
+    path: '/api/v{api-version}/parameters/{parameter.path.1}/{parameter-path-2}/{PARAMETER-PATH-3}',
+    method: 'POST',
 });
 
 "
@@ -4267,19 +3576,21 @@ exports[`v2 should generate: test/generated/v2/server/Response.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createServerResolver } from '../../../../factories-module.js'
+import { createServerResolver } from '../../../../factories-module.js';
 
 /**
  * @returns ModelWithString Message for default response
  */
 export const callWithResponse = createServerResolver<Types.ResponseCallWithResponseInput, Types.ResponseCallWithResponseOutput>({
-    path: '/api/v{api-version}/response', method: 'GET'
+    path: '/api/v{api-version}/response',
+    method: 'GET',
 });
 /**
  * @returns ModelWithString Message for default response
  */
 export const callWithDuplicateResponses = createServerResolver<Types.ResponseCallWithDuplicateResponsesInput, Types.ResponseCallWithDuplicateResponsesOutput>({
-    path: '/api/v{api-version}/response', method: 'POST'
+    path: '/api/v{api-version}/response',
+    method: 'POST',
 });
 /**
  * @returns any Message for 200 response
@@ -4288,7 +3599,8 @@ export const callWithDuplicateResponses = createServerResolver<Types.ResponseCal
  * @returns ModelThatExtendsExtends Message for 202 response
  */
 export const callWithResponses = createServerResolver<Types.ResponseCallWithResponsesInput, Types.ResponseCallWithResponsesOutput>({
-    path: '/api/v{api-version}/response', method: 'PUT'
+    path: '/api/v{api-version}/response',
+    method: 'PUT',
 });
 
 "
@@ -4301,42 +3613,49 @@ exports[`v2 should generate: test/generated/v2/server/Simple.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createServerResolver } from '../../../../factories-module.js'
+import { createServerResolver } from '../../../../factories-module.js';
 
 /**
  */
 export const getCallWithoutParametersAndResponse = createServerResolver<Types.SimpleGetCallWithoutParametersAndResponseInput, Types.SimpleGetCallWithoutParametersAndResponseOutput>({
-    path: '/api/v{api-version}/simple', method: 'GET'
+    path: '/api/v{api-version}/simple',
+    method: 'GET',
 });
 /**
  */
 export const putCallWithoutParametersAndResponse = createServerResolver<Types.SimplePutCallWithoutParametersAndResponseInput, Types.SimplePutCallWithoutParametersAndResponseOutput>({
-    path: '/api/v{api-version}/simple', method: 'PUT'
+    path: '/api/v{api-version}/simple',
+    method: 'PUT',
 });
 /**
  */
 export const postCallWithoutParametersAndResponse = createServerResolver<Types.SimplePostCallWithoutParametersAndResponseInput, Types.SimplePostCallWithoutParametersAndResponseOutput>({
-    path: '/api/v{api-version}/simple', method: 'POST'
+    path: '/api/v{api-version}/simple',
+    method: 'POST',
 });
 /**
  */
 export const deleteCallWithoutParametersAndResponse = createServerResolver<Types.SimpleDeleteCallWithoutParametersAndResponseInput, Types.SimpleDeleteCallWithoutParametersAndResponseOutput>({
-    path: '/api/v{api-version}/simple', method: 'DELETE'
+    path: '/api/v{api-version}/simple',
+    method: 'DELETE',
 });
 /**
  */
 export const optionsCallWithoutParametersAndResponse = createServerResolver<Types.SimpleOptionsCallWithoutParametersAndResponseInput, Types.SimpleOptionsCallWithoutParametersAndResponseOutput>({
-    path: '/api/v{api-version}/simple', method: 'OPTIONS'
+    path: '/api/v{api-version}/simple',
+    method: 'OPTIONS',
 });
 /**
  */
 export const headCallWithoutParametersAndResponse = createServerResolver<Types.SimpleHeadCallWithoutParametersAndResponseInput, Types.SimpleHeadCallWithoutParametersAndResponseOutput>({
-    path: '/api/v{api-version}/simple', method: 'HEAD'
+    path: '/api/v{api-version}/simple',
+    method: 'HEAD',
 });
 /**
  */
 export const patchCallWithoutParametersAndResponse = createServerResolver<Types.SimplePatchCallWithoutParametersAndResponseInput, Types.SimplePatchCallWithoutParametersAndResponseOutput>({
-    path: '/api/v{api-version}/simple', method: 'PATCH'
+    path: '/api/v{api-version}/simple',
+    method: 'PATCH',
 });
 
 "
@@ -4349,7 +3668,7 @@ exports[`v2 should generate: test/generated/v2/server/Types.ts 1`] = `
 /* eslint-disable */
 
 import * as Types from '../factories/types.js';
-import { createServerResolver } from '../../../../factories-module.js'
+import { createServerResolver } from '../../../../factories-module.js';
 
 /**
  * @returns number Response is a simple number
@@ -4358,7 +3677,8 @@ import { createServerResolver } from '../../../../factories-module.js'
  * @returns any Response is a simple object
  */
 export const types = createServerResolver<Types.TypesTypesInput, Types.TypesTypesOutput>({
-    path: '/api/v{api-version}/types', method: 'GET'
+    path: '/api/v{api-version}/types',
+    method: 'GET',
 });
 
 "
@@ -4370,22 +3690,22 @@ exports[`v2 should generate: test/generated/v2/server/index.ts 1`] = `
 /* tslint:disable */
 /* eslint-disable */
 
-export * as default from './Default.js'
-export * as simple from './Simple.js'
-export * as descriptions from './Descriptions.js'
-export * as parameters from './Parameters.js'
-export * as defaults from './Defaults.js'
-export * as duplicate from './Duplicate.js'
-export * as noContent from './NoContent.js'
-export * as multipleTags1 from './MultipleTags1.js'
-export * as multipleTags2 from './MultipleTags2.js'
-export * as multipleTags3 from './MultipleTags3.js'
-export * as response from './Response.js'
-export * as collectionFormat from './CollectionFormat.js'
-export * as types from './Types.js'
-export * as complex from './Complex.js'
-export * as header from './Header.js'
-export * as error from './Error.js'
+export * as default from './Default.js';
+export * as simple from './Simple.js';
+export * as descriptions from './Descriptions.js';
+export * as parameters from './Parameters.js';
+export * as defaults from './Defaults.js';
+export * as duplicate from './Duplicate.js';
+export * as noContent from './NoContent.js';
+export * as multipleTags1 from './MultipleTags1.js';
+export * as multipleTags2 from './MultipleTags2.js';
+export * as multipleTags3 from './MultipleTags3.js';
+export * as response from './Response.js';
+export * as collectionFormat from './CollectionFormat.js';
+export * as types from './Types.js';
+export * as complex from './Complex.js';
+export * as header from './Header.js';
+export * as error from './Error.js';
 
 "
 `;
@@ -4395,7 +3715,6 @@ exports[`v3 should generate: test/generated/v3/index.ts 1`] = `
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 
 export type { _default } from './models/_default.js';
 export type { ArrayWithArray } from './models/ArrayWithArray.js';
@@ -4537,10 +3856,10 @@ export { $SimpleReference } from './schemas/$SimpleReference.js';
 export { $SimpleString } from './schemas/$SimpleString.js';
 export { $SimpleStringWithPattern } from './schemas/$SimpleStringWithPattern.js';
 
-export * from './factories'
-export * as pathnames from './pathnames'
-export * as server from './server'
-export * as client from './client'
-export * as hook from './hook'
+export * from './factories';
+export * as pathnames from './pathnames';
+export * as server from './server';
+export * as client from './client';
+export * as hook from './hook';
 "
 `;

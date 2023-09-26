@@ -1,7 +1,7 @@
 {{>header}}
 
 import * as Types from '../factories/types{{>tsExtention}}';
-import { createServerResolver } from '{{{factories}}}'
+import { createServerResolver } from '{{{factories}}}';
 
 {{#each service.operations}}
 /**
@@ -19,6 +19,8 @@ import { createServerResolver } from '{{{factories}}}'
 {{/each}}
 */
 export const {{{name}}} = createServerResolver<Types.{{{@root.service.name}}}{{{capitalize name}}}Input, Types.{{{@root.service.name}}}{{{capitalize name}}}Output>({
-	path: '{{{path}}}', method: '{{{method}}}'{{#if parametersBody}}{{#if parametersBody.mediaType}}, mediaType: '{{{parametersBody.mediaType}}}'{{/if}}{{/if}}
+	path: '{{{path}}}',
+	method: '{{{method}}}'{{#if parametersBody}}{{#if parametersBody.mediaType}},
+	mediaType: '{{{parametersBody.mediaType}}}'{{/if}}{{/if}},
 });
 {{/each}}

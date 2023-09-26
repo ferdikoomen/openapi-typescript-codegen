@@ -1,4 +1,4 @@
-{
+{{#if @root}}{
 {{#if description}}
 	description: `{{{escapeDescription description}}}`,
 {{/if}}
@@ -18,4 +18,4 @@
 {{#if isNullable}}
 	isNullable: {{{isNullable}}},
 {{/if}}
-}
+}{{/if~}}

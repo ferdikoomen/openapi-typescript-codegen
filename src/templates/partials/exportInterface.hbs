@@ -19,7 +19,7 @@ export type {{{name}}} = {
 	 * @deprecated
 	{{/if}}
 	 */
-	{{/ifdef}}
+	{{/ifdef~}}
 	{{>isReadOnly}}{{{name}}}{{>isRequired}}: {{>type parent=../name}};
 	{{/each}}
 };

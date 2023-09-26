@@ -1,10 +1,12 @@
 {{>header}}
 
 import * as Types from '../factories/types{{>tsExtention}}';
-import { createSwrHook } from '{{{factories}}}'
+import { createSwrHook } from '{{{factories}}}';
 
 {{#each service.operations}}
 export const use{{{capitalize name}}} = createSwrHook<Types.{{{@root.service.name}}}{{{capitalize name}}}Input, Types.{{{@root.service.name}}}{{{capitalize name}}}Output>({
-	path: '{{{path}}}', method: '{{{method}}}'{{#if parametersBody}}{{#if parametersBody.mediaType}}, mediaType: '{{{parametersBody.mediaType}}}'{{/if}}{{/if}}
+	path: '{{{path}}}',
+	method: '{{{method}}}'{{#if parametersBody}}{{#if parametersBody.mediaType}},
+	mediaType: '{{{parametersBody.mediaType}}}'{{/if}}{{/if}},
 });
 {{/each}}
