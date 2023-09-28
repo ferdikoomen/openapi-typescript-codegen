@@ -28,6 +28,8 @@ build: typecheck clean copy-templates
 	rm -rf ./dist/*.spec.js ./dist/**/*.spec.js ./dist/**/__mocks__
 
 dist: build
+	rm -rf /Users/se/www/exlab/expense-tracker/front/node_modules/@yobta/generator/bin
+	cp -a ./bin/. /Users/se/www/exlab/expense-tracker/front/node_modules/@yobta/generator/bin
 	rm -rf /Users/se/www/exlab/expense-tracker/front/node_modules/@yobta/generator/dist
 	cp -a ./dist/. /Users/se/www/exlab/expense-tracker/front/node_modules/@yobta/generator/dist
 
