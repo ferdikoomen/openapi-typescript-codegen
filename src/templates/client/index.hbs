@@ -1,4 +1,5 @@
 {{>header}}
+"use client";
 
 {{#each writedFiles}}
 export * as {{camelCase fileName}} from './{{fileName}}{{>tsExtention}}';
