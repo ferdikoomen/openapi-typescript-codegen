@@ -30,7 +30,7 @@ export const writeClientHooks = async (
         const getOperations = service.operations.filter(operation => operation.method === 'GET');
         if (!getOperations.length) continue;
         const file = resolve(outputPath, `${service.name}.ts`);
-        const templateResult = templates.exports.hook.resolver({
+        const templateResult = templates.exports.hooks.resolver({
             service: { ...service, operations: getOperations },
             factories: relative(outputPath, factories),
             allowImportingTsExtensions,
@@ -40,7 +40,7 @@ export const writeClientHooks = async (
     }
     if (writedFiles.length) {
         const file = resolve(outputPath, 'index.ts');
-        const templateResult = templates.exports.hook.index({ writedFiles, allowImportingTsExtensions });
+        const templateResult = templates.exports.hooks.index({ writedFiles, allowImportingTsExtensions });
         await writeFile(file, i(f(templateResult), indent));
     }
 };

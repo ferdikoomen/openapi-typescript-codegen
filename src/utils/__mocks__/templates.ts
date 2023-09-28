@@ -19,7 +19,7 @@ export const templates: Templates = {
             resolver: () => 'clientResolver',
             index: () => 'clientIndex',
         },
-        hook: {
+        hooks: {
             resolver: () => 'hookResolver',
             index: () => 'hookIndex',
         },
