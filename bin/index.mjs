@@ -25,7 +25,7 @@ const params = program
     .parse(process.argv)
     .opts();
 
-const OpenAPI = await import('../dist/index.js');
+const OpenAPI = await import('../dist/generator.js');
 
 if (OpenAPI) {
     OpenAPI.generate({

@@ -4,40 +4,7 @@
     "description": "Library that generates Typescript clients based on the OpenAPI specification.",
     "author": "Ferdi Koomen, Pavel Brylev",
     "homepage": "https://github.com/yobta/generator",
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/yobta/generator.git"
-    },
-    "bugs": {
-        "url": "https://github.com/yobta/generator/issues"
-    },
     "type": "module",
-    "exports": {
-        ".": "./dist/index.js"
-    },
-    "license": "MIT",
-    "keywords": [
-        "openapi",
-        "swagger",
-        "generator",
-        "typescript",
-        "yaml",
-        "json",
-        "fetch",
-        "xhr",
-        "axios",
-        "angular",
-        "node"
-    ],
-    "maintainers": [
-        {
-            "name": "Pavel Brylev",
-            "email": "pavel.brylev@supremedesign.ru"
-        }
-    ],
-    "engines": {
-        "node": ">=16.14.0"
-    },
     "main": "dist/index.js",
     "bin": {
         "generate-yobta": "bin/index.mjs"
@@ -49,6 +16,23 @@
         "dist/**/*.hbs",
         "types/**/*.d.ts"
     ],
+    "exports": {
+        ".": "./dist/index.js"
+    },
+    "license": "MIT",
+    "keywords": [
+        "openapi",
+        "swagger",
+        "generator",
+        "typescript",
+        "nextjs",
+        "swr",
+        "fetch",
+        "node"
+    ],
+    "engines": {
+        "node": ">=16.14.0"
+    },
     "scripts": {
         "clean": "rimraf ./dist ./test/generated ./templates ./samples/generated ./coverage ./node_modules/.cache",
         "build": "tsc",
@@ -57,8 +41,7 @@
         "test:unit": "jest --coverage --selectProjects UNIT",
         "test:update": "jest --selectProjects UNIT --updateSnapshot",
         "eslint": "eslint .",
-        "eslint:fix": "eslint . --fix",
-        "codecov": "codecov --token=66c30c23-8954-4892-bef9-fbaed0a2e42b"
+        "eslint:fix": "eslint . --fix"
     },
     "dependencies": {
         "camelcase": "^6.3.0",
@@ -113,6 +96,19 @@
         "ts-node": "10.9.1",
         "typescript": "5.1.6"
     },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/yobta/generator.git"
+    },
+    "bugs": {
+        "url": "https://github.com/yobta/generator/issues"
+    },
+    "maintainers": [
+        {
+            "name": "Pavel Brylev",
+            "email": "pavel.brylev@supremedesign.ru"
+        }
+    ],
     "overrides": {
         "typescript": "5.1.6"
     }

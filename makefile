@@ -5,14 +5,10 @@ lint+fix:
 	pnpm run eslint:fix
 
 .PHONY: test
-test: build test-unit coverage
+test: build test-unit
 
 test-unit:
 	pnpm run test:unit
-
-.PHONY: coverage
-coverage:
-	pnpm run codecov
 
 typecheck:
 	pnpm run typecheck
@@ -30,6 +26,10 @@ check: typecheck lint test
 build: typecheck clean copy-templates
 	pnpm run build
 	rm -rf ./dist/*.spec.js ./dist/**/*.spec.js ./dist/**/__mocks__
+
+dist: build
+	rm -rf /Users/se/www/exlab/expense-tracker/front/node_modules/@yobta/generator/dist
+	cp -a ./dist/. /Users/se/www/exlab/expense-tracker/front/node_modules/@yobta/generator/dist
 
 i:
 	rm -rf node_modules

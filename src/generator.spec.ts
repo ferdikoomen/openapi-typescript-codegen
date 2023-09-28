@@ -1,4 +1,4 @@
-import OpenAPI from './index';
+import OpenAPI from './generator';
 
 describe('index', () => {
     it('parses v2 without issues', async () => {
