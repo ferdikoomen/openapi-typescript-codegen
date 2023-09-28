@@ -5,6 +5,7 @@ exports[`v2 should generate: test/generated/v2/client/CollectionFormat.ts 1`] = 
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+"use client";
 
 import * as Types from '../factories/types.js';
 import { createClientResolver } from '../../../../factories-module.js';
@@ -24,6 +25,7 @@ exports[`v2 should generate: test/generated/v2/client/Complex.ts 1`] = `
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+"use client";
 
 import * as Types from '../factories/types.js';
 import { createClientResolver } from '../../../../factories-module.js';
@@ -44,6 +46,7 @@ exports[`v2 should generate: test/generated/v2/client/Default.ts 1`] = `
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+"use client";
 
 import * as Types from '../factories/types.js';
 import { createClientResolver } from '../../../../factories-module.js';
@@ -63,6 +66,7 @@ exports[`v2 should generate: test/generated/v2/client/Defaults.ts 1`] = `
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+"use client";
 
 import * as Types from '../factories/types.js';
 import { createClientResolver } from '../../../../factories-module.js';
@@ -94,6 +98,7 @@ exports[`v2 should generate: test/generated/v2/client/Descriptions.ts 1`] = `
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+"use client";
 
 import * as Types from '../factories/types.js';
 import { createClientResolver } from '../../../../factories-module.js';
@@ -113,6 +118,7 @@ exports[`v2 should generate: test/generated/v2/client/Duplicate.ts 1`] = `
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+"use client";
 
 import * as Types from '../factories/types.js';
 import { createClientResolver } from '../../../../factories-module.js';
@@ -150,6 +156,7 @@ exports[`v2 should generate: test/generated/v2/client/Error.ts 1`] = `
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+"use client";
 
 import * as Types from '../factories/types.js';
 import { createClientResolver } from '../../../../factories-module.js';
@@ -170,6 +177,7 @@ exports[`v2 should generate: test/generated/v2/client/Header.ts 1`] = `
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+"use client";
 
 import * as Types from '../factories/types.js';
 import { createClientResolver } from '../../../../factories-module.js';
@@ -190,6 +198,7 @@ exports[`v2 should generate: test/generated/v2/client/MultipleTags1.ts 1`] = `
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+"use client";
 
 import * as Types from '../factories/types.js';
 import { createClientResolver } from '../../../../factories-module.js';
@@ -217,6 +226,7 @@ exports[`v2 should generate: test/generated/v2/client/MultipleTags2.ts 1`] = `
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+"use client";
 
 import * as Types from '../factories/types.js';
 import { createClientResolver } from '../../../../factories-module.js';
@@ -244,6 +254,7 @@ exports[`v2 should generate: test/generated/v2/client/MultipleTags3.ts 1`] = `
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+"use client";
 
 import * as Types from '../factories/types.js';
 import { createClientResolver } from '../../../../factories-module.js';
@@ -264,6 +275,7 @@ exports[`v2 should generate: test/generated/v2/client/NoContent.ts 1`] = `
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+"use client";
 
 import * as Types from '../factories/types.js';
 import { createClientResolver } from '../../../../factories-module.js';
@@ -284,6 +296,7 @@ exports[`v2 should generate: test/generated/v2/client/Parameters.ts 1`] = `
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+"use client";
 
 import * as Types from '../factories/types.js';
 import { createClientResolver } from '../../../../factories-module.js';
@@ -309,6 +322,7 @@ exports[`v2 should generate: test/generated/v2/client/Response.ts 1`] = `
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+"use client";
 
 import * as Types from '../factories/types.js';
 import { createClientResolver } from '../../../../factories-module.js';
@@ -346,6 +360,7 @@ exports[`v2 should generate: test/generated/v2/client/Simple.ts 1`] = `
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+"use client";
 
 import * as Types from '../factories/types.js';
 import { createClientResolver } from '../../../../factories-module.js';
@@ -401,6 +416,7 @@ exports[`v2 should generate: test/generated/v2/client/Types.ts 1`] = `
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+"use client";
 
 import * as Types from '../factories/types.js';
 import { createClientResolver } from '../../../../factories-module.js';
@@ -424,6 +440,7 @@ exports[`v2 should generate: test/generated/v2/client/index.ts 1`] = `
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+"use client";
 
 export * as default from './Default.js';
 export * as simple from './Simple.js';
@@ -999,6 +1016,240 @@ export const useTypes = createSwrHook<Types.TypesTypesInput, Types.TypesTypesOut
 `;
 
 exports[`v2 should generate: test/generated/v2/hook/index.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+
+export * as default from './Default.js';
+export * as simple from './Simple.js';
+export * as defaults from './Defaults.js';
+export * as duplicate from './Duplicate.js';
+export * as noContent from './NoContent.js';
+export * as multipleTags1 from './MultipleTags1.js';
+export * as multipleTags2 from './MultipleTags2.js';
+export * as multipleTags3 from './MultipleTags3.js';
+export * as response from './Response.js';
+export * as collectionFormat from './CollectionFormat.js';
+export * as types from './Types.js';
+export * as complex from './Complex.js';
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/hooks/CollectionFormat.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+
+import * as Types from '../factories/types.js';
+import { createSwrHook } from '../../../../factories-module.js';
+
+export const useCollectionFormat = createSwrHook<Types.CollectionFormatCollectionFormatInput, Types.CollectionFormatCollectionFormatOutput>({
+    path: '/api/v{api-version}/collectionFormat',
+    method: 'GET',
+});
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/hooks/Complex.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+
+import * as Types from '../factories/types.js';
+import { createSwrHook } from '../../../../factories-module.js';
+
+export const useComplexTypes = createSwrHook<Types.ComplexComplexTypesInput, Types.ComplexComplexTypesOutput>({
+    path: '/api/v{api-version}/complex',
+    method: 'GET',
+});
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/hooks/Default.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+
+import * as Types from '../factories/types.js';
+import { createSwrHook } from '../../../../factories-module.js';
+
+export const useServiceWithEmptyTag = createSwrHook<Types.DefaultServiceWithEmptyTagInput, Types.DefaultServiceWithEmptyTagOutput>({
+    path: '/api/v{api-version}/no-tag',
+    method: 'GET',
+});
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/hooks/Defaults.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+
+import * as Types from '../factories/types.js';
+import { createSwrHook } from '../../../../factories-module.js';
+
+export const useCallWithDefaultParameters = createSwrHook<Types.DefaultsCallWithDefaultParametersInput, Types.DefaultsCallWithDefaultParametersOutput>({
+    path: '/api/v{api-version}/defaults',
+    method: 'GET',
+});
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/hooks/Duplicate.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+
+import * as Types from '../factories/types.js';
+import { createSwrHook } from '../../../../factories-module.js';
+
+export const useDuplicateName = createSwrHook<Types.DuplicateDuplicateNameInput, Types.DuplicateDuplicateNameOutput>({
+    path: '/api/v{api-version}/duplicate',
+    method: 'GET',
+});
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/hooks/MultipleTags1.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+
+import * as Types from '../factories/types.js';
+import { createSwrHook } from '../../../../factories-module.js';
+
+export const useDummyA = createSwrHook<Types.MultipleTags1DummyAInput, Types.MultipleTags1DummyAOutput>({
+    path: '/api/v{api-version}/multiple-tags/a',
+    method: 'GET',
+});
+export const useDummyB = createSwrHook<Types.MultipleTags1DummyBInput, Types.MultipleTags1DummyBOutput>({
+    path: '/api/v{api-version}/multiple-tags/b',
+    method: 'GET',
+});
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/hooks/MultipleTags2.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+
+import * as Types from '../factories/types.js';
+import { createSwrHook } from '../../../../factories-module.js';
+
+export const useDummyA = createSwrHook<Types.MultipleTags2DummyAInput, Types.MultipleTags2DummyAOutput>({
+    path: '/api/v{api-version}/multiple-tags/a',
+    method: 'GET',
+});
+export const useDummyB = createSwrHook<Types.MultipleTags2DummyBInput, Types.MultipleTags2DummyBOutput>({
+    path: '/api/v{api-version}/multiple-tags/b',
+    method: 'GET',
+});
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/hooks/MultipleTags3.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+
+import * as Types from '../factories/types.js';
+import { createSwrHook } from '../../../../factories-module.js';
+
+export const useDummyB = createSwrHook<Types.MultipleTags3DummyBInput, Types.MultipleTags3DummyBOutput>({
+    path: '/api/v{api-version}/multiple-tags/b',
+    method: 'GET',
+});
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/hooks/NoContent.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+
+import * as Types from '../factories/types.js';
+import { createSwrHook } from '../../../../factories-module.js';
+
+export const useCallWithNoContentResponse = createSwrHook<Types.NoContentCallWithNoContentResponseInput, Types.NoContentCallWithNoContentResponseOutput>({
+    path: '/api/v{api-version}/no-content',
+    method: 'GET',
+});
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/hooks/Response.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+
+import * as Types from '../factories/types.js';
+import { createSwrHook } from '../../../../factories-module.js';
+
+export const useCallWithResponse = createSwrHook<Types.ResponseCallWithResponseInput, Types.ResponseCallWithResponseOutput>({
+    path: '/api/v{api-version}/response',
+    method: 'GET',
+});
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/hooks/Simple.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+
+import * as Types from '../factories/types.js';
+import { createSwrHook } from '../../../../factories-module.js';
+
+export const useGetCallWithoutParametersAndResponse = createSwrHook<Types.SimpleGetCallWithoutParametersAndResponseInput, Types.SimpleGetCallWithoutParametersAndResponseOutput>({
+    path: '/api/v{api-version}/simple',
+    method: 'GET',
+});
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/hooks/Types.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+
+import * as Types from '../factories/types.js';
+import { createSwrHook } from '../../../../factories-module.js';
+
+export const useTypes = createSwrHook<Types.TypesTypesInput, Types.TypesTypesOutput>({
+    path: '/api/v{api-version}/types',
+    method: 'GET',
+});
+
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/hooks/index.ts 1`] = `
 "/* generated using openapi-typescript-codegen -- do no edit */
 /* istanbul ignore file */
 /* tslint:disable */
