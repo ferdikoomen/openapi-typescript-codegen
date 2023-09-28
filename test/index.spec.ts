@@ -1,7 +1,7 @@
 import { readFileSync } from 'fs';
 import { sync } from 'glob';
 
-import { generate } from '../';
+import { generate } from '../src/generator.js';
 
 describe('v2', () => {
     it('should generate', async () => {
