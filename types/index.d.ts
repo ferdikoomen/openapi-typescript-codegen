@@ -22,11 +22,16 @@ export type Options = {
     exportCore?: boolean;
     exportServices?: boolean;
     exportModels?: boolean;
+    exportClient?: boolean;
+    exportIndex?: boolean;
     exportSchemas?: boolean;
     indent?: Indent | '4' | '2' | 'tab';
     postfixServices?: string;
     postfixModels?: string;
     request?: string;
+    serviceTemplate?: string;
+    clientTemplate?: string;
+    indexTemplate?: string;
     write?: boolean;
 };
 
