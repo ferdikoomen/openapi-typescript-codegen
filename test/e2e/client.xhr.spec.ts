@@ -99,6 +99,25 @@ describe('client.xhr', () => {
         expect(error).toContain('Request aborted');
     });
 
+    it('can abort the request with custom reason', async () => {
+        const reason = 'Timed out!';
+        let error;
+        try {
+            await browser.evaluate(async errMsg => {
+                const { ApiClient } = (window as any).api;
+                const client = new ApiClient();
+                const promise = client.simple.getCallWithoutParametersAndResponse();
+                setTimeout(() => {
+                    promise.cancel(new Error(errMsg));
+                }, 10);
+                await promise;
+            }, reason);
+        } catch (e) {
+            error = (e as Error).message;
+        }
+        expect(error).toContain(reason);
+    });
+
     it('should throw known error (500)', async () => {
         const error = await browser.evaluate(async () => {
             try {
