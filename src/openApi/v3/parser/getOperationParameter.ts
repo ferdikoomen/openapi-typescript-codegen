@@ -54,7 +54,11 @@ export const getOperationParameter = (openApi: OpenApi, parameter: OpenApiParame
             operationParameter.base = model.base;
             operationParameter.template = model.template;
             operationParameter.imports.push(...model.imports);
-            operationParameter.default = getModelDefault(schema);
+            operationParameter.default =
+                parameter.in === 'header'
+                    ? `this.httpRequest.config.HEADERS['${parameter.name}']`
+                    : getModelDefault(schema);
+
             return operationParameter;
         } else {
             const model = getModel(openApi, schema);
@@ -80,11 +84,14 @@ export const getOperationParameter = (openApi: OpenApi, parameter: OpenApiParame
             operationParameter.maxProperties = model.maxProperties;
             operationParameter.minProperties = model.minProperties;
             operationParameter.pattern = getPattern(model.pattern);
-            operationParameter.default = model.default;
             operationParameter.imports.push(...model.imports);
             operationParameter.enum.push(...model.enum);
             operationParameter.enums.push(...model.enums);
             operationParameter.properties.push(...model.properties);
+
+            // param default if the value is a header should be the config header
+            operationParameter.default =
+                parameter.in === 'header' ? `this.httpRequest.config.HEADERS['${parameter.name}']` : model.default;
             return operationParameter;
         }
     }
