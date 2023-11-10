@@ -82,6 +82,7 @@ import partialTypeGeneric from '../templates/partials/typeGeneric.hbs';
 import partialTypeInterface from '../templates/partials/typeInterface.hbs';
 import partialTypeIntersection from '../templates/partials/typeIntersection.hbs';
 import partialTypeReference from '../templates/partials/typeReference.hbs';
+import partialTypeTuple from '../templates/partials/typeTuple.hbs';
 import partialTypeUnion from '../templates/partials/typeUnion.hbs';
 import { registerHandlebarHelpers } from './registerHandlebarHelpers';
 
@@ -113,6 +114,7 @@ export const registerHandlebarTemplates = (root: {
     httpClient: HttpClient;
     useOptions: boolean;
     useUnionTypes: boolean;
+    useTuples: boolean;
 }): Templates => {
     registerHandlebarHelpers(root);
 
@@ -162,6 +164,7 @@ export const registerHandlebarTemplates = (root: {
     Handlebars.registerPartial('typeGeneric', Handlebars.template(partialTypeGeneric));
     Handlebars.registerPartial('typeInterface', Handlebars.template(partialTypeInterface));
     Handlebars.registerPartial('typeReference', Handlebars.template(partialTypeReference));
+    Handlebars.registerPartial('typeTuple', Handlebars.template(partialTypeTuple));
     Handlebars.registerPartial('typeUnion', Handlebars.template(partialTypeUnion));
     Handlebars.registerPartial('typeIntersection', Handlebars.template(partialTypeIntersection));
     Handlebars.registerPartial('base', Handlebars.template(partialBase));

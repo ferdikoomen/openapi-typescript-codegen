@@ -23,6 +23,7 @@ export const writeClientModels = async (
     outputPath: string,
     httpClient: HttpClient,
     useUnionTypes: boolean,
+    useTuples: boolean,
     indent: Indent
 ): Promise<void> => {
     for (const model of models) {
@@ -31,6 +32,7 @@ export const writeClientModels = async (
             ...model,
             httpClient,
             useUnionTypes,
+            useTuples,
         });
         await writeFile(file, i(f(templateResult), indent));
     }

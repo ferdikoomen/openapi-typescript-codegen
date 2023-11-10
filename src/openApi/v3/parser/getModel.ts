@@ -73,26 +73,28 @@ export const getModel = (
     }
 
     if (definition.type === 'array' && definition.items) {
+        model.export = 'array';
+        model.isConstantSize = Boolean(
+            definition.minItems && definition.maxItems && definition.minItems === definition.maxItems
+        );
+
         if (definition.items.$ref) {
             const arrayItems = getType(definition.items.$ref);
-            model.export = 'array';
             model.type = arrayItems.type;
             model.base = arrayItems.base;
             model.template = arrayItems.template;
             model.imports.push(...arrayItems.imports);
             model.default = getModelDefault(definition, model);
-            return model;
         } else {
             const arrayItems = getModel(openApi, definition.items);
-            model.export = 'array';
             model.type = arrayItems.type;
             model.base = arrayItems.base;
             model.template = arrayItems.template;
             model.link = arrayItems;
             model.imports.push(...arrayItems.imports);
             model.default = getModelDefault(definition, model);
-            return model;
         }
+        return model;
     }
 
     if (

@@ -98,6 +98,7 @@ export const getModelProperties = (
                     enum: model.enum,
                     enums: model.enums,
                     properties: model.properties,
+                    isConstantSize: model.isConstantSize,
                     ...propertyValues,
                 });
             }

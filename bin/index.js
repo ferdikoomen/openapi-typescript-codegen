@@ -16,6 +16,7 @@ const params = program
     .option('--name <value>', 'Custom client class name')
     .option('--useOptions', 'Use options instead of arguments')
     .option('--useUnionTypes', 'Use union types instead of enums')
+    .option('--useTuples <value>', 'Whether to convert constant size arrays to tuples.', false)
     .option('--exportCore <value>', 'Write core files to disk', true)
     .option('--exportServices <value>', 'Write services to disk', true)
     .option('--exportModels <value>', 'Write models to disk', true)
@@ -37,6 +38,7 @@ if (OpenAPI) {
         clientName: params.name,
         useOptions: params.useOptions,
         useUnionTypes: params.useUnionTypes,
+        useTuples: JSON.parse(params.useTuples) === true,
         exportCore: JSON.parse(params.exportCore) === true,
         exportServices: JSON.parse(params.exportServices) === true,
         exportModels: JSON.parse(params.exportModels) === true,

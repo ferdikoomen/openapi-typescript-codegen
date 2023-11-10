@@ -31,6 +31,7 @@ export const writeClientSchemas = async (
             ...model,
             httpClient,
             useUnionTypes,
+            useTuples: true,
         });
         await writeFile(file, i(f(templateResult), indent));
     }
