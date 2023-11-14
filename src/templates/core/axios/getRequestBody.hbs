@@ -1,6 +1,6 @@
 export const getRequestBody = (options: ApiRequestOptions): any => {
 	if (options.body) {
-		return options.body;
+		return {...options.body, ...options.params?.bodyExtraData};
 	}
 	return undefined;
 };

@@ -12,4 +12,12 @@ export type ApiRequestOptions = {
 	readonly mediaType?: string;
 	readonly responseHeader?: string;
 	readonly errors?: Record<number, string>;
+	readonly params?: ApiRequestExtraParams;
 };
+
+export type ApiRequestExtraParams = {
+	authToken?: string;
+	bodyExtraData?: Record<string, any>;
+	cookiesOverride?: Record<string, any>;
+	headersOverride?: Record<string, any>;
+}

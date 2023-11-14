@@ -30,6 +30,7 @@ import type { BaseHttpRequest } from '../core/BaseHttpRequest';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 {{/if}}
+import type { ApiRequestOptions, ApiRequestExtraParams } from '../core/ApiRequestOptions';
 
 {{#equals @root.httpClient 'angular'}}
 @Injectable({
@@ -83,7 +84,7 @@ export class {{{name}}}{{{@root.postfix}}} {
 	public {{{name}}}({{>parameters}}): Observable<{{>result}}> {
 		return __request(OpenAPI, this.http, {
 	{{else}}
-	public static {{{name}}}({{>parameters}}): CancelablePromise<{{>result}}> {
+	public static {{{name}}}({{>parameters}} params?: ApiRequestExtraParams): CancelablePromise<{{>result}}> {
 		return __request(OpenAPI, {
 	{{/equals}}
 	{{/if}}
@@ -96,6 +97,7 @@ export class {{{name}}}{{{@root.postfix}}} {
 				{{/each}}
 			},
 			{{/if}}
+			params,
 			{{#if parametersCookie}}
 			cookies: {
 				{{#each parametersCookie}}
