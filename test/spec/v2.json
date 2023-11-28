@@ -965,7 +965,8 @@
                 "Warning",
                 "Error",
                 "'Single Quote'",
-                "\"Double Quotes\""
+                "\"Double Quotes\"",
+                "你好"
             ]
         },
         "EnumWithNumbers": {

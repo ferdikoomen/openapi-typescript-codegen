@@ -1561,9 +1561,11 @@
                     "Warning",
                     "Error",
                     "'Single Quote'",
-                    "\"Double Quotes\""
+                    "\"Double Quotes\"",
+                    "你好"
                 ]
             },
+           
             "EnumWithNumbers": {
                 "description": "This is a simple enum with numbers",
                 "enum": [
