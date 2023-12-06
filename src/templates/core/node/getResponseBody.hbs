@@ -1,4 +1,4 @@
-export const getResponseBody = async (response: Response): Promise<any> => {
+export const getResponseBody = async (response: Response, options: ApiRequestOptions): Promise<any> => {
 	if (response.status !== 204) {
 		try {
 			const contentType = response.headers.get('Content-Type');
@@ -7,6 +7,8 @@ export const getResponseBody = async (response: Response): Promise<any> => {
 				const isJSON = jsonTypes.some(type => contentType.toLowerCase().startsWith(type));
 				if (isJSON) {
 					return await response.json();
+				} else if (options.responseType === 'blob') {
+					return await response.blob();
 				} else {
 					return await response.text();
 				}
