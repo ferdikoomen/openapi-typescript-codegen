@@ -944,6 +944,10 @@
             "description": "This is a simple string",
             "type": "string"
         },
+        "SimpleString_字符串": {
+            "description": "This is a simple string with chinese",
+            "type": "string"
+        },
         "SimpleFile": {
             "description": "This is a simple file",
             "type": "file"
