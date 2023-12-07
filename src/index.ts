@@ -8,6 +8,9 @@ import { isString } from './utils/isString';
 import { postProcessClient } from './utils/postProcessClient';
 import { registerHandlebarTemplates } from './utils/registerHandlebarTemplates';
 import { writeClient } from './utils/writeClient';
+import { writeClientClassCustomTemplate } from './utils/writeClientCustomTemplate/clientClass';
+import { writeClientIndexCustomTemplate } from './utils/writeClientCustomTemplate/index';
+import { writeClientServicesCustomTemplate } from './utils/writeClientCustomTemplate/services';
 
 export { HttpClient } from './HttpClient';
 export { Indent } from './Indent';
@@ -22,11 +25,16 @@ export type Options = {
     exportCore?: boolean;
     exportServices?: boolean;
     exportModels?: boolean;
+    exportClient?: boolean;
+    exportIndex?: boolean;
     exportSchemas?: boolean;
     indent?: Indent;
     postfixServices?: string;
     postfixModels?: string;
     request?: string;
+    serviceTemplate?: string;
+    clientTemplate?: string;
+    indexTemplate?: string;
     write?: boolean;
 };
 
@@ -60,11 +68,16 @@ export const generate = async ({
     exportCore = true,
     exportServices = true,
     exportModels = true,
+    exportClient = true,
+    exportIndex = true,
     exportSchemas = false,
     indent = Indent.SPACE_4,
     postfixServices = 'Service',
     postfixModels = '',
     request,
+    serviceTemplate,
+    clientTemplate,
+    indexTemplate,
     write = true,
 }: Options): Promise<void> => {
     const openApi = isString(input) ? await getOpenApiSpec(input) : input;
@@ -75,10 +88,11 @@ export const generate = async ({
         useOptions,
     });
 
+    let clientFinal;
     switch (openApiVersion) {
         case OpenApiVersion.V2: {
             const client = parseV2(openApi);
-            const clientFinal = postProcessClient(client);
+            clientFinal = postProcessClient(client);
             if (!write) break;
             await writeClient(
                 clientFinal,
@@ -90,6 +104,8 @@ export const generate = async ({
                 exportCore,
                 exportServices,
                 exportModels,
+                exportClient,
+                exportIndex,
                 exportSchemas,
                 indent,
                 postfixServices,
@@ -102,7 +118,7 @@ export const generate = async ({
 
         case OpenApiVersion.V3: {
             const client = parseV3(openApi);
-            const clientFinal = postProcessClient(client);
+            clientFinal = postProcessClient(client);
             if (!write) break;
             await writeClient(
                 clientFinal,
@@ -114,6 +130,8 @@ export const generate = async ({
                 exportCore,
                 exportServices,
                 exportModels,
+                exportClient,
+                exportIndex,
                 exportSchemas,
                 indent,
                 postfixServices,
@@ -124,6 +142,55 @@ export const generate = async ({
             break;
         }
     }
+
+    if (serviceTemplate)
+        await writeClientServicesCustomTemplate(
+            clientFinal,
+            output,
+            httpClient,
+            useOptions,
+            useUnionTypes,
+            indent,
+            postfixServices,
+            postfixModels,
+            serviceTemplate,
+            exportClient,
+            exportModels,
+            exportSchemas,
+            clientName
+        );
+
+    if (clientTemplate)
+        await writeClientClassCustomTemplate(
+            clientFinal,
+            output,
+            httpClient,
+            useOptions,
+            useUnionTypes,
+            indent,
+            postfixServices,
+            clientTemplate,
+            clientName
+        );
+
+    if (indexTemplate)
+        await writeClientIndexCustomTemplate(
+            clientFinal,
+            output,
+            httpClient,
+            useOptions,
+            useUnionTypes,
+            indent,
+            postfixServices,
+            postfixModels,
+            indexTemplate,
+            exportCore,
+            exportServices,
+            exportModels,
+            exportSchemas,
+            exportClient,
+            clientName
+        );
 };
 
 export default {

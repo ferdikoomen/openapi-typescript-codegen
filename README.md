@@ -50,6 +50,9 @@ $ openapi --help
     --postfixServices         Service name postfix (default: "Service")
     --postfixModels           Model name postfix
     --request <value>         Path to custom request file
+    --serviceTemplate <value> Path to custom service handlebars template to generate the service files
+    --clientTemplate <value>  Path to custom client handlebars template to generate the client file
+    --indexTemplate <value>   Path to custom index handlebars template to generate the index file
     -h, --help                display help for command
 
   Examples
