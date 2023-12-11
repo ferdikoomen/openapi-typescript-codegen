@@ -6,6 +6,6 @@ import RefParser from '@apidevtools/json-schema-ref-parser';
  * on parsing the file as JSON.
  * @param location: Path or url
  */
-export const getOpenApiSpec = async (location: string): Promise<any> => {
-    return await RefParser.bundle(location, location, {});
+export const getOpenApiSpec = async (location: string, timeoutTime: number): Promise<any> => {
+    return await RefParser.bundle(location, location, { resolve: { http: { timeout: timeoutTime } } });
 };
