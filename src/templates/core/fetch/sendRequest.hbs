@@ -20,7 +20,7 @@ export const sendRequest = async (
 		request.credentials = config.CREDENTIALS;
 	}
 
-	onCancel(() => controller.abort());
+	onCancel((reason) => controller.abort(reason));
 
 	return await fetch(url, request);
 };

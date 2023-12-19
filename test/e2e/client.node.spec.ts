@@ -84,6 +84,23 @@ describe('client.node', () => {
         expect(error).toContain('Request aborted');
     });
 
+    it('can abort the request with custom reason', async () => {
+        const reason = 'Timed out!';
+        let error;
+        try {
+            const { ApiClient } = require('./generated/client/node/index.js');
+            const client = new ApiClient();
+            const promise = client.simple.getCallWithoutParametersAndResponse();
+            setTimeout(() => {
+                promise.cancel(new Error(reason));
+            }, 10);
+            await promise;
+        } catch (e) {
+            error = (e as Error).message;
+        }
+        expect(error).toContain(reason);
+    });
+
     it('should throw known error (500)', async () => {
         let error;
         try {

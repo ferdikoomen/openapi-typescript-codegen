@@ -23,8 +23,8 @@ const stop = async () => {
     await _browser.close();
 };
 
-const evaluate = async (fn: EvaluateFn) => {
-    return await _page.evaluate(fn);
+const evaluate = async (fn: EvaluateFn, ...args: any[]) => {
+    return await _page.evaluate(fn, ...args);
 };
 
 // eslint-disable-next-line @typescript-eslint/ban-types

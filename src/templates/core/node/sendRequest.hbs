@@ -15,7 +15,7 @@ export const sendRequest = async (
 		signal: controller.signal as AbortSignal,
 	};
 
-	onCancel(() => controller.abort());
+	onCancel((reason) => controller.abort(reason));
 
 	return await fetch(url, request);
 };
