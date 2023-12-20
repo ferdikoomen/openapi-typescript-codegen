@@ -2,5 +2,9 @@ export const getResponseBody = (response: AxiosResponse<any>): any => {
 	if (response.status !== 204) {
 		return response.data;
 	}
+	{{#if @root.useNullForNoContent}}
+	return null;
+	{{else}}
 	return undefined;
+	{{/if}}
 };

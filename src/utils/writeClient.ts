@@ -40,6 +40,7 @@ export const writeClient = async (
     httpClient: HttpClient,
     useOptions: boolean,
     useUnionTypes: boolean,
+    useNullForNoContent: boolean,
     exportCore: boolean,
     exportServices: boolean,
     exportModels: boolean,
@@ -63,7 +64,7 @@ export const writeClient = async (
     if (exportCore) {
         await rmdir(outputPathCore);
         await mkdir(outputPathCore);
-        await writeClientCore(client, templates, outputPathCore, httpClient, indent, clientName, request);
+        await writeClientCore(client, templates, outputPathCore, httpClient, indent, clientName, request, useNullForNoContent);
     }
 
     if (exportServices) {
