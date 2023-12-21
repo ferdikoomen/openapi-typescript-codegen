@@ -14,6 +14,7 @@ describe('client.fetch', () => {
         compileWithTypescript('client/fetch');
         await server.start('client/fetch');
         await browser.start();
+        await browser.exposeFunction('tokenRequest', jest.fn().mockResolvedValue('MY_TOKEN'));
     }, 30000);
 
     afterAll(async () => {
@@ -22,7 +23,6 @@ describe('client.fetch', () => {
     });
 
     it('requests token', async () => {
-        await browser.exposeFunction('tokenRequest', jest.fn().mockResolvedValue('MY_TOKEN'));
         const result = await browser.evaluate(async () => {
             const { ApiClient } = (window as any).api;
             const client = new ApiClient({
@@ -31,6 +31,21 @@ describe('client.fetch', () => {
                 PASSWORD: undefined,
             });
             return await client.simple.getCallWithoutParametersAndResponse();
+        });
+        expect(result.headers.authorization).toBe('Bearer MY_TOKEN');
+    });
+
+    it('overrides token', async () => {
+        const result = await browser.evaluate(async () => {
+            const { ApiClient } = (window as any).api;
+            const client = new ApiClient({
+                TOKEN: 'BAD_TOKEN',
+                USERNAME: undefined,
+                PASSWORD: undefined,
+            });
+            return await client.simple.getCallWithoutParametersAndResponse({
+                TOKEN: (window as any).tokenRequest,
+            });
         });
         expect(result.headers.authorization).toBe('Bearer MY_TOKEN');
     });

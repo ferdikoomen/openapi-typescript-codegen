@@ -26,6 +26,19 @@ describe('v3.axios', () => {
         expect(result.headers.authorization).toBe('Bearer MY_TOKEN');
     });
 
+    it('overrides token', async () => {
+        const { OpenAPI, SimpleService } = require('./generated/v3/axios/index.js');
+        const tokenRequest = jest.fn().mockResolvedValue('MY_TOKEN');
+        OpenAPI.TOKEN = 'BAD_TOKEN';
+        OpenAPI.USERNAME = undefined;
+        OpenAPI.PASSWORD = undefined;
+        const result = await SimpleService.getCallWithoutParametersAndResponse({
+            TOKEN: tokenRequest,
+        });
+        expect(tokenRequest.mock.calls.length).toBe(1);
+        expect(result.headers.authorization).toBe('Bearer MY_TOKEN');
+    });
+
     it('uses credentials', async () => {
         const { OpenAPI, SimpleService } = require('./generated/v3/axios/index.js');
         OpenAPI.TOKEN = undefined;

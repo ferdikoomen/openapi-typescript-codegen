@@ -3,6 +3,28 @@ import { sync } from 'glob';
 
 import { generate, HttpClient } from '../';
 
+describe('client', () => {
+    it('should generate', async () => {
+        await generate({
+            input: './test/spec/v3.json',
+            output: './test/generated/client/',
+            httpClient: HttpClient.FETCH,
+            useOptions: false,
+            useUnionTypes: false,
+            exportCore: true,
+            exportSchemas: true,
+            exportModels: true,
+            exportServices: true,
+            clientName: 'ApiClient',
+        });
+
+        sync('./test/generated/client/**/*.ts').forEach(file => {
+            const content = readFileSync(file, 'utf8').toString();
+            expect(content).toMatchSnapshot(file);
+        });
+    });
+});
+
 describe('v2', () => {
     it('should generate', async () => {
         await generate({

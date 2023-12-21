@@ -23,9 +23,12 @@ export abstract class BaseHttpRequest {
 	constructor(public readonly config: OpenAPIConfig) {}
 	{{/equals}}
 
+	public abstract request<T>(
+		options: ApiRequestOptions,
+		configOverrides?: Partial<OpenAPIConfig>,
 	{{#equals @root.httpClient 'angular'}}
-	public abstract request<T>(options: ApiRequestOptions): Observable<T>;
+	): Observable<T>;
 	{{else}}
-	public abstract request<T>(options: ApiRequestOptions): CancelablePromise<T>;
+	): CancelablePromise<T>;
 	{{/equals}}
 }

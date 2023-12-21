@@ -37,25 +37,31 @@ export class {{httpRequest}} extends BaseHttpRequest {
 	}
 	{{/equals}}
 
+	/**
+	 * Request method
+	 * @param options The request options from the service
+	 * @param [configOverrides] Overrides OpenAPIConfig
 	{{#equals @root.httpClient 'angular'}}
-	/**
-	 * Request method
-	 * @param options The request options from the service
 	 * @returns Observable<T>
-	 * @throws ApiError
-	 */
-	public override request<T>(options: ApiRequestOptions): Observable<T> {
-		return __request(this.config, this.http, options);
-	}
 	{{else}}
-	/**
-	 * Request method
-	 * @param options The request options from the service
 	 * @returns CancelablePromise<T>
+	{{/equals}}
 	 * @throws ApiError
 	 */
-	public override request<T>(options: ApiRequestOptions): CancelablePromise<T> {
-		return __request(this.config, options);
-	}
+	public override request<T>(
+		options: ApiRequestOptions,
+		configOverrides?: Partial<OpenAPIConfig>,
+	{{#equals @root.httpClient 'angular'}}
+	): Observable<T> {
+	{{else}}
+	): CancelablePromise<T> {
 	{{/equals}}
+		return __request(
+			{...this.config, ...configOverrides},
+	{{#equals @root.httpClient 'angular'}}
+			this.http,
+	{{/equals}}
+			options,
+		);
+	}
 }

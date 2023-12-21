@@ -15,6 +15,7 @@ describe('v3.angular', () => {
         buildAngularProject('v3/angular', 'app', 'dist');
         await server.start('v3/angular/app/dist/browser');
         await browser.start();
+        await browser.exposeFunction('tokenRequest', jest.fn().mockResolvedValue('MY_TOKEN'));
     }, 30000);
 
     afterAll(async () => {
@@ -23,7 +24,6 @@ describe('v3.angular', () => {
     });
 
     it('requests token', async () => {
-        await browser.exposeFunction('tokenRequest', jest.fn().mockResolvedValue('MY_TOKEN'));
         const result = await browser.evaluate(async () => {
             return await new Promise<any>(resolve => {
                 const { OpenAPI, SimpleService } = (window as any).api;
@@ -31,6 +31,21 @@ describe('v3.angular', () => {
                 OpenAPI.USERNAME = undefined;
                 OpenAPI.PASSWORD = undefined;
                 SimpleService.getCallWithoutParametersAndResponse().subscribe(resolve);
+            });
+        });
+        expect(result.headers.authorization).toBe('Bearer MY_TOKEN');
+    });
+
+    it('overrides token', async () => {
+        const result = await browser.evaluate(async () => {
+            return await new Promise<any>(resolve => {
+                const { OpenAPI, SimpleService } = (window as any).api;
+                OpenAPI.TOKEN = 'BAD_TOKEN';
+                OpenAPI.USERNAME = undefined;
+                OpenAPI.PASSWORD = undefined;
+                SimpleService.getCallWithoutParametersAndResponse({
+                    TOKEN: (window as any).tokenRequest,
+                }).subscribe(resolve);
             });
         });
         expect(result.headers.authorization).toBe('Bearer MY_TOKEN');
