@@ -24,6 +24,7 @@ const params = program
     .option('--postfixServices <value>', 'Service name postfix', 'Service')
     .option('--postfixModels <value>', 'Model name postfix')
     .option('--request <value>', 'Path to custom request file')
+    .option('--timeout <value>', 'Network request timeout', 5000)
     .parse(process.argv)
     .opts();
 
@@ -45,6 +46,7 @@ if (OpenAPI) {
         postfixServices: params.postfixServices,
         postfixModels: params.postfixModels,
         request: params.request,
+        timeoutTime: params.timeout,
     })
         .then(() => {
             process.exit(0);

@@ -28,6 +28,7 @@ export type Options = {
     postfixModels?: string;
     request?: string;
     write?: boolean;
+    timeoutTime?: number;
 };
 
 /**
@@ -49,6 +50,7 @@ export type Options = {
  * @param postfixModels Model name postfix
  * @param request Path to custom request file
  * @param write Write the files to disk (true or false)
+ * @param set Timeout time for http requests
  */
 export const generate = async ({
     input,
@@ -65,9 +67,10 @@ export const generate = async ({
     postfixServices = 'Service',
     postfixModels = '',
     request,
+    timeoutTime = 5000,
     write = true,
 }: Options): Promise<void> => {
-    const openApi = isString(input) ? await getOpenApiSpec(input) : input;
+    const openApi = isString(input) ? await getOpenApiSpec(input, timeoutTime) : input;
     const openApiVersion = getOpenApiVersion(openApi);
     const templates = registerHandlebarTemplates({
         httpClient,
