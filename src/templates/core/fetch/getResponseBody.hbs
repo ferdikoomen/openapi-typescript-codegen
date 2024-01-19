@@ -5,8 +5,26 @@ export const getResponseBody = async (response: Response): Promise<any> => {
 			if (contentType) {
 				const jsonTypes = ['application/json', 'application/problem+json']
 				const isJSON = jsonTypes.some(type => contentType.toLowerCase().startsWith(type));
+				const isBlob = contentType.toLowerCase().startsWith('image/')
+					|| contentType.toLowerCase().startsWith('application/pdf')
+					|| contentType.toLowerCase().startsWith('application/zip')
+					|| contentType.toLowerCase().startsWith('application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+					|| contentType.toLowerCase().startsWith('application/octet-stream');
+
 				if (isJSON) {
 					return await response.json();
+				} else if (isBlob) {
+					const blob = await response.blob();
+					const disposition = response.headers.get('Content-Disposition');
+					if (disposition && disposition.indexOf('attachment') !== -1) {
+						const filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+						const matches = filenameRegex.exec(disposition);
+						if (matches !== null && matches[1]) { 
+							const filename = decodeURIComponent(matches[1].replace(/['"]/g, ''));
+							return new File([blob],filename,{ type: contentType })
+						}
+					}
+					return blob;
 				} else {
 					return await response.text();
 				}
