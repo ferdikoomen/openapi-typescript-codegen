@@ -1,8 +1,11 @@
 {
-	type: '{{export}}',
+{{#if title}}
+	title: '{{{title}}}',
+{{/if}}
 {{#if description}}
 	description: `{{{escapeDescription description}}}`,
 {{/if}}
+	type: '{{export}}',
 	contains: [{{#each properties}}{{>schema}}{{#unless @last}}, {{/unless}}{{/each}}],
 {{#if isReadOnly}}
 	isReadOnly: {{{isReadOnly}}},

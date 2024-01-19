@@ -23,6 +23,7 @@ export const getModel = (
         template: null,
         link: null,
         description: definition.description || null,
+        title: definition.title,
         deprecated: definition.deprecated === true,
         isDefinition,
         isReadOnly: definition.readOnly === true,

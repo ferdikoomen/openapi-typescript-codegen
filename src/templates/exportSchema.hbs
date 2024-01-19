@@ -1,3 +1,7 @@
 {{>header}}
 
+{{#equals export 'enum'}}
+import { {{name}} } from '../models/{{{name}}}'
+{{/equals}}
+
 export const ${{{name}}} = {{>schema}} as const;
