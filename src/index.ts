@@ -6,7 +6,7 @@ import { getOpenApiSpec } from './utils/getOpenApiSpec';
 import { getOpenApiVersion, OpenApiVersion } from './utils/getOpenApiVersion';
 import { isString } from './utils/isString';
 import { postProcessClient } from './utils/postProcessClient';
-import { registerHandlebarTemplates } from './utils/registerHandlebarTemplates';
+import { registerHandlebarTemplates, TemplateOverrideNames } from './utils/registerHandlebarTemplates';
 import { writeClient } from './utils/writeClient';
 
 export { HttpClient } from './HttpClient';
@@ -28,6 +28,7 @@ export type Options = {
     postfixModels?: string;
     request?: string;
     write?: boolean;
+    templateOverrides?: Partial<Record<TemplateOverrideNames, string>>;
 };
 
 /**
@@ -49,6 +50,7 @@ export type Options = {
  * @param postfixModels Model name postfix
  * @param request Path to custom request file
  * @param write Write the files to disk (true or false)
+ * @param templateOverrides Override any template with a custom implementation
  */
 export const generate = async ({
     input,
@@ -66,6 +68,7 @@ export const generate = async ({
     postfixModels = '',
     request,
     write = true,
+    templateOverrides,
 }: Options): Promise<void> => {
     const openApi = isString(input) ? await getOpenApiSpec(input) : input;
     const openApiVersion = getOpenApiVersion(openApi);
@@ -73,6 +76,7 @@ export const generate = async ({
         httpClient,
         useUnionTypes,
         useOptions,
+        templateOverrides,
     });
 
     switch (openApiVersion) {
