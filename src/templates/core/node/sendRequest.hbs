@@ -3,6 +3,7 @@ export const sendRequest = async (
 	url: string,
 	body: any,
 	formData: FormData | undefined,
+	responseType: 'arraybuffer' | 'blob' | 'document' | 'json' | 'text' | 'stream',
 	headers: Headers,
 	onCancel: OnCancel
 ): Promise<Response> => {
@@ -13,6 +14,7 @@ export const sendRequest = async (
 		method: options.method,
 		body: body ?? formData,
 		signal: controller.signal as AbortSignal,
+		responseType,
 	};
 
 	onCancel(() => controller.abort());

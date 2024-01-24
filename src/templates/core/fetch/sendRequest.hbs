@@ -4,6 +4,7 @@ export const sendRequest = async (
 	url: string,
 	body: any,
 	formData: FormData | undefined,
+	responseType: 'arraybuffer' | 'blob' | 'document' | 'json' | 'text' | 'stream',
 	headers: Headers,
 	onCancel: OnCancel
 ): Promise<Response> => {
@@ -14,6 +15,7 @@ export const sendRequest = async (
 		body: body ?? formData,
 		method: options.method,
 		signal: controller.signal,
+		responseType,
 	};
 
 	if (config.WITH_CREDENTIALS) {

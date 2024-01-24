@@ -5,6 +5,7 @@ export const sendRequest = <T>(
 	url: string,
 	body: any,
 	formData: FormData | undefined,
+	responseType: 'arraybuffer' | 'blob' | 'document' | 'json' | 'text' | 'stream',
 	headers: HttpHeaders
 ): Observable<HttpResponse<T>> => {
 	return http.request<T>(options.method, url, {

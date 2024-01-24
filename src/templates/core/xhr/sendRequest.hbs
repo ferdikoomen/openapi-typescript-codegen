@@ -4,6 +4,7 @@ export const sendRequest = async (
 	url: string,
 	body: any,
 	formData: FormData | undefined,
+	responseType: 'arraybuffer' | 'blob' | 'document' | 'json' | 'text' | 'stream',
 	headers: Headers,
 	onCancel: OnCancel
 ): Promise<XMLHttpRequest> => {
@@ -14,6 +15,8 @@ export const sendRequest = async (
 	headers.forEach((value, key) => {
 		xhr.setRequestHeader(key, value);
 	});
+
+	xhr.responseType = responseType;
 
 	return new Promise<XMLHttpRequest>((resolve, reject) => {
 		xhr.onload = () => resolve(xhr);
