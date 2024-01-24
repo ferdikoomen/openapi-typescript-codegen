@@ -1,5 +1,6 @@
 import Handlebars from 'handlebars/runtime';
 
+import { TemplateOverrideNames } from '../../types/index';
 import { HttpClient } from '../HttpClient';
 import templateClient from '../templates/client.hbs';
 import angularGetHeaders from '../templates/core/angular/getHeaders.hbs';
@@ -86,98 +87,6 @@ import partialTypeUnion from '../templates/partials/typeUnion.hbs';
 import { preCompileTemplate } from './preCompileTemplate';
 import { registerHandlebarHelpers } from './registerHandlebarHelpers';
 
-export type TemplateOverrideNames =
-    // Main templates (entry points for the files we write to disk)
-    | 'index'
-    | 'client'
-    | 'model'
-    | 'schema'
-    | 'service'
-    | 'settings'
-    | 'apiError'
-    | 'apiRequestOptions'
-    | 'apiResult'
-    | 'cancelablePromise'
-    | 'request'
-    | 'baseHttpRequest'
-    | 'httpRequest'
-    // Partials for the generations of the models, services, etc.
-    | 'exportEnum'
-    | 'exportInterface'
-    | 'exportComposition'
-    | 'exportType'
-    | 'header'
-    | 'isNullable'
-    | 'isReadOnly'
-    | 'isRequired'
-    | 'parameters'
-    | 'result'
-    | 'schema'
-    | 'schemaArray'
-    | 'schemaDictionary'
-    | 'schemaEnum'
-    | 'schemaGeneric'
-    | 'schemaInterface'
-    | 'schemaComposition'
-    | 'type'
-    | 'typeArray'
-    | 'typeDictionary'
-    | 'typeEnum'
-    | 'typeGeneric'
-    | 'typeInterface'
-    | 'typeReference'
-    | 'typeUnion'
-    | 'typeIntersection'
-    | 'base'
-    // Generic functions used in 'request' file @see src/templates/core/request.hbs for more info
-    | 'functions/catchErrorCodes'
-    | 'functions/getFormData'
-    | 'functions/getQueryString'
-    | 'functions/getUrl'
-    | 'functions/isBlob'
-    | 'functions/isDefined'
-    | 'functions/isFormData'
-    | 'functions/isString'
-    | 'functions/isStringWithValue'
-    | 'functions/isSuccess'
-    | 'functions/base64'
-    | 'functions/resolve'
-    // Specific files for the fetch client implementation
-    | 'fetch/getHeaders'
-    | 'fetch/getRequestBody'
-    | 'fetch/getResponseBody'
-    | 'fetch/getResponseHeader'
-    | 'fetch/sendRequest'
-    | 'fetch/request'
-    // Specific files for the xhr client implementation
-    | 'xhr/getHeaders'
-    | 'xhr/getRequestBody'
-    | 'xhr/getResponseBody'
-    | 'xhr/getResponseHeader'
-    | 'xhr/sendRequest'
-    | 'xhr/request'
-    // Specific files for the node client implementation
-    | 'node/getHeaders'
-    | 'node/getRequestBody'
-    | 'node/getResponseBody'
-    | 'node/getResponseHeader'
-    | 'node/sendRequest'
-    | 'node/request'
-    // Specific files for the axios client implementation
-    | 'axios/getHeaders'
-    | 'axios/getRequestBody'
-    | 'axios/getResponseBody'
-    | 'axios/getResponseHeader'
-    | 'axios/sendRequest'
-    | 'axios/request'
-    // Specific files for the angular client implementation
-    | 'angular/getHeaders'
-    | 'angular/getRequestBody'
-    | 'angular/getResponseBody'
-    | 'angular/getResponseHeader'
-    | 'angular/sendRequest'
-    | 'angular/request';
-
 export interface Templates {
     index: Handlebars.TemplateDelegate;
     client: Handlebars.TemplateDelegate;
@@ -221,9 +130,9 @@ export const registerHandlebarTemplates = (root: {
         index: useOverride(templateIndex, root.templateOverrides?.index),
         client: useOverride(templateClient, root.templateOverrides?.client),
         exports: {
-            model: useOverride(templateExportModel, root.templateOverrides?.model),
-            schema: useOverride(templateExportSchema, root.templateOverrides?.schema),
-            service: useOverride(templateExportService, root.templateOverrides?.service),
+            model: useOverride(templateExportModel, root.templateOverrides?.exportModel),
+            schema: useOverride(templateExportSchema, root.templateOverrides?.exportSchema),
+            service: useOverride(templateExportService, root.templateOverrides?.exportService),
         },
         core: {
             settings: useOverride(templateCoreSettings, root.templateOverrides?.settings),

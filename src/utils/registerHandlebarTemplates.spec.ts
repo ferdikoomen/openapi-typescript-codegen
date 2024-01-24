@@ -56,7 +56,7 @@ describe('registerHandlebarTemplates', () => {
             useUnionTypes: false,
             templateOverrides: {
                 index: 'override',
-                service: 'override',
+                exportService: 'override',
                 settings: 'override',
             },
         });

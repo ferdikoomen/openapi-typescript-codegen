@@ -50,11 +50,13 @@ $ openapi --help
     --postfixServices         Service name postfix (default: "Service")
     --postfixModels           Model name postfix
     --request <value>         Path to custom request file
+    --templateOverrides <list> List of template overrides in the format name:template
     -h, --help                display help for command
 
   Examples
     $ openapi --input ./spec.json --output ./generated
     $ openapi --input ./spec.json --output ./generated --client xhr
+    $ openapi --input ./spec.json --output ./generated --templateOverrides index:\"Hello World\" exportService:./templates/service.hbs"
 ```
 
 Documentation

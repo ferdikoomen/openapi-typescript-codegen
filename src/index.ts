@@ -1,3 +1,4 @@
+import { TemplateOverrideNames } from '../types';
 import { HttpClient } from './HttpClient';
 import { Indent } from './Indent';
 import { parse as parseV2 } from './openApi/v2';
@@ -6,7 +7,7 @@ import { getOpenApiSpec } from './utils/getOpenApiSpec';
 import { getOpenApiVersion, OpenApiVersion } from './utils/getOpenApiVersion';
 import { isString } from './utils/isString';
 import { postProcessClient } from './utils/postProcessClient';
-import { registerHandlebarTemplates, TemplateOverrideNames } from './utils/registerHandlebarTemplates';
+import { registerHandlebarTemplates } from './utils/registerHandlebarTemplates';
 import { writeClient } from './utils/writeClient';
 
 export { HttpClient } from './HttpClient';
