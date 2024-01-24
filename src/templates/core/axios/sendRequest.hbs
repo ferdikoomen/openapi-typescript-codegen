@@ -4,6 +4,7 @@ export const sendRequest = async <T>(
 	url: string,
 	body: any,
 	formData: FormData | undefined,
+	responseType: 'arraybuffer' | 'blob' | 'document' | 'json' | 'text' | 'stream',
 	headers: Record<string, string>,
 	onCancel: OnCancel,
 	axiosClient: AxiosInstance
@@ -16,6 +17,7 @@ export const sendRequest = async <T>(
 		data: body ?? formData,
 		method: options.method,
 		withCredentials: config.WITH_CREDENTIALS,
+		responseType,
 		cancelToken: source.token,
 	};
 
