@@ -14,9 +14,11 @@ describe('getServices', () => {
                         tags: [],
                         responses: {
                             200: {
+                                title: 'x',
                                 description: 'x',
                             },
                             default: {
+                                title: 'Default',
                                 description: 'default',
                             },
                         },

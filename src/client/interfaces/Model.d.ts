@@ -3,6 +3,7 @@ import type { Schema } from './Schema';
 
 export interface Model extends Schema {
     name: string;
+    title: string | null;
     export: 'reference' | 'generic' | 'enum' | 'array' | 'dictionary' | 'interface' | 'one-of' | 'any-of' | 'all-of';
     type: string;
     base: string;
