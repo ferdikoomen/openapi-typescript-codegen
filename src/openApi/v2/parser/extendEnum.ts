@@ -9,13 +9,16 @@ import type { WithEnumExtension } from '../interfaces/Extensions/WithEnumExtensi
  * @param definition
  */
 export const extendEnum = (enumerators: Enum[], definition: WithEnumExtension): Enum[] => {
+    const values = definition['x-enum-values'];
     const names = definition['x-enum-varnames']?.filter(isString);
+    const titles = definition['x-enum-titles']?.filter(isString);
     const descriptions = definition['x-enum-descriptions']?.filter(isString);
 
     return enumerators.map((enumerator, index) => ({
         name: names?.[index] || enumerator.name,
         description: descriptions?.[index] || enumerator.description,
-        value: enumerator.value,
+        value: values?.[index] || enumerator.value,
+        title: titles?.[index] || enumerator.title,
         type: enumerator.type,
     }));
 };
