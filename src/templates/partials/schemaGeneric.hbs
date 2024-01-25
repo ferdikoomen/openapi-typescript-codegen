@@ -1,9 +1,12 @@
 {
-{{#if type}}
-	type: '{{{type}}}',
+{{#if title}}
+		title: '{{{title}}}',
 {{/if}}
 {{#if description}}
 	description: `{{{escapeDescription description}}}`,
+{{/if}}
+{{#if type}}
+	type: '{{{type}}}',
 {{/if}}
 {{#if isReadOnly}}
 	isReadOnly: {{{isReadOnly}}},

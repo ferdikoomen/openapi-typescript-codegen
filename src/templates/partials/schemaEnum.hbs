@@ -1,4 +1,10 @@
 {
+{{#if title}}
+	title: '{{{title}}}',
+{{/if}}
+{{#if description}}
+	description: `{{{escapeDescription description}}}`,
+{{/if}}
 	type: 'Enum',
 {{#if isReadOnly}}
 	isReadOnly: {{{isReadOnly}}},
@@ -9,4 +15,14 @@
 {{#if isNullable}}
 	isNullable: {{{isNullable}}},
 {{/if}}
+	items: [
+{{#each enum}}
+		{
+			value: {{{../name}}}.{{{name}}},
+			varname: "{{{name}}}",
+			title: "{{{title}}}",
+			description: "{{{description}}}",
+		},
+{{/each}}
+	],
 }

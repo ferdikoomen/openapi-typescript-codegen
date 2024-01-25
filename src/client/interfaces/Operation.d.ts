@@ -7,6 +7,7 @@ export interface Operation extends OperationParameters {
     name: string;
     summary: string | null;
     description: string | null;
+    title?: string;
     deprecated: boolean;
     method: string;
     path: string;

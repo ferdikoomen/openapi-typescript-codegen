@@ -22,6 +22,7 @@ export const getModel = (
         template: null,
         link: null,
         description: definition.description || null,
+        title: definition.title,
         isDefinition,
         isReadOnly: definition.readOnly === true,
         isNullable: definition['x-nullable'] === true,
