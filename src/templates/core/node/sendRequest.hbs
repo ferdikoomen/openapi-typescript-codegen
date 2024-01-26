@@ -14,7 +14,6 @@ export const sendRequest = async (
 		method: options.method,
 		body: body ?? formData,
 		signal: controller.signal as AbortSignal,
-		responseType,
 	};
 
 	onCancel(() => controller.abort());
