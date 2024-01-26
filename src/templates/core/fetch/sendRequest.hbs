@@ -14,8 +14,7 @@ export const sendRequest = async (
 		headers,
 		body: body ?? formData,
 		method: options.method,
-		signal: controller.signal,
-		responseType,
+		signal: controller.signal
 	};
 
 	if (config.WITH_CREDENTIALS) {
