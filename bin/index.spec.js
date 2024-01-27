@@ -34,8 +34,10 @@ describe('bin', () => {
             'true',
             '--indent',
             '4',
-            '--postfix',
+            '--postfixServices',
             'Service',
+            '--postfixModels',
+            'Dto',
         ]);
         expect(result.stdout.toString()).toBe('');
         expect(result.stderr.toString()).toBe('');

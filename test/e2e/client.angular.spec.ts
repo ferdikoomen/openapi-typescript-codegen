@@ -13,7 +13,7 @@ describe('client.angular', () => {
         await generateClient('client/angular/app/src', 'v3', 'angular', false, false, 'ApiModule');
         copyAsset('main-angular-module.ts', 'client/angular/app/src/main.ts');
         buildAngularProject('client/angular', 'app', 'dist');
-        await server.start('client/angular/app/dist');
+        await server.start('client/angular/app/dist/browser');
         await browser.start();
     }, 30000);
 
@@ -139,10 +139,12 @@ describe('client.angular', () => {
                 });
             });
         });
+
         expect(error).toBe(
             JSON.stringify({
                 name: 'ApiError',
-                message: 'Generic Error',
+                message:
+                    'Generic Error: status: 409; status text: Conflict; body: {\n  "status": 409,\n  "message": "hello world"\n}',
                 url: 'http://localhost:3000/base/api/v1.0/error?status=409',
                 status: 409,
                 statusText: 'Conflict',

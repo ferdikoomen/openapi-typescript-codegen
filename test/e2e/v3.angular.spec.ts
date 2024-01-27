@@ -13,7 +13,7 @@ describe('v3.angular', () => {
         await generateClient('v3/angular/app/src', 'v3', 'angular');
         copyAsset('main-angular.ts', 'v3/angular/app/src/main.ts');
         buildAngularProject('v3/angular', 'app', 'dist');
-        await server.start('v3/angular/app/dist');
+        await server.start('v3/angular/app/dist/browser');
         await browser.start();
     }, 30000);
 
@@ -144,7 +144,8 @@ describe('v3.angular', () => {
         expect(error).toBe(
             JSON.stringify({
                 name: 'ApiError',
-                message: 'Generic Error',
+                message:
+                    'Generic Error: status: 409; status text: Conflict; body: {\n  "status": 409,\n  "message": "hello world"\n}',
                 url: 'http://localhost:3000/base/api/v1.0/error?status=409',
                 status: 409,
                 statusText: 'Conflict',

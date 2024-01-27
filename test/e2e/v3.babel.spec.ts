@@ -91,7 +91,7 @@ describe('v3.babel', () => {
         } catch (e) {
             error = (e as Error).message;
         }
-        expect(error).toContain('CancelError: Request aborted');
+        expect(error).toContain('Request aborted');
     });
 
     it('should throw known error (500)', async () => {
@@ -153,7 +153,8 @@ describe('v3.babel', () => {
         expect(error).toBe(
             JSON.stringify({
                 name: 'ApiError',
-                message: 'Generic Error',
+                message:
+                    'Generic Error: status: 409; status text: Conflict; body: {\n  "status": 409,\n  "message": "hello world"\n}',
                 url: 'http://localhost:3000/base/api/v1.0/error?status=409',
                 status: 409,
                 statusText: 'Conflict',

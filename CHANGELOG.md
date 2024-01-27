@@ -1,6 +1,38 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.27.0] - 2024-01-15
+### Fixed
+- Reverted `@apidevtools/json-schema-ref-parser` to version 10.1.0
+
+## [0.26.0] - 2024-01-07
+### Fixed
+- Upgraded dependencies
+
+## [0.25.0] - 2023-07-05
+### Fixed
+- Upgraded dependencies
+### Added
+- Allow usage of a custom axios instance
+- Added message in generated files
+
+## [0.24.0] - 2023-04-10
+### Fixed
+- Upgraded dependencies
+- Fixed issue with Cancelable promise
+- Fixed issue with escaping reserved keywords in schema names
+### Added
+- Added `--postfixModels` option
+
+## [0.23.0] - 2022-06-02
+### Fixed
+- Upgraded dependencies
+- Added blank line at the end of generated files
+- Added support for Node.js v12
+### Added
+- Added `request` property inside `ApiError`
+- Added support for `@depricated` inside models and operations
+
 ## [0.22.0] - 2022-04-26
 ### Fixed
 - Upgraded dependencies
