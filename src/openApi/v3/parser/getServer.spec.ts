@@ -1,4 +1,4 @@
-import { getServer } from './getServer';
+import { getOperationServer, getPathItemServer, getServer } from "./getServer";
 
 describe('getServer', () => {
     it('should produce correct result', () => {
@@ -43,5 +43,52 @@ describe('getServer', () => {
                 ],
             })
         ).toEqual('https://localhost:8080/api');
+    });
+
+    it('should produce correct result with Path Item servers', () => {
+        expect(
+            getPathItemServer({
+                servers: [
+                    {
+                        url: 'https://sub.localhost:8080/api',
+                    },
+                ],
+            })
+        ).toEqual('https://sub.localhost:8080/api');
+    });
+
+    it('should produce undefined with no Path Item servers', () => {
+        expect(
+            getPathItemServer({})
+        ).toEqual(undefined);
+    });
+
+    it('should produce correct result with Operation servers', () => {
+        expect(
+            getOperationServer({
+                servers: [
+                    {
+                        url: 'https://sub.localhost:8080/api',
+                    },
+                ],
+                responses: {
+                    default: {
+                        description: 'dummy',
+                    }
+                },
+            })
+        ).toEqual('https://sub.localhost:8080/api');
+    });
+
+    it('should produce undefined with no Operation servers', () => {
+        expect(
+            getOperationServer({
+                responses: {
+                    default: {
+                        description: 'dummy',
+                    }
+                },
+            })
+        ).toEqual(undefined);
     });
 });

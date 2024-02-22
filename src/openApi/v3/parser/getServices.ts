@@ -3,6 +3,7 @@ import { unique } from '../../../utils/unique';
 import type { OpenApi } from '../interfaces/OpenApi';
 import { getOperation } from './getOperation';
 import { getOperationParameters } from './getOperationParameters';
+import { getPathItemServer } from './getServer';
 
 /**
  * Get the OpenAPI services
@@ -43,6 +44,7 @@ export const getServices = (openApi: OpenApi): Service[] => {
                                 // Push the operation in the service
                                 service.operations.push(operation);
                                 service.imports.push(...operation.imports);
+                                service.server ??= getPathItemServer(path);
                                 services.set(operation.service, service);
                             });
                             break;
