@@ -13,7 +13,7 @@ export const getQueryString = (params: Record<string, any>): string => {
 				});
 			} else if (typeof value === 'object') {
 				Object.entries(value).forEach(([k, v]) => {
-					process(`${key}[${k}]`, v);
+					process(`${k}`, v);
 				});
 			} else {
 				append(key, value);

@@ -74,7 +74,7 @@ export const request = <T>(config: OpenAPIConfig, http: HttpClient, options: Api
 
 	return getHeaders(config, options).pipe(
 		switchMap(headers => {
-			return sendRequest<T>(config, options, http, url, formData, body, headers);
+			return sendRequest<T>(config, options, http, url, formData, config['RESPONSE_TYPE'], body, headers);
 		}),
 		map(response => {
 			const responseBody = getResponseBody(response);

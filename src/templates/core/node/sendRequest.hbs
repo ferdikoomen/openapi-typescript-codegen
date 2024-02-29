@@ -3,6 +3,7 @@ export const sendRequest = async (
 	url: string,
 	body: any,
 	formData: FormData | undefined,
+	responseType: 'arraybuffer' | 'blob' | 'document' | 'json' | 'text' | 'stream',
 	headers: Headers,
 	onCancel: OnCancel
 ): Promise<Response> => {
