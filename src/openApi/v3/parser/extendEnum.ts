@@ -17,7 +17,8 @@ export const extendEnum = (enumerators: Enum[], definition: WithEnumExtension): 
     return enumerators.map((enumerator, index) => ({
         name: names?.[index] || enumerator.name,
         description: descriptions?.[index] || enumerator.description,
-        value: values?.[index] || enumerator.value,
+        value: enumerator.value,
+        enumValue: values?.[index] || enumerator.value,
         title: titles?.[index] || enumerator.title,
         type: enumerator.type,
     }));
