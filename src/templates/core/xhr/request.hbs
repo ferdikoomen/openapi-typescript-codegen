@@ -75,7 +75,7 @@ export const request = <T>(config: OpenAPIConfig, options: ApiRequestOptions): C
 
 			if (!onCancel.isCancelled) {
 				const response = await sendRequest(config, options, url, body, formData, headers, onCancel);
-				const responseBody = getResponseBody(response);
+				const responseBody = getResponseBody(response, options);
 				const responseHeader = getResponseHeader(response, options.responseHeader);
 
 				const result: ApiResult = {
