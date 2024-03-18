@@ -93,7 +93,7 @@
         "@types/jest": "29.5.12",
         "@types/node": "20.11.28",
         "@types/node-fetch": "2.6.11",
-        "@types/qs": "6.9.12",
+        "@types/qs": "6.9.13",
         "@typescript-eslint/eslint-plugin": "7.2.0",
         "@typescript-eslint/parser": "7.2.0",
         "abort-controller": "3.0.0",
