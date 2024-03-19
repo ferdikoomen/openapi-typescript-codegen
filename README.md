@@ -2,8 +2,6 @@
 
 [![NPM][npm-image]][npm-url]
 [![License][license-image]][license-url]
-[![Coverage][coverage-image]][coverage-url]
-[![Coverage][coverage-image]][coverage-url]
 [![Downloads][downloads-image]][downloads-url]
 [![Build][build-image]][build-url]
 
