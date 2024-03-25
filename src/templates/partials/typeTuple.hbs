@@ -1,0 +1,21 @@
+{{~#if link~}}
+
+[
+{{~#repeatTimes minItems~}}
+{{>type link}}
+{{#unless isLast}}, {{/unless}}
+{{~/repeatTimes~}}
+]
+{{>isNullable}}
+
+{{~else~}}
+
+[
+{{~#repeatTimes minItems~}}
+{{>base}}
+{{#unless isLast}}, {{/unless}}
+{{~/repeatTimes~}}
+]
+{{>isNullable}}
+
+{{~/if~}}

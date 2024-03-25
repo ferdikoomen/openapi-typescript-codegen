@@ -9,6 +9,7 @@ describe('registerHandlebarHelpers', () => {
             httpClient: HttpClient.FETCH,
             useOptions: false,
             useUnionTypes: false,
+            useTuples: false,
         });
         const helpers = Object.keys(Handlebars.helpers);
         expect(helpers).toContain('ifdef');

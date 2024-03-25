@@ -5,7 +5,17 @@
 {{else equals export 'enum'}}
 {{>typeEnum}}
 {{else equals export 'array'}}
+
+{{~#if @root.useTuples~}}
+{{~#if isConstantSize ~}}
+{{>typeTuple}}
+{{~else~}}
 {{>typeArray}}
+{{~/if~}}
+{{~else~}}
+{{>typeArray}}
+{{~/if~}}
+
 {{else equals export 'dictionary'}}
 {{>typeDictionary}}
 {{else equals export 'one-of'}}

@@ -11,6 +11,7 @@ export const registerHandlebarHelpers = (root: {
     httpClient: HttpClient;
     useOptions: boolean;
     useUnionTypes: boolean;
+    useTuples: boolean;
 }): void => {
     Handlebars.registerHelper('ifdef', function (this: any, ...args): string {
         const options = args.pop();
@@ -103,5 +104,17 @@ export const registerHandlebarHelpers = (root: {
 
     Handlebars.registerHelper('camelCase', function (value: string): string {
         return camelCase(value);
+    });
+
+    Handlebars.registerHelper('repeatTimes', function (n, block) {
+        let accum = '';
+        for (let i = 0; i < n; ++i) {
+            const t = Handlebars.createFrame(this);
+            if (i == n - 1) {
+                t.isLast = true;
+            }
+            accum += block.fn(t);
+        }
+        return accum;
     });
 };
