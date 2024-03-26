@@ -1,0 +1,15 @@
+{{>header}}
+
+export class SerializableParameter {
+	public readonly parameterName: string;
+	public readonly style: string | null;
+	public readonly explode: boolean | null;
+	public readonly parameterValue: any;
+
+	constructor(parameterName: string, style: string | null, explode: boolean | null, parameterValue: any) {
+		this.parameterName = parameterName;
+		this.style = style;
+		this.explode = explode;
+		this.parameterValue = parameterValue;
+	}
+}
