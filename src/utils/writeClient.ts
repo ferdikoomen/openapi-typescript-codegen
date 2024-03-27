@@ -26,7 +26,7 @@ import { writeClientServices } from './writeClientServices';
  * @param exportServices Generate services
  * @param exportModels Generate models
  * @param exportSchemas Generate schemas
- * @param exportSchemas Generate schemas
+ * @param exportSchemaArray List schemas in an array
  * @param indent Indentation options (4, 2 or tab)
  * @param postfixServices Service name postfix
  * @param postfixModels Model name postfix
@@ -44,6 +44,7 @@ export const writeClient = async (
     exportServices: boolean,
     exportModels: boolean,
     exportSchemas: boolean,
+    exportSchemaArray: boolean,
     indent: Indent,
     postfixServices: string,
     postfixModels: string,
@@ -110,6 +111,7 @@ export const writeClient = async (
             exportServices,
             exportModels,
             exportSchemas,
+            exportSchemaArray,
             postfixServices,
             postfixModels,
             clientName

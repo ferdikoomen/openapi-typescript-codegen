@@ -32,6 +32,8 @@ describe('bin', () => {
             'true',
             '--exportSchemas',
             'true',
+            '--exportSchemaArray',
+            'false',
             '--indent',
             '4',
             '--postfixServices',

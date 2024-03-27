@@ -35,6 +35,15 @@ export type { {{{name}}}{{#if @root.postfixModels}} as {{{name}}}{{{@root.postfi
 {{#each models}}
 export { ${{{name}}} } from './schemas/${{{name}}}';
 {{/each}}
+
+{{#if @root.exportSchemaArray}}
+{{#each models}}
+import { ${{{name}}} } from './schemas/${{{name}}}';
+{{/each}}
+
+export const AllSchemas = [{{#each models}} { ${{{name}}} } ,{{/each}}];
+{{/if}}
+
 {{/if}}
 {{/if}}
 {{#if @root.exportServices}}
