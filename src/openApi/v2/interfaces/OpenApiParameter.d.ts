@@ -5,7 +5,7 @@ import type { OpenApiReference } from './OpenApiReference';
 import type { OpenApiSchema } from './OpenApiSchema';
 
 /**
- * https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#parameterObject
+ * https://github.com/OAI/OpenAPI-Specification/blob/main/versions/2.0.md#parameterObject
  */
 export interface OpenApiParameter extends OpenApiReference, WithEnumExtension, WithNullableExtension {
     name: string;

@@ -8,7 +8,7 @@ import type { OpenApiSecurityRequirement } from './OpenApiSecurityRequirement';
 import type { OpenApiServer } from './OpenApiServer';
 
 /**
- * https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#operationObject
+ * https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.2.md#operationObject
  */
 export interface OpenApiOperation {
     tags?: string[];
