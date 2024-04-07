@@ -1,6 +1,6 @@
 {
     "name": "openapi-typescript-codegen",
-    "version": "0.28.0",
+    "version": "0.29.0",
     "description": "Library that generates Typescript clients based on the OpenAPI specification.",
     "author": "Ferdi Koomen",
     "homepage": "https://github.com/ferdikoomen/openapi-typescript-codegen",
@@ -67,17 +67,17 @@
         "handlebars": "^4.7.8"
     },
     "devDependencies": {
-        "@angular-devkit/build-angular": "17.3.0",
-        "@angular/animations": "17.3.0",
-        "@angular/cli": "17.3.0",
-        "@angular/common": "17.3.0",
-        "@angular/compiler": "17.3.0",
-        "@angular/compiler-cli": "17.3.0",
-        "@angular/core": "17.3.0",
-        "@angular/forms": "17.3.0",
-        "@angular/platform-browser": "17.3.0",
-        "@angular/platform-browser-dynamic": "17.3.0",
-        "@angular/router": "17.3.0",
+        "@angular-devkit/build-angular": "17.3.3",
+        "@angular/animations": "17.3.3",
+        "@angular/cli": "17.3.3",
+        "@angular/common": "17.3.3",
+        "@angular/compiler": "17.3.3",
+        "@angular/compiler-cli": "17.3.3",
+        "@angular/core": "17.3.3",
+        "@angular/forms": "17.3.3",
+        "@angular/platform-browser": "17.3.3",
+        "@angular/platform-browser-dynamic": "17.3.3",
+        "@angular/router": "17.3.3",
         "@babel/cli": "7.24.1",
         "@babel/core": "7.24.4",
         "@babel/preset-env": "7.24.4",
@@ -114,15 +114,15 @@
         "puppeteer": "22.6.3",
         "qs": "6.12.0",
         "rimraf": "5.0.5",
-        "rollup": "4.13.0",
+        "rollup": "4.14.0",
         "rxjs": "7.8.1",
         "ts-node": "10.9.2",
         "tslib": "2.6.2",
-        "typescript": "5.4.2",
+        "typescript": "5.4.4",
         "zone.js": "0.14.4"
     },
     "overrides": {
         "node-fetch": "2.7.0",
-        "rollup": "4.13.0"
+        "rollup": "4.14.0"
     }
 }

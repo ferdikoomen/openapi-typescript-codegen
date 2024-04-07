@@ -1,6 +1,18 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.29.0] - 2024-04-05
+> Please migrate your projects to use [@hey-api/openapi-ts](https://github.com/hey-api/openapi-ts)
+
+The `@hey-api/openapi-ts`
+project started as a fork with the goal to resolve the most pressing issues. going forward they are planning to
+maintain the OpenAPI generator and give it the love it deserves. Please support them with their work and make
+sure to migrate your projects: https://heyapi.vercel.app/openapi-ts/migrating.html
+
+### Fixed
+- Upgraded dependencies
+
+
 ## [0.28.0] - 2024-03-19
 ### Fixed
 - Upgraded dependencies
