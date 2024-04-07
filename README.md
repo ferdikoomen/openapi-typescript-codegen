@@ -1,5 +1,6 @@
 # Important announcement
 
+> [!IMPORTANT] 
 > Please migrate your projects to use [@hey-api/openapi-ts](https://github.com/hey-api/openapi-ts)
 
 Due to time limitations on my end, this project has been unmaintained for a while now. The `@hey-api/openapi-ts`
