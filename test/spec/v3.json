@@ -1564,6 +1564,15 @@
                     "\"Double Quotes\""
                 ]
             },
+            "EnumWithStringsWithPlusAndMinusSigns": {
+                "description": "This is a simple enum with strings, but that start with plus and minus signs.",
+                "enum": [
+                    "+name",
+                    "-name",
+                    "+total",
+                    "-total"
+                ]
+            },
             "EnumWithNumbers": {
                 "description": "This is a simple enum with numbers",
                 "enum": [
@@ -1578,7 +1587,6 @@
                     300,
                     -100,
                     -200,
-                    +200,
                     -300,
                     -1.1,
                     -1.20,
