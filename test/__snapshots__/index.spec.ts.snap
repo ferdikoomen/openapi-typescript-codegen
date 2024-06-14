@@ -384,7 +384,7 @@ export const getHeaders = async (config: OpenAPIConfig, options: ApiRequestOptio
     ]);
 
     const headers = Object.entries({
-        Accept: 'application/json',
+        Accept: '*/*',
         ...additionalHeaders,
         ...options.headers,
     })
@@ -3479,7 +3479,7 @@ export const getHeaders = async (config: OpenAPIConfig, options: ApiRequestOptio
     ]);
 
     const headers = Object.entries({
-        Accept: 'application/json',
+        Accept: '*/*',
         ...additionalHeaders,
         ...options.headers,
     })

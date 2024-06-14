@@ -7,7 +7,7 @@ export const getHeaders = (config: OpenAPIConfig, options: ApiRequestOptions): O
 	}).pipe(
 		map(({ token, username, password, additionalHeaders }) => {
 			const headers = Object.entries({
-				Accept: 'application/json',
+				Accept: '*/*',
 				...additionalHeaders,
 				...options.headers,
 			})
