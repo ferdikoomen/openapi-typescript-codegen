@@ -83,7 +83,7 @@ export class CancelablePromise<T> implements Promise<T> {
 				get: (): boolean => this.#isCancelled,
 			});
 
-			const axiosConfig: AxiosRequestConfig = this.#axiosConfig;
+			const axiosConfig: AxiosRequestConfig | undefined = this.#axiosConfig;
 
 			return executor(onResolve, onReject, onCancel as OnCancel, axiosConfig);
 		});
