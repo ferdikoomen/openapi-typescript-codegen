@@ -19,12 +19,12 @@
 {{#each enum}}
 		{
 {{#if @root.useUnionTypes}}
-			value: {{{value}}},
+			key: {{{value}}},
 {{else}}
-			value: {{{../name}}}.{{{name}}},
+			key: {{{../name}}}.{{{name}}},
 {{/if}}
-			varname: '{{{name}}}',
-			enumValue: {{{enumValue}}},
+			name: '{{{name}}}',
+			value: {{{enumValue}}},
 			title: '{{{title}}}',
 			description: '{{{description}}}',
 		},
