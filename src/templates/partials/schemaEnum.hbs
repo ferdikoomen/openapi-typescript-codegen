@@ -18,10 +18,15 @@
 	items: [
 {{#each enum}}
 		{
-			value: {{{../name}}}.{{{name}}},
-			varname: "{{{name}}}",
-			title: "{{{title}}}",
-			description: "{{{description}}}",
+{{#if @root.useUnionTypes}}
+			key: {{{value}}},
+{{else}}
+			key: {{{../name}}}.{{{name}}},
+{{/if}}
+			name: '{{{name}}}',
+			value: {{{enumValue}}},
+			title: '{{{title}}}',
+			description: '{{{description}}}',
 		},
 {{/each}}
 	],

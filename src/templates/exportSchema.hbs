@@ -1,7 +1,9 @@
 {{>header}}
 
 {{#equals export 'enum'}}
+{{#unless @root.useUnionTypes}}
 import { {{name}} } from '../models/{{{name}}}'
+{{/unless}}
 {{/equals}}
 
 export const ${{{name}}} = {{>schema}} as const;
