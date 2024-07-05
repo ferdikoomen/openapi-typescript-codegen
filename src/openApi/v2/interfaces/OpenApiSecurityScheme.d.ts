@@ -1,7 +1,7 @@
 import type { Dictionary } from '../../../utils/types';
 
 /**
- * https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#securitySchemeObject
+ * https://github.com/OAI/OpenAPI-Specification/blob/main/versions/2.0.md#securitySchemeObject
  */
 export interface OpenApiSecurityScheme {
     type: 'basic' | 'apiKey' | 'oauth2';

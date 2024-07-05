@@ -10,7 +10,7 @@ import type { OpenApiSchema } from './OpenApiSchema';
 import type { OpenApiSecurityScheme } from './OpenApiSecurityScheme';
 
 /**
- * https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#componentsObject
+ * https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.2.md#componentsObject
  */
 export interface OpenApiComponents {
     schemas?: Dictionary<OpenApiSchema>;
