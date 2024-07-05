@@ -6,7 +6,7 @@ import type { OpenApiReference } from './OpenApiReference';
 import type { OpenApiXml } from './OpenApiXml';
 
 /**
- * https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#schemaObject
+ * https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.2.md#schemaObject
  */
 export interface OpenApiSchema extends OpenApiReference, WithEnumExtension {
     title?: string;

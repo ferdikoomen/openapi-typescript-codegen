@@ -5,7 +5,7 @@ import type { OpenApiMediaType } from './OpenApiMediaType';
 import type { OpenApiReference } from './OpenApiReference';
 
 /**
- * https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#responseObject
+ * https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.2.md#responseObject
  */
 export interface OpenApiResponse extends OpenApiReference {
     description: string;

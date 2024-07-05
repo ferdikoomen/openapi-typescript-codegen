@@ -1,9 +1,24 @@
+# Important announcement
+
+> [!IMPORTANT] 
+> Please migrate your projects to use [@hey-api/openapi-ts](https://github.com/hey-api/openapi-ts)
+
+Due to time limitations on my end, this project has been unmaintained for a while now. The `@hey-api/openapi-ts`
+project started as a fork with the goal to resolve the most pressing issues. going forward they are planning to
+maintain the OpenAPI generator and give it the love it deserves. Please support them with their work and make
+sure to migrate your projects: https://heyapi.vercel.app/openapi-ts/migrating.html
+
+- All open PR's and issues will be archived on the 1st of May 2024
+- All versions of this package will be deprecated in NPM
+
+👋 Thanks for all the support, downloads and love! Cheers Ferdi.
+
+---
+
 # OpenAPI Typescript Codegen
 
 [![NPM][npm-image]][npm-url]
 [![License][license-image]][license-url]
-[![Coverage][coverage-image]][coverage-url]
-[![Coverage][coverage-image]][coverage-url]
 [![Downloads][downloads-image]][downloads-url]
 [![Build][build-image]][build-url]
 
@@ -81,5 +96,5 @@ If you're from an enterprise looking for a fully managed SDK generation, please 
 [coverage-image]: https://img.shields.io/codecov/c/github/ferdikoomen/openapi-typescript-codegen.svg
 [downloads-url]: http://npm-stat.com/charts.html?package=openapi-typescript-codegen
 [downloads-image]: http://img.shields.io/npm/dm/openapi-typescript-codegen.svg
-[build-url]: https://circleci.com/gh/ferdikoomen/openapi-typescript-codegen/tree/master
-[build-image]: https://circleci.com/gh/ferdikoomen/openapi-typescript-codegen/tree/master.svg?style=svg
+[build-url]: https://circleci.com/gh/ferdikoomen/openapi-typescript-codegen/tree/main
+[build-image]: https://circleci.com/gh/ferdikoomen/openapi-typescript-codegen/tree/main.svg?style=svg
