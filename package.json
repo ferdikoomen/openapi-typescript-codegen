@@ -1,15 +1,15 @@
 {
-    "name": "openapi-typescript-codegen",
+    "name": "@sobytes/openapi-typescript-codegen",
     "version": "0.25.0",
     "description": "Library that generates Typescript clients based on the OpenAPI specification.",
     "author": "Ferdi Koomen",
-    "homepage": "https://github.com/ferdikoomen/openapi-typescript-codegen",
+    "homepage": "https://github.com/50Bytes/openapi-typescript-codegen",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/ferdikoomen/openapi-typescript-codegen.git"
+        "url": "git+https://github.com/50Bytes/openapi-typescript-codegen.git"
     },
     "bugs": {
-        "url": "https://github.com/ferdikoomen/openapi-typescript-codegen/issues"
+        "url": "https://github.com/50Bytes/openapi-typescript-codegen/issues"
     },
     "license": "MIT",
     "keywords": [
@@ -24,12 +24,6 @@
         "axios",
         "angular",
         "node"
-    ],
-    "maintainers": [
-        {
-            "name": "Ferdi Koomen",
-            "email": "info@madebyferdi.com"
-        }
     ],
     "main": "dist/index.js",
     "types": "types/index.d.ts",
@@ -121,7 +115,7 @@
         "typescript": "5.1.6",
         "zone.js": "0.13.1"
     },
-    "overrides" : {
+    "overrides": {
         "node-fetch": "2.6.9",
         "rollup": "3.26.1",
         "typescript": "5.1.6"
