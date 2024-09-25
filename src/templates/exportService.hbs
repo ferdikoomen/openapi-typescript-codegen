@@ -112,9 +112,10 @@ export class {{{name}}}{{{@root.postfix}}} {
 			{{/if}}
 			{{#if parametersQuery}}
 			query: {
-				{{#each parametersQuery}}
-				'{{{prop}}}': {{{name}}},
-				{{/each}}
+			{{#each parametersQuery}}
+			'{{{name}}}': {{{name}}},
+			{{/each}}
+			},{{/each}}
 			},
 			{{/if}}
 			{{#if parametersForm}}
