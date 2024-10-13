@@ -6,7 +6,7 @@
 Due to time limitations on my end, this project has been unmaintained for a while now. The `@hey-api/openapi-ts`
 project started as a fork with the goal to resolve the most pressing issues. going forward they are planning to
 maintain the OpenAPI generator and give it the love it deserves. Please support them with their work and make
-sure to migrate your projects: https://heyapi.vercel.app/openapi-ts/migrating.html
+sure to migrate your projects: https://heyapi.dev/openapi-ts/migrating.html
 
 - All open PR's and issues will be archived on the 1st of May 2024
 - All versions of this package will be deprecated in NPM
