@@ -20,7 +20,7 @@ export const getEnum = (values?: (string | number)[]): Enum[] => {
                 }
                 return {
                     name: String(value)
-                        .replace(/\W+/g, '_')
+                        .replace(/[^a-zA-Z0-9_\u4e00-\u9fa5]+/g, '_')
                         .replace(/^(\d+)/g, '_$1')
                         .replace(/([a-z])([A-Z]+)/g, '$1_$2')
                         .toUpperCase(),
