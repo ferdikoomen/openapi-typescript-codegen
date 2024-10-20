@@ -378,6 +378,163 @@
                 }
             }
         },
+        "/api/v{api-version}/parameters/{unstyled}/{simple}/{simpleExploded}/{label}/{labelExploded}/{matrix}/{matrixExploded}": {
+            "get": {
+                "tags": [
+                    "Parameters"
+                ],
+                "operationId": "GetCallWithStyledPathParameters",
+                "parameters": [
+                    {
+                        "description": "Unstyled path parameter",
+                        "name": "unstyled",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Simple path parameter",
+                        "name": "simple",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "explode": false
+                    },
+                    {
+                        "description": "Simple & exploded path parameter",
+                        "name": "simpleExploded",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "explode": true
+                    },
+                    {
+                        "description": "Label path parameter",
+                        "name": "label",
+                        "in": "path",
+                        "required": true,
+                        "style": "label",
+                        "explode": false
+                    },
+                    {
+                        "description": "Label & exploded path parameter",
+                        "name": "labelExploded",
+                        "in": "path",
+                        "required": true,
+                        "style": "label",
+                        "explode": true
+                    },
+                    {
+                        "description": "Matrix path parameter",
+                        "name": "matrix",
+                        "in": "path",
+                        "required": true,
+                        "style": "matrix",
+                        "explode": false
+                    },
+                    {
+                        "description": "Matrix & exploded path parameter",
+                        "name": "matrixExploded",
+                        "in": "path",
+                        "required": true,
+                        "style": "matrix",
+                        "explode": true
+                    }
+                ]
+            }
+        },
+        "/api/v{api-version}/parameters/styledQuery": {
+            "get": {
+                "tags": [
+                    "Parameters"
+                ],
+                "operationId": "GetCallWithStyledQueryParameters",
+                "parameters": [
+                    {
+                        "description": "Unstyled query parameter",
+                        "name": "unstyled",
+                        "in": "query"
+                    },
+                    {
+                        "description": "Form query parameter",
+                        "name": "form",
+                        "in": "query",
+                        "style": "form",
+                        "explode": false
+                    },
+                    {
+                        "description": "Form & exploded query parameter",
+                        "name": "formExploded",
+                        "in": "query",
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "description": "SpaceDelimited query parameter",
+                        "name": "spaceDelimited",
+                        "in": "query",
+                        "style": "spaceDelimited",
+                        "explode": false
+                    },
+                    {
+                        "description": "SpaceDelimited & exploded query parameter",
+                        "name": "spaceDelimitedExploded",
+                        "in": "query",
+                        "style": "spaceDelimited",
+                        "explode": true
+                    },
+                    {
+                        "description": "PipeDelimited query parameter",
+                        "name": "pipeDelimited",
+                        "in": "query",
+                        "style": "pipeDelimited",
+                        "explode": false
+                    },
+                    {
+                        "description": "PipeDelimited & exploded query parameter",
+                        "name": "pipeDelimitedExploded",
+                        "in": "query",
+                        "style": "pipeDelimited",
+                        "explode": true
+                    },
+                    {
+                        "description": "DeepObject query parameter",
+                        "name": "deepObject",
+                        "in": "query",
+                        "style": "deepObject",
+                        "explode": true
+                    }
+                ]
+            }
+        },
+        "/api/v{api-version}/parameters/styledHeader": {
+            "get": {
+                "tags": [
+                    "Parameters"
+                ],
+                "operationId": "GetCallWithStyledHeaderParameters",
+                "parameters": [
+                    {
+                        "description": "Unstyled header parameter",
+                        "name": "unstyled",
+                        "in": "header"
+                    },
+                    {
+                        "description": "Simple header parameter",
+                        "name": "simple",
+                        "in": "header",
+                        "style": "simple",
+                        "explode": false
+                    },
+                    {
+                        "description": "Simple & exploded header parameter",
+                        "name": "simpleExploded",
+                        "in": "header",
+                        "style": "simple",
+                        "explode": true
+                    }
+                ]
+            }
+        },
         "/api/v{api-version}/requestBody/": {
             "post": {
                 "tags": [

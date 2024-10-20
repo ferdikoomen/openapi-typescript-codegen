@@ -37,6 +37,7 @@ import functionIsString from '../templates/core/functions/isString.hbs';
 import functionIsStringWithValue from '../templates/core/functions/isStringWithValue.hbs';
 import functionIsSuccess from '../templates/core/functions/isSuccess.hbs';
 import functionResolve from '../templates/core/functions/resolve.hbs';
+import functionSerializeHeaders from '../templates/core/functions/serializeHeaders.hbs';
 import templateCoreHttpRequest from '../templates/core/HttpRequest.hbs';
 import nodeGetHeaders from '../templates/core/node/getHeaders.hbs';
 import nodeGetRequestBody from '../templates/core/node/getRequestBody.hbs';
@@ -46,6 +47,7 @@ import nodeRequest from '../templates/core/node/request.hbs';
 import nodeSendRequest from '../templates/core/node/sendRequest.hbs';
 import templateCoreSettings from '../templates/core/OpenAPI.hbs';
 import templateCoreRequest from '../templates/core/request.hbs';
+import templateSerializableParameter from '../templates/core/SerializableParameter.hbs';
 import xhrGetHeaders from '../templates/core/xhr/getHeaders.hbs';
 import xhrGetRequestBody from '../templates/core/xhr/getRequestBody.hbs';
 import xhrGetResponseBody from '../templates/core/xhr/getResponseBody.hbs';
@@ -102,6 +104,7 @@ export interface Templates {
         request: Handlebars.TemplateDelegate;
         baseHttpRequest: Handlebars.TemplateDelegate;
         httpRequest: Handlebars.TemplateDelegate;
+        serializableParameter: Handlebars.TemplateDelegate;
     };
 }
 
@@ -134,6 +137,7 @@ export const registerHandlebarTemplates = (root: {
             request: Handlebars.template(templateCoreRequest),
             baseHttpRequest: Handlebars.template(templateCoreBaseHttpRequest),
             httpRequest: Handlebars.template(templateCoreHttpRequest),
+            serializableParameter: Handlebars.template(templateSerializableParameter),
         },
     };
 
@@ -179,6 +183,9 @@ export const registerHandlebarTemplates = (root: {
     Handlebars.registerPartial('functions/isSuccess', Handlebars.template(functionIsSuccess));
     Handlebars.registerPartial('functions/base64', Handlebars.template(functionBase64));
     Handlebars.registerPartial('functions/resolve', Handlebars.template(functionResolve));
+
+    // Generic functions used in client implementations
+    Handlebars.registerPartial('functions/serializeHeaders', Handlebars.template(functionSerializeHeaders));
 
     // Specific files for the fetch client implementation
     Handlebars.registerPartial('fetch/getHeaders', Handlebars.template(fetchGetHeaders));
