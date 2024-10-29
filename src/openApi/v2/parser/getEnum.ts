@@ -12,7 +12,7 @@ export const getEnum = (values?: (string | number)[]): Enum[] => {
             .map(value => {
                 if (typeof value === 'number') {
                     return {
-                        name: `'_${value}'`,
+                        name: `_${value}`,
                         value: String(value),
                         enumValue: '',
                         type: 'number',
