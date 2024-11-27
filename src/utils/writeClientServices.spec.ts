@@ -1,6 +1,7 @@
 import { EOL } from 'os';
 import { resolve } from 'path';
 
+import { Case } from '../Case';
 import type { Service } from '../client/interfaces/Service';
 import { HttpClient } from '../HttpClient';
 import { Indent } from '../Indent';
@@ -40,7 +41,17 @@ describe('writeClientServices', () => {
             },
         };
 
-        await writeClientServices(services, templates, '/', HttpClient.FETCH, false, false, Indent.SPACE_4, 'Service');
+        await writeClientServices(
+            services,
+            templates,
+            '/',
+            HttpClient.FETCH,
+            false,
+            false,
+            Indent.SPACE_4,
+            'Service',
+            Case.NONE
+        );
 
         expect(writeFile).toBeCalledWith(resolve('/', '/UserService.ts'), `service${EOL}`);
     });
