@@ -3,6 +3,11 @@ import { cleanup } from './scripts/cleanup';
 import { compileWithTypescript } from './scripts/compileWithTypescript';
 import { copyAsset } from './scripts/copyAsset';
 import { generateClient } from './scripts/generateClient';
+import {
+    performHeaderParmeterAssertions,
+    performPathParameterAssertions,
+    performQueryParameterAssertions,
+} from './scripts/parameterSerializerAssertions';
 import server from './scripts/server';
 
 describe('v3.xhr', () => {
@@ -168,6 +173,138 @@ describe('v3.xhr', () => {
                 sort: ['location'],
             })) as Promise<any>;
         });
-        expect(result.query).toStrictEqual({ parameter: { page: '0', size: '1', sort: 'location' } });
+        expect(result.query).toStrictEqual({ page: '0', size: '1', sort: 'location' });
+    });
+
+    it('should serialize path parameters', async () => {
+        const { ParametersService } = require('./generated/v3/node/index.js');
+        const testPrimitive = 5;
+        const testArray = [3, 4, 5];
+        const testObject = {
+            role: 'admin',
+            firstName: 'Alex',
+        };
+        const primitives = ParametersService.getCallWithStyledPathParameters(
+            testPrimitive,
+            testPrimitive,
+            testPrimitive,
+            testPrimitive,
+            testPrimitive,
+            testPrimitive,
+            testPrimitive
+        );
+
+        const arrays = ParametersService.getCallWithStyledPathParameters(
+            testArray,
+            testArray,
+            testArray,
+            testArray,
+            testArray,
+            testArray,
+            testArray
+        );
+
+        const objects = ParametersService.getCallWithStyledPathParameters(
+            testObject,
+            testObject,
+            testObject,
+            testObject,
+            testObject,
+            testObject,
+            testObject
+        );
+
+        const results = await Promise.all([primitives, arrays, objects]);
+
+        performPathParameterAssertions({
+            primitives: results[0].path,
+            arrays: results[1].path,
+            objects: results[2].path,
+        });
+    });
+
+    it('should serialize query parameters', async () => {
+        const { ParametersService } = require('./generated/v3/node/index.js');
+        const testPrimitive = 5;
+        const testArray = [3, 4, 5];
+        const testObject = {
+            role: 'admin',
+            firstName: 'Alex',
+        };
+
+        const primitives = ParametersService.getCallWithStyledQueryParameters(
+            testPrimitive,
+            testPrimitive,
+            testPrimitive,
+            testPrimitive,
+            testPrimitive,
+            testPrimitive,
+            testPrimitive,
+            testPrimitive
+        );
+
+        const arrays = ParametersService.getCallWithStyledQueryParameters(
+            testArray,
+            testArray,
+            testArray,
+            testArray,
+            testArray,
+            testArray,
+            testArray,
+            testArray
+        );
+
+        /*
+            For object serialization we need to perform an approach that lets us
+            do our assertions easier. Instead of using all parameters of using all 8
+            parameters of the function we use one at a time.
+
+            If we would use all paramters at once (like above), assertions would become very
+            difficult as some object serializations serialize object prooperties to their own
+            query parameters.
+        */
+        const objectPromises: Promise<any>[] = [];
+        for (let n = 0; n < 8; n++) {
+            const params: any[] = new Array(8).fill(undefined);
+            params[n] = testObject;
+
+            objectPromises.push(ParametersService.getCallWithStyledQueryParameters(...params));
+        }
+
+        const results = await Promise.all([primitives, arrays, Promise.all(objectPromises)]);
+
+        performQueryParameterAssertions({
+            primitives: results[0].url,
+            arrays: results[1].url,
+            objects: results[2].map(r => r.url),
+        });
+    });
+
+    it('should serialize header parameters', async () => {
+        const { ParametersService } = require('./generated/v3/node/index.js');
+        const testPrimitive = 5;
+        const testArray = [3, 4, 5];
+        const testObject = {
+            role: 'admin',
+            firstName: 'Alex',
+        };
+
+        const primitives = ParametersService.getCallWithStyledHeaderParameters(
+            testPrimitive,
+            testPrimitive,
+            testPrimitive
+        );
+
+        const arrays = ParametersService.getCallWithStyledHeaderParameters(testArray, testArray, testArray);
+
+        const objects = ParametersService.getCallWithStyledHeaderParameters(testObject, testObject, testObject);
+
+        const results = await Promise.all([primitives, arrays, objects]);
+
+        performHeaderParmeterAssertions({
+            primitives: results[0].headers,
+            arrays: results[1].headers,
+            objects: results[2].headers,
+        });
     });
 });
