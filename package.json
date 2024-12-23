@@ -1,5 +1,5 @@
 {
-    "name": "@flackonInc/openapi-typescript-codegen",
+    "name": "@docupilot/openapi-typescript-codegen",
     "version": "0.23.7",
     "description": "Library that generates Typescript clients based on the OpenAPI specification.",
     "author": "Ferdi Koomen",
