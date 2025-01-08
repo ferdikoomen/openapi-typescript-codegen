@@ -46,6 +46,7 @@ import nodeRequest from '../templates/core/node/request.hbs';
 import nodeSendRequest from '../templates/core/node/sendRequest.hbs';
 import templateCoreSettings from '../templates/core/OpenAPI.hbs';
 import templateCoreRequest from '../templates/core/request.hbs';
+import omitReadonly from '../templates/core/utils/OmitReadonly.hbs';
 import xhrGetHeaders from '../templates/core/xhr/getHeaders.hbs';
 import xhrGetRequestBody from '../templates/core/xhr/getRequestBody.hbs';
 import xhrGetResponseBody from '../templates/core/xhr/getResponseBody.hbs';
@@ -83,6 +84,7 @@ import partialTypeInterface from '../templates/partials/typeInterface.hbs';
 import partialTypeIntersection from '../templates/partials/typeIntersection.hbs';
 import partialTypeReference from '../templates/partials/typeReference.hbs';
 import partialTypeUnion from '../templates/partials/typeUnion.hbs';
+import typeWithOmitReadOnly from '../templates/partials/typeWithOmitReadOnly.hbs';
 import { registerHandlebarHelpers } from './registerHandlebarHelpers';
 
 export interface Templates {
@@ -102,6 +104,9 @@ export interface Templates {
         request: Handlebars.TemplateDelegate;
         baseHttpRequest: Handlebars.TemplateDelegate;
         httpRequest: Handlebars.TemplateDelegate;
+        utils: {
+            omitReadonly: Handlebars.TemplateDelegate;
+        };
     };
 }
 
@@ -134,6 +139,9 @@ export const registerHandlebarTemplates = (root: {
             request: Handlebars.template(templateCoreRequest),
             baseHttpRequest: Handlebars.template(templateCoreBaseHttpRequest),
             httpRequest: Handlebars.template(templateCoreHttpRequest),
+            utils: {
+                omitReadonly: Handlebars.template(omitReadonly),
+            },
         },
     };
 
@@ -163,6 +171,7 @@ export const registerHandlebarTemplates = (root: {
     Handlebars.registerPartial('typeInterface', Handlebars.template(partialTypeInterface));
     Handlebars.registerPartial('typeReference', Handlebars.template(partialTypeReference));
     Handlebars.registerPartial('typeUnion', Handlebars.template(partialTypeUnion));
+    Handlebars.registerPartial('typeWithOmitReadOnly', Handlebars.template(typeWithOmitReadOnly));
     Handlebars.registerPartial('typeIntersection', Handlebars.template(partialTypeIntersection));
     Handlebars.registerPartial('base', Handlebars.template(partialBase));
 

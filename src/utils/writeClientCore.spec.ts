@@ -36,10 +36,13 @@ describe('writeClientCore', () => {
                 request: () => 'request',
                 baseHttpRequest: () => 'baseHttpRequest',
                 httpRequest: () => 'httpRequest',
+                utils: {
+                    omitReadonly: () => 'omitReadonly',
+                },
             },
         };
 
-        await writeClientCore(client, templates, '/', HttpClient.FETCH, Indent.SPACE_4);
+        await writeClientCore(client, templates, '/', '/utils', HttpClient.FETCH, Indent.SPACE_4);
 
         expect(writeFile).toBeCalledWith(resolve('/', '/OpenAPI.ts'), `settings${EOL}`);
         expect(writeFile).toBeCalledWith(resolve('/', '/ApiError.ts'), `apiError${EOL}`);
@@ -47,5 +50,6 @@ describe('writeClientCore', () => {
         expect(writeFile).toBeCalledWith(resolve('/', '/ApiResult.ts'), `apiResult${EOL}`);
         expect(writeFile).toBeCalledWith(resolve('/', '/CancelablePromise.ts'), `cancelablePromise${EOL}`);
         expect(writeFile).toBeCalledWith(resolve('/', '/request.ts'), `request${EOL}`);
+        expect(writeFile).toBeCalledWith(resolve('/', '/utils/OmitReadonly.ts'), `omitReadonly${EOL}`);
     });
 });

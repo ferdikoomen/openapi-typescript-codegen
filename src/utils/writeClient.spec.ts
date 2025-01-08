@@ -1,3 +1,4 @@
+import { Case } from '../Case';
 import type { Client } from '../client/interfaces/Client';
 import { HttpClient } from '../HttpClient';
 import { Indent } from '../Indent';
@@ -33,6 +34,9 @@ describe('writeClient', () => {
                 request: () => 'request',
                 baseHttpRequest: () => 'baseHttpRequest',
                 httpRequest: () => 'httpRequest',
+                utils: {
+                    omitReadonly: () => 'omitReadonly',
+                },
             },
         };
 
@@ -49,7 +53,8 @@ describe('writeClient', () => {
             true,
             Indent.SPACE_4,
             'Service',
-            'AppClient'
+            'AppClient',
+            Case.NONE,
         );
 
         expect(rmdir).toBeCalled();

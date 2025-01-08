@@ -1,0 +1,41 @@
+/**
+ * The contents of this file are inspired from https://stackoverflow.com/a/62362197/10326226
+ * and https://stackoverflow.com/a/75587790/14166396
+ * */
+
+type IfEquals<X, Y, A = X, B = never> = (<T>() => T extends X ? 1 : 2) extends <
+  T,
+>() => T extends Y ? 1 : 2
+  ? A
+  : B;
+
+type WritableKeys<T> = {
+  [P in keyof T]-?: IfEquals<{ [Q in P]: T[P] }, { -readonly [Q in P]: T[P] }, P>;
+}[keyof T];
+
+type Primitive = undefined | null | boolean | string | number | Function;
+
+type OmitReadonlyArray<T> = Array<OmitReadonly<T>>;
+type OmitReadonlyMap<K, V> = Map<K, OmitReadonly<V>>;
+type DeepWriableSet<T> = Set<OmitReadonly<T>>;
+
+type OmitReadonlyObject<T> = MakeUndefinedFieldsOptional<{
+  [K in WritableKeys<T>]: OmitReadonly<T[K]>;
+}>;
+
+type UndefinedProps<T extends object> = {
+  [K in keyof T as undefined extends T[K] ? K : never]?: T[K];
+};
+
+type MakeUndefinedFieldsOptional<T extends object> = UndefinedProps<T> &
+  Omit<T, keyof UndefinedProps<T>>;
+
+export declare type OmitReadonly<T> = T extends Primitive
+  ? T
+  : T extends Array<infer U>
+  ? OmitReadonlyArray<U>
+  : T extends Map<infer K, infer V>
+  ? OmitReadonlyMap<K, V>
+  : T extends Set<infer T>
+  ? DeepWriableSet<T>
+  : OmitReadonlyObject<T>;

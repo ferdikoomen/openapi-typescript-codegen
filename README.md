@@ -1,6 +1,16 @@
+This is a fork of the original OpenAPI Typescript Codegen library. It is only meant as a temprorary npm package to use until these feature requests are merged into the original repo:
+- https://github.com/ferdikoomen/openapi-typescript-codegen/pull/1465
+- https://github.com/ferdikoomen/openapi-typescript-codegen/pull/1145
+
+To install this fork: `npm install @oskarasplin/openapi-typescript-codegen`
+
+At the time of writing the `feature/omit-read-only` branch is published as the latest npm version
+
+Original ReadMe below
+
 # Important announcement
 
-> [!IMPORTANT] 
+> [!IMPORTANT]
 > Please migrate your projects to use [@hey-api/openapi-ts](https://github.com/hey-api/openapi-ts)
 
 Due to time limitations on my end, this project has been unmaintained for a while now. The `@hey-api/openapi-ts`
@@ -65,6 +75,7 @@ $ openapi --help
     --postfixServices         Service name postfix (default: "Service")
     --postfixModels           Model name postfix
     --request <value>         Path to custom request file
+    --transformCase <value>   Transforms field names to specified case [camel, snake] (default: none)
     -h, --help                display help for command
 
   Examples
