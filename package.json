@@ -106,7 +106,7 @@
         "eslint-plugin-simple-import-sort": "12.1.1",
         "express": "4.21.1",
         "form-data": "4.0.0",
-        "glob": "10.4.3",
+        "glob": "11.0.1",
         "jest": "29.7.0",
         "jest-cli": "29.7.0",
         "node-fetch": "2.7.0",
