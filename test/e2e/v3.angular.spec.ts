@@ -4,6 +4,11 @@ import { cleanup } from './scripts/cleanup';
 import { copyAsset } from './scripts/copyAsset';
 import { createAngularProject } from './scripts/createAngularProject';
 import { generateClient } from './scripts/generateClient';
+import {
+    performHeaderParmeterAssertions,
+    performPathParameterAssertions,
+    performQueryParameterAssertions,
+} from './scripts/parameterSerializerAssertions';
 import server from './scripts/server';
 
 describe('v3.angular', () => {
@@ -155,5 +160,166 @@ describe('v3.angular', () => {
                 },
             })
         );
+    });
+
+    it('should serialize path parameters', async () => {
+        const result = await browser.evaluate(async () => {
+            const testPrimitive = 5;
+            const testArray = [3, 4, 5];
+            const testObject = {
+                role: 'admin',
+                firstName: 'Alex',
+            };
+            const { ParametersService } = (window as any).api;
+            const primitives = new Promise<any>(res =>
+                ParametersService.getCallWithStyledPathParameters(
+                    testPrimitive,
+                    testPrimitive,
+                    testPrimitive,
+                    testPrimitive,
+                    testPrimitive,
+                    testPrimitive,
+                    testPrimitive
+                ).subscribe(res)
+            );
+
+            const arrays = new Promise<any>(res =>
+                ParametersService.getCallWithStyledPathParameters(
+                    testArray,
+                    testArray,
+                    testArray,
+                    testArray,
+                    testArray,
+                    testArray,
+                    testArray
+                ).subscribe(res)
+            );
+
+            const objects = new Promise<any>(res =>
+                ParametersService.getCallWithStyledPathParameters(
+                    testObject,
+                    testObject,
+                    testObject,
+                    testObject,
+                    testObject,
+                    testObject,
+                    testObject
+                ).subscribe(res)
+            );
+
+            const results = await Promise.all([primitives, arrays, objects]);
+
+            return {
+                primitives: results[0].path,
+                arrays: results[1].path,
+                objects: results[2].path,
+            };
+        });
+
+        performPathParameterAssertions(result);
+    });
+
+    it('should serialize query parameters', async () => {
+        const result = await browser.evaluate(async () => {
+            const testPrimitive = 5;
+            const testArray = [3, 4, 5];
+            const testObject = {
+                role: 'admin',
+                firstName: 'Alex',
+            };
+            const { ParametersService } = (window as any).api;
+            const primitives = new Promise<any>(res =>
+                ParametersService.getCallWithStyledQueryParameters(
+                    testPrimitive,
+                    testPrimitive,
+                    testPrimitive,
+                    testPrimitive,
+                    testPrimitive,
+                    testPrimitive,
+                    testPrimitive,
+                    testPrimitive
+                ).subscribe(res)
+            );
+
+            const arrays = new Promise<any>(res =>
+                ParametersService.getCallWithStyledQueryParameters(
+                    testArray,
+                    testArray,
+                    testArray,
+                    testArray,
+                    testArray,
+                    testArray,
+                    testArray,
+                    testArray
+                ).subscribe(res)
+            );
+
+            /*
+                For object serialization we need to perform an approach that lets us
+                do our assertions easier. Instead of using all parameters of using all 8
+                parameters of the function we use one at a time.
+
+                If we would use all paramters at once (like above), assertions would become very
+                difficult as some object serializations serialize object prooperties to their own
+                query parameters.
+            */
+            const objectPromises: Promise<any>[] = [];
+            for (let n = 0; n < 8; n++) {
+                const params: any[] = new Array(8).fill(undefined);
+                params[n] = testObject;
+
+                objectPromises.push(
+                    new Promise(res => ParametersService.getCallWithStyledQueryParameters(...params).subscribe(res))
+                );
+            }
+
+            const results = await Promise.all([primitives, arrays, Promise.all(objectPromises)]);
+
+            return {
+                primitives: results[0].url,
+                arrays: results[1].url,
+                objects: results[2].map(r => r.url),
+            };
+        });
+
+        performQueryParameterAssertions(result);
+    });
+
+    it('should serialize header parameters', async () => {
+        const result = await browser.evaluate(async () => {
+            const testPrimitive = 5;
+            const testArray = [3, 4, 5];
+            const testObject = {
+                role: 'admin',
+                firstName: 'Alex',
+            };
+
+            const { ParametersService } = (window as any).api;
+            const primitives = new Promise<any>(res =>
+                ParametersService.getCallWithStyledHeaderParameters(
+                    testPrimitive,
+                    testPrimitive,
+                    testPrimitive
+                ).subscribe(res)
+            );
+
+            const arrays = new Promise<any>(res =>
+                ParametersService.getCallWithStyledHeaderParameters(testArray, testArray, testArray).subscribe(res)
+            );
+
+            const objects = new Promise<any>(res =>
+                ParametersService.getCallWithStyledHeaderParameters(testObject, testObject, testObject).subscribe(res)
+            );
+
+            const results = await Promise.all([primitives, arrays, objects]);
+
+            return {
+                primitives: results[0].headers,
+                arrays: results[1].headers,
+                objects: results[2].headers,
+            };
+        });
+
+        performHeaderParmeterAssertions(result);
     });
 });
