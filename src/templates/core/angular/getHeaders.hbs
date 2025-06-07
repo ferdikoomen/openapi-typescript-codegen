@@ -1,4 +1,5 @@
 export const getHeaders = (config: OpenAPIConfig, options: ApiRequestOptions): Observable<HttpHeaders> => {
+	{{>functions/serializeHeaders}}
 	return forkJoin({
 		token: resolve(options, config.TOKEN),
 		username: resolve(options, config.USERNAME),
@@ -9,7 +10,7 @@ export const getHeaders = (config: OpenAPIConfig, options: ApiRequestOptions): O
 			const headers = Object.entries({
 				Accept: 'application/json',
 				...additionalHeaders,
-				...options.headers,
+				...serializeHeaders(options.headers),
 			})
 				.filter(([_, value]) => isDefined(value))
 				.reduce((headers, [key, value]) => ({
