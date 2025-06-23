@@ -1,4 +1,5 @@
 export interface Schema {
+    title: string | null;
     isDefinition: boolean;
     isReadOnly: boolean;
     isRequired: boolean;
