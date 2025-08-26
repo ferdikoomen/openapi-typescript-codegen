@@ -5,7 +5,9 @@ export const sendRequest = async (
 	body: any,
 	formData: FormData | undefined,
 	headers: Headers,
-	onCancel: OnCancel
+	onCancel: OnCancel,
+	next: NextFetchRequestConfig | undefined,
+	cache?: "default" | "force-cache" | "no-cache" | "no-store" | "only-if-cached" | "reload"
 ): Promise<Response> => {
 	const controller = new AbortController();
 
@@ -14,6 +16,8 @@ export const sendRequest = async (
 		body: body ?? formData,
 		method: options.method,
 		signal: controller.signal,
+		next: next,
+		cache: cache
 	};
 
 	if (config.WITH_CREDENTIALS) {
