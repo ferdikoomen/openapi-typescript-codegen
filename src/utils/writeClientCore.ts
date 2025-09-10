@@ -43,6 +43,10 @@ export const writeClientCore = async (
     await writeFile(resolve(outputPath, 'ApiResult.ts'), i(templates.core.apiResult(context), indent));
     await writeFile(resolve(outputPath, 'CancelablePromise.ts'), i(templates.core.cancelablePromise(context), indent));
     await writeFile(resolve(outputPath, 'request.ts'), i(templates.core.request(context), indent));
+    await writeFile(
+        resolve(outputPath, 'SerializableParameter.ts'),
+        i(templates.core.serializableParameter(context), indent)
+    );
 
     if (isDefined(clientName)) {
         await writeFile(resolve(outputPath, 'BaseHttpRequest.ts'), i(templates.core.baseHttpRequest(context), indent));
