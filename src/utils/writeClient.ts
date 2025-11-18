@@ -26,7 +26,7 @@ import { writeClientServices } from './writeClientServices';
  * @param exportServices Generate services
  * @param exportModels Generate models
  * @param exportSchemas Generate schemas
- * @param exportSchemas Generate schemas
+ * @param exportOptions Generate function's options
  * @param indent Indentation options (4, 2 or tab)
  * @param postfixServices Service name postfix
  * @param postfixModels Model name postfix
@@ -44,6 +44,7 @@ export const writeClient = async (
     exportServices: boolean,
     exportModels: boolean,
     exportSchemas: boolean,
+    exportOptions: boolean,
     indent: Indent,
     postfixServices: string,
     postfixModels: string,
@@ -76,6 +77,7 @@ export const writeClient = async (
             httpClient,
             useUnionTypes,
             useOptions,
+            exportOptions,
             indent,
             postfixServices,
             clientName
@@ -106,10 +108,12 @@ export const writeClient = async (
             templates,
             outputPath,
             useUnionTypes,
+            useOptions,
             exportCore,
             exportServices,
             exportModels,
             exportSchemas,
+            exportOptions,
             postfixServices,
             postfixModels,
             clientName
