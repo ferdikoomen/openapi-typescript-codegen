@@ -17,6 +17,7 @@ export const getModel = (
 ): Model => {
     const model: Model = {
         name,
+        title: definition.title || null,
         export: 'interface',
         type: 'any',
         base: 'any',
