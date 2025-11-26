@@ -33,6 +33,7 @@ describe('writeClientClass', () => {
                 request: () => 'request',
                 baseHttpRequest: () => 'baseHttpRequest',
                 httpRequest: () => 'httpRequest',
+                serializableParameter: () => 'serializableParameter',
             },
         };
 
