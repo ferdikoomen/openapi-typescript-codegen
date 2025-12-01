@@ -3,6 +3,11 @@ import { cleanup } from './scripts/cleanup';
 import { compileWithBabel } from './scripts/compileWithBabel';
 import { copyAsset } from './scripts/copyAsset';
 import { generateClient } from './scripts/generateClient';
+import {
+    performHeaderParmeterAssertions,
+    performPathParameterAssertions,
+    performQueryParameterAssertions,
+} from './scripts/parameterSerializerAssertions';
 import server from './scripts/server';
 
 describe('v3.babel', () => {
@@ -177,6 +182,167 @@ describe('v3.babel', () => {
                 },
             })) as Promise<any>;
         });
-        expect(result.query).toStrictEqual({ parameter: { page: '0', size: '1', sort: 'location' } });
+        expect(result.query).toStrictEqual({ page: '0', size: '1', sort: 'location' });
+    });
+
+    it('should serialize path parameters', async () => {
+        const result = await browser.evaluate(async () => {
+            const testPrimitive = 5;
+            const testArray = [3, 4, 5];
+            const testObject = {
+                role: 'admin',
+                firstName: 'Alex',
+            };
+            const { ParametersService } = (window as any).api;
+            const primitives = ParametersService.getCallWithStyledPathParameters({
+                unstyled: testPrimitive,
+                simple: testPrimitive,
+                simpleExploded: testPrimitive,
+                label: testPrimitive,
+                labelExploded: testPrimitive,
+                matrix: testPrimitive,
+                matrixExploded: testPrimitive,
+            });
+
+            const arrays = ParametersService.getCallWithStyledPathParameters({
+                unstyled: testArray,
+                simple: testArray,
+                simpleExploded: testArray,
+                label: testArray,
+                labelExploded: testArray,
+                matrix: testArray,
+                matrixExploded: testArray,
+            });
+
+            const objects = ParametersService.getCallWithStyledPathParameters({
+                unstyled: testObject,
+                simple: testObject,
+                simpleExploded: testObject,
+                label: testObject,
+                labelExploded: testObject,
+                matrix: testObject,
+                matrixExploded: testObject,
+            });
+
+            const results = await Promise.all([primitives, arrays, objects]);
+
+            return {
+                primitives: results[0].path,
+                arrays: results[1].path,
+                objects: results[2].path,
+            };
+        });
+
+        performPathParameterAssertions(result);
+    });
+
+    it('should serialize query parameters', async () => {
+        const result = await browser.evaluate(async () => {
+            const testPrimitive = 5;
+            const testArray = [3, 4, 5];
+            const testObject = {
+                role: 'admin',
+                firstName: 'Alex',
+            };
+            const { ParametersService } = (window as any).api;
+            const primitives = ParametersService.getCallWithStyledQueryParameters({
+                unstyled: testPrimitive,
+                form: testPrimitive,
+                formExploded: testPrimitive,
+                spaceDelimited: testPrimitive,
+                spaceDelimitedExploded: testPrimitive,
+                pipeDelimited: testPrimitive,
+                pipeDelimitedExploded: testPrimitive,
+                deepObject: testPrimitive,
+            });
+
+            const arrays = ParametersService.getCallWithStyledQueryParameters({
+                unstyled: testArray,
+                form: testArray,
+                formExploded: testArray,
+                spaceDelimited: testArray,
+                spaceDelimitedExploded: testArray,
+                pipeDelimited: testArray,
+                pipeDelimitedExploded: testArray,
+                deepObject: testArray,
+            });
+
+            /*
+                For object serialization we need to perform an approach that lets us
+                do our assertions easier. Instead of using all parameters of using all 8
+                parameters of the function we use one at a time.
+
+                If we would use all paramters at once (like above), assertions would become very
+                difficult as some object serializations serialize object prooperties to their own
+                query parameters.
+            */
+            const keys = [
+                'unstyled',
+                'form',
+                'formExploded',
+                'spaceDelimited',
+                'spaceDelimitedExploded',
+                'pipeDelimited',
+                'pipeDelimitedExploded',
+                'deepObject',
+            ];
+            const objectPromises: Promise<any>[] = [];
+            for (let n = 0; n < 8; n++) {
+                const params: Record<string, any> = {};
+                params[keys[n]] = testObject;
+
+                objectPromises.push(ParametersService.getCallWithStyledQueryParameters(params));
+            }
+
+            const results = await Promise.all([primitives, arrays, Promise.all(objectPromises)]);
+
+            return {
+                primitives: results[0].url,
+                arrays: results[1].url,
+                objects: results[2].map(r => r.url),
+            };
+        });
+
+        performQueryParameterAssertions(result);
+    });
+
+    it('should serialize header parameters', async () => {
+        const result = await browser.evaluate(async () => {
+            const testPrimitive = 5;
+            const testArray = [3, 4, 5];
+            const testObject = {
+                role: 'admin',
+                firstName: 'Alex',
+            };
+
+            const { ParametersService } = (window as any).api;
+            const primitives = ParametersService.getCallWithStyledHeaderParameters({
+                unstyled: testPrimitive,
+                simple: testPrimitive,
+                simpleExploded: testPrimitive,
+            });
+
+            const arrays = ParametersService.getCallWithStyledHeaderParameters({
+                unstyled: testArray,
+                simple: testArray,
+                simpleExploded: testArray,
+            });
+
+            const objects = ParametersService.getCallWithStyledHeaderParameters({
+                unstyled: testObject,
+                simple: testObject,
+                simpleExploded: testObject,
+            });
+
+            const results = await Promise.all([primitives, arrays, objects]);
+
+            return {
+                primitives: results[0].headers,
+                arrays: results[1].headers,
+                objects: results[2].headers,
+            };
+        });
+
+        performHeaderParmeterAssertions(result);
     });
 });

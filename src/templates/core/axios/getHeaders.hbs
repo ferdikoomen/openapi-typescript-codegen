@@ -8,10 +8,12 @@ export const getHeaders = async (config: OpenAPIConfig, options: ApiRequestOptio
 
 	const formHeaders = typeof formData?.getHeaders === 'function' && formData?.getHeaders() || {}
 
+	{{>functions/serializeHeaders}}
+
 	const headers = Object.entries({
 		Accept: 'application/json',
 		...additionalHeaders,
-		...options.headers,
+		...serializeHeaders(options.headers),
 		...formHeaders,
 	})
 	.filter(([_, value]) => isDefined(value))
