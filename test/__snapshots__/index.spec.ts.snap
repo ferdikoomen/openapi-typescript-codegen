@@ -614,6 +614,7 @@ export type { ModelWithPattern } from './models/ModelWithPattern';
 export type { ModelWithProperties } from './models/ModelWithProperties';
 export type { ModelWithReference } from './models/ModelWithReference';
 export type { ModelWithString } from './models/ModelWithString';
+export type { NonAsciiStringæøåÆØÅöôêÊ字符串 } from './models/NonAsciiStringæøåÆØÅöôêÊ字符串';
 export type { SimpleBoolean } from './models/SimpleBoolean';
 export type { SimpleFile } from './models/SimpleFile';
 export type { SimpleInteger } from './models/SimpleInteger';
@@ -663,6 +664,7 @@ export { $ModelWithPattern } from './schemas/$ModelWithPattern';
 export { $ModelWithProperties } from './schemas/$ModelWithProperties';
 export { $ModelWithReference } from './schemas/$ModelWithReference';
 export { $ModelWithString } from './schemas/$ModelWithString';
+export { $NonAsciiStringæøåÆØÅöôêÊ字符串 } from './schemas/$NonAsciiStringæøåÆØÅöôêÊ字符串';
 export { $SimpleBoolean } from './schemas/$SimpleBoolean';
 export { $SimpleFile } from './schemas/$SimpleFile';
 export { $SimpleInteger } from './schemas/$SimpleInteger';
@@ -682,6 +684,7 @@ export { MultipleTags1Service } from './services/MultipleTags1Service';
 export { MultipleTags2Service } from './services/MultipleTags2Service';
 export { MultipleTags3Service } from './services/MultipleTags3Service';
 export { NoContentService } from './services/NoContentService';
+export { NonAsciiÆøåÆøÅöôêÊService } from './services/NonAsciiÆøåÆøÅöôêÊService';
 export { ParametersService } from './services/ParametersService';
 export { ResponseService } from './services/ResponseService';
 export { SimpleService } from './services/SimpleService';
@@ -1009,6 +1012,7 @@ export enum EnumWithStrings {
     ERROR = 'Error',
     _SINGLE_QUOTE_ = '\\'Single Quote\\'',
     _DOUBLE_QUOTES_ = '"Double Quotes"',
+    NON_ASCII__ØÆÅÔÖ_ØÆÅÔÖ字符串 = 'Non-ascii: øæåôöØÆÅÔÖ字符串',
 }
 "
 `;
@@ -1178,6 +1182,7 @@ export namespace ModelWithEnum {
         SUCCESS = 'Success',
         WARNING = 'Warning',
         ERROR = 'Error',
+        ØÆÅ字符串 = 'ØÆÅ字符串',
     }
     /**
      * These are the HTTP error code enums
@@ -1385,6 +1390,18 @@ export type ModelWithString = {
     prop?: string;
 };
 
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/models/NonAsciiStringæøåÆØÅöôêÊ字符串.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/**
+ * A string with non-ascii (unicode) characters valid in typescript identifiers (æøåÆØÅöÔèÈ字符串)
+ */
+export type NonAsciiStringæøåÆØÅöôêÊ字符串 = string;
 "
 `;
 
@@ -2256,6 +2273,18 @@ export const $ModelWithString = {
 "
 `;
 
+exports[`v2 should generate: test/generated/v2/schemas/$NonAsciiStringæøåÆØÅöôêÊ字符串.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+export const $NonAsciiStringæøåÆØÅöôêÊ字符串 = {
+    type: 'string',
+    description: \`A string with non-ascii (unicode) characters valid in typescript identifiers (æøåÆØÅöÔèÈ字符串)\`,
+} as const;
+"
+`;
+
 exports[`v2 should generate: test/generated/v2/schemas/$SimpleBoolean.ts 1`] = `
 "/* generated using openapi-typescript-codegen -- do not edit */
 /* istanbul ignore file */
@@ -2807,6 +2836,36 @@ export class NoContentService {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/api/v{api-version}/no-content',
+        });
+    }
+}
+"
+`;
+
+exports[`v2 should generate: test/generated/v2/services/NonAsciiÆøåÆøÅöôêÊService.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import type { NonAsciiStringæøåÆØÅöôêÊ字符串 } from '../models/NonAsciiStringæøåÆØÅöôêÊ字符串';
+import type { CancelablePromise } from '../core/CancelablePromise';
+import { OpenAPI } from '../core/OpenAPI';
+import { request as __request } from '../core/request';
+export class NonAsciiÆøåÆøÅöôêÊService {
+    /**
+     * @param nonAsciiParamæøåÆøÅöôêÊ Dummy input param
+     * @returns NonAsciiStringæøåÆØÅöôêÊ字符串 Successful response
+     * @throws ApiError
+     */
+    public static nonAsciiæøåÆøÅöôêÊ字符串(
+        nonAsciiParamæøåÆøÅöôêÊ: number,
+    ): CancelablePromise<NonAsciiStringæøåÆØÅöôêÊ字符串> {
+        return __request(OpenAPI, {
+            method: 'POST',
+            url: '/api/v{api-version}/non-ascii-æøåÆØÅöôêÊ字符串',
+            query: {
+                'nonAsciiParamæøåÆØÅöôêÊ': nonAsciiParamæøåÆøÅöôêÊ,
+            },
         });
     }
 }
@@ -3728,6 +3787,7 @@ export type { ModelWithPattern } from './models/ModelWithPattern';
 export type { ModelWithProperties } from './models/ModelWithProperties';
 export type { ModelWithReference } from './models/ModelWithReference';
 export type { ModelWithString } from './models/ModelWithString';
+export type { NonAsciiStringæøåÆØÅöôêÊ字符串 } from './models/NonAsciiStringæøåÆØÅöôêÊ字符串';
 export type { Pageable } from './models/Pageable';
 export type { SimpleBoolean } from './models/SimpleBoolean';
 export type { SimpleFile } from './models/SimpleFile';
@@ -3798,6 +3858,7 @@ export { $ModelWithPattern } from './schemas/$ModelWithPattern';
 export { $ModelWithProperties } from './schemas/$ModelWithProperties';
 export { $ModelWithReference } from './schemas/$ModelWithReference';
 export { $ModelWithString } from './schemas/$ModelWithString';
+export { $NonAsciiStringæøåÆØÅöôêÊ字符串 } from './schemas/$NonAsciiStringæøåÆØÅöôêÊ字符串';
 export { $Pageable } from './schemas/$Pageable';
 export { $SimpleBoolean } from './schemas/$SimpleBoolean';
 export { $SimpleFile } from './schemas/$SimpleFile';
@@ -3822,6 +3883,7 @@ export { MultipleTags1Service } from './services/MultipleTags1Service';
 export { MultipleTags2Service } from './services/MultipleTags2Service';
 export { MultipleTags3Service } from './services/MultipleTags3Service';
 export { NoContentService } from './services/NoContentService';
+export { NonAsciiÆøåÆøÅöôêÊService } from './services/NonAsciiÆøåÆøÅöôêÊService';
 export { ParametersService } from './services/ParametersService';
 export { RequestBodyService } from './services/RequestBodyService';
 export { ResponseService } from './services/ResponseService';
@@ -4385,6 +4447,7 @@ export enum EnumWithStrings {
     ERROR = 'Error',
     _SINGLE_QUOTE_ = '\\'Single Quote\\'',
     _DOUBLE_QUOTES_ = '"Double Quotes"',
+    NON_ASCII__ØÆÅÔÖ_ØÆÅÔÖ字符串 = 'Non-ascii: øæåôöØÆÅÔÖ字符串',
 }
 "
 `;
@@ -4638,6 +4701,7 @@ export namespace ModelWithEnum {
         SUCCESS = 'Success',
         WARNING = 'Warning',
         ERROR = 'Error',
+        ØÆÅ字符串 = 'ØÆÅ字符串',
     }
     /**
      * These are the HTTP error code enums
@@ -4854,6 +4918,18 @@ export type ModelWithString = {
     prop?: string;
 };
 
+"
+`;
+
+exports[`v3 should generate: test/generated/v3/models/NonAsciiStringæøåÆØÅöôêÊ字符串.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/**
+ * A string with non-ascii (unicode) characters valid in typescript identifiers (æøåÆØÅöÔèÈ字符串)
+ */
+export type NonAsciiStringæøåÆØÅöôêÊ字符串 = string;
 "
 `;
 
@@ -6247,6 +6323,18 @@ export const $ModelWithString = {
 "
 `;
 
+exports[`v3 should generate: test/generated/v3/schemas/$NonAsciiStringæøåÆØÅöôêÊ字符串.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+export const $NonAsciiStringæøåÆØÅöôêÊ字符串 = {
+    type: 'string',
+    description: \`A string with non-ascii (unicode) characters valid in typescript identifiers (æøåÆØÅöÔèÈ字符串)\`,
+} as const;
+"
+`;
+
 exports[`v3 should generate: test/generated/v3/schemas/$Pageable.ts 1`] = `
 "/* generated using openapi-typescript-codegen -- do not edit */
 /* istanbul ignore file */
@@ -6983,6 +7071,36 @@ export class NoContentService {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/api/v{api-version}/no-content',
+        });
+    }
+}
+"
+`;
+
+exports[`v3 should generate: test/generated/v3/services/NonAsciiÆøåÆøÅöôêÊService.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import type { NonAsciiStringæøåÆØÅöôêÊ字符串 } from '../models/NonAsciiStringæøåÆØÅöôêÊ字符串';
+import type { CancelablePromise } from '../core/CancelablePromise';
+import { OpenAPI } from '../core/OpenAPI';
+import { request as __request } from '../core/request';
+export class NonAsciiÆøåÆøÅöôêÊService {
+    /**
+     * @param nonAsciiParamæøåÆøÅöôêÊ Dummy input param
+     * @returns NonAsciiStringæøåÆØÅöôêÊ字符串 Successful response
+     * @throws ApiError
+     */
+    public static nonAsciiæøåÆøÅöôêÊ字符串(
+        nonAsciiParamæøåÆøÅöôêÊ: number,
+    ): CancelablePromise<Array<NonAsciiStringæøåÆØÅöôêÊ字符串>> {
+        return __request(OpenAPI, {
+            method: 'POST',
+            url: '/api/v{api-version}/non-ascii-æøåÆØÅöôêÊ字符串',
+            query: {
+                'nonAsciiParamæøåÆØÅöôêÊ': nonAsciiParamæøåÆøÅöôêÊ,
+            },
         });
     }
 }
