@@ -102,5 +102,8 @@
         "rollup-plugin-terser": "7.0.2",
         "rollup-plugin-typescript2": "0.30.0",
         "typescript": "4.3.5"
+    },
+    "resolutions": {
+        "handlebars/minimist": "1.2.8"
     }
 }
