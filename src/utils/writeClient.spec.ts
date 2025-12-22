@@ -52,8 +52,8 @@ describe('writeClient', () => {
             'AppClient'
         );
 
-        expect(rmdir).toBeCalled();
-        expect(mkdir).toBeCalled();
-        expect(writeFile).toBeCalled();
+        expect(rmdir).toHaveBeenCalled();
+        expect(mkdir).toHaveBeenCalled();
+        expect(writeFile).toHaveBeenCalled();
     });
 });

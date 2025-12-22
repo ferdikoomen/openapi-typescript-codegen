@@ -20,7 +20,7 @@ export const getRef = <T>(openApi: OpenApi, item: T & OpenApiReference): T => {
             const decodedPath = decodeURIComponent(
                 path.replace(ESCAPED_REF_SLASH, '/').replace(ESCAPED_REF_TILDE, '~')
             );
-            if (result.hasOwnProperty(decodedPath)) {
+            if (Object.prototype.hasOwnProperty.call(result, decodedPath)) {
                 result = result[decodedPath];
             } else {
                 throw new Error(`Could not find reference: "${item.$ref}"`);

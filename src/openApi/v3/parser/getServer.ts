@@ -5,7 +5,7 @@ export const getServer = (openApi: OpenApi): string => {
     const variables = server?.variables || {};
     let url = server?.url || '';
     for (const variable in variables) {
-        if (variables.hasOwnProperty(variable)) {
+        if (Object.prototype.hasOwnProperty.call(variables, variable)) {
             url = url.replace(`{${variable}}`, variables[variable].default);
         }
     }

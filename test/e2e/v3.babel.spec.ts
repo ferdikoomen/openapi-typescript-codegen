@@ -177,6 +177,10 @@ describe('v3.babel', () => {
                 },
             })) as Promise<any>;
         });
-        expect(result.query).toStrictEqual({ parameter: { page: '0', size: '1', sort: 'location' } });
+        expect(result.query).toStrictEqual({
+            'parameter[page]': '0',
+            'parameter[size]': '1',
+            'parameter[sort]': 'location',
+        });
     });
 });

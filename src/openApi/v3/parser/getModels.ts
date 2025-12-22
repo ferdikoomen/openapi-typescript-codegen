@@ -8,7 +8,7 @@ export const getModels = (openApi: OpenApi): Model[] => {
     const models: Model[] = [];
     if (openApi.components) {
         for (const definitionName in openApi.components.schemas) {
-            if (openApi.components.schemas.hasOwnProperty(definitionName)) {
+            if (Object.prototype.hasOwnProperty.call(openApi.components.schemas, definitionName)) {
                 const definition = openApi.components.schemas[definitionName];
                 const definitionType = getType(definitionName);
                 const model = getModel(openApi, definition, true, definitionType.base.replace(reservedWords, '_$1'));
@@ -16,7 +16,7 @@ export const getModels = (openApi: OpenApi): Model[] => {
             }
         }
         for (const definitionName in openApi.components.parameters) {
-            if (openApi.components.parameters.hasOwnProperty(definitionName)) {
+            if (Object.prototype.hasOwnProperty.call(openApi.components.parameters, definitionName)) {
                 const definition = openApi.components.parameters[definitionName];
                 const definitionType = getType(definitionName);
                 const schema = definition.schema;

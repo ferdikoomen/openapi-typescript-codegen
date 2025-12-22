@@ -12,7 +12,7 @@ export type GetModelFn = typeof getModel;
 export const getModelProperties = (openApi: OpenApi, definition: OpenApiSchema, getModel: GetModelFn): Model[] => {
     const models: Model[] = [];
     for (const propertyName in definition.properties) {
-        if (definition.properties.hasOwnProperty(propertyName)) {
+        if (Object.prototype.hasOwnProperty.call(definition.properties, propertyName)) {
             const property = definition.properties[propertyName];
             const propertyRequired = !!definition.required?.includes(propertyName);
             if (property.$ref) {
