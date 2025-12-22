@@ -10,14 +10,14 @@ import { getOperationParameters } from './getOperationParameters';
 export const getServices = (openApi: OpenApi): Service[] => {
     const services = new Map<string, Service>();
     for (const url in openApi.paths) {
-        if (openApi.paths.hasOwnProperty(url)) {
+        if (Object.prototype.hasOwnProperty.call(openApi.paths, url)) {
             // Grab path and parse any global path parameters
             const path = openApi.paths[url];
             const pathParams = getOperationParameters(openApi, path.parameters || []);
 
             // Parse all the methods for this path
             for (const method in path) {
-                if (path.hasOwnProperty(method)) {
+                if (Object.prototype.hasOwnProperty.call(path, method)) {
                     switch (method) {
                         case 'get':
                         case 'put':
@@ -25,7 +25,7 @@ export const getServices = (openApi: OpenApi): Service[] => {
                         case 'delete':
                         case 'options':
                         case 'head':
-                        case 'patch':
+                        case 'patch': {
                             // Each method contains an OpenAPI operation, we parse the operation
                             const op = path[method]!;
                             const tags = op.tags?.length ? op.tags.filter(unique) : ['Default'];
@@ -46,6 +46,7 @@ export const getServices = (openApi: OpenApi): Service[] => {
                                 services.set(operation.service, service);
                             });
                             break;
+                        }
                     }
                 }
             }

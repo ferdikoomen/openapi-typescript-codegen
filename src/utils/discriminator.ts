@@ -15,7 +15,7 @@ const inverseDictionary = (map: Dictionary<string>): Dictionary<string> => {
 export const findOneOfParentDiscriminator = (openApi: OpenApi, parent?: Model): OpenApiDiscriminator | undefined => {
     if (openApi.components && parent) {
         for (const definitionName in openApi.components.schemas) {
-            if (openApi.components.schemas.hasOwnProperty(definitionName)) {
+            if (Object.prototype.hasOwnProperty.call(openApi.components.schemas, definitionName)) {
                 const schema = openApi.components.schemas[definitionName];
                 if (
                     schema.discriminator &&

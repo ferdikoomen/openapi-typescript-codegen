@@ -57,7 +57,7 @@ describe('v3.node', () => {
             'valuePath',
             {
                 prop: 'valueBody',
-            },
+            }
         );
         expect(result).toBeDefined();
     });
@@ -104,7 +104,7 @@ describe('v3.node', () => {
                     status: 500,
                     message: 'hello world',
                 },
-            }),
+            })
         );
     });
 
@@ -136,7 +136,7 @@ describe('v3.node', () => {
                     status: 409,
                     message: 'hello world',
                 },
-            }),
+            })
         );
     });
 

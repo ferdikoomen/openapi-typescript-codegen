@@ -19,7 +19,7 @@ export const getModelProperties = (
     const models: Model[] = [];
     const discriminator = findOneOfParentDiscriminator(openApi, parent);
     for (const propertyName in definition.properties) {
-        if (definition.properties.hasOwnProperty(propertyName)) {
+        if (Object.prototype.hasOwnProperty.call(definition.properties, propertyName)) {
             const property = definition.properties[propertyName];
             const propertyRequired = !!definition.required?.includes(propertyName);
             const propertyValues: Omit<

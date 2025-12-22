@@ -126,7 +126,7 @@ describe('v3.babel', () => {
                     status: 500,
                     message: 'hello world',
                 },
-            }),
+            })
         );
     });
 
@@ -162,7 +162,7 @@ describe('v3.babel', () => {
                     status: 409,
                     message: 'hello world',
                 },
-            }),
+            })
         );
     });
 

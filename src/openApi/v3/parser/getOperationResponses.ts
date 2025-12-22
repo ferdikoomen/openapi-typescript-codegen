@@ -12,7 +12,7 @@ export const getOperationResponses = (openApi: OpenApi, responses: OpenApiRespon
     // Iterate over each response code and get the
     // status code and response message (if any).
     for (const code in responses) {
-        if (responses.hasOwnProperty(code)) {
+        if (Object.prototype.hasOwnProperty.call(responses, code)) {
             const responseOrReference = responses[code];
             const response = getRef<OpenApiResponse>(openApi, responseOrReference);
             const responseCode = getOperationResponseCode(code);

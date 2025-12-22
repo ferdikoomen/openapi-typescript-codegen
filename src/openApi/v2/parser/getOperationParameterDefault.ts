@@ -33,7 +33,7 @@ export const getOperationParameterDefault = (
         case 'object':
             try {
                 return JSON.stringify(parameter.default, null, 4);
-            } catch (e) {
+            } catch {
                 // Ignore
             }
     }

@@ -85,7 +85,7 @@ export const getOperationResponse = (
     // fetch and XHR client just support string types.
     if (response.headers) {
         for (const name in response.headers) {
-            if (response.headers.hasOwnProperty(name)) {
+            if (Object.prototype.hasOwnProperty.call(response.headers, name)) {
                 operationResponse.in = 'header';
                 operationResponse.name = name;
                 operationResponse.type = 'string';

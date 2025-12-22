@@ -13,7 +13,7 @@ export const readSpecFromDisk = async (input: string): Promise<string> => {
         try {
             const content = await readFile(filePath, 'utf8');
             return content.toString();
-        } catch (e) {
+        } catch {
             throw new Error(`Could not read OpenApi spec: "${filePath}"`);
         }
     }

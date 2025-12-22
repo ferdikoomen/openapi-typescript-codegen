@@ -30,7 +30,7 @@ export const getModelDefault = (definition: OpenApiSchema, model?: Model): strin
         case 'object':
             try {
                 return JSON.stringify(definition.default, null, 4);
-            } catch (e) {
+            } catch {
                 // Ignore
             }
     }
