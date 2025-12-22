@@ -8,7 +8,7 @@ export const createAngularProject = (dir: string, name: string) => {
         recursive: true,
     });
 
-    sync('ng', ['analytics', 'off', '--global'], {
+    sync('ng', ['analytics', 'disable', '--global'], {
         cwd: resolvePath(cwd),
         stdio: 'inherit',
     });
@@ -18,6 +18,8 @@ export const createAngularProject = (dir: string, name: string) => {
         [
             'new',
             name,
+            '--ai-config',
+            'none',
             '--minimal',
             'true',
             '--style',

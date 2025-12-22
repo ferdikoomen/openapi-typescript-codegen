@@ -1,4 +1,4 @@
-import puppeteer, { Browser, EvaluateFn, Page } from 'puppeteer';
+import puppeteer, { Browser, EvaluateFunc, Page } from 'puppeteer';
 
 let _browser: Browser;
 let _page: Page;
@@ -8,8 +8,7 @@ const start = async () => {
     // and load the localhost page, this page will load the
     // javascript modules (see server.js for more info)
     _browser = await puppeteer.launch({
-        headless: 'new',
-        args: ['--no-sandbox', '--disable-setuid-sandbox'],
+        headless: true,
     });
     _page = await _browser.newPage();
     // _page.on('console', msg => console.log(msg.text()));
@@ -19,15 +18,15 @@ const start = async () => {
 };
 
 const stop = async () => {
-    await _page.close();
-    await _browser.close();
+    await _page?.close();
+    await _browser?.close();
 };
 
-const evaluate = async (fn: EvaluateFn) => {
+const evaluate = async <T extends unknown[]>(fn: EvaluateFunc<T>) => {
     return await _page.evaluate(fn);
 };
 
-// eslint-disable-next-line @typescript-eslint/ban-types
+// eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
 const exposeFunction = async (name: string, fn: Function) => {
     return await _page.exposeFunction(name, fn);
 };

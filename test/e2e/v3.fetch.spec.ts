@@ -69,7 +69,7 @@ describe('v3.fetch', () => {
                 'valuePath',
                 {
                     prop: 'valueBody',
-                }
+                },
             );
         });
         expect(result).toBeDefined();
@@ -122,7 +122,7 @@ describe('v3.fetch', () => {
                     status: 500,
                     message: 'hello world',
                 },
-            })
+            }),
         );
     });
 
@@ -156,7 +156,7 @@ describe('v3.fetch', () => {
                     status: 409,
                     message: 'hello world',
                 },
-            })
+            }),
         );
     });
 
@@ -169,6 +169,10 @@ describe('v3.fetch', () => {
                 sort: ['location'],
             })) as Promise<any>;
         });
-        expect(result.query).toStrictEqual({ parameter: { page: '0', size: '1', sort: 'location' } });
+        expect(result.query).toStrictEqual({
+            'parameter[page]': '0',
+            'parameter[size]': '1',
+            'parameter[sort]': 'location',
+        });
     });
 });

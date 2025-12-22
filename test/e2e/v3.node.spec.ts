@@ -57,7 +57,7 @@ describe('v3.node', () => {
             'valuePath',
             {
                 prop: 'valueBody',
-            }
+            },
         );
         expect(result).toBeDefined();
     });
@@ -104,7 +104,7 @@ describe('v3.node', () => {
                     status: 500,
                     message: 'hello world',
                 },
-            })
+            }),
         );
     });
 
@@ -136,7 +136,7 @@ describe('v3.node', () => {
                     status: 409,
                     message: 'hello world',
                 },
-            })
+            }),
         );
     });
 
@@ -147,6 +147,10 @@ describe('v3.node', () => {
             size: 1,
             sort: ['location'],
         })) as Promise<any>;
-        expect((result as any).query).toStrictEqual({ parameter: { page: '0', size: '1', sort: 'location' } });
+        expect((result as any).query).toStrictEqual({
+            'parameter[page]': '0',
+            'parameter[size]': '1',
+            'parameter[sort]': 'location',
+        });
     });
 });

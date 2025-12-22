@@ -65,7 +65,7 @@ const start = async (dir: string) => {
         // Register an 'echo' server that just returns all data from the API calls.
         // Although this might not be a 'correct' response, we can use this to test
         // the majority of API calls.
-        _app.all('/base/api/v1.0/*', (req, res) => {
+        _app.all('/base/api/v1.0/*path', (req, res) => {
             setTimeout(() => {
                 res.json({
                     method: req.method,
@@ -87,7 +87,7 @@ const start = async (dir: string) => {
 
 const stop = async () => {
     return new Promise<void>((resolve, reject) => {
-        _server.close(err => {
+        _server?.close(err => {
             if (err) {
                 reject(err);
             } else {

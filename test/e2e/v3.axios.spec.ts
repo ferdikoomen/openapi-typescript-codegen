@@ -57,7 +57,7 @@ describe('v3.axios', () => {
             'valuePath',
             {
                 prop: 'valueBody',
-            }
+            },
         );
         expect(result).toBeDefined();
     });
@@ -104,7 +104,7 @@ describe('v3.axios', () => {
                     status: 500,
                     message: 'hello world',
                 },
-            })
+            }),
         );
     });
 
@@ -136,7 +136,7 @@ describe('v3.axios', () => {
                     status: 409,
                     message: 'hello world',
                 },
-            })
+            }),
         );
     });
 
@@ -147,6 +147,10 @@ describe('v3.axios', () => {
             size: 1,
             sort: ['location'],
         })) as Promise<any>;
-        expect((result as any).query).toStrictEqual({ parameter: { page: '0', size: '1', sort: 'location' } });
+        expect((result as any).query).toStrictEqual({
+            'parameter[page]': '0',
+            'parameter[size]': '1',
+            'parameter[sort]': 'location',
+        });
     });
 });
