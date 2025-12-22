@@ -38,6 +38,6 @@ describe('writeClientClass', () => {
 
         await writeClientClass(client, templates, './dist', HttpClient.FETCH, 'AppClient', Indent.SPACE_4, '');
 
-        expect(writeFile).toBeCalled();
+        expect(writeFile).toHaveBeenCalled();
     });
 });

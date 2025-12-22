@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`v2 should generate: test/generated/v2/core/ApiError.ts 1`] = `
 "/* generated using openapi-typescript-codegen -- do not edit */
