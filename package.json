@@ -95,7 +95,7 @@
         "@types/node-fetch": "2.6.13",
         "@types/qs": "6.14.0",
         "@typescript-eslint/eslint-plugin": "8.51.0",
-        "@typescript-eslint/parser": "8.50.1",
+        "@typescript-eslint/parser": "8.51.0",
         "abort-controller": "3.0.0",
         "axios": "1.13.2",
         "codecov": "3.8.3",
@@ -113,14 +113,14 @@
         "node-fetch": "2.7.0",
         "prettier": "3.7.4",
         "puppeteer": "24.34.0",
-        "qs": "6.14.0",
+        "qs": "6.14.1",
         "rimraf": "6.1.2",
         "rollup": "4.54.0",
         "rxjs": "7.8.2",
         "ts-node": "10.9.2",
         "tslib": "2.8.1",
         "typescript": "5.9.3",
-        "typescript-eslint": "8.50.1",
+        "typescript-eslint": "8.51.0",
         "zone.js": "0.16.0"
     }
 }
