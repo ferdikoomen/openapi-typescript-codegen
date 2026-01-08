@@ -73,7 +73,7 @@
         "@angular/common": "21.0.8",
         "@angular/compiler": "21.0.7",
         "@angular/compiler-cli": "21.0.8",
-        "@angular/core": "21.0.7",
+        "@angular/core": "21.0.8",
         "@angular/forms": "21.0.8",
         "@angular/platform-browser": "21.0.8",
         "@angular/platform-browser-dynamic": "21.0.7",
