@@ -120,7 +120,7 @@
         "ts-node": "10.9.2",
         "tslib": "2.8.1",
         "typescript": "5.9.3",
-        "typescript-eslint": "8.53.1",
+        "typescript-eslint": "8.54.0",
         "zone.js": "0.16.0"
     }
 }
