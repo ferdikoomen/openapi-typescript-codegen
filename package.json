@@ -91,7 +91,7 @@
         "@types/express": "5.0.6",
         "@types/fs-extra": "11.0.4",
         "@types/jest": "30.0.0",
-        "@types/node": "25.2.0",
+        "@types/node": "25.2.1",
         "@types/node-fetch": "2.6.13",
         "@types/qs": "6.14.0",
         "@typescript-eslint/eslint-plugin": "8.54.0",
