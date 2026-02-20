@@ -77,7 +77,7 @@
         "@angular/forms": "21.1.5",
         "@angular/platform-browser": "21.1.4",
         "@angular/platform-browser-dynamic": "21.1.4",
-        "@angular/router": "21.1.4",
+        "@angular/router": "21.1.5",
         "@babel/cli": "7.28.6",
         "@babel/core": "7.29.0",
         "@babel/preset-env": "7.29.0",
