@@ -16,6 +16,7 @@ describe('writeClientModels', () => {
             {
                 export: 'interface',
                 name: 'User',
+                title: null,
                 type: 'User',
                 base: 'User',
                 template: null,
