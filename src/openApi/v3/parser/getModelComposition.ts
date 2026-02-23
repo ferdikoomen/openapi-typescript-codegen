@@ -30,9 +30,10 @@ export const getModelComposition = (
         .filter(model => {
             const hasProperties = model.properties.length;
             const hasEnums = model.enums.length;
+            const hasLink = typeof model.link !== 'undefined' && model.link !== null;
             const isObject = model.type === 'any';
             const isDictionary = model.export === 'dictionary';
-            const isEmpty = isObject && !hasProperties && !hasEnums;
+            const isEmpty = isObject && !hasProperties && !hasEnums && !hasLink;
             return !isEmpty || isDictionary;
         })
         .forEach(model => {
