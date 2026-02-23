@@ -18,12 +18,13 @@ export const getEnum = (values?: (string | number)[]): Enum[] => {
                         description: null,
                     };
                 }
+                const sanitizedName = String(value)
+                    .replace(/\W+/g, '_')
+                    .replace(/^(\d+)/g, '_$1')
+                    .replace(/([a-z])([A-Z]+)/g, '$1_$2')
+                    .toUpperCase();
                 return {
-                    name: String(value)
-                        .replace(/\W+/g, '_')
-                        .replace(/^(\d+)/g, '_$1')
-                        .replace(/([a-z])([A-Z]+)/g, '$1_$2')
-                        .toUpperCase(),
+                    name: sanitizedName === '' ? 'BLANK' : sanitizedName,
                     value: `'${value.replace(/'/g, "\\'")}'`,
                     type: 'string',
                     description: null,
