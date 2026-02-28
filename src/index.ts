@@ -23,6 +23,7 @@ export type Options = {
     exportServices?: boolean;
     exportModels?: boolean;
     exportSchemas?: boolean;
+    useOperationId?: boolean;
     indent?: Indent;
     postfixServices?: string;
     postfixModels?: string;
@@ -44,6 +45,7 @@ export type Options = {
  * @param exportServices Generate services
  * @param exportModels Generate models
  * @param exportSchemas Generate schemas
+ * @param ignoreOperationId Ignore operationId
  * @param indent Indentation options (4, 2 or tab)
  * @param postfixServices Service name postfix
  * @param postfixModels Model name postfix
@@ -61,6 +63,7 @@ export const generate = async ({
     exportServices = true,
     exportModels = true,
     exportSchemas = false,
+    useOperationId = true,
     indent = Indent.SPACE_4,
     postfixServices = 'Service',
     postfixModels = '',
@@ -77,7 +80,7 @@ export const generate = async ({
 
     switch (openApiVersion) {
         case OpenApiVersion.V2: {
-            const client = parseV2(openApi);
+            const client = parseV2(openApi, useOperationId);
             const clientFinal = postProcessClient(client);
             if (!write) break;
             await writeClient(
@@ -101,7 +104,7 @@ export const generate = async ({
         }
 
         case OpenApiVersion.V3: {
-            const client = parseV3(openApi);
+            const client = parseV3(openApi, useOperationId);
             const clientFinal = postProcessClient(client);
             if (!write) break;
             await writeClient(
