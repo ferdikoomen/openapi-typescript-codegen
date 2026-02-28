@@ -3728,6 +3728,8 @@ export type { ModelWithPattern } from './models/ModelWithPattern';
 export type { ModelWithProperties } from './models/ModelWithProperties';
 export type { ModelWithReference } from './models/ModelWithReference';
 export type { ModelWithString } from './models/ModelWithString';
+export type { ObjectWithAdditionalPropertiesEqEmptyObject } from './models/ObjectWithAdditionalPropertiesEqEmptyObject';
+export type { ObjectWithAdditionalPropertiesEqTrue } from './models/ObjectWithAdditionalPropertiesEqTrue';
 export type { Pageable } from './models/Pageable';
 export type { SimpleBoolean } from './models/SimpleBoolean';
 export type { SimpleFile } from './models/SimpleFile';
@@ -3798,6 +3800,8 @@ export { $ModelWithPattern } from './schemas/$ModelWithPattern';
 export { $ModelWithProperties } from './schemas/$ModelWithProperties';
 export { $ModelWithReference } from './schemas/$ModelWithReference';
 export { $ModelWithString } from './schemas/$ModelWithString';
+export { $ObjectWithAdditionalPropertiesEqEmptyObject } from './schemas/$ObjectWithAdditionalPropertiesEqEmptyObject';
+export { $ObjectWithAdditionalPropertiesEqTrue } from './schemas/$ObjectWithAdditionalPropertiesEqTrue';
 export { $Pageable } from './schemas/$Pageable';
 export { $SimpleBoolean } from './schemas/$SimpleBoolean';
 export { $SimpleFile } from './schemas/$SimpleFile';
@@ -4852,6 +4856,44 @@ export type ModelWithString = {
      * This is a simple string property
      */
     prop?: string;
+};
+
+"
+`;
+
+exports[`v3 should generate: test/generated/v3/models/ObjectWithAdditionalPropertiesEqEmptyObject.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/**
+ * This is an object with additionalProperties: {}.
+ */
+export type ObjectWithAdditionalPropertiesEqEmptyObject = {
+    name?: string;
+    /**
+     * Additional properties are not explicitly defined may be present.
+     */
+    [additionalProperty: string]: unknown;
+};
+
+"
+`;
+
+exports[`v3 should generate: test/generated/v3/models/ObjectWithAdditionalPropertiesEqTrue.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/**
+ * This is an object with additionalProperties: true.
+ */
+export type ObjectWithAdditionalPropertiesEqTrue = {
+    name?: string;
+    /**
+     * Additional properties are not explicitly defined may be present.
+     */
+    [additionalProperty: string]: unknown;
 };
 
 "
@@ -6241,6 +6283,48 @@ export const $ModelWithString = {
         prop: {
             type: 'string',
             description: \`This is a simple string property\`,
+        },
+    },
+} as const;
+"
+`;
+
+exports[`v3 should generate: test/generated/v3/schemas/$ObjectWithAdditionalPropertiesEqEmptyObject.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+export const $ObjectWithAdditionalPropertiesEqEmptyObject = {
+    description: \`This is an object with additionalProperties: {}.\`,
+    properties: {
+        name: {
+            type: 'string',
+        },
+        [additionalProperty: string]: {
+            type: 'any',
+            description: \`Additional properties are not explicitly defined may be present.\`,
+            isRequired: true,
+        },
+    },
+} as const;
+"
+`;
+
+exports[`v3 should generate: test/generated/v3/schemas/$ObjectWithAdditionalPropertiesEqTrue.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+export const $ObjectWithAdditionalPropertiesEqTrue = {
+    description: \`This is an object with additionalProperties: true.\`,
+    properties: {
+        name: {
+            type: 'string',
+        },
+        [additionalProperty: string]: {
+            type: 'unknown',
+            description: \`Additional properties are not explicitly defined may be present.\`,
+            isRequired: true,
         },
     },
 } as const;
