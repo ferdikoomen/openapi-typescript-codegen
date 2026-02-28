@@ -2549,6 +2549,17 @@
                 "type": "object",
                 "additionalProperties": true
             },
+            "ModelWithAdditionalPropertiesEqTrue": {
+                "description": "This is a model with one property and additionalProperties: true",
+                "type": "object",
+                "properties": {
+                    "prop": {
+                        "description": "This is a simple string property",
+                        "type": "string"
+                    }
+                },
+                "additionalProperties": true
+            },
             "FreeFormObjectWithAdditionalPropertiesEqEmptyObject": {
                 "description": "This is a free-form object with additionalProperties: {}.",
                 "type": "object",
