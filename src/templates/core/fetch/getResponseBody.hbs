@@ -1,6 +1,10 @@
-export const getResponseBody = async (response: Response): Promise<any> => {
+export const getResponseBody = async (response: Response, options: ApiRequestOptions): Promise<any> => {
 	if (response.status !== 204) {
 		try {
+			if(options.type === 'Blob') {
+				return await response.blob();
+			}
+
 			const contentType = response.headers.get('Content-Type');
 			if (contentType) {
 				const jsonTypes = ['application/json', 'application/problem+json']
