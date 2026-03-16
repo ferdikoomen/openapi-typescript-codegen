@@ -1,3 +1,5 @@
+import camelCase from 'camelcase';
+
 import type { Operation } from '../../../client/interfaces/Operation';
 import type { OperationParameters } from '../../../client/interfaces/OperationParameters';
 import type { OpenApi } from '../interfaces/OpenApi';
@@ -26,6 +28,7 @@ export const getOperation = (
     const operation: Operation = {
         service: serviceName,
         name: operationName,
+        optionsTypeName: camelCase([operationName, 'Options'], { pascalCase: true }),
         summary: op.summary || null,
         description: op.description || null,
         deprecated: op.deprecated === true,
