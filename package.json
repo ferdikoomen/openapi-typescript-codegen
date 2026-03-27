@@ -71,7 +71,7 @@
         "@angular/animations": "21.2.1",
         "@angular/cli": "21.2.1",
         "@angular/common": "21.2.1",
-        "@angular/compiler": "21.2.4",
+        "@angular/compiler": "21.2.6",
         "@angular/compiler-cli": "21.2.1",
         "@angular/core": "21.2.4",
         "@angular/forms": "21.2.1",
