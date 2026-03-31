@@ -9,5 +9,8 @@ jobs:
   update-release-draft:
     permissions:
       contents: write
-    uses: thulium/github-internals/.github/workflows/thulium-update-microservice-release-log.yml@main
-    secrets: inherit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: release-drafter/release-drafter@v6.3.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
