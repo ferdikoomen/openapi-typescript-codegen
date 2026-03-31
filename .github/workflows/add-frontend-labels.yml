@@ -1,0 +1,11 @@
+name: Add PR labels
+
+on:
+  - pull_request
+
+jobs:
+  add-pr-labels:
+    uses: thulium/github-internals/.github/workflows/thulium-add-label-to-pr-for-team.yml@main
+    with:
+      team: frontend
+    secrets: inherit

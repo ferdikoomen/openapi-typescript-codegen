@@ -1,0 +1,15 @@
+name: Add to Thulium Projects
+
+on:
+  issues:
+    types:
+      - opened
+      - transferred
+  pull_request:
+    types:
+      - opened
+
+jobs:
+  gradle:
+    uses: thulium/github-internals/.github/workflows/thulium-add-to-project.yml@main
+    secrets: inherit
