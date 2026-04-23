@@ -69,9 +69,13 @@ export const request = <T>(config: OpenAPIConfig, options: ApiRequestOptions): C
 			const formData = getFormData(options);
 			const body = getRequestBody(options);
 			const headers = await getHeaders(config, options);
+			const next = config.NEXT;
+			const cache = config.CACHE;
 
 			if (!onCancel.isCancelled) {
-				const response = await sendRequest(config, options, url, body, formData, headers, onCancel);
+				const response = await sendRequest(
+					config, options, url, body, formData, headers, onCancel, next, cache
+				);
 				const responseBody = await getResponseBody(response);
 				const responseHeader = getResponseHeader(response, options.responseHeader);
 
