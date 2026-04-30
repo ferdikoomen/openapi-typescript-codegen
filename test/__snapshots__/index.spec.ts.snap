@@ -3703,6 +3703,7 @@ export type { EnumFromDescription } from './models/EnumFromDescription';
 export { EnumWithExtensions } from './models/EnumWithExtensions';
 export { EnumWithNumbers } from './models/EnumWithNumbers';
 export { EnumWithStrings } from './models/EnumWithStrings';
+export { EnumWithStringsWithPlusAndMinusSigns } from './models/EnumWithStringsWithPlusAndMinusSigns';
 export type { File } from './models/File';
 export type { FreeFormObjectWithAdditionalPropertiesEqEmptyObject } from './models/FreeFormObjectWithAdditionalPropertiesEqEmptyObject';
 export type { FreeFormObjectWithAdditionalPropertiesEqTrue } from './models/FreeFormObjectWithAdditionalPropertiesEqTrue';
@@ -3773,6 +3774,7 @@ export { $EnumFromDescription } from './schemas/$EnumFromDescription';
 export { $EnumWithExtensions } from './schemas/$EnumWithExtensions';
 export { $EnumWithNumbers } from './schemas/$EnumWithNumbers';
 export { $EnumWithStrings } from './schemas/$EnumWithStrings';
+export { $EnumWithStringsWithPlusAndMinusSigns } from './schemas/$EnumWithStringsWithPlusAndMinusSigns';
 export { $File } from './schemas/$File';
 export { $FreeFormObjectWithAdditionalPropertiesEqEmptyObject } from './schemas/$FreeFormObjectWithAdditionalPropertiesEqEmptyObject';
 export { $FreeFormObjectWithAdditionalPropertiesEqTrue } from './schemas/$FreeFormObjectWithAdditionalPropertiesEqTrue';
@@ -4385,6 +4387,21 @@ export enum EnumWithStrings {
     ERROR = 'Error',
     _SINGLE_QUOTE_ = '\\'Single Quote\\'',
     _DOUBLE_QUOTES_ = '"Double Quotes"',
+}
+"
+`;
+
+exports[`v3 should generate: test/generated/v3/models/EnumWithStringsWithPlusAndMinusSigns.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do not edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/**
+ * This is a simple enum with strings, but that start with plus and minus signs.
+ */
+export enum EnumWithStringsWithPlusAndMinusSigns {
+    _NAME = '+name',
+    _TOTAL = '+total',
 }
 "
 `;
@@ -5628,6 +5645,17 @@ exports[`v3 should generate: test/generated/v3/schemas/$EnumWithStrings.ts 1`] =
 /* tslint:disable */
 /* eslint-disable */
 export const $EnumWithStrings = {
+    type: 'Enum',
+} as const;
+"
+`;
+
+exports[`v3 should generate: test/generated/v3/schemas/$EnumWithStringsWithPlusAndMinusSigns.ts 1`] = `
+"/* generated using openapi-typescript-codegen -- do not edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+export const $EnumWithStringsWithPlusAndMinusSigns = {
     type: 'Enum',
 } as const;
 "
