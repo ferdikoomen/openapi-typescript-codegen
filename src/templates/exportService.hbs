@@ -31,6 +31,30 @@ import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 {{/if}}
 
+{{#if @root.useOptions }}
+{{#if @root.exportOptions }}
+{{#each operations}}
+{{#if parameters}}
+export type {{{optionsTypeName}}} = {
+{{#each parameters}}
+{{#ifdef description deprecated}}
+  /**
+{{#if description}}
+   * {{{escapeComment description}}}
+{{/if}}
+{{#if deprecated}}
+   * @deprecated
+{{/if}}
+   */
+{{/ifdef}}
+   {{{name}}}{{>isRequired}}: {{>type}},
+{{/each}}
+};
+{{/if}}
+{{/each}}
+{{/if}}
+{{/if}}
+
 {{#equals @root.httpClient 'angular'}}
 @Injectable({
   providedIn: 'root',
