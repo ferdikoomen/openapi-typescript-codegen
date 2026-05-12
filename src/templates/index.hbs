@@ -41,7 +41,7 @@ export { ${{{name}}} } from './schemas/${{{name}}}';
 {{#if services}}
 
 {{#each services}}
-export { {{{name}}}{{{@root.postfixServices}}} } from './services/{{{name}}}{{{@root.postfixServices}}}';
+export { {{{name}}}{{{@root.postfixServices}}}{{#if @root.useOptions}}{{#if @root.exportOptions}}{{#each operations}}{{#if parameters}}, {{{ optionsTypeName }}}{{/if}}{{/each}}{{/if}}{{/if}} } from './services/{{{name}}}{{{@root.postfixServices}}}';
 {{/each}}
 {{/if}}
 {{/if}}

@@ -23,6 +23,7 @@ export type Options = {
     exportServices?: boolean;
     exportModels?: boolean;
     exportSchemas?: boolean;
+    exportOptions?: boolean;
     indent?: Indent;
     postfixServices?: string;
     postfixModels?: string;
@@ -44,6 +45,7 @@ export type Options = {
  * @param exportServices Generate services
  * @param exportModels Generate models
  * @param exportSchemas Generate schemas
+ * @param exportOptions Generate function's options
  * @param indent Indentation options (4, 2 or tab)
  * @param postfixServices Service name postfix
  * @param postfixModels Model name postfix
@@ -61,6 +63,7 @@ export const generate = async ({
     exportServices = true,
     exportModels = true,
     exportSchemas = false,
+    exportOptions = false,
     indent = Indent.SPACE_4,
     postfixServices = 'Service',
     postfixModels = '',
@@ -91,6 +94,7 @@ export const generate = async ({
                 exportServices,
                 exportModels,
                 exportSchemas,
+                exportOptions,
                 indent,
                 postfixServices,
                 postfixModels,
@@ -115,6 +119,7 @@ export const generate = async ({
                 exportServices,
                 exportModels,
                 exportSchemas,
+                exportOptions,
                 indent,
                 postfixServices,
                 postfixModels,
