@@ -81,7 +81,7 @@
         "@babel/cli": "7.28.6",
         "@babel/core": "7.29.7",
         "@babel/preset-env": "7.29.5",
-        "@babel/preset-typescript": "7.28.5",
+        "@babel/preset-typescript": "7.29.7",
         "@eslint/js": "9.39.2",
         "@rollup/plugin-commonjs": "29.0.2",
         "@rollup/plugin-node-resolve": "16.0.3",
