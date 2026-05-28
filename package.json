@@ -72,7 +72,7 @@
         "@angular/cli": "21.2.13",
         "@angular/common": "21.2.14",
         "@angular/compiler": "21.2.15",
-        "@angular/compiler-cli": "21.2.14",
+        "@angular/compiler-cli": "21.2.15",
         "@angular/core": "21.2.15",
         "@angular/forms": "21.2.15",
         "@angular/platform-browser": "21.2.14",
