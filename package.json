@@ -105,7 +105,7 @@
         "eslint-plugin-prettier": "5.5.6",
         "eslint-plugin-simple-import-sort": "12.1.1",
         "express": "5.2.1",
-        "form-data": "4.0.5",
+        "form-data": "4.0.6",
         "globals": "17.6.0",
         "glob": "13.0.6",
         "jest": "30.4.2",
