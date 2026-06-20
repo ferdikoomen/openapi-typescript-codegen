@@ -62,7 +62,7 @@
     "dependencies": {
         "@apidevtools/json-schema-ref-parser": "^14.2.1",
         "camelcase": "^6.3.0",
-        "commander": "^14.0.3",
+        "commander": "^15.0.0",
         "fs-extra": "^11.3.5",
         "handlebars": "^4.7.9"
     },
