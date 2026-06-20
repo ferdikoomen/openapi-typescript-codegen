@@ -17,6 +17,7 @@ export const compileWithTypescript = (dir: string) => {
             target: 'es2020',
             module: 'es2020',
             moduleResolution: 'node',
+            ignoreDeprecations: '6.0',
             lib: ['es2020', 'dom'],
             declaration: false,
             declarationMap: false,

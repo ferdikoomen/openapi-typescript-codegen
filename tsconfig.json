@@ -1,9 +1,11 @@
 {
     "compilerOptions": {
         "outDir": "./dist",
+        "rootDir": "./src",
         "target": "es2019",
         "module": "commonjs",
         "moduleResolution": "node",
+        "ignoreDeprecations": "6.0",
         "lib": ["es2019", "dom"],
         "types": ["jest", "node"],
         "declaration": false,
