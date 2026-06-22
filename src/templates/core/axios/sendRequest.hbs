@@ -20,6 +20,10 @@ export const sendRequest = async <T>(
 		cancelToken: source.token,
 	};
 
+	if(config.responseType) {
+			requestConfig.responseType = config.responseType;
+	}
+
 	onCancel(() => source.cancel('The user aborted a request.'));
 
 	try {
