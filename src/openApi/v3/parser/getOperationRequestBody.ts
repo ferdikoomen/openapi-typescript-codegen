@@ -12,6 +12,7 @@ export const getOperationRequestBody = (openApi: OpenApi, body: OpenApiRequestBo
         export: 'interface',
         prop: 'requestBody',
         name: 'requestBody',
+        title: null,
         type: 'any',
         base: 'any',
         template: null,

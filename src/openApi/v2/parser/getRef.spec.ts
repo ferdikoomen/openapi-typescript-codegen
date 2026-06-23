@@ -16,6 +16,7 @@ describe('getRef', () => {
                     paths: {},
                     definitions: {
                         Example: {
+                            title: 'Example model',
                             description: 'This is an Example model ',
                             type: 'integer',
                         },
@@ -26,6 +27,7 @@ describe('getRef', () => {
                 }
             )
         ).toEqual({
+            title: 'Example model',
             description: 'This is an Example model ',
             type: 'integer',
         });

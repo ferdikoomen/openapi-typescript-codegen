@@ -15,6 +15,7 @@ export const getOperationResponse = (
     const operationResponse: OperationResponse = {
         in: 'response',
         name: '',
+        title: response.title || null,
         code: responseCode,
         description: response.description || null,
         export: 'generic',

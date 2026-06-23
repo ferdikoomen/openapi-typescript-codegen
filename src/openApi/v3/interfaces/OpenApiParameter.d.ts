@@ -8,6 +8,7 @@ import type { OpenApiSchema } from './OpenApiSchema';
  */
 export interface OpenApiParameter extends OpenApiReference {
     name: string;
+    title?: string;
     in: 'path' | 'query' | 'header' | 'formData' | 'cookie';
     description?: string;
     required?: boolean;

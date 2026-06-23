@@ -9,6 +9,7 @@ import type { OpenApiReference } from './OpenApiReference';
  */
 export interface OpenApiResponse extends OpenApiReference {
     description: string;
+    title: string;
     headers?: Dictionary<OpenApiHeader>;
     content?: Dictionary<OpenApiMediaType>;
     links?: Dictionary<OpenApiLink>;
