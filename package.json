@@ -76,7 +76,7 @@
         "@angular/core": "22.0.6",
         "@angular/forms": "22.0.6",
         "@angular/platform-browser": "22.0.6",
-        "@angular/platform-browser-dynamic": "22.0.6",
+        "@angular/platform-browser-dynamic": "22.1.0",
         "@angular/router": "22.0.6",
         "@babel/cli": "7.29.7",
         "@babel/core": "7.29.7",
