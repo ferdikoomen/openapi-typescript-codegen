@@ -111,7 +111,7 @@
         "jest": "30.4.2",
         "jest-cli": "30.4.2",
         "node-fetch": "2.7.0",
-        "prettier": "3.9.5",
+        "prettier": "3.9.6",
         "puppeteer": "24.43.1",
         "qs": "6.15.3",
         "rimraf": "6.1.3",
