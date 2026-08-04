@@ -75,7 +75,7 @@
         "@angular/compiler-cli": "22.0.6",
         "@angular/core": "22.1.0",
         "@angular/forms": "22.0.6",
-        "@angular/platform-browser": "22.0.6",
+        "@angular/platform-browser": "22.1.0",
         "@angular/platform-browser-dynamic": "22.1.0",
         "@angular/router": "22.1.0",
         "@babel/cli": "7.29.7",
