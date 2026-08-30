@@ -4,7 +4,7 @@
 {{#each parameters}}
 {{{name}}}{{#if default}} = {{{default}}}{{/if}},
 {{/each}}
-}: {
+}: {{#if @root.exportOptions~}}{{{ optionsTypeName }}}{{~else}}{
 {{#each parameters}}
 {{#ifdef description deprecated}}
 /**
@@ -19,6 +19,7 @@
 {{{name}}}{{>isRequired}}: {{>type}},
 {{/each}}
 }
+{{/if}}
 {{~else}}
 
 {{#each parameters}}

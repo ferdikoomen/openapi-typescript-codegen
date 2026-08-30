@@ -43,4 +43,24 @@ describe('v3', () => {
             expect(content).toMatchSnapshot(file);
         });
     });
+
+    it('should generate w/ --useOptions --exportOptions', async () => {
+        await generate({
+            input: './test/spec/v3.json',
+            output: './test/generated/v3-options/',
+            httpClient: HttpClient.FETCH,
+            useOptions: true,
+            useUnionTypes: false,
+            exportCore: true,
+            exportSchemas: true,
+            exportModels: true,
+            exportServices: true,
+            exportOptions: true,
+        });
+
+        sync('./test/generated/v3-options/**/*.ts').forEach(file => {
+            const content = readFileSync(file, 'utf8').toString();
+            expect(content).toMatchSnapshot(file);
+        });
+    });
 });
