@@ -5,6 +5,12 @@
 const path = require('path');
 const { program } = require('commander');
 const pkg = require('../package.json');
+const getTemplateOverrides = list =>
+    list?.reduce((result, override) => {
+        const [name, value] = override.split(':');
+        if (name && value) result[name] = value;
+        return result;
+    }, {});
 
 const params = program
     .name('openapi')
@@ -24,6 +30,7 @@ const params = program
     .option('--postfixServices <value>', 'Service name postfix', 'Service')
     .option('--postfixModels <value>', 'Model name postfix')
     .option('--request <value>', 'Path to custom request file')
+    .option('--templateOverrides <name:template...>', 'List of template overrides in the format name:template')
     .parse(process.argv)
     .opts();
 
@@ -45,6 +52,7 @@ if (OpenAPI) {
         postfixServices: params.postfixServices,
         postfixModels: params.postfixModels,
         request: params.request,
+        templateOverrides: getTemplateOverrides(params.templateOverrides),
     })
         .then(() => {
             process.exit(0);
