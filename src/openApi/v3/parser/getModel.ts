@@ -19,7 +19,7 @@ export const getModel = (
         name,
         export: 'interface',
         type: 'any',
-        base: 'any',
+        base: 'unknown',
         template: null,
         link: null,
         description: definition.description || null,
@@ -97,7 +97,8 @@ export const getModel = (
 
     if (
         definition.type === 'object' &&
-        (typeof definition.additionalProperties === 'object' || definition.additionalProperties === true)
+        (typeof definition.additionalProperties === 'object' || definition.additionalProperties === true) &&
+        !definition.properties
     ) {
         const ap = typeof definition.additionalProperties === 'object' ? definition.additionalProperties : {};
         if (ap.$ref) {
@@ -165,6 +166,39 @@ export const getModel = (
                     model.enums.push(modelProperty);
                 }
             });
+
+            if (definition.additionalProperties) {
+                const apModel: Model = {
+                    base: 'unknown',
+                    description: 'Additional properties are not explicitly defined may be present.',
+                    enum: [],
+                    enums: [],
+                    export: 'generic',
+                    imports: [],
+                    isDefinition: false,
+                    isNullable: false,
+                    isReadOnly: false,
+                    isRequired: true,
+                    link: null,
+                    name: '[additionalProperty: string]',
+                    properties: [],
+                    template: null,
+                    type: 'unknown',
+                };
+
+                if (typeof definition.additionalProperties === 'object') {
+                    const additionalProperties = getModel(openApi, definition.additionalProperties);
+                    apModel.type = additionalProperties.type;
+                    apModel.base = additionalProperties.base;
+                    apModel.template = additionalProperties.template;
+                    apModel.link = additionalProperties;
+                    apModel.imports.push(...additionalProperties.imports);
+                    apModel.default = getModelDefault(definition, model);
+                }
+
+                model.properties.push(apModel);
+            }
+
             return model;
         } else {
             const additionalProperties = getModel(openApi, {});
