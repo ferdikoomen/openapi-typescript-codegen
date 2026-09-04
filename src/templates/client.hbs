@@ -27,8 +27,8 @@ import { {{{name}}}{{{@root.postfix}}} } from './services/{{{name}}}{{{@root.pos
 		{
 			provide: OpenAPI,
 			useValue: {
-				BASE: OpenAPI?.BASE ?? '{{{server}}}',
-				VERSION: OpenAPI?.VERSION ?? '{{{version}}}',
+				BASE: OpenAPI?.BASE ?? '{{{escapeSingleQuotedString server}}}',
+				VERSION: OpenAPI?.VERSION ?? '{{{escapeSingleQuotedString version}}}',
 				WITH_CREDENTIALS: OpenAPI?.WITH_CREDENTIALS ?? false,
 				CREDENTIALS: OpenAPI?.CREDENTIALS ?? 'include',
 				TOKEN: OpenAPI?.TOKEN,
@@ -61,8 +61,8 @@ export class {{{clientName}}} {
 
 	constructor(config?: Partial<OpenAPIConfig>, HttpRequest: HttpRequestConstructor = {{{httpRequest}}}) {
 		this.request = new HttpRequest({
-			BASE: config?.BASE ?? '{{{server}}}',
-			VERSION: config?.VERSION ?? '{{{version}}}',
+			BASE: config?.BASE ?? '{{{escapeSingleQuotedString server}}}',
+			VERSION: config?.VERSION ?? '{{{escapeSingleQuotedString version}}}',
 			WITH_CREDENTIALS: config?.WITH_CREDENTIALS ?? false,
 			CREDENTIALS: config?.CREDENTIALS ?? 'include',
 			TOKEN: config?.TOKEN,

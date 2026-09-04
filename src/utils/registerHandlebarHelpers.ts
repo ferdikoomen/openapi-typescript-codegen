@@ -101,6 +101,24 @@ export const registerHandlebarHelpers = (root: {
         return value.replace(/\\/g, '\\\\').replace(/`/g, '\\`').replace(/\${/g, '\\${');
     });
 
+    // Several templates interpolate spec-derived strings (the request path,
+    // a server URL, a parameter/header/media-type name, a schema
+    // type/format/pattern) directly into a single-quoted JS string literal,
+    // e.g. `url: '{{{path}}}'`. Without escaping, a single quote in that
+    // value closes the string literal early and the remainder is evaluated
+    // as live JS: a spec path of `/x'+require('fs').writeFileSync(...)+'`
+    // becomes `url: '/x'+require('fs').writeFileSync(...)+'',`, which
+    // executes whenever the generated code runs (as soon as the containing
+    // module is imported, for module-level fields like a server URL, or on
+    // every call, for per-request fields like the path). Escape backslashes
+    // and single quotes so the value can only ever be interpreted as string
+    // data.
+    Handlebars.registerHelper('escapeSingleQuotedString', function (value: unknown): string {
+        return String(value ?? '')
+            .replace(/\\/g, '\\\\')
+            .replace(/'/g, "\\'");
+    });
+
     Handlebars.registerHelper('camelCase', function (value: string): string {
         return camelCase(value);
     });
