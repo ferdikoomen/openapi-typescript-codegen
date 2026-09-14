@@ -89,7 +89,7 @@ export const getModel = (
         }
     }
 
-    if (definition.type === 'object' && typeof definition.additionalProperties === 'object') {
+    if (typeof definition.additionalProperties === 'object') {
         if (definition.additionalProperties.$ref) {
             const additionalProperties = getType(definition.additionalProperties.$ref);
             model.export = 'dictionary';
@@ -119,7 +119,7 @@ export const getModel = (
         return model;
     }
 
-    if (definition.type === 'object') {
+    if (definition.type === 'object' || typeof definition.properties === 'object') {
         model.export = 'interface';
         model.type = 'any';
         model.base = 'any';
