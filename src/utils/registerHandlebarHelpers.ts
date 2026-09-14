@@ -12,6 +12,8 @@ export const registerHandlebarHelpers = (root: {
     useOptions: boolean;
     useUnionTypes: boolean;
 }): void => {
+    const isValidPropertyAccess = (value: string): boolean => /^[A-Za-z_$][\w$]*$/.test(value);
+
     Handlebars.registerHelper('ifdef', function (this: any, ...args): string {
         const options = args.pop();
         if (!args.every(value => !value)) {
@@ -79,6 +81,12 @@ export const registerHandlebarHelpers = (root: {
             options: Handlebars.HelperOptions
         ) {
             if (!root.useUnionTypes && parent && name) {
+                const uniqueEnumerators = enumerators.filter((enumerator, index, arr) => {
+                    return arr.findIndex(item => item.name === enumerator.name) === index;
+                });
+                if (uniqueEnumerators.length === 1 && isValidPropertyAccess(uniqueEnumerators[0].name)) {
+                    return `${parent}.${name}.${uniqueEnumerators[0].name}`;
+                }
                 return `${parent}.${name}`;
             }
             return options.fn(
