@@ -6,6 +6,7 @@ describe('sortModelsByName', () => {
         const john: Model = {
             export: 'interface',
             name: 'John',
+            title: null,
             type: 'John',
             base: 'John',
             template: null,
@@ -23,6 +24,7 @@ describe('sortModelsByName', () => {
         const jane: Model = {
             export: 'interface',
             name: 'Jane',
+            title: null,
             type: 'Jane',
             base: 'Jane',
             template: null,
@@ -40,6 +42,7 @@ describe('sortModelsByName', () => {
         const doe: Model = {
             export: 'interface',
             name: 'Doe',
+            title: null,
             type: 'Doe',
             base: 'Doe',
             template: null,

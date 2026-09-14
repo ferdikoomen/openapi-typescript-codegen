@@ -36,6 +36,7 @@ export const getModelProperties = (
                 | 'properties'
             > = {
                 name: escapeName(propertyName),
+                title: property.title || null,
                 description: property.description || null,
                 deprecated: property.deprecated === true,
                 isDefinition: false,
