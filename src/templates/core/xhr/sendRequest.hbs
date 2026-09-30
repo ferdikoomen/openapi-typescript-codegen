@@ -11,6 +11,10 @@ export const sendRequest = async (
 	xhr.open(options.method, url, true);
 	xhr.withCredentials = config.WITH_CREDENTIALS;
 
+	if(options.type === 'Blob') {
+		xhr.responseType = 'blob';
+	}
+
 	headers.forEach((value, key) => {
 		xhr.setRequestHeader(key, value);
 	});
