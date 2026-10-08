@@ -2553,6 +2553,26 @@
                 "description": "This is a free-form object with additionalProperties: {}.",
                 "type": "object",
                 "additionalProperties": {}
+            },
+            "ObjectWithAdditionalPropertiesEqTrue": {
+                "description": "This is an object with additionalProperties: true.",
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "additionalProperties": true
+            },
+            "ObjectWithAdditionalPropertiesEqEmptyObject": {
+                "description": "This is an object with additionalProperties: {}.",
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "additionalProperties": {}
             }
         }
     }
