@@ -18,6 +18,10 @@ export const getOperationResults = (operationResponses: OperationResponse[]): Op
         if (code && code !== 204 && code >= 200 && code < 300) {
             operationResults.push(operationResponse);
         }
+        // If response code is 204 and we are expecting something in header lets add
+        else if(code === 204 && operationResponse.in === "header"){
+            operationResults.push(operationResponse);
+        }
     });
 
     if (!operationResults.length) {
