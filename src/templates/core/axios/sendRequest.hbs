@@ -20,6 +20,10 @@ export const sendRequest = async <T>(
 		cancelToken: source.token,
 	};
 
+	if(options.type === 'Blob') {
+		requestConfig.responseType = 'blob';
+	}
+
 	onCancel(() => source.cancel('The user aborted a request.'));
 
 	try {
