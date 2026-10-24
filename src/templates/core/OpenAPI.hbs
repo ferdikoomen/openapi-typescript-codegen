@@ -18,8 +18,8 @@ export type OpenAPIConfig = {
 };
 
 export const OpenAPI: OpenAPIConfig = {
-	BASE: '{{{server}}}',
-	VERSION: '{{{version}}}',
+	BASE: '{{{escapeSingleQuotedString server}}}',
+	VERSION: '{{{escapeSingleQuotedString version}}}',
 	WITH_CREDENTIALS: false,
 	CREDENTIALS: 'include',
 	TOKEN: undefined,
