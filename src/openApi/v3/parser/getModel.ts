@@ -95,10 +95,7 @@ export const getModel = (
         }
     }
 
-    if (
-        definition.type === 'object' &&
-        (typeof definition.additionalProperties === 'object' || definition.additionalProperties === true)
-    ) {
+    if (definition.type === 'object' && typeof definition.additionalProperties === 'object') {
         const ap = typeof definition.additionalProperties === 'object' ? definition.additionalProperties : {};
         if (ap.$ref) {
             const additionalProperties = getType(ap.$ref);
@@ -165,6 +162,23 @@ export const getModel = (
                     model.enums.push(modelProperty);
                 }
             });
+
+            if (definition.additionalProperties === true) {
+                const additionalPropertiesModel = JSON.parse(JSON.stringify(model)); //deepcopy
+                const additionalProperties = getModel(openApi, {});
+                additionalPropertiesModel.name = '[key: string]';
+                additionalPropertiesModel.export = 'generic';
+                additionalPropertiesModel.type = 'any';
+                additionalPropertiesModel.base = 'any';
+                additionalPropertiesModel.isRequired = true;
+                additionalPropertiesModel.template = additionalProperties.template;
+                additionalPropertiesModel.link = additionalProperties;
+                additionalPropertiesModel.imports.push(...additionalProperties.imports);
+                additionalPropertiesModel.default = getModelDefault(definition, model);
+                additionalPropertiesModel.description = null;
+                model.properties.push(additionalPropertiesModel);
+            }
+
             return model;
         } else {
             const additionalProperties = getModel(openApi, {});
