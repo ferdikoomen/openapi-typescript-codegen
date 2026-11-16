@@ -1,6 +1,10 @@
-export const getResponseBody = (xhr: XMLHttpRequest): any => {
+export const getResponseBody = (xhr: XMLHttpRequest, options: ApiRequestOptions): any => {
 	if (xhr.status !== 204) {
 		try {
+			if(options.type === 'Blob') {
+				return xhr.response;
+			}
+
 			const contentType = xhr.getResponseHeader('Content-Type');
 			if (contentType) {
 				const jsonTypes = ['application/json', 'application/problem+json']
