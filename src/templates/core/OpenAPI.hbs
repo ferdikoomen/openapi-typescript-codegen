@@ -15,6 +15,8 @@ export type OpenAPIConfig = {
 	PASSWORD?: string | Resolver<string> | undefined;
 	HEADERS?: Headers | Resolver<Headers> | undefined;
 	ENCODE_PATH?: ((path: string) => string) | undefined;
+	NEXT?: NextFetchRequestConfig;
+	CACHE?: "default" | "force-cache" | "no-cache" | "no-store" | "only-if-cached" | "reload";
 };
 
 export const OpenAPI: OpenAPIConfig = {
@@ -27,4 +29,6 @@ export const OpenAPI: OpenAPIConfig = {
 	PASSWORD: undefined,
 	HEADERS: undefined,
 	ENCODE_PATH: undefined,
+	NEXT: undefined,
+	CACHE: undefined,
 };
