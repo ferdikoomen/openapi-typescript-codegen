@@ -9,6 +9,7 @@ import type { OpenApiSchema } from './OpenApiSchema';
  */
 export interface OpenApiParameter extends OpenApiReference, WithEnumExtension, WithNullableExtension {
     name: string;
+    title?: string;
     in: 'path' | 'query' | 'header' | 'formData' | 'body';
     description?: string;
     required?: boolean;

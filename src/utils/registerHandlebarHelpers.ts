@@ -101,6 +101,10 @@ export const registerHandlebarHelpers = (root: {
         return value.replace(/\\/g, '\\\\').replace(/`/g, '\\`').replace(/\${/g, '\\${');
     });
 
+    Handlebars.registerHelper('escapeTitle', function (value: string): string {
+        return value.replace(/\\/g, '\\\\').replace(/`/g, '\\`').replace(/\${/g, '\\${');
+    });
+
     Handlebars.registerHelper('camelCase', function (value: string): string {
         return camelCase(value);
     });

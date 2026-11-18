@@ -24,6 +24,7 @@ export const getOperationResults = (operationResponses: OperationResponse[]): Op
         operationResults.push({
             in: 'response',
             name: '',
+            title: '',
             code: 200,
             description: '',
             export: 'generic',

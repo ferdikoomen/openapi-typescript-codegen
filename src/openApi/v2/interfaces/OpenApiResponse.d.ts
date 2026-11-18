@@ -9,6 +9,7 @@ import type { OpenApiSchema } from './OpenApiSchema';
  */
 export interface OpenApiResponse extends OpenApiReference {
     description: string;
+    title: string;
     schema?: OpenApiSchema & OpenApiReference;
     headers?: Dictionary<OpenApiHeader>;
     examples?: OpenApiExample;

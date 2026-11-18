@@ -69,6 +69,7 @@ export const getModelComposition = (
     if (properties.length) {
         composition.properties.push({
             name: 'properties',
+            title: '',
             export: 'interface',
             type: 'any',
             base: 'any',
