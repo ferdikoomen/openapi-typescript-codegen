@@ -5,6 +5,7 @@ import type { OperationResponse } from './OperationResponse';
 export interface Operation extends OperationParameters {
     service: string;
     name: string;
+    optionsTypeName: string;
     summary: string | null;
     description: string | null;
     deprecated: boolean;
